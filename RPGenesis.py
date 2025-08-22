@@ -37,23 +37,24 @@ EXPECTED = {
     "dialogues_dir": "data/dialogues"
 }
 
+
 ID_RULES = {
-    "item":    re.compile(r"^IT\d{8}$"),
-    "npc":     re.compile(r"^NP\d{8}$"),
-    "enchant": re.compile(r"^EN\d{8}$"),
-    "trait":   re.compile(r"^TR\d{8}$"),
-    "magic":   re.compile(r"^MG\d{8}$"),
-    "status":  re.compile(r"^ST\d{8}$"),
-}$"),
-    "npc":     re.compile(r"^NP\d{8}$"),
-    "ench_w":  re.compile(r"^EW\d{8}$"),
-    "ench_a":  re.compile(r"^EA\d{8}$"),
-    "ench_c":  re.compile(r"^EC\d{8}$"),
-    "magic":   re.compile(r"^MG\d{8}$"),
-    "trait_c": re.compile(r"^TC\d{8}$"),
-    "trait_a": re.compile(r"^TA\d{8}$"),
-    "trait_w": re.compile(r"^TW\d{8}$"),
-    "status":  re.compile(r"^ST\d{8}$"),
+    "item":    re.compile(r"^IT\d{8}$"),  # Items
+    "npc":     re.compile(r"^NP\d{8}$"),  # NPCs
+
+    # Enchants
+    "ench_w":  re.compile(r"^EW\d{8}$"),  # Weapon enchants
+    "ench_a":  re.compile(r"^EA\d{8}$"),  # Armour enchants
+    "ench_c":  re.compile(r"^EC\d{8}$"),  # Accessory enchants
+
+    # Traits
+    "trait_w": re.compile(r"^TW\d{8}$"),  # Weapon traits
+    "trait_a": re.compile(r"^TA\d{8}$"),  # Armour traits
+    "trait_c": re.compile(r"^TC\d{8}$"),  # Accessory traits
+
+    # Other systems
+    "magic":   re.compile(r"^MG\d{8}$"),  # Magic spells
+    "status":  re.compile(r"^ST\d{8}$"),  # Status effects
 }
 
 def load_json(path: str):

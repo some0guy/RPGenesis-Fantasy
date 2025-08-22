@@ -1,0 +1,55 @@
+{
+  "enchants": [
+    {
+      "id": "EN00000001",
+      "name": "Sharpened I",
+      "effect": {
+        "phys": 2
+      },
+      "applies_to": "weapon"
+    },
+    {
+      "id": "EN00000002",
+      "name": "Stormbrand I",
+      "effect": {
+        "shock": 3
+      },
+      "on_hit_status": "ST00000002",
+      "applies_to": "weapon"
+    },
+    {
+      "id": "EN00000001",
+      "name": "Aegis I",
+      "effect": {
+        "defense_bonus": 2
+      },
+      "status_applied": null,
+      "applies_to": "armour"
+    },
+    {
+      "id": "EN00000002",
+      "name": "Frostward",
+      "effect": {
+        "resist_frost": 10
+      },
+      "status_applied": null,
+      "applies_to": "armour"
+    },
+    {
+      "id": "EN00000001",
+      "name": "Luckbound I",
+      "effect": {
+        "crit_chance": 2
+      },
+      "applies_to": "accessory"
+    },
+    {
+      "id": "EN00000002",
+      "name": "Evasion I",
+      "effect": {
+        "evade": 1
+      },
+      "applies_to": "accessory"
+    }
+  ]
+}
