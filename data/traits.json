@@ -1,4 +1,6 @@
-{
+﻿{
+  "schema":  "rpgenesis/enchants.v1",
+  "version":  1,
   "traits": [
     {
       "id": "TR00000001",

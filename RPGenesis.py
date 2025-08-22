@@ -6,17 +6,13 @@ from typing import Dict, Any, List, Tuple
 EXPECTED = {
     "root_files": [
         "data/appearance.json",
-        "data/enchants_armour.json",
-        "data/enchants_accessories.json",
-        "data/enchants_weapons.json",
+        "data/enchants.json",
+        "data/traits.json",
         "data/encounters.json",
         "data/loot_tables.json",
         "data/magic.json",
         "data/names.json",
         "data/status.json",
-        "data/traits_accessories.json",
-        "data/traits_armours.json",
-        "data/traits_weapons.json",
     ],
     "item_files": [
         "data/items/accessories.json",
@@ -37,29 +33,30 @@ EXPECTED = {
     "dialogues_dir": "data/dialogues"
 }
 
-
 ID_RULES = {
     "item":    re.compile(r"^IT\d{8}$"),  # Items
     "npc":     re.compile(r"^NP\d{8}$"),  # NPCs
 
-    # Enchants
-    "ench_w":  re.compile(r"^EW\d{8}$"),  # Weapon enchants
-    "ench_a":  re.compile(r"^EA\d{8}$"),  # Armour enchants
-    "ench_c":  re.compile(r"^EC\d{8}$"),  # Accessory enchants
+    # Unified Enchants
+    "enchant": re.compile(r"^EN\d{8}$"),  # All enchants
 
-    # Traits
-    "trait_w": re.compile(r"^TW\d{8}$"),  # Weapon traits
-    "trait_a": re.compile(r"^TA\d{8}$"),  # Armour traits
-    "trait_c": re.compile(r"^TC\d{8}$"),  # Accessory traits
+    # Unified Traits
+    "trait":   re.compile(r"^TR\d{8}$"),  # All traits
 
     # Other systems
     "magic":   re.compile(r"^MG\d{8}$"),  # Magic spells
     "status":  re.compile(r"^ST\d{8}$"),  # Status effects
 }
 
-def load_json(path: str):
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+def load_json(path, fallback=None):
+    try:
+        # utf-8-sig handles both plain UTF-8 and UTF-8 with BOM
+        with open(path, "r", encoding="utf-8-sig") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return fallback if fallback is not None else {}
+    except Exception as e:
+        raise RuntimeError(f"Failed to load {path}: {e}")
 
 def validate_id(id_str: str, kind: str) -> bool:
     rx = ID_RULES.get(kind)
@@ -139,14 +136,10 @@ def main(argv=None):
                 errs.append(f"[ERR] {rel} id '{_id}' must match {kind.upper()}########")
 
     docs_to_check = [
-        ("data/enchants_weapons.json", "enchants", "ench_w"),
-        ("data/enchants_armour.json",  "enchants", "ench_a"),
-        ("data/enchants_accessories.json", "enchants", "ench_c"),
-        ("data/traits_accessories.json", "traits", "trait_c"),
-        ("data/traits_armours.json",    "traits", "trait_a"),
-        ("data/traits_weapons.json",    "traits", "trait_w"),
-        ("data/magic.json",             "spells", "magic"),
-        ("data/status.json",            "status", "status"),
+        ("data/enchants.json", "enchants", "enchant"),
+        ("data/traits.json",   "traits",   "trait"),
+        ("data/magic.json",    "spells",   "magic"),
+        ("data/status.json",   "status",   "status"),
     ]
     for rel, key, kind in docs_to_check:
         doc, err = try_load(rel)
