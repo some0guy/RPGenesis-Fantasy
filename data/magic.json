@@ -1,0 +1,34 @@
+{
+  "schema": "rpgen.magic.v1",
+  "version": 1,
+  "schools": [
+    "frost",
+    "storm",
+    "verdant",
+    "shadow",
+    "solar"
+  ],
+  "spells": [
+    {
+      "id": "MG00000001",
+      "name": "Frost Dart",
+      "school": "frost",
+      "mp": 8,
+      "damage": {
+        "min": 8,
+        "max": 14
+      },
+      "applies_status": "ST00000001"
+    },
+    {
+      "id": "MG00000002",
+      "name": "Storm Chain",
+      "school": "storm",
+      "mp": 12,
+      "damage": {
+        "min": 10,
+        "max": 18
+      }
+    }
+  ]
+}

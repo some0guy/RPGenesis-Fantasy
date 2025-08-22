@@ -1,0 +1,15 @@
+{
+  "schema": "rpgen.items.accessories.v1",
+  "version": 1,
+  "items": [
+    {
+      "id": "IT00000001",
+      "name": "Luck Charm",
+      "type": "accessory",
+      "rarity": "uncommon",
+      "traits": [
+        "TR00000001"
+      ]
+    }
+  ]
+}

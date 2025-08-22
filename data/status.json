@@ -1,0 +1,51 @@
+{
+  "schema": "rpgen.status.v1",
+  "version": 1,
+  "status": [
+    {
+      "id": "ST00000001",
+      "name": "Frozen",
+      "tags": [
+        "control",
+        "frost"
+      ],
+      "effects": {
+        "cannot_act": true,
+        "duration": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    },
+    {
+      "id": "ST00000002",
+      "name": "Bleeding",
+      "tags": [
+        "dot",
+        "physical"
+      ],
+      "effects": {
+        "hp_per_turn": -3,
+        "duration": {
+          "min": 2,
+          "max": 4
+        }
+      }
+    },
+    {
+      "id": "ST00000003",
+      "name": "Ward",
+      "tags": [
+        "shield",
+        "magic"
+      ],
+      "effects": {
+        "damage_reduction_pct": 50,
+        "duration": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    }
+  ]
+}

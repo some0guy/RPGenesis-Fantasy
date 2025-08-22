@@ -1,0 +1,22 @@
+{
+  "schema": "rpgen.encounters.v1",
+  "version": 1,
+  "biome_overrides": {
+    "forest": {
+      "enemy": 0.5,
+      "npc": 0.2,
+      "event": 0.3
+    }
+  },
+  "events": [
+    {
+      "id": "ev_shrine",
+      "name": "Moonlit Shrine",
+      "effects": [
+        {
+          "mp": 10
+        }
+      ]
+    }
+  ]
+}

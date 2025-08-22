@@ -1,0 +1,13 @@
+{
+  "schema": "rpgen.npcs.allies.v1",
+  "version": 1,
+  "npcs": [
+    {
+      "id": "NP00000001",
+      "name": "Selune Vaeloria",
+      "role": "ally",
+      "romanceable": true,
+      "dialogueFile": "data/dialogues/selune_vaeloria.json"
+    }
+  ]
+}

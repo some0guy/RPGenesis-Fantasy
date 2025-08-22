@@ -1,0 +1,24 @@
+{
+  "schema": "rpgen.names.v1",
+  "version": 1,
+  "elven": {
+    "a": [
+      "ae"
+    ],
+    "b": [
+      "lor"
+    ]
+  },
+  "human_m": [
+    "Rowan"
+  ],
+  "human_f": [
+    "Eira"
+  ],
+  "placesA": [
+    "Moonspire"
+  ],
+  "placesB": [
+    "Wood"
+  ]
+}

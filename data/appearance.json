@@ -1,0 +1,24 @@
+{
+  "schema": "rpgen.appearance.v1",
+  "version": 1,
+  "body_types": [
+    "slender",
+    "athletic"
+  ],
+  "hair_colors": [
+    "black",
+    "blond"
+  ],
+  "eye_colors": [
+    "green",
+    "blue"
+  ],
+  "ears": [
+    "human",
+    "elven"
+  ],
+  "styles": [
+    "practical",
+    "ornate"
+  ]
+}

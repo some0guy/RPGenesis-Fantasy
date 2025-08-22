@@ -1,0 +1,4096 @@
+{
+  "schema": "rpgen.items.weapons.v1",
+  "version": 1,
+  "items": [
+    {
+      "category": "weapon",
+      "name": "Rough Dagger",
+      "style": "physical",
+      "type": "dagger",
+      "rarity": "common",
+      "value": 79,
+      "weight": 875,
+      "description": "A common dagger forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 14
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000001"
+    },
+    {
+      "category": "weapon",
+      "name": "Sturdy Dagger",
+      "style": "physical",
+      "type": "dagger",
+      "rarity": "uncommon",
+      "value": 115,
+      "weight": 1129,
+      "description": "A uncommon dagger forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 27
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000002"
+    },
+    {
+      "category": "weapon",
+      "name": "Frosted Dagger",
+      "style": "physical",
+      "type": "dagger",
+      "rarity": "rare",
+      "value": 427,
+      "weight": 1283,
+      "description": "A rare dagger forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "bleed": 25,
+        "mana": 22
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "none",
+      "id": "IT00000003"
+    },
+    {
+      "category": "weapon",
+      "name": "Sunforged Dagger",
+      "style": "physical",
+      "type": "dagger",
+      "rarity": "exotic",
+      "value": 880,
+      "weight": 801,
+      "description": "A exotic dagger forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 37,
+        "bleed": 30
+      },
+      "bonus": {
+        "attack": 4
+      },
+      "weapon_trait": "none",
+      "id": "IT00000004"
+    },
+    {
+      "category": "weapon",
+      "name": "Dragonsbreach Dagger",
+      "style": "physical",
+      "type": "dagger",
+      "rarity": "legendary",
+      "value": 1848,
+      "weight": 1232,
+      "description": "A legendary dagger forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "arcane": 30,
+        "fire": 30,
+        "mana": 26
+      },
+      "bonus": {
+        "attack": 5
+      },
+      "weapon_trait": "none",
+      "id": "IT00000005"
+    },
+    {
+      "category": "weapon",
+      "name": "Evershine Dagger",
+      "style": "physical",
+      "type": "dagger",
+      "rarity": "mythic",
+      "value": 5947,
+      "weight": 1152,
+      "description": "A mythic dagger forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "ice": 20,
+        "fire": 24,
+        "mana": 23,
+        "physical": 32
+      },
+      "bonus": {
+        "attack": 8
+      },
+      "weapon_trait": "chronal_burst",
+      "id": "IT00000006"
+    },
+    {
+      "category": "weapon",
+      "name": "Rough Shortsword",
+      "style": "physical",
+      "type": "shortsword",
+      "rarity": "common",
+      "value": 65,
+      "weight": 809,
+      "description": "A common shortsword forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 11
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000007"
+    },
+    {
+      "category": "weapon",
+      "name": "Sturdy Shortsword",
+      "style": "physical",
+      "type": "shortsword",
+      "rarity": "uncommon",
+      "value": 124,
+      "weight": 1284,
+      "description": "A uncommon shortsword forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 41
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000008"
+    },
+    {
+      "category": "weapon",
+      "name": "Embered Shortsword",
+      "style": "physical",
+      "type": "shortsword",
+      "rarity": "rare",
+      "value": 315,
+      "weight": 877,
+      "description": "A rare shortsword forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 31,
+        "bleed": 22
+      },
+      "bonus": {
+        "attack": 2
+      },
+      "weapon_trait": "none",
+      "id": "IT00000009"
+    },
+    {
+      "category": "weapon",
+      "name": "Voidetched Shortsword",
+      "style": "physical",
+      "type": "shortsword",
+      "rarity": "exotic",
+      "value": 1063,
+      "weight": 952,
+      "description": "A exotic shortsword forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "fire": 33,
+        "ice": 35
+      },
+      "bonus": {
+        "attack": 1
+      },
+      "weapon_trait": "none",
+      "id": "IT00000010"
+    },
+    {
+      "category": "weapon",
+      "name": "Kingsfall Shortsword",
+      "style": "physical",
+      "type": "shortsword",
+      "rarity": "legendary",
+      "value": 2667,
+      "weight": 957,
+      "description": "A legendary shortsword forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "bleed": 29,
+        "arcane": 23,
+        "fire": 28
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "none",
+      "id": "IT00000011"
+    },
+    {
+      "category": "weapon",
+      "name": "Veilbreaker Shortsword",
+      "style": "physical",
+      "type": "shortsword",
+      "rarity": "mythic",
+      "value": 4910,
+      "weight": 990,
+      "description": "A mythic shortsword forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "ice": 22,
+        "fire": 23,
+        "bleed": 21,
+        "arcane": 17
+      },
+      "bonus": {
+        "attack": 8
+      },
+      "weapon_trait": "lifedrink",
+      "id": "IT00000012"
+    },
+    {
+      "category": "weapon",
+      "name": "Bronze Longsword",
+      "style": "physical",
+      "type": "longsword",
+      "rarity": "common",
+      "value": 67,
+      "weight": 1779,
+      "description": "A common longsword forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 22
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000013"
+    },
+    {
+      "category": "weapon",
+      "name": "Balanced Longsword",
+      "style": "physical",
+      "type": "longsword",
+      "rarity": "uncommon",
+      "value": 151,
+      "weight": 1964,
+      "description": "A uncommon longsword forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 34
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000014"
+    },
+    {
+      "category": "weapon",
+      "name": "Embered Longsword",
+      "style": "physical",
+      "type": "longsword",
+      "rarity": "rare",
+      "value": 540,
+      "weight": 2083,
+      "description": "A rare longsword forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 26,
+        "stagger": 19
+      },
+      "bonus": {
+        "attack": 5
+      },
+      "weapon_trait": "none",
+      "id": "IT00000015"
+    },
+    {
+      "category": "weapon",
+      "name": "Bloodbound Longsword",
+      "style": "physical",
+      "type": "longsword",
+      "rarity": "exotic",
+      "value": 816,
+      "weight": 1711,
+      "description": "A exotic longsword forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 37,
+        "fire": 20
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "none",
+      "id": "IT00000016"
+    },
+    {
+      "category": "weapon",
+      "name": "Starforged Longsword",
+      "style": "physical",
+      "type": "longsword",
+      "rarity": "legendary",
+      "value": 3273,
+      "weight": 1904,
+      "description": "A legendary longsword forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "physical": 38,
+        "mana": 25,
+        "lightning": 25
+      },
+      "bonus": {
+        "attack": 8
+      },
+      "weapon_trait": "none",
+      "id": "IT00000017"
+    },
+    {
+      "category": "weapon",
+      "name": "Evershine Longsword",
+      "style": "physical",
+      "type": "longsword",
+      "rarity": "mythic",
+      "value": 4161,
+      "weight": 1879,
+      "description": "A mythic longsword forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "bleed": 24,
+        "lightning": 25,
+        "arcane": 24,
+        "stagger": 18
+      },
+      "bonus": {
+        "attack": 5
+      },
+      "weapon_trait": "soulbound",
+      "id": "IT00000018"
+    },
+    {
+      "category": "weapon",
+      "name": "Iron Claymore",
+      "style": "physical",
+      "type": "claymore",
+      "rarity": "common",
+      "value": 35,
+      "weight": 2203,
+      "description": "A common claymore forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 23
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000019"
+    },
+    {
+      "category": "weapon",
+      "name": "Seasoned Claymore",
+      "style": "physical",
+      "type": "claymore",
+      "rarity": "uncommon",
+      "value": 197,
+      "weight": 1467,
+      "description": "A uncommon claymore forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 30
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000020"
+    },
+    {
+      "category": "weapon",
+      "name": "Stormkissed Claymore",
+      "style": "physical",
+      "type": "claymore",
+      "rarity": "rare",
+      "value": 465,
+      "weight": 1679,
+      "description": "A rare claymore forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 27,
+        "lightning": 16
+      },
+      "bonus": {
+        "attack": 3
+      },
+      "weapon_trait": "none",
+      "id": "IT00000021"
+    },
+    {
+      "category": "weapon",
+      "name": "Runeforged Claymore",
+      "style": "physical",
+      "type": "claymore",
+      "rarity": "exotic",
+      "value": 883,
+      "weight": 1791,
+      "description": "A exotic claymore forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "stagger": 36,
+        "fire": 35
+      },
+      "bonus": {
+        "attack": 4
+      },
+      "weapon_trait": "none",
+      "id": "IT00000022"
+    },
+    {
+      "category": "weapon",
+      "name": "Kingsfall Claymore",
+      "style": "physical",
+      "type": "claymore",
+      "rarity": "legendary",
+      "value": 1869,
+      "weight": 2160,
+      "description": "A legendary claymore forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "mana": 27,
+        "fire": 25,
+        "bleed": 23
+      },
+      "bonus": {
+        "attack": 7
+      },
+      "weapon_trait": "none",
+      "id": "IT00000023"
+    },
+    {
+      "category": "weapon",
+      "name": "Evershine Claymore",
+      "style": "physical",
+      "type": "claymore",
+      "rarity": "mythic",
+      "value": 4719,
+      "weight": 2245,
+      "description": "A mythic claymore forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "mana": 19,
+        "bleed": 21,
+        "lightning": 20,
+        "ice": 20
+      },
+      "bonus": {
+        "attack": 7
+      },
+      "weapon_trait": "lifedrink",
+      "id": "IT00000024"
+    },
+    {
+      "category": "weapon",
+      "name": "Weathered Scimitar",
+      "style": "physical",
+      "type": "scimitar",
+      "rarity": "common",
+      "value": 73,
+      "weight": 1484,
+      "description": "A common scimitar forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 14
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000025"
+    },
+    {
+      "category": "weapon",
+      "name": "Tempered Scimitar",
+      "style": "physical",
+      "type": "scimitar",
+      "rarity": "uncommon",
+      "value": 164,
+      "weight": 1536,
+      "description": "A uncommon scimitar forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 26
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000026"
+    },
+    {
+      "category": "weapon",
+      "name": "Runed Scimitar",
+      "style": "physical",
+      "type": "scimitar",
+      "rarity": "rare",
+      "value": 557,
+      "weight": 2162,
+      "description": "A rare scimitar forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 25,
+        "stagger": 16
+      },
+      "bonus": {
+        "attack": 1
+      },
+      "weapon_trait": "none",
+      "id": "IT00000027"
+    },
+    {
+      "category": "weapon",
+      "name": "Sunforged Scimitar",
+      "style": "physical",
+      "type": "scimitar",
+      "rarity": "exotic",
+      "value": 1276,
+      "weight": 1880,
+      "description": "A exotic scimitar forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "lightning": 32,
+        "mana": 33
+      },
+      "bonus": {
+        "attack": 1
+      },
+      "weapon_trait": "none",
+      "id": "IT00000028"
+    },
+    {
+      "category": "weapon",
+      "name": "Thunderforged Scimitar",
+      "style": "physical",
+      "type": "scimitar",
+      "rarity": "legendary",
+      "value": 2715,
+      "weight": 1990,
+      "description": "A legendary scimitar forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "lightning": 26,
+        "fire": 27,
+        "ice": 30
+      },
+      "bonus": {
+        "attack": 5
+      },
+      "weapon_trait": "none",
+      "id": "IT00000029"
+    },
+    {
+      "category": "weapon",
+      "name": "Chrono-spiral Scimitar",
+      "style": "physical",
+      "type": "scimitar",
+      "rarity": "mythic",
+      "value": 5006,
+      "weight": 1868,
+      "description": "A mythic scimitar forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "fire": 25,
+        "stagger": 19,
+        "bleed": 21,
+        "ice": 22
+      },
+      "bonus": {
+        "attack": 7
+      },
+      "weapon_trait": "lifedrink",
+      "id": "IT00000030"
+    },
+    {
+      "category": "weapon",
+      "name": "Iron Cutlass",
+      "style": "physical",
+      "type": "cutlass",
+      "rarity": "common",
+      "value": 58,
+      "weight": 1507,
+      "description": "A common cutlass forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 11
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000031"
+    },
+    {
+      "category": "weapon",
+      "name": "Seasoned Cutlass",
+      "style": "physical",
+      "type": "cutlass",
+      "rarity": "uncommon",
+      "value": 130,
+      "weight": 1527,
+      "description": "A uncommon cutlass forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 29
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000032"
+    },
+    {
+      "category": "weapon",
+      "name": "Gilded Cutlass",
+      "style": "physical",
+      "type": "cutlass",
+      "rarity": "rare",
+      "value": 330,
+      "weight": 1533,
+      "description": "A rare cutlass forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 30,
+        "stagger": 17
+      },
+      "bonus": {
+        "attack": 2
+      },
+      "weapon_trait": "none",
+      "id": "IT00000033"
+    },
+    {
+      "category": "weapon",
+      "name": "Bloodbound Cutlass",
+      "style": "physical",
+      "type": "cutlass",
+      "rarity": "exotic",
+      "value": 1337,
+      "weight": 1777,
+      "description": "A exotic cutlass forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 44,
+        "ice": 28
+      },
+      "bonus": {
+        "attack": 5
+      },
+      "weapon_trait": "none",
+      "id": "IT00000034"
+    },
+    {
+      "category": "weapon",
+      "name": "Thunderforged Cutlass",
+      "style": "physical",
+      "type": "cutlass",
+      "rarity": "legendary",
+      "value": 2428,
+      "weight": 2318,
+      "description": "A legendary cutlass forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "arcane": 22,
+        "lightning": 25,
+        "stagger": 28
+      },
+      "bonus": {
+        "attack": 8
+      },
+      "weapon_trait": "none",
+      "id": "IT00000035"
+    },
+    {
+      "category": "weapon",
+      "name": "Chrono-spiral Cutlass",
+      "style": "physical",
+      "type": "cutlass",
+      "rarity": "mythic",
+      "value": 4839,
+      "weight": 1545,
+      "description": "A mythic cutlass forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "fire": 18,
+        "stagger": 21,
+        "arcane": 24,
+        "bleed": 19
+      },
+      "bonus": {
+        "attack": 9
+      },
+      "weapon_trait": "chronal_burst",
+      "id": "IT00000036"
+    },
+    {
+      "category": "weapon",
+      "name": "Plain Axe",
+      "style": "physical",
+      "type": "axe",
+      "rarity": "common",
+      "value": 60,
+      "weight": 1639,
+      "description": "A common axe forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 24
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000037"
+    },
+    {
+      "category": "weapon",
+      "name": "Balanced Axe",
+      "style": "physical",
+      "type": "axe",
+      "rarity": "uncommon",
+      "value": 110,
+      "weight": 1590,
+      "description": "A uncommon axe forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 37
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000038"
+    },
+    {
+      "category": "weapon",
+      "name": "Frosted Axe",
+      "style": "physical",
+      "type": "axe",
+      "rarity": "rare",
+      "value": 417,
+      "weight": 2288,
+      "description": "A rare axe forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "mana": 21,
+        "lightning": 21
+      },
+      "bonus": {
+        "attack": 1
+      },
+      "weapon_trait": "none",
+      "id": "IT00000039"
+    },
+    {
+      "category": "weapon",
+      "name": "Sunforged Axe",
+      "style": "physical",
+      "type": "axe",
+      "rarity": "exotic",
+      "value": 1017,
+      "weight": 2324,
+      "description": "A exotic axe forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "fire": 39,
+        "ice": 33
+      },
+      "bonus": {
+        "attack": 4
+      },
+      "weapon_trait": "none",
+      "id": "IT00000040"
+    },
+    {
+      "category": "weapon",
+      "name": "Worldsplitter Axe",
+      "style": "physical",
+      "type": "axe",
+      "rarity": "legendary",
+      "value": 2350,
+      "weight": 1987,
+      "description": "A legendary axe forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "mana": 27,
+        "stagger": 29,
+        "fire": 25
+      },
+      "bonus": {
+        "attack": 8
+      },
+      "weapon_trait": "none",
+      "id": "IT00000041"
+    },
+    {
+      "category": "weapon",
+      "name": "Evershine Axe",
+      "style": "physical",
+      "type": "axe",
+      "rarity": "mythic",
+      "value": 5544,
+      "weight": 1536,
+      "description": "A mythic axe forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "physical": 24,
+        "ice": 16,
+        "lightning": 19,
+        "stagger": 18
+      },
+      "bonus": {
+        "attack": 10
+      },
+      "weapon_trait": "lifedrink",
+      "id": "IT00000042"
+    },
+    {
+      "category": "weapon",
+      "name": "Iron Greataxe",
+      "style": "physical",
+      "type": "greataxe",
+      "rarity": "common",
+      "value": 65,
+      "weight": 1613,
+      "description": "A common greataxe forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 20
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000043"
+    },
+    {
+      "category": "weapon",
+      "name": "Seasoned Greataxe",
+      "style": "physical",
+      "type": "greataxe",
+      "rarity": "uncommon",
+      "value": 161,
+      "weight": 2265,
+      "description": "A uncommon greataxe forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 32
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000044"
+    },
+    {
+      "category": "weapon",
+      "name": "Stormkissed Greataxe",
+      "style": "physical",
+      "type": "greataxe",
+      "rarity": "rare",
+      "value": 453,
+      "weight": 1958,
+      "description": "A rare greataxe forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 34,
+        "bleed": 21
+      },
+      "bonus": {
+        "attack": 3
+      },
+      "weapon_trait": "none",
+      "id": "IT00000045"
+    },
+    {
+      "category": "weapon",
+      "name": "Runeforged Greataxe",
+      "style": "physical",
+      "type": "greataxe",
+      "rarity": "exotic",
+      "value": 1241,
+      "weight": 2067,
+      "description": "A exotic greataxe forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "lightning": 29,
+        "bleed": 31
+      },
+      "bonus": {
+        "attack": 3
+      },
+      "weapon_trait": "none",
+      "id": "IT00000046"
+    },
+    {
+      "category": "weapon",
+      "name": "Kingsfall Greataxe",
+      "style": "physical",
+      "type": "greataxe",
+      "rarity": "legendary",
+      "value": 1817,
+      "weight": 2147,
+      "description": "A legendary greataxe forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "physical": 31,
+        "bleed": 26,
+        "lightning": 25
+      },
+      "bonus": {
+        "attack": 9
+      },
+      "weapon_trait": "none",
+      "id": "IT00000047"
+    },
+    {
+      "category": "weapon",
+      "name": "Echo of Night Greataxe",
+      "style": "physical",
+      "type": "greataxe",
+      "rarity": "mythic",
+      "value": 3621,
+      "weight": 1967,
+      "description": "A mythic greataxe forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "fire": 23,
+        "ice": 22,
+        "mana": 22,
+        "lightning": 24
+      },
+      "bonus": {
+        "attack": 10
+      },
+      "weapon_trait": "spell_syphon",
+      "id": "IT00000048"
+    },
+    {
+      "category": "weapon",
+      "name": "Rough Mace",
+      "style": "physical",
+      "type": "mace",
+      "rarity": "common",
+      "value": 40,
+      "weight": 2290,
+      "description": "A common mace forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 11
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000049"
+    },
+    {
+      "category": "weapon",
+      "name": "Tempered Mace",
+      "style": "physical",
+      "type": "mace",
+      "rarity": "uncommon",
+      "value": 100,
+      "weight": 1517,
+      "description": "A uncommon mace forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 40
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000050"
+    },
+    {
+      "category": "weapon",
+      "name": "Gilded Mace",
+      "style": "physical",
+      "type": "mace",
+      "rarity": "rare",
+      "value": 382,
+      "weight": 1885,
+      "description": "A rare mace forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 32,
+        "bleed": 21
+      },
+      "bonus": {
+        "attack": 3
+      },
+      "weapon_trait": "none",
+      "id": "IT00000051"
+    },
+    {
+      "category": "weapon",
+      "name": "Runeforged Mace",
+      "style": "physical",
+      "type": "mace",
+      "rarity": "exotic",
+      "value": 1164,
+      "weight": 1588,
+      "description": "A exotic mace forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "fire": 34,
+        "bleed": 34
+      },
+      "bonus": {
+        "attack": 4
+      },
+      "weapon_trait": "none",
+      "id": "IT00000052"
+    },
+    {
+      "category": "weapon",
+      "name": "Thunderforged Mace",
+      "style": "physical",
+      "type": "mace",
+      "rarity": "legendary",
+      "value": 2901,
+      "weight": 2233,
+      "description": "A legendary mace forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "physical": 29,
+        "arcane": 23,
+        "lightning": 24
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "none",
+      "id": "IT00000053"
+    },
+    {
+      "category": "weapon",
+      "name": "Abyssal Crown Mace",
+      "style": "physical",
+      "type": "mace",
+      "rarity": "mythic",
+      "value": 7061,
+      "weight": 1678,
+      "description": "A mythic mace forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "ice": 21,
+        "arcane": 23,
+        "mana": 20,
+        "lightning": 18
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "spell_syphon",
+      "id": "IT00000054"
+    },
+    {
+      "category": "weapon",
+      "name": "Rough Hammer",
+      "style": "physical",
+      "type": "hammer",
+      "rarity": "common",
+      "value": 75,
+      "weight": 1593,
+      "description": "A common hammer forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 24
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000055"
+    },
+    {
+      "category": "weapon",
+      "name": "Honed Hammer",
+      "style": "physical",
+      "type": "hammer",
+      "rarity": "uncommon",
+      "value": 156,
+      "weight": 1861,
+      "description": "A uncommon hammer forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 34
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000056"
+    },
+    {
+      "category": "weapon",
+      "name": "Gilded Hammer",
+      "style": "physical",
+      "type": "hammer",
+      "rarity": "rare",
+      "value": 388,
+      "weight": 1551,
+      "description": "A rare hammer forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 32,
+        "fire": 17
+      },
+      "bonus": {
+        "attack": 1
+      },
+      "weapon_trait": "none",
+      "id": "IT00000057"
+    },
+    {
+      "category": "weapon",
+      "name": "Sunforged Hammer",
+      "style": "physical",
+      "type": "hammer",
+      "rarity": "exotic",
+      "value": 726,
+      "weight": 1926,
+      "description": "A exotic hammer forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 44,
+        "arcane": 25
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "none",
+      "id": "IT00000058"
+    },
+    {
+      "category": "weapon",
+      "name": "Starforged Hammer",
+      "style": "physical",
+      "type": "hammer",
+      "rarity": "legendary",
+      "value": 3229,
+      "weight": 1571,
+      "description": "A legendary hammer forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "mana": 21,
+        "lightning": 27,
+        "bleed": 26
+      },
+      "bonus": {
+        "attack": 8
+      },
+      "weapon_trait": "none",
+      "id": "IT00000059"
+    },
+    {
+      "category": "weapon",
+      "name": "Evershine Hammer",
+      "style": "physical",
+      "type": "hammer",
+      "rarity": "mythic",
+      "value": 3745,
+      "weight": 1780,
+      "description": "A mythic hammer forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "fire": 19,
+        "mana": 18,
+        "lightning": 18,
+        "physical": 24
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "soulbound",
+      "id": "IT00000060"
+    },
+    {
+      "category": "weapon",
+      "name": "Iron Warhammer",
+      "style": "physical",
+      "type": "warhammer",
+      "rarity": "common",
+      "value": 78,
+      "weight": 1507,
+      "description": "A common warhammer forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 20
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000061"
+    },
+    {
+      "category": "weapon",
+      "name": "Sturdy Warhammer",
+      "style": "physical",
+      "type": "warhammer",
+      "rarity": "uncommon",
+      "value": 193,
+      "weight": 2097,
+      "description": "A uncommon warhammer forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 32
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000062"
+    },
+    {
+      "category": "weapon",
+      "name": "Stormkissed Warhammer",
+      "style": "physical",
+      "type": "warhammer",
+      "rarity": "rare",
+      "value": 391,
+      "weight": 2247,
+      "description": "A rare warhammer forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "bleed": 20,
+        "mana": 21
+      },
+      "bonus": {
+        "attack": 1
+      },
+      "weapon_trait": "none",
+      "id": "IT00000063"
+    },
+    {
+      "category": "weapon",
+      "name": "Moonlit Warhammer",
+      "style": "physical",
+      "type": "warhammer",
+      "rarity": "exotic",
+      "value": 956,
+      "weight": 2070,
+      "description": "A exotic warhammer forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "mana": 37,
+        "stagger": 35
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "none",
+      "id": "IT00000064"
+    },
+    {
+      "category": "weapon",
+      "name": "Thunderforged Warhammer",
+      "style": "physical",
+      "type": "warhammer",
+      "rarity": "legendary",
+      "value": 3294,
+      "weight": 1534,
+      "description": "A legendary warhammer forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "arcane": 26,
+        "bleed": 30,
+        "fire": 30
+      },
+      "bonus": {
+        "attack": 10
+      },
+      "weapon_trait": "none",
+      "id": "IT00000065"
+    },
+    {
+      "category": "weapon",
+      "name": "Chrono-spiral Warhammer",
+      "style": "physical",
+      "type": "warhammer",
+      "rarity": "mythic",
+      "value": 6275,
+      "weight": 2127,
+      "description": "A mythic warhammer forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "stagger": 18,
+        "fire": 16,
+        "physical": 27,
+        "ice": 14
+      },
+      "bonus": {
+        "attack": 8
+      },
+      "weapon_trait": "chronal_burst",
+      "id": "IT00000066"
+    },
+    {
+      "category": "weapon",
+      "name": "Weathered Flail",
+      "style": "physical",
+      "type": "flail",
+      "rarity": "common",
+      "value": 56,
+      "weight": 2153,
+      "description": "A common flail forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 18
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000067"
+    },
+    {
+      "category": "weapon",
+      "name": "Tempered Flail",
+      "style": "physical",
+      "type": "flail",
+      "rarity": "uncommon",
+      "value": 110,
+      "weight": 2188,
+      "description": "A uncommon flail forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 39
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000068"
+    },
+    {
+      "category": "weapon",
+      "name": "Runed Flail",
+      "style": "physical",
+      "type": "flail",
+      "rarity": "rare",
+      "value": 485,
+      "weight": 1907,
+      "description": "A rare flail forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 34,
+        "arcane": 22
+      },
+      "bonus": {
+        "attack": 3
+      },
+      "weapon_trait": "none",
+      "id": "IT00000069"
+    },
+    {
+      "category": "weapon",
+      "name": "Bloodbound Flail",
+      "style": "physical",
+      "type": "flail",
+      "rarity": "exotic",
+      "value": 815,
+      "weight": 2259,
+      "description": "A exotic flail forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 42,
+        "stagger": 29
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "none",
+      "id": "IT00000070"
+    },
+    {
+      "category": "weapon",
+      "name": "Starforged Flail",
+      "style": "physical",
+      "type": "flail",
+      "rarity": "legendary",
+      "value": 2358,
+      "weight": 1723,
+      "description": "A legendary flail forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "stagger": 22,
+        "fire": 22,
+        "physical": 29
+      },
+      "bonus": {
+        "attack": 9
+      },
+      "weapon_trait": "none",
+      "id": "IT00000071"
+    },
+    {
+      "category": "weapon",
+      "name": "Echo of Night Flail",
+      "style": "physical",
+      "type": "flail",
+      "rarity": "mythic",
+      "value": 4704,
+      "weight": 2200,
+      "description": "A mythic flail forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "ice": 20,
+        "mana": 24,
+        "stagger": 19,
+        "physical": 34
+      },
+      "bonus": {
+        "attack": 5
+      },
+      "weapon_trait": "echo_strike",
+      "id": "IT00000072"
+    },
+    {
+      "category": "weapon",
+      "name": "Plain Spear",
+      "style": "physical",
+      "type": "spear",
+      "rarity": "common",
+      "value": 70,
+      "weight": 1892,
+      "description": "A common spear forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 15
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000073"
+    },
+    {
+      "category": "weapon",
+      "name": "Tempered Spear",
+      "style": "physical",
+      "type": "spear",
+      "rarity": "uncommon",
+      "value": 123,
+      "weight": 1938,
+      "description": "A uncommon spear forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 31
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000074"
+    },
+    {
+      "category": "weapon",
+      "name": "Gilded Spear",
+      "style": "physical",
+      "type": "spear",
+      "rarity": "rare",
+      "value": 394,
+      "weight": 1753,
+      "description": "A rare spear forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 27,
+        "arcane": 18
+      },
+      "bonus": {
+        "attack": 4
+      },
+      "weapon_trait": "none",
+      "id": "IT00000075"
+    },
+    {
+      "category": "weapon",
+      "name": "Voidetched Spear",
+      "style": "physical",
+      "type": "spear",
+      "rarity": "exotic",
+      "value": 1254,
+      "weight": 1496,
+      "description": "A exotic spear forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "arcane": 32,
+        "fire": 38
+      },
+      "bonus": {
+        "attack": 2
+      },
+      "weapon_trait": "none",
+      "id": "IT00000076"
+    },
+    {
+      "category": "weapon",
+      "name": "Thunderforged Spear",
+      "style": "physical",
+      "type": "spear",
+      "rarity": "legendary",
+      "value": 2805,
+      "weight": 2312,
+      "description": "A legendary spear forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "mana": 30,
+        "bleed": 28,
+        "ice": 24
+      },
+      "bonus": {
+        "attack": 5
+      },
+      "weapon_trait": "none",
+      "id": "IT00000077"
+    },
+    {
+      "category": "weapon",
+      "name": "Chrono-spiral Spear",
+      "style": "physical",
+      "type": "spear",
+      "rarity": "mythic",
+      "value": 7092,
+      "weight": 1847,
+      "description": "A mythic spear forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "stagger": 15,
+        "fire": 18,
+        "arcane": 18,
+        "physical": 23
+      },
+      "bonus": {
+        "attack": 9
+      },
+      "weapon_trait": "lifedrink",
+      "id": "IT00000078"
+    },
+    {
+      "category": "weapon",
+      "name": "Plain Halberd",
+      "style": "physical",
+      "type": "halberd",
+      "rarity": "common",
+      "value": 43,
+      "weight": 1690,
+      "description": "A common halberd forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 21
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000079"
+    },
+    {
+      "category": "weapon",
+      "name": "Tempered Halberd",
+      "style": "physical",
+      "type": "halberd",
+      "rarity": "uncommon",
+      "value": 195,
+      "weight": 2121,
+      "description": "A uncommon halberd forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 28
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000080"
+    },
+    {
+      "category": "weapon",
+      "name": "Gilded Halberd",
+      "style": "physical",
+      "type": "halberd",
+      "rarity": "rare",
+      "value": 408,
+      "weight": 2196,
+      "description": "A rare halberd forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 27,
+        "arcane": 16
+      },
+      "bonus": {
+        "attack": 2
+      },
+      "weapon_trait": "none",
+      "id": "IT00000081"
+    },
+    {
+      "category": "weapon",
+      "name": "Runeforged Halberd",
+      "style": "physical",
+      "type": "halberd",
+      "rarity": "exotic",
+      "value": 953,
+      "weight": 2316,
+      "description": "A exotic halberd forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 37,
+        "ice": 20
+      },
+      "bonus": {
+        "attack": 3
+      },
+      "weapon_trait": "none",
+      "id": "IT00000082"
+    },
+    {
+      "category": "weapon",
+      "name": "Starforged Halberd",
+      "style": "physical",
+      "type": "halberd",
+      "rarity": "legendary",
+      "value": 2129,
+      "weight": 2019,
+      "description": "A legendary halberd forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "ice": 21,
+        "mana": 21,
+        "physical": 34
+      },
+      "bonus": {
+        "attack": 9
+      },
+      "weapon_trait": "none",
+      "id": "IT00000083"
+    },
+    {
+      "category": "weapon",
+      "name": "Echo of Night Halberd",
+      "style": "physical",
+      "type": "halberd",
+      "rarity": "mythic",
+      "value": 5531,
+      "weight": 1610,
+      "description": "A mythic halberd forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "mana": 18,
+        "bleed": 22,
+        "fire": 20,
+        "stagger": 17
+      },
+      "bonus": {
+        "attack": 5
+      },
+      "weapon_trait": "echo_strike",
+      "id": "IT00000084"
+    },
+    {
+      "category": "weapon",
+      "name": "Rough Club",
+      "style": "physical",
+      "type": "club",
+      "rarity": "common",
+      "value": 70,
+      "weight": 885,
+      "description": "A common club forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 13
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000085"
+    },
+    {
+      "category": "weapon",
+      "name": "Seasoned Club",
+      "style": "physical",
+      "type": "club",
+      "rarity": "uncommon",
+      "value": 115,
+      "weight": 804,
+      "description": "A uncommon club forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 36
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000086"
+    },
+    {
+      "category": "weapon",
+      "name": "Embered Club",
+      "style": "physical",
+      "type": "club",
+      "rarity": "rare",
+      "value": 242,
+      "weight": 1160,
+      "description": "A rare club forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 36,
+        "mana": 19
+      },
+      "bonus": {
+        "attack": 1
+      },
+      "weapon_trait": "none",
+      "id": "IT00000087"
+    },
+    {
+      "category": "weapon",
+      "name": "Runeforged Club",
+      "style": "physical",
+      "type": "club",
+      "rarity": "exotic",
+      "value": 1335,
+      "weight": 811,
+      "description": "A exotic club forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 44,
+        "arcane": 29
+      },
+      "bonus": {
+        "attack": 1
+      },
+      "weapon_trait": "none",
+      "id": "IT00000088"
+    },
+    {
+      "category": "weapon",
+      "name": "Dragonsbreach Club",
+      "style": "physical",
+      "type": "club",
+      "rarity": "legendary",
+      "value": 2632,
+      "weight": 1081,
+      "description": "A legendary club forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "fire": 24,
+        "stagger": 27,
+        "lightning": 23
+      },
+      "bonus": {
+        "attack": 8
+      },
+      "weapon_trait": "none",
+      "id": "IT00000089"
+    },
+    {
+      "category": "weapon",
+      "name": "Abyssal Crown Club",
+      "style": "physical",
+      "type": "club",
+      "rarity": "mythic",
+      "value": 6835,
+      "weight": 833,
+      "description": "A mythic club forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "mana": 20,
+        "lightning": 25,
+        "stagger": 21,
+        "ice": 25
+      },
+      "bonus": {
+        "attack": 8
+      },
+      "weapon_trait": "spell_syphon",
+      "id": "IT00000090"
+    },
+    {
+      "category": "weapon",
+      "name": "Plain Great Club",
+      "style": "physical",
+      "type": "great_club",
+      "rarity": "common",
+      "value": 85,
+      "weight": 2291,
+      "description": "A common great_club forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 24
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000091"
+    },
+    {
+      "category": "weapon",
+      "name": "Tempered Great Club",
+      "style": "physical",
+      "type": "great_club",
+      "rarity": "uncommon",
+      "value": 159,
+      "weight": 2091,
+      "description": "A uncommon great_club forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 29
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000092"
+    },
+    {
+      "category": "weapon",
+      "name": "Gilded Great Club",
+      "style": "physical",
+      "type": "great_club",
+      "rarity": "rare",
+      "value": 473,
+      "weight": 1802,
+      "description": "A rare great_club forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "bleed": 26,
+        "lightning": 21
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "none",
+      "id": "IT00000093"
+    },
+    {
+      "category": "weapon",
+      "name": "Bloodbound Great Club",
+      "style": "physical",
+      "type": "great_club",
+      "rarity": "exotic",
+      "value": 848,
+      "weight": 1717,
+      "description": "A exotic great_club forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 40,
+        "mana": 25
+      },
+      "bonus": {
+        "attack": 4
+      },
+      "weapon_trait": "none",
+      "id": "IT00000094"
+    },
+    {
+      "category": "weapon",
+      "name": "Starforged Great Club",
+      "style": "physical",
+      "type": "great_club",
+      "rarity": "legendary",
+      "value": 2376,
+      "weight": 1772,
+      "description": "A legendary great_club forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "arcane": 29,
+        "mana": 24,
+        "fire": 26
+      },
+      "bonus": {
+        "attack": 8
+      },
+      "weapon_trait": "none",
+      "id": "IT00000095"
+    },
+    {
+      "category": "weapon",
+      "name": "Evershine Great Club",
+      "style": "physical",
+      "type": "great_club",
+      "rarity": "mythic",
+      "value": 6992,
+      "weight": 2304,
+      "description": "A mythic great_club forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "fire": 19,
+        "stagger": 19,
+        "ice": 17,
+        "lightning": 19
+      },
+      "bonus": {
+        "attack": 8
+      },
+      "weapon_trait": "soulbound",
+      "id": "IT00000096"
+    },
+    {
+      "category": "weapon",
+      "name": "Iron Stick",
+      "style": "physical",
+      "type": "stick",
+      "rarity": "common",
+      "value": 57,
+      "weight": 1016,
+      "description": "A common stick forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 25
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000097"
+    },
+    {
+      "category": "weapon",
+      "name": "Sturdy Stick",
+      "style": "physical",
+      "type": "stick",
+      "rarity": "uncommon",
+      "value": 130,
+      "weight": 811,
+      "description": "A uncommon stick forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 34
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000098"
+    },
+    {
+      "category": "weapon",
+      "name": "Frosted Stick",
+      "style": "physical",
+      "type": "stick",
+      "rarity": "rare",
+      "value": 561,
+      "weight": 1256,
+      "description": "A rare stick forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "lightning": 20,
+        "physical": 31
+      },
+      "bonus": {
+        "attack": 3
+      },
+      "weapon_trait": "none",
+      "id": "IT00000099"
+    },
+    {
+      "category": "weapon",
+      "name": "Bloodbound Stick",
+      "style": "physical",
+      "type": "stick",
+      "rarity": "exotic",
+      "value": 794,
+      "weight": 890,
+      "description": "A exotic stick forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "fire": 26,
+        "physical": 34
+      },
+      "bonus": {
+        "attack": 4
+      },
+      "weapon_trait": "none",
+      "id": "IT00000100"
+    },
+    {
+      "category": "weapon",
+      "name": "Thunderforged Stick",
+      "style": "physical",
+      "type": "stick",
+      "rarity": "legendary",
+      "value": 2228,
+      "weight": 967,
+      "description": "A legendary stick forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "bleed": 24,
+        "physical": 31,
+        "fire": 23
+      },
+      "bonus": {
+        "attack": 7
+      },
+      "weapon_trait": "none",
+      "id": "IT00000101"
+    },
+    {
+      "category": "weapon",
+      "name": "Evershine Stick",
+      "style": "physical",
+      "type": "stick",
+      "rarity": "mythic",
+      "value": 5917,
+      "weight": 1292,
+      "description": "A mythic stick forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "ice": 15,
+        "arcane": 15,
+        "physical": 27,
+        "stagger": 17
+      },
+      "bonus": {
+        "attack": 8
+      },
+      "weapon_trait": "echo_strike",
+      "id": "IT00000102"
+    },
+    {
+      "category": "weapon",
+      "name": "Iron Big Stick",
+      "style": "physical",
+      "type": "big_stick",
+      "rarity": "common",
+      "value": 64,
+      "weight": 2211,
+      "description": "A common big_stick forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 18
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000103"
+    },
+    {
+      "category": "weapon",
+      "name": "Tempered Big Stick",
+      "style": "physical",
+      "type": "big_stick",
+      "rarity": "uncommon",
+      "value": 153,
+      "weight": 1716,
+      "description": "A uncommon big_stick forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 36
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000104"
+    },
+    {
+      "category": "weapon",
+      "name": "Stormkissed Big Stick",
+      "style": "physical",
+      "type": "big_stick",
+      "rarity": "rare",
+      "value": 258,
+      "weight": 2097,
+      "description": "A rare big_stick forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 24,
+        "fire": 17
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "none",
+      "id": "IT00000105"
+    },
+    {
+      "category": "weapon",
+      "name": "Moonlit Big Stick",
+      "style": "physical",
+      "type": "big_stick",
+      "rarity": "exotic",
+      "value": 1355,
+      "weight": 2032,
+      "description": "A exotic big_stick forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 38,
+        "ice": 31
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "none",
+      "id": "IT00000106"
+    },
+    {
+      "category": "weapon",
+      "name": "Starforged Big Stick",
+      "style": "physical",
+      "type": "big_stick",
+      "rarity": "legendary",
+      "value": 2138,
+      "weight": 1871,
+      "description": "A legendary big_stick forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "bleed": 23,
+        "physical": 34,
+        "arcane": 26
+      },
+      "bonus": {
+        "attack": 8
+      },
+      "weapon_trait": "none",
+      "id": "IT00000107"
+    },
+    {
+      "category": "weapon",
+      "name": "Abyssal Crown Big Stick",
+      "style": "physical",
+      "type": "big_stick",
+      "rarity": "mythic",
+      "value": 4850,
+      "weight": 2173,
+      "description": "A mythic big_stick forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "lightning": 19,
+        "bleed": 19,
+        "stagger": 20,
+        "mana": 16
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "echo_strike",
+      "id": "IT00000108"
+    },
+    {
+      "category": "weapon",
+      "name": "Plain Throwing Knife",
+      "style": "physical",
+      "type": "throwing_knife",
+      "rarity": "common",
+      "value": 84,
+      "weight": 1144,
+      "description": "A common throwing_knife forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 10
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000109"
+    },
+    {
+      "category": "weapon",
+      "name": "Balanced Throwing Knife",
+      "style": "physical",
+      "type": "throwing_knife",
+      "rarity": "uncommon",
+      "value": 164,
+      "weight": 1098,
+      "description": "A uncommon throwing_knife forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 31
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000110"
+    },
+    {
+      "category": "weapon",
+      "name": "Frosted Throwing Knife",
+      "style": "physical",
+      "type": "throwing_knife",
+      "rarity": "rare",
+      "value": 396,
+      "weight": 838,
+      "description": "A rare throwing_knife forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 30,
+        "lightning": 21
+      },
+      "bonus": {
+        "attack": 4
+      },
+      "weapon_trait": "none",
+      "id": "IT00000111"
+    },
+    {
+      "category": "weapon",
+      "name": "Bloodbound Throwing Knife",
+      "style": "physical",
+      "type": "throwing_knife",
+      "rarity": "exotic",
+      "value": 1362,
+      "weight": 1050,
+      "description": "A exotic throwing_knife forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "mana": 31,
+        "arcane": 34
+      },
+      "bonus": {
+        "attack": 3
+      },
+      "weapon_trait": "none",
+      "id": "IT00000112"
+    },
+    {
+      "category": "weapon",
+      "name": "Starforged Throwing Knife",
+      "style": "physical",
+      "type": "throwing_knife",
+      "rarity": "legendary",
+      "value": 1748,
+      "weight": 1273,
+      "description": "A legendary throwing_knife forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "stagger": 28,
+        "lightning": 24,
+        "ice": 31
+      },
+      "bonus": {
+        "attack": 7
+      },
+      "weapon_trait": "none",
+      "id": "IT00000113"
+    },
+    {
+      "category": "weapon",
+      "name": "Evershine Throwing Knife",
+      "style": "physical",
+      "type": "throwing_knife",
+      "rarity": "mythic",
+      "value": 5873,
+      "weight": 1053,
+      "description": "A mythic throwing_knife forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "physical": 23,
+        "stagger": 17,
+        "fire": 18,
+        "arcane": 16
+      },
+      "bonus": {
+        "attack": 10
+      },
+      "weapon_trait": "soulbound",
+      "id": "IT00000114"
+    },
+    {
+      "category": "weapon",
+      "name": "Iron Maul",
+      "style": "physical",
+      "type": "maul",
+      "rarity": "common",
+      "value": 61,
+      "weight": 2168,
+      "description": "A common maul forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 14
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000115"
+    },
+    {
+      "category": "weapon",
+      "name": "Tempered Maul",
+      "style": "physical",
+      "type": "maul",
+      "rarity": "uncommon",
+      "value": 179,
+      "weight": 1781,
+      "description": "A uncommon maul forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 27
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000116"
+    },
+    {
+      "category": "weapon",
+      "name": "Embered Maul",
+      "style": "physical",
+      "type": "maul",
+      "rarity": "rare",
+      "value": 475,
+      "weight": 1582,
+      "description": "A rare maul forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 29,
+        "arcane": 15
+      },
+      "bonus": {
+        "attack": 3
+      },
+      "weapon_trait": "none",
+      "id": "IT00000117"
+    },
+    {
+      "category": "weapon",
+      "name": "Voidetched Maul",
+      "style": "physical",
+      "type": "maul",
+      "rarity": "exotic",
+      "value": 1234,
+      "weight": 1463,
+      "description": "A exotic maul forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 40,
+        "bleed": 23
+      },
+      "bonus": {
+        "attack": 2
+      },
+      "weapon_trait": "none",
+      "id": "IT00000118"
+    },
+    {
+      "category": "weapon",
+      "name": "Kingsfall Maul",
+      "style": "physical",
+      "type": "maul",
+      "rarity": "legendary",
+      "value": 3334,
+      "weight": 2152,
+      "description": "A legendary maul forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "stagger": 22,
+        "mana": 24,
+        "physical": 30
+      },
+      "bonus": {
+        "attack": 7
+      },
+      "weapon_trait": "none",
+      "id": "IT00000119"
+    },
+    {
+      "category": "weapon",
+      "name": "Echo of Night Maul",
+      "style": "physical",
+      "type": "maul",
+      "rarity": "mythic",
+      "value": 6607,
+      "weight": 1949,
+      "description": "A mythic maul forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "physical": 23,
+        "lightning": 15,
+        "mana": 18,
+        "arcane": 18
+      },
+      "bonus": {
+        "attack": 5
+      },
+      "weapon_trait": "lifedrink",
+      "id": "IT00000120"
+    },
+    {
+      "category": "weapon",
+      "name": "Weathered Shortbow",
+      "style": "physical",
+      "type": "shortbow",
+      "rarity": "common",
+      "value": 55,
+      "weight": 1154,
+      "description": "A common shortbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 25
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000121"
+    },
+    {
+      "category": "weapon",
+      "name": "Tempered Shortbow",
+      "style": "physical",
+      "type": "shortbow",
+      "rarity": "uncommon",
+      "value": 140,
+      "weight": 1038,
+      "description": "A uncommon shortbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 29
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000122"
+    },
+    {
+      "category": "weapon",
+      "name": "Runed Shortbow",
+      "style": "physical",
+      "type": "shortbow",
+      "rarity": "rare",
+      "value": 528,
+      "weight": 1377,
+      "description": "A rare shortbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "arcane": 28,
+        "fire": 26
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "none",
+      "id": "IT00000123"
+    },
+    {
+      "category": "weapon",
+      "name": "Bloodbound Shortbow",
+      "style": "physical",
+      "type": "shortbow",
+      "rarity": "exotic",
+      "value": 840,
+      "weight": 1302,
+      "description": "A exotic shortbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 41,
+        "fire": 29
+      },
+      "bonus": {
+        "attack": 5
+      },
+      "weapon_trait": "none",
+      "id": "IT00000124"
+    },
+    {
+      "category": "weapon",
+      "name": "Thunderforged Shortbow",
+      "style": "physical",
+      "type": "shortbow",
+      "rarity": "legendary",
+      "value": 1947,
+      "weight": 1451,
+      "description": "A legendary shortbow forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "ice": 23,
+        "physical": 36,
+        "stagger": 23
+      },
+      "bonus": {
+        "attack": 7
+      },
+      "weapon_trait": "none",
+      "id": "IT00000125"
+    },
+    {
+      "category": "weapon",
+      "name": "Evershine Shortbow",
+      "style": "physical",
+      "type": "shortbow",
+      "rarity": "mythic",
+      "value": 6800,
+      "weight": 1460,
+      "description": "A mythic shortbow forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "ice": 18,
+        "physical": 32,
+        "fire": 17,
+        "bleed": 21
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "chronal_burst",
+      "id": "IT00000126"
+    },
+    {
+      "category": "weapon",
+      "name": "Plain Longbow",
+      "style": "physical",
+      "type": "longbow",
+      "rarity": "common",
+      "value": 37,
+      "weight": 1340,
+      "description": "A common longbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 21
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000127"
+    },
+    {
+      "category": "weapon",
+      "name": "Seasoned Longbow",
+      "style": "physical",
+      "type": "longbow",
+      "rarity": "uncommon",
+      "value": 146,
+      "weight": 1158,
+      "description": "A uncommon longbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 36
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000128"
+    },
+    {
+      "category": "weapon",
+      "name": "Embered Longbow",
+      "style": "physical",
+      "type": "longbow",
+      "rarity": "rare",
+      "value": 415,
+      "weight": 1046,
+      "description": "A rare longbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 29,
+        "fire": 21
+      },
+      "bonus": {
+        "attack": 2
+      },
+      "weapon_trait": "none",
+      "id": "IT00000129"
+    },
+    {
+      "category": "weapon",
+      "name": "Bloodbound Longbow",
+      "style": "physical",
+      "type": "longbow",
+      "rarity": "exotic",
+      "value": 917,
+      "weight": 1255,
+      "description": "A exotic longbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "lightning": 33,
+        "fire": 29
+      },
+      "bonus": {
+        "attack": 3
+      },
+      "weapon_trait": "none",
+      "id": "IT00000130"
+    },
+    {
+      "category": "weapon",
+      "name": "Worldsplitter Longbow",
+      "style": "physical",
+      "type": "longbow",
+      "rarity": "legendary",
+      "value": 2420,
+      "weight": 1313,
+      "description": "A legendary longbow forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "physical": 32,
+        "bleed": 22,
+        "mana": 22
+      },
+      "bonus": {
+        "attack": 7
+      },
+      "weapon_trait": "none",
+      "id": "IT00000131"
+    },
+    {
+      "category": "weapon",
+      "name": "Evershine Longbow",
+      "style": "physical",
+      "type": "longbow",
+      "rarity": "mythic",
+      "value": 4907,
+      "weight": 1209,
+      "description": "A mythic longbow forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "bleed": 19,
+        "stagger": 21,
+        "fire": 19,
+        "arcane": 18
+      },
+      "bonus": {
+        "attack": 5
+      },
+      "weapon_trait": "echo_strike",
+      "id": "IT00000132"
+    },
+    {
+      "category": "weapon",
+      "name": "Plain Light Crossbow",
+      "style": "physical",
+      "type": "light_crossbow",
+      "rarity": "common",
+      "value": 65,
+      "weight": 1179,
+      "description": "A common light_crossbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 22
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000133"
+    },
+    {
+      "category": "weapon",
+      "name": "Tempered Light Crossbow",
+      "style": "physical",
+      "type": "light_crossbow",
+      "rarity": "uncommon",
+      "value": 149,
+      "weight": 1099,
+      "description": "A uncommon light_crossbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 30
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000134"
+    },
+    {
+      "category": "weapon",
+      "name": "Embered Light Crossbow",
+      "style": "physical",
+      "type": "light_crossbow",
+      "rarity": "rare",
+      "value": 412,
+      "weight": 988,
+      "description": "A rare light_crossbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "bleed": 21,
+        "mana": 20
+      },
+      "bonus": {
+        "attack": 3
+      },
+      "weapon_trait": "none",
+      "id": "IT00000135"
+    },
+    {
+      "category": "weapon",
+      "name": "Bloodbound Light Crossbow",
+      "style": "physical",
+      "type": "light_crossbow",
+      "rarity": "exotic",
+      "value": 1333,
+      "weight": 944,
+      "description": "A exotic light_crossbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 38,
+        "lightning": 24
+      },
+      "bonus": {
+        "attack": 3
+      },
+      "weapon_trait": "none",
+      "id": "IT00000136"
+    },
+    {
+      "category": "weapon",
+      "name": "Starforged Light Crossbow",
+      "style": "physical",
+      "type": "light_crossbow",
+      "rarity": "legendary",
+      "value": 1893,
+      "weight": 1071,
+      "description": "A legendary light_crossbow forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "lightning": 22,
+        "arcane": 21,
+        "physical": 31
+      },
+      "bonus": {
+        "attack": 5
+      },
+      "weapon_trait": "none",
+      "id": "IT00000137"
+    },
+    {
+      "category": "weapon",
+      "name": "Evershine Light Crossbow",
+      "style": "physical",
+      "type": "light_crossbow",
+      "rarity": "mythic",
+      "value": 7092,
+      "weight": 1272,
+      "description": "A mythic light_crossbow forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "ice": 24,
+        "lightning": 21,
+        "fire": 28,
+        "arcane": 25
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "lifedrink",
+      "id": "IT00000138"
+    },
+    {
+      "category": "weapon",
+      "name": "Weathered Heavy Crossbow",
+      "style": "physical",
+      "type": "heavy_crossbow",
+      "rarity": "common",
+      "value": 52,
+      "weight": 1447,
+      "description": "A common heavy_crossbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 15
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000139"
+    },
+    {
+      "category": "weapon",
+      "name": "Sturdy Heavy Crossbow",
+      "style": "physical",
+      "type": "heavy_crossbow",
+      "rarity": "uncommon",
+      "value": 133,
+      "weight": 1599,
+      "description": "A uncommon heavy_crossbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 26
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000140"
+    },
+    {
+      "category": "weapon",
+      "name": "Gilded Heavy Crossbow",
+      "style": "physical",
+      "type": "heavy_crossbow",
+      "rarity": "rare",
+      "value": 298,
+      "weight": 1218,
+      "description": "A rare heavy_crossbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "ice": 22,
+        "fire": 21
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "none",
+      "id": "IT00000141"
+    },
+    {
+      "category": "weapon",
+      "name": "Voidetched Heavy Crossbow",
+      "style": "physical",
+      "type": "heavy_crossbow",
+      "rarity": "exotic",
+      "value": 821,
+      "weight": 1814,
+      "description": "A exotic heavy_crossbow forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        },
+        {
+          "material": "leather",
+          "quantity": 1
+        },
+        {
+          "material": "refined_steel",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 42,
+        "bleed": 27
+      },
+      "bonus": {
+        "attack": 3
+      },
+      "weapon_trait": "none",
+      "id": "IT00000142"
+    },
+    {
+      "category": "weapon",
+      "name": "Thunderforged Heavy Crossbow",
+      "style": "physical",
+      "type": "heavy_crossbow",
+      "rarity": "legendary",
+      "value": 3003,
+      "weight": 1725,
+      "description": "A legendary heavy_crossbow forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "arcane": 20,
+        "physical": 32,
+        "stagger": 21
+      },
+      "bonus": {
+        "attack": 9
+      },
+      "weapon_trait": "none",
+      "id": "IT00000143"
+    },
+    {
+      "category": "weapon",
+      "name": "Abyssal Crown Heavy Crossbow",
+      "style": "physical",
+      "type": "heavy_crossbow",
+      "rarity": "mythic",
+      "value": 6599,
+      "weight": 1895,
+      "description": "A mythic heavy_crossbow forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "fire": 17,
+        "stagger": 21,
+        "mana": 22,
+        "bleed": 18
+      },
+      "bonus": {
+        "attack": 7
+      },
+      "weapon_trait": "echo_strike",
+      "id": "IT00000144"
+    },
+    {
+      "category": "weapon",
+      "name": "Plain Staff",
+      "style": "magic",
+      "type": "staff",
+      "rarity": "common",
+      "value": 93,
+      "weight": 734,
+      "description": "A common staff forged to our current spec.",
+      "components": [
+        {
+          "material": "enchanted_wood",
+          "quantity": 1
+        },
+        {
+          "material": "mana_thread",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "arcane": 18
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000145"
+    },
+    {
+      "category": "weapon",
+      "name": "Honed Staff",
+      "style": "magic",
+      "type": "staff",
+      "rarity": "uncommon",
+      "value": 220,
+      "weight": 1018,
+      "description": "A uncommon staff forged to our current spec.",
+      "components": [
+        {
+          "material": "enchanted_wood",
+          "quantity": 1
+        },
+        {
+          "material": "mana_thread",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "lightning": 38
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000146"
+    },
+    {
+      "category": "weapon",
+      "name": "Runed Staff",
+      "style": "magic",
+      "type": "staff",
+      "rarity": "rare",
+      "value": 668,
+      "weight": 1112,
+      "description": "A rare staff forged to our current spec.",
+      "components": [
+        {
+          "material": "enchanted_wood",
+          "quantity": 1
+        },
+        {
+          "material": "mana_thread",
+          "quantity": 1
+        },
+        {
+          "material": "arcane_core",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "arcane": 27,
+        "mana": 28
+      },
+      "bonus": {
+        "attack": 2
+      },
+      "weapon_trait": "none",
+      "id": "IT00000147"
+    },
+    {
+      "category": "weapon",
+      "name": "Sunforged Staff",
+      "style": "magic",
+      "type": "staff",
+      "rarity": "exotic",
+      "value": 1089,
+      "weight": 995,
+      "description": "A exotic staff forged to our current spec.",
+      "components": [
+        {
+          "material": "enchanted_wood",
+          "quantity": 1
+        },
+        {
+          "material": "mana_thread",
+          "quantity": 1
+        },
+        {
+          "material": "arcane_core",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "ice": 29,
+        "mana": 32
+      },
+      "bonus": {
+        "attack": 1
+      },
+      "weapon_trait": "none",
+      "id": "IT00000148"
+    },
+    {
+      "category": "weapon",
+      "name": "Starforged Staff",
+      "style": "magic",
+      "type": "staff",
+      "rarity": "legendary",
+      "value": 3917,
+      "weight": 929,
+      "description": "A legendary staff forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "fire": 26,
+        "lightning": 22,
+        "arcane": 26
+      },
+      "bonus": {
+        "attack": 5
+      },
+      "weapon_trait": "none",
+      "id": "IT00000149"
+    },
+    {
+      "category": "weapon",
+      "name": "Chrono-spiral Staff",
+      "style": "magic",
+      "type": "staff",
+      "rarity": "mythic",
+      "value": 5852,
+      "weight": 1156,
+      "description": "A mythic staff forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "mana": 18,
+        "lightning": 20,
+        "fire": 18,
+        "arcane": 21
+      },
+      "bonus": {
+        "attack": 7
+      },
+      "weapon_trait": "chronal_burst",
+      "id": "IT00000150"
+    },
+    {
+      "category": "weapon",
+      "name": "Weathered Wand",
+      "style": "magic",
+      "type": "wand",
+      "rarity": "common",
+      "value": 61,
+      "weight": 984,
+      "description": "A common wand forged to our current spec.",
+      "components": [
+        {
+          "material": "enchanted_wood",
+          "quantity": 1
+        },
+        {
+          "material": "mana_thread",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "fire": 14
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000151"
+    },
+    {
+      "category": "weapon",
+      "name": "Sturdy Wand",
+      "style": "magic",
+      "type": "wand",
+      "rarity": "uncommon",
+      "value": 118,
+      "weight": 815,
+      "description": "A uncommon wand forged to our current spec.",
+      "components": [
+        {
+          "material": "enchanted_wood",
+          "quantity": 1
+        },
+        {
+          "material": "mana_thread",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "lightning": 34
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000152"
+    },
+    {
+      "category": "weapon",
+      "name": "Stormkissed Wand",
+      "style": "magic",
+      "type": "wand",
+      "rarity": "rare",
+      "value": 490,
+      "weight": 922,
+      "description": "A rare wand forged to our current spec.",
+      "components": [
+        {
+          "material": "enchanted_wood",
+          "quantity": 1
+        },
+        {
+          "material": "mana_thread",
+          "quantity": 1
+        },
+        {
+          "material": "arcane_core",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "fire": 28,
+        "lightning": 28
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "none",
+      "id": "IT00000153"
+    },
+    {
+      "category": "weapon",
+      "name": "Moonlit Wand",
+      "style": "magic",
+      "type": "wand",
+      "rarity": "exotic",
+      "value": 1444,
+      "weight": 819,
+      "description": "A exotic wand forged to our current spec.",
+      "components": [
+        {
+          "material": "enchanted_wood",
+          "quantity": 1
+        },
+        {
+          "material": "mana_thread",
+          "quantity": 1
+        },
+        {
+          "material": "arcane_core",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "arcane": 35,
+        "mana": 31
+      },
+      "bonus": {
+        "attack": 6
+      },
+      "weapon_trait": "none",
+      "id": "IT00000154"
+    },
+    {
+      "category": "weapon",
+      "name": "Thunderforged Wand",
+      "style": "magic",
+      "type": "wand",
+      "rarity": "legendary",
+      "value": 2676,
+      "weight": 1047,
+      "description": "A legendary wand forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "lightning": 28,
+        "arcane": 24,
+        "fire": 25
+      },
+      "bonus": {
+        "attack": 9
+      },
+      "weapon_trait": "none",
+      "id": "IT00000155"
+    },
+    {
+      "category": "weapon",
+      "name": "Echo of Night Wand",
+      "style": "magic",
+      "type": "wand",
+      "rarity": "mythic",
+      "value": 5083,
+      "weight": 785,
+      "description": "A mythic wand forged to our current spec.",
+      "components": [],
+      "damage_type": {
+        "lightning": 18,
+        "arcane": 19,
+        "mana": 18,
+        "ice": 20
+      },
+      "bonus": {
+        "attack": 9
+      },
+      "weapon_trait": "chronal_burst",
+      "id": "IT00000156"
+    }
+  ]
+}

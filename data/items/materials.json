@@ -1,0 +1,15 @@
+{
+  "schema": "rpgen.items.materials.v1",
+  "version": 1,
+  "items": [
+    {
+      "id": "IT00000005",
+      "name": "Moon-ore Shard",
+      "type": "material",
+      "rarity": "common",
+      "uses": [
+        "craft"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "rpgen.npcs.enemies.v1",
+  "version": 1,
+  "npcs": [
+    {
+      "id": "NP00000004",
+      "name": "Duskwold Wolf",
+      "role": "enemy",
+      "stats": {
+        "hp": {
+          "min": 36,
+          "max": 52
+        },
+        "damage": {
+          "min": 6,
+          "max": 12
+        }
+      }
+    }
+  ]
+}

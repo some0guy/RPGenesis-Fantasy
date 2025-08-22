@@ -1,0 +1,20 @@
+{
+  "schema": "rpgen.traits.accessories.v1",
+  "version": 1,
+  "traits": [
+    {
+      "id": "TR00000001",
+      "name": "Charmed",
+      "effect": {
+        "hearts_bonus": 1
+      }
+    },
+    {
+      "id": "TR00000002",
+      "name": "Focused",
+      "effect": {
+        "mp_max": 10
+      }
+    }
+  ]
+}

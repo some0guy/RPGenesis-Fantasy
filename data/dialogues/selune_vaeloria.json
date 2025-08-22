@@ -1,0 +1,16 @@
+{
+  "schema": "rpgen.dialogue.v1",
+  "version": 1,
+  "start": "greet",
+  "nodes": {
+    "greet": {
+      "text": "Hello traveler",
+      "choices": [
+        {
+          "text": "Leave",
+          "end": true
+        }
+      ]
+    }
+  }
+}

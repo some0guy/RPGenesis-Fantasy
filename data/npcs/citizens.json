@@ -1,0 +1,11 @@
+{
+  "schema": "rpgen.npcs.citizens.v1",
+  "version": 1,
+  "npcs": [
+    {
+      "id": "NP00000003",
+      "name": "Veld the Merchant",
+      "role": "citizen"
+    }
+  ]
+}

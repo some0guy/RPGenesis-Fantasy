@@ -1,0 +1,21 @@
+{
+  "schema": "rpgen.enchants.weapons.v1",
+  "version": 1,
+  "enchants": [
+    {
+      "id": "EN00000001",
+      "name": "Sharpened I",
+      "effect": {
+        "phys": 2
+      }
+    },
+    {
+      "id": "EN00000002",
+      "name": "Stormbrand I",
+      "effect": {
+        "shock": 3
+      },
+      "on_hit_status": "ST00000002"
+    }
+  ]
+}

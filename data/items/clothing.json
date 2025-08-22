@@ -1,0 +1,12 @@
+{
+  "schema": "rpgen.items.clothing.v1",
+  "version": 1,
+  "items": [
+    {
+      "id": "IT00000004",
+      "name": "Verdant Cloak",
+      "type": "clothing",
+      "rarity": "common"
+    }
+  ]
+}

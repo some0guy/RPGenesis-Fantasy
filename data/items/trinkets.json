@@ -1,0 +1,16 @@
+{
+  "schema": "rpgen.items.trinkets.v1",
+  "version": 1,
+  "items": [
+    {
+      "id": "IT00000007",
+      "name": "Starglass Pendant",
+      "type": "trinket",
+      "rarity": "rare",
+      "effect": {
+        "kind": "mp_max",
+        "amount": 10
+      }
+    }
+  ]
+}

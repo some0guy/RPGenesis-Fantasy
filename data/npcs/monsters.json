@@ -1,0 +1,17 @@
+{
+  "schema": "rpgen.npcs.monsters.v1",
+  "version": 1,
+  "npcs": [
+    {
+      "id": "NP00000005",
+      "name": "Ul’MORR THE RIBKNIGHT",
+      "role": "monster",
+      "boss": true,
+      "stats": {
+        "hp": {
+          "fixed": 140
+        }
+      }
+    }
+  ]
+}
