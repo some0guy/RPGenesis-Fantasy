@@ -1,0 +1,33 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.env
+.venv/
+
+# Logs & temp
+logs/
+*.log
+*.tmp
+*.bak
+
+# Zips / local exports
+*.zip
+*.tar
+*.tar.gz
+
+# Node/web build (if you add frontend tooling later)
+node_modules/
+dist/
+build/
+
+# VSCode / IDE
+.vscode/
+.idea/
+*.swp
