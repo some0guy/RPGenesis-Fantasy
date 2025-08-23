@@ -4,6 +4,18 @@ import os, sys, json, re, argparse, random
 from typing import Dict, Any, List, Tuple, Optional
 from dataclasses import dataclass, field
 
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+DATA_DIR = ROOT / "data"
+print(f"[GAME]  Version     = 0.2.x")
+print(f"[GAME]  CWD         = {os.getcwd()}")
+print(f"[GAME]  SCRIPT      = {__file__}")
+print(f"[GAME]  DATA_DIR    = {DATA_DIR}")
+print(f"[GAME]  WORLD_MAP   = {DATA_DIR / 'world_map.txt'}")
+print(f"[GAME]  OVERRIDES   = {DATA_DIR / 'world_overrides.json'}")
+
+
 # -------------------- Project paths / version --------------------
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 VERSION_FILE = os.path.join(os.path.dirname(__file__), "VERSION.txt")

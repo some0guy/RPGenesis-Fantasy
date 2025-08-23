@@ -7,7 +7,7 @@
 # - Simple palette on the right: Terrain (., #, S, E), NPC, Enemy, Chest, Entrance/Exit
 #
 from __future__ import annotations
-import sys, json, copy
+import os, sys, json, copy
 from pathlib import Path
 from typing import Dict, Tuple, List
 
@@ -17,6 +17,24 @@ MAPS_DIR = DATA_DIR / "maps"
 DUNGEONS_DIR = DATA_DIR / "dungeons"
 WORLD_MAP = DATA_DIR / "world_map.txt"
 OVERRIDES = DATA_DIR / "world_overrides.json"
+
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+DATA_DIR = ROOT / "data"
+MAPS_DIR = DATA_DIR / "maps"
+DUNGEONS_DIR = DATA_DIR / "dungeons"
+WORLD_MAP = DATA_DIR / "world_map.txt"
+OVERRIDES = DATA_DIR / "world_overrides.json"
+
+EDITOR_VERSION = "map-editor 0.2.0"
+
+print(f"[EDITOR] {EDITOR_VERSION}")
+print(f"[EDITOR] CWD       = {os.getcwd()}")
+print(f"[EDITOR] SCRIPT    = {__file__}")
+print(f"[EDITOR] DATA_DIR  = {DATA_DIR}")
+print(f"[EDITOR] WORLD_MAP = {WORLD_MAP}")
+print(f"[EDITOR] OVERRIDES = {OVERRIDES}")
 
 WIN_W, WIN_H = 1400, 860
 PANEL_W = 520
