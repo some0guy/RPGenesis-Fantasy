@@ -1,0 +1,74 @@
+{
+  "start": {
+    "map": "forest",
+    "pos": [
+      0,
+      7
+    ]
+  },
+  "maps": {
+    "forest": {
+      "file": "maps/forest.txt",
+      "links": [
+        {
+          "at": [
+            11,
+            7
+          ],
+          "to": "town",
+          "spawn": [
+            0,
+            3
+          ],
+          "kind": "map"
+        }
+      ]
+    },
+    "town": {
+      "file": "maps/town.txt",
+      "links": [
+        {
+          "at": [
+            0,
+            3
+          ],
+          "to": "ruins",
+          "spawn": [
+            0,
+            0
+          ],
+          "kind": "map"
+        },
+        {
+          "at": [
+            0,
+            7
+          ],
+          "to": "forest",
+          "spawn": [
+            11,
+            7
+          ],
+          "kind": "map"
+        }
+      ]
+    },
+    "ruins": {
+      "file": "maps/ruins.txt",
+      "links": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "to": "town",
+          "spawn": [
+            0,
+            3
+          ]
+        }
+      ]
+    }
+  },
+  "dungeons": {}
+}
