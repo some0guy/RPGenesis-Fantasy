@@ -5,7 +5,262 @@
     {
       "id": "NP00000002",
       "name": "Moon Owl",
-      "role": "animal"
+      "level": 2,
+      "appearance": {
+        "eyes": "crimson",
+        "hair": "white",
+        "skin": "tan",
+        "height_cm": 202,
+        "build": "towering"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000026",
+      "name": "Liora Skylark",
+      "level": 7,
+      "appearance": {
+        "eyes": "sapphire",
+        "hair": "midnight-blue",
+        "skin": "ashen",
+        "height_cm": 200,
+        "build": "towering"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000027",
+      "name": "Selune Starcrest",
+      "level": 3,
+      "appearance": {
+        "eyes": "hazel",
+        "hair": "ash",
+        "skin": "dark",
+        "height_cm": 172,
+        "build": "compact"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000028",
+      "name": "Iria Wyrmfall",
+      "level": 7,
+      "appearance": {
+        "eyes": "gold",
+        "hair": "black",
+        "skin": "dark",
+        "height_cm": 185,
+        "build": "compact"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000029",
+      "name": "Neris Moonhart",
+      "level": 2,
+      "appearance": {
+        "eyes": "forest-green",
+        "hair": "silver",
+        "skin": "fair",
+        "height_cm": 195,
+        "build": "stocky"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000030",
+      "name": "Selune Vaeloria",
+      "level": 6,
+      "appearance": {
+        "eyes": "gold",
+        "hair": "blonde",
+        "skin": "fair",
+        "height_cm": 177,
+        "build": "compact"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000031",
+      "name": "Kael Skylark",
+      "level": 5,
+      "appearance": {
+        "eyes": "violet",
+        "hair": "ash",
+        "skin": "bronze",
+        "height_cm": 202,
+        "build": "stocky"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000032",
+      "name": "Sable Brightbough",
+      "level": 4,
+      "appearance": {
+        "eyes": "emerald",
+        "hair": "black",
+        "skin": "fair",
+        "height_cm": 166,
+        "build": "athletic"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000033",
+      "name": "Selune Vaeloria",
+      "level": 6,
+      "appearance": {
+        "eyes": "amber",
+        "hair": "midnight-blue",
+        "skin": "pale",
+        "height_cm": 196,
+        "build": "lithe"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000034",
+      "name": "Dorian Vaeloria",
+      "level": 1,
+      "appearance": {
+        "eyes": "sapphire",
+        "hair": "black",
+        "skin": "freckled",
+        "height_cm": 197,
+        "build": "towering"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000035",
+      "name": "Nyra Ashvale",
+      "level": 9,
+      "appearance": {
+        "eyes": "forest-green",
+        "hair": "black",
+        "skin": "dark",
+        "height_cm": 194,
+        "build": "stocky"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000036",
+      "name": "Nyra Duskwood",
+      "level": 3,
+      "appearance": {
+        "eyes": "steel-grey",
+        "hair": "black",
+        "skin": "bronze",
+        "height_cm": 176,
+        "build": "towering"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000037",
+      "name": "Kael Ravenmere",
+      "level": 7,
+      "appearance": {
+        "eyes": "sapphire",
+        "hair": "white",
+        "skin": "fair",
+        "height_cm": 165,
+        "build": "lithe"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000038",
+      "name": "Dorian Ashvale",
+      "level": 6,
+      "appearance": {
+        "eyes": "amber",
+        "hair": "auburn",
+        "skin": "olive",
+        "height_cm": 192,
+        "build": "slim"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000039",
+      "name": "Sable Thornfield",
+      "level": 3,
+      "appearance": {
+        "eyes": "emerald",
+        "hair": "raven",
+        "skin": "dark",
+        "height_cm": 205,
+        "build": "broad"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000040",
+      "name": "Gryff Ashvale",
+      "level": 8,
+      "appearance": {
+        "eyes": "steel-grey",
+        "hair": "raven",
+        "skin": "pale",
+        "height_cm": 180,
+        "build": "compact"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000041",
+      "name": "Aria Stormbind",
+      "level": 9,
+      "appearance": {
+        "eyes": "gold",
+        "hair": "ash",
+        "skin": "freckled",
+        "height_cm": 181,
+        "build": "graceful"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000042",
+      "name": "Rowan Brightbough",
+      "level": 6,
+      "appearance": {
+        "eyes": "forest-green",
+        "hair": "chestnut",
+        "skin": "ashen",
+        "height_cm": 167,
+        "build": "athletic"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000043",
+      "name": "Fenric Brightbough",
+      "level": 2,
+      "appearance": {
+        "eyes": "ice-blue",
+        "hair": "white",
+        "skin": "ashen",
+        "height_cm": 197,
+        "build": "compact"
+      },
+      "follower": "no"
+    },
+    {
+      "id": "NP00000044",
+      "name": "Dorian Ravenmere",
+      "level": 6,
+      "appearance": {
+        "eyes": "ice-blue",
+        "hair": "midnight-blue",
+        "skin": "freckled",
+        "height_cm": 160,
+        "build": "compact"
+      },
+      "follower": "no"
     }
   ]
 }

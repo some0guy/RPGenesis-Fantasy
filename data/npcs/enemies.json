@@ -5,7 +5,6 @@
     {
       "id": "NP00000004",
       "name": "Duskwold Wolf",
-      "role": "enemy",
       "stats": {
         "hp": {
           "min": 36,
@@ -15,7 +14,513 @@
           "min": 6,
           "max": 12
         }
-      }
+      },
+      "level": 4,
+      "appearance": {
+        "eyes": "steel-grey",
+        "hair": "blonde",
+        "skin": "ashen",
+        "height_cm": 196,
+        "build": "towering"
+      },
+      "dialogueFile": "data/dialogues/duskwold_wolf_np00000004.json",
+      "hostile": true,
+      "race": "goblin",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000066",
+      "name": "Lyra Wyrmfall",
+      "level": 10,
+      "appearance": {
+        "eyes": "sapphire",
+        "hair": "blonde",
+        "skin": "tan",
+        "height_cm": 189,
+        "build": "broad"
+      },
+      "dialogueFile": "data/dialogues/lyra_wyrmfall.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 20,
+          "max": 50
+        },
+        "damage": {
+          "min": 7,
+          "max": 16
+        }
+      },
+      "race": "goblin",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000067",
+      "name": "Rowan Wyrmfall",
+      "level": 9,
+      "appearance": {
+        "eyes": "crimson",
+        "hair": "white",
+        "skin": "ashen",
+        "height_cm": 196,
+        "build": "athletic"
+      },
+      "dialogueFile": "data/dialogues/rowan_wyrmfall.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 34,
+          "max": 86
+        },
+        "damage": {
+          "min": 8,
+          "max": 16
+        }
+      },
+      "race": "goblin",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000068",
+      "name": "Sable Ashvale",
+      "level": 6,
+      "appearance": {
+        "eyes": "crimson",
+        "hair": "chestnut",
+        "skin": "olive",
+        "height_cm": 164,
+        "build": "graceful"
+      },
+      "dialogueFile": "data/dialogues/sable_ashvale.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 26,
+          "max": 60
+        },
+        "damage": {
+          "min": 7,
+          "max": 15
+        }
+      },
+      "race": "orc",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000069",
+      "name": "Isolde Goldbranch",
+      "level": 2,
+      "appearance": {
+        "eyes": "sapphire",
+        "hair": "silver",
+        "skin": "dark",
+        "height_cm": 175,
+        "build": "compact"
+      },
+      "dialogueFile": "data/dialogues/isolde_goldbranch.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 18,
+          "max": 63
+        },
+        "damage": {
+          "min": 8,
+          "max": 15
+        }
+      },
+      "race": "orc",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000070",
+      "name": "Corin Ravenmere",
+      "level": 4,
+      "appearance": {
+        "eyes": "hazel",
+        "hair": "strawberry",
+        "skin": "freckled",
+        "height_cm": 205,
+        "build": "graceful"
+      },
+      "dialogueFile": "data/dialogues/corin_ravenmere.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 32,
+          "max": 90
+        },
+        "damage": {
+          "min": 4,
+          "max": 10
+        }
+      },
+      "race": "goblin",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000071",
+      "name": "Mira Ironvale",
+      "level": 1,
+      "appearance": {
+        "eyes": "ice-blue",
+        "hair": "silver",
+        "skin": "ashen",
+        "height_cm": 205,
+        "build": "lithe"
+      },
+      "dialogueFile": "data/dialogues/mira_ironvale.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 29,
+          "max": 54
+        },
+        "damage": {
+          "min": 6,
+          "max": 13
+        }
+      },
+      "race": "human",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000072",
+      "name": "Jorah Mistbrook",
+      "level": 8,
+      "appearance": {
+        "eyes": "forest-green",
+        "hair": "white",
+        "skin": "olive",
+        "height_cm": 155,
+        "build": "towering"
+      },
+      "dialogueFile": "data/dialogues/jorah_mistbrook.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 18,
+          "max": 87
+        },
+        "damage": {
+          "min": 7,
+          "max": 11
+        }
+      },
+      "race": "drow",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000073",
+      "name": "Neris Rivenspire",
+      "level": 10,
+      "appearance": {
+        "eyes": "amber",
+        "hair": "black",
+        "skin": "pale",
+        "height_cm": 166,
+        "build": "lithe"
+      },
+      "dialogueFile": "data/dialogues/neris_rivenspire.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 24,
+          "max": 53
+        },
+        "damage": {
+          "min": 5,
+          "max": 14
+        }
+      },
+      "race": "goblin",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000074",
+      "name": "Lyra Blackfen",
+      "level": 8,
+      "appearance": {
+        "eyes": "violet",
+        "hair": "chestnut",
+        "skin": "fair",
+        "height_cm": 194,
+        "build": "slim"
+      },
+      "dialogueFile": "data/dialogues/lyra_blackfen.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 25,
+          "max": 77
+        },
+        "damage": {
+          "min": 6,
+          "max": 9
+        }
+      },
+      "race": "hellkin",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000075",
+      "name": "Nyra Duskwood",
+      "level": 1,
+      "appearance": {
+        "eyes": "violet",
+        "hair": "raven",
+        "skin": "olive",
+        "height_cm": 166,
+        "build": "lithe"
+      },
+      "dialogueFile": "data/dialogues/nyra_duskwood.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 40,
+          "max": 68
+        },
+        "damage": {
+          "min": 8,
+          "max": 14
+        }
+      },
+      "race": "goblin",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000076",
+      "name": "Aria Skylark",
+      "level": 7,
+      "appearance": {
+        "eyes": "ice-blue",
+        "hair": "chestnut",
+        "skin": "pale",
+        "height_cm": 169,
+        "build": "lithe"
+      },
+      "dialogueFile": "data/dialogues/aria_skylark.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 35,
+          "max": 89
+        },
+        "damage": {
+          "min": 3,
+          "max": 15
+        }
+      },
+      "race": "goblin",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000077",
+      "name": "Kael Vaeloria",
+      "level": 10,
+      "appearance": {
+        "eyes": "violet",
+        "hair": "white",
+        "skin": "pale",
+        "height_cm": 197,
+        "build": "athletic"
+      },
+      "dialogueFile": "data/dialogues/kael_vaeloria.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 19,
+          "max": 59
+        },
+        "damage": {
+          "min": 4,
+          "max": 11
+        }
+      },
+      "race": "goblin",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000078",
+      "name": "Mira Ironvale",
+      "level": 4,
+      "appearance": {
+        "eyes": "steel-grey",
+        "hair": "raven",
+        "skin": "fair",
+        "height_cm": 202,
+        "build": "stocky"
+      },
+      "dialogueFile": "data/dialogues/mira_ironvale.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 33,
+          "max": 62
+        },
+        "damage": {
+          "min": 4,
+          "max": 10
+        }
+      },
+      "race": "orc",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000079",
+      "name": "Gryff Blackfen",
+      "level": 10,
+      "appearance": {
+        "eyes": "ice-blue",
+        "hair": "auburn",
+        "skin": "bronze",
+        "height_cm": 171,
+        "build": "compact"
+      },
+      "dialogueFile": "data/dialogues/gryff_blackfen.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 34,
+          "max": 61
+        },
+        "damage": {
+          "min": 7,
+          "max": 9
+        }
+      },
+      "race": "human",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000080",
+      "name": "Lyra Mistbrook",
+      "level": 2,
+      "appearance": {
+        "eyes": "gold",
+        "hair": "silver",
+        "skin": "olive",
+        "height_cm": 176,
+        "build": "graceful"
+      },
+      "dialogueFile": "data/dialogues/lyra_mistbrook.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 19,
+          "max": 68
+        },
+        "damage": {
+          "min": 4,
+          "max": 11
+        }
+      },
+      "race": "orc",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000081",
+      "name": "Syl Starcrest",
+      "level": 10,
+      "appearance": {
+        "eyes": "forest-green",
+        "hair": "ash",
+        "skin": "olive",
+        "height_cm": 200,
+        "build": "graceful"
+      },
+      "dialogueFile": "data/dialogues/syl_starcrest.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 26,
+          "max": 56
+        },
+        "damage": {
+          "min": 6,
+          "max": 12
+        }
+      },
+      "race": "hellkin",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000082",
+      "name": "Varyn Wyrmfall",
+      "level": 8,
+      "appearance": {
+        "eyes": "crimson",
+        "hair": "silver",
+        "skin": "pale",
+        "height_cm": 181,
+        "build": "graceful"
+      },
+      "dialogueFile": "data/dialogues/varyn_wyrmfall.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 24,
+          "max": 81
+        },
+        "damage": {
+          "min": 5,
+          "max": 14
+        }
+      },
+      "race": "hellkin",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000083",
+      "name": "Vael Brightbough",
+      "level": 3,
+      "appearance": {
+        "eyes": "forest-green",
+        "hair": "auburn",
+        "skin": "freckled",
+        "height_cm": 189,
+        "build": "stocky"
+      },
+      "dialogueFile": "data/dialogues/vael_brightbough.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 24,
+          "max": 83
+        },
+        "damage": {
+          "min": 5,
+          "max": 12
+        }
+      },
+      "race": "human",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000084",
+      "name": "Sable Duskwood",
+      "level": 5,
+      "appearance": {
+        "eyes": "violet",
+        "hair": "white",
+        "skin": "pale",
+        "height_cm": 197,
+        "build": "slim"
+      },
+      "dialogueFile": "data/dialogues/sable_duskwood.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 30,
+          "max": 53
+        },
+        "damage": {
+          "min": 3,
+          "max": 16
+        }
+      },
+      "race": "goblin",
+      "follower": "no"
     }
   ]
 }

@@ -1,0 +1,46 @@
+{
+  "schema": "rpgen.dialogue.v1",
+  "version": 1,
+  "start": "greet",
+  "nodes": {
+    "greet": {
+      "text": "Rowan Wyrmfall: Well met, traveler.",
+      "choices": [
+        {
+          "text": "Chat",
+          "next": "more"
+        },
+        {
+          "text": "Flirt",
+          "next": "flirt"
+        },
+        {
+          "text": "Leave",
+          "end": true
+        }
+      ]
+    },
+    "more": {
+      "text": "They share rumors of nearby ruins.",
+      "choices": [
+        {
+          "text": "Thanks",
+          "end": true
+        }
+      ]
+    },
+    "flirt": {
+      "text": "They blush, a small smile tugging at their lips.",
+      "choices": [
+        {
+          "text": "Smile back",
+          "end": true
+        },
+        {
+          "text": "Apologize",
+          "end": true
+        }
+      ]
+    }
+  }
+}

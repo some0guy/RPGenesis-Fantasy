@@ -1,0 +1,116 @@
+{
+  "schema": "rpgen/races.v1",
+  "version": 1,
+  "races": [
+    {
+      "code": "human",
+      "name": "Human",
+      "desc": "Adaptable and ambitious; cultures vary wildly."
+    },
+    {
+      "code": "high_elf",
+      "name": "High Elf",
+      "desc": "Graceful, long-lived; attuned to arcane arts."
+    },
+    {
+      "code": "wood_elf",
+      "name": "Wood Elf",
+      "desc": "Forest-born wanderers with keen senses."
+    },
+    {
+      "code": "drow",
+      "name": "Drow",
+      "desc": "Umbral elves; silver tongues, shadowed pasts."
+    },
+    {
+      "code": "dwarf",
+      "name": "Dwarf",
+      "desc": "Stalwart crafters with iron traditions."
+    },
+    {
+      "code": "gnome",
+      "name": "Gnome",
+      "desc": "Spark-bright tinkerers, delight in curios."
+    },
+    {
+      "code": "halfling",
+      "name": "Halfling",
+      "desc": "Small in stature, enormous in heart."
+    },
+    {
+      "code": "orc",
+      "name": "Orc",
+      "desc": "Tough and driven; strength tempered by clan law."
+    },
+    {
+      "code": "goblin",
+      "name": "Goblin",
+      "desc": "Wily survivors; scavengers and inventors."
+    },
+    {
+      "code": "fae",
+      "name": "Fae-touched",
+      "desc": "Mortals brushed by the Courts of Faerie."
+    },
+    {
+      "code": "starborn",
+      "name": "Starborn",
+      "desc": "Aasimar-like; luminous souls bearing omens."
+    },
+    {
+      "code": "hellkin",
+      "name": "Hellkin",
+      "desc": "Tiefling-like; infernal trace in blood and horn."
+    },
+    {
+      "code": "drakesworn",
+      "name": "Drakesworn",
+      "desc": "Dragon-blooded; proud, scaled, and fierce."
+    },
+    {
+      "code": "sylph",
+      "name": "Sylph",
+      "desc": "Air-touched; voices like windchimes."
+    },
+    {
+      "code": "undine",
+      "name": "Undine",
+      "desc": "Water-touched; calm as deep tides."
+    },
+    {
+      "code": "ifrit",
+      "name": "Ifrit",
+      "desc": "Fire-touched; smoldering temper and spark."
+    },
+    {
+      "code": "oread",
+      "name": "Oread",
+      "desc": "Earth-touched; steady as stone."
+    },
+    {
+      "code": "kitsune",
+      "name": "Kitsune",
+      "desc": "Foxfolk tricksters with laughing eyes."
+    },
+    {
+      "code": "catfolk",
+      "name": "Catfolk",
+      "desc": "Curious, nimble, unerring balance."
+    },
+    {
+      "code": "lizardfolk",
+      "name": "Lizardfolk",
+      "desc": "Scaled marsh-walkers with cold pragmatism."
+    },
+    {
+      "code": "automata",
+      "name": "Automata",
+      "desc": "Clockwork souls in crafted shells."
+    },
+    {
+      "code": "revenant",
+      "name": "Revenant",
+      "desc": "A returned soul bound by purpose."
+    }
+  ]
+}

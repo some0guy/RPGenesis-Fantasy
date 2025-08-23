@@ -5,7 +5,302 @@
     {
       "id": "NP00000003",
       "name": "Veld the Merchant",
-      "role": "citizen"
+      "level": 3,
+      "appearance": {
+        "eyes": "amber",
+        "hair": "silver",
+        "skin": "freckled",
+        "height_cm": 174,
+        "build": "broad"
+      },
+      "dialogueFile": "data/dialogues/veld_the_merchant_np00000003.json",
+      "race": "dwarf",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000046",
+      "name": "Orrin Thornfield",
+      "level": 5,
+      "appearance": {
+        "eyes": "amber",
+        "hair": "white",
+        "skin": "freckled",
+        "height_cm": 176,
+        "build": "compact"
+      },
+      "dialogueFile": "data/dialogues/orrin_thornfield.json",
+      "race": "lizardfolk",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000047",
+      "name": "Varyn Ravenmere",
+      "level": 1,
+      "appearance": {
+        "eyes": "gold",
+        "hair": "midnight-blue",
+        "skin": "dark",
+        "height_cm": 185,
+        "build": "compact"
+      },
+      "dialogueFile": "data/dialogues/varyn_ravenmere.json",
+      "race": "lizardfolk",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000048",
+      "name": "Jorah Nightrun",
+      "level": 5,
+      "appearance": {
+        "eyes": "gold",
+        "hair": "blonde",
+        "skin": "tan",
+        "height_cm": 185,
+        "build": "stocky"
+      },
+      "dialogueFile": "data/dialogues/jorah_nightrun.json",
+      "race": "human",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000049",
+      "name": "Mira Moonhart",
+      "level": 2,
+      "appearance": {
+        "eyes": "gold",
+        "hair": "silver",
+        "skin": "ashen",
+        "height_cm": 171,
+        "build": "lithe"
+      },
+      "dialogueFile": "data/dialogues/mira_moonhart.json",
+      "race": "lizardfolk",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000050",
+      "name": "Eryndor Mistbrook",
+      "level": 1,
+      "appearance": {
+        "eyes": "steel-grey",
+        "hair": "black",
+        "skin": "tan",
+        "height_cm": 175,
+        "build": "slim"
+      },
+      "dialogueFile": "data/dialogues/eryndor_mistbrook.json",
+      "race": "lizardfolk",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000051",
+      "name": "Isolde Thornfield",
+      "level": 8,
+      "appearance": {
+        "eyes": "emerald",
+        "hair": "black",
+        "skin": "tan",
+        "height_cm": 153,
+        "build": "athletic"
+      },
+      "dialogueFile": "data/dialogues/isolde_thornfield.json",
+      "race": "catfolk",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000052",
+      "name": "Mira Rivenspire",
+      "level": 7,
+      "appearance": {
+        "eyes": "crimson",
+        "hair": "silver",
+        "skin": "ashen",
+        "height_cm": 160,
+        "build": "slim"
+      },
+      "dialogueFile": "data/dialogues/mira_rivenspire.json",
+      "race": "human",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000053",
+      "name": "Selune Wyrmfall",
+      "level": 7,
+      "appearance": {
+        "eyes": "ice-blue",
+        "hair": "black",
+        "skin": "freckled",
+        "height_cm": 177,
+        "build": "athletic"
+      },
+      "dialogueFile": "data/dialogues/selune_wyrmfall.json",
+      "race": "lizardfolk",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000054",
+      "name": "Vael Vaeloria",
+      "level": 4,
+      "appearance": {
+        "eyes": "ice-blue",
+        "hair": "chestnut",
+        "skin": "dark",
+        "height_cm": 196,
+        "build": "lithe"
+      },
+      "dialogueFile": "data/dialogues/vael_vaeloria.json",
+      "race": "human",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000055",
+      "name": "Fenric Stormbind",
+      "level": 1,
+      "appearance": {
+        "eyes": "sapphire",
+        "hair": "raven",
+        "skin": "tan",
+        "height_cm": 202,
+        "build": "lithe"
+      },
+      "dialogueFile": "data/dialogues/fenric_stormbind.json",
+      "race": "human",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000056",
+      "name": "Aria Thornfield",
+      "level": 10,
+      "appearance": {
+        "eyes": "steel-grey",
+        "hair": "midnight-blue",
+        "skin": "olive",
+        "height_cm": 170,
+        "build": "athletic"
+      },
+      "dialogueFile": "data/dialogues/aria_thornfield.json",
+      "race": "dwarf",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000057",
+      "name": "Gryff Rivenspire",
+      "level": 9,
+      "appearance": {
+        "eyes": "steel-grey",
+        "hair": "chestnut",
+        "skin": "bronze",
+        "height_cm": 164,
+        "build": "graceful"
+      },
+      "dialogueFile": "data/dialogues/gryff_rivenspire.json",
+      "race": "human",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000058",
+      "name": "Rowan Nightrun",
+      "level": 2,
+      "appearance": {
+        "eyes": "violet",
+        "hair": "auburn",
+        "skin": "bronze",
+        "height_cm": 177,
+        "build": "slim"
+      },
+      "dialogueFile": "data/dialogues/rowan_nightrun.json",
+      "race": "halfling",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000059",
+      "name": "Gryff Rivenspire",
+      "level": 1,
+      "appearance": {
+        "eyes": "crimson",
+        "hair": "black",
+        "skin": "bronze",
+        "height_cm": 187,
+        "build": "athletic"
+      },
+      "dialogueFile": "data/dialogues/gryff_rivenspire.json",
+      "race": "halfling",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000060",
+      "name": "Varyn Blackfen",
+      "level": 7,
+      "appearance": {
+        "eyes": "hazel",
+        "hair": "chestnut",
+        "skin": "ashen",
+        "height_cm": 202,
+        "build": "broad"
+      },
+      "dialogueFile": "data/dialogues/varyn_blackfen.json",
+      "race": "catfolk",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000061",
+      "name": "Syl Vaeloria",
+      "level": 4,
+      "appearance": {
+        "eyes": "sapphire",
+        "hair": "midnight-blue",
+        "skin": "ashen",
+        "height_cm": 202,
+        "build": "lithe"
+      },
+      "dialogueFile": "data/dialogues/syl_vaeloria.json",
+      "race": "halfling",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000062",
+      "name": "Iria Wyrmfall",
+      "level": 3,
+      "appearance": {
+        "eyes": "amber",
+        "hair": "midnight-blue",
+        "skin": "ashen",
+        "height_cm": 180,
+        "build": "graceful"
+      },
+      "dialogueFile": "data/dialogues/iria_wyrmfall.json",
+      "race": "halfling",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000063",
+      "name": "Selune Thornfield",
+      "level": 5,
+      "appearance": {
+        "eyes": "violet",
+        "hair": "black",
+        "skin": "tan",
+        "height_cm": 162,
+        "build": "stocky"
+      },
+      "dialogueFile": "data/dialogues/selune_thornfield.json",
+      "race": "human",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000064",
+      "name": "Thalen Rivenspire",
+      "level": 9,
+      "appearance": {
+        "eyes": "emerald",
+        "hair": "white",
+        "skin": "tan",
+        "height_cm": 181,
+        "build": "slim"
+      },
+      "dialogueFile": "data/dialogues/thalen_rivenspire.json",
+      "race": "wood_elf",
+      "follower": "no"
     }
   ]
 }

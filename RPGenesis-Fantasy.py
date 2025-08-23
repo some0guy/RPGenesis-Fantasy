@@ -4,6 +4,7 @@ import os, sys, json, re, argparse, random
 from typing import Dict, Any, List, Tuple, Optional
 from dataclasses import dataclass, field
 
+# -------------------- Project paths / version --------------------
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 VERSION_FILE = os.path.join(os.path.dirname(__file__), "VERSION.txt")
 
@@ -14,6 +15,7 @@ def get_version() -> str:
     except FileNotFoundError:
         return "0.0.0-dev"
 
+# -------------------- Expected files + ID rules --------------------
 EXPECTED = {
     "root_files": [
         "data/appearance.json",
@@ -53,6 +55,7 @@ ID_RULES = {
     "status":  re.compile(r"^ST\d{8}$"),
 }
 
+# -------------------- JSON I/O + validation --------------------
 def load_json(path: str, fallback=None):
     try:
         with open(path, "r", encoding="utf-8-sig") as f:
@@ -190,17 +193,43 @@ def validate_project(root: str, strict: bool=False):
 
     return errs, warns
 
-# ======================== Game (UI) =======================
-WIN_W, WIN_H = 980, 640
-GRID_W, GRID_H = 12, 8
-TILE = 44
-PANEL_W = 360
-FPS = 60
-FONT_NAME = None
-
+# ======================== Game data API ========================
 def safe_load_doc(rel: str, array_key: str) -> List[dict]:
     doc = load_json(os.path.join(DATA_DIR, rel), {array_key: []})
     return [x for x in doc.get(array_key, []) if isinstance(x, dict)]
+
+def _coalesce(*vals, default=None):
+    for v in vals:
+        if v is None: 
+            continue
+        return v
+    return default
+
+# ---- Schema-tolerant item helpers ----
+def item_name(it: dict) -> str:
+    return (it.get('name') or it.get('Name') or it.get('display_name') or
+            it.get('title') or it.get('label') or it.get('id') or '?')
+
+def item_type(it: dict) -> str:
+    return (it.get('type') or it.get('Type') or it.get('category') or
+            it.get('slot') or it.get('item_type') or '?')
+
+def item_subtype(it: dict) -> str:
+    return (it.get('subtype') or it.get('SubType') or it.get('weapon_type') or
+            it.get('class') or it.get('category2') or '-')
+
+def item_desc(it: dict) -> str:
+    return (it.get('desc') or it.get('description') or it.get('flavor') or '')
+
+def _weapon_stats(it: Dict) -> Tuple[int,int,float,List[str]]:
+    """Returns (min_bonus, max_bonus, status_chance, statuses) reading multiple possible keys safely."""
+    min_b = int(_coalesce(it.get('min'), it.get('min_damage'), it.get('damage_min'), it.get('atk_min'), 0) or 0)
+    max_b = int(_coalesce(it.get('max'), it.get('max_damage'), it.get('damage_max'), it.get('atk_max'), 0) or 0)
+    st_ch = float(_coalesce(it.get('status_chance'), it.get('statusChance'), 0.0) or 0.0)
+    statuses = it.get('status') or it.get('statuses') or []
+    if isinstance(statuses, str): statuses = [statuses]
+    st_ch = max(0.0, min(1.0, st_ch))
+    return min_b, max_b, st_ch, list(statuses)
 
 def gather_items() -> List[Dict]:
     items: List[Dict] = []
@@ -209,12 +238,6 @@ def gather_items() -> List[Dict]:
         for name in ["weapons.json","armours.json","accessories.json","clothing.json","materials.json","quest_items.json","trinkets.json"]:
             for it in safe_load_doc(os.path.join("items", name), "items"):
                 items.append(it)
-    if not items:
-        items = [
-            {"id":"IT00000001","name":"Rust-Kissed Dagger","type":"weapon","rarity":"common","desc":"A pitted blade that still finds gaps in armor."},
-            {"id":"IT00000002","name":"Traveler’s Cloak","type":"clothing","rarity":"common","desc":"Smells like rain and road dust."},
-            {"id":"IT00000003","name":"Moonfern","type":"material","rarity":"uncommon","desc":"Glows faintly in the dark."},
-        ]
     return items
 
 def gather_npcs() -> List[Dict]:
@@ -226,13 +249,9 @@ def gather_npcs() -> List[Dict]:
                 npcs.append(n)
     if not npcs:
         npcs = [
-            {"id":"NP00000001","name":"Lissar of the Birch","kind":"elf","romanceable":True,
-             "desc":"An elf archer with bright eyes and a sly smile.","dialogue":[
-              {"text":"The woods whisper of you. Will you listen?","options":[
-                {"label":"Listen","effect":"affinity+1"},
-                {"label":"Flirt","effect":"romance_attempt"}
-              ]} ]},
-            {"id":"NP00000002","name":"Grukk","kind":"beast","hostile":True,
+            {"id":"NP00000001","name":"Lissar of the Birch","race":"wood_elf","romanceable":True, "hp": 14, "dex":5, "will":5, "greed":3,
+             "desc":"An elf archer with bright eyes and a sly smile."},
+            {"id":"NP00000002","name":"Grukk","race":"orc","hostile":True, "hp": 16, "dex":4, "will":3, "greed":5,
              "desc":"A hulking brute whose breath smells like old stew."}
         ]
     return npcs
@@ -241,8 +260,8 @@ def load_traits() -> List[Dict]:   return safe_load_doc("traits.json", "traits")
 def load_enchants() -> List[Dict]: return safe_load_doc("enchants.json", "enchants")
 def load_magic() -> List[Dict]:    return safe_load_doc("magic.json", "spells")
 def load_status() -> List[Dict]:   return safe_load_doc("status.json", "status")
-def load_names() -> Dict:          return load_json(os.path.join(DATA_DIR, "names.json"), {})
 
+# ======================== Core structures ========================
 @dataclass
 class Encounter:
     npc: Optional[Dict] = None
@@ -270,9 +289,12 @@ class Player:
     max_hp: int = 20
     atk: Tuple[int,int] = (3,6)
     stealth: int = 4
+    dex: int = 5
     affinity: Dict[str,int] = field(default_factory=dict)
     romance_flags: Dict[str,bool] = field(default_factory=dict)
     inventory: List[Dict] = field(default_factory=list)
+    equipped_weapon: Optional[Dict] = None
+    equipped_focus: Optional[Dict] = None
 
 def pick_enemy(npcs: List[Dict]) -> Optional[Dict]:
     hostile = [n for n in npcs if n.get("hostile")]
@@ -283,7 +305,7 @@ def pick_npc(npcs: List[Dict]) -> Optional[Dict]:
     return random.choice(friendly) if friendly else None
 
 def pick_item(items: List[Dict]) -> Optional[Dict]:
-    return random.choice(items) if random.random() < 0.5 else None
+    return random.choice(items) if random.random() < 0.35 else None
 
 def generate_world(items, npcs) -> List[List[Tile]]:
     grid: List[List[Tile]] = []
@@ -314,382 +336,510 @@ def generate_world(items, npcs) -> List[List[Tile]]:
     grid[0][0].discovered = True
     return grid
 
+# ======================== UI helpers (MODULE-LEVEL) ========================
+try:
+    import pygame as pg
+except Exception:
+    pg = None  # checked at runtime
+
+def draw_text(surface, text, pos, color=(230,230,230), font=None, max_w=None):
+    if font is None:
+        if pg is None:
+            raise RuntimeError("pygame not available")
+        font = pg.font.Font(None, 18)
+    if not max_w:
+        surface.blit(font.render(text, True, color), pos); return
+    words = text.split(" "); x,y = pos; line = ""
+    for w in words:
+        test = (line + " " + w).strip()
+        if font.size(test)[0] <= max_w: line = test
+        else:
+            surface.blit(font.render(line, True, color), (x,y))
+            y += font.get_linesize()
+            line = w
+    if line: surface.blit(font.render(line, True, color), (x,y))
+
+class Button:
+    def __init__(self, rect, label, cb):
+        if pg is None:
+            raise RuntimeError("pygame not available")
+        self.rect = pg.Rect(rect); self.label = label; self.cb = cb
+    def draw(self, surf):
+        label_font = pg.font.Font(None, 18)
+        pg.draw.rect(surf, (60,60,70), self.rect, border_radius=8)
+        pg.draw.rect(surf, (110,110,130), self.rect, 2, border_radius=8)
+        label = label_font.render(self.label, True, (240,240,255))
+        surf.blit(label, (self.rect.x + 10, self.rect.y + (self.rect.h - label.get_height())//2))
+    def handle(self, event):
+        if event.type == pg.MOUSEBUTTONDOWN and event.button == 1 and self.rect.collidepoint(event.pos):
+            self.cb()
+
+def draw_grid(surf, game):
+    pg.draw.rect(surf, (26,26,32), (0,0, 980 - 360, 640))
+    for y in range(8):
+        for x in range(12):
+            rx, ry = x*44 + 12, y*44 + 12
+            r = pg.Rect(rx, ry, 40, 40)
+            tile = game.grid[y][x]
+            base = (42,44,56) if tile.discovered else (28,30,38)
+            pg.draw.rect(surf, base, r, border_radius=6)
+            pg.draw.rect(surf, (70,74,92), r, 1, border_radius=6)
+            if tile.encounter:
+                if tile.encounter.enemy:  pg.draw.circle(surf, (190,70,70),   (r.centerx, r.centery), 4)
+                elif tile.encounter.npc: pg.draw.circle(surf, (90,170,110),  (r.centerx, r.centery), 4)
+                elif tile.encounter.event: pg.draw.circle(surf, (160,130,200),(r.centerx, r.centery), 4)
+    px = game.player.x*44 + 12 + 20
+    py = game.player.y*44 + 12 + 20
+    pg.draw.circle(surf, (235,235,80), (px,py), 7)
+
+def draw_panel(surf, game):
+    x0 = 980 - 360
+    pg.draw.rect(surf, (18,18,24), (x0,0, 360, 640))
+    pg.draw.rect(surf, (70,74,92), (x0,0, 360, 640), 1)
+    header_font = pg.font.Font(None, 22)
+    draw_text(surf, f"RPGenesis v{get_version()} – Field Log", (x0+16, 12), font=header_font)
+
+    # Tile / Equipped summary
+    t = game.tile(); y = 44
+    draw_text(surf, f"Tile ({t.x},{t.y})", (x0+16, y)); y += 18
+    draw_text(surf, t.description, (x0+16, y), max_w=360-32); y += 40
+    # Equipped
+    wep = item_name(game.player.equipped_weapon) if game.player.equipped_weapon else "None"
+    foc = item_name(game.player.equipped_focus) if game.player.equipped_focus else "None"
+    draw_text(surf, f"Weapon: {wep}", (x0+16, y)); y += 18
+    draw_text(surf, f"Focus : {foc}", (x0+16, y)); y += 24
+
+    # Encounter info
+    if t.encounter:
+        if t.encounter.enemy:
+            s = t.encounter.enemy.get("name","Enemy")
+            spotted = " (alerted)" if t.encounter.spotted else " (unaware)"
+            draw_text(surf, f"Enemy: {s}{spotted}", (x0+16, y)); y += 20
+            est = t.encounter.enemy.get('status', [])
+            if est:
+                draw_text(surf, "Status: " + ", ".join(est), (x0+28, y)); y += 18
+        if t.encounter.npc:
+            npcname = t.encounter.npc.get('name','Stranger')
+            npcrace = t.encounter.npc.get('race') or 'unknown'
+            draw_text(surf, f"NPC: {npcname} (Race: {npcrace})", (x0+16, y)); y += 18
+        if t.encounter.event:
+            draw_text(surf, f"Event: {t.encounter.event}", (x0+16, y)); y += 18
+        if not t.encounter.item_searched:
+            draw_text(surf, "Area can be searched.", (x0+16, y), (200,200,240)); y += 18
+        else:
+            draw_text(surf, "Area already searched.", (x0+16, y), (160,160,180)); y += 18
+
+    # Player + log
+    y += 6
+    draw_text(surf, f"HP: {game.player.hp}/{game.player.max_hp}", (x0+16, y)); y += 18
+    draw_text(surf, f"Inventory: {len(game.player.inventory)}", (x0+16, y)); y += 24
+    draw_text(surf, "Recent:", (x0+16, y)); y += 16
+    for line in game.log[-6:]:
+        draw_text(surf, f"• {line}", (x0+20, y), max_w=360-36); y += 16
+
+    # Buttons
+    y0 = 640 - 210
+    buttons = []
+    def add(label, cb):
+        nonlocal y0
+        buttons.append(Button((x0+16, y0, 360-32, 34), label, cb)); y0 += 38
+
+    if game.mode == "combat":
+        add("Attack (Weapon)", game.attack)
+        add("Cast Spell", game.cast_spell)
+        add("Talk", game.talk_enemy)
+        if getattr(game, 'can_bribe', False):
+            add("Offer Bribe", game.offer_bribe)
+        add("Flee", game.flee)
+        add("Inventory / Equip", lambda: setattr(game, 'mode', 'inventory'))
+    elif game.mode == "dialogue":
+        add("Talk",  lambda: game.handle_dialogue_choice("Talk"))
+        add("Flirt", lambda: game.handle_dialogue_choice("Flirt"))
+        add("Leave", lambda: game.handle_dialogue_choice("Leave"))
+        add("Inventory / Equip", lambda: setattr(game, 'mode', 'inventory'))
+    elif game.mode == "inventory":
+        buttons += draw_inventory_panel(surf, game, x0)
+    else:
+        add("Search Area", game.search_tile)
+        if t.encounter and t.encounter.enemy and not t.encounter.spotted:
+            add("Sneak Past",            game.try_sneak)
+            add("Bypass (Skirt Around)", game.bypass_enemy)
+        if t.encounter and t.encounter.enemy and t.encounter.spotted:
+            add("Fight", lambda: game.start_combat(t.encounter.enemy))
+        if t.encounter and t.encounter.npc:
+            add("Talk",      lambda: game.start_dialogue(t.encounter.npc))
+            add("Leave NPC", lambda: game.handle_dialogue_choice("Leave"))
+        add("Inventory / Equip", lambda: setattr(game, 'mode', 'inventory'))
+
+    for b in buttons: b.draw(surf)
+    return buttons
+
+def draw_inventory_panel(surf, game, x0):
+    """Returns list of Button objects for the inventory sub-panel."""
+    buttons = []
+    # panel header
+    y = 320
+    pg.draw.line(surf, (70,74,92), (x0+12, y-6), (x0+360-12, y-6), 1)
+    draw_text(surf, "Inventory", (x0+16, y)); y += 20
+
+    # pagination state
+    if not hasattr(game, "inv_page"): game.inv_page = 0
+    if not hasattr(game, "inv_sel"): game.inv_sel = None
+
+    per_page = 6
+    total = len(game.player.inventory)
+    pages = max(1, (total + per_page - 1)//per_page)
+    page = max(0, min(game.inv_page, pages-1))
+    start = page*per_page
+    items = game.player.inventory[start:start+per_page]
+
+    # list items as clickable rows
+    row_h = 26
+    for i, it in enumerate(items):
+        r = pg.Rect(x0+16, y+i*row_h, 360-32, row_h-4)
+        sel = (game.inv_sel == start+i)
+        pg.draw.rect(surf, (52,56,70) if sel else (34,36,46), r, border_radius=6)
+        pg.draw.rect(surf, (90,94,112), r, 1, border_radius=6)
+        label = f"{item_name(it)}  [{item_type(it)}/{item_subtype(it)}]"
+        draw_text(surf, label, (r.x+8, r.y+5))
+        def make_sel(idx):
+            return lambda idx=idx: setattr(game, 'inv_sel', idx)
+        buttons.append(Button(r, "", make_sel(start+i)))
+
+    y += per_page*row_h + 4
+
+    # info & actions for selected item
+    if game.inv_sel is not None and 0 <= game.inv_sel < total:
+        it = game.player.inventory[game.inv_sel]
+        draw_text(surf, (item_desc(it) or "-"), (x0+16, y), max_w=360-32); y += 36
+        subtype = str(item_subtype(it)).lower()
+        typ = str(item_type(it)).lower()
+        if typ == "weapon":
+            if subtype in ("wand","staff"):
+                buttons.append(Button((x0+16, y, 160, 30), "Equip as Focus", lambda: game.equip_focus(it)))
+                y += 34
+            else:
+                buttons.append(Button((x0+16, y, 160, 30), "Equip Weapon", lambda: game.equip_weapon(it)))
+                y += 34
+        # Drop button
+        buttons.append(Button((x0+16, y, 160, 30), "Drop", lambda: game.drop_item(game.inv_sel)))
+        # Close
+        buttons.append(Button((x0+16+170, y, 160, 30), "Close", lambda: setattr(game,'mode','explore')))
+    else:
+        # Pager + Close when nothing selected
+        buttons.append(Button((x0+16, y, 110, 28), "Prev Page", lambda: setattr(game,'inv_page', max(0, game.inv_page-1))))
+        buttons.append(Button((x0+16+120, y, 110, 28), "Next Page", lambda: setattr(game,'inv_page', min(pages-1, game.inv_page+1))))
+        buttons.append(Button((x0+16+240, y, 90, 28), "Close", lambda: setattr(game,'mode','explore')))
+
+    return buttons
+
+# ======================== Game class + loop ========================
+class Game:
+    def __init__(self):
+        random.seed()
+        self.items   = gather_items()
+        self.npcs    = gather_npcs()
+        self.traits  = load_traits()
+        self.enchants= load_enchants()
+        self.magic   = load_magic()
+        self.status  = load_status()
+        self.grid    = generate_world(self.items, self.npcs)
+        self.player  = Player()
+        self.log: List[str] = ["You arrive at the edge of the wilds."]
+        self.mode = "explore"
+        self.current_enemy_hp = 0
+        self.current_enemy = None
+        self.current_npc = None
+        self.can_bribe = False
+        self.inv_page = 0
+        self.inv_sel = None
+
+        weps  = [it for it in self.items if str(item_type(it)).lower() == 'weapon']
+        melee = [w for w in weps if str(item_subtype(w)).lower() not in ('wand','staff')]
+        focus = [w for w in weps if str(item_subtype(w)).lower() in ('wand','staff')]
+        self.player.equipped_weapon = melee[0] if melee else (weps[0] if weps else None)
+        self.player.equipped_focus  = focus[0] if focus else None
+
+        if self.player.equipped_weapon:
+            self.say(f"Equipped weapon: {item_name(self.player.equipped_weapon)}")
+        if self.player.equipped_focus:
+            self.say(f"Equipped focus: {item_name(self.player.equipped_focus)}")
+
+        if not self.player.inventory and weps:
+            self.player.inventory.append(weps[0])
+            if len(weps) > 1:
+                self.player.inventory.append(weps[1])
+
+    def tile(self, x=None, y=None) -> Tile:
+        if x is None: x = self.player.x
+        if y is None: y = self.player.y
+        return self.grid[y][x]
+
+    def say(self, msg: str):
+        self.log.append(msg)
+        if len(self.log) > 8: self.log = self.log[-8:]
+
+    # ---------- Equipment actions ----------
+    def equip_weapon(self, it: Dict):
+        if item_type(it).lower() == "weapon" and item_subtype(it).lower() not in ("wand","staff"):
+            self.player.equipped_weapon = it
+            self.say(f"Equipped weapon: {item_name(it)}")
+        else:
+            self.say("That cannot be equipped as a weapon.")
+    def equip_focus(self, it: Dict):
+        if item_type(it).lower() == "weapon" and item_subtype(it).lower() in ("wand","staff"):
+            self.player.equipped_focus = it
+            self.say(f"Equipped focus: {item_name(it)}")
+        else:
+            self.say("You need a wand or staff as a focus.")
+    def drop_item(self, idx: int):
+        if 0 <= idx < len(self.player.inventory):
+            it = self.player.inventory.pop(idx)
+            self.say(f"Dropped: {item_name(it)}")
+            self.inv_sel = None
+
+    def can_leave_tile(self) -> bool:
+        t = self.tile()
+        if not t.encounter: return True
+        if not t.encounter.must_resolve: return True
+        if self.mode in ("dialogue","combat","event"): return False
+        if t.encounter.npc or t.encounter.enemy or t.encounter.event: return False
+        return True
+
+    def move(self, dx, dy):
+        if not self.can_leave_tile():
+            self.say("Resolve the encounter before moving on."); return
+        nx, ny = self.player.x + dx, self.player.y + dy
+        if 0 <= nx < 12 and 0 <= ny < 8:
+            self.player.x, self.player.y = nx, ny
+            t = self.tile(); t.discovered = True; t.visited += 1
+            if t.encounter:
+                if t.encounter.enemy:
+                    self.mode = "combat" if t.encounter.spotted else "explore"
+                    if t.encounter.spotted:
+                        self.start_combat(t.encounter.enemy); self.say(f"{t.encounter.enemy.get('name','A foe')} spots you!")
+                    else:
+                        self.say("An enemy lurks here... maybe you could sneak by.")
+                elif t.encounter.npc:
+                    self.mode = "dialogue"; self.start_dialogue(t.encounter.npc); self.say(f"You meet {t.encounter.npc.get('name','someone')}.")
+                elif t.encounter.event:
+                    self.mode = "event"; self.say(f"You encounter {t.encounter.event}.")
+            else:
+                self.mode = "explore"
+
+    def start_dialogue(self, npc): self.current_npc = npc
+
+    def handle_dialogue_choice(self, choice: str):
+        npc = self.current_npc;  nid = npc.get("id","?") if npc else "?"
+        if not npc: return
+        if choice == "Talk":
+            self.player.affinity[nid] = self.player.affinity.get(nid,0) + 1
+            self.say(f"You talk with {npc.get('name','them')} (+affinity).")
+        elif choice == "Flirt":
+            if npc.get("romanceable"):
+                chance = 0.5 + 0.05 * self.player.affinity.get(nid,0)
+                if chance > 0.9: chance = 0.9
+                if random.random() < chance:
+                    self.player.romance_flags[nid] = True
+                    self.say(f"{npc.get('name','They')} returns your smile. (Romance)")
+                else:
+                    self.say("Not quite the moment. Maybe build more rapport.")
+            else:
+                self.say("They seem unreceptive to flirtation.")
+        elif choice == "Leave":
+            t = self.tile(); t.encounter.npc = None; t.encounter.must_resolve = False
+            self.current_npc = None; self.mode = "explore"
+        else:
+            self.say("You share a few words.")
+
+    def start_combat(self, enemy):
+        self.current_enemy = enemy; self.current_enemy_hp = enemy.get("hp", 12)
+        self.current_enemy.setdefault('status', [])
+        self.current_enemy.setdefault('dex', 4)
+        self.current_enemy.setdefault('will', 4)
+        self.current_enemy.setdefault('greed', 4)
+        self.can_bribe = False
+
+    def _maybe_apply_status(self, source: str, target: Dict, weapon_or_spell: Optional[Dict]=None):
+        chance = 0.15
+        pool = ["bleed","burn","shock","freeze","poison"]
+        if weapon_or_spell:
+            wmin, wmax, st_ch, statuses = _weapon_stats(weapon_or_spell)
+            chance = st_ch or chance
+            if statuses: pool = statuses
+            else:
+                st = item_subtype(weapon_or_spell).lower()
+                if st in ('sword','dagger','axe','halberd','spear','shortsword'): pool = ["bleed"]
+                if st in ('mace','club','hammer','greatclub'): pool = ["stagger"]
+                if st in ('wand','staff'): pool = ["burn","shock","freeze"]
+        if random.random() < chance:
+            aff = random.choice(pool)
+            if 'status' in target and aff not in target['status']:
+                target['status'].append(aff)
+                self.say(f"Status applied: {aff}.")
+
+    def attack(self):
+        if not self.current_enemy: return
+        base_min, base_max = self.player.atk
+        wep = self.player.equipped_weapon or {}
+        wmin, wmax, _, _ = _weapon_stats(wep)
+        dmg = random.randint(base_min + wmin, base_max + max(wmax,0))
+        dmg = max(1, dmg)
+        self.current_enemy_hp -= dmg
+        self.say(f"You strike with {item_name(wep) if wep else 'your weapon'} for {dmg}.")
+        self._maybe_apply_status('melee', self.current_enemy, wep)
+        if self.current_enemy_hp <= 0:
+            self.say("Enemy defeated!")
+            t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
+            self.current_enemy = None; self.mode = "explore"
+        else:
+            self.enemy_turn()
+
+    def cast_spell(self):
+        if not self.current_enemy:
+            self.say("No target."); return
+        if not self.player.equipped_focus:
+            self.say("You need a wand or staff to focus your magic."); return
+        if not self.magic:
+            self.say("You don't recall any spells."); return
+        spell = random.choice(self.magic)
+        dmg = random.randint(4,8)
+        self.current_enemy_hp -= dmg; self.say(f"You cast {spell.get('name','a spell')} through {item_name(self.player.equipped_focus)} for {dmg}!")
+        self._maybe_apply_status('spell', self.current_enemy, self.player.equipped_focus)
+        if self.current_enemy_hp <= 0:
+            self.say("Enemy crumples.")
+            t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
+            self.current_enemy = None; self.mode = "explore"
+        else:
+            self.enemy_turn()
+
+    def try_sneak(self):
+        t = self.tile()
+        if not (t.encounter and t.encounter.enemy and not t.encounter.spotted):
+            self.say("No unnoticed enemy to sneak by."); return
+        dc = 8 + random.randint(0,4); roll = 4 + random.randint(1,10)
+        if roll >= dc:
+            self.say("You slip past unnoticed."); t.encounter.enemy = None; t.encounter.must_resolve = False; self.mode = "explore"
+        else:
+            self.say("You stumble—you're spotted!"); t.encounter.spotted = True; self.start_combat(t.encounter.enemy)
+
+    def bypass_enemy(self):
+        t = self.tile()
+        if t.encounter and t.encounter.enemy and not t.encounter.spotted:
+            self.say("You give the area a wide berth. (You can leave now.)")
+            t.encounter.must_resolve = False; self.mode = "explore"
+        else:
+            self.say("Too risky to bypass.")
+
+    def talk_enemy(self):
+        if not self.current_enemy: return
+        will = int(self.current_enemy.get('will', 4))
+        chance = max(0.1, min(0.8, 0.5 - 0.05*(will-4) + 0.05*len(self.player.romance_flags)))
+        if random.random() < chance:
+            self.say("You talk them down. The hostility fades.")
+            t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
+            self.current_enemy = None; self.mode = "explore"
+        else:
+            self.say("They waver... maybe a bribe would help.")
+            self.can_bribe = True
+
+    def offer_bribe(self):
+        if not self.current_enemy:
+            self.say("No one to bribe."); return
+        greed = int(self.current_enemy.get('greed', 4))
+        chance = max(0.2, min(0.9, 0.6 + 0.05*(greed-4)))
+        item = None
+        for it in self.player.inventory:
+            if item_type(it).lower() in ('trinket','material','accessory','materials'):
+                item = it; break
+        if item:
+            self.player.inventory.remove(item)
+            self.say(f"You offer {item_name(item)}...")
+        else:
+            self.say("You offer future favors...")
+        if random.random() < chance:
+            self.say("The bribe works. They let you pass.")
+            t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
+            self.current_enemy = None; self.mode = "explore"; self.can_bribe = False
+        else:
+            self.say("No deal. They remain hostile.")
+            self.can_bribe = False
+
+    def flee(self):
+        if not self.current_enemy: return
+        pDex = int(self.player.dex); eDex = int(self.current_enemy.get('dex',4))
+        chance = max(0.1, min(0.95, 0.35 + 0.08*(pDex - eDex)))
+        if random.random() < chance:
+            self.say("You slip away into the brush.")
+            self.mode = "explore"
+            if self.player.y+1 < 8: self.player.y += 1
+        else:
+            self.say("You fail to escape!")
+            self.enemy_turn()
+
+    def enemy_turn(self):
+        if not self.current_enemy: return
+        dmg = random.randint(2,5); self.player.hp -= dmg; self.say(f"The enemy hits you for {dmg}.")
+        if self.player.hp <= 0:
+            self.say("You fall... but awaken at the trailhead, aching.")
+            self.player.hp = self.player.max_hp; self.player.x = 0; self.player.y = 0; self.mode = "explore"
+
+    def search_tile(self):
+        t = self.tile()
+        if not t.encounter:
+            self.say("You find little of note."); return
+        if t.encounter.item_searched:
+            self.say("You've already scoured this area."); return
+        t.encounter.item_searched = True
+        if t.encounter.item_here:
+            item = t.encounter.item_here; self.player.inventory.append(item)
+            self.say(f"You found: {item_name(item)}!"); t.encounter.item_here = None
+        else:
+            self.say("You search thoroughly, but find nothing this time.")
+
+# ======================== Start game (UI) ========================
 def start_game():
-    try:
-        import pygame
-    except ImportError:
-        print("[ERR] pygame not installed. Run: pip install pygame")
-        sys.exit(1)
+    if pg is None:
+        try:
+            import pygame as _pg  # late import to show friendly error
+        except ImportError:
+            print("[ERR] pygame not installed. Run: pip install pygame")
+            sys.exit(1)
 
     version = get_version()
-
-    pygame.init()
-    pygame.display.set_caption(f"RPGenesis {version} – Text RPG")
-    screen = pygame.display.set_mode((980, 640))
-    clock = pygame.time.Clock()
-    FONT = pygame.font.Font(None, 18)
-    FONT_BIG = pygame.font.Font(None, 22)
-
-    def draw_text(surface, text, pos, color=(230,230,230), font=FONT, max_w=None):
-        if not max_w:
-            surface.blit(font.render(text, True, color), pos); return
-        words = text.split(" "); x,y = pos; line = ""
-        for w in words:
-            test = (line + " " + w).strip()
-            if font.size(test)[0] <= max_w: line = test
-            else:
-                surface.blit(font.render(line, True, color), (x,y)); y += font.get_linesize(); line = w
-        if line: surface.blit(font.render(line, True, color), (x,y))
-
-    class Button:
-        def __init__(self, rect, label, cb):
-            import pygame as pg
-            self.rect = pg.Rect(rect); self.label = label; self.cb = cb
-        def draw(self, surf):
-            import pygame as pg
-            pg.draw.rect(surf, (60,60,70), self.rect, border_radius=8)
-            pg.draw.rect(surf, (110,110,130), self.rect, 2, border_radius=8)
-            label = FONT.render(self.label, True, (240,240,255))
-            surf.blit(label, (self.rect.x + 10, self.rect.y + (self.rect.h - label.get_height())//2))
-        def handle(self, event):
-            import pygame as pg
-            if event.type == pg.MOUSEBUTTONDOWN and event.button == 1 and self.rect.collidepoint(event.pos):
-                self.cb()
-
-    @dataclass
-    class Encounter:
-        npc: Optional[Dict] = None
-        enemy: Optional[Dict] = None
-        event: Optional[str] = None
-        must_resolve: bool = False
-        spotted: bool = False
-        item_here: Optional[Dict] = None
-        item_searched: bool = False
-
-    @dataclass
-    class Tile:
-        x: int
-        y: int
-        discovered: bool = False
-        encounter: Optional[Encounter] = None
-        visited: int = 0
-        description: str = ""
-
-    @dataclass
-    class Player:
-        x: int = 0
-        y: int = 0
-        hp: int = 20
-        max_hp: int = 20
-        atk: Tuple[int,int] = (3,6)
-        stealth: int = 4
-        affinity: Dict[str,int] = field(default_factory=dict)
-        romance_flags: Dict[str,bool] = field(default_factory=dict)
-        inventory: List[Dict] = field(default_factory=list)
-
-    def pick_enemy(npcs: List[Dict]) -> Optional[Dict]:
-        hostile = [n for n in npcs if n.get("hostile")]
-        return random.choice(hostile) if hostile else None
-
-    def pick_npc(npcs: List[Dict]) -> Optional[Dict]:
-        friendly = [n for n in npcs if not n.get("hostile")]
-        return random.choice(friendly) if friendly else None
-
-    def pick_item(items: List[Dict]) -> Optional[Dict]:
-        return random.choice(items) if random.random() < 0.5 else None
-
-    def generate_world(items, npcs) -> List[List[Tile]]:
-        grid: List[List[Tile]] = []
-        for y in range(8):
-            row = []
-            for x in range(12):
-                t = Tile(x=x, y=y)
-                t.description = random.choice([
-                    "Wind-swept brush and bent reeds.",
-                    "Ancient stones half-swallowed by moss.",
-                    "A hush falls here, like a held breath.",
-                    "Dappled light flickers between tall birches.",
-                    "A trampled path suggests recent travelers."
-                ])
-                enc = Encounter()
-                r = random.random()
-                if r < 0.3:
-                    enc.enemy = pick_enemy(npcs); enc.must_resolve = True; enc.spotted = random.random() < 0.6
-                elif r < 0.6:
-                    enc.npc = pick_npc(npcs); enc.must_resolve = True
-                elif r < 0.7:
-                    enc.event = random.choice(["ancient shrine","abandoned camp","strange circle of mushrooms"]); enc.must_resolve = True
-                enc.item_here = pick_item(items)
-                t.encounter = enc
-                row.append(t)
-            grid.append(row)
-        grid[0][0].description = "A lonely milestone marks the trailhead."
-        grid[0][0].discovered = True
-        return grid
-
-    class Game:
-        def __init__(self):
-            random.seed()
-            self.items   = gather_items()
-            self.npcs    = gather_npcs()
-            self.traits  = load_traits()
-            self.enchants= load_enchants()
-            self.magic   = load_magic()
-            self.status  = load_status()
-            self.grid    = generate_world(self.items, self.npcs)
-            self.player  = Player()
-            self.log: List[str] = ["You arrive at the edge of the wilds."]
-            self.mode = "explore"
-            self.current_enemy_hp = 0
-            self.current_enemy = None
-            self.current_npc = None
-
-        def tile(self, x=None, y=None) -> Tile:
-            if x is None: x = self.player.x
-            if y is None: y = self.player.y
-            return self.grid[y][x]
-
-        def say(self, msg: str):
-            self.log.append(msg)
-            if len(self.log) > 8: self.log = self.log[-8:]
-
-        def can_leave_tile(self) -> bool:
-            t = self.tile()
-            if not t.encounter: return True
-            if not t.encounter.must_resolve: return True
-            if self.mode in ("dialogue","combat","event"): return False
-            if t.encounter.npc or t.encounter.enemy or t.encounter.event: return False
-            return True
-
-        def move(self, dx, dy):
-            if not self.can_leave_tile():
-                self.say("Resolve the encounter before moving on."); return
-            nx, ny = self.player.x + dx, self.player.y + dy
-            if 0 <= nx < 12 and 0 <= ny < 8:
-                self.player.x, self.player.y = nx, ny
-                t = self.tile(); t.discovered = True; t.visited += 1
-                if t.encounter:
-                    if t.encounter.enemy:
-                        self.mode = "combat" if t.encounter.spotted else "explore"
-                        if t.encounter.spotted:
-                            self.start_combat(t.encounter.enemy); self.say(f"{t.encounter.enemy.get('name','A foe')} spots you!")
-                        else: self.say("An enemy lurks here... maybe you could sneak by.")
-                    elif t.encounter.npc:
-                        self.mode = "dialogue"; self.start_dialogue(t.encounter.npc); self.say(f"You meet {t.encounter.npc.get('name','someone')}.")
-                    elif t.encounter.event:
-                        self.mode = "event"; self.say(f"You encounter {t.encounter.event}.")
-                else: self.mode = "explore"
-
-        def start_dialogue(self, npc): self.current_npc = npc
-        def handle_dialogue_choice(self, choice: str):
-            npc = self.current_npc;  nid = npc.get("id","?") if npc else "?"
-            if not npc: return
-            if choice == "Talk":
-                self.player.affinity[nid] = self.player.affinity.get(nid,0) + 1
-                self.say(f"You talk with {npc.get('name','them')} (+affinity).")
-            elif choice == "Flirt":
-                if npc.get("romanceable"):
-                    chance = 0.5 + 0.05 * self.player.affinity.get(nid,0)
-                    if random.random() < chance:
-                        self.player.romance_flags[nid] = True
-                        self.say(f"{npc.get('name','They')} returns your smile. (Romance blossoming)")
-                    else: self.say("Not quite the moment. Maybe build more rapport.")
-                else: self.say("They seem unreceptive to flirtation.")
-            elif choice == "Leave":
-                t = self.tile(); t.encounter.npc = None; t.encounter.must_resolve = False
-                self.current_npc = None; self.mode = "explore"
-            else:
-                self.say("You share a few words.")
-
-        def start_combat(self, enemy):
-            self.current_enemy = enemy; self.current_enemy_hp = enemy.get("hp", 12)
-        def attack(self):
-            if not self.current_enemy: return
-            dmg = random.randint(3,6); self.current_enemy_hp -= dmg; self.say(f"You strike for {dmg}.")
-            if self.current_enemy_hp <= 0:
-                self.say("Enemy defeated!")
-                t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
-                self.current_enemy = None; self.mode = "explore"
-            else: self.enemy_turn()
-        def cast_spell(self):
-            if not self.current_enemy: self.say("No target."); return
-            if not self.magic: self.say("You don't recall any spells."); return
-            spell = random.choice(self.magic); dmg = random.randint(4,8)
-            self.current_enemy_hp -= dmg; self.say(f"You cast {spell.get('name','a spell')} for {dmg}!")
-            if self.current_enemy_hp <= 0:
-                self.say("Enemy crumples.")
-                t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
-                self.current_enemy = None; self.mode = "explore"
-            else: self.enemy_turn()
-        def try_sneak(self):
-            t = self.tile()
-            if not (t.encounter and t.encounter.enemy and not t.encounter.spotted):
-                self.say("No unnoticed enemy to sneak by."); return
-            dc = 8 + random.randint(0,4); roll = 4 + random.randint(1,10)
-            if roll >= dc:
-                self.say("You slip past unnoticed."); t.encounter.enemy = None; t.encounter.must_resolve = False; self.mode = "explore"
-            else:
-                self.say("You stumble—you're spotted!"); t.encounter.spotted = True; self.start_combat(t.encounter.enemy)
-        def bypass_enemy(self):
-            t = self.tile()
-            if t.encounter and t.encounter.enemy and not t.encounter.spotted:
-                self.say("You give the area a wide berth. (You can leave now.)")
-                t.encounter.must_resolve = False; self.mode = "explore"
-            else: self.say("Too risky to bypass.")
-        def enemy_turn(self):
-            if not self.current_enemy: return
-            dmg = random.randint(2,5); self.player.hp -= dmg; self.say(f"The enemy hits you for {dmg}.")
-            if self.player.hp <= 0:
-                self.say("You fall... but awaken at the trailhead, aching.")
-                self.player.hp = self.player.max_hp; self.player.x = 0; self.player.y = 0; self.mode = "explore"
-        def search_tile(self):
-            t = self.tile()
-            if not t.encounter: self.say("You find little of note."); return
-            if t.encounter.item_searched: self.say("You've already scoured this area."); return
-            t.encounter.item_searched = True
-            if t.encounter.item_here:
-                item = t.encounter.item_here; self.player.inventory.append(item)
-                self.say(f"You found: {item.get('name','something')}!"); t.encounter.item_here = None
-            else: self.say("You search thoroughly, but find nothing this time.")
-
-    def draw_grid(surf, game):
-        import pygame as pg
-        pg.draw.rect(surf, (26,26,32), (0,0, 980 - 360, 640))
-        for y in range(8):
-            for x in range(12):
-                rx, ry = x*44 + 12, y*44 + 12
-                r = pg.Rect(rx, ry, 40, 40)
-                tile = game.grid[y][x]
-                base = (42,44,56) if tile.discovered else (28,30,38)
-                pg.draw.rect(surf, base, r, border_radius=6)
-                pg.draw.rect(surf, (70,74,92), r, 1, border_radius=6)
-                if tile.encounter:
-                    if tile.encounter.enemy: pg.draw.circle(surf, (190,70,70), (r.centerx, r.centery), 4)
-                    elif tile.encounter.npc: pg.draw.circle(surf, (90,170,110), (r.centerx, r.centery), 4)
-                    elif tile.encounter.event: pg.draw.circle(surf, (160,130,200), (r.centerx, r.centery), 4)
-        px = game.player.x*44 + 12 + 20
-        py = game.player.y*44 + 12 + 20
-        pg.draw.circle(surf, (235,235,80), (px,py), 7)
-
-    def draw_panel(surf, game):
-        import pygame as pg
-        x0 = 980 - 360
-        pg.draw.rect(surf, (18,18,24), (x0,0, 360, 640))
-        pg.draw.rect(surf, (70,74,92), (x0,0, 360, 640), 1)
-        draw_text(surf, f"RPGenesis v{get_version()} – Field Log", (x0+16, 12), font=pygame.font.Font(None, 22))
-        t = game.tile(); y = 48
-        draw_text(surf, f"Tile ({t.x},{t.y})", (x0+16, y)); y += 20
-        draw_text(surf, t.description, (x0+16, y), max_w=360-32); y += 50
-        if t.encounter:
-            if t.encounter.enemy:
-                s = t.encounter.enemy.get("name","Enemy"); spotted = " (alerted)" if t.encounter.spotted else " (unaware)"
-                draw_text(surf, f"Enemy: {s}{spotted}", (x0+16, y)); y += 22
-            if t.encounter.npc:
-                draw_text(surf, f"NPC: {t.encounter.npc.get('name','Stranger')}", (x0+16, y)); y += 22
-            if t.encounter.event:
-                draw_text(surf, f"Event: {t.encounter.event}", (x0+16, y)); y += 22
-            if not t.encounter.item_searched:
-                draw_text(surf, "Area can be searched.", (x0+16, y), (200,200,240)); y += 20
-            else:
-                draw_text(surf, "Area already searched.", (x0+16, y), (160,160,180)); y += 20
-        y += 6
-        draw_text(surf, f"HP: {game.player.hp}/{game.player.max_hp}", (x0+16, y)); y += 20
-        draw_text(surf, f"Inventory: {len(game.player.inventory)}", (x0+16, y)); y += 26
-        draw_text(surf, "Recent:", (x0+16, y)); y += 18
-        for line in game.log[-6:]:
-            draw_text(surf, f"• {line}", (x0+20, y), max_w=360-36); y += 18
-        y0 = 640 - 200
-        buttons = []
-        def add(label, cb):
-            nonlocal y0
-            buttons.append(Button((x0+16, y0, 360-32, 34), label, cb)); y0 += 38
-        if game.mode == "combat":
-            add("Attack", game.attack); add("Cast Spell", game.cast_spell)
-        elif game.mode == "dialogue":
-            add("Talk", lambda: game.handle_dialogue_choice("Talk"))
-            add("Flirt", lambda: game.handle_dialogue_choice("Flirt"))
-            add("Leave", lambda: game.handle_dialogue_choice("Leave"))
-        else:
-            add("Search Area", game.search_tile)
-            t = game.tile()
-            if t.encounter and t.encounter.enemy and not t.encounter.spotted:
-                add("Sneak Past", game.try_sneak); add("Bypass (Skirt Around)", game.bypass_enemy)
-            if t.encounter and t.encounter.enemy and t.encounter.spotted:
-                add("Fight", lambda: game.start_combat(t.encounter.enemy))
-            if t.encounter and t.encounter.npc:
-                add("Talk", lambda: game.start_dialogue(t.encounter.npc))
-                add("Leave NPC", lambda: game.handle_dialogue_choice("Leave"))
-        for b in buttons: b.draw(surf)
-        return buttons
-
-    # Data helpers used in Game
-    def gather_items() -> List[Dict]:
-        items: List[Dict] = []
-        items_dir = os.path.join(DATA_DIR, "items")
-        if os.path.isdir(items_dir):
-            for name in ["weapons.json","armours.json","accessories.json","clothing.json","materials.json","quest_items.json","trinkets.json"]:
-                doc = load_json(os.path.join(items_dir, name), {"items":[]})
-                for it in doc.get("items", []):
-                    if isinstance(it, dict):
-                        items.append(it)
-        if not items:
-            items = [
-                {"id":"IT00000001","name":"Rust-Kissed Dagger","type":"weapon","rarity":"common","desc":"A pitted blade that still finds gaps in armor."},
-                {"id":"IT00000002","name":"Traveler’s Cloak","type":"clothing","rarity":"common","desc":"Smells like rain and road dust."},
-                {"id":"IT00000003","name":"Moonfern","type":"material","rarity":"uncommon","desc":"Glows faintly in the dark."},
-            ]
-        return items
-
-    def gather_npcs() -> List[Dict]:
-        npcs: List[Dict] = []
-        npcs_dir = os.path.join(DATA_DIR, "npcs")
-        if os.path.isdir(npcs_dir):
-            for name in ["allies.json","animals.json","citizens.json","enemies.json","monsters.json"]:
-                doc = load_json(os.path.join(npcs_dir, name), {"npcs":[]})
-                for n in doc.get("npcs", []):
-                    if isinstance(n, dict):
-                        npcs.append(n)
-        if not npcs:
-            npcs = [
-                {"id":"NP00000001","name":"Lissar of the Birch","kind":"elf","romanceable":True,
-                 "desc":"An elf archer with bright eyes and a sly smile.","dialogue":[
-                  {"text":"The woods whisper of you. Will you listen?","options":[
-                    {"label":"Listen","effect":"affinity+1"},
-                    {"label":"Flirt","effect":"romance_attempt"}
-                  ]} ]},
-                {"id":"NP00000002","name":"Grukk","kind":"beast","hostile":True,
-                 "desc":"A hulking brute whose breath smells like old stew."}
-            ]
-        return npcs
-
-    def load_traits() -> List[Dict]:   return load_json(os.path.join(DATA_DIR, "traits.json"), {"traits":[]}).get("traits", [])
-    def load_enchants() -> List[Dict]: return load_json(os.path.join(DATA_DIR, "enchants.json"), {"enchants":[]}).get("enchants", [])
-    def load_magic() -> List[Dict]:    return load_json(os.path.join(DATA_DIR, "magic.json"), {"spells":[]}).get("spells", [])
-    def load_status() -> List[Dict]:   return load_json(os.path.join(DATA_DIR, "status.json"), {"status":[]}).get("status", [])
-    def load_names() -> Dict:          return load_json(os.path.join(DATA_DIR, "names.json"), {})
+    pg.init()
+    pg.display.set_caption(f"RPGenesis {version} – Text RPG")
+    screen = pg.display.set_mode((980, 640))
+    clock = pg.time.Clock()
 
     game = Game()
     running = True
     while running:
         dt = clock.tick(60)
-        import pygame as pg
         for event in pg.event.get():
-            if event.type == pg.QUIT: running = False
+            if event.type == pg.QUIT:
+                running = False
             elif event.type == pg.KEYDOWN:
-                if event.key == pg.K_ESCAPE: running = False
+                if event.key == pg.K_ESCAPE: 
+                    if game.mode == "inventory":
+                        game.mode = "explore"
+                    else:
+                        running = False
                 elif event.key in (pg.K_w, pg.K_UP):    game.move(0,-1)
                 elif event.key in (pg.K_s, pg.K_DOWN):  game.move(0,1)
                 elif event.key in (pg.K_a, pg.K_LEFT):  game.move(-1,0)
                 elif event.key in (pg.K_d, pg.K_RIGHT): game.move(1,0)
+                elif event.key == pg.K_i: game.mode = "inventory" if game.mode != "inventory" else "explore"
             elif event.type == pg.MOUSEBUTTONDOWN:
-                for b in draw_panel(screen, game):  # draw_panel returns buttons for this frame
+                for b in draw_panel(screen, game):
                     b.handle(event)
         screen.fill((16,16,22))
         draw_grid(screen, game)
-        buttons = draw_panel(screen, game)
+        draw_panel(screen, game)
         pg.display.flip()
-    pygame.quit()
+    pg.quit()
 
+# ======================== CLI entry ========================
 def main(argv=None):
     ap = argparse.ArgumentParser(description="RPGenesis-Fantasy – validate then launch game UI")
     ap.add_argument("--root", default=".", help="Project root")
@@ -697,6 +847,9 @@ def main(argv=None):
     ap.add_argument("--strict", action="store_true", help="Treat warnings as fatal")
     args = ap.parse_args(argv)
     root = os.path.abspath(args.root)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    if args.root in (None, ".", "./"):
+        root = script_dir
 
     errs, warns = validate_project(root, strict=args.strict)
 

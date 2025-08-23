@@ -5,13 +5,518 @@
     {
       "id": "NP00000005",
       "name": "Ul’MORR THE RIBKNIGHT",
-      "role": "monster",
       "boss": true,
       "stats": {
         "hp": {
           "fixed": 140
         }
-      }
+      },
+      "level": 4,
+      "appearance": {
+        "eyes": "amber",
+        "hair": "silver",
+        "skin": "freckled",
+        "height_cm": 189,
+        "build": "stocky"
+      },
+      "dialogueFile": "data/dialogues/ul’morr_the_ribknight_np00000005.json",
+      "hostile": true,
+      "race": "fae",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000086",
+      "name": "Kess Nightrun",
+      "level": 5,
+      "appearance": {
+        "eyes": "amber",
+        "hair": "black",
+        "skin": "dark",
+        "height_cm": 155,
+        "build": "athletic"
+      },
+      "dialogueFile": "data/dialogues/kess_nightrun.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 39,
+          "max": 78
+        },
+        "damage": {
+          "min": 4,
+          "max": 12
+        }
+      },
+      "race": "revenant",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000087",
+      "name": "Isolde Wyrmfall",
+      "level": 9,
+      "appearance": {
+        "eyes": "emerald",
+        "hair": "midnight-blue",
+        "skin": "fair",
+        "height_cm": 162,
+        "build": "towering"
+      },
+      "dialogueFile": "data/dialogues/isolde_wyrmfall.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 19,
+          "max": 69
+        },
+        "damage": {
+          "min": 7,
+          "max": 12
+        }
+      },
+      "race": "drakesworn",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000088",
+      "name": "Kael Moonhart",
+      "level": 4,
+      "appearance": {
+        "eyes": "gold",
+        "hair": "blonde",
+        "skin": "fair",
+        "height_cm": 186,
+        "build": "towering"
+      },
+      "dialogueFile": "data/dialogues/kael_moonhart.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 19,
+          "max": 79
+        },
+        "damage": {
+          "min": 3,
+          "max": 11
+        }
+      },
+      "race": "drow",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000089",
+      "name": "Corin Moonhart",
+      "level": 9,
+      "appearance": {
+        "eyes": "hazel",
+        "hair": "silver",
+        "skin": "tan",
+        "height_cm": 198,
+        "build": "athletic"
+      },
+      "dialogueFile": "data/dialogues/corin_moonhart.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 35,
+          "max": 89
+        },
+        "damage": {
+          "min": 4,
+          "max": 12
+        }
+      },
+      "race": "goblin",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000090",
+      "name": "Aria Nightrun",
+      "level": 9,
+      "appearance": {
+        "eyes": "amber",
+        "hair": "chestnut",
+        "skin": "bronze",
+        "height_cm": 154,
+        "build": "stocky"
+      },
+      "dialogueFile": "data/dialogues/aria_nightrun.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 23,
+          "max": 57
+        },
+        "damage": {
+          "min": 6,
+          "max": 9
+        }
+      },
+      "race": "drow",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000091",
+      "name": "Nyra Ironvale",
+      "level": 1,
+      "appearance": {
+        "eyes": "crimson",
+        "hair": "chestnut",
+        "skin": "fair",
+        "height_cm": 199,
+        "build": "graceful"
+      },
+      "dialogueFile": "data/dialogues/nyra_ironvale.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 28,
+          "max": 53
+        },
+        "damage": {
+          "min": 5,
+          "max": 16
+        }
+      },
+      "race": "orc",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000092",
+      "name": "Nyra Ironvale",
+      "level": 2,
+      "appearance": {
+        "eyes": "violet",
+        "hair": "midnight-blue",
+        "skin": "tan",
+        "height_cm": 202,
+        "build": "graceful"
+      },
+      "dialogueFile": "data/dialogues/nyra_ironvale.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 34,
+          "max": 57
+        },
+        "damage": {
+          "min": 4,
+          "max": 9
+        }
+      },
+      "race": "lizardfolk",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000093",
+      "name": "Syl Goldbranch",
+      "level": 5,
+      "appearance": {
+        "eyes": "emerald",
+        "hair": "black",
+        "skin": "olive",
+        "height_cm": 198,
+        "build": "stocky"
+      },
+      "dialogueFile": "data/dialogues/syl_goldbranch.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 40,
+          "max": 62
+        },
+        "damage": {
+          "min": 4,
+          "max": 9
+        }
+      },
+      "race": "lizardfolk",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000094",
+      "name": "Gryff Ravenmere",
+      "level": 7,
+      "appearance": {
+        "eyes": "hazel",
+        "hair": "midnight-blue",
+        "skin": "tan",
+        "height_cm": 177,
+        "build": "athletic"
+      },
+      "dialogueFile": "data/dialogues/gryff_ravenmere.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 21,
+          "max": 81
+        },
+        "damage": {
+          "min": 7,
+          "max": 13
+        }
+      },
+      "race": "drakesworn",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000095",
+      "name": "Gryff Vaeloria",
+      "level": 2,
+      "appearance": {
+        "eyes": "emerald",
+        "hair": "strawberry",
+        "skin": "olive",
+        "height_cm": 186,
+        "build": "graceful"
+      },
+      "dialogueFile": "data/dialogues/gryff_vaeloria.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 22,
+          "max": 79
+        },
+        "damage": {
+          "min": 3,
+          "max": 16
+        }
+      },
+      "race": "lizardfolk",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000096",
+      "name": "Gryff Blackfen",
+      "level": 6,
+      "appearance": {
+        "eyes": "gold",
+        "hair": "blonde",
+        "skin": "fair",
+        "height_cm": 177,
+        "build": "compact"
+      },
+      "dialogueFile": "data/dialogues/gryff_blackfen.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 19,
+          "max": 50
+        },
+        "damage": {
+          "min": 8,
+          "max": 9
+        }
+      },
+      "race": "revenant",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000097",
+      "name": "Thalen Rivenspire",
+      "level": 9,
+      "appearance": {
+        "eyes": "sapphire",
+        "hair": "ash",
+        "skin": "dark",
+        "height_cm": 202,
+        "build": "towering"
+      },
+      "dialogueFile": "data/dialogues/thalen_rivenspire.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 21,
+          "max": 58
+        },
+        "damage": {
+          "min": 6,
+          "max": 13
+        }
+      },
+      "race": "drow",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000098",
+      "name": "Varyn Ironvale",
+      "level": 6,
+      "appearance": {
+        "eyes": "violet",
+        "hair": "black",
+        "skin": "ashen",
+        "height_cm": 178,
+        "build": "compact"
+      },
+      "dialogueFile": "data/dialogues/varyn_ironvale.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 32,
+          "max": 74
+        },
+        "damage": {
+          "min": 8,
+          "max": 16
+        }
+      },
+      "race": "goblin",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000099",
+      "name": "Kess Ironvale",
+      "level": 5,
+      "appearance": {
+        "eyes": "forest-green",
+        "hair": "ash",
+        "skin": "olive",
+        "height_cm": 168,
+        "build": "athletic"
+      },
+      "dialogueFile": "data/dialogues/kess_ironvale.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 19,
+          "max": 51
+        },
+        "damage": {
+          "min": 3,
+          "max": 16
+        }
+      },
+      "race": "lizardfolk",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000100",
+      "name": "Dorian Ashvale",
+      "level": 9,
+      "appearance": {
+        "eyes": "steel-grey",
+        "hair": "midnight-blue",
+        "skin": "ashen",
+        "height_cm": 191,
+        "build": "lithe"
+      },
+      "dialogueFile": "data/dialogues/dorian_ashvale.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 35,
+          "max": 73
+        },
+        "damage": {
+          "min": 6,
+          "max": 14
+        }
+      },
+      "race": "goblin",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000101",
+      "name": "Liora Oakshield",
+      "level": 10,
+      "appearance": {
+        "eyes": "hazel",
+        "hair": "blonde",
+        "skin": "tan",
+        "height_cm": 192,
+        "build": "graceful"
+      },
+      "dialogueFile": "data/dialogues/liora_oakshield.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 36,
+          "max": 67
+        },
+        "damage": {
+          "min": 8,
+          "max": 9
+        }
+      },
+      "race": "orc",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000102",
+      "name": "Neris Moonhart",
+      "level": 6,
+      "appearance": {
+        "eyes": "sapphire",
+        "hair": "midnight-blue",
+        "skin": "freckled",
+        "height_cm": 198,
+        "build": "towering"
+      },
+      "dialogueFile": "data/dialogues/neris_moonhart.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 38,
+          "max": 57
+        },
+        "damage": {
+          "min": 6,
+          "max": 12
+        }
+      },
+      "race": "orc",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000103",
+      "name": "Kess Vaeloria",
+      "level": 6,
+      "appearance": {
+        "eyes": "ice-blue",
+        "hair": "chestnut",
+        "skin": "dark",
+        "height_cm": 159,
+        "build": "graceful"
+      },
+      "dialogueFile": "data/dialogues/kess_vaeloria.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 31,
+          "max": 58
+        },
+        "damage": {
+          "min": 7,
+          "max": 16
+        }
+      },
+      "race": "lizardfolk",
+      "follower": "no"
+    },
+    {
+      "id": "NP00000104",
+      "name": "Tamsin Starcrest",
+      "level": 7,
+      "appearance": {
+        "eyes": "gold",
+        "hair": "white",
+        "skin": "ashen",
+        "height_cm": 198,
+        "build": "slim"
+      },
+      "dialogueFile": "data/dialogues/tamsin_starcrest.json",
+      "hostile": true,
+      "stats": {
+        "hp": {
+          "min": 40,
+          "max": 85
+        },
+        "damage": {
+          "min": 8,
+          "max": 13
+        }
+      },
+      "race": "drakesworn",
+      "follower": "no"
     }
   ]
 }

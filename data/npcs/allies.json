@@ -5,9 +5,303 @@
     {
       "id": "NP00000001",
       "name": "Selune Vaeloria",
-      "role": "ally",
       "romanceable": true,
-      "dialogueFile": "data/dialogues/selune_vaeloria.json"
+      "dialogueFile": "data/dialogues/selune_vaeloria.json",
+      "level": 2,
+      "appearance": {
+        "eyes": "crimson",
+        "hair": "blonde",
+        "skin": "fair",
+        "height_cm": 152,
+        "build": "athletic"
+      },
+      "race": "wood_elf",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000006",
+      "name": "Vael Vaeloria",
+      "level": 10,
+      "appearance": {
+        "eyes": "amber",
+        "hair": "strawberry",
+        "skin": "olive",
+        "height_cm": 197,
+        "build": "towering"
+      },
+      "dialogueFile": "data/dialogues/vael_vaeloria.json",
+      "race": "wood_elf",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000007",
+      "name": "Kess Starcrest",
+      "level": 2,
+      "appearance": {
+        "eyes": "gold",
+        "hair": "ash",
+        "skin": "ashen",
+        "height_cm": 174,
+        "build": "stocky"
+      },
+      "dialogueFile": "data/dialogues/kess_starcrest.json",
+      "race": "high_elf",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000008",
+      "name": "Jorah Skylark",
+      "level": 5,
+      "appearance": {
+        "eyes": "sapphire",
+        "hair": "white",
+        "skin": "pale",
+        "height_cm": 163,
+        "build": "slim"
+      },
+      "dialogueFile": "data/dialogues/jorah_skylark.json",
+      "race": "wood_elf",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000009",
+      "name": "Liora Stormbind",
+      "level": 5,
+      "appearance": {
+        "eyes": "emerald",
+        "hair": "raven",
+        "skin": "pale",
+        "height_cm": 178,
+        "build": "compact"
+      },
+      "dialogueFile": "data/dialogues/liora_stormbind.json",
+      "race": "wood_elf",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000010",
+      "name": "Liora Thornfield",
+      "level": 1,
+      "appearance": {
+        "eyes": "steel-grey",
+        "hair": "auburn",
+        "skin": "olive",
+        "height_cm": 185,
+        "build": "lithe"
+      },
+      "dialogueFile": "data/dialogues/liora_thornfield.json",
+      "race": "human",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000011",
+      "name": "Kael Ashvale",
+      "level": 1,
+      "appearance": {
+        "eyes": "sapphire",
+        "hair": "black",
+        "skin": "fair",
+        "height_cm": 186,
+        "build": "compact"
+      },
+      "dialogueFile": "data/dialogues/kael_ashvale.json",
+      "race": "kitsune",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000012",
+      "name": "Iria Brightbough",
+      "level": 1,
+      "appearance": {
+        "eyes": "steel-grey",
+        "hair": "auburn",
+        "skin": "freckled",
+        "height_cm": 195,
+        "build": "broad"
+      },
+      "dialogueFile": "data/dialogues/iria_brightbough.json",
+      "race": "starborn",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000013",
+      "name": "Thalen Thornfield",
+      "level": 7,
+      "appearance": {
+        "eyes": "emerald",
+        "hair": "silver",
+        "skin": "pale",
+        "height_cm": 201,
+        "build": "athletic"
+      },
+      "dialogueFile": "data/dialogues/thalen_thornfield.json",
+      "race": "kitsune",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000014",
+      "name": "Kess Vaeloria",
+      "level": 8,
+      "appearance": {
+        "eyes": "ice-blue",
+        "hair": "midnight-blue",
+        "skin": "fair",
+        "height_cm": 197,
+        "build": "athletic"
+      },
+      "dialogueFile": "data/dialogues/kess_vaeloria.json",
+      "race": "sylph",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000015",
+      "name": "Syl Blackfen",
+      "level": 5,
+      "appearance": {
+        "eyes": "crimson",
+        "hair": "chestnut",
+        "skin": "freckled",
+        "height_cm": 150,
+        "build": "compact"
+      },
+      "dialogueFile": "data/dialogues/syl_blackfen.json",
+      "race": "drakesworn",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000016",
+      "name": "Thalen Mistbrook",
+      "level": 4,
+      "appearance": {
+        "eyes": "steel-grey",
+        "hair": "white",
+        "skin": "ashen",
+        "height_cm": 158,
+        "build": "stocky"
+      },
+      "dialogueFile": "data/dialogues/thalen_mistbrook.json",
+      "race": "drakesworn",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000017",
+      "name": "Thalen Skylark",
+      "level": 1,
+      "appearance": {
+        "eyes": "steel-grey",
+        "hair": "chestnut",
+        "skin": "bronze",
+        "height_cm": 164,
+        "build": "stocky"
+      },
+      "dialogueFile": "data/dialogues/thalen_skylark.json",
+      "race": "kitsune",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000018",
+      "name": "Vael Ironvale",
+      "level": 3,
+      "appearance": {
+        "eyes": "amber",
+        "hair": "white",
+        "skin": "bronze",
+        "height_cm": 202,
+        "build": "lithe"
+      },
+      "dialogueFile": "data/dialogues/vael_ironvale.json",
+      "race": "dwarf",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000019",
+      "name": "Liora Ironvale",
+      "level": 3,
+      "appearance": {
+        "eyes": "gold",
+        "hair": "silver",
+        "skin": "dark",
+        "height_cm": 197,
+        "build": "compact"
+      },
+      "dialogueFile": "data/dialogues/liora_ironvale.json",
+      "race": "drakesworn",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000020",
+      "name": "Iria Mistbrook",
+      "level": 2,
+      "appearance": {
+        "eyes": "violet",
+        "hair": "blonde",
+        "skin": "pale",
+        "height_cm": 188,
+        "build": "broad"
+      },
+      "dialogueFile": "data/dialogues/iria_mistbrook.json",
+      "race": "fae",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000021",
+      "name": "Rowan Blackfen",
+      "level": 1,
+      "appearance": {
+        "eyes": "amber",
+        "hair": "raven",
+        "skin": "bronze",
+        "height_cm": 186,
+        "build": "slim"
+      },
+      "dialogueFile": "data/dialogues/rowan_blackfen.json",
+      "race": "drakesworn",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000022",
+      "name": "Rowan Mistbrook",
+      "level": 7,
+      "appearance": {
+        "eyes": "violet",
+        "hair": "chestnut",
+        "skin": "dark",
+        "height_cm": 172,
+        "build": "compact"
+      },
+      "dialogueFile": "data/dialogues/rowan_mistbrook.json",
+      "race": "dwarf",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000023",
+      "name": "Sable Brightbough",
+      "level": 8,
+      "appearance": {
+        "eyes": "forest-green",
+        "hair": "raven",
+        "skin": "olive",
+        "height_cm": 200,
+        "build": "compact"
+      },
+      "dialogueFile": "data/dialogues/sable_brightbough.json",
+      "race": "wood_elf",
+      "follower": "yes"
+    },
+    {
+      "id": "NP00000024",
+      "name": "Lyra Skylark",
+      "level": 9,
+      "appearance": {
+        "eyes": "violet",
+        "hair": "white",
+        "skin": "fair",
+        "height_cm": 190,
+        "build": "athletic"
+      },
+      "dialogueFile": "data/dialogues/lyra_skylark.json",
+      "race": "oread",
+      "follower": "yes"
     }
   ]
 }

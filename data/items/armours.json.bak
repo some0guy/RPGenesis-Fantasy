@@ -47,8 +47,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000001",
-      "desc": "Wanderer's Wraps: thin straps in salt-bleached white, dusty umber; ties at the nape. It breathes easy; smells of road and sunlight."
+      "id": "IT00000001"
     },
     {
       "category": "armour",
@@ -95,8 +94,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000002",
-      "desc": "Wanderer's Wraps: travel-stained cloth in salt-bleached white, sun-browned linen; reinforced at the ribs. It breathes easy; smells of road and sunlight."
+      "id": "IT00000002"
     },
     {
       "category": "armour",
@@ -142,8 +140,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000003",
-      "desc": "Wanderer's Wraps: thin straps in sage hem, sun-browned linen; panelled at the knees. It breathes easy; smells of road and sunlight."
+      "id": "IT00000003"
     },
     {
       "category": "armour",
@@ -191,8 +188,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000004",
-      "desc": "Wanderer's Wraps: loose weave in salt-bleached white, sun-browned linen; thin soles for ground feel. It breathes easy; smells of road and sunlight."
+      "id": "IT00000004"
     },
     {
       "category": "armour",
@@ -240,8 +236,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000005",
-      "desc": "Wanderer's Wraps: frayed hems in dusty umber, sun-browned linen; binds tight without biting. It breathes easy; smells of road and sunlight."
+      "id": "IT00000005"
     },
     {
       "category": "armour",
@@ -291,8 +286,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000006",
-      "desc": "Sunbleached Linens: thin straps in sun-browned linen, dusty umber; rests low across the brow. It breathes easy; smells of road and sunlight."
+      "id": "IT00000006"
     },
     {
       "category": "armour",
@@ -346,8 +340,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000007",
-      "desc": "Sunbleached Linens: loose weave in sun-browned linen, dusty umber; cut for movement. It breathes easy; smells of road and sunlight."
+      "id": "IT00000007"
     },
     {
       "category": "armour",
@@ -399,8 +392,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000008",
-      "desc": "Sunbleached Linens: thin straps in salt-bleached white, dusty umber; stitched for long strides. It breathes easy; smells of road and sunlight."
+      "id": "IT00000008"
     },
     {
       "category": "armour",
@@ -453,8 +445,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000009",
-      "desc": "Sunbleached Linens: travel-stained cloth in sun-browned linen, dusty umber; straps that rarely creak. It breathes easy; smells of road and sunlight."
+      "id": "IT00000009"
     },
     {
       "category": "armour",
@@ -508,8 +499,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000010",
-      "desc": "Sunbleached Linens: frayed hems in salt-bleached white, sun-browned linen; palms textured for grip. It breathes easy; smells of road and sunlight."
+      "id": "IT00000010"
     },
     {
       "category": "armour",
@@ -563,8 +553,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000011",
-      "desc": "Nomad's Veil: loose weave in sage hem, salt-bleached white; lined to wick sweat. It breathes easy; smells of road and sunlight."
+      "id": "IT00000011"
     },
     {
       "category": "armour",
@@ -618,8 +607,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000012",
-      "desc": "Nomad's Veil: thin straps in sun-browned linen, dusty umber; layers cross at the sternum. It breathes easy; smells of road and sunlight."
+      "id": "IT00000012"
     },
     {
       "category": "armour",
@@ -672,8 +660,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000013",
-      "desc": "Nomad's Veil: frayed hems in sun-browned linen, dusty umber; stitched for long strides. It breathes easy; smells of road and sunlight."
+      "id": "IT00000013"
     },
     {
       "category": "armour",
@@ -728,8 +715,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000014",
-      "desc": "Nomad's Veil: thin straps in sun-browned linen, salt-bleached white; straps that rarely creak. It breathes easy; smells of road and sunlight."
+      "id": "IT00000014"
     },
     {
       "category": "armour",
@@ -784,8 +770,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000015",
-      "desc": "Nomad's Veil: travel-stained cloth in sun-browned linen, dusty umber; finger seams double-stitched. It breathes easy; smells of road and sunlight."
+      "id": "IT00000015"
     },
     {
       "category": "armour",
@@ -842,8 +827,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000016",
-      "desc": "Zephyr Silks: thin straps in dusty umber, sage hem; ties at the nape. It breathes easy; smells of road and sunlight."
+      "id": "IT00000016"
     },
     {
       "category": "armour",
@@ -901,8 +885,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000017",
-      "desc": "Zephyr Silks: travel-stained cloth in dusty umber, sun-browned linen; reinforced at the ribs. It breathes easy; smells of road and sunlight."
+      "id": "IT00000017"
     },
     {
       "category": "armour",
@@ -960,8 +943,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000018",
-      "desc": "Zephyr Silks: frayed hems in sage hem, dusty umber; wraps avoid chafing. It breathes easy; smells of road and sunlight."
+      "id": "IT00000018"
     },
     {
       "category": "armour",
@@ -1021,8 +1003,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000019",
-      "desc": "Zephyr Silks: frayed hems in sage hem, salt-bleached white; straps that rarely creak. It breathes easy; smells of road and sunlight."
+      "id": "IT00000019"
     },
     {
       "category": "armour",
@@ -1081,8 +1062,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000020",
-      "desc": "Zephyr Silks: loose weave in sage hem, dusty umber; palms textured for grip. It breathes easy; smells of road and sunlight."
+      "id": "IT00000020"
     },
     {
       "category": "armour",
@@ -1129,8 +1109,7 @@
         }
       },
       "armour_trait": "phoenix_aegis",
-      "id": "IT00000021",
-      "desc": "Eternal Shroud: loose weave in sage hem, salt-bleached white; ties at the nape. It breathes easy; smells of road and sunlight."
+      "id": "IT00000021"
     },
     {
       "category": "armour",
@@ -1179,8 +1158,7 @@
         }
       },
       "armour_trait": "glacial_bulwark",
-      "id": "IT00000022",
-      "desc": "Eternal Shroud: frayed hems in salt-bleached white, sage hem; layers cross at the sternum. It breathes easy; smells of road and sunlight."
+      "id": "IT00000022"
     },
     {
       "category": "armour",
@@ -1228,8 +1206,7 @@
         }
       },
       "armour_trait": "sunforged_vigor",
-      "id": "IT00000023",
-      "desc": "Eternal Shroud: thin straps in dusty umber, sun-browned linen; panelled at the knees. It breathes easy; smells of road and sunlight."
+      "id": "IT00000023"
     },
     {
       "category": "armour",
@@ -1279,8 +1256,7 @@
         }
       },
       "armour_trait": "glacial_bulwark",
-      "id": "IT00000024",
-      "desc": "Eternal Shroud: frayed hems in sage hem, sun-browned linen; straps that rarely creak. It breathes easy; smells of road and sunlight."
+      "id": "IT00000024"
     },
     {
       "category": "armour",
@@ -1328,8 +1304,7 @@
         }
       },
       "armour_trait": "stormwall",
-      "id": "IT00000025",
-      "desc": "Eternal Shroud: frayed hems in dusty umber, salt-bleached white; binds tight without biting. It breathes easy; smells of road and sunlight."
+      "id": "IT00000025"
     },
     {
       "category": "armour",
@@ -1379,8 +1354,7 @@
         }
       },
       "armour_trait": "null_field",
-      "id": "IT00000026",
-      "desc": "Veil of the Forgotten: loose weave in sun-browned linen, sage hem; ties at the nape. It breathes easy; smells of road and sunlight."
+      "id": "IT00000026"
     },
     {
       "category": "armour",
@@ -1428,8 +1402,7 @@
         }
       },
       "armour_trait": "timefold_ward",
-      "id": "IT00000027",
-      "desc": "Veil of the Forgotten: loose weave in salt-bleached white, dusty umber; layers cross at the sternum. It breathes easy; smells of road and sunlight."
+      "id": "IT00000027"
     },
     {
       "category": "armour",
@@ -1478,8 +1451,7 @@
         }
       },
       "armour_trait": "mirror_hex",
-      "id": "IT00000028",
-      "desc": "Veil of the Forgotten: frayed hems in salt-bleached white, sun-browned linen; wraps avoid chafing. It breathes easy; smells of road and sunlight."
+      "id": "IT00000028"
     },
     {
       "category": "armour",
@@ -1527,8 +1499,7 @@
         }
       },
       "armour_trait": "spectral_protection",
-      "id": "IT00000029",
-      "desc": "Veil of the Forgotten: loose weave in sun-browned linen, dusty umber; straps that rarely creak. It breathes easy; smells of road and sunlight."
+      "id": "IT00000029"
     },
     {
       "category": "armour",
@@ -1576,8 +1547,7 @@
         }
       },
       "armour_trait": "umbral_skin",
-      "id": "IT00000030",
-      "desc": "Veil of the Forgotten: travel-stained cloth in salt-bleached white, dusty umber; palms textured for grip. It breathes easy; smells of road and sunlight."
+      "id": "IT00000030"
     },
     {
       "category": "armour",
@@ -1624,8 +1594,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000031",
-      "desc": "Mysticweave: arcane stitching in pale steel, silver glyphs; rests low across the brow. It softly hums with held energies."
+      "id": "IT00000031"
     },
     {
       "category": "armour",
@@ -1673,8 +1642,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000032",
-      "desc": "Mysticweave: soft lining in violet thread, glacier blue; cut for movement. It softly hums with held energies."
+      "id": "IT00000032"
     },
     {
       "category": "armour",
@@ -1722,8 +1690,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000033",
-      "desc": "Mysticweave: runic hems in silver glyphs, violet thread; wraps avoid chafing. It softly hums with held energies."
+      "id": "IT00000033"
     },
     {
       "category": "armour",
@@ -1772,8 +1739,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000034",
-      "desc": "Mysticweave: soft lining in glacier blue, ink-dark blue; thin soles for ground feel. It softly hums with held energies."
+      "id": "IT00000034"
     },
     {
       "category": "armour",
@@ -1822,8 +1788,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000035",
-      "desc": "Mysticweave: runic hems in pale steel, glacier blue; palms textured for grip. It softly hums with held energies."
+      "id": "IT00000035"
     },
     {
       "category": "armour",
@@ -1877,8 +1842,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000036",
-      "desc": "Apprentice's Tapestry: arcane stitching in glacier blue, ink-dark blue; lined to wick sweat. It softly hums with held energies."
+      "id": "IT00000036"
     },
     {
       "category": "armour",
@@ -1931,8 +1895,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000037",
-      "desc": "Apprentice's Tapestry: soft lining in glacier blue, pale steel; reinforced at the ribs. It softly hums with held energies."
+      "id": "IT00000037"
     },
     {
       "category": "armour",
@@ -1984,8 +1947,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000038",
-      "desc": "Apprentice's Tapestry: runic hems in glacier blue, violet thread; panelled at the knees. It softly hums with held energies."
+      "id": "IT00000038"
     },
     {
       "category": "armour",
@@ -2038,8 +2000,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000039",
-      "desc": "Apprentice's Tapestry: arcane stitching in silver glyphs, pale steel; straps that rarely creak. It softly hums with held energies."
+      "id": "IT00000039"
     },
     {
       "category": "armour",
@@ -2092,8 +2053,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000040",
-      "desc": "Apprentice's Tapestry: layered folds in silver glyphs, pale steel; palms textured for grip. It softly hums with held energies."
+      "id": "IT00000040"
     },
     {
       "category": "armour",
@@ -2153,8 +2113,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000041",
-      "desc": "Archmage's Mantle: runic hems in silver glyphs, glacier blue; lined to wick sweat. It softly hums with held energies."
+      "id": "IT00000041"
     },
     {
       "category": "armour",
@@ -2215,8 +2174,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000042",
-      "desc": "Archmage's Mantle: soft lining in silver glyphs, ink-dark blue; layers cross at the sternum. It softly hums with held energies."
+      "id": "IT00000042"
     },
     {
       "category": "armour",
@@ -2274,8 +2232,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000043",
-      "desc": "Archmage's Mantle: soft lining in glacier blue, silver glyphs; panelled at the knees. It softly hums with held energies."
+      "id": "IT00000043"
     },
     {
       "category": "armour",
@@ -2335,8 +2292,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000044",
-      "desc": "Archmage's Mantle: runic hems in violet thread, glacier blue; thin soles for ground feel. It softly hums with held energies."
+      "id": "IT00000044"
     },
     {
       "category": "armour",
@@ -2395,8 +2351,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000045",
-      "desc": "Archmage's Mantle: soft lining in violet thread, ink-dark blue; finger seams double-stitched. It softly hums with held energies."
+      "id": "IT00000045"
     },
     {
       "category": "armour",
@@ -2456,8 +2411,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000046",
-      "desc": "Frostborn: runic hems in violet thread, silver glyphs; rests low across the brow. It softly hums with held energies."
+      "id": "IT00000046"
     },
     {
       "category": "armour",
@@ -2514,8 +2468,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000047",
-      "desc": "Frostborn: arcane stitching in pale steel, ink-dark blue; cut for movement. It softly hums with held energies."
+      "id": "IT00000047"
     },
     {
       "category": "armour",
@@ -2573,8 +2526,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000048",
-      "desc": "Frostborn: arcane stitching in pale steel, ink-dark blue; wraps avoid chafing. It softly hums with held energies."
+      "id": "IT00000048"
     },
     {
       "category": "armour",
@@ -2633,8 +2585,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000049",
-      "desc": "Frostborn: runic hems in ink-dark blue, violet thread; laces knot with a tug. It softly hums with held energies."
+      "id": "IT00000049"
     },
     {
       "category": "armour",
@@ -2694,8 +2645,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000050",
-      "desc": "Frostborn: runic hems in ink-dark blue, pale steel; palms textured for grip. It softly hums with held energies."
+      "id": "IT00000050"
     },
     {
       "category": "armour",
@@ -2744,8 +2694,7 @@
         }
       },
       "armour_trait": "ethereal_resistance",
-      "id": "IT00000051",
-      "desc": "Seraphic Vestments: soft lining in violet thread, ink-dark blue; ties at the nape. It softly hums with held energies."
+      "id": "IT00000051"
     },
     {
       "category": "armour",
@@ -2793,8 +2742,7 @@
         }
       },
       "armour_trait": "sunforged_vigor",
-      "id": "IT00000052",
-      "desc": "Seraphic Vestments: runic hems in pale steel, ink-dark blue; layers cross at the sternum. It softly hums with held energies."
+      "id": "IT00000052"
     },
     {
       "category": "armour",
@@ -2845,8 +2793,7 @@
         }
       },
       "armour_trait": "sunforged_vigor",
-      "id": "IT00000053",
-      "desc": "Seraphic Vestments: layered folds in silver glyphs, violet thread; panelled at the knees. It softly hums with held energies."
+      "id": "IT00000053"
     },
     {
       "category": "armour",
@@ -2896,8 +2843,7 @@
         }
       },
       "armour_trait": "ethereal_resistance",
-      "id": "IT00000054",
-      "desc": "Seraphic Vestments: runic hems in silver glyphs, violet thread; thin soles for ground feel. It softly hums with held energies."
+      "id": "IT00000054"
     },
     {
       "category": "armour",
@@ -2946,8 +2892,7 @@
         }
       },
       "armour_trait": "sunforged_vigor",
-      "id": "IT00000055",
-      "desc": "Seraphic Vestments: arcane stitching in glacier blue, violet thread; palms textured for grip. It softly hums with held energies."
+      "id": "IT00000055"
     },
     {
       "category": "armour",
@@ -2998,8 +2943,7 @@
         }
       },
       "armour_trait": "spectral_protection",
-      "id": "IT00000056",
-      "desc": "Chronoweave: soft lining in ink-dark blue, pale steel; ties at the nape. It softly hums with held energies."
+      "id": "IT00000056"
     },
     {
       "category": "armour",
@@ -3048,8 +2992,7 @@
         }
       },
       "armour_trait": "umbral_skin",
-      "id": "IT00000057",
-      "desc": "Chronoweave: layered folds in pale steel, violet thread; reinforced at the ribs. It softly hums with held energies."
+      "id": "IT00000057"
     },
     {
       "category": "armour",
@@ -3100,8 +3043,7 @@
         }
       },
       "armour_trait": "umbral_skin",
-      "id": "IT00000058",
-      "desc": "Chronoweave: soft lining in violet thread, glacier blue; stitched for long strides. It softly hums with held energies."
+      "id": "IT00000058"
     },
     {
       "category": "armour",
@@ -3152,8 +3094,7 @@
         }
       },
       "armour_trait": "spectral_protection",
-      "id": "IT00000059",
-      "desc": "Chronoweave: arcane stitching in violet thread, silver glyphs; thin soles for ground feel. It softly hums with held energies."
+      "id": "IT00000059"
     },
     {
       "category": "armour",
@@ -3204,8 +3145,7 @@
         }
       },
       "armour_trait": "spectral_protection",
-      "id": "IT00000060",
-      "desc": "Chronoweave: runic hems in pale steel, silver glyphs; palms textured for grip. It softly hums with held energies."
+      "id": "IT00000060"
     },
     {
       "category": "armour",
@@ -3251,8 +3191,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000061",
-      "desc": "Ranger's Leathers: hidden rivets in matte charcoal, midnight grey; ties at the nape. It muffles motion and rides close to the skin."
+      "id": "IT00000061"
     },
     {
       "category": "armour",
@@ -3299,8 +3238,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000062",
-      "desc": "Ranger's Leathers: supple leather in smoke-blue, midnight grey; reinforced at the ribs. It muffles motion and rides close to the skin."
+      "id": "IT00000062"
     },
     {
       "category": "armour",
@@ -3345,8 +3283,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000063",
-      "desc": "Ranger's Leathers: supple leather in smoke-blue, midnight grey; wraps avoid chafing. It muffles motion and rides close to the skin."
+      "id": "IT00000063"
     },
     {
       "category": "armour",
@@ -3392,8 +3329,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000064",
-      "desc": "Ranger's Leathers: hidden rivets in forest umber, matte charcoal; thin soles for ground feel. It muffles motion and rides close to the skin."
+      "id": "IT00000064"
     },
     {
       "category": "armour",
@@ -3439,8 +3375,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000065",
-      "desc": "Ranger's Leathers: quiet stitching in matte charcoal, forest umber; finger seams double-stitched. It muffles motion and rides close to the skin."
+      "id": "IT00000065"
     },
     {
       "category": "armour",
@@ -3489,8 +3424,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000066",
-      "desc": "Shadowstalker: flex panels in forest umber, matte charcoal; ties at the nape. It muffles motion and rides close to the skin."
+      "id": "IT00000066"
     },
     {
       "category": "armour",
@@ -3543,8 +3477,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000067",
-      "desc": "Shadowstalker: flex panels in matte charcoal, forest umber; reinforced at the ribs. It muffles motion and rides close to the skin."
+      "id": "IT00000067"
     },
     {
       "category": "armour",
@@ -3594,8 +3527,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000068",
-      "desc": "Shadowstalker: supple leather in matte charcoal, midnight grey; panelled at the knees. It muffles motion and rides close to the skin."
+      "id": "IT00000068"
     },
     {
       "category": "armour",
@@ -3645,8 +3577,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000069",
-      "desc": "Shadowstalker: quiet stitching in midnight grey, smoke-blue; thin soles for ground feel. It muffles motion and rides close to the skin."
+      "id": "IT00000069"
     },
     {
       "category": "armour",
@@ -3698,8 +3629,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000070",
-      "desc": "Shadowstalker: hidden rivets in forest umber, midnight grey; binds tight without biting. It muffles motion and rides close to the skin."
+      "id": "IT00000070"
     },
     {
       "category": "armour",
@@ -3753,8 +3683,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000071",
-      "desc": "Nightwatch: flex panels in forest umber, matte charcoal; ties at the nape. It muffles motion and rides close to the skin."
+      "id": "IT00000071"
     },
     {
       "category": "armour",
@@ -3809,8 +3738,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000072",
-      "desc": "Nightwatch: quiet stitching in matte charcoal, midnight grey; cut for movement. It muffles motion and rides close to the skin."
+      "id": "IT00000072"
     },
     {
       "category": "armour",
@@ -3864,8 +3792,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000073",
-      "desc": "Nightwatch: quiet stitching in forest umber, smoke-blue; panelled at the knees. It muffles motion and rides close to the skin."
+      "id": "IT00000073"
     },
     {
       "category": "armour",
@@ -3917,8 +3844,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000074",
-      "desc": "Nightwatch: flex panels in midnight grey, matte charcoal; straps that rarely creak. It muffles motion and rides close to the skin."
+      "id": "IT00000074"
     },
     {
       "category": "armour",
@@ -3972,8 +3898,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000075",
-      "desc": "Nightwatch: flex panels in forest umber, midnight grey; finger seams double-stitched. It muffles motion and rides close to the skin."
+      "id": "IT00000075"
     },
     {
       "category": "armour",
@@ -4028,8 +3953,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000076",
-      "desc": "Windrunner: hidden rivets in forest umber, midnight grey; lined to wick sweat. It muffles motion and rides close to the skin."
+      "id": "IT00000076"
     },
     {
       "category": "armour",
@@ -4084,8 +4008,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000077",
-      "desc": "Windrunner: supple leather in smoke-blue, matte charcoal; reinforced at the ribs. It muffles motion and rides close to the skin."
+      "id": "IT00000077"
     },
     {
       "category": "armour",
@@ -4141,8 +4064,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000078",
-      "desc": "Windrunner: hidden rivets in forest umber, midnight grey; panelled at the knees. It muffles motion and rides close to the skin."
+      "id": "IT00000078"
     },
     {
       "category": "armour",
@@ -4196,8 +4118,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000079",
-      "desc": "Windrunner: supple leather in midnight grey, matte charcoal; straps that rarely creak. It muffles motion and rides close to the skin."
+      "id": "IT00000079"
     },
     {
       "category": "armour",
@@ -4251,8 +4172,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000080",
-      "desc": "Windrunner: hidden rivets in midnight grey, smoke-blue; binds tight without biting. It muffles motion and rides close to the skin."
+      "id": "IT00000080"
     },
     {
       "category": "armour",
@@ -4299,8 +4219,7 @@
         }
       },
       "armour_trait": "glacial_bulwark",
-      "id": "IT00000081",
-      "desc": "Stormdancer: quiet stitching in matte charcoal, smoke-blue; ties at the nape. It muffles motion and rides close to the skin."
+      "id": "IT00000081"
     },
     {
       "category": "armour",
@@ -4349,8 +4268,7 @@
         }
       },
       "armour_trait": "ethereal_resistance",
-      "id": "IT00000082",
-      "desc": "Stormdancer: quiet stitching in matte charcoal, midnight grey; layers cross at the sternum. It muffles motion and rides close to the skin."
+      "id": "IT00000082"
     },
     {
       "category": "armour",
@@ -4397,8 +4315,7 @@
         }
       },
       "armour_trait": "sunforged_vigor",
-      "id": "IT00000083",
-      "desc": "Stormdancer: supple leather in midnight grey, forest umber; stitched for long strides. It muffles motion and rides close to the skin."
+      "id": "IT00000083"
     },
     {
       "category": "armour",
@@ -4448,8 +4365,7 @@
         }
       },
       "armour_trait": "sunforged_vigor",
-      "id": "IT00000084",
-      "desc": "Stormdancer: flex panels in forest umber, midnight grey; laces knot with a tug. It muffles motion and rides close to the skin."
+      "id": "IT00000084"
     },
     {
       "category": "armour",
@@ -4499,8 +4415,7 @@
         }
       },
       "armour_trait": "stormwall",
-      "id": "IT00000085",
-      "desc": "Stormdancer: supple leather in matte charcoal, midnight grey; binds tight without biting. It muffles motion and rides close to the skin."
+      "id": "IT00000085"
     },
     {
       "category": "armour",
@@ -4550,8 +4465,7 @@
         }
       },
       "armour_trait": "null_field",
-      "id": "IT00000086",
-      "desc": "Shadebound: hidden rivets in forest umber, matte charcoal; ties at the nape. It muffles motion and rides close to the skin."
+      "id": "IT00000086"
     },
     {
       "category": "armour",
@@ -4599,8 +4513,7 @@
         }
       },
       "armour_trait": "umbral_skin",
-      "id": "IT00000087",
-      "desc": "Shadebound: supple leather in smoke-blue, matte charcoal; layers cross at the sternum. It muffles motion and rides close to the skin."
+      "id": "IT00000087"
     },
     {
       "category": "armour",
@@ -4647,8 +4560,7 @@
         }
       },
       "armour_trait": "umbral_skin",
-      "id": "IT00000088",
-      "desc": "Shadebound: hidden rivets in midnight grey, smoke-blue; wraps avoid chafing. It muffles motion and rides close to the skin."
+      "id": "IT00000088"
     },
     {
       "category": "armour",
@@ -4696,8 +4608,7 @@
         }
       },
       "armour_trait": "umbral_skin",
-      "id": "IT00000089",
-      "desc": "Shadebound: hidden rivets in forest umber, matte charcoal; straps that rarely creak. It muffles motion and rides close to the skin."
+      "id": "IT00000089"
     },
     {
       "category": "armour",
@@ -4746,8 +4657,7 @@
         }
       },
       "armour_trait": "null_field",
-      "id": "IT00000090",
-      "desc": "Shadebound: hidden rivets in midnight grey, smoke-blue; binds tight without biting. It muffles motion and rides close to the skin."
+      "id": "IT00000090"
     },
     {
       "category": "armour",
@@ -4790,8 +4700,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000091",
-      "desc": "Scale of Dawn: strap lattice in oiled leather, storm-grey; rests low across the brow. It settles with a protective heft."
+      "id": "IT00000091"
     },
     {
       "category": "armour",
@@ -4835,8 +4744,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000092",
-      "desc": "Scale of Dawn: scale overlap in storm-grey, bronzed scale; cut for movement. It settles with a protective heft."
+      "id": "IT00000092"
     },
     {
       "category": "armour",
@@ -4880,8 +4788,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000093",
-      "desc": "Scale of Dawn: lamellar ties in storm-grey, bronzed scale; wraps avoid chafing. It settles with a protective heft."
+      "id": "IT00000093"
     },
     {
       "category": "armour",
@@ -4925,8 +4832,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000094",
-      "desc": "Scale of Dawn: scale overlap in oiled leather, river-iron; thin soles for ground feel. It settles with a protective heft."
+      "id": "IT00000094"
     },
     {
       "category": "armour",
@@ -4970,8 +4876,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000095",
-      "desc": "Scale of Dawn: scale overlap in oiled leather, storm-grey; binds tight without biting. It settles with a protective heft."
+      "id": "IT00000095"
     },
     {
       "category": "armour",
@@ -5021,8 +4926,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000096",
-      "desc": "Wyrmhide: bone toggles in river-iron, bronzed scale; rests low across the brow. It settles with a protective heft."
+      "id": "IT00000096"
     },
     {
       "category": "armour",
@@ -5071,8 +4975,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000097",
-      "desc": "Wyrmhide: lamellar ties in storm-grey, bronzed scale; cut for movement. It settles with a protective heft."
+      "id": "IT00000097"
     },
     {
       "category": "armour",
@@ -5121,8 +5024,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000098",
-      "desc": "Wyrmhide: strap lattice in storm-grey, bronzed scale; panelled at the knees. It settles with a protective heft."
+      "id": "IT00000098"
     },
     {
       "category": "armour",
@@ -5171,8 +5073,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000099",
-      "desc": "Wyrmhide: lamellar ties in bronzed scale, oiled leather; straps that rarely creak. It settles with a protective heft."
+      "id": "IT00000099"
     },
     {
       "category": "armour",
@@ -5220,8 +5121,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000100",
-      "desc": "Wyrmhide: strap lattice in storm-grey, oiled leather; palms textured for grip. It settles with a protective heft."
+      "id": "IT00000100"
     },
     {
       "category": "armour",
@@ -5272,8 +5172,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000101",
-      "desc": "Stoneguard: strap lattice in storm-grey, oiled leather; ties at the nape. It settles with a protective heft."
+      "id": "IT00000101"
     },
     {
       "category": "armour",
@@ -5324,8 +5223,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000102",
-      "desc": "Stoneguard: bone toggles in oiled leather, storm-grey; layers cross at the sternum. It settles with a protective heft."
+      "id": "IT00000102"
     },
     {
       "category": "armour",
@@ -5376,8 +5274,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000103",
-      "desc": "Stoneguard: lamellar ties in bronzed scale, river-iron; stitched for long strides. It settles with a protective heft."
+      "id": "IT00000103"
     },
     {
       "category": "armour",
@@ -5427,8 +5324,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000104",
-      "desc": "Stoneguard: scale overlap in oiled leather, river-iron; thin soles for ground feel. It settles with a protective heft."
+      "id": "IT00000104"
     },
     {
       "category": "armour",
@@ -5479,8 +5375,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000105",
-      "desc": "Stoneguard: strap lattice in storm-grey, oiled leather; finger seams double-stitched. It settles with a protective heft."
+      "id": "IT00000105"
     },
     {
       "category": "armour",
@@ -5531,8 +5426,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000106",
-      "desc": "Skyforged Lamellar: strap lattice in river-iron, bronzed scale; rests low across the brow. It settles with a protective heft."
+      "id": "IT00000106"
     },
     {
       "category": "armour",
@@ -5583,8 +5477,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000107",
-      "desc": "Skyforged Lamellar: lamellar ties in storm-grey, bronzed scale; reinforced at the ribs. It settles with a protective heft."
+      "id": "IT00000107"
     },
     {
       "category": "armour",
@@ -5635,8 +5528,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000108",
-      "desc": "Skyforged Lamellar: strap lattice in river-iron, bronzed scale; panelled at the knees. It settles with a protective heft."
+      "id": "IT00000108"
     },
     {
       "category": "armour",
@@ -5688,8 +5580,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000109",
-      "desc": "Skyforged Lamellar: bone toggles in storm-grey, bronzed scale; straps that rarely creak. It settles with a protective heft."
+      "id": "IT00000109"
     },
     {
       "category": "armour",
@@ -5742,8 +5633,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000110",
-      "desc": "Skyforged Lamellar: scale overlap in storm-grey, river-iron; binds tight without biting. It settles with a protective heft."
+      "id": "IT00000110"
     },
     {
       "category": "armour",
@@ -5791,8 +5681,7 @@
         }
       },
       "armour_trait": "ethereal_resistance",
-      "id": "IT00000111",
-      "desc": "Dragonsong Brigandine: scale overlap in river-iron, storm-grey; rests low across the brow. It settles with a protective heft."
+      "id": "IT00000111"
     },
     {
       "category": "armour",
@@ -5837,8 +5726,7 @@
         }
       },
       "armour_trait": "stormwall",
-      "id": "IT00000112",
-      "desc": "Dragonsong Brigandine: scale overlap in oiled leather, river-iron; cut for movement. It settles with a protective heft."
+      "id": "IT00000112"
     },
     {
       "category": "armour",
@@ -5886,8 +5774,7 @@
         }
       },
       "armour_trait": "phoenix_aegis",
-      "id": "IT00000113",
-      "desc": "Dragonsong Brigandine: strap lattice in storm-grey, river-iron; stitched for long strides. It settles with a protective heft."
+      "id": "IT00000113"
     },
     {
       "category": "armour",
@@ -5934,8 +5821,7 @@
         }
       },
       "armour_trait": "ethereal_resistance",
-      "id": "IT00000114",
-      "desc": "Dragonsong Brigandine: bone toggles in river-iron, oiled leather; straps that rarely creak. It settles with a protective heft."
+      "id": "IT00000114"
     },
     {
       "category": "armour",
@@ -5980,8 +5866,7 @@
         }
       },
       "armour_trait": "glacial_bulwark",
-      "id": "IT00000115",
-      "desc": "Dragonsong Brigandine: scale overlap in oiled leather, bronzed scale; finger seams double-stitched. It settles with a protective heft."
+      "id": "IT00000115"
     },
     {
       "category": "armour",
@@ -6028,8 +5913,7 @@
         }
       },
       "armour_trait": "spectral_protection",
-      "id": "IT00000116",
-      "desc": "Evershift: lamellar ties in storm-grey, river-iron; rests low across the brow. It settles with a protective heft."
+      "id": "IT00000116"
     },
     {
       "category": "armour",
@@ -6074,8 +5958,7 @@
         }
       },
       "armour_trait": "timefold_ward",
-      "id": "IT00000117",
-      "desc": "Evershift: bone toggles in oiled leather, bronzed scale; reinforced at the ribs. It settles with a protective heft."
+      "id": "IT00000117"
     },
     {
       "category": "armour",
@@ -6121,8 +6004,7 @@
         }
       },
       "armour_trait": "mirror_hex",
-      "id": "IT00000118",
-      "desc": "Evershift: scale overlap in oiled leather, bronzed scale; panelled at the knees. It settles with a protective heft."
+      "id": "IT00000118"
     },
     {
       "category": "armour",
@@ -6168,8 +6050,7 @@
         }
       },
       "armour_trait": "umbral_skin",
-      "id": "IT00000119",
-      "desc": "Evershift: scale overlap in bronzed scale, river-iron; straps that rarely creak. It settles with a protective heft."
+      "id": "IT00000119"
     },
     {
       "category": "armour",
@@ -6216,8 +6097,7 @@
         }
       },
       "armour_trait": "spectral_protection",
-      "id": "IT00000120",
-      "desc": "Evershift: bone toggles in bronzed scale, oiled leather; binds tight without biting. It settles with a protective heft."
+      "id": "IT00000120"
     },
     {
       "category": "armour",
@@ -6264,8 +6144,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000121",
-      "desc": "Militia Plate: hammered plates in weathered steel, coal enamel; rests low across the brow. It rings faintly when struck, stern and sure."
+      "id": "IT00000121"
     },
     {
       "category": "armour",
@@ -6311,8 +6190,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000122",
-      "desc": "Militia Plate: hammered plates in weathered steel, gilded bronze; reinforced at the ribs. It rings faintly when struck, stern and sure."
+      "id": "IT00000122"
     },
     {
       "category": "armour",
@@ -6359,8 +6237,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000123",
-      "desc": "Militia Plate: forged seams in ember red, coal enamel; panelled at the knees. It rings faintly when struck, stern and sure."
+      "id": "IT00000123"
     },
     {
       "category": "armour",
@@ -6407,8 +6284,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000124",
-      "desc": "Militia Plate: etched crests in gilded bronze, coal enamel; straps that rarely creak. It rings faintly when struck, stern and sure."
+      "id": "IT00000124"
     },
     {
       "category": "armour",
@@ -6454,8 +6330,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000125",
-      "desc": "Militia Plate: forged seams in weathered steel, ember red; finger seams double-stitched. It rings faintly when struck, stern and sure."
+      "id": "IT00000125"
     },
     {
       "category": "armour",
@@ -6504,8 +6379,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000126",
-      "desc": "Steelwarden: hammered plates in weathered steel, gilded bronze; ties at the nape. It rings faintly when struck, stern and sure."
+      "id": "IT00000126"
     },
     {
       "category": "armour",
@@ -6552,8 +6426,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000127",
-      "desc": "Steelwarden: etched crests in ember red, coal enamel; reinforced at the ribs. It rings faintly when struck, stern and sure."
+      "id": "IT00000127"
     },
     {
       "category": "armour",
@@ -6601,8 +6474,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000128",
-      "desc": "Steelwarden: thick bracing in ember red, gilded bronze; wraps avoid chafing. It rings faintly when struck, stern and sure."
+      "id": "IT00000128"
     },
     {
       "category": "armour",
@@ -6651,8 +6523,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000129",
-      "desc": "Steelwarden: forged seams in coal enamel, ember red; thin soles for ground feel. It rings faintly when struck, stern and sure."
+      "id": "IT00000129"
     },
     {
       "category": "armour",
@@ -6700,8 +6571,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000130",
-      "desc": "Steelwarden: forged seams in weathered steel, gilded bronze; palms textured for grip. It rings faintly when struck, stern and sure."
+      "id": "IT00000130"
     },
     {
       "category": "armour",
@@ -6751,8 +6621,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000131",
-      "desc": "Kingsguard: forged seams in coal enamel, weathered steel; ties at the nape. It rings faintly when struck, stern and sure."
+      "id": "IT00000131"
     },
     {
       "category": "armour",
@@ -6802,8 +6671,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000132",
-      "desc": "Kingsguard: hammered plates in ember red, coal enamel; reinforced at the ribs. It rings faintly when struck, stern and sure."
+      "id": "IT00000132"
     },
     {
       "category": "armour",
@@ -6853,8 +6721,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000133",
-      "desc": "Kingsguard: thick bracing in weathered steel, gilded bronze; wraps avoid chafing. It rings faintly when struck, stern and sure."
+      "id": "IT00000133"
     },
     {
       "category": "armour",
@@ -6903,8 +6770,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000134",
-      "desc": "Kingsguard: hammered plates in weathered steel, ember red; laces knot with a tug. It rings faintly when struck, stern and sure."
+      "id": "IT00000134"
     },
     {
       "category": "armour",
@@ -6953,8 +6819,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000135",
-      "desc": "Kingsguard: etched crests in ember red, gilded bronze; finger seams double-stitched. It rings faintly when struck, stern and sure."
+      "id": "IT00000135"
     },
     {
       "category": "armour",
@@ -7004,8 +6869,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000136",
-      "desc": "Sunspire: etched crests in ember red, gilded bronze; rests low across the brow. It rings faintly when struck, stern and sure."
+      "id": "IT00000136"
     },
     {
       "category": "armour",
@@ -7055,8 +6919,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000137",
-      "desc": "Sunspire: etched crests in weathered steel, ember red; reinforced at the ribs. It rings faintly when struck, stern and sure."
+      "id": "IT00000137"
     },
     {
       "category": "armour",
@@ -7107,8 +6970,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000138",
-      "desc": "Sunspire: forged seams in coal enamel, weathered steel; wraps avoid chafing. It rings faintly when struck, stern and sure."
+      "id": "IT00000138"
     },
     {
       "category": "armour",
@@ -7158,8 +7020,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000139",
-      "desc": "Sunspire: etched crests in coal enamel, ember red; thin soles for ground feel. It rings faintly when struck, stern and sure."
+      "id": "IT00000139"
     },
     {
       "category": "armour",
@@ -7209,8 +7070,7 @@
         }
       },
       "armour_trait": "none",
-      "id": "IT00000140",
-      "desc": "Sunspire: etched crests in coal enamel, weathered steel; binds tight without biting. It rings faintly when struck, stern and sure."
+      "id": "IT00000140"
     },
     {
       "category": "armour",
@@ -7260,8 +7120,7 @@
         }
       },
       "armour_trait": "glacial_bulwark",
-      "id": "IT00000141",
-      "desc": "Emberguard: forged seams in weathered steel, coal enamel; lined to wick sweat. It rings faintly when struck, stern and sure."
+      "id": "IT00000141"
     },
     {
       "category": "armour",
@@ -7309,8 +7168,7 @@
         }
       },
       "armour_trait": "phoenix_aegis",
-      "id": "IT00000142",
-      "desc": "Emberguard: thick bracing in coal enamel, ember red; layers cross at the sternum. It rings faintly when struck, stern and sure."
+      "id": "IT00000142"
     },
     {
       "category": "armour",
@@ -7361,8 +7219,7 @@
         }
       },
       "armour_trait": "stormwall",
-      "id": "IT00000143",
-      "desc": "Emberguard: forged seams in weathered steel, ember red; wraps avoid chafing. It rings faintly when struck, stern and sure."
+      "id": "IT00000143"
     },
     {
       "category": "armour",
@@ -7412,8 +7269,7 @@
         }
       },
       "armour_trait": "sunforged_vigor",
-      "id": "IT00000144",
-      "desc": "Emberguard: thick bracing in weathered steel, gilded bronze; thin soles for ground feel. It rings faintly when struck, stern and sure."
+      "id": "IT00000144"
     },
     {
       "category": "armour",
@@ -7463,8 +7319,7 @@
         }
       },
       "armour_trait": "phoenix_aegis",
-      "id": "IT00000145",
-      "desc": "Emberguard: hammered plates in ember red, coal enamel; palms textured for grip. It rings faintly when struck, stern and sure."
+      "id": "IT00000145"
     },
     {
       "category": "armour",
@@ -7515,8 +7370,7 @@
         }
       },
       "armour_trait": "mirror_hex",
-      "id": "IT00000146",
-      "desc": "Eclipse Aegis: hammered plates in gilded bronze, ember red; rests low across the brow. It rings faintly when struck, stern and sure."
+      "id": "IT00000146"
     },
     {
       "category": "armour",
@@ -7567,8 +7421,7 @@
         }
       },
       "armour_trait": "mirror_hex",
-      "id": "IT00000147",
-      "desc": "Eclipse Aegis: etched crests in ember red, weathered steel; cut for movement. It rings faintly when struck, stern and sure."
+      "id": "IT00000147"
     },
     {
       "category": "armour",
@@ -7619,8 +7472,7 @@
         }
       },
       "armour_trait": "null_field",
-      "id": "IT00000148",
-      "desc": "Eclipse Aegis: forged seams in coal enamel, weathered steel; wraps avoid chafing. It rings faintly when struck, stern and sure."
+      "id": "IT00000148"
     },
     {
       "category": "armour",
@@ -7669,8 +7521,7 @@
         }
       },
       "armour_trait": "null_field",
-      "id": "IT00000149",
-      "desc": "Eclipse Aegis: hammered plates in coal enamel, weathered steel; thin soles for ground feel. It rings faintly when struck, stern and sure."
+      "id": "IT00000149"
     },
     {
       "category": "armour",
@@ -7720,8 +7571,7 @@
         }
       },
       "armour_trait": "spectral_protection",
-      "id": "IT00000150",
-      "desc": "Eclipse Aegis: forged seams in weathered steel, ember red; palms textured for grip. It rings faintly when struck, stern and sure."
+      "id": "IT00000150"
     }
   ]
 }

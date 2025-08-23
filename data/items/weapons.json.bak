@@ -22,8 +22,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000001",
-      "desc": "A common dagger forged to our current spec."
+      "id": "IT00000001"
     },
     {
       "category": "weapon",
@@ -49,8 +48,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000002",
-      "desc": "A uncommon dagger forged to our current spec."
+      "id": "IT00000002"
     },
     {
       "category": "weapon",
@@ -83,8 +81,7 @@
         "attack": 6
       },
       "weapon_trait": "none",
-      "id": "IT00000003",
-      "desc": "A rare dagger forged to our current spec."
+      "id": "IT00000003"
     },
     {
       "category": "weapon",
@@ -117,8 +114,7 @@
         "attack": 4
       },
       "weapon_trait": "none",
-      "id": "IT00000004",
-      "desc": "A exotic dagger forged to our current spec."
+      "id": "IT00000004"
     },
     {
       "category": "weapon",
@@ -139,8 +135,7 @@
         "attack": 5
       },
       "weapon_trait": "none",
-      "id": "IT00000005",
-      "desc": "A legendary dagger forged to our current spec."
+      "id": "IT00000005"
     },
     {
       "category": "weapon",
@@ -162,8 +157,7 @@
         "attack": 8
       },
       "weapon_trait": "chronal_burst",
-      "id": "IT00000006",
-      "desc": "A mythic dagger forged to our current spec."
+      "id": "IT00000006"
     },
     {
       "category": "weapon",
@@ -185,8 +179,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000007",
-      "desc": "A common shortsword forged to our current spec."
+      "id": "IT00000007"
     },
     {
       "category": "weapon",
@@ -212,8 +205,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000008",
-      "desc": "A uncommon shortsword forged to our current spec."
+      "id": "IT00000008"
     },
     {
       "category": "weapon",
@@ -246,8 +238,7 @@
         "attack": 2
       },
       "weapon_trait": "none",
-      "id": "IT00000009",
-      "desc": "A rare shortsword forged to our current spec."
+      "id": "IT00000009"
     },
     {
       "category": "weapon",
@@ -280,8 +271,7 @@
         "attack": 1
       },
       "weapon_trait": "none",
-      "id": "IT00000010",
-      "desc": "A exotic shortsword forged to our current spec."
+      "id": "IT00000010"
     },
     {
       "category": "weapon",
@@ -302,8 +292,7 @@
         "attack": 6
       },
       "weapon_trait": "none",
-      "id": "IT00000011",
-      "desc": "A legendary shortsword forged to our current spec."
+      "id": "IT00000011"
     },
     {
       "category": "weapon",
@@ -325,8 +314,7 @@
         "attack": 8
       },
       "weapon_trait": "lifedrink",
-      "id": "IT00000012",
-      "desc": "A mythic shortsword forged to our current spec."
+      "id": "IT00000012"
     },
     {
       "category": "weapon",
@@ -348,8 +336,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000013",
-      "desc": "A common longsword forged to our current spec."
+      "id": "IT00000013"
     },
     {
       "category": "weapon",
@@ -375,8 +362,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000014",
-      "desc": "A uncommon longsword forged to our current spec."
+      "id": "IT00000014"
     },
     {
       "category": "weapon",
@@ -409,8 +395,7 @@
         "attack": 5
       },
       "weapon_trait": "none",
-      "id": "IT00000015",
-      "desc": "A rare longsword forged to our current spec."
+      "id": "IT00000015"
     },
     {
       "category": "weapon",
@@ -443,8 +428,7 @@
         "attack": 6
       },
       "weapon_trait": "none",
-      "id": "IT00000016",
-      "desc": "A exotic longsword forged to our current spec."
+      "id": "IT00000016"
     },
     {
       "category": "weapon",
@@ -465,8 +449,7 @@
         "attack": 8
       },
       "weapon_trait": "none",
-      "id": "IT00000017",
-      "desc": "A legendary longsword forged to our current spec."
+      "id": "IT00000017"
     },
     {
       "category": "weapon",
@@ -488,8 +471,7 @@
         "attack": 5
       },
       "weapon_trait": "soulbound",
-      "id": "IT00000018",
-      "desc": "A mythic longsword forged to our current spec."
+      "id": "IT00000018"
     },
     {
       "category": "weapon",
@@ -511,8 +493,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000019",
-      "desc": "A common claymore forged to our current spec."
+      "id": "IT00000019"
     },
     {
       "category": "weapon",
@@ -538,8 +519,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000020",
-      "desc": "A uncommon claymore forged to our current spec."
+      "id": "IT00000020"
     },
     {
       "category": "weapon",
@@ -572,8 +552,7 @@
         "attack": 3
       },
       "weapon_trait": "none",
-      "id": "IT00000021",
-      "desc": "A rare claymore forged to our current spec."
+      "id": "IT00000021"
     },
     {
       "category": "weapon",
@@ -606,8 +585,7 @@
         "attack": 4
       },
       "weapon_trait": "none",
-      "id": "IT00000022",
-      "desc": "A exotic claymore forged to our current spec."
+      "id": "IT00000022"
     },
     {
       "category": "weapon",
@@ -628,8 +606,7 @@
         "attack": 7
       },
       "weapon_trait": "none",
-      "id": "IT00000023",
-      "desc": "A legendary claymore forged to our current spec."
+      "id": "IT00000023"
     },
     {
       "category": "weapon",
@@ -651,8 +628,7 @@
         "attack": 7
       },
       "weapon_trait": "lifedrink",
-      "id": "IT00000024",
-      "desc": "A mythic claymore forged to our current spec."
+      "id": "IT00000024"
     },
     {
       "category": "weapon",
@@ -674,8 +650,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000025",
-      "desc": "A common scimitar forged to our current spec."
+      "id": "IT00000025"
     },
     {
       "category": "weapon",
@@ -701,8 +676,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000026",
-      "desc": "A uncommon scimitar forged to our current spec."
+      "id": "IT00000026"
     },
     {
       "category": "weapon",
@@ -735,8 +709,7 @@
         "attack": 1
       },
       "weapon_trait": "none",
-      "id": "IT00000027",
-      "desc": "A rare scimitar forged to our current spec."
+      "id": "IT00000027"
     },
     {
       "category": "weapon",
@@ -769,8 +742,7 @@
         "attack": 1
       },
       "weapon_trait": "none",
-      "id": "IT00000028",
-      "desc": "A exotic scimitar forged to our current spec."
+      "id": "IT00000028"
     },
     {
       "category": "weapon",
@@ -791,8 +763,7 @@
         "attack": 5
       },
       "weapon_trait": "none",
-      "id": "IT00000029",
-      "desc": "A legendary scimitar forged to our current spec."
+      "id": "IT00000029"
     },
     {
       "category": "weapon",
@@ -814,8 +785,7 @@
         "attack": 7
       },
       "weapon_trait": "lifedrink",
-      "id": "IT00000030",
-      "desc": "A mythic scimitar forged to our current spec."
+      "id": "IT00000030"
     },
     {
       "category": "weapon",
@@ -837,8 +807,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000031",
-      "desc": "A common cutlass forged to our current spec."
+      "id": "IT00000031"
     },
     {
       "category": "weapon",
@@ -864,8 +833,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000032",
-      "desc": "A uncommon cutlass forged to our current spec."
+      "id": "IT00000032"
     },
     {
       "category": "weapon",
@@ -898,8 +866,7 @@
         "attack": 2
       },
       "weapon_trait": "none",
-      "id": "IT00000033",
-      "desc": "A rare cutlass forged to our current spec."
+      "id": "IT00000033"
     },
     {
       "category": "weapon",
@@ -932,8 +899,7 @@
         "attack": 5
       },
       "weapon_trait": "none",
-      "id": "IT00000034",
-      "desc": "A exotic cutlass forged to our current spec."
+      "id": "IT00000034"
     },
     {
       "category": "weapon",
@@ -954,8 +920,7 @@
         "attack": 8
       },
       "weapon_trait": "none",
-      "id": "IT00000035",
-      "desc": "A legendary cutlass forged to our current spec."
+      "id": "IT00000035"
     },
     {
       "category": "weapon",
@@ -977,8 +942,7 @@
         "attack": 9
       },
       "weapon_trait": "chronal_burst",
-      "id": "IT00000036",
-      "desc": "A mythic cutlass forged to our current spec."
+      "id": "IT00000036"
     },
     {
       "category": "weapon",
@@ -1000,8 +964,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000037",
-      "desc": "A common axe forged to our current spec."
+      "id": "IT00000037"
     },
     {
       "category": "weapon",
@@ -1027,8 +990,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000038",
-      "desc": "A uncommon axe forged to our current spec."
+      "id": "IT00000038"
     },
     {
       "category": "weapon",
@@ -1061,8 +1023,7 @@
         "attack": 1
       },
       "weapon_trait": "none",
-      "id": "IT00000039",
-      "desc": "A rare axe forged to our current spec."
+      "id": "IT00000039"
     },
     {
       "category": "weapon",
@@ -1095,8 +1056,7 @@
         "attack": 4
       },
       "weapon_trait": "none",
-      "id": "IT00000040",
-      "desc": "A exotic axe forged to our current spec."
+      "id": "IT00000040"
     },
     {
       "category": "weapon",
@@ -1117,8 +1077,7 @@
         "attack": 8
       },
       "weapon_trait": "none",
-      "id": "IT00000041",
-      "desc": "A legendary axe forged to our current spec."
+      "id": "IT00000041"
     },
     {
       "category": "weapon",
@@ -1140,8 +1099,7 @@
         "attack": 10
       },
       "weapon_trait": "lifedrink",
-      "id": "IT00000042",
-      "desc": "A mythic axe forged to our current spec."
+      "id": "IT00000042"
     },
     {
       "category": "weapon",
@@ -1163,8 +1121,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000043",
-      "desc": "A common greataxe forged to our current spec."
+      "id": "IT00000043"
     },
     {
       "category": "weapon",
@@ -1190,8 +1147,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000044",
-      "desc": "A uncommon greataxe forged to our current spec."
+      "id": "IT00000044"
     },
     {
       "category": "weapon",
@@ -1224,8 +1180,7 @@
         "attack": 3
       },
       "weapon_trait": "none",
-      "id": "IT00000045",
-      "desc": "A rare greataxe forged to our current spec."
+      "id": "IT00000045"
     },
     {
       "category": "weapon",
@@ -1258,8 +1213,7 @@
         "attack": 3
       },
       "weapon_trait": "none",
-      "id": "IT00000046",
-      "desc": "A exotic greataxe forged to our current spec."
+      "id": "IT00000046"
     },
     {
       "category": "weapon",
@@ -1280,8 +1234,7 @@
         "attack": 9
       },
       "weapon_trait": "none",
-      "id": "IT00000047",
-      "desc": "A legendary greataxe forged to our current spec."
+      "id": "IT00000047"
     },
     {
       "category": "weapon",
@@ -1303,8 +1256,7 @@
         "attack": 10
       },
       "weapon_trait": "spell_syphon",
-      "id": "IT00000048",
-      "desc": "A mythic greataxe forged to our current spec."
+      "id": "IT00000048"
     },
     {
       "category": "weapon",
@@ -1326,8 +1278,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000049",
-      "desc": "A common mace forged to our current spec."
+      "id": "IT00000049"
     },
     {
       "category": "weapon",
@@ -1353,8 +1304,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000050",
-      "desc": "A uncommon mace forged to our current spec."
+      "id": "IT00000050"
     },
     {
       "category": "weapon",
@@ -1387,8 +1337,7 @@
         "attack": 3
       },
       "weapon_trait": "none",
-      "id": "IT00000051",
-      "desc": "A rare mace forged to our current spec."
+      "id": "IT00000051"
     },
     {
       "category": "weapon",
@@ -1421,8 +1370,7 @@
         "attack": 4
       },
       "weapon_trait": "none",
-      "id": "IT00000052",
-      "desc": "A exotic mace forged to our current spec."
+      "id": "IT00000052"
     },
     {
       "category": "weapon",
@@ -1443,8 +1391,7 @@
         "attack": 6
       },
       "weapon_trait": "none",
-      "id": "IT00000053",
-      "desc": "A legendary mace forged to our current spec."
+      "id": "IT00000053"
     },
     {
       "category": "weapon",
@@ -1466,8 +1413,7 @@
         "attack": 6
       },
       "weapon_trait": "spell_syphon",
-      "id": "IT00000054",
-      "desc": "A mythic mace forged to our current spec."
+      "id": "IT00000054"
     },
     {
       "category": "weapon",
@@ -1489,8 +1435,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000055",
-      "desc": "A common hammer forged to our current spec."
+      "id": "IT00000055"
     },
     {
       "category": "weapon",
@@ -1516,8 +1461,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000056",
-      "desc": "A uncommon hammer forged to our current spec."
+      "id": "IT00000056"
     },
     {
       "category": "weapon",
@@ -1550,8 +1494,7 @@
         "attack": 1
       },
       "weapon_trait": "none",
-      "id": "IT00000057",
-      "desc": "A rare hammer forged to our current spec."
+      "id": "IT00000057"
     },
     {
       "category": "weapon",
@@ -1584,8 +1527,7 @@
         "attack": 6
       },
       "weapon_trait": "none",
-      "id": "IT00000058",
-      "desc": "A exotic hammer forged to our current spec."
+      "id": "IT00000058"
     },
     {
       "category": "weapon",
@@ -1606,8 +1548,7 @@
         "attack": 8
       },
       "weapon_trait": "none",
-      "id": "IT00000059",
-      "desc": "A legendary hammer forged to our current spec."
+      "id": "IT00000059"
     },
     {
       "category": "weapon",
@@ -1629,8 +1570,7 @@
         "attack": 6
       },
       "weapon_trait": "soulbound",
-      "id": "IT00000060",
-      "desc": "A mythic hammer forged to our current spec."
+      "id": "IT00000060"
     },
     {
       "category": "weapon",
@@ -1652,8 +1592,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000061",
-      "desc": "A common warhammer forged to our current spec."
+      "id": "IT00000061"
     },
     {
       "category": "weapon",
@@ -1679,8 +1618,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000062",
-      "desc": "A uncommon warhammer forged to our current spec."
+      "id": "IT00000062"
     },
     {
       "category": "weapon",
@@ -1713,8 +1651,7 @@
         "attack": 1
       },
       "weapon_trait": "none",
-      "id": "IT00000063",
-      "desc": "A rare warhammer forged to our current spec."
+      "id": "IT00000063"
     },
     {
       "category": "weapon",
@@ -1747,8 +1684,7 @@
         "attack": 6
       },
       "weapon_trait": "none",
-      "id": "IT00000064",
-      "desc": "A exotic warhammer forged to our current spec."
+      "id": "IT00000064"
     },
     {
       "category": "weapon",
@@ -1769,8 +1705,7 @@
         "attack": 10
       },
       "weapon_trait": "none",
-      "id": "IT00000065",
-      "desc": "A legendary warhammer forged to our current spec."
+      "id": "IT00000065"
     },
     {
       "category": "weapon",
@@ -1792,8 +1727,7 @@
         "attack": 8
       },
       "weapon_trait": "chronal_burst",
-      "id": "IT00000066",
-      "desc": "A mythic warhammer forged to our current spec."
+      "id": "IT00000066"
     },
     {
       "category": "weapon",
@@ -1815,8 +1749,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000067",
-      "desc": "A common flail forged to our current spec."
+      "id": "IT00000067"
     },
     {
       "category": "weapon",
@@ -1842,8 +1775,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000068",
-      "desc": "A uncommon flail forged to our current spec."
+      "id": "IT00000068"
     },
     {
       "category": "weapon",
@@ -1876,8 +1808,7 @@
         "attack": 3
       },
       "weapon_trait": "none",
-      "id": "IT00000069",
-      "desc": "A rare flail forged to our current spec."
+      "id": "IT00000069"
     },
     {
       "category": "weapon",
@@ -1910,8 +1841,7 @@
         "attack": 6
       },
       "weapon_trait": "none",
-      "id": "IT00000070",
-      "desc": "A exotic flail forged to our current spec."
+      "id": "IT00000070"
     },
     {
       "category": "weapon",
@@ -1932,8 +1862,7 @@
         "attack": 9
       },
       "weapon_trait": "none",
-      "id": "IT00000071",
-      "desc": "A legendary flail forged to our current spec."
+      "id": "IT00000071"
     },
     {
       "category": "weapon",
@@ -1955,8 +1884,7 @@
         "attack": 5
       },
       "weapon_trait": "echo_strike",
-      "id": "IT00000072",
-      "desc": "A mythic flail forged to our current spec."
+      "id": "IT00000072"
     },
     {
       "category": "weapon",
@@ -1978,8 +1906,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000073",
-      "desc": "A common spear forged to our current spec."
+      "id": "IT00000073"
     },
     {
       "category": "weapon",
@@ -2005,8 +1932,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000074",
-      "desc": "A uncommon spear forged to our current spec."
+      "id": "IT00000074"
     },
     {
       "category": "weapon",
@@ -2039,8 +1965,7 @@
         "attack": 4
       },
       "weapon_trait": "none",
-      "id": "IT00000075",
-      "desc": "A rare spear forged to our current spec."
+      "id": "IT00000075"
     },
     {
       "category": "weapon",
@@ -2073,8 +1998,7 @@
         "attack": 2
       },
       "weapon_trait": "none",
-      "id": "IT00000076",
-      "desc": "A exotic spear forged to our current spec."
+      "id": "IT00000076"
     },
     {
       "category": "weapon",
@@ -2095,8 +2019,7 @@
         "attack": 5
       },
       "weapon_trait": "none",
-      "id": "IT00000077",
-      "desc": "A legendary spear forged to our current spec."
+      "id": "IT00000077"
     },
     {
       "category": "weapon",
@@ -2118,8 +2041,7 @@
         "attack": 9
       },
       "weapon_trait": "lifedrink",
-      "id": "IT00000078",
-      "desc": "A mythic spear forged to our current spec."
+      "id": "IT00000078"
     },
     {
       "category": "weapon",
@@ -2141,8 +2063,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000079",
-      "desc": "A common halberd forged to our current spec."
+      "id": "IT00000079"
     },
     {
       "category": "weapon",
@@ -2168,8 +2089,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000080",
-      "desc": "A uncommon halberd forged to our current spec."
+      "id": "IT00000080"
     },
     {
       "category": "weapon",
@@ -2202,8 +2122,7 @@
         "attack": 2
       },
       "weapon_trait": "none",
-      "id": "IT00000081",
-      "desc": "A rare halberd forged to our current spec."
+      "id": "IT00000081"
     },
     {
       "category": "weapon",
@@ -2236,8 +2155,7 @@
         "attack": 3
       },
       "weapon_trait": "none",
-      "id": "IT00000082",
-      "desc": "A exotic halberd forged to our current spec."
+      "id": "IT00000082"
     },
     {
       "category": "weapon",
@@ -2258,8 +2176,7 @@
         "attack": 9
       },
       "weapon_trait": "none",
-      "id": "IT00000083",
-      "desc": "A legendary halberd forged to our current spec."
+      "id": "IT00000083"
     },
     {
       "category": "weapon",
@@ -2281,8 +2198,7 @@
         "attack": 5
       },
       "weapon_trait": "echo_strike",
-      "id": "IT00000084",
-      "desc": "A mythic halberd forged to our current spec."
+      "id": "IT00000084"
     },
     {
       "category": "weapon",
@@ -2304,8 +2220,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000085",
-      "desc": "A common club forged to our current spec."
+      "id": "IT00000085"
     },
     {
       "category": "weapon",
@@ -2331,8 +2246,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000086",
-      "desc": "A uncommon club forged to our current spec."
+      "id": "IT00000086"
     },
     {
       "category": "weapon",
@@ -2365,8 +2279,7 @@
         "attack": 1
       },
       "weapon_trait": "none",
-      "id": "IT00000087",
-      "desc": "A rare club forged to our current spec."
+      "id": "IT00000087"
     },
     {
       "category": "weapon",
@@ -2399,8 +2312,7 @@
         "attack": 1
       },
       "weapon_trait": "none",
-      "id": "IT00000088",
-      "desc": "A exotic club forged to our current spec."
+      "id": "IT00000088"
     },
     {
       "category": "weapon",
@@ -2421,8 +2333,7 @@
         "attack": 8
       },
       "weapon_trait": "none",
-      "id": "IT00000089",
-      "desc": "A legendary club forged to our current spec."
+      "id": "IT00000089"
     },
     {
       "category": "weapon",
@@ -2444,8 +2355,7 @@
         "attack": 8
       },
       "weapon_trait": "spell_syphon",
-      "id": "IT00000090",
-      "desc": "A mythic club forged to our current spec."
+      "id": "IT00000090"
     },
     {
       "category": "weapon",
@@ -2467,8 +2377,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000091",
-      "desc": "A common great_club forged to our current spec."
+      "id": "IT00000091"
     },
     {
       "category": "weapon",
@@ -2494,8 +2403,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000092",
-      "desc": "A uncommon great_club forged to our current spec."
+      "id": "IT00000092"
     },
     {
       "category": "weapon",
@@ -2528,8 +2436,7 @@
         "attack": 6
       },
       "weapon_trait": "none",
-      "id": "IT00000093",
-      "desc": "A rare great_club forged to our current spec."
+      "id": "IT00000093"
     },
     {
       "category": "weapon",
@@ -2562,8 +2469,7 @@
         "attack": 4
       },
       "weapon_trait": "none",
-      "id": "IT00000094",
-      "desc": "A exotic great_club forged to our current spec."
+      "id": "IT00000094"
     },
     {
       "category": "weapon",
@@ -2584,8 +2490,7 @@
         "attack": 8
       },
       "weapon_trait": "none",
-      "id": "IT00000095",
-      "desc": "A legendary great_club forged to our current spec."
+      "id": "IT00000095"
     },
     {
       "category": "weapon",
@@ -2607,8 +2512,7 @@
         "attack": 8
       },
       "weapon_trait": "soulbound",
-      "id": "IT00000096",
-      "desc": "A mythic great_club forged to our current spec."
+      "id": "IT00000096"
     },
     {
       "category": "weapon",
@@ -2630,8 +2534,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000097",
-      "desc": "A common stick forged to our current spec."
+      "id": "IT00000097"
     },
     {
       "category": "weapon",
@@ -2657,8 +2560,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000098",
-      "desc": "A uncommon stick forged to our current spec."
+      "id": "IT00000098"
     },
     {
       "category": "weapon",
@@ -2691,8 +2593,7 @@
         "attack": 3
       },
       "weapon_trait": "none",
-      "id": "IT00000099",
-      "desc": "A rare stick forged to our current spec."
+      "id": "IT00000099"
     },
     {
       "category": "weapon",
@@ -2725,8 +2626,7 @@
         "attack": 4
       },
       "weapon_trait": "none",
-      "id": "IT00000100",
-      "desc": "A exotic stick forged to our current spec."
+      "id": "IT00000100"
     },
     {
       "category": "weapon",
@@ -2747,8 +2647,7 @@
         "attack": 7
       },
       "weapon_trait": "none",
-      "id": "IT00000101",
-      "desc": "A legendary stick forged to our current spec."
+      "id": "IT00000101"
     },
     {
       "category": "weapon",
@@ -2770,8 +2669,7 @@
         "attack": 8
       },
       "weapon_trait": "echo_strike",
-      "id": "IT00000102",
-      "desc": "A mythic stick forged to our current spec."
+      "id": "IT00000102"
     },
     {
       "category": "weapon",
@@ -2793,8 +2691,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000103",
-      "desc": "A common big_stick forged to our current spec."
+      "id": "IT00000103"
     },
     {
       "category": "weapon",
@@ -2820,8 +2717,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000104",
-      "desc": "A uncommon big_stick forged to our current spec."
+      "id": "IT00000104"
     },
     {
       "category": "weapon",
@@ -2854,8 +2750,7 @@
         "attack": 6
       },
       "weapon_trait": "none",
-      "id": "IT00000105",
-      "desc": "A rare big_stick forged to our current spec."
+      "id": "IT00000105"
     },
     {
       "category": "weapon",
@@ -2888,8 +2783,7 @@
         "attack": 6
       },
       "weapon_trait": "none",
-      "id": "IT00000106",
-      "desc": "A exotic big_stick forged to our current spec."
+      "id": "IT00000106"
     },
     {
       "category": "weapon",
@@ -2910,8 +2804,7 @@
         "attack": 8
       },
       "weapon_trait": "none",
-      "id": "IT00000107",
-      "desc": "A legendary big_stick forged to our current spec."
+      "id": "IT00000107"
     },
     {
       "category": "weapon",
@@ -2933,8 +2826,7 @@
         "attack": 6
       },
       "weapon_trait": "echo_strike",
-      "id": "IT00000108",
-      "desc": "A mythic big_stick forged to our current spec."
+      "id": "IT00000108"
     },
     {
       "category": "weapon",
@@ -2956,8 +2848,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000109",
-      "desc": "A common throwing_knife forged to our current spec."
+      "id": "IT00000109"
     },
     {
       "category": "weapon",
@@ -2983,8 +2874,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000110",
-      "desc": "A uncommon throwing_knife forged to our current spec."
+      "id": "IT00000110"
     },
     {
       "category": "weapon",
@@ -3017,8 +2907,7 @@
         "attack": 4
       },
       "weapon_trait": "none",
-      "id": "IT00000111",
-      "desc": "A rare throwing_knife forged to our current spec."
+      "id": "IT00000111"
     },
     {
       "category": "weapon",
@@ -3051,8 +2940,7 @@
         "attack": 3
       },
       "weapon_trait": "none",
-      "id": "IT00000112",
-      "desc": "A exotic throwing_knife forged to our current spec."
+      "id": "IT00000112"
     },
     {
       "category": "weapon",
@@ -3073,8 +2961,7 @@
         "attack": 7
       },
       "weapon_trait": "none",
-      "id": "IT00000113",
-      "desc": "A legendary throwing_knife forged to our current spec."
+      "id": "IT00000113"
     },
     {
       "category": "weapon",
@@ -3096,8 +2983,7 @@
         "attack": 10
       },
       "weapon_trait": "soulbound",
-      "id": "IT00000114",
-      "desc": "A mythic throwing_knife forged to our current spec."
+      "id": "IT00000114"
     },
     {
       "category": "weapon",
@@ -3119,8 +3005,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000115",
-      "desc": "A common maul forged to our current spec."
+      "id": "IT00000115"
     },
     {
       "category": "weapon",
@@ -3146,8 +3031,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000116",
-      "desc": "A uncommon maul forged to our current spec."
+      "id": "IT00000116"
     },
     {
       "category": "weapon",
@@ -3180,8 +3064,7 @@
         "attack": 3
       },
       "weapon_trait": "none",
-      "id": "IT00000117",
-      "desc": "A rare maul forged to our current spec."
+      "id": "IT00000117"
     },
     {
       "category": "weapon",
@@ -3214,8 +3097,7 @@
         "attack": 2
       },
       "weapon_trait": "none",
-      "id": "IT00000118",
-      "desc": "A exotic maul forged to our current spec."
+      "id": "IT00000118"
     },
     {
       "category": "weapon",
@@ -3236,8 +3118,7 @@
         "attack": 7
       },
       "weapon_trait": "none",
-      "id": "IT00000119",
-      "desc": "A legendary maul forged to our current spec."
+      "id": "IT00000119"
     },
     {
       "category": "weapon",
@@ -3259,8 +3140,7 @@
         "attack": 5
       },
       "weapon_trait": "lifedrink",
-      "id": "IT00000120",
-      "desc": "A mythic maul forged to our current spec."
+      "id": "IT00000120"
     },
     {
       "category": "weapon",
@@ -3282,8 +3162,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000121",
-      "desc": "A common shortbow forged to our current spec."
+      "id": "IT00000121"
     },
     {
       "category": "weapon",
@@ -3309,8 +3188,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000122",
-      "desc": "A uncommon shortbow forged to our current spec."
+      "id": "IT00000122"
     },
     {
       "category": "weapon",
@@ -3343,8 +3221,7 @@
         "attack": 6
       },
       "weapon_trait": "none",
-      "id": "IT00000123",
-      "desc": "A rare shortbow forged to our current spec."
+      "id": "IT00000123"
     },
     {
       "category": "weapon",
@@ -3377,8 +3254,7 @@
         "attack": 5
       },
       "weapon_trait": "none",
-      "id": "IT00000124",
-      "desc": "A exotic shortbow forged to our current spec."
+      "id": "IT00000124"
     },
     {
       "category": "weapon",
@@ -3399,8 +3275,7 @@
         "attack": 7
       },
       "weapon_trait": "none",
-      "id": "IT00000125",
-      "desc": "A legendary shortbow forged to our current spec."
+      "id": "IT00000125"
     },
     {
       "category": "weapon",
@@ -3422,8 +3297,7 @@
         "attack": 6
       },
       "weapon_trait": "chronal_burst",
-      "id": "IT00000126",
-      "desc": "A mythic shortbow forged to our current spec."
+      "id": "IT00000126"
     },
     {
       "category": "weapon",
@@ -3445,8 +3319,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000127",
-      "desc": "A common longbow forged to our current spec."
+      "id": "IT00000127"
     },
     {
       "category": "weapon",
@@ -3472,8 +3345,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000128",
-      "desc": "A uncommon longbow forged to our current spec."
+      "id": "IT00000128"
     },
     {
       "category": "weapon",
@@ -3506,8 +3378,7 @@
         "attack": 2
       },
       "weapon_trait": "none",
-      "id": "IT00000129",
-      "desc": "A rare longbow forged to our current spec."
+      "id": "IT00000129"
     },
     {
       "category": "weapon",
@@ -3540,8 +3411,7 @@
         "attack": 3
       },
       "weapon_trait": "none",
-      "id": "IT00000130",
-      "desc": "A exotic longbow forged to our current spec."
+      "id": "IT00000130"
     },
     {
       "category": "weapon",
@@ -3562,8 +3432,7 @@
         "attack": 7
       },
       "weapon_trait": "none",
-      "id": "IT00000131",
-      "desc": "A legendary longbow forged to our current spec."
+      "id": "IT00000131"
     },
     {
       "category": "weapon",
@@ -3585,8 +3454,7 @@
         "attack": 5
       },
       "weapon_trait": "echo_strike",
-      "id": "IT00000132",
-      "desc": "A mythic longbow forged to our current spec."
+      "id": "IT00000132"
     },
     {
       "category": "weapon",
@@ -3608,8 +3476,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000133",
-      "desc": "A common light_crossbow forged to our current spec."
+      "id": "IT00000133"
     },
     {
       "category": "weapon",
@@ -3635,8 +3502,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000134",
-      "desc": "A uncommon light_crossbow forged to our current spec."
+      "id": "IT00000134"
     },
     {
       "category": "weapon",
@@ -3669,8 +3535,7 @@
         "attack": 3
       },
       "weapon_trait": "none",
-      "id": "IT00000135",
-      "desc": "A rare light_crossbow forged to our current spec."
+      "id": "IT00000135"
     },
     {
       "category": "weapon",
@@ -3703,8 +3568,7 @@
         "attack": 3
       },
       "weapon_trait": "none",
-      "id": "IT00000136",
-      "desc": "A exotic light_crossbow forged to our current spec."
+      "id": "IT00000136"
     },
     {
       "category": "weapon",
@@ -3725,8 +3589,7 @@
         "attack": 5
       },
       "weapon_trait": "none",
-      "id": "IT00000137",
-      "desc": "A legendary light_crossbow forged to our current spec."
+      "id": "IT00000137"
     },
     {
       "category": "weapon",
@@ -3748,8 +3611,7 @@
         "attack": 6
       },
       "weapon_trait": "lifedrink",
-      "id": "IT00000138",
-      "desc": "A mythic light_crossbow forged to our current spec."
+      "id": "IT00000138"
     },
     {
       "category": "weapon",
@@ -3771,8 +3633,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000139",
-      "desc": "A common heavy_crossbow forged to our current spec."
+      "id": "IT00000139"
     },
     {
       "category": "weapon",
@@ -3798,8 +3659,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000140",
-      "desc": "A uncommon heavy_crossbow forged to our current spec."
+      "id": "IT00000140"
     },
     {
       "category": "weapon",
@@ -3832,8 +3692,7 @@
         "attack": 6
       },
       "weapon_trait": "none",
-      "id": "IT00000141",
-      "desc": "A rare heavy_crossbow forged to our current spec."
+      "id": "IT00000141"
     },
     {
       "category": "weapon",
@@ -3866,8 +3725,7 @@
         "attack": 3
       },
       "weapon_trait": "none",
-      "id": "IT00000142",
-      "desc": "A exotic heavy_crossbow forged to our current spec."
+      "id": "IT00000142"
     },
     {
       "category": "weapon",
@@ -3888,8 +3746,7 @@
         "attack": 9
       },
       "weapon_trait": "none",
-      "id": "IT00000143",
-      "desc": "A legendary heavy_crossbow forged to our current spec."
+      "id": "IT00000143"
     },
     {
       "category": "weapon",
@@ -3911,8 +3768,7 @@
         "attack": 7
       },
       "weapon_trait": "echo_strike",
-      "id": "IT00000144",
-      "desc": "A mythic heavy_crossbow forged to our current spec."
+      "id": "IT00000144"
     },
     {
       "category": "weapon",
@@ -3938,8 +3794,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000145",
-      "desc": "A common staff forged to our current spec."
+      "id": "IT00000145"
     },
     {
       "category": "weapon",
@@ -3965,8 +3820,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000146",
-      "desc": "A uncommon staff forged to our current spec."
+      "id": "IT00000146"
     },
     {
       "category": "weapon",
@@ -3999,8 +3853,7 @@
         "attack": 2
       },
       "weapon_trait": "none",
-      "id": "IT00000147",
-      "desc": "A rare staff forged to our current spec."
+      "id": "IT00000147"
     },
     {
       "category": "weapon",
@@ -4033,8 +3886,7 @@
         "attack": 1
       },
       "weapon_trait": "none",
-      "id": "IT00000148",
-      "desc": "A exotic staff forged to our current spec."
+      "id": "IT00000148"
     },
     {
       "category": "weapon",
@@ -4055,8 +3907,7 @@
         "attack": 5
       },
       "weapon_trait": "none",
-      "id": "IT00000149",
-      "desc": "A legendary staff forged to our current spec."
+      "id": "IT00000149"
     },
     {
       "category": "weapon",
@@ -4078,8 +3929,7 @@
         "attack": 7
       },
       "weapon_trait": "chronal_burst",
-      "id": "IT00000150",
-      "desc": "A mythic staff forged to our current spec."
+      "id": "IT00000150"
     },
     {
       "category": "weapon",
@@ -4105,8 +3955,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000151",
-      "desc": "A common wand forged to our current spec."
+      "id": "IT00000151"
     },
     {
       "category": "weapon",
@@ -4132,8 +3981,7 @@
       },
       "bonus": {},
       "weapon_trait": "none",
-      "id": "IT00000152",
-      "desc": "A uncommon wand forged to our current spec."
+      "id": "IT00000152"
     },
     {
       "category": "weapon",
@@ -4166,8 +4014,7 @@
         "attack": 6
       },
       "weapon_trait": "none",
-      "id": "IT00000153",
-      "desc": "A rare wand forged to our current spec."
+      "id": "IT00000153"
     },
     {
       "category": "weapon",
@@ -4200,8 +4047,7 @@
         "attack": 6
       },
       "weapon_trait": "none",
-      "id": "IT00000154",
-      "desc": "A exotic wand forged to our current spec."
+      "id": "IT00000154"
     },
     {
       "category": "weapon",
@@ -4222,8 +4068,7 @@
         "attack": 9
       },
       "weapon_trait": "none",
-      "id": "IT00000155",
-      "desc": "A legendary wand forged to our current spec."
+      "id": "IT00000155"
     },
     {
       "category": "weapon",
@@ -4245,8 +4090,7 @@
         "attack": 9
       },
       "weapon_trait": "chronal_burst",
-      "id": "IT00000156",
-      "desc": "A mythic wand forged to our current spec."
+      "id": "IT00000156"
     }
   ]
 }
