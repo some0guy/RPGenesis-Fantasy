@@ -68,6 +68,11 @@
           ]
         }
       ]
+    },
+    "Castle of Castigia": {
+      "links": [],
+      "entries": [],
+      "file": "map/Castle of Castigia.json"
     }
   },
   "dungeons": {}

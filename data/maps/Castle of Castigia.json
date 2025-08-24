@@ -1,0 +1,49 @@
+{
+  "schema": "rpgen.map@1",
+  "name": "Castle of Castigia",
+  "kind": "map",
+  "biome": "forest",
+  "safe": false,
+  "width": 5,
+  "height": 5,
+  "terrain": [
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  ],
+  "entries": [],
+  "links": [],
+  "tiles": {}
+}

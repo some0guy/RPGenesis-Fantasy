@@ -6,6 +6,15 @@ from dataclasses import dataclass, field
 
 from pathlib import Path
 
+# --- JSON map loader integration ---
+from rpgen_map_loader import (
+    load_world_map,
+    load_scene_by_name,
+    scene_to_runtime,
+    find_entry_coords,
+    get_game_start,
+)
+
 ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
 print(f"[GAME]  Version     = 0.2.x")
@@ -212,11 +221,7 @@ def safe_load_doc(rel: str, array_key: str) -> List[dict]:
 
 def _coalesce(*vals, default=None):
     for v in vals:
-<<<<<<< Updated upstream
         if v is None: 
-=======
-        if v is None:
->>>>>>> Stashed changes
             continue
         return v
     return default
@@ -238,10 +243,7 @@ def item_desc(it: dict) -> str:
     return (it.get('desc') or it.get('description') or it.get('flavor') or '')
 
 def _weapon_stats(it: Dict) -> Tuple[int,int,float,List[str]]:
-<<<<<<< Updated upstream
     """Returns (min_bonus, max_bonus, status_chance, statuses) reading multiple possible keys safely."""
-=======
->>>>>>> Stashed changes
     min_b = int(_coalesce(it.get('min'), it.get('min_damage'), it.get('damage_min'), it.get('atk_min'), 0) or 0)
     max_b = int(_coalesce(it.get('max'), it.get('max_damage'), it.get('damage_max'), it.get('atk_max'), 0) or 0)
     st_ch = float(_coalesce(it.get('status_chance'), it.get('statusChance'), 0.0) or 0.0)
@@ -326,30 +328,29 @@ def pick_npc(npcs: List[Dict]) -> Optional[Dict]:
 
 def pick_item(items: List[Dict]) -> Optional[Dict]:
     return random.choice(items) if random.random() < 0.35 else None
-<<<<<<< Updated upstream
-=======
 
-def generate_path(w, h) -> List[Tuple[int,int]]:
-    # Simple random walk from (0,0) to (w-1,h-1), biased to the right
-    x, y = 0, 0
-    path = [(x,y)]
-    while x < w-1 or y < h-1:
-        moves = []
-        if x < w-1: moves += [(1,0)]*2  # bias right
-        if y < h-1: moves += [(0,1)]
-        dx, dy = random.choice(moves)
-        x, y = x+dx, y+dy
-        if (x,y) not in path:
-            path.append((x,y))
-    # add occasional side spur
-    for _ in range(max(2, (w+h)//6)):
-        px, py = random.choice(path)
-        for dx,dy in random.sample([(1,0),(-1,0),(0,1),(0,-1)], k=2):
-            nx, ny = px+dx, py+dy
-            if 0 <= nx < w and 0 <= ny < h:
-                path.append((nx,ny))
-    return list(dict.fromkeys(path))  # unique preserve order
->>>>>>> Stashed changes
+def generate_path(width: int, height: int) -> List[Tuple[int, int]]:
+    """Generate a connected path through the world"""
+    path = [(0, 0)]  # Start at origin
+    current = (0, 0)
+    
+    while len(path) < width * height // 3:  # Cover ~1/3 of tiles
+        x, y = current
+        # Add random connected tiles
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        random.shuffle(directions)
+        
+        for dx, dy in directions:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < width and 0 <= ny < height and (nx, ny) not in path:
+                path.append((nx, ny))
+                current = (nx, ny)
+                break
+        else:
+            # If stuck, jump to a random connected tile
+            current = random.choice(path)
+    
+    return path
 
 def generate_world(items, npcs) -> List[List[Tile]]:
     W, H = 12, 8
@@ -367,7 +368,6 @@ def generate_world(items, npcs) -> List[List[Tile]]:
                 "Dappled light flickers between tall birches.",
                 "A trampled path suggests recent travelers."
             ])
-<<<<<<< Updated upstream
             enc = Encounter()
             r = random.random()
             if r < 0.3:
@@ -378,28 +378,8 @@ def generate_world(items, npcs) -> List[List[Tile]]:
                 enc.event = random.choice(["ancient shrine","abandoned camp","strange circle of mushrooms"]); enc.must_resolve = True
             enc.item_here = pick_item(items)
             t.encounter = enc
-            row.append(t)
-        grid.append(row)
     grid[0][0].description = "A lonely milestone marks the trailhead."
     grid[0][0].discovered = True
-=======
-            if t.walkable:
-                enc = Encounter()
-                r = random.random()
-                if r < 0.3:
-                    enc.enemy = pick_enemy(npcs); enc.must_resolve = True; enc.spotted = random.random() < 0.6
-                elif r < 0.6:
-                    enc.npc = pick_npc(npcs); enc.must_resolve = True
-                elif r < 0.7:
-                    enc.event = random.choice(["ancient shrine","abandoned camp","strange circle of mushrooms"]); enc.must_resolve = True
-                enc.item_here = pick_item(items)
-                t.encounter = enc
-
-    start = grid[0][0]
-    start.description = "A lonely milestone marks the trailhead."
-    start.walkable = True
-    start.discovered = True
->>>>>>> Stashed changes
     return grid
 
 # ======================== UI helpers (MODULE-LEVEL) ========================
@@ -432,17 +412,8 @@ class Button:
         self.rect = pg.Rect(rect); self.label = label; self.cb = cb
     def draw(self, surf):
         label_font = pg.font.Font(None, 18)
-<<<<<<< Updated upstream
         pg.draw.rect(surf, (60,60,70), self.rect, border_radius=8)
         pg.draw.rect(surf, (110,110,130), self.rect, 2, border_radius=8)
-=======
-        mx, my = pg.mouse.get_pos()
-        hovered = self.rect.collidepoint(mx, my)
-        bg = (70,70,88) if hovered else (60,60,70)
-        border = (140,140,180) if hovered else (110,110,130)
-        pg.draw.rect(surf, bg, self.rect, border_radius=8)
-        pg.draw.rect(surf, border, self.rect, 2, border_radius=8)
->>>>>>> Stashed changes
         label = label_font.render(self.label, True, (240,240,255))
         surf.blit(label, (self.rect.x + 10, self.rect.y + (self.rect.h - label.get_height())//2))
     def handle(self, event):
@@ -450,19 +421,12 @@ class Button:
             self.cb()
 
 def draw_grid(surf, game):
-<<<<<<< Updated upstream
     pg.draw.rect(surf, (26,26,32), (0,0, 980 - 360, 640))
-=======
-    # Background
-    pg.draw.rect(surf, (22,22,28), (0,0, 980 - 360, 640))
-    # Draw path tiles only; non-walkable are faint hints
->>>>>>> Stashed changes
     for y in range(8):
         for x in range(12):
             rx, ry = x*44 + 12, y*44 + 12
             r = pg.Rect(rx, ry, 40, 40)
             tile = game.grid[y][x]
-<<<<<<< Updated upstream
             base = (42,44,56) if tile.discovered else (28,30,38)
             pg.draw.rect(surf, base, r, border_radius=6)
             pg.draw.rect(surf, (70,74,92), r, 1, border_radius=6)
@@ -470,17 +434,6 @@ def draw_grid(surf, game):
                 if tile.encounter.enemy:  pg.draw.circle(surf, (190,70,70),   (r.centerx, r.centery), 4)
                 elif tile.encounter.npc: pg.draw.circle(surf, (90,170,110),  (r.centerx, r.centery), 4)
                 elif tile.encounter.event: pg.draw.circle(surf, (160,130,200),(r.centerx, r.centery), 4)
-=======
-            if tile.walkable:
-                base = (52,56,72) if tile.discovered else (42,46,60)
-                pg.draw.rect(surf, base, r, border_radius=10)
-                pg.draw.rect(surf, (90,94,112), r, 1, border_radius=10)
-                # NO encounter dots (requirement #2)
-            else:
-                # faint suggestion of blocked tiles to imply terrain
-                pg.draw.rect(surf, (18,18,24), r, border_radius=8)
-    # player marker
->>>>>>> Stashed changes
     px = game.player.x*44 + 12 + 20
     py = game.player.y*44 + 12 + 20
     pg.draw.circle(surf, (235,235,80), (px,py), 7)
@@ -497,21 +450,12 @@ def draw_panel(surf, game):
     draw_text(surf, f"Tile ({t.x},{t.y})", (x0+16, y)); y += 18
     draw_text(surf, t.description, (x0+16, y), max_w=360-32); y += 40
     # Equipped
-<<<<<<< Updated upstream
     wep = item_name(game.player.equipped_weapon) if game.player.equipped_weapon else "None"
     foc = item_name(game.player.equipped_focus) if game.player.equipped_focus else "None"
     draw_text(surf, f"Weapon: {wep}", (x0+16, y)); y += 18
     draw_text(surf, f"Focus : {foc}", (x0+16, y)); y += 24
 
     # Encounter info
-=======
-    wep = (game.player.equipped_weapon or {}).get('name') or (game.player.equipped_weapon or {}).get('Name') or "None"
-    foc = (game.player.equipped_focus or {}).get('name') or (game.player.equipped_focus or {}).get('Name') or "None"
-    draw_text(surf, f"Weapon: {wep}", (x0+16, y)); y += 18
-    draw_text(surf, f"Focus : {foc}", (x0+16, y)); y += 24
-
-    # Encounter info (still hidden on grid; shown here when present)
->>>>>>> Stashed changes
     if t.encounter:
         if t.encounter.enemy:
             s = t.encounter.enemy.get("name","Enemy")
@@ -539,11 +483,7 @@ def draw_panel(surf, game):
     for line in game.log[-6:]:
         draw_text(surf, f"• {line}", (x0+20, y), max_w=360-36); y += 16
 
-<<<<<<< Updated upstream
     # Buttons
-=======
-    # Buttons (with hover glow handled inside Button.draw)
->>>>>>> Stashed changes
     y0 = 640 - 210
     buttons = []
     def add(label, cb):
@@ -567,10 +507,6 @@ def draw_panel(surf, game):
         buttons += draw_inventory_panel(surf, game, x0)
     else:
         add("Search Area", game.search_tile)
-<<<<<<< Updated upstream
-=======
-        t = game.tile()
->>>>>>> Stashed changes
         if t.encounter and t.encounter.enemy and not t.encounter.spotted:
             add("Sneak Past",            game.try_sneak)
             add("Bypass (Skirt Around)", game.bypass_enemy)
@@ -585,21 +521,14 @@ def draw_panel(surf, game):
     return buttons
 
 def draw_inventory_panel(surf, game, x0):
-<<<<<<< Updated upstream
     """Returns list of Button objects for the inventory sub-panel."""
     buttons = []
     # panel header
-=======
-    buttons = []
->>>>>>> Stashed changes
     y = 320
     pg.draw.line(surf, (70,74,92), (x0+12, y-6), (x0+360-12, y-6), 1)
     draw_text(surf, "Inventory", (x0+16, y)); y += 20
 
-<<<<<<< Updated upstream
     # pagination state
-=======
->>>>>>> Stashed changes
     if not hasattr(game, "inv_page"): game.inv_page = 0
     if not hasattr(game, "inv_sel"): game.inv_sel = None
 
@@ -610,26 +539,14 @@ def draw_inventory_panel(surf, game, x0):
     start = page*per_page
     items = game.player.inventory[start:start+per_page]
 
-<<<<<<< Updated upstream
     # list items as clickable rows
-=======
->>>>>>> Stashed changes
     row_h = 26
     for i, it in enumerate(items):
         r = pg.Rect(x0+16, y+i*row_h, 360-32, row_h-4)
         sel = (game.inv_sel == start+i)
-<<<<<<< Updated upstream
         pg.draw.rect(surf, (52,56,70) if sel else (34,36,46), r, border_radius=6)
         pg.draw.rect(surf, (90,94,112), r, 1, border_radius=6)
         label = f"{item_name(it)}  [{item_type(it)}/{item_subtype(it)}]"
-=======
-        mx, my = pg.mouse.get_pos()
-        hovered = r.collidepoint(mx, my)
-        base = (58,60,76) if hovered else (52,56,70)
-        pg.draw.rect(surf, base if sel else (34,36,46), r, border_radius=6)
-        pg.draw.rect(surf, (120,124,150) if hovered else (90,94,112), r, 1, border_radius=6)
-        label = f"{(it.get('name') or it.get('Name') or '?')}  [{(it.get('type') or it.get('Type') or '?')}/{(it.get('subtype') or it.get('SubType') or '-')}]"
->>>>>>> Stashed changes
         draw_text(surf, label, (r.x+8, r.y+5))
         def make_sel(idx):
             return lambda idx=idx: setattr(game, 'inv_sel', idx)
@@ -637,20 +554,12 @@ def draw_inventory_panel(surf, game, x0):
 
     y += per_page*row_h + 4
 
-<<<<<<< Updated upstream
     # info & actions for selected item
     if game.inv_sel is not None and 0 <= game.inv_sel < total:
         it = game.player.inventory[game.inv_sel]
         draw_text(surf, (item_desc(it) or "-"), (x0+16, y), max_w=360-32); y += 36
         subtype = str(item_subtype(it)).lower()
         typ = str(item_type(it)).lower()
-=======
-    if game.inv_sel is not None and 0 <= game.inv_sel < total:
-        it = game.player.inventory[game.inv_sel]
-        draw_text(surf, (it.get('desc') or "-"), (x0+16, y), max_w=360-32); y += 36
-        subtype = str((it.get('subtype') or it.get('SubType') or '')).lower()
-        typ = str((it.get('type') or it.get('Type') or '')).lower()
->>>>>>> Stashed changes
         if typ == "weapon":
             if subtype in ("wand","staff"):
                 buttons.append(Button((x0+16, y, 160, 30), "Equip as Focus", lambda: game.equip_focus(it)))
@@ -658,18 +567,12 @@ def draw_inventory_panel(surf, game, x0):
             else:
                 buttons.append(Button((x0+16, y, 160, 30), "Equip Weapon", lambda: game.equip_weapon(it)))
                 y += 34
-<<<<<<< Updated upstream
         # Drop button
         buttons.append(Button((x0+16, y, 160, 30), "Drop", lambda: game.drop_item(game.inv_sel)))
         # Close
         buttons.append(Button((x0+16+170, y, 160, 30), "Close", lambda: setattr(game,'mode','explore')))
     else:
         # Pager + Close when nothing selected
-=======
-        buttons.append(Button((x0+16, y, 160, 30), "Drop", lambda: game.drop_item(game.inv_sel)))
-        buttons.append(Button((x0+16+170, y, 160, 30), "Close", lambda: setattr(game,'mode','explore')))
-    else:
->>>>>>> Stashed changes
         buttons.append(Button((x0+16, y, 110, 28), "Prev Page", lambda: setattr(game,'inv_page', max(0, game.inv_page-1))))
         buttons.append(Button((x0+16+120, y, 110, 28), "Next Page", lambda: setattr(game,'inv_page', min(pages-1, game.inv_page+1))))
         buttons.append(Button((x0+16+240, y, 90, 28), "Close", lambda: setattr(game,'mode','explore')))
@@ -697,7 +600,6 @@ class Game:
         self.inv_page = 0
         self.inv_sel = None
 
-<<<<<<< Updated upstream
         weps  = [it for it in self.items if str(item_type(it)).lower() == 'weapon']
         melee = [w for w in weps if str(item_subtype(w)).lower() not in ('wand','staff')]
         focus = [w for w in weps if str(item_subtype(w)).lower() in ('wand','staff')]
@@ -709,14 +611,6 @@ class Game:
         if self.player.equipped_focus:
             self.say(f"Equipped focus: {item_name(self.player.equipped_focus)}")
 
-=======
-        weps  = [it for it in self.items if str((it.get('type') or it.get('Type') or '')).lower() == 'weapon']
-        melee = [w for w in weps if str((w.get('subtype') or w.get('SubType') or '')).lower() not in ('wand','staff')]
-        focus = [w for w in weps if str((w.get('subtype') or w.get('SubType') or '')).lower() in ('wand','staff')]
-        self.player.equipped_weapon = melee[0] if melee else (weps[0] if weps else None)
-        self.player.equipped_focus  = focus[0] if focus else None
-
->>>>>>> Stashed changes
         if not self.player.inventory and weps:
             self.player.inventory.append(weps[0])
             if len(weps) > 1:
@@ -733,7 +627,6 @@ class Game:
 
     # ---------- Equipment actions ----------
     def equip_weapon(self, it: Dict):
-<<<<<<< Updated upstream
         if item_type(it).lower() == "weapon" and item_subtype(it).lower() not in ("wand","staff"):
             self.player.equipped_weapon = it
             self.say(f"Equipped weapon: {item_name(it)}")
@@ -743,27 +636,11 @@ class Game:
         if item_type(it).lower() == "weapon" and item_subtype(it).lower() in ("wand","staff"):
             self.player.equipped_focus = it
             self.say(f"Equipped focus: {item_name(it)}")
-=======
-        typ = str((it.get('type') or it.get('Type') or '')).lower()
-        sub = str((it.get('subtype') or it.get('SubType') or '')).lower()
-        if typ == "weapon" and sub not in ("wand","staff"):
-            self.player.equipped_weapon = it
-            self.say(f"Equipped weapon: {(it.get('name') or it.get('Name') or '?')}")
-        else:
-            self.say("That cannot be equipped as a weapon.")
-    def equip_focus(self, it: Dict):
-        typ = str((it.get('type') or it.get('Type') or '')).lower()
-        sub = str((it.get('subtype') or it.get('SubType') or '')).lower()
-        if typ == "weapon" and sub in ("wand","staff"):
-            self.player.equipped_focus = it
-            self.say(f"Equipped focus: {(it.get('name') or it.get('Name') or '?')}")
->>>>>>> Stashed changes
         else:
             self.say("You need a wand or staff as a focus.")
     def drop_item(self, idx: int):
         if 0 <= idx < len(self.player.inventory):
             it = self.player.inventory.pop(idx)
-<<<<<<< Updated upstream
             self.say(f"Dropped: {item_name(it)}")
             self.inv_sel = None
 
@@ -797,48 +674,6 @@ class Game:
                 self.mode = "explore"
 
     def start_dialogue(self, npc): self.current_npc = npc
-=======
-            self.say(f"Dropped: {(it.get('name') or it.get('Name') or '?')}")
-            self.inv_sel = None
-
-    # ---------- Movement rules ----------
-    def can_leave_tile(self) -> bool:
-        """You can always leave unless **there is an enemy here** (requirement #1)."""
-        t = self.tile()
-        return not (t.encounter and t.encounter.enemy)
-
-    def move(self, dx, dy):
-        if not self.can_leave_tile():
-            self.say("An enemy blocks your way!"); return
-        nx, ny = self.player.x + dx, self.player.y + dy
-        if not (0 <= nx < 12 and 0 <= ny < 8):
-            return
-        nt = self.grid[ny][nx]
-        if not nt.walkable:
-            self.say("The undergrowth is too thick that way."); return
-        self.player.x, self.player.y = nx, ny
-        t = self.tile(); t.discovered = True; t.visited += 1
-        if t.encounter:
-            if t.encounter.enemy:
-                # Do not auto-start combat if not spotted; let player decide (sneak/fight)
-                if t.encounter.spotted:
-                    self.start_combat(t.encounter.enemy)
-                    self.say(f"{t.encounter.enemy.get('name','A foe')} spots you!")
-                else:
-                    self.mode = "explore"
-                    self.say("You sense danger nearby...")
-            elif t.encounter.npc:
-                # Do not force dialogue; player may pass through
-                self.mode = "explore"
-                self.say("You pass a traveler on the path.")
-            elif t.encounter.event:
-                self.mode = "explore"
-                self.say("Something curious lies just off the trail.")
-        else:
-            self.mode = "explore"
-
-    def start_dialogue(self, npc): self.current_npc = npc; self.mode = "dialogue"
->>>>>>> Stashed changes
 
     def handle_dialogue_choice(self, choice: str):
         npc = self.current_npc;  nid = npc.get("id","?") if npc else "?"
@@ -858,19 +693,11 @@ class Game:
             else:
                 self.say("They seem unreceptive to flirtation.")
         elif choice == "Leave":
-<<<<<<< Updated upstream
             t = self.tile(); t.encounter.npc = None; t.encounter.must_resolve = False
-=======
-            t = self.tile(); t.encounter.npc = None; 
->>>>>>> Stashed changes
             self.current_npc = None; self.mode = "explore"
         else:
             self.say("You share a few words.")
 
-<<<<<<< Updated upstream
-=======
-    # ---- Combat / statuses / diplomacy ----
->>>>>>> Stashed changes
     def start_combat(self, enemy):
         self.current_enemy = enemy; self.current_enemy_hp = enemy.get("hp", 12)
         self.current_enemy.setdefault('status', [])
@@ -878,31 +705,16 @@ class Game:
         self.current_enemy.setdefault('will', 4)
         self.current_enemy.setdefault('greed', 4)
         self.can_bribe = False
-<<<<<<< Updated upstream
-=======
-        self.mode = "combat"
-
-    def _weapon_stats(self, it: Dict) -> Tuple[int,int,float,List[str]]:
-        return _weapon_stats(it)
->>>>>>> Stashed changes
 
     def _maybe_apply_status(self, source: str, target: Dict, weapon_or_spell: Optional[Dict]=None):
         chance = 0.15
         pool = ["bleed","burn","shock","freeze","poison"]
         if weapon_or_spell:
-<<<<<<< Updated upstream
             wmin, wmax, st_ch, statuses = _weapon_stats(weapon_or_spell)
             chance = st_ch or chance
             if statuses: pool = statuses
             else:
                 st = item_subtype(weapon_or_spell).lower()
-=======
-            wmin, wmax, st_ch, statuses = self._weapon_stats(weapon_or_spell)
-            chance = st_ch or chance
-            if statuses: pool = statuses
-            else:
-                st = str((weapon_or_spell.get('subtype') or weapon_or_spell.get('SubType') or '')).lower()
->>>>>>> Stashed changes
                 if st in ('sword','dagger','axe','halberd','spear','shortsword'): pool = ["bleed"]
                 if st in ('mace','club','hammer','greatclub'): pool = ["stagger"]
                 if st in ('wand','staff'): pool = ["burn","shock","freeze"]
@@ -916,7 +728,6 @@ class Game:
         if not self.current_enemy: return
         base_min, base_max = self.player.atk
         wep = self.player.equipped_weapon or {}
-<<<<<<< Updated upstream
         wmin, wmax, _, _ = _weapon_stats(wep)
         dmg = random.randint(base_min + wmin, base_max + max(wmax,0))
         dmg = max(1, dmg)
@@ -926,17 +737,6 @@ class Game:
         if self.current_enemy_hp <= 0:
             self.say("Enemy defeated!")
             t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
-=======
-        wmin, wmax, _, _ = self._weapon_stats(wep)
-        dmg = random.randint(base_min + wmin, base_max + max(wmax,0))
-        dmg = max(1, dmg)
-        self.current_enemy_hp -= dmg
-        self.say(f"You strike with {(wep.get('name') or wep.get('Name') or 'your weapon')} for {dmg}.")
-        self._maybe_apply_status('melee', self.current_enemy, wep)
-        if self.current_enemy_hp <= 0:
-            self.say("Enemy defeated!")
-            t = self.tile(); t.encounter.enemy = None
->>>>>>> Stashed changes
             self.current_enemy = None; self.mode = "explore"
         else:
             self.enemy_turn()
@@ -946,7 +746,6 @@ class Game:
             self.say("No target."); return
         if not self.player.equipped_focus:
             self.say("You need a wand or staff to focus your magic."); return
-<<<<<<< Updated upstream
         if not self.magic:
             self.say("You don't recall any spells."); return
         spell = random.choice(self.magic)
@@ -956,15 +755,6 @@ class Game:
         if self.current_enemy_hp <= 0:
             self.say("Enemy crumples.")
             t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
-=======
-        spell_name = "a spell"
-        dmg = random.randint(4,8)
-        self.current_enemy_hp -= dmg; self.say(f"You cast {spell_name} through {(self.player.equipped_focus.get('name') or self.player.equipped_focus.get('Name') or 'your focus')} for {dmg}!")
-        self._maybe_apply_status('spell', self.current_enemy, self.player.equipped_focus)
-        if self.current_enemy_hp <= 0:
-            self.say("Enemy crumples.")
-            t = self.tile(); t.encounter.enemy = None
->>>>>>> Stashed changes
             self.current_enemy = None; self.mode = "explore"
         else:
             self.enemy_turn()
@@ -975,42 +765,25 @@ class Game:
             self.say("No unnoticed enemy to sneak by."); return
         dc = 8 + random.randint(0,4); roll = 4 + random.randint(1,10)
         if roll >= dc:
-<<<<<<< Updated upstream
             self.say("You slip past unnoticed."); t.encounter.enemy = None; t.encounter.must_resolve = False; self.mode = "explore"
-=======
-            self.say("You slip past unnoticed."); t.encounter.enemy = None; self.mode = "explore"
->>>>>>> Stashed changes
         else:
             self.say("You stumble—you're spotted!"); t.encounter.spotted = True; self.start_combat(t.encounter.enemy)
 
     def bypass_enemy(self):
         t = self.tile()
         if t.encounter and t.encounter.enemy and not t.encounter.spotted:
-<<<<<<< Updated upstream
             self.say("You give the area a wide berth. (You can leave now.)")
             t.encounter.must_resolve = False; self.mode = "explore"
-=======
-            self.say("You skirt around the danger.")
-            t.encounter.enemy = None
-            self.mode = "explore"
->>>>>>> Stashed changes
         else:
             self.say("Too risky to bypass.")
 
     def talk_enemy(self):
         if not self.current_enemy: return
         will = int(self.current_enemy.get('will', 4))
-<<<<<<< Updated upstream
         chance = max(0.1, min(0.8, 0.5 - 0.05*(will-4) + 0.05*len(self.player.romance_flags)))
         if random.random() < chance:
             self.say("You talk them down. The hostility fades.")
             t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
-=======
-        chance = max(0.1, min(0.8, 0.5 - 0.05*(will-4)))
-        if random.random() < chance:
-            self.say("You talk them down. The hostility fades.")
-            t = self.tile(); t.encounter.enemy = None
->>>>>>> Stashed changes
             self.current_enemy = None; self.mode = "explore"
         else:
             self.say("They waver... maybe a bribe would help.")
@@ -1023,28 +796,16 @@ class Game:
         chance = max(0.2, min(0.9, 0.6 + 0.05*(greed-4)))
         item = None
         for it in self.player.inventory:
-<<<<<<< Updated upstream
             if item_type(it).lower() in ('trinket','material','accessory','materials'):
                 item = it; break
         if item:
             self.player.inventory.remove(item)
             self.say(f"You offer {item_name(item)}...")
-=======
-            if (it.get('type') or it.get('Type')) in ('trinket','material','accessory','materials'):
-                item = it; break
-        if item:
-            self.player.inventory.remove(item)
-            self.say(f"You offer {(item.get('name') or item.get('Name') or 'a trinket')}...")
->>>>>>> Stashed changes
         else:
             self.say("You offer future favors...")
         if random.random() < chance:
             self.say("The bribe works. They let you pass.")
-<<<<<<< Updated upstream
             t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
-=======
-            t = self.tile(); t.encounter.enemy = None
->>>>>>> Stashed changes
             self.current_enemy = None; self.mode = "explore"; self.can_bribe = False
         else:
             self.say("No deal. They remain hostile.")
@@ -1057,15 +818,7 @@ class Game:
         if random.random() < chance:
             self.say("You slip away into the brush.")
             self.mode = "explore"
-<<<<<<< Updated upstream
             if self.player.y+1 < 8: self.player.y += 1
-=======
-            # Move one step forward along the path if possible
-            for dx,dy in [(1,0),(0,1),(-1,0),(0,-1)]:
-                nx, ny = self.player.x+dx, self.player.y+dy
-                if 0 <= nx < 12 and 0 <= ny < 8 and self.grid[ny][nx].walkable:
-                    self.player.x, self.player.y = nx, ny; break
->>>>>>> Stashed changes
         else:
             self.say("You fail to escape!")
             self.enemy_turn()
@@ -1086,11 +839,7 @@ class Game:
         t.encounter.item_searched = True
         if t.encounter.item_here:
             item = t.encounter.item_here; self.player.inventory.append(item)
-<<<<<<< Updated upstream
             self.say(f"You found: {item_name(item)}!"); t.encounter.item_here = None
-=======
-            self.say(f"You found: {(item.get('name') or item.get('Name') or 'something')}!"); t.encounter.item_here = None
->>>>>>> Stashed changes
         else:
             self.say("You search thoroughly, but find nothing this time.")
 
@@ -1117,11 +866,7 @@ def start_game():
             if event.type == pg.QUIT:
                 running = False
             elif event.type == pg.KEYDOWN:
-<<<<<<< Updated upstream
                 if event.key == pg.K_ESCAPE: 
-=======
-                if event.key == pg.K_ESCAPE:
->>>>>>> Stashed changes
                     if game.mode == "inventory":
                         game.mode = "explore"
                     else:
