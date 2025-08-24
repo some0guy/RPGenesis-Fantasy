@@ -1,0 +1,49 @@
+{
+  "schema": "rpgen.map@4",
+  "name": "Silver Town",
+  "kind": "map",
+  "biome": "forest",
+  "safe": true,
+  "width": 5,
+  "height": 5,
+  "terrain": [
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  ],
+  "entries": [],
+  "links": [],
+  "tiles": {}
+}
