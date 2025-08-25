@@ -1,14 +1,14 @@
 param(
   [string]$ZipName = "RPGenesis-Fantasy.zip",
-  [string]$OneDriveFolder = "T:\OneDrive\Coding",
+  [string]$DropboxFolder = "$env:UserProfile\Dropbox\RPGenesis\Builds",
   [switch]$UseRclone = $false,
-  [string]$RcloneRemote = "onedrive:Coding"
+  [string]$RcloneRemote = "dropbox:RPGenesis/Builds"
 )
 
 # Ensure we're inside a git repo
 try { git rev-parse --is-inside-work-tree | Out-Null } catch { Write-Error "Not a git repo"; exit 0 }
 
-# Prepare paths
+# Resolve repo root and temp zip path
 $repoRoot = (git rev-parse --show-toplevel).Trim()
 $zipTemp = Join-Path $env:TEMP $ZipName
 
@@ -23,23 +23,23 @@ try {
 }
 
 if ($UseRclone) {
-  # rclone upload directly to OneDrive remote
+  # Upload to Dropbox via rclone remote (requires: rclone config + a 'dropbox' remote)
   $rclone = Get-Command rclone -ErrorAction SilentlyContinue
   if (-not $rclone) {
-    Write-Warning "rclone not found; falling back to OneDrive sync folder path."
+    Write-Warning "rclone not found; falling back to local Dropbox sync folder copy."
   } else {
     & rclone copy $zipTemp "$RcloneRemote" --progress
     if ($LASTEXITCODE -eq 0) {
-      Write-Host "Uploaded to OneDrive via rclone: $RcloneRemote/$ZipName"
+      Write-Host "Uploaded to Dropbox via rclone: $RcloneRemote/$ZipName"
       exit 0
     } else {
-      Write-Warning "rclone copy failed; falling back to OneDrive sync folder path."
+      Write-Warning "rclone copy failed; falling back to local Dropbox sync folder copy."
     }
   }
 }
 
-# Fallback: write into local OneDrive sync folder (client will sync)
-if (-not (Test-Path $OneDriveFolder)) { New-Item -ItemType Directory -Force -Path $OneDriveFolder | Out-Null }
-$dest = Join-Path $OneDriveFolder $ZipName
+# Fallback / default: copy into local Dropbox sync folder (Dropbox client will sync it)
+if (-not (Test-Path $DropboxFolder)) { New-Item -ItemType Directory -Force -Path $DropboxFolder | Out-Null }
+$dest = Join-Path $DropboxFolder $ZipName
 Copy-Item $zipTemp $dest -Force
-Write-Host "Copied to OneDrive sync folder: $dest"
+Write-Host "Copied to Dropbox sync folder: $dest"
