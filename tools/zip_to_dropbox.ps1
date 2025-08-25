@@ -22,6 +22,19 @@ try {
   Pop-Location
 }
 
+# Also build a readable codepack
+& pwsh -ExecutionPolicy Bypass -File (Join-Path $repoRoot "tools\make_codepack.ps1")
+$codepack = Join-Path $repoRoot "RPGenesis-Fantasy.codepack.txt"
+
+# Upload both via Dropbox sync folder (or rclone)
+$destZip      = Join-Path $DropboxFolder $ZipName
+$destCodepack = Join-Path $DropboxFolder "RPGenesis-Fantasy.codepack.txt"
+
+Copy-Item $zipTemp $destZip -Force
+Copy-Item $codepack $destCodepack -Force
+Write-Host "Copied zip and codepack to Dropbox: $DropboxFolder"
+
+
 if ($UseRclone) {
   # Upload to Dropbox via rclone remote (requires: rclone config + a 'dropbox' remote)
   $rclone = Get-Command rclone -ErrorAction SilentlyContinue
