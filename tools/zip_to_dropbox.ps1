@@ -1,6 +1,6 @@
 param(
   [string]$ZipName = "RPGenesis-Fantasy.zip",
-  [string]$DropboxFolder = "$env:UserProfile\Dropbox\RPGenesis\Builds",
+  [string]$DropboxFolder = "$env:UserProfile\Dropbox\RPGenesis",
   [switch]$UseRclone = $false,
   [string]$RcloneRemote = "dropbox:RPGenesis/Builds"
 )
