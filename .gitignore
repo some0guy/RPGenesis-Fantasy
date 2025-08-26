@@ -8,7 +8,8 @@ Thumbs.db
 .codepack/
 .push_repo.bat
 .push_repo_fastforward.bat
-.zip_to_dropbopx.bat
 .make_codepack.bat
 .tools/make_codepack.ps1
 .repo_explorer_embedded
+.gdrive_code_pack.bat
+.gdrive_zip_repo.bat
