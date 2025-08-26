@@ -93,19 +93,6 @@ if defined REMOTE_HAS_BRANCH (
   )
 )
 
-:: Seed .gitignore if missing
-if not exist ".gitignore" (
-  echo Creating .gitignore
-  >.gitignore echo __pycache__/
-  >>.gitignore echo *.pyc
-  >>.gitignore echo .env
-  >>.gitignore echo .venv/
-  >>.gitignore echo .DS_Store
-  >>.gitignore echo Thumbs.db
-  >>.gitignore echo .secrets/
-  git add .gitignore
-)
-
 :: Stage everything
 git add -A
 
