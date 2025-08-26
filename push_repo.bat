@@ -1,23 +1,25 @@
 @echo off
 setlocal enabledelayedexpansion
 REM ============================================================
-REM push_repo.bat — Local-wins + verbose change output
-REM - Shows: working changes, staged changes, commit summary, pushed range
+REM push_repo.bat — Local is authoritative (local wins)
+REM - Stages & commits all changes
+REM - Shows staged + commit summary
+REM - Pushes with --force-with-lease
+REM - If lease is stale, fetches + shows divergence before overwriting
 REM ============================================================
 
-REM >>> EDIT THIS to your repo URL <<<
-set "REMOTE_URL=https://github.com/YOURUSER/RPGenesis-Fantasy.git"
+REM >>> EDIT THIS: your GitHub repo URL <<<
+set "REMOTE_URL=https://github.com/some0guy/RPGenesis-Fantasy.git"
 
 pushd "%~dp0"
 
-REM Ensure git + keep output in console (no pager)
-where git >nul 2>&1 || (echo [ERROR] Git not found.& pause & exit /b 1)
+where git >nul 2>&1 || (echo [ERROR] Git not found in PATH.& pause & exit /b 1)
 set GIT_PAGER=cat
 
-REM Clear stale lock
+REM Clear stale lock if present
 if exist ".git\index.lock" del /f /q ".git\index.lock"
 
-REM Init/point at main if needed
+REM Init if needed
 git rev-parse --is-inside-work-tree >nul 2>&1 || (git init && git branch -M main)
 git remote get-url origin >nul 2>&1 || git remote add origin "%REMOTE_URL%"
 git branch -M main >nul 2>&1
@@ -29,12 +31,7 @@ echo -----------------------------------------------------------------
 echo (Legend: M=modified, A=added, D=deleted, ??=untracked)
 echo.
 
-REM Snapshot current remote tip (to show push delta later)
-set "OLDREMOTE="
-for /f "tokens=1" %%s in ('git ls-remote --heads origin main 2^>nul') do set "OLDREMOTE=%%s"
-
-REM Stage everything (respects .gitignore)
-echo [INFO] Staging all changes...
+REM Stage everything
 git add -A
 
 echo.
@@ -43,7 +40,7 @@ git diff --name-status --cached
 echo -----------------------------------------------------------------
 echo.
 
-REM Commit (or no-op if nothing)
+REM Commit with timestamp fallback
 for /f "tokens=1-4 delims=/ " %%a in ("%DATE%") do set TODAY=%%a-%%b-%%c
 set "NOW=%TIME: =0%"
 if "%~1"=="" (
@@ -64,33 +61,60 @@ git show --stat --oneline -1
 echo -----------------------------------------------------------------
 echo.
 
-REM DO NOT PULL — local is authoritative
+REM ===== Try initial push =====
 echo [WARN] Pushing local 'main' to origin (force-with-lease)...
-git push --force-with-lease --porcelain origin main || (
-  echo [ERROR] Push failed. Try: git push --force-with-lease origin HEAD:main
+git push --force-with-lease --porcelain origin HEAD:main
+if %ERRORLEVEL% EQU 0 goto :push_ok
+
+echo.
+echo [INFO] Push rejected (stale lease). Fetching remote to refresh...
+git fetch origin --prune
+if %ERRORLEVEL% NEQ 0 (
+  echo [ERROR] Fetch failed; check connectivity.
   pause & exit /b 1
 )
 
-REM New remote tip and what changed on remote
-set "NEWREMOTE="
-for /f "tokens=1" %%s in ('git ls-remote --heads origin main 2^>nul') do set "NEWREMOTE=%%s"
-
 echo.
-echo ================= PUSHED RANGE ON REMOTE ========================
-if not "%OLDREMOTE%"=="" (
-  echo From: %OLDREMOTE%
-  echo   To: %NEWREMOTE%
-  echo --- Commits now on GitHub that were not before: ---
-  git log --oneline %OLDREMOTE%..%NEWREMOTE%
-) else (
-  echo (No previous remote head detected; likely first push.)
-  echo Remote HEAD: %NEWREMOTE%
-  echo --- Commits on remote main: ---
-  git log --oneline -n 10
+echo ================= DIVERGENCE CHECK ===========================
+echo --- Commits ONLY on remote (would be overwritten) ---
+git log --oneline HEAD..origin/main
+echo.
+echo --- Commits ONLY on local (you will push) ---
+git log --oneline origin/main..HEAD
+echo ==============================================================
+echo.
+
+set /p OVERWRITE=Type YES to overwrite GitHub with your LOCAL main: 
+if /I not "%OVERWRITE%"=="YES" (
+  echo [ABORT] Did not push. Remote left unchanged.
+  pause & exit /b 0
 )
-echo -----------------------------------------------------------------
 
+echo [WARN] Overwriting remote using force-with-lease...
+git push --force-with-lease --porcelain origin HEAD:main
+if %ERRORLEVEL% EQU 0 goto :push_ok
+
+echo [WARN] Lease still blocked. You can force without lease.
+set /p REALLY=Type FORCE to push with --force (dangerous), anything else to cancel: 
+if /I not "%REALLY%"=="FORCE" (
+  echo [ABORT] Did not push. Remote left unchanged.
+  pause & exit /b 0
+)
+
+git push --force --porcelain origin HEAD:main
+if %ERRORLEVEL% NEQ 0 (
+  echo [ERROR] Force push failed. Check credentials/network.
+  pause & exit /b 1
+)
+
+:push_ok
 echo.
-echo [OK] GitHub now matches your local repository.
+echo ================= PUSHED RANGE ON REMOTE ======================
+for /f "tokens=1" %%s in ('git ls-remote --heads origin main 2^>nul') do set "NEWREMOTE=%%s"
+echo Remote head: %NEWREMOTE%
+echo --- Recent commits now on GitHub: ---
+git log --oneline -n 10
+echo -----------------------------------------------------------------
+echo [OK] GitHub now matches your LOCAL repository.
 pause
 exit /b 0
