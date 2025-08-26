@@ -1,27 +1,23 @@
 @echo off
 setlocal enabledelayedexpansion
-REM ============================================================
-REM push_repo.bat — Local wins push
-REM - Stages & commits everything in the repo root
-REM - Never pulls
-REM - Force-pushes local main to GitHub
-REM ============================================================
+REM ================================================
+REM push_repo.bat — Local is Source of Truth
+REM ================================================
 
-REM === EDIT THIS: your GitHub remote ===
-set "REMOTE_URL=https://github.com/YOURUSERNAME/RPGenesis-Fantasy.git"
+REM >>> EDIT THIS to your repo URL <<<
+set "REMOTE_URL=https://github.com/YOURUSER/REPO.git"
 
 pushd "%~dp0"
 
-REM Ensure Git is available
-where git >nul 2>&1 || (echo [ERROR] Git not found in PATH.& pause & exit /b 1)
+where git >nul 2>&1 || (echo [ERROR] Git not found.& pause & exit /b 1)
 
-REM Safety: clear stale lock if present
+REM Clear stale lock if present
 if exist ".git\index.lock" del /f /q ".git\index.lock"
 
-REM Stage all changes (tracked + untracked)
+REM Stage everything (tracked + untracked changes)
 git add -A
 
-REM Commit everything (or skip if nothing new)
+REM Commit with timestamp fallback (or use args as message)
 for /f "tokens=1-4 delims=/ " %%a in ("%DATE%") do set TODAY=%%a-%%b-%%c
 set "NOW=%TIME: =0%"
 if "%~1"=="" (
@@ -32,19 +28,19 @@ if "%~1"=="" (
 git commit -m "%MSG%"
 if errorlevel 1 echo [INFO] Nothing new to commit.
 
-REM Ensure main branch exists and remote is set
+REM Ensure branch/remote
 git branch -M main
 git remote get-url origin >nul 2>&1 || git remote add origin "%REMOTE_URL%"
 
-REM Push local main to remote, overwriting remote if needed
-echo [WARN] Forcing GitHub to match local repo...
+REM *** DO NOT PULL *** — local is authoritative
+echo [WARN] Updating GitHub to match LOCAL (force-with-lease)...
 git push --force-with-lease origin main
 if errorlevel 1 (
-  echo [ERROR] Push failed. Check your GitHub credentials.
+  echo [ERROR] Push failed. Try: git push --force-with-lease origin HEAD:main
   pause
   exit /b 1
 )
 
-echo [OK] Local repo is now the source of truth on GitHub.
+echo [OK] GitHub now matches your local repository.
 pause
 exit /b 0
