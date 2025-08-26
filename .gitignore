@@ -5,6 +5,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 .secrets/
+.codepack/
 .push_repo.bat
 .push_repo_fastforward.bat
 .zip_to_dropbopx.bat
