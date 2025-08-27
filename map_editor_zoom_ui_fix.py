@@ -21,6 +21,7 @@ ITEM_SUBCATS  = ["accessories", "armour", "clothing", "materials", "quest_items"
 
 TILE_SIZE_DEFAULT = 32
 GRID_W_DEFAULT, GRID_H_DEFAULT = 40, 30
+TILE_MIN, TILE_MAX = 16, 96
 
 ICON_NPC  = "👤"
 ICON_ITEM = "🎒"
@@ -34,9 +35,6 @@ PANEL_BG_DARK  = (26,28,34)
 TEXT_MAIN      = (232,234,237)
 TEXT_DIM       = (180,184,190)
 ACCENT         = (122,162,247)
-ACCENT_ALT     = (198,120,221)
-OK_COLOR       = (152,195,121)
-WARN_COLOR     = (255,184,108)
 GRID_LINE      = (61,68,80)
 LIGHT_WALKABLE = (46,51,64)
 DARK_WALKABLE  = (42,47,59)
@@ -168,6 +166,7 @@ class TextInput:
         self.text = text
         self.active = False
         self.cursor_timer = 0
+               # cursor blink
         self.cursor_show = True
     def handle(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -196,10 +195,7 @@ class TextInput:
             pygame.draw.line(surf, TEXT_MAIN, (cx, cy), (cx, cy+txt.get_height()), 1)
 
 class Dropdown:
-    """Dropdown that draws its popup *on top* after the rest of the UI.
-       Call draw_base() during normal draw, and draw_popup() at the very end.
-       It also flips upward if there's not enough space below.
-    """
+    """Dropdown draws popup on top at the end; flips upward if no space below."""
     def __init__(self, rect, options, value=None, on_change=None):
         self.rect = pygame.Rect(rect)
         self.options = options[:]
@@ -208,8 +204,7 @@ class Dropdown:
         self.opened = False
         self.hover = False
         self.popup_rects: List[pygame.Rect] = []
-        self.popup_upwards = False  # dynamic per-frame based on space
-
+        self.popup_upwards = False
     def handle(self, event):
         if event.type == pygame.MOUSEMOTION:
             self.hover = self.rect.collidepoint(event.pos)
@@ -217,7 +212,6 @@ class Dropdown:
             if self.rect.collidepoint(event.pos):
                 self.opened = not self.opened
             elif self.opened:
-                # handle click on any popup item
                 for i, r in enumerate(self.popup_rects):
                     if r.collidepoint(event.pos):
                         self.value = self.options[i]
@@ -225,15 +219,13 @@ class Dropdown:
                             self.on_change(self.value)
                         break
                 self.opened = False
-
     def draw_base(self, surf):
         pygame.draw.rect(surf, BTN_HOVER if self.hover else BTN_BG, self.rect, border_radius=6)
         pygame.draw.rect(surf, GRID_LINE, self.rect, 1, border_radius=6)
         draw_text(surf, self.value, (self.rect.x+8, self.rect.y+6))
-        # compute popup rects for this frame (but don't draw yet)
+        # compute popup rects (not drawn yet)
         self.popup_rects.clear()
         if not self.opened: return
-        # check space below; if not enough, open upwards
         screen_h = surf.get_height()
         needed_h = self.rect.h * len(self.options)
         below_space = screen_h - self.rect.bottom
@@ -242,7 +234,6 @@ class Dropdown:
         for _ in self.options:
             self.popup_rects.append(pygame.Rect(self.rect.x, y, self.rect.w, self.rect.h))
             y += -self.rect.h if self.popup_upwards else self.rect.h
-
     def draw_popup(self, surf):
         if not self.opened: return
         for r, opt in zip(self.popup_rects, self.options):
@@ -297,11 +288,11 @@ class StartScreen:
     def __init__(self, app):
         self.app = app
         # inputs
-        self.name_inp = TextInput((60, 420, 320, 32), "Untitled")
-        self.w_inp = TextInput((410, 420, 80, 32), str(GRID_W_DEFAULT))
-        self.h_inp = TextInput((500, 420, 80, 32), str(GRID_H_DEFAULT))
-        self.desc_inp = TextInput((60, 462, 520, 32), "")
-        self.btn_create = Button((60, 504, 180, 36), "Create & Open", self.create_map)
+        self.name_inp = TextInput((60, 430, 320, 32), "Untitled")
+        self.w_inp = TextInput((410, 430, 80, 32), str(GRID_W_DEFAULT))
+        self.h_inp = TextInput((500, 430, 80, 32), str(GRID_H_DEFAULT))
+        self.desc_inp = TextInput((60, 492, 520, 32), "")
+        self.btn_create = Button((60, 536, 180, 36), "Create & Open", self.create_map)
 
         self.btn_refresh = Button((60, 120, 140, 32), "Refresh", self.refresh)
         self.btn_open = Button((210, 120, 160, 32), "Open Selected", self.open_selected)
@@ -324,13 +315,15 @@ class StartScreen:
         self.maps_list.draw(surf)
 
         # new map card
-        pygame.draw.rect(surf, PANEL_BG, (60, 410, 520, 140), border_radius=8)
-        pygame.draw.rect(surf, GRID_LINE, (60, 410, 520, 140), 1, border_radius=8)
+        card = pygame.Rect(60, 410, 520, 180)
+        pygame.draw.rect(surf, PANEL_BG, card, border_radius=8)
+        pygame.draw.rect(surf, GRID_LINE, card, 1, border_radius=8)
         draw_text(surf, "Create New Map", (72, 418), TEXT_MAIN)
-        draw_text(surf, "Name", (72, 446), TEXT_DIM); self.name_inp.draw(surf)
-        draw_text(surf, "W", (396, 446), TEXT_DIM); self.w_inp.draw(surf)
-        draw_text(surf, "H", (486, 446), TEXT_DIM); self.h_inp.draw(surf)
-        draw_text(surf, "Description", (72, 486), TEXT_DIM); self.desc_inp.draw(surf)
+        # labels ABOVE inputs (no overlap)
+        draw_text(surf, "Name", (72, 408+22), TEXT_DIM); self.name_inp.draw(surf)
+        draw_text(surf, "W", (396, 408+22), TEXT_DIM);  self.w_inp.draw(surf)
+        draw_text(surf, "H", (486, 408+22), TEXT_DIM);  self.h_inp.draw(surf)
+        draw_text(surf, "Description", (72, 470), TEXT_DIM); self.desc_inp.draw(surf)
         self.btn_create.draw(surf)
 
     def handle(self, event):
@@ -389,11 +382,11 @@ class EditorScreen:
         self.selected: Optional[Tuple[int,int]] = None
         self.link_arm: Optional[Tuple[str, str]] = None  # (target_map, entry_id)
 
-        # top bar inputs
-        self.name_inp = TextInput((16, 10, 240, 28), self.map.name)
-        self.desc_inp = TextInput((270, 10, 480, 28), self.map.description)
-        self.btn_save = Button((760, 10, 100, 28), "Save", self.save)
-        self.btn_back = Button((870, 10, 120, 28), "Back to Menu", self.app.goto_start)
+        # top bar inputs (labels moved up so they don't collide)
+        self.name_inp = TextInput((70, 12, 240, 28), self.map.name)
+        self.desc_inp = TextInput((370, 12, 480, 28), self.map.description)
+        self.btn_save = Button((860, 12, 100, 28), "Save", self.save)
+        self.btn_back = Button((970, 12, 120, 28), "Back to Menu", self.app.goto_start)
 
         # side panels
         self.category = "NPCs"
@@ -402,21 +395,21 @@ class EditorScreen:
         self.btn_cat_links = Button((920, 130, 140, 30), "Links", lambda: self._switch_category("Links"))
 
         # NPCs / Items panel widgets
-        self.dd_npc_sub  = Dropdown((920, 170, 140, 26), NPC_SUBCATS,  value=NPC_SUBCATS[0], on_change=lambda v: self._reload_npcs())
-        self.dd_item_sub = Dropdown((920, 170, 140, 26), ITEM_SUBCATS, value=ITEM_SUBCATS[0], on_change=lambda v: self._reload_items())
-        self.list_box = ListBox((920, 204, 340, 260))
-        self.btn_add_to_tile      = Button((920, 470, 160, 30), "Add to Selected", self.add_selected_to_tile)
-        self.btn_toggle_walkable  = Button((1090, 470, 170, 30), "Toggle Walkable", self.toggle_walkable)
+        self.dd_npc_sub  = Dropdown((920, 180, 140, 26), NPC_SUBCATS,  value=NPC_SUBCATS[0], on_change=lambda v: self._reload_npcs())
+        self.dd_item_sub = Dropdown((920, 180, 140, 26), ITEM_SUBCATS, value=ITEM_SUBCATS[0], on_change=lambda v: self._reload_items())
+        self.list_box = ListBox((920, 214, 340, 260))
+        self.btn_add_to_tile      = Button((920, 478, 160, 30), "Add to Selected", self.add_selected_to_tile)
+        self.btn_toggle_walkable  = Button((1090, 478, 170, 30), "Toggle Walkable", self.toggle_walkable)
 
         # Links panel widgets
         self.maps_available = [f for f in os.listdir(MAP_DIR) if f.lower().endswith(".json")]
         link_default = self.maps_available[0] if self.maps_available else ""
-        self.dd_link_map = Dropdown((920, 170, 220, 26), self.maps_available, value=link_default, on_change=None)
-        self.link_entry_inp = TextInput((1150, 170, 110, 26), "")
-        self.btn_arm_link   = Button((920, 204, 180, 30), "Arm Link (click tile)", self.arm_link)
+        self.dd_link_map = Dropdown((920, 180, 220, 26), self.maps_available, value=link_default, on_change=None)
+        self.link_entry_inp = TextInput((1150, 180, 110, 26), "")
+        self.btn_arm_link   = Button((920, 214, 180, 30), "Arm Link (click tile)", self.arm_link)
 
         # inspector
-        self.inspector_rect = pygame.Rect(920, 512, 340, 220)
+        self.inspector_rect = pygame.Rect(920, 520, 340, 200)
 
         # canvas panning
         self.panning = False
@@ -522,14 +515,16 @@ class EditorScreen:
         surf.fill(PAPER_BG)
         # top bar
         pygame.draw.rect(surf, PANEL_BG, (0,0,1280,50))
-        draw_text(surf, "Name:", (12, 14), TEXT_DIM); self.name_inp.draw(surf)
-        draw_text(surf, "Description:", (260, 14), TEXT_DIM); self.desc_inp.draw(surf)
+        draw_text(surf, "Name:", (14, 18), TEXT_DIM)
+        draw_text(surf, "Description:", (300, 18), TEXT_DIM)
+        self.name_inp.draw(surf)
+        self.desc_inp.draw(surf)
         self.btn_save.draw(surf); self.btn_back.draw(surf)
 
         # canvas bg
         pygame.draw.rect(surf, CANVAS_BG, (0,50,900,670))
 
-        # grid (walkable = lighter tones; impassable = greyed)
+        # grid
         for y in range(self.map.height):
             for x in range(self.map.width):
                 r = self.tile_rect(x,y)
@@ -557,26 +552,27 @@ class EditorScreen:
             pygame.draw.rect(surf, ACCENT, r, 2)
 
         # right panel frame
-        pygame.draw.rect(surf, PANEL_BG, (900,50,380,670))
-        pygame.draw.rect(surf, GRID_LINE, (900,50,380,670), 1)
+        sidebar = pygame.Rect(900,50,380,670)
+        pygame.draw.rect(surf, PANEL_BG, sidebar)
+        pygame.draw.rect(surf, GRID_LINE, sidebar, 1)
 
         # categories
         self.btn_cat_npcs.draw(surf); self.btn_cat_items.draw(surf); self.btn_cat_links.draw(surf)
 
         if self.category == "NPCs":
-            draw_text(surf, "Subcategory", (920, 148), TEXT_DIM)
-            self.dd_npc_sub.draw_base(surf)   # base first
+            draw_text(surf, "Subcategory", (920, 160), TEXT_DIM)
+            self.dd_npc_sub.draw_base(surf)
             self.list_box.draw(surf)
             self.btn_add_to_tile.draw(surf); self.btn_toggle_walkable.draw(surf)
         elif self.category == "Items":
-            draw_text(surf, "Subcategory", (920, 148), TEXT_DIM)
-            self.dd_item_sub.draw_base(surf)  # base first
+            draw_text(surf, "Subcategory", (920, 160), TEXT_DIM)
+            self.dd_item_sub.draw_base(surf)
             self.list_box.draw(surf)
             self.btn_add_to_tile.draw(surf); self.btn_toggle_walkable.draw(surf)
         else:
-            draw_text(surf, "Target Map", (920, 148), TEXT_DIM)
-            self.dd_link_map.draw_base(surf)  # base first
-            draw_text(surf, "Target Entry (opt)", (1150, 148), TEXT_DIM)
+            draw_text(surf, "Target Map", (920, 160), TEXT_DIM)
+            self.dd_link_map.draw_base(surf)
+            draw_text(surf, "Target Entry (opt)", (1150, 160), TEXT_DIM)
             self.link_entry_inp.draw(surf)
             self.btn_arm_link.draw(surf)
             self.btn_toggle_walkable.draw(surf)
@@ -584,25 +580,22 @@ class EditorScreen:
         # inspector (drawn before popups so popups appear on top)
         pygame.draw.rect(surf, PANEL_BG, self.inspector_rect, border_radius=8)
         pygame.draw.rect(surf, GRID_LINE, self.inspector_rect, 1, border_radius=8)
-        draw_text(surf, "Tile Inspector", (930, 520), TEXT_MAIN, FONT_BOLD)
+        draw_text(surf, "Tile Inspector", (930, 528), TEXT_MAIN, FONT_BOLD)
         if self.selected:
             x,y = self.selected
             t = self.map.tiles[y][x]
-            draw_text(surf, f"({x},{y}) — {'Walkable' if t.walkable else 'Impassable'}", (930, 548), TEXT_DIM)
-            y0 = 572
-            # NPCs
+            draw_text(surf, f"({x},{y}) — {'Walkable' if t.walkable else 'Impassable'}", (930, 552), TEXT_DIM)
+            y0 = 574
             if t.npcs:
                 draw_text(surf, f"{ICON_NPC} NPCs ({len(t.npcs)}):", (930, y0)); y0 += 20
                 for e in t.npcs[:6]:
                     nm = e.get("name") or "(unnamed)"; sid = e.get("id") or ""; sub=e.get("subcategory","")
                     draw_text(surf, f"- {nm} [{sid}] <{sub}>", (940, y0)); y0 += 18
-            # Items
             if t.items:
                 draw_text(surf, f"{ICON_ITEM} Items ({len(t.items)}):", (930, y0)); y0 += 20
                 for e in t.items[:6]:
                     nm = e.get("name") or "(unnamed)"; sid = e.get("id") or ""; sub=e.get("subcategory","")
                     draw_text(surf, f"- {nm} [{sid}] <{sub}>", (940, y0)); y0 += 18
-            # Links
             if t.links:
                 draw_text(surf, f"{ICON_LINK} Links ({len(t.links)}):", (930, y0)); y0 += 20
                 for e in t.links[:6]:
@@ -610,7 +603,7 @@ class EditorScreen:
             if not (t.npcs or t.items or t.links):
                 draw_text(surf, "(tile is empty)", (930, y0))
         else:
-            draw_text(surf, "(no tile selected)", (930, 548))
+            draw_text(surf, "(no tile selected)", (930, 552))
 
         # ---- draw dropdown popups last so they appear on top ----
         if self.category == "NPCs":
@@ -653,6 +646,20 @@ class EditorScreen:
         elif event.type == pygame.MOUSEMOTION and self.panning:
             dx = event.pos[0] - self.pan_start[0]; dy = event.pos[1] - self.pan_start[1]
             self.offset_x += dx; self.offset_y += dy; self.pan_start = event.pos
+        elif event.type == pygame.MOUSEWHEEL:
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            canvas_rect = pygame.Rect(0,50,900,670)
+            if canvas_rect.collidepoint((mouse_x, mouse_y)):
+                # zoom centered on cursor position
+                old_ts = self.tile_size
+                world_x = (mouse_x - self.offset_x) / old_ts
+                world_y = (mouse_y - self.offset_y) / old_ts
+                zoom_factor = 1.1 if event.y > 0 else (1/1.1)
+                new_ts = max(TILE_MIN, min(TILE_MAX, int(old_ts * zoom_factor)))
+                if new_ts != old_ts:
+                    self.tile_size = new_ts
+                    self.offset_x = int(mouse_x - world_x * new_ts)
+                    self.offset_y = int(mouse_y - world_y * new_ts)
 
     def update(self, dt):
         self.name_inp.update(dt); self.desc_inp.update(dt)
