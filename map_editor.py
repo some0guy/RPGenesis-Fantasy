@@ -878,7 +878,7 @@ class EditorScreen:
 
     # ---------- tooltip helpers ----------
     def _hovered_tile(self) -> Optional[Tuple[int,int]]:
-        canvas_rect = pygame.Rect(0, 50, 900, 670)
+        canvas_rect = pygame.Rect(0, 60, 900, 670)
         mx, my = pygame.mouse.get_pos()
         if not canvas_rect.collidepoint((mx, my)):
             return None
@@ -1174,8 +1174,21 @@ class EditorScreen:
                 if event.button == 1:
                     t = self.screen_to_tile(*event.pos)
                     if t:
-                        self.selected = t
-            elif self.left_click_mode == "paint":  # Walls mode
+                        self.selected = t            
+            elif self.left_click_mode == "safety":
+                if event.button in (1, 3):
+                    self.left_dragging = True
+                    self.painting_button = event.button
+                if not self.painting_batch_active:
+                    self.painting_batch_active = True
+                    self.history.begin_batch("safety_drag")
+                t = self.screen_to_tile(*event.pos)
+                if t:
+                    state = 'danger' if event.button == 3 else 'safe'
+                    self._record_set_encounter(*t, state, batch=True)
+                    self.selected = t
+            elif self.left_click_mode == "paint":
+# Walls mode
                 if event.button in (1,3):
                     self.left_dragging = True
                     self.painting_button = event.button
@@ -1196,17 +1209,13 @@ class EditorScreen:
                 self.selected = t
 
         elif event.type == pygame.MOUSEMOTION and self.left_dragging and self.left_click_mode == "safety":
-            t = self.screen_to_tile(*event.pos)
-            if t:
-                state = 'danger' if self.painting_button == 3 else 'safe'
-                self._record_set_encounter(*t, state, batch=True)
-                self.selected = t
+                t = self.screen_to_tile(*event.pos)
+                if t:
+                    state = 'danger' if getattr(self, 'painting_button', 1) == 3 else 'safe'
+                    self._record_set_encounter(*t, state, batch=True)
+                    self.selected = t
 
-            t = self.screen_to_tile(*event.pos)
-            if t:
-                to_walk = False if self.painting_button == 3 else True
-                self._record_tile_walkable(*t, to_walk, batch=True)
-                self.selected = t
+
 
         elif event.type == pygame.MOUSEBUTTONUP and event.button in (1,3):
             if self.painting_batch_active:
