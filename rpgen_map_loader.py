@@ -62,29 +62,93 @@ def find_entry_coords(scene: Dict[str, Any], entry_name: str|None) -> Tuple[int,
     return 0,0
 
 def scene_to_runtime(scene: Dict[str, Any]) -> Dict[str, Any]:
-    """Translate scene JSON to a runtime-friendly dict your game can use."""
-    w = int(scene.get('width',5)); h = int(scene.get('height',5))
-    walk = [[bool(v) for v in row] for row in scene.get('terrain', [[1]*w for _ in range(h)])]
-    tiles = {}
-    for key, payload in scene.get('tiles', {}).items():
-        try:
-            x_str,y_str = key.split(','); x=int(x_str); y=int(y_str)
-        except ValueError:
-            continue
-        tiles[(x,y)] = {
-            'npc': payload.get('npc'),
-            'enemy': payload.get('enemy'),
-            'item': payload.get('item')
-        }
+    """Translate scene JSON to a runtime-friendly dict your game can use.
+
+    Supports two schemas:
+    1) Legacy scene schema with 'terrain' (2D ints), 'links' list, 'tiles' dict keyed by "x,y".
+    2) Map editor schema with 'tiles' as a 2D list of objects containing
+       walkable/items/npcs/links/note/encounter.
+    """
+    w = int(scene.get('width', 5))
+    h = int(scene.get('height', 5))
+
+    walk: list[list[bool]]
+    # Prefer explicit terrain if present
+    if isinstance(scene.get('terrain'), list):
+        walk = [[bool(v) for v in row] for row in scene['terrain']]
+    else:
+        # Try map-editor schema
+        tiles_2d = scene.get('tiles')
+        if isinstance(tiles_2d, list) and tiles_2d and isinstance(tiles_2d[0], list):
+            walk = [[bool((tiles_2d[y][x] or {}).get('walkable', False)) for x in range(w)] for y in range(h)]
+        else:
+            walk = [[True]*w for _ in range(h)]
+
+    # Build runtime tiles mapping
+    tiles: dict[tuple[int,int], dict] = {}
+    if isinstance(scene.get('tiles'), dict):
+        # legacy dict keyed by "x,y"
+        for key, payload in scene['tiles'].items():
+            try:
+                x_str, y_str = key.split(','); x = int(x_str); y = int(y_str)
+            except Exception:
+                continue
+            tiles[(x, y)] = {
+                'npc': payload.get('npc'),
+                'enemy': payload.get('enemy'),
+                'item': payload.get('item'),
+            }
+    elif isinstance(scene.get('tiles'), list):
+        # map-editor 2D grid
+        grid = scene['tiles']
+        for y in range(min(h, len(grid))):
+            row = grid[y] or []
+            for x in range(min(w, len(row))):
+                cell = (row[x] or {})
+                npc_payload = None
+                item_payload = None
+                # Pick the first NPC/item if present (schema-agnostic)
+                npcs = cell.get('npcs') or []
+                items = cell.get('items') or []
+                if npcs:
+                    npc_payload = npcs[0]
+                if items:
+                    item_payload = items[0]
+                tiles[(x, y)] = {
+                    'npc': npc_payload,
+                    'enemy': None,
+                    'item': item_payload,
+                }
+
+    # Entries: pass through if present
+    entries = [(e.get('name',''), int(e.get('x',0)), int(e.get('y',0))) for e in scene.get('entries', [])]
+
+    # Links: pass through if scene.links exists, otherwise derive from map-editor cells
+    links: list[tuple[tuple[int,int], str, str, str|None]] = []
+    if isinstance(scene.get('links'), list) and scene['links']:
+        links = [(tuple(L.get('at', [0, 0])), L.get('to', ''), L.get('kind', 'map'), L.get('target_entry')) for L in scene['links']]
+    elif isinstance(scene.get('tiles'), list):
+        grid = scene['tiles']
+        for y in range(min(h, len(grid))):
+            row = grid[y] or []
+            for x in range(min(w, len(row))):
+                cell = (row[x] or {})
+                lks = cell.get('links') or []
+                if isinstance(lks, list) and lks:
+                    # Only one link supported by editor UI; keep first
+                    L = lks[0] or {}
+                    links.append(((x, y), L.get('target_map', ''), 'map', L.get('target_entry')))
+
     return {
-        'name': scene.get('name','noname'),
-        'kind': scene.get('kind','map'),
-        'biome': scene.get('biome','forest'),
+        'name': scene.get('name', 'noname'),
+        'kind': scene.get('kind', 'map'),
+        'biome': scene.get('biome', 'forest'),
         'safe': bool(scene.get('safe', False)),
+        'tile_size': int(scene.get('tile_size', 32)),
         'width': w, 'height': h,
         'walkable': walk,
-        'entries': [(e.get('name',''), int(e.get('x',0)), int(e.get('y',0))) for e in scene.get('entries',[])],
-        'links': [(tuple(L.get('at',[0,0])), L.get('to',''), L.get('kind','map'), L.get('target_entry')) for L in scene.get('links',[])],
+        'entries': entries,
+        'links': links,
         'tiles': tiles,
     }
 
