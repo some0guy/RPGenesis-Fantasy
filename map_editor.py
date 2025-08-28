@@ -11,7 +11,7 @@ import pygame
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(ROOT_DIR, "data")
 MAP_DIR  = os.path.join(DATA_DIR, "maps")
-NPC_DIR  = os.path.join(DATA_DIR, "NPCs")
+NPC_DIR  = os.path.join(DATA_DIR, "npcs")
 ITEM_DIR = os.path.join(DATA_DIR, "items")
 MANIFEST = os.path.join(DATA_DIR, "maps.json")
 
@@ -119,12 +119,13 @@ class MapData:
     description: str = ""
     width: int = GRID_W_DEFAULT
     height: int = GRID_H_DEFAULT
+    tile_size: int = TILE_SIZE_DEFAULT
     tiles: List[List[TileData]] = field(default_factory=list)
 
     @staticmethod
     def new(name: str, description: str, w: int, h: int) -> "MapData":
         tiles = [[TileData() for _ in range(w)] for __ in range(h)]
-        return MapData(name=name, description=description, width=w, height=h, tiles=tiles)
+        return MapData(name=name, description=description, width=w, height=h, tile_size=TILE_SIZE_DEFAULT, tiles=tiles)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -132,6 +133,7 @@ class MapData:
             "description": self.description,
             "width": self.width,
             "height": self.height,
+            "tile_size": int(self.tile_size),
             "tiles": [[{
                 "walkable": t.walkable,
                 "npcs": t.npcs,
@@ -148,6 +150,7 @@ class MapData:
         desc = obj.get("description", "")
         w = int(obj.get("width", GRID_W_DEFAULT))
         h = int(obj.get("height", GRID_H_DEFAULT))
+        ts = int(obj.get("tile_size", TILE_SIZE_DEFAULT))
         raw_tiles = obj.get("tiles") or []
         tiles: List[List[TileData]] = []
         for y in range(h):
@@ -163,7 +166,7 @@ class MapData:
                     encounter=str(cell.get("encounter", "")),
                 ))
             tiles.append(row)
-        return MapData(name=name, description=desc, width=w, height=h, tiles=tiles)
+        return MapData(name=name, description=desc, width=w, height=h, tile_size=ts, tiles=tiles)
 
 # -------------------- History (Undo/Redo) --------------------
 class History:
@@ -463,6 +466,7 @@ class StartScreen:
         self.btn_refresh = Button((60, 120, 140, 32), "Refresh", self.refresh)
         self.btn_open   = Button((210, 120, 160, 32), "Open Selected", self.open_selected)
         self.btn_create = Button((60, 410, 180, 36), "Create New Map", self.create_map)
+        self.btn_world  = Button((250, 410, 180, 36), "World View", self.open_world_view)
         self.maps_list = ListBox((60, 160, 520, 230))
         self.refresh()
     def refresh(self):
@@ -479,8 +483,9 @@ class StartScreen:
         pygame.draw.rect(surf, PANEL_BG, (60, 400, 520, 70), border_radius=8)
         pygame.draw.rect(surf, GRID_LINE, (60, 400, 520, 70), 1, border_radius=8)
         self.btn_create.draw(surf)
+        self.btn_world.draw(surf)
     def handle(self, event):
-        self.btn_refresh.handle(event); self.btn_open.handle(event); self.maps_list.handle(event); self.btn_create.handle(event)
+        self.btn_refresh.handle(event); self.btn_open.handle(event); self.maps_list.handle(event); self.btn_create.handle(event); self.btn_world.handle(event)
     def update(self, dt): pass
     def open_selected(self):
         sel = self.maps_list.get_selected()
@@ -496,13 +501,16 @@ class StartScreen:
     def create_map(self):
         md = MapData.new("Untitled", "", GRID_W_DEFAULT, GRID_H_DEFAULT)
         self.app.goto_editor(md)
+    def open_world_view(self):
+        self.app.goto_world()
 
 # -------------------- EditorScreen --------------------
 class EditorScreen:
     def __init__(self, app, mapdata: MapData):
         self.app = app
         self.map = mapdata
-        self.tile_size = TILE_SIZE_DEFAULT
+        # Initialize view scale from map's tile size
+        self.tile_size = int(getattr(self.map, 'tile_size', TILE_SIZE_DEFAULT))
         self.offset_x = 60
         self.offset_y = 60
         self.selected: Optional[Tuple[int,int]] = None
@@ -722,6 +730,11 @@ class EditorScreen:
         # Persist current UI values before writing
         self.map.name = self.name_inp.text.strip() or "Untitled"
         self.map.description = self.desc_area.text
+        # Persist current tile size as part of the map schema
+        try:
+            self.map.tile_size = int(self.tile_size)
+        except Exception:
+            self.map.tile_size = int(TILE_SIZE_DEFAULT)
 
         # Write the map data to /data/maps/<name>.json
         file_name = f"{self.map.name}.json"
@@ -1300,6 +1313,113 @@ class ListBox:
             draw_text(surf, label[:60], (row_rect.x+8, row_rect.y+4))
         surf.set_clip(clip)
 
+# -------------------- WorldScreen (world layout viewer) --------------------
+class WorldScreen:
+    def __init__(self, app):
+        self.app = app
+        self.screen = app.screen
+        self.cell = 128
+        self.margin = 60
+        self.dragging = None  # map name being dragged
+        self.drag_offset = (0, 0)
+        self.selected_idx = 0
+
+        # Load maps from manifest
+        manifest = read_json_any(MANIFEST, {"maps": []})
+        self.maps = [m.get("name") or m.get("file") for m in manifest.get("maps", [])]
+        # Fallback: empty
+        if not self.maps:
+            self.maps = []
+
+        # Load world layout
+        self.world_path = os.path.join(DATA_DIR, "world_map.json")
+        wm = read_json_any(self.world_path, {"layout": {}, "start": {"map":"","entry": None, "pos": [0,0]}})
+        layout = wm.get("layout", {})
+        # Build layout dict of map -> (x,y)
+        self.layout: Dict[str, Tuple[int,int]] = {}
+        # Default positions if missing: arrange in a row
+        for i, name in enumerate(self.maps):
+            pos = layout.get(name)
+            if isinstance(pos, dict):
+                self.layout[name] = (int(pos.get("x", i)), int(pos.get("y", 0)))
+            else:
+                self.layout[name] = (i, 0)
+
+    def save(self):
+        data = {
+            "schema": "rpgen.world@1",
+            "version": "0.2",
+            "layout": { name: {"x": x, "y": y} for name, (x,y) in self.layout.items() },
+            "start": {"map": self.maps[self.selected_idx] if self.maps else "", "entry": None, "pos": [0,0]},
+        }
+        write_json(self.world_path, data)
+
+    def handle(self, event):
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                self.app.goto_start()
+            elif event.key == pygame.K_s:
+                self.save()
+            elif event.key == pygame.K_TAB and self.maps:
+                self.selected_idx = (self.selected_idx + 1) % len(self.maps)
+            elif self.maps:
+                name = self.maps[self.selected_idx]
+                x, y = self.layout.get(name, (0,0))
+                moved = False
+                if event.key == pygame.K_LEFT:
+                    x -= 1; moved = True
+                elif event.key == pygame.K_RIGHT:
+                    x += 1; moved = True
+                elif event.key == pygame.K_UP:
+                    y -= 1; moved = True
+                elif event.key == pygame.K_DOWN:
+                    y += 1; moved = True
+                if moved:
+                    self.layout[name] = (x, y)
+
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            mx, my = event.pos
+            for i, name in enumerate(self.maps):
+                x, y = self.layout.get(name, (0,0))
+                rect = pygame.Rect(self.margin + x*self.cell, self.margin + y*self.cell, self.cell-8, self.cell-8)
+                if rect.collidepoint((mx, my)):
+                    self.selected_idx = i
+                    self.dragging = name
+                    self.drag_offset = (mx - rect.x, my - rect.y)
+                    break
+        elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+            if self.dragging is not None:
+                # snap to grid
+                mx, my = event.pos
+                gx = int(round((mx - self.margin - self.drag_offset[0]) / self.cell))
+                gy = int(round((my - self.margin - self.drag_offset[1]) / self.cell))
+                self.layout[self.dragging] = (gx, gy)
+            self.dragging = None
+        elif event.type == pygame.MOUSEMOTION and self.dragging is not None:
+            # live preview is drawn in draw()
+            pass
+
+    def draw(self, surf):
+        surf.fill(PAPER_BG)
+        draw_text(surf, "World Layout (S=Save, Tab=Next, Esc=Back)", (20, 10), TEXT_MAIN, FONT_BOLD)
+        # draw grid
+        w, h = surf.get_size()
+        for gx in range(self.margin, w, self.cell):
+            pygame.draw.line(surf, GRID_LINE, (gx, self.margin), (gx, h-20))
+        for gy in range(self.margin, h, self.cell):
+            pygame.draw.line(surf, GRID_LINE, (self.margin, gy), (w-20, gy))
+
+        # draw maps
+        for i, name in enumerate(self.maps):
+            x, y = self.layout.get(name, (0,0))
+            rx = self.margin + x*self.cell
+            ry = self.margin + y*self.cell
+            rect = pygame.Rect(rx, ry, self.cell-8, self.cell-8)
+            col = ACCENT if i == self.selected_idx else BTN_BG
+            pygame.draw.rect(surf, col, rect, border_radius=12)
+            pygame.draw.rect(surf, GRID_LINE, rect, 1, border_radius=12)
+            draw_text(surf, name, (rect.x+8, rect.y+8))
+
 # -------------------- App --------------------
 class App:
     def __init__(self):
@@ -1309,10 +1429,16 @@ class App:
         self.running = True
         self.start_screen = StartScreen(self)
         self.editor_screen: Optional[EditorScreen] = None
+        self.world_screen: Optional[WorldScreen] = None
     def goto_start(self):
         self.editor_screen = None
+        self.world_screen = None
     def goto_editor(self, mapdata: MapData):
         self.editor_screen = EditorScreen(self, mapdata)
+        self.world_screen = None
+    def goto_world(self):
+        self.world_screen = WorldScreen(self)
+        self.editor_screen = None
     def run(self):
         while self.running:
             dt = self.clock.tick(60)
@@ -1321,11 +1447,15 @@ class App:
                     self.running = False
                 elif self.editor_screen:
                     self.editor_screen.handle(event)
+                elif self.world_screen:
+                    self.world_screen.handle(event)
                 else:
                     self.start_screen.handle(event)
             if self.editor_screen:
                 self.editor_screen.update(dt)
                 self.editor_screen.draw(self.screen)
+            elif self.world_screen:
+                self.world_screen.draw(self.screen)
             else:
                 self.start_screen.update(dt)
                 self.start_screen.draw(self.screen)

@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parent
 DATA = ROOT / 'data'
 MAPS = DATA / 'maps'
 DUNGEONS = DATA / 'dungeons'
-WORLD_MAP = DATA / 'world_map.txt'  # stores JSON
+WORLD_MAP = DATA / 'world_map.json'
 
 # ---------- JSON helpers ----------
 def _jload(path: Path, default):
@@ -23,10 +23,20 @@ def _jload(path: Path, default):
 
 # ---------- Public API ----------
 def load_world_map() -> Dict[str, Any]:
-    """Return world_map structure (maps, dungeons, start)."""
+    """Return world_map structure with a simple layout grid.
+
+    Schema (minimal):
+    {
+      "schema": "rpgen.world@1",
+      "version": "0.2",
+      "layout": { "<map name>": {"x": int, "y": int}, ... },
+      "start": {"map": str, "entry": str|None, "pos": [int,int]}
+    }
+    """
     wm = _jload(WORLD_MAP, {})
-    wm.setdefault('maps', {})
-    wm.setdefault('dungeons', {})
+    wm.setdefault('schema', 'rpgen.world@1')
+    wm.setdefault('version', '0.2')
+    wm.setdefault('layout', {})
     wm.setdefault('start', {'map':'', 'entry': None, 'pos':[0,0]})
     return wm
 

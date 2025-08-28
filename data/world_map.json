@@ -1,0 +1,9 @@
+{
+  "schema": "rpgen.world@1",
+  "version": "0.2",
+  "layout": {
+    "Jungle of Hills": {"x": 0, "y": 0},
+    "Grange of the Fenn": {"x": 1, "y": 0}
+  },
+  "start": {"map": "Jungle of Hills", "entry": null, "pos": [0, 0]}
+}

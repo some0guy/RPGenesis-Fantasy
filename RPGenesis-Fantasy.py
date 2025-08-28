@@ -17,17 +17,10 @@ from rpgen_map_loader import (
 
 ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
-print(f"[GAME]  Version     = 0.2.x")
-print(f"[GAME]  CWD         = {os.getcwd()}")
-print(f"[GAME]  SCRIPT      = {__file__}")
-print(f"[GAME]  DATA_DIR    = {DATA_DIR}")
-print(f"[GAME]  WORLD_MAP   = {DATA_DIR / 'world_map.txt'}")
-print(f"[GAME]  OVERRIDES   = {DATA_DIR / 'world_overrides.json'}")
-
+WORLD_MAP_PATH = DATA_DIR / "world_map.json"
 
 # -------------------- Project paths / version --------------------
-DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
-VERSION_FILE = os.path.join(os.path.dirname(__file__), "VERSION.txt")
+VERSION_FILE = ROOT / "VERSION.txt"
 
 def get_version() -> str:
     try:
@@ -50,7 +43,7 @@ EXPECTED = {
     ],
     "item_files": [
         "data/items/accessories.json",
-        "data/items/armours.json",
+        "data/items/armour.json",
         "data/items/weapons.json",
         "data/items/clothing.json",
         "data/items/materials.json",
@@ -256,7 +249,7 @@ def gather_items() -> List[Dict]:
     items: List[Dict] = []
     items_dir = os.path.join(DATA_DIR, "items")
     if os.path.isdir(items_dir):
-        for name in ["weapons.json","armours.json","accessories.json","clothing.json","materials.json","quest_items.json","trinkets.json"]:
+        for name in ["weapons.json","armour.json","accessories.json","clothing.json","materials.json","quest_items.json","trinkets.json"]:
             for it in safe_load_doc(os.path.join("items", name), "items"):
                 items.append(it)
     return items

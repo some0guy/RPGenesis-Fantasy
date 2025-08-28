@@ -18,13 +18,10 @@ DATA_DIR = ROOT / "data"
 ID_PATTERNS = {
     "IT": re.compile(r"^IT\d{8}$"),
     "NP": re.compile(r"^NP\d{8}$"),
-    "EW": re.compile(r"^EW\d{8}$"),
-    "EA": re.compile(r"^EA\d{8}$"),
-    "EC": re.compile(r"^EC\d{8}$"),
+    # Enchants and Traits are unified
+    "EN": re.compile(r"^EN\d{8}$"),
+    "TR": re.compile(r"^TR\d{8}$"),
     "MG": re.compile(r"^MG\d{8}$"),
-    "TW": re.compile(r"^TW\d{8}$"),
-    "TA": re.compile(r"^TA\d{8}$"),
-    "TC": re.compile(r"^TC\d{8}$"),
     "ST": re.compile(r"^ST\d{8}$"),
 }
 

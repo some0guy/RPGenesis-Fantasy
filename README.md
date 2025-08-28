@@ -1,7 +1,6 @@
-# RPGenesis Fantasy (Scaffold, Fixed Naming)
+# RPGenesis Fantasy
 
-This is the **data-first scaffold** for your text-based fantasy RPG.
-Now using consistent naming (`enchants_*`, `loot_tables.json`).
+This is the data-first scaffold for a text-based fantasy RPG.
 
 ## Structure
 - `assets/` — audio and images (bucketed by category)
@@ -9,24 +8,26 @@ Now using consistent naming (`enchants_*`, `loot_tables.json`).
   - `dialogues/` — per-NPC dialogue trees
   - `items/` — items split by type
   - `npcs/` — categorized NPCs
-  - root-level JSON: `appearance.json`, `enchants_armour.json`, `enchants_accessories.json`, `enchants_weapons.json`, `encounters.json`, `loot_tables.json`, `magic.json`, `names.json`, `traits_*`
+  - root JSON: `appearance.json`, `enchants.json`, `traits.json`, `encounters.json`, `loot_tables.json`, `magic.json`, `names.json`, `status.json`, `world_map.json`
 - `logs/` — log files
-- `index.html` — checker (temporary, until Python version)
-- `sw.js`
+- `scripts/` — utilities for validation/migration
+- `tools/` — local tools (untracked by git)
 
-Each JSON file includes a `schema` and `version` to help with validation.
+Each JSON may include a `schema` and `version` to help with validation.
 
-
-## ID format (10 characters)
+## ID Format (10 chars)
 - Items: `IT########`
 - NPCs: `NP########`
-- Enchants (weapons): `EW########`
-- Enchants (armours): `EA########`
-- Enchants (accessories): `EC########`
+- Enchants: `EN########`
+- Traits: `TR########`
 - Magic (spells): `MG########`
-- Traits (accessories): `TC########`
-- Traits (armours): `TA########`
-- Traits (weapons): `TW########`
 - Status effects: `ST########`
 
-A validator is provided in `RPGenesis.py` and enforces these patterns.
+Validate with: `python scripts/validate_json.py`
+
+## World Map
+- File: `data/world_map.json`
+- Edited/viewed in the map editor (Start → World View).
+- Stores a simple grid layout: `{ layout: { "Map Name": { x, y } }, start: { map, entry, pos } }`.
+- Controls: `S` to save, `Tab` to cycle, arrow keys to move, `Esc` back.
+
