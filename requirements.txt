@@ -1,0 +1,7 @@
+# Runtime
+pygame>=2.5
+pillow>=10.0.0
+
+# Validation / CLI helpers
+jsonschema>=4.22.0
+pydantic>=2.8.0
