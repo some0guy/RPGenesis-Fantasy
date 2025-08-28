@@ -345,34 +345,29 @@ def generate_path(width: int, height: int) -> List[Tuple[int, int]]:
     
     return path
 
-def generate_world(items, npcs) -> List[List[Tile]]:
-    W, H = 12, 8
+def grid_from_runtime(runtime: Dict[str, Any], items: List[Dict], npcs: List[Dict]) -> List[List[Tile]]:
+    """Build a Tile grid from the scene_to_runtime() structure (editor or legacy).
+
+    - walkable: from runtime['walkable']
+    - encounters: minimal mapping of editor payloads to Encounter(npc/item)
+    """
+    W = int(runtime.get('width', 12)); H = int(runtime.get('height', 8))
     grid: List[List[Tile]] = [[Tile(x=x, y=y) for x in range(W)] for y in range(H)]
-    path = set(generate_path(W, H))
+    walk = runtime.get('walkable') or [[True]*W for _ in range(H)]
+    payload = runtime.get('tiles') or {}
 
     for y in range(H):
         for x in range(W):
             t = grid[y][x]
-            t.walkable = (x,y) in path
-            t.description = random.choice([
-                "Wind-swept brush and bent reeds.",
-                "Ancient stones half-swallowed by moss.",
-                "A hush falls here, like a held breath.",
-                "Dappled light flickers between tall birches.",
-                "A trampled path suggests recent travelers."
-            ])
-            enc = Encounter()
-            r = random.random()
-            if r < 0.3:
-                enc.enemy = pick_enemy(npcs); enc.must_resolve = True; enc.spotted = random.random() < 0.6
-            elif r < 0.6:
-                enc.npc = pick_npc(npcs); enc.must_resolve = True
-            elif r < 0.7:
-                enc.event = random.choice(["ancient shrine","abandoned camp","strange circle of mushrooms"]); enc.must_resolve = True
-            enc.item_here = pick_item(items)
-            t.encounter = enc
-    grid[0][0].description = "A lonely milestone marks the trailhead."
-    grid[0][0].discovered = True
+            t.walkable = bool(walk[y][x]) if y < len(walk) and x < len(walk[y]) else True
+            cell = payload.get((x, y))
+            if cell:
+                enc = Encounter()
+                if cell.get('npc'):
+                    enc.npc = cell.get('npc'); enc.must_resolve = False
+                if cell.get('item'):
+                    enc.item_here = cell.get('item')
+                t.encounter = enc if (enc.npc or enc.item_here) else None
     return grid
 
 # ======================== UI helpers (MODULE-LEVEL) ========================
@@ -415,10 +410,14 @@ class Button:
 
 def draw_grid(surf, game):
     pg.draw.rect(surf, (26,26,32), (0,0, 980 - 360, 640))
-    for y in range(8):
-        for x in range(12):
-            rx, ry = x*44 + 12, y*44 + 12
-            r = pg.Rect(rx, ry, 40, 40)
+    W = getattr(game, 'W', 12); H = getattr(game, 'H', 8)
+    tile_px = max(20, min(60, int(getattr(game, 'tile_px', 40))))
+    stride = tile_px + 4
+    margin = 12
+    for y in range(H):
+        for x in range(W):
+            rx, ry = x*stride + margin, y*stride + margin
+            r = pg.Rect(rx, ry, tile_px, tile_px)
             tile = game.grid[y][x]
             base = (42,44,56) if tile.discovered else (28,30,38)
             pg.draw.rect(surf, base, r, border_radius=6)
@@ -427,9 +426,12 @@ def draw_grid(surf, game):
                 if tile.encounter.enemy:  pg.draw.circle(surf, (190,70,70),   (r.centerx, r.centery), 4)
                 elif tile.encounter.npc: pg.draw.circle(surf, (90,170,110),  (r.centerx, r.centery), 4)
                 elif tile.encounter.event: pg.draw.circle(surf, (160,130,200),(r.centerx, r.centery), 4)
-    px = game.player.x*44 + 12 + 20
-    py = game.player.y*44 + 12 + 20
-    pg.draw.circle(surf, (235,235,80), (px,py), 7)
+            if not tile.walkable:
+                pg.draw.line(surf, (80,86,108), (r.left+4, r.top+4), (r.right-4, r.bottom-4), 2)
+                pg.draw.line(surf, (80,86,108), (r.left+4, r.bottom-4), (r.right-4, r.top+4), 2)
+    px = game.player.x*stride + margin + tile_px//2
+    py = game.player.y*stride + margin + tile_px//2
+    pg.draw.circle(surf, (235,235,80), (px,py), max(4, tile_px//8))
 
 def draw_panel(surf, game):
     x0 = 980 - 360
@@ -582,8 +584,33 @@ class Game:
         self.enchants= load_enchants()
         self.magic   = load_magic()
         self.status  = load_status()
-        self.grid    = generate_world(self.items, self.npcs)
+        # Load start map from world_map.json and build grid from editor/runtime
+        start_map, entry_name, pos = get_game_start()
+        if not start_map:
+            start_map = "Jungle of Hills"  # fallback if not configured
+        scene = load_scene_by_name('map', start_map)
+        runtime = scene_to_runtime(scene)
+        self.W, self.H = int(runtime.get('width', 12)), int(runtime.get('height', 8))
+        self.tile_px = int(runtime.get('tile_size', 32))
+        self.grid    = grid_from_runtime(runtime, self.items, self.npcs)
         self.player  = Player()
+        # Position player: entry takes precedence, else pos, else (0,0)
+        if entry_name:
+            px, py = find_entry_coords(scene, entry_name)
+        elif pos:
+            try:
+                px, py = int(pos[0]), int(pos[1])
+            except Exception:
+                px, py = 0, 0
+        else:
+            px, py = 0, 0
+        self.player.x = max(0, min(self.W-1, px))
+        self.player.y = max(0, min(self.H-1, py))
+        # Mark starting tile discovered
+        try:
+            self.grid[self.player.y][self.player.x].discovered = True
+        except Exception:
+            pass
         self.log: List[str] = ["You arrive at the edge of the wilds."]
         self.mode = "explore"
         self.current_enemy_hp = 0
@@ -649,7 +676,7 @@ class Game:
         if not self.can_leave_tile():
             self.say("Resolve the encounter before moving on."); return
         nx, ny = self.player.x + dx, self.player.y + dy
-        if 0 <= nx < 12 and 0 <= ny < 8:
+        if 0 <= nx < getattr(self, 'W', 12) and 0 <= ny < getattr(self, 'H', 8):
             self.player.x, self.player.y = nx, ny
             t = self.tile(); t.discovered = True; t.visited += 1
             if t.encounter:
@@ -811,7 +838,7 @@ class Game:
         if random.random() < chance:
             self.say("You slip away into the brush.")
             self.mode = "explore"
-            if self.player.y+1 < 8: self.player.y += 1
+            if self.player.y+1 < getattr(self, 'H', 8): self.player.y += 1
         else:
             self.say("You fail to escape!")
             self.enemy_turn()
