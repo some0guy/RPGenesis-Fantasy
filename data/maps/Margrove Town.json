@@ -1,0 +1,834 @@
+{
+  "name": "Margrove Town",
+  "description": "",
+  "width": 10,
+  "height": 10,
+  "tile_size": 45,
+  "tiles": [
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [
+          {
+            "target_map": "Jungle of Hills.json",
+            "target_entry": ""
+          }
+        ],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": ""
+      }
+    ]
+  ]
+}

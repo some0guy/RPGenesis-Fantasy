@@ -1423,7 +1423,7 @@ class WorldScreen:
 # -------------------- App --------------------
 class App:
     def __init__(self):
-        self.screen = pygame.display.set_mode((1280, 720))
+        self.screen = pygame.display.set_mode((1280, 720), pygame.RESIZABLE)
         pygame.display.set_caption("RPGenesis – Map Editor (Pygame)")
         self.clock = pygame.time.Clock()
         self.running = True
@@ -1445,6 +1445,8 @@ class App:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                elif event.type == pygame.VIDEORESIZE:
+                    self.screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
                 elif self.editor_screen:
                     self.editor_screen.handle(event)
                 elif self.world_screen:

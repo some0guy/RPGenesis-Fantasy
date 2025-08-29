@@ -295,6 +295,7 @@ class Tile:
     visited: int = 0
     description: str = ""
     walkable: bool = False   # NEW: path support
+    has_link: bool = False   # link marker for UI
 
 @dataclass
 class Player:
@@ -368,6 +369,15 @@ def grid_from_runtime(runtime: Dict[str, Any], items: List[Dict], npcs: List[Dic
                 if cell.get('item'):
                     enc.item_here = cell.get('item')
                 t.encounter = enc if (enc.npc or enc.item_here) else None
+
+    # Mark link tiles for UI from runtime['links']
+    for link in (runtime.get('links') or []):
+        try:
+            (lx, ly), _to, _kind, _entry = link
+        except Exception:
+            continue
+        if 0 <= ly < H and 0 <= lx < W:
+            grid[ly][lx].has_link = True
     return grid
 
 # ======================== UI helpers (MODULE-LEVEL) ========================
@@ -409,34 +419,84 @@ class Button:
             self.cb()
 
 def draw_grid(surf, game):
-    pg.draw.rect(surf, (26,26,32), (0,0, 980 - 360, 640))
+    # Dynamic view area and camera
+    win_w, win_h = surf.get_size()
+    panel_w = 360
+    view_w = max(100, win_w - panel_w)
+    view_h = win_h
+    view_rect = pg.Rect(0, 0, view_w, view_h)
+    # Background for map area
+    pg.draw.rect(surf, (26,26,32), view_rect)
+
     W = getattr(game, 'W', 12); H = getattr(game, 'H', 8)
-    tile_px = max(20, min(60, int(getattr(game, 'tile_px', 40))))
-    stride = tile_px + 4
+    # Target visible tiles for a slightly zoomed view
+    vis_w_tiles = min(12, W)
+    vis_h_tiles = min(8, H)
     margin = 12
+    gap = 4
+    # Compute tile size to fit target number of tiles
+    tile_px = max(20, min(96,
+        int(min(
+            (view_w - 2*margin) / max(1, vis_w_tiles) - gap,
+            (view_h - 2*margin) / max(1, vis_h_tiles) - gap
+        ))
+    ))
+    stride = tile_px + gap
+    # Save on game for other UI uses
+    game.tile_px = tile_px
+
+    # Camera center on player
+    px_world = game.player.x * stride + margin + tile_px//2
+    py_world = game.player.y * stride + margin + tile_px//2
+    world_w = W * stride + 2*margin
+    world_h = H * stride + 2*margin
+    cam_x = max(0, min(px_world - view_w//2, max(0, world_w - view_w)))
+    cam_y = max(0, min(py_world - view_h//2, max(0, world_h - view_h)))
+
+    # Colors
+    COL_ENEMY = (190,70,70)
+    COL_NPC   = (90,170,110)
+    COL_EVENT = (160,130,200)
+    COL_LINK  = (255,160,70)  # match editor's link color
+
     for y in range(H):
         for x in range(W):
-            rx, ry = x*stride + margin, y*stride + margin
-            r = pg.Rect(rx, ry, tile_px, tile_px)
+            wx = x*stride + margin
+            wy = y*stride + margin
+            rx = wx - cam_x
+            ry = wy - cam_y
+            if rx > view_w or ry > view_h or rx + tile_px < 0 or ry + tile_px < 0:
+                continue
+            r = pg.Rect(int(rx), int(ry), tile_px, tile_px)
             tile = game.grid[y][x]
-            base = (42,44,56) if tile.discovered else (28,30,38)
-            pg.draw.rect(surf, base, r, border_radius=6)
-            pg.draw.rect(surf, (70,74,92), r, 1, border_radius=6)
+            # Invisible impassable tiles: skip base/border entirely
+            if tile.walkable:
+                base = (42,44,56) if tile.discovered else (28,30,38)
+                pg.draw.rect(surf, base, r, border_radius=6)
+                pg.draw.rect(surf, (70,74,92), r, 1, border_radius=6)
+            # Overlay markers
             if tile.encounter:
-                if tile.encounter.enemy:  pg.draw.circle(surf, (190,70,70),   (r.centerx, r.centery), 4)
-                elif tile.encounter.npc: pg.draw.circle(surf, (90,170,110),  (r.centerx, r.centery), 4)
-                elif tile.encounter.event: pg.draw.circle(surf, (160,130,200),(r.centerx, r.centery), 4)
-            if not tile.walkable:
-                pg.draw.line(surf, (80,86,108), (r.left+4, r.top+4), (r.right-4, r.bottom-4), 2)
-                pg.draw.line(surf, (80,86,108), (r.left+4, r.bottom-4), (r.right-4, r.top+4), 2)
-    px = game.player.x*stride + margin + tile_px//2
-    py = game.player.y*stride + margin + tile_px//2
-    pg.draw.circle(surf, (235,235,80), (px,py), max(4, tile_px//8))
+                if tile.encounter.enemy:
+                    pg.draw.circle(surf, COL_ENEMY, (r.centerx, r.centery), max(3, tile_px//10))
+                elif tile.encounter.npc:
+                    pg.draw.circle(surf, COL_NPC,   (r.centerx, r.centery), max(3, tile_px//10))
+                elif tile.encounter.event:
+                    pg.draw.circle(surf, COL_EVENT, (r.centerx, r.centery), max(3, tile_px//10))
+            if tile.has_link:
+                pg.draw.circle(surf, COL_LINK, (r.right-6, r.top+6), max(3, tile_px//12))
+
+    # Player marker
+    px = px_world - cam_x
+    py = py_world - cam_y
+    if 0 <= px <= view_w and 0 <= py <= view_h:
+        pg.draw.circle(surf, (235,235,80), (int(px), int(py)), max(4, tile_px//8))
 
 def draw_panel(surf, game):
-    x0 = 980 - 360
-    pg.draw.rect(surf, (18,18,24), (x0,0, 360, 640))
-    pg.draw.rect(surf, (70,74,92), (x0,0, 360, 640), 1)
+    win_w, win_h = surf.get_size()
+    panel_w = 360
+    x0 = max(0, win_w - panel_w)
+    pg.draw.rect(surf, (18,18,24), (x0,0, panel_w, win_h))
+    pg.draw.rect(surf, (70,74,92), (x0,0, panel_w, win_h), 1)
     header_font = pg.font.Font(None, 22)
     draw_text(surf, f"RPGenesis v{get_version()} – Field Log", (x0+16, 12), font=header_font)
 
@@ -576,7 +636,7 @@ def draw_inventory_panel(surf, game, x0):
 
 # ======================== Game class + loop ========================
 class Game:
-    def __init__(self):
+    def __init__(self, start_map: Optional[str]=None, start_entry: Optional[str]=None, start_pos: Optional[Tuple[int,int]]=None):
         random.seed()
         self.items   = gather_items()
         self.npcs    = gather_npcs()
@@ -585,10 +645,11 @@ class Game:
         self.magic   = load_magic()
         self.status  = load_status()
         # Load start map from world_map.json and build grid from editor/runtime
-        start_map, entry_name, pos = get_game_start()
-        if not start_map:
-            start_map = "Jungle of Hills"  # fallback if not configured
-        scene = load_scene_by_name('map', start_map)
+        wm_map, wm_entry, wm_pos = get_game_start()
+        sel_map = start_map or wm_map or "Jungle of Hills"
+        entry_name = start_entry if start_entry is not None else wm_entry
+        pos = start_pos if start_pos is not None else wm_pos
+        scene = load_scene_by_name('map', sel_map)
         runtime = scene_to_runtime(scene)
         self.W, self.H = int(runtime.get('width', 12)), int(runtime.get('height', 8))
         self.tile_px = int(runtime.get('tile_size', 32))
@@ -677,6 +738,13 @@ class Game:
             self.say("Resolve the encounter before moving on."); return
         nx, ny = self.player.x + dx, self.player.y + dy
         if 0 <= nx < getattr(self, 'W', 12) and 0 <= ny < getattr(self, 'H', 8):
+            # Block movement onto impassable tiles
+            try:
+                target = self.grid[ny][nx]
+                if not target.walkable:
+                    self.say("The terrain blocks your way."); return
+            except Exception:
+                pass
             self.player.x, self.player.y = nx, ny
             t = self.tile(); t.discovered = True; t.visited += 1
             if t.encounter:
@@ -864,10 +932,12 @@ class Game:
             self.say("You search thoroughly, but find nothing this time.")
 
 # ======================== Start game (UI) ========================
-def start_game():
+def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, start_pos: Optional[Tuple[int,int]]=None):
+    global pg
     if pg is None:
         try:
             import pygame as _pg  # late import to show friendly error
+            pg = _pg
         except ImportError:
             print("[ERR] pygame not installed. Run: pip install pygame")
             sys.exit(1)
@@ -875,16 +945,18 @@ def start_game():
     version = get_version()
     pg.init()
     pg.display.set_caption(f"RPGenesis {version} – Text RPG")
-    screen = pg.display.set_mode((980, 640))
+    screen = pg.display.set_mode((1120, 700), pg.RESIZABLE)
     clock = pg.time.Clock()
 
-    game = Game()
+    game = Game(start_map=start_map, start_entry=start_entry, start_pos=start_pos)
     running = True
     while running:
         dt = clock.tick(60)
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
+            elif event.type == pg.VIDEORESIZE:
+                screen = pg.display.set_mode((event.w, event.h), pg.RESIZABLE)
             elif event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE: 
                     if game.mode == "inventory":
@@ -911,6 +983,10 @@ def main(argv=None):
     ap.add_argument("--root", default=".", help="Project root")
     ap.add_argument("--validate-only", action="store_true", help="Run validation only, do not start UI")
     ap.add_argument("--strict", action="store_true", help="Treat warnings as fatal")
+    # Start overrides
+    ap.add_argument("--start-map", dest="start_map", help="Override starting map name")
+    ap.add_argument("--start-entry", dest="start_entry", help="Override starting entry name (if provided, takes precedence over position)")
+    ap.add_argument("--start-pos", dest="start_pos", nargs=2, type=int, metavar=("X","Y"), help="Override starting tile position X Y")
     args = ap.parse_args(argv)
     root = os.path.abspath(args.root)
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -927,7 +1003,7 @@ def main(argv=None):
         sys.exit(1)
 
     print("\n[OK] Validation passed. Launching game...")
-    start_game()
+    start_game(start_map=args.start_map, start_entry=args.start_entry, start_pos=tuple(args.start_pos) if args.start_pos else None)
 
 if __name__ == "__main__":
     main()
