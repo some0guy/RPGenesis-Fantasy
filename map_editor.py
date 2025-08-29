@@ -14,6 +14,7 @@ MAP_DIR  = os.path.join(DATA_DIR, "maps")
 NPC_DIR  = os.path.join(DATA_DIR, "npcs")
 ITEM_DIR = os.path.join(DATA_DIR, "items")
 MANIFEST = os.path.join(DATA_DIR, "maps.json")
+TILE_IMG_DIR = os.path.join(ROOT_DIR, "assets", "images", "map_tiles")
 
 os.makedirs(MAP_DIR, exist_ok=True)
 
@@ -112,6 +113,7 @@ class TileData:
     links: List[Dict[str, Any]] = field(default_factory=list)  # max 1 enforced in UI
     note: str = ""  # per-tile note/description
     encounter: str = ""  # "safe" | "danger" | "" (none)
+    texture: str = ""  # filename from assets/images/map_tiles
 
 @dataclass
 class MapData:
@@ -141,6 +143,7 @@ class MapData:
                 "links": t.links,
                 "note": t.note,
                 "encounter": t.encounter,
+                "texture": t.texture,
             } for t in row] for row in self.tiles],
         }
 
@@ -164,6 +167,7 @@ class MapData:
                     links=list(cell.get("links", [])),
                     note=str(cell.get("note", "")),
                     encounter=str(cell.get("encounter", "")),
+                    texture=str(cell.get("texture", "")),
                 ))
             tiles.append(row)
         return MapData(name=name, description=desc, width=w, height=h, tile_size=ts, tiles=tiles)
@@ -228,12 +232,27 @@ class History:
 
 # -------------------- Pygame UI --------------------
 pygame.init()
-pygame.display.set_caption("RPGenesis – Map Editor (Pygame)")
+pygame.display.set_caption("RPGenesis - Map Editor (Pygame)")
 FONT = pygame.font.SysFont("segoeui", 16)
 FONT_BOLD = pygame.font.SysFont("segoeui", 18, bold=True)
 
 def draw_text(surface, text, pos, color=TEXT_MAIN, font=FONT):
     surface.blit(font.render(text, True, color), pos)
+
+# ---------- Mouse position provider (to support window scaling) ----------
+_mouse_pos_provider = None  # type: Optional[Callable[[], Tuple[int,int]]]
+
+def set_mouse_pos_provider(fn: Optional[Callable[[], Tuple[int,int]]]):
+    global _mouse_pos_provider
+    _mouse_pos_provider = fn
+
+def get_mouse_pos() -> Tuple[int,int]:
+    if _mouse_pos_provider:
+        try:
+            return _mouse_pos_provider()
+        except Exception:
+            pass
+    return pygame.mouse.get_pos()
 
 # ---------- UI widgets ----------
 class Button:
@@ -302,7 +321,7 @@ class TextArea:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             self.active = self.rect.collidepoint(event.pos)
         elif event.type == pygame.MOUSEWHEEL:
-            if self.rect.collidepoint(pygame.mouse.get_pos()):
+            if self.rect.collidepoint(get_mouse_pos()):
                 self.scroll = max(0, self.scroll - event.y * 20)
         elif self.active and event.type == pygame.KEYDOWN:
             if event.key == pygame.K_BACKSPACE:
@@ -356,7 +375,7 @@ class TextArea:
         surf.set_clip(clip)
 
 class Dropdown:
-    def __init__(self, rect, options, value=None, on_change=None):
+    def __init__(self, rect, options, value=None, on_change=None, get_icon=None):
         self.rect = pygame.Rect(rect)
         self.options = options[:]
         self.value = value if value in options else (options[0] if options else "")
@@ -365,6 +384,8 @@ class Dropdown:
         self.hover = False
         self.popup_rects: List[pygame.Rect] = []
         self.popup_upwards = False
+        # Optional callable: (opt: str, size_px: int) -> pygame.Surface | None
+        self.get_icon = get_icon
     def is_open(self):
         return self.opened
     def close(self):
@@ -386,7 +407,19 @@ class Dropdown:
     def draw_base(self, surf):
         pygame.draw.rect(surf, BTN_HOVER if self.hover else BTN_BG, self.rect, border_radius=6)
         pygame.draw.rect(surf, GRID_LINE, self.rect, 1, border_radius=6)
-        draw_text(surf, self.value, (self.rect.x+8, self.rect.y+6))
+        x_text = self.rect.x + 8
+        # Small icon inside base (if available)
+        if self.get_icon and self.value:
+            try:
+                size = max(12, self.rect.h - 8)
+                ico = self.get_icon(self.value, size)
+                if ico is not None:
+                    y = self.rect.y + (self.rect.h - ico.get_height()) // 2
+                    surf.blit(ico, (x_text, y))
+                    x_text += ico.get_width() + 6
+            except Exception:
+                pass
+        draw_text(surf, self.value, (x_text, self.rect.y+6))
         self.popup_rects.clear()
         if not self.opened: return
         screen_h = surf.get_height()
@@ -399,10 +432,27 @@ class Dropdown:
             y += -self.rect.h if self.popup_upwards else self.rect.h
     def draw_popup(self, surf):
         if not self.opened: return
+        # Compute hover based on current mouse position for immediate feedback
+        try:
+            mx, my = get_mouse_pos()
+        except Exception:
+            mx, my = pygame.mouse.get_pos()
         for r, opt in zip(self.popup_rects, self.options):
-            pygame.draw.rect(surf, PANEL_BG, r)
+            hovered = r.collidepoint((mx, my))
+            pygame.draw.rect(surf, BTN_HOVER if hovered else PANEL_BG, r)
             pygame.draw.rect(surf, GRID_LINE, r, 1)
-            draw_text(surf, opt, (r.x+8, r.y+6))
+            x = r.x + 8
+            if self.get_icon:
+                try:
+                    size = max(12, r.h - 8)
+                    ico = self.get_icon(opt, size)
+                    if ico is not None:
+                        y = r.y + (r.h - ico.get_height()) // 2
+                        surf.blit(ico, (x, y))
+                        x += ico.get_width() + 6
+                except Exception:
+                    pass
+            draw_text(surf, opt, (x, r.y+6))
 
 class ScrollListWithButtons:
     """Scrollable list that renders labels with Remove buttons; provides wheel scrolling.
@@ -429,7 +479,7 @@ class ScrollListWithButtons:
         return None
     def handle(self, event):
         if event.type == pygame.MOUSEWHEEL:
-            if self.rect.collidepoint(pygame.mouse.get_pos()):
+            if self.rect.collidepoint(get_mouse_pos()):
                 self.scroll = max(0, self.scroll - event.y * 24)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             x, y = event.pos
@@ -449,10 +499,15 @@ class ScrollListWithButtons:
         clip = surf.get_clip()
         surf.set_clip(self.rect)
         y_start = self.rect.y - self.scroll
+        try:
+            mx, my = get_mouse_pos()
+        except Exception:
+            mx, my = pygame.mouse.get_pos()
         for i, (label, _) in enumerate(self.items):
             row_y = y_start + i * (self.item_h + self.spacing)
             row_rect = pygame.Rect(self.rect.x+6, row_y, self.rect.w-12, self.item_h)
-            pygame.draw.rect(surf, PANEL_BG, row_rect, border_radius=6)
+            hovered = row_rect.collidepoint((mx, my))
+            pygame.draw.rect(surf, BTN_HOVER if hovered else PANEL_BG, row_rect, border_radius=6)
             draw_text(surf, label[:60], (row_rect.x+8, row_rect.y+4))
             btn_rect = pygame.Rect(row_rect.right-70, row_rect.y, 64, self.item_h)
             pygame.draw.rect(surf, DANGER, btn_rect, border_radius=6)
@@ -463,28 +518,53 @@ class ScrollListWithButtons:
 class StartScreen:
     def __init__(self, app):
         self.app = app
+        # Initial positions; will be centered each frame
         self.btn_refresh = Button((60, 120, 140, 32), "Refresh", self.refresh)
         self.btn_open   = Button((210, 120, 160, 32), "Open Selected", self.open_selected)
         self.btn_create = Button((60, 410, 180, 36), "Create New Map", self.create_map)
         self.btn_world  = Button((250, 410, 180, 36), "World View", self.open_world_view)
         self.maps_list = ListBox((60, 160, 520, 230))
         self.refresh()
+    def _apply_layout(self, surf):
+        w, h = surf.get_size()
+        list_w = 520
+        left = max(0, (w - list_w) // 2)
+        # Center list
+        self.maps_list.rect.topleft = (left, 160)
+        # Top row buttons
+        self.btn_refresh.rect.topleft = (left, 120)
+        self.btn_open.rect.topleft    = (left + 150, 120)
+        # Bottom row buttons (center under list)
+        self.btn_create.rect.topleft  = (left, 410)
+        self.btn_world.rect.topleft   = (left + 190, 410)
     def refresh(self):
         obj = read_json_any(MANIFEST, {"maps": []})
         self.maps = obj.get("maps", [])
-        items = [f"{m.get('name','(unnamed)')} — {m.get('file','?')}" for m in self.maps]
+        items = [f"{m.get('name','(unnamed)')} - {m.get('file','?')}" for m in self.maps]
         self.maps_list.set_items(items)
     def draw(self, surf):
         surf.fill(PAPER_BG)
-        draw_text(surf, "RPGenesis – Maps", (20, 10), TEXT_MAIN, FONT_BOLD)
-        draw_text(surf, "Select a map or create a new one.", (60, 70), TEXT_DIM)
+        self._apply_layout(surf)
+        left = self.maps_list.rect.x
+        # Header centered above list
+        title = "RPGenesis - Maps"
+        tip   = "Select a map or create a new one."
+        draw_text(surf, title, (left, 10), TEXT_MAIN, FONT_BOLD)
+        draw_text(surf, tip,   (left, 70), TEXT_DIM)
+        # Controls
         self.btn_refresh.draw(surf); self.btn_open.draw(surf)
         self.maps_list.draw(surf)
-        pygame.draw.rect(surf, PANEL_BG, (60, 400, 520, 70), border_radius=8)
-        pygame.draw.rect(surf, GRID_LINE, (60, 400, 520, 70), 1, border_radius=8)
+        panel_rect = pygame.Rect(left, 400, self.maps_list.rect.w, 70)
+        pygame.draw.rect(surf, PANEL_BG, panel_rect, border_radius=8)
+        pygame.draw.rect(surf, GRID_LINE, panel_rect, 1, border_radius=8)
         self.btn_create.draw(surf)
         self.btn_world.draw(surf)
     def handle(self, event):
+        # Ensure layout reflects current window size before hit testing
+        try:
+            self._apply_layout(self.app.screen)
+        except Exception:
+            pass
         self.btn_refresh.handle(event); self.btn_open.handle(event); self.maps_list.handle(event); self.btn_create.handle(event); self.btn_world.handle(event)
     def update(self, dt): pass
     def open_selected(self):
@@ -532,8 +612,8 @@ class EditorScreen:
         self.resize_h_inp = TextInput((825, 12, 60, 28), str(self.map.height))
         self.btn_resize   = Button((890, 12, 110, 28), "Apply Size", self.apply_resize)
 
-        # cursor mode: only two - Select / Paint
-        self.left_click_mode = "select"  # "select" or "paint"
+        # cursor mode: Select / Walls / Safety / Texture
+        self.left_click_mode = "select"
         self.btn_cycle_left_mode = Button((1010, 12, 180, 28), "Mode: Select", self.cycle_left_mode)
 
         # right panel categories (adders)
@@ -559,17 +639,36 @@ class EditorScreen:
         self.link_entry_inp = TextInput((1150, 180, 110, 26), "")
         self.btn_add_link   = Button((920, 214, 180, 28), "Add Link to Tile", self.add_link_to_selected)
 
+        # Texture painting: dropdown of PNGs in assets/images/map_tiles
+        try:
+            files = [f for f in os.listdir(TILE_IMG_DIR) if f.lower().endswith(".png")]
+        except Exception:
+            files = []
+        self.texture_files: List[str] = sorted(files)
+        default_tex = self.texture_files[0] if self.texture_files else ""
+        # Place above inspector section
+        self.dd_texture = Dropdown((920, 412, 260, 26), self.texture_files, value=default_tex, on_change=None, get_icon=self._get_texture_icon)
+        # texture cache: original images and scaled per tile_size
+        self._tex_images: Dict[str, pygame.Surface] = {}
+        self._tex_scaled: Dict[Tuple[str, int], pygame.Surface] = {}
+        for name in self.texture_files:
+            try:
+                surf = pygame.image.load(os.path.join(TILE_IMG_DIR, name)).convert_alpha()
+                self._tex_images[name] = surf
+            except Exception:
+                pass
+
         # Tile Info (scrollable list)
         self.inspector_header_rect = pygame.Rect(900, 450, 380, 32)
         self.scroll_list = ScrollListWithButtons(pygame.Rect(900, 484, 380, 140))  # wheel scrollable
         self.btn_edit_note    = Button((900, 630, 120, 26), "Edit Note", self.open_note_modal)
-        # Encounter marker controls
-        self.btn_mark_safe    = Button((900, 454, 110, 26), "Mark Safe", lambda: self.set_encounter('safe'))
-        self.btn_mark_danger  = Button((1016, 454, 130, 26), "Mark Danger", lambda: self.set_encounter('danger'))
-        self.btn_clear_marker = Button((1152, 454, 128, 26), "Clear", lambda: self.set_encounter(''))
-
+      
         # Map description at bottom
         self.desc_area = TextArea((900, 662, 380, 48), self.map.description)
+
+        # Default regions (updated each frame for responsive layout)
+        self.canvas_rect = pygame.Rect(0, 50, 900, 670)
+        self.sidebar_rect = pygame.Rect(900, 50, 380, 670)
 
         # note modal state
         self.note_modal_open = False
@@ -594,14 +693,84 @@ class EditorScreen:
             self.list_box.set_items([])
 
     # ---------- helpers ----------
+    def _get_texture_icon(self, opt: str, size: int) -> Optional[pygame.Surface]:
+        try:
+            key = (opt, size)
+            tex = self._tex_scaled.get(key)
+            if tex is None:
+                base = self._tex_images.get(opt)
+                if base is None:
+                    path = os.path.join(TILE_IMG_DIR, opt)
+                    if os.path.exists(path):
+                        base = pygame.image.load(path).convert_alpha()
+                        self._tex_images[opt] = base
+                if base is not None:
+                    tex = pygame.transform.smoothscale(base, (size, size))
+                    self._tex_scaled[key] = tex
+            return tex
+        except Exception:
+            return None
+
+    def _apply_layout(self, surf):
+        w, h = surf.get_size()
+        top_h = 50
+        sb_w = 380
+        # Sidebar flush to right edge, canvas fills the rest from left edge
+        self.sidebar_rect = pygame.Rect(max(0, w - sb_w), top_h, sb_w, max(0, h - top_h))
+        self.canvas_rect = pygame.Rect(0, top_h, max(0, w - sb_w), max(0, h - top_h))
+
+        # Top bar controls anchored to window edges (fixed sizes)
+        self.name_inp.rect.topleft = (80, 12)
+        self.btn_save.rect.topleft = (340, 12)
+        self.btn_back.rect.topleft = (450, 12)
+        self.btn_undo.rect.topleft = (580, 12)
+        self.btn_redo.rect.topleft = (665, 12)
+        self.resize_w_inp.rect.topleft = (760, 12)
+        self.resize_h_inp.rect.topleft = (825, 12)
+        self.btn_resize.rect.topleft   = (890, 12)
+        self.btn_cycle_left_mode.rect.x = max(0, w - self.btn_cycle_left_mode.rect.w - 16)
+        self.btn_cycle_left_mode.rect.y = 12
+
+        # Sidebar widgets
+        sx = self.sidebar_rect.x + 20
+        sy = self.sidebar_rect.y
+        self.btn_cat_npcs.rect.topleft  = (sx, sy + 10)
+        self.btn_cat_items.rect.topleft = (sx, sy + 45)
+        self.btn_cat_links.rect.topleft = (sx, sy + 80)
+        self.dd_npc_sub.rect.topleft  = (sx, sy + 130)
+        self.dd_item_sub.rect.topleft = (sx, sy + 130)
+        self.list_box.rect.topleft = (sx, sy + 164)
+        self.list_box.rect.size = (self.sidebar_rect.w - 40, self.list_box.rect.h)
+        self.btn_add_to_tile.rect.topleft = (sx, sy + 330)
+        # Links
+        self.dd_link_map.rect.topleft = (sx, sy + 130)
+        self.link_entry_inp.rect.topleft = (self.sidebar_rect.right - self.link_entry_inp.rect.w - 20, sy + 130)
+        self.btn_add_link.rect.topleft = (sx, sy + 164)
+        # Texture picker
+        self.dd_texture.rect.topleft = (sx, sy + 362)
+        # Inspector header and scroll list
+        self.inspector_header_rect = pygame.Rect(self.sidebar_rect.x, sy + 400, self.sidebar_rect.w, 32)
+        self.scroll_list.rect = pygame.Rect(self.sidebar_rect.x, sy + 434, self.sidebar_rect.w, 140)
+        # Note + description
+        self.btn_edit_note.rect.topleft = (self.sidebar_rect.x + 0, sy + 580)
+        self.desc_area.rect = pygame.Rect(self.sidebar_rect.x, sy + 612, self.sidebar_rect.w, 48)
+
     def any_dropdown_open(self) -> bool:
-        return self.dd_npc_sub.is_open() or self.dd_item_sub.is_open() or self.dd_link_map.is_open()
+        return (
+            self.dd_npc_sub.is_open() or self.dd_item_sub.is_open() or self.dd_link_map.is_open()
+            or getattr(self.dd_texture, 'is_open', lambda: False)()
+        )
 
     def cycle_left_mode(self):
-        modes = ["select", "paint", "safety"]
+        modes = ["select", "paint", "safety", "texture"]
         idx = modes.index(self.left_click_mode)
         self.left_click_mode = modes[(idx+1)%len(modes)]
-        label = {"select":"Mode: Select", "paint":"Mode: Walls", "safety":"Mode: Safety"}[self.left_click_mode]
+        label = {
+            "select":"Mode: Select",
+            "paint":"Mode: Walls",
+            "safety":"Mode: Safety",
+            "texture":"Mode: Texture",
+        }[self.left_click_mode]
         self.btn_cycle_left_mode.text = label
 
     def _switch_category(self, label: str):
@@ -656,6 +825,19 @@ class EditorScreen:
             return
         def do():  setattr(t, "encounter", new)
         def undo(): setattr(t, "encounter", old)
+        if batch:
+            self.history.add_to_batch(do, undo)
+        else:
+            self.history.push(do, undo, label)
+
+    def _record_set_texture(self, x:int, y:int, tex: str, *, batch=False, label="texture"):
+        t = self.map.tiles[y][x]
+        old = getattr(t, 'texture', "")
+        new = tex
+        if old == new:
+            return
+        def do():  setattr(t, 'texture', new)
+        def undo(): setattr(t, 'texture', old)
         if batch:
             self.history.add_to_batch(do, undo)
         else:
@@ -891,8 +1073,8 @@ class EditorScreen:
 
     # ---------- tooltip helpers ----------
     def _hovered_tile(self) -> Optional[Tuple[int,int]]:
-        canvas_rect = pygame.Rect(0, 60, 900, 670)
-        mx, my = pygame.mouse.get_pos()
+        canvas_rect = self.canvas_rect
+        mx, my = get_mouse_pos()
         if not canvas_rect.collidepoint((mx, my)):
             return None
         return self.screen_to_tile(mx, my)
@@ -920,7 +1102,7 @@ class EditorScreen:
         w = max(FONT.size(s)[0] for s in lines) + pad*2
         h = line_h * len(lines) + pad*2 + (len(lines)-1)*2
 
-        mx, my = pygame.mouse.get_pos()
+        mx, my = get_mouse_pos()
         x0 = mx + 16
         y0 = my + 16
         sw, sh = surf.get_size()
@@ -940,7 +1122,9 @@ class EditorScreen:
 
     # ---------- render ----------
     def draw_canvas(self, surf):
-        canvas_rect = pygame.Rect(0,50,900,670)
+        # Update layout and use current canvas rect
+        self._apply_layout(surf)
+        canvas_rect = self.canvas_rect
         pygame.draw.rect(surf, CANVAS_BG, canvas_rect)
         clip = surf.get_clip()
         surf.set_clip(canvas_rect)
@@ -951,6 +1135,27 @@ class EditorScreen:
                 r = self.tile_rect(x,y)
                 color = (LIGHT_WALKABLE if (x+y)%2==0 else DARK_WALKABLE) if self.map.tiles[y][x].walkable else IMPASSABLE
                 pygame.draw.rect(surf, color, r)
+                # draw texture if present
+                try:
+                    tex_name = getattr(self.map.tiles[y][x], 'texture', "")
+                    if tex_name:
+                        key = (tex_name, self.tile_size)
+                        tex = self._tex_scaled.get(key)
+                        if tex is None:
+                            base = self._tex_images.get(tex_name)
+                            if base is None:
+                                # lazy-load if missing from initial cache
+                                path = os.path.join(TILE_IMG_DIR, tex_name)
+                                if os.path.exists(path):
+                                    base = pygame.image.load(path).convert_alpha()
+                                    self._tex_images[tex_name] = base
+                            if base is not None:
+                                tex = pygame.transform.smoothscale(base, (r.w, r.h))
+                                self._tex_scaled[key] = tex
+                        if tex is not None:
+                            surf.blit(tex, (r.x, r.y))
+                except Exception:
+                    pass
                 pygame.draw.rect(surf, GRID_LINE, r, 1)
                 # encounter tint overlay
                 if self.map.tiles[y][x].encounter:
@@ -959,7 +1164,7 @@ class EditorScreen:
                     tint_surf.fill(tint)
                     surf.blit(tint_surf, (r.x, r.y))
 
-        # overlays (wrapped colored dots)
+        # overlays (centered colored dots)
         for y in range(self.map.height):
             for x in range(self.map.width):
                 t = self.map.tiles[y][x]
@@ -985,23 +1190,50 @@ class EditorScreen:
                 dots = [TYPE_DOT_COLORS[k] for k in order if k in has]
 
                 if dots:
-                    cols = 3
-                    pad  = max(2, self.tile_size // 16)
-                    radius = max(2, self.tile_size // 8)
-                    rows_needed = math.ceil(len(dots) / cols)
-                    def grid_h(r): return rows_needed * (2*r + pad) - pad
-                    while radius > 2 and grid_h(radius) > (self.tile_size - 2*pad):
-                        radius -= 1
-                    # top-left origin
-                    x0 = r.x + pad + radius
-                    y0 = r.y + pad + radius
-                    for i, col in enumerate(dots):
-                        row = i // cols
-                        col_idx = i % cols
-                        cx = x0 + col_idx * (2*radius + pad)
-                        cy = y0 + row     * (2*radius + pad)
-                        pygame.draw.circle(surf, (10,10,12), (cx, cy), radius+1)
-                        pygame.draw.circle(surf, col,        (cx, cy), radius)
+                    pad = max(2, self.tile_size // 16)
+                    n = len(dots)
+                    # Determine row distribution (centered), with special-cases
+                    if n <= 2:
+                        row_counts = [n]  # 1 or 2 side-by-side
+                    else:
+                        rows = math.ceil(math.sqrt(n))
+                        base = n // rows
+                        extra = n % rows
+                        # Put smaller rows on top for triangle-like layouts (e.g., 3 => [1,2])
+                        row_counts = [base] * (rows - extra) + [base + 1] * extra
+                    rows_count = len(row_counts)
+                    max_cols = max(row_counts)
+                    # Compute radius to fit all rows/cols with padding, but cap to a friendly max
+                    avail_w = self.tile_size - 2 * pad
+                    avail_h = self.tile_size - 2 * pad
+                    gap = max(2, self.tile_size // 16)
+                    if max_cols > 0:
+                        r_w = (avail_w - (max_cols - 1) * gap) / (2 * max_cols)
+                    else:
+                        r_w = self.tile_size // 8
+                    if rows_count > 0:
+                        r_h = (avail_h - (rows_count - 1) * gap) / (2 * rows_count)
+                    else:
+                        r_h = self.tile_size // 8
+                    radius = int(max(2, min(r_w, r_h, self.tile_size // 8)))
+                    gap_x = 2 * radius + gap
+                    gap_y = 2 * radius + gap
+                    # Vertical start so rows are centered
+                    total_h = rows_count * (2 * radius) + (rows_count - 1) * gap
+                    start_y = r.y + (r.h - total_h) // 2 + radius
+                    idx = 0
+                    for ri, count in enumerate(row_counts):
+                        # Center columns within the row
+                        total_w = count * (2 * radius) + (count - 1) * gap
+                        start_x = r.x + (r.w - total_w) // 2 + radius
+                        cy = start_y + ri * gap_y
+                        for cj in range(count):
+                            if idx >= n: break
+                            cx = start_x + cj * gap_x
+                            col = dots[idx]
+                            pygame.draw.circle(surf, (10,10,12), (int(cx), int(cy)), radius+1)
+                            pygame.draw.circle(surf, col,        (int(cx), int(cy)), radius)
+                            idx += 1
 
         # selection outline
         if self.selected and (0 <= self.selected[0] < self.map.width) and (0 <= self.selected[1] < self.map.height):
@@ -1011,7 +1243,8 @@ class EditorScreen:
         surf.set_clip(clip)
 
     def draw_top_bar(self, surf):
-        pygame.draw.rect(surf, PANEL_BG, (0,0,1280,50))
+        w, _h = surf.get_size()
+        pygame.draw.rect(surf, PANEL_BG, (0,0,w,50))
         draw_text(surf, "Name:", (14, 18), TEXT_DIM)
         draw_text(surf, "Size W×H:", (520, 18), TEXT_DIM)
         self.name_inp.draw(surf)
@@ -1021,27 +1254,59 @@ class EditorScreen:
         self.btn_cycle_left_mode.draw(surf)
 
     def draw_right_panel(self, surf):
-        sidebar = pygame.Rect(900,50,380,670)
+        # Ensure layout up to date and use anchored sidebar rect
+        self._apply_layout(surf)
+        sidebar = self.sidebar_rect
         pygame.draw.rect(surf, PANEL_BG, sidebar); pygame.draw.rect(surf, GRID_LINE, sidebar, 1)
 
         # categories area (adders)
         self.btn_cat_npcs.draw(surf); self.btn_cat_items.draw(surf); self.btn_cat_links.draw(surf)
+        label_x = self.sidebar_rect.x + 20
+        label_y = self.sidebar_rect.y + 110
         if self.category == "NPCs":
-            draw_text(surf, "Subcategory", (920, 160), TEXT_DIM)
+            draw_text(surf, "Subcategory", (label_x, label_y), TEXT_DIM)
             self.dd_npc_sub.draw_base(surf)
             self.list_box.draw(surf)
             self.btn_add_to_tile.draw(surf)
         elif self.category == "Items":
-            draw_text(surf, "Subcategory", (920, 160), TEXT_DIM)
+            draw_text(surf, "Subcategory", (label_x, label_y), TEXT_DIM)
             self.dd_item_sub.draw_base(surf)
             self.list_box.draw(surf)
             self.btn_add_to_tile.draw(surf)
         else:
-            draw_text(surf, "Target Map", (920, 160), TEXT_DIM)
+            draw_text(surf, "Target Map", (label_x, label_y), TEXT_DIM)
             self.dd_link_map.draw_base(surf)
-            draw_text(surf, "Target Entry (opt)", (1150, 160), TEXT_DIM)
+            draw_text(surf, "Target Entry (opt)", (self.link_entry_inp.rect.x, label_y), TEXT_DIM)
             self.link_entry_inp.draw(surf)
             self.btn_add_link.draw(surf)
+
+        # texture selector (visible for texture mode)
+        if self.left_click_mode == "texture":
+            draw_text(surf, "Texture", (label_x, self.dd_texture.rect.y - 20), TEXT_DIM)
+            self.dd_texture.draw_base(surf)
+            # Mini preview box next to dropdown
+            prev_rect = pygame.Rect(self.dd_texture.rect.right + 8, self.dd_texture.rect.y, self.dd_texture.rect.h, self.dd_texture.rect.h)
+            pygame.draw.rect(surf, PANEL_BG_DARK, prev_rect, border_radius=6)
+            pygame.draw.rect(surf, GRID_LINE, prev_rect, 1, border_radius=6)
+            tex_name = getattr(self.dd_texture, 'value', "")
+            if tex_name:
+                try:
+                    key = (tex_name, prev_rect.h)
+                    tex = self._tex_scaled.get(key)
+                    if tex is None:
+                        base = self._tex_images.get(tex_name)
+                        if base is None:
+                            path = os.path.join(TILE_IMG_DIR, tex_name)
+                            if os.path.exists(path):
+                                base = pygame.image.load(path).convert_alpha()
+                                self._tex_images[tex_name] = base
+                        if base is not None:
+                            tex = pygame.transform.smoothscale(base, (prev_rect.w, prev_rect.h))
+                            self._tex_scaled[key] = tex
+                    if tex is not None:
+                        surf.blit(tex, (prev_rect.x, prev_rect.y))
+                except Exception:
+                    pass
 
         # inspector header & scroll list (Tile Info)
         pygame.draw.rect(surf, PANEL_BG_DARK, self.inspector_header_rect, border_radius=8)
@@ -1049,10 +1314,7 @@ class EditorScreen:
         x0 = self.inspector_header_rect.x + 8
         y0 = self.inspector_header_rect.y + 8
         draw_text(surf, "Tile Info", (x0, y0), TEXT_MAIN, FONT_BOLD)
-        # encounter buttons row between header and list
-        self.btn_mark_safe.draw(surf)
-        self.btn_mark_danger.draw(surf)
-        self.btn_clear_marker.draw(surf)
+        # encounter buttons removed
         if self.selected and (0 <= self.selected[0] < self.map.width) and (0 <= self.selected[1] < self.map.height):
             x,y = self.selected
             t = self.map.tiles[y][x]
@@ -1067,7 +1329,7 @@ class EditorScreen:
         self.btn_edit_note.draw(surf)
 
         # description (placed at bottom; no overlaps)
-        draw_text(surf, "Map Description", (900, 644), TEXT_DIM)
+        draw_text(surf, "Map Description", (self.desc_area.rect.x, self.desc_area.rect.y - 18), TEXT_DIM)
         self.desc_area.draw(surf)
 
         # dropdown popups last so they overlay
@@ -1077,8 +1339,12 @@ class EditorScreen:
             self.dd_item_sub.draw_popup(surf)
         else:
             self.dd_link_map.draw_popup(surf)
+        # texture dropdown popup
+        if self.left_click_mode == "texture":
+            self.dd_texture.draw_popup(surf)
 
     def draw(self, surf):
+        self._apply_layout(surf)
         surf.fill(PAPER_BG)
         # draw in order: canvas, right panel, top bar
         self.draw_canvas(surf)
@@ -1108,6 +1374,9 @@ class EditorScreen:
             self.note_btn_save.handle(event)
             self.note_btn_cancel.handle(event)
             return
+
+        # Ensure layout is up-to-date for hit testing
+        self._apply_layout(self.app.screen)
 
         # hotkeys
         if event.type == pygame.KEYDOWN:
@@ -1142,6 +1411,9 @@ class EditorScreen:
             self.dd_item_sub.handle(event)
         else:
             self.dd_link_map.handle(event)
+        # texture dropdown input
+        if self.left_click_mode == "texture":
+            self.dd_texture.handle(event)
 
         dropdown_open = self.any_dropdown_open()
 
@@ -1156,16 +1428,14 @@ class EditorScreen:
         if event.type == pygame.MOUSEWHEEL or not dropdown_open:
             self.scroll_list.handle(event)
             self.btn_edit_note.handle(event)
-            self.btn_mark_safe.handle(event)
-            self.btn_mark_danger.handle(event)
-            self.btn_clear_marker.handle(event)
 
         # description
         if not dropdown_open:
             self.desc_area.handle(event)
 
         # canvas interactions
-        canvas_rect = pygame.Rect(0,50,900,670)
+        self._apply_layout(self.app.screen)
+        canvas_rect = self.canvas_rect
 
         # Middle mouse panning
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 2 and canvas_rect.collidepoint(event.pos):
@@ -1213,6 +1483,22 @@ class EditorScreen:
                     if t:
                         self._record_tile_walkable(*t, to_walk, batch=True)
                         self.selected = t
+            elif self.left_click_mode == "texture":
+                if event.button in (1,3):
+                    self.left_dragging = True
+                    self.painting_button = event.button
+                    if not self.painting_batch_active:
+                        self.painting_batch_active = True
+                        self.history.begin_batch("texture_drag")
+                    t = self.screen_to_tile(*event.pos)
+                    if t:
+                        if event.button == 3:
+                            self._record_set_texture(*t, "", batch=True)
+                        else:
+                            tex = getattr(self.dd_texture, 'value', "")
+                            if tex:
+                                self._record_set_texture(*t, tex, batch=True)
+                        self.selected = t
 
         elif event.type == pygame.MOUSEMOTION and self.left_dragging and self.left_click_mode == "paint":
             t = self.screen_to_tile(*event.pos)
@@ -1228,6 +1514,17 @@ class EditorScreen:
                     self._record_set_encounter(*t, state, batch=True)
                     self.selected = t
 
+        elif event.type == pygame.MOUSEMOTION and self.left_dragging and self.left_click_mode == "texture":
+                t = self.screen_to_tile(*event.pos)
+                if t:
+                    if getattr(self, 'painting_button', 1) == 3:
+                        self._record_set_texture(*t, "", batch=True)
+                    else:
+                        tex = getattr(self.dd_texture, 'value', "")
+                        if tex:
+                            self._record_set_texture(*t, tex, batch=True)
+                    self.selected = t
+
 
 
         elif event.type == pygame.MOUSEBUTTONUP and event.button in (1,3):
@@ -1238,7 +1535,7 @@ class EditorScreen:
             self.left_dragging = False
 
         elif event.type == pygame.MOUSEWHEEL:
-            mouse_x, mouse_y = pygame.mouse.get_pos()
+            mouse_x, mouse_y = get_mouse_pos()
             if canvas_rect.collidepoint((mouse_x, mouse_y)):
                 old_ts = self.tile_size
                 world_x = (mouse_x - self.offset_x) / old_ts
@@ -1287,7 +1584,7 @@ class ListBox:
         return None
     def handle(self, event):
         if event.type == pygame.MOUSEWHEEL:
-            if self.rect.collidepoint(pygame.mouse.get_pos()):
+            if self.rect.collidepoint(get_mouse_pos()):
                 self.scroll = max(0, self.scroll - event.y * 24)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if not self.rect.collidepoint(event.pos):
@@ -1306,10 +1603,16 @@ class ListBox:
         clip = surf.get_clip()
         surf.set_clip(self.rect)
         y0 = self.rect.y - self.scroll
+        try:
+            mx, my = get_mouse_pos()
+        except Exception:
+            mx, my = pygame.mouse.get_pos()
         for i, label in enumerate(self.items):
             row_y = y0 + i * (self.item_h + self.spacing)
             row_rect = pygame.Rect(self.rect.x+6, row_y, self.rect.w-12, self.item_h)
-            pygame.draw.rect(surf, BTN_HOVER if i == self.selected else PANEL_BG, row_rect, border_radius=6)
+            hovered = row_rect.collidepoint((mx, my))
+            base = BTN_HOVER if (hovered or i == self.selected) else PANEL_BG
+            pygame.draw.rect(surf, base, row_rect, border_radius=6)
             draw_text(surf, label[:60], (row_rect.x+8, row_rect.y+4))
         surf.set_clip(clip)
 
@@ -1423,8 +1726,17 @@ class WorldScreen:
 # -------------------- App --------------------
 class App:
     def __init__(self):
+        # Window surface (draw directly; keep UI pixel size constant)
+        # Create a normal resizable window, then maximize via OS (Windows)
         self.screen = pygame.display.set_mode((1280, 720), pygame.RESIZABLE)
-        pygame.display.set_caption("RPGenesis – Map Editor (Pygame)")
+        try:
+            import ctypes
+            hwnd = pygame.display.get_wm_info().get('window')
+            if hwnd:
+                ctypes.windll.user32.ShowWindow(hwnd, 3)  # SW_MAXIMIZE
+        except Exception:
+            pass
+        pygame.display.set_caption("RPGenesis - Map Editor (Pygame)")
         self.clock = pygame.time.Clock()
         self.running = True
         self.start_screen = StartScreen(self)
@@ -1442,17 +1754,24 @@ class App:
     def run(self):
         while self.running:
             dt = self.clock.tick(60)
+            # Use raw mouse/window coordinates (no global scaling); UI remains constant pixel size
+            set_mouse_pos_provider(None)
+
             for event in pygame.event.get():
+                # Handle window close / resize
                 if event.type == pygame.QUIT:
                     self.running = False
                 elif event.type == pygame.VIDEORESIZE:
                     self.screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
-                elif self.editor_screen:
-                    self.editor_screen.handle(event)
-                elif self.world_screen:
-                    self.world_screen.handle(event)
                 else:
-                    self.start_screen.handle(event)
+                    if self.editor_screen:
+                        self.editor_screen.handle(event)
+                    elif self.world_screen:
+                        self.world_screen.handle(event)
+                    else:
+                        self.start_screen.handle(event)
+
+            # Draw directly to the window surface (no global scaling)
             if self.editor_screen:
                 self.editor_screen.update(dt)
                 self.editor_screen.draw(self.screen)

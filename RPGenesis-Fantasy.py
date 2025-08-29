@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import os, sys, json, re, argparse, random
+import os, sys, json, re, argparse, random, math
 from typing import Dict, Any, List, Tuple, Optional
 from dataclasses import dataclass, field
 
@@ -427,10 +427,12 @@ class Button:
         if event.type == pg.MOUSEBUTTONDOWN and event.button == 1 and self.rect.collidepoint(event.pos):
             self.cb()
 
+PANEL_W_FIXED = 380  # Fixed width for left/right sidebars
+
 def draw_grid(surf, game):
     # Dynamic view area and camera
     win_w, win_h = surf.get_size()
-    panel_w = int(max(140, min(380, win_w * 0.18)))
+    panel_w = int(PANEL_W_FIXED)
     view_w = max(100, win_w - 2*panel_w)
     view_h = win_h
     view_rect = pg.Rect(panel_w, 0, view_w, view_h)
@@ -462,10 +464,11 @@ def draw_grid(surf, game):
     cam_y = py_world - view_h//2
 
     # Colors
-    COL_ENEMY = (190,70,70)
-    COL_NPC   = (90,170,110)
-    COL_EVENT = (160,130,200)
-    COL_LINK  = (255,105,180)  # match editor's link color (pink)
+    COL_ENEMY  = (190,70,70)
+    COL_NPC    = (90,170,110)
+    COL_EVENT  = (160,130,200)
+    COL_LINK   = (255,105,180)  # match editor's link color (pink)
+    COL_PLAYER = (122,162,247)  # accent
 
     for y in range(H):
         for x in range(W):
@@ -479,31 +482,68 @@ def draw_grid(surf, game):
             tile = game.grid[y][x]
             # Invisible impassable tiles: skip base/border entirely
             if tile.walkable:
-                base = (42,44,56) if tile.discovered else (28,30,38)
+                # Constant base color (do not vary by discovered/visited)
+                base = (42,44,56)
                 pg.draw.rect(surf, base, r, border_radius=6)
                 pg.draw.rect(surf, (70,74,92), r, 1, border_radius=6)
-            # Overlay markers
+            # Overlay markers (centered dots)
+            dot_colors = []
             if tile.encounter:
                 if tile.encounter.enemy:
-                    pg.draw.circle(surf, COL_ENEMY, (r.centerx, r.centery), max(3, tile_px//10))
-                elif tile.encounter.npc:
-                    pg.draw.circle(surf, COL_NPC,   (r.centerx, r.centery), max(3, tile_px//10))
-                elif tile.encounter.event:
-                    pg.draw.circle(surf, COL_EVENT, (r.centerx, r.centery), max(3, tile_px//10))
+                    dot_colors.append(COL_ENEMY)
+                if tile.encounter.npc:
+                    dot_colors.append(COL_NPC)
+                if tile.encounter.event:
+                    dot_colors.append(COL_EVENT)
+                if getattr(tile.encounter, 'item_here', None):
+                    dot_colors.append((230,230,230))  # item present
             if tile.has_link:
-                pg.draw.circle(surf, COL_LINK, (r.right-6, r.top+6), max(3, tile_px//12))
+                dot_colors.append(COL_LINK)
+            if dot_colors:
+                # layout centered: 1 center; 2 side-by-side; 3 triangle; 4 2x2; >4 balanced rows
+                pad = max(2, tile_px // 16)
+                n = len(dot_colors)
+                if n <= 2:
+                    row_counts = [n]
+                else:
+                    rows = int(math.ceil(math.sqrt(n)))
+                    base = n // rows
+                    extra = n % rows
+                    row_counts = [base] * (rows - extra) + [base + 1] * extra
+                rows_cnt = len(row_counts)
+                max_cols = max(row_counts)
+                gap = max(2, tile_px // 16)
+                avail_w = r.w - 2*pad
+                avail_h = r.h - 2*pad
+                r_w = (avail_w - (max_cols - 1) * gap) / (2 * max_cols) if max_cols else tile_px//8
+                r_h = (avail_h - (rows_cnt - 1) * gap) / (2 * rows_cnt) if rows_cnt else tile_px//8
+                rad = int(max(3, min(r_w, r_h, tile_px // 8)))
+                gap_x = 2*rad + gap
+                gap_y = 2*rad + gap
+                total_h = rows_cnt * (2*rad) + (rows_cnt - 1) * gap
+                start_y = r.y + (r.h - total_h)//2 + rad
+                idx = 0
+                for ri, cnt in enumerate(row_counts):
+                    total_w = cnt * (2*rad) + (cnt - 1) * gap
+                    start_x = r.x + (r.w - total_w)//2 + rad
+                    cy = start_y + ri * gap_y
+                    for cj in range(cnt):
+                        if idx >= n: break
+                        cx = start_x + cj * gap_x
+                        pg.draw.circle(surf, (10,10,12), (int(cx), int(cy)), rad+1)
+                        pg.draw.circle(surf, dot_colors[idx], (int(cx), int(cy)), rad)
+                        idx += 1
 
-    # Player marker
+    # Player marker: outline around the player's tile (no white square)
     px = px_world - cam_x
     py = py_world - cam_y
     if 0 <= px <= view_w and 0 <= py <= view_h:
-        side = max(6, tile_px//5)
-        player_rect = pg.Rect(int(view_rect.x + px - side//2), int(view_rect.y + py - side//2), side, side)
-        pg.draw.rect(surf, (255,255,255), player_rect)
+        pr = pg.Rect(int(view_rect.x + px - tile_px//2), int(view_rect.y + py - tile_px//2), tile_px, tile_px)
+        pg.draw.rect(surf, COL_PLAYER, pr, 3, border_radius=6)
 
 def draw_panel(surf, game):
     win_w, win_h = surf.get_size()
-    panel_w = int(max(140, min(380, win_w * 0.18)))
+    panel_w = int(PANEL_W_FIXED)
     # Left panel (reserved area)
     pg.draw.rect(surf, (18,18,24), (0,0, panel_w, win_h))
     pg.draw.rect(surf, (70,74,92), (0,0, panel_w, win_h), 1)
@@ -814,7 +854,7 @@ class Game:
             try:
                 target = self.grid[ny][nx]
                 if not target.walkable:
-                    self.say("The terrain blocks your way."); return
+                    return
             except Exception:
                 pass
             self.player.x, self.player.y = nx, ny
@@ -1016,8 +1056,16 @@ def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, s
 
     version = get_version()
     pg.init()
-    pg.display.set_caption(f"RPGenesis {version} – Text RPG")
+    pg.display.set_caption(f"RPGenesis {version} - Text RPG")
+    # Create normal window, then ask OS to maximize (Windows)
     screen = pg.display.set_mode((1120, 700), pg.RESIZABLE)
+    try:
+        import ctypes
+        hwnd = pg.display.get_wm_info().get('window')
+        if hwnd:
+            ctypes.windll.user32.ShowWindow(hwnd, 3)  # SW_MAXIMIZE
+    except Exception:
+        pass
     clock = pg.time.Clock()
 
     game = Game(start_map=start_map, start_entry=start_entry, start_pos=start_pos)

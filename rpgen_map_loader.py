@@ -42,8 +42,12 @@ def load_world_map() -> Dict[str, Any]:
 
 def load_scene_by_name(kind: str, name: str) -> Dict[str, Any]:
     """Load a JSON scene by kind ('map'|'dungeon') and name."""
+    # Accept either bare name or filename with .json
     base = MAPS if kind=='map' else DUNGEONS
-    path = base / f'{name}.json'
+    nm = name
+    if isinstance(nm, str) and nm.lower().endswith('.json'):
+        nm = nm[:-5]
+    path = base / f'{nm}.json'
     return _jload(path, {
         'schema':'rpgen.map@1', 'name':name, 'kind':kind, 'biome':'forest', 'safe':False,
         'width':5, 'height':5, 'terrain':[[1]*5 for _ in range(5)],
@@ -137,7 +141,10 @@ def scene_to_runtime(scene: Dict[str, Any]) -> Dict[str, Any]:
                 if isinstance(lks, list) and lks:
                     # Only one link supported by editor UI; keep first
                     L = lks[0] or {}
-                    links.append(((x, y), L.get('target_map', ''), 'map', L.get('target_entry')))
+                    to = L.get('target_map', '') or ''
+                    if isinstance(to, str) and to.lower().endswith('.json'):
+                        to = to[:-5]
+                    links.append(((x, y), to, 'map', L.get('target_entry')))
 
     return {
         'name': scene.get('name', 'noname'),
