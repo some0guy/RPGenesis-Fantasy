@@ -480,7 +480,9 @@ class ScrollListWithButtons:
     def handle(self, event):
         if event.type == pygame.MOUSEWHEEL:
             if self.rect.collidepoint(get_mouse_pos()):
-                self.scroll = max(0, self.scroll - event.y * 24)
+                content_h = len(self.items) * (self.item_h + self.spacing)
+                max_scroll = max(0, content_h - self.rect.h)
+                self.scroll = max(0, min(max_scroll, self.scroll - event.y * 24))
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             x, y = event.pos
             if not self.rect.collidepoint((x, y)):
@@ -663,8 +665,8 @@ class EditorScreen:
         self.scroll_list = ScrollListWithButtons(pygame.Rect(900, 484, 380, 140))  # wheel scrollable
         self.btn_edit_note    = Button((900, 630, 120, 26), "Edit Note", self.open_note_modal)
       
-        # Map description at bottom
-        self.desc_area = TextArea((900, 662, 380, 48), self.map.description)
+        # Map description at bottom (taller by default)
+        self.desc_area = TextArea((900, 622, 380, 120), self.map.description)
 
         # Default regions (updated each frame for responsive layout)
         self.canvas_rect = pygame.Rect(0, 50, 900, 670)
@@ -750,10 +752,17 @@ class EditorScreen:
         self.dd_texture.rect.topleft = (sx, sy + 362)
         # Inspector header and scroll list
         self.inspector_header_rect = pygame.Rect(self.sidebar_rect.x, sy + 400, self.sidebar_rect.w, 32)
-        self.scroll_list.rect = pygame.Rect(self.sidebar_rect.x, sy + 434, self.sidebar_rect.w, 140)
-        # Note + description
-        self.btn_edit_note.rect.topleft = (self.sidebar_rect.x + 0, sy + 580)
-        self.desc_area.rect = pygame.Rect(self.sidebar_rect.x, sy + 612, self.sidebar_rect.w, 48)
+        # Dynamic description size anchored to bottom
+        desc_h = max(80, min(200, int(self.sidebar_rect.h * 0.22)))
+        desc_y = self.sidebar_rect.bottom - (desc_h + 16)
+        self.desc_area.rect = pygame.Rect(self.sidebar_rect.x, desc_y, self.sidebar_rect.w, desc_h)
+        # Edit note button just above description
+        self.btn_edit_note.rect.topleft = (self.sidebar_rect.x + 0, self.desc_area.rect.y - 36)
+        # Scroll list fills space between inspector header and Edit Note button
+        sl_top = self.inspector_header_rect.bottom + 4
+        sl_bottom = self.btn_edit_note.rect.y - 12
+        sl_h = max(80, sl_bottom - sl_top)
+        self.scroll_list.rect = pygame.Rect(self.sidebar_rect.x, sl_top, self.sidebar_rect.w, sl_h)
 
     def any_dropdown_open(self) -> bool:
         return (
@@ -1425,7 +1434,7 @@ class EditorScreen:
                 self.link_entry_inp.handle(event); self.btn_add_link.handle(event)
 
         # inspector / scroll list
-        if event.type == pygame.MOUSEWHEEL or not dropdown_open:
+        if not dropdown_open:
             self.scroll_list.handle(event)
             self.btn_edit_note.handle(event)
 

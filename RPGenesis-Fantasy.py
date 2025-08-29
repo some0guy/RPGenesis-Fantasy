@@ -565,10 +565,21 @@ def draw_panel(surf, game):
     draw_text(surf, f"DEX: {game.player.dex}", (16, yL)); yL += 18
     draw_text(surf, f"Stealth: {game.player.stealth}", (16, yL)); yL += 18
 
+    # Scrollable right panel content (below header, above buttons)
+    content_top = 44
+    buttons_top = win_h - 210
+    view_h = max(0, buttons_top - content_top)
+    content_clip = pg.Rect(x0, content_top, panel_w, view_h)
+    _prev_clip = surf.get_clip(); surf.set_clip(content_clip)
+    if not hasattr(game, 'ui_scroll'):
+        game.ui_scroll = 0
+    y = content_top - max(0, int(getattr(game, 'ui_scroll', 0)))
+
     # Tile / Equipped summary
-    t = game.tile(); y = 44
-    draw_text(surf, f"Tile ({t.x},{t.y})", (x0+16, y)); y += 18
-    draw_text(surf, t.description, (x0+16, y), max_w=panel_w-32); y += 40
+    t = game.tile()
+    draw_text(surf, f"Tile ({t.x},{t.y})", (x0+16, y)); y += 22
+    desc_font = pg.font.Font(None, 22)
+    draw_text(surf, t.description, (x0+16, y), max_w=panel_w-32, font=desc_font); y += desc_font.get_linesize() * 2
     # Equipped
     wep = item_name(game.player.equipped_weapon) if game.player.equipped_weapon else "None"
     foc = item_name(game.player.equipped_focus) if game.player.equipped_focus else "None"
@@ -600,8 +611,13 @@ def draw_panel(surf, game):
     draw_text(surf, f"HP: {game.player.hp}/{game.player.max_hp}", (x0+16, y)); y += 18
     draw_text(surf, f"Inventory: {len(game.player.inventory)}", (x0+16, y)); y += 24
     draw_text(surf, "Recent:", (x0+16, y)); y += 16
-    for line in game.log[-6:]:
+    for line in game.log:
         draw_text(surf, f"• {line}", (x0+20, y), max_w=panel_w-36); y += 16
+
+    # Update scroll bounds and restore clip
+    content_total_h = y - content_top
+    game.ui_scroll_max = max(0, content_total_h - view_h)
+    surf.set_clip(_prev_clip)
 
     # Buttons
     y0 = win_h - 210
@@ -1077,6 +1093,23 @@ def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, s
                 running = False
             elif event.type == pg.VIDEORESIZE:
                 screen = pg.display.set_mode((event.w, event.h), pg.RESIZABLE)
+            elif event.type == pg.MOUSEWHEEL:
+                # Scroll right panel content when hovered
+                win_w, win_h = screen.get_size()
+                panel_w = int(PANEL_W_FIXED)
+                x0 = max(0, win_w - panel_w)
+                content_top = 44
+                buttons_top = win_h - 210
+                view_h = max(0, buttons_top - content_top)
+                mx, my = pg.mouse.get_pos()
+                if x0 <= mx <= win_w and content_top <= my < buttons_top:
+                    if not hasattr(game, 'ui_scroll'):
+                        game.ui_scroll = 0
+                    game.ui_scroll -= event.y * 24
+                    # Clamp using last known bounds
+                    mxs = max(0, int(getattr(game, 'ui_scroll_max', 0)))
+                    if game.ui_scroll < 0: game.ui_scroll = 0
+                    if game.ui_scroll > mxs: game.ui_scroll = mxs
             elif event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE: 
                     if game.mode == "inventory":
