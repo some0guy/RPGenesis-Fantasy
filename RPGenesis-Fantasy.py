@@ -295,12 +295,18 @@ class Tile:
     visited: int = 0
     description: str = ""
     walkable: bool = False   # NEW: path support
+    has_link: bool = False
+    link_to_map: Optional[str] = None
+    link_to_entry: Optional[str] = None
     has_link: bool = False   # link marker for UI
 
 @dataclass
 class Player:
     x: int = 0
     y: int = 0
+    name: str = "Adventurer"
+    race: str = "Human"
+    role: str = "Wanderer"
     hp: int = 20
     max_hp: int = 20
     atk: Tuple[int,int] = (3,6)
@@ -377,7 +383,10 @@ def grid_from_runtime(runtime: Dict[str, Any], items: List[Dict], npcs: List[Dic
         except Exception:
             continue
         if 0 <= ly < H and 0 <= lx < W:
-            grid[ly][lx].has_link = True
+            t = grid[ly][lx]
+            t.has_link = True
+            t.link_to_map = _to or None
+            t.link_to_entry = _entry or None
     return grid
 
 # ======================== UI helpers (MODULE-LEVEL) ========================
@@ -421,17 +430,17 @@ class Button:
 def draw_grid(surf, game):
     # Dynamic view area and camera
     win_w, win_h = surf.get_size()
-    panel_w = 360
-    view_w = max(100, win_w - panel_w)
+    panel_w = int(max(140, min(380, win_w * 0.18)))
+    view_w = max(100, win_w - 2*panel_w)
     view_h = win_h
-    view_rect = pg.Rect(0, 0, view_w, view_h)
+    view_rect = pg.Rect(panel_w, 0, view_w, view_h)
     # Background for map area
     pg.draw.rect(surf, (26,26,32), view_rect)
 
     W = getattr(game, 'W', 12); H = getattr(game, 'H', 8)
     # Target visible tiles for a slightly zoomed view
-    vis_w_tiles = min(12, W)
-    vis_h_tiles = min(8, H)
+    vis_w_tiles = min(10, W)
+    vis_h_tiles = min(6, H)
     margin = 12
     gap = 4
     # Compute tile size to fit target number of tiles
@@ -448,16 +457,15 @@ def draw_grid(surf, game):
     # Camera center on player
     px_world = game.player.x * stride + margin + tile_px//2
     py_world = game.player.y * stride + margin + tile_px//2
-    world_w = W * stride + 2*margin
-    world_h = H * stride + 2*margin
-    cam_x = max(0, min(px_world - view_w//2, max(0, world_w - view_w)))
-    cam_y = max(0, min(py_world - view_h//2, max(0, world_h - view_h)))
+    # Center camera on player at all times (allow background beyond edges)
+    cam_x = px_world - view_w//2
+    cam_y = py_world - view_h//2
 
     # Colors
     COL_ENEMY = (190,70,70)
     COL_NPC   = (90,170,110)
     COL_EVENT = (160,130,200)
-    COL_LINK  = (255,160,70)  # match editor's link color
+    COL_LINK  = (255,105,180)  # match editor's link color (pink)
 
     for y in range(H):
         for x in range(W):
@@ -467,7 +475,7 @@ def draw_grid(surf, game):
             ry = wy - cam_y
             if rx > view_w or ry > view_h or rx + tile_px < 0 or ry + tile_px < 0:
                 continue
-            r = pg.Rect(int(rx), int(ry), tile_px, tile_px)
+            r = pg.Rect(int(view_rect.x + rx), int(view_rect.y + ry), tile_px, tile_px)
             tile = game.grid[y][x]
             # Invisible impassable tiles: skip base/border entirely
             if tile.walkable:
@@ -489,21 +497,38 @@ def draw_grid(surf, game):
     px = px_world - cam_x
     py = py_world - cam_y
     if 0 <= px <= view_w and 0 <= py <= view_h:
-        pg.draw.circle(surf, (235,235,80), (int(px), int(py)), max(4, tile_px//8))
+        side = max(6, tile_px//5)
+        player_rect = pg.Rect(int(view_rect.x + px - side//2), int(view_rect.y + py - side//2), side, side)
+        pg.draw.rect(surf, (255,255,255), player_rect)
 
 def draw_panel(surf, game):
     win_w, win_h = surf.get_size()
-    panel_w = 360
+    panel_w = int(max(140, min(380, win_w * 0.18)))
+    # Left panel (reserved area)
+    pg.draw.rect(surf, (18,18,24), (0,0, panel_w, win_h))
+    pg.draw.rect(surf, (70,74,92), (0,0, panel_w, win_h), 1)
     x0 = max(0, win_w - panel_w)
     pg.draw.rect(surf, (18,18,24), (x0,0, panel_w, win_h))
     pg.draw.rect(surf, (70,74,92), (x0,0, panel_w, win_h), 1)
     header_font = pg.font.Font(None, 22)
     draw_text(surf, f"RPGenesis v{get_version()} – Field Log", (x0+16, 12), font=header_font)
 
+    # Left panel content: Party header + player stats
+    yL = 12
+    draw_text(surf, "Party", (16, yL), font=header_font); yL += 26
+    draw_text(surf, f"You: {game.player.name}", (16, yL)); yL += 18
+    draw_text(surf, f"Race: {game.player.race}", (16, yL)); yL += 18
+    draw_text(surf, f"Class: {game.player.role}", (16, yL)); yL += 18
+    draw_text(surf, f"HP: {game.player.hp}/{game.player.max_hp}", (16, yL)); yL += 18
+    mn,mx = game.player.atk
+    draw_text(surf, f"ATK: {mn}-{mx}", (16, yL)); yL += 18
+    draw_text(surf, f"DEX: {game.player.dex}", (16, yL)); yL += 18
+    draw_text(surf, f"Stealth: {game.player.stealth}", (16, yL)); yL += 18
+
     # Tile / Equipped summary
     t = game.tile(); y = 44
     draw_text(surf, f"Tile ({t.x},{t.y})", (x0+16, y)); y += 18
-    draw_text(surf, t.description, (x0+16, y), max_w=360-32); y += 40
+    draw_text(surf, t.description, (x0+16, y), max_w=panel_w-32); y += 40
     # Equipped
     wep = item_name(game.player.equipped_weapon) if game.player.equipped_weapon else "None"
     foc = item_name(game.player.equipped_focus) if game.player.equipped_focus else "None"
@@ -536,14 +561,14 @@ def draw_panel(surf, game):
     draw_text(surf, f"Inventory: {len(game.player.inventory)}", (x0+16, y)); y += 24
     draw_text(surf, "Recent:", (x0+16, y)); y += 16
     for line in game.log[-6:]:
-        draw_text(surf, f"• {line}", (x0+20, y), max_w=360-36); y += 16
+        draw_text(surf, f"• {line}", (x0+20, y), max_w=panel_w-36); y += 16
 
     # Buttons
-    y0 = 640 - 210
+    y0 = win_h - 210
     buttons = []
     def add(label, cb):
         nonlocal y0
-        buttons.append(Button((x0+16, y0, 360-32, 34), label, cb)); y0 += 38
+        buttons.append(Button((x0+16, y0, panel_w-32, 34), label, cb)); y0 += 38
 
     if game.mode == "combat":
         add("Attack (Weapon)", game.attack)
@@ -559,7 +584,7 @@ def draw_panel(surf, game):
         add("Leave", lambda: game.handle_dialogue_choice("Leave"))
         add("Inventory / Equip", lambda: setattr(game, 'mode', 'inventory'))
     elif game.mode == "inventory":
-        buttons += draw_inventory_panel(surf, game, x0)
+        buttons += draw_inventory_panel(surf, game, x0, panel_w)
     else:
         add("Search Area", game.search_tile)
         if t.encounter and t.encounter.enemy and not t.encounter.spotted:
@@ -569,18 +594,22 @@ def draw_panel(surf, game):
             add("Fight", lambda: game.start_combat(t.encounter.enemy))
         if t.encounter and t.encounter.npc:
             add("Talk",      lambda: game.start_dialogue(t.encounter.npc))
+        # Travel via link if present
+        if getattr(t, 'link_to_map', None):
+            dest = t.link_to_map
+            add(f"Travel to {dest}", game.travel_link)
             add("Leave NPC", lambda: game.handle_dialogue_choice("Leave"))
         add("Inventory / Equip", lambda: setattr(game, 'mode', 'inventory'))
 
     for b in buttons: b.draw(surf)
     return buttons
 
-def draw_inventory_panel(surf, game, x0):
+def draw_inventory_panel(surf, game, x0, panel_w):
     """Returns list of Button objects for the inventory sub-panel."""
     buttons = []
     # panel header
     y = 320
-    pg.draw.line(surf, (70,74,92), (x0+12, y-6), (x0+360-12, y-6), 1)
+    pg.draw.line(surf, (70,74,92), (x0+12, y-6), (x0+panel_w-12, y-6), 1)
     draw_text(surf, "Inventory", (x0+16, y)); y += 20
 
     # pagination state
@@ -597,7 +626,7 @@ def draw_inventory_panel(surf, game, x0):
     # list items as clickable rows
     row_h = 26
     for i, it in enumerate(items):
-        r = pg.Rect(x0+16, y+i*row_h, 360-32, row_h-4)
+        r = pg.Rect(x0+16, y+i*row_h, panel_w-32, row_h-4)
         sel = (game.inv_sel == start+i)
         pg.draw.rect(surf, (52,56,70) if sel else (34,36,46), r, border_radius=6)
         pg.draw.rect(surf, (90,94,112), r, 1, border_radius=6)
@@ -612,7 +641,7 @@ def draw_inventory_panel(surf, game, x0):
     # info & actions for selected item
     if game.inv_sel is not None and 0 <= game.inv_sel < total:
         it = game.player.inventory[game.inv_sel]
-        draw_text(surf, (item_desc(it) or "-"), (x0+16, y), max_w=360-32); y += 36
+        draw_text(surf, (item_desc(it) or "-"), (x0+16, y), max_w=panel_w-32); y += 36
         subtype = str(item_subtype(it)).lower()
         typ = str(item_type(it)).lower()
         if typ == "weapon":
@@ -654,6 +683,7 @@ class Game:
         self.W, self.H = int(runtime.get('width', 12)), int(runtime.get('height', 8))
         self.tile_px = int(runtime.get('tile_size', 32))
         self.grid    = grid_from_runtime(runtime, self.items, self.npcs)
+        self.current_map_name = runtime.get('name', sel_map)
         self.player  = Player()
         # Position player: entry takes precedence, else pos, else (0,0)
         if entry_name:
@@ -724,6 +754,48 @@ class Game:
             it = self.player.inventory.pop(idx)
             self.say(f"Dropped: {item_name(it)}")
             self.inv_sel = None
+
+    def travel_link(self):
+        t = self.tile()
+        dest_map = getattr(t, 'link_to_map', None)
+        if not dest_map:
+            self.say("No link here."); return
+        dest_entry = getattr(t, 'link_to_entry', None)
+        # Load destination scene
+        scene = load_scene_by_name('map', dest_map)
+        runtime = scene_to_runtime(scene)
+        # Determine destination coordinates
+        px, py = 0, 0
+        if dest_entry:
+            try:
+                px, py = find_entry_coords(scene, dest_entry)
+            except Exception:
+                px, py = 0, 0
+        else:
+            # Find reciprocal link back to this map
+            back = None
+            for link in (runtime.get('links') or []):
+                try:
+                    (lx, ly), to, _kind, _entry = link
+                except Exception:
+                    continue
+                if str(to) == str(getattr(self, 'current_map_name', '')):
+                    back = (int(lx), int(ly)); break
+            if back:
+                px, py = back
+        # Rebuild grid, move player
+        self.W, self.H = int(runtime.get('width', 12)), int(runtime.get('height', 8))
+        self.tile_px = int(runtime.get('tile_size', 32))
+        self.grid    = grid_from_runtime(runtime, self.items, self.npcs)
+        self.current_map_name = runtime.get('name', dest_map)
+        self.player.x = max(0, min(self.W-1, int(px)))
+        self.player.y = max(0, min(self.H-1, int(py)))
+        try:
+            self.grid[self.player.y][self.player.x].discovered = True
+        except Exception:
+            pass
+        self.mode = "explore"
+        self.say(f"You travel to {self.current_map_name}.")
 
     def can_leave_tile(self) -> bool:
         t = self.tile()
