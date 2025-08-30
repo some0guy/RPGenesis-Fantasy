@@ -2,6 +2,7 @@
 from __future__ import annotations
 import os, sys, json, re, argparse, random, math
 from typing import Dict, Any, List, Tuple, Optional
+from collections import deque
 from dataclasses import dataclass, field
 
 from pathlib import Path
@@ -71,11 +72,25 @@ ID_RULES = {
 
 # -------------------- JSON I/O + validation --------------------
 def load_json(path: str, fallback=None):
+    """Load JSON with tolerant behavior.
+
+    - Returns ``fallback`` (or ``{}``) when the file is missing.
+    - If the file exists but is empty/whitespace or malformed and a ``fallback``
+      is provided, returns ``fallback`` instead of raising.
+    - Otherwise, raises a RuntimeError on failure to decode.
+    """
     try:
         with open(path, "r", encoding="utf-8-sig") as f:
-            return json.load(f)
+            data = f.read()
+        if not (data.strip()):
+            return fallback if fallback is not None else {}
+        return json.loads(data)
     except FileNotFoundError:
         return fallback if fallback is not None else {}
+    except json.JSONDecodeError as e:
+        if fallback is not None:
+            return fallback
+        raise RuntimeError(f"Failed to load {path}: {e}")
     except Exception as e:
         raise RuntimeError(f"Failed to load {path}: {e}")
 
@@ -225,15 +240,120 @@ def item_name(it: dict) -> str:
             it.get('title') or it.get('label') or it.get('id') or '?')
 
 def item_type(it: dict) -> str:
-    return (it.get('type') or it.get('Type') or it.get('category') or
-            it.get('slot') or it.get('item_type') or '?')
+    """Return a major type for the item (weapon/armour/accessory/clothing/consumable/material/trinket/quest_item).
+
+    Prefer broader category-like fields over specific subtype names.
+    """
+    majors = {
+        'weapon','armour','armor','accessory','accessories','clothing',
+        'consumable','consumables','material','materials','trinket','trinkets',
+        'quest','quest_item','quest_items'
+    }
+    # Strong signals first
+    for key in ('category','slot','item_type','Type'):
+        v = it.get(key)
+        if v and str(v).lower() in majors:
+            return str(v)
+    # Fall back to 'type' only if it looks like a major
+    v = it.get('type')
+    if v and str(v).lower() in majors:
+        return str(v)
+    # Otherwise, if nothing matches, still return something meaningful
+    return str(it.get('category') or it.get('slot') or it.get('type') or '?')
 
 def item_subtype(it: dict) -> str:
-    return (it.get('subtype') or it.get('SubType') or it.get('weapon_type') or
-            it.get('class') or it.get('category2') or '-')
+    """Return a specific subtype: e.g., dagger/head/ring.
+    If not explicitly present, fall back to the narrow 'type' field when it does not collide with item_type.
+    """
+    v = (it.get('subtype') or it.get('SubType') or it.get('weapon_type') or
+         it.get('class') or it.get('category2'))
+    if v:
+        return str(v)
+    # Avoid duplicating the major type
+    t_major = str(item_type(it)).lower()
+    t_narrow = str(it.get('type') or '-')
+    if t_narrow and t_narrow.lower() != t_major and t_narrow.lower() not in ('quest','quest_item','weapon','armour','armor','accessory','accessories','clothing','consumable','consumables','material','materials','trinket','trinkets'):
+        return t_narrow
+    return '-'
 
 def item_desc(it: dict) -> str:
     return (it.get('desc') or it.get('description') or it.get('flavor') or '')
+
+def item_value(it: dict) -> int:
+    try:
+        return int(it.get('value') or 0)
+    except Exception:
+        return 0
+
+def item_weight(it: dict) -> int:
+    try:
+        return int(it.get('weight') or 0)
+    except Exception:
+        return 0
+
+def item_major_type(it: dict) -> str:
+    return str(item_type(it)).lower()
+
+def item_is_consumable(it: dict) -> bool:
+    t = item_major_type(it)
+    return t in ('consumable','consumables','food','drink','potion','elixir')
+
+def item_is_quest(it: dict) -> bool:
+    t = item_major_type(it)
+    return t in ('quest','quest_item','quest_items')
+
+# ---- Equipment slot helpers ----
+SLOT_LABELS = {
+    'head': 'Helmet',
+    'neck': 'Necklace',
+    'chest': 'Chestplate',
+    'legs': 'Legs',
+    'gloves': 'Gloves',
+    'ring': 'Ring',
+    'bracelet': 'Bracelet',
+    'back': 'Cape/Backpack',
+    'weapon_main': 'Weapon 1',
+    'weapon_off': 'Weapon 2',
+}
+
+def normalize_slot(name: str) -> str:
+    n = (name or '').strip().lower()
+    if n in ('head','helm','helmet','hat'): return 'head'
+    if n in ('neck','amulet','necklace','torc'): return 'neck'
+    if n in ('chest','torso','body','armor','armour','breastplate','chestplate'): return 'chest'
+    if n in ('legs','pants','trousers','greaves'): return 'legs'
+    if n in ('hands','hand','gloves','gauntlets'): return 'gloves'
+    if n in ('wrist','bracelet','bracer','bracers'): return 'bracelet'
+    if n in ('ring','finger'): return 'ring'
+    if n in ('back','cloak','cape','backpack'): return 'back'
+    if n in ('weapon1','mainhand','main','weapon_main','weapon'): return 'weapon_main'
+    if n in ('weapon2','offhand','off','weapon_off','shield'): return 'weapon_off'
+    return n
+
+def slot_accepts(slot: str, it: dict) -> bool:
+    slot = normalize_slot(slot)
+    m = item_major_type(it)
+    sub = str(item_subtype(it)).lower()
+    typ = str(item_type(it)).lower()
+    if slot in ('weapon_main','weapon_off'):
+        return typ == 'weapon'
+    if slot == 'head':
+        return m in ('armour','armor','clothing') and sub in ('head','helm','helmet','hat')
+    if slot == 'chest':
+        return m in ('armour','armor','clothing') and sub in ('chest','torso','body','armor','armour','breastplate','chestplate')
+    if slot == 'legs':
+        return m in ('armour','armor','clothing') and sub in ('legs','pants','trousers','greaves')
+    if slot == 'gloves':
+        return m in ('armour','armor','clothing') and sub in ('hands','hand','gloves','gauntlets')
+    if slot == 'ring':
+        return m in ('accessory','accessories','trinket','trinkets') and sub in ('ring',)
+    if slot == 'bracelet':
+        return m in ('accessory','accessories','trinket','trinkets') and sub in ('bracelet','bracer','bracers','wrist')
+    if slot == 'neck':
+        return m in ('accessory','accessories','trinket','trinkets') and sub in ('neck','amulet','necklace','torc')
+    if slot == 'back':
+        return (m in ('armour','armor','clothing','accessory','accessories') and sub in ('back','cloak','cape','backpack'))
+    return False
 
 def _weapon_stats(it: Dict) -> Tuple[int,int,float,List[str]]:
     """Returns (min_bonus, max_bonus, status_chance, statuses) reading multiple possible keys safely."""
@@ -249,7 +369,7 @@ def gather_items() -> List[Dict]:
     items: List[Dict] = []
     items_dir = os.path.join(DATA_DIR, "items")
     if os.path.isdir(items_dir):
-        for name in ["weapons.json","armour.json","accessories.json","clothing.json","materials.json","quest_items.json","trinkets.json"]:
+        for name in ["weapons.json","armour.json","accessories.json","clothing.json","consumables.json","materials.json","quest_items.json","trinkets.json"]:
             for it in safe_load_doc(os.path.join("items", name), "items"):
                 items.append(it)
     return items
@@ -317,6 +437,8 @@ class Player:
     inventory: List[Dict] = field(default_factory=list)
     equipped_weapon: Optional[Dict] = None
     equipped_focus: Optional[Dict] = None
+    # Generic equipment slots for armour/clothing/accessory
+    equipped_gear: Dict[str, Dict] = field(default_factory=dict)
 
 def pick_enemy(npcs: List[Dict]) -> Optional[Dict]:
     hostile = [n for n in npcs if n.get("hostile")]
@@ -389,6 +511,53 @@ def grid_from_runtime(runtime: Dict[str, Any], items: List[Dict], npcs: List[Dic
             t.link_to_entry = _entry or None
     return grid
 
+# Find a nearest walkable coordinate given a desired spawn
+def find_nearest_walkable(runtime: Dict[str, Any], sx: int, sy: int) -> Tuple[int, int]:
+    W = int(runtime.get('width', 12)); H = int(runtime.get('height', 8))
+    walk = runtime.get('walkable') or [[True]*W for _ in range(H)]
+
+    def is_walk(x: int, y: int) -> bool:
+        if not (0 <= x < W and 0 <= y < H):
+            return False
+        try:
+            return bool(walk[y][x])
+        except Exception:
+            # If walk matrix is ragged, treat missing as non-walkable
+            return False
+
+    try:
+        x0 = max(0, min(W-1, int(sx)))
+        y0 = max(0, min(H-1, int(sy)))
+    except Exception:
+        x0, y0 = 0, 0
+
+    if is_walk(x0, y0):
+        return x0, y0
+
+    from collections import deque as _dq
+    q = _dq()
+    q.append((x0, y0))
+    seen = set([(x0, y0)])
+    dirs = [(-1,0),(1,0),(0,-1),(0,1)]
+    while q:
+        x, y = q.popleft()
+        for dx, dy in dirs:
+            nx, ny = x + dx, y + dy
+            if (nx, ny) in seen:
+                continue
+            if 0 <= nx < W and 0 <= ny < H:
+                if is_walk(nx, ny):
+                    return nx, ny
+                seen.add((nx, ny))
+                q.append((nx, ny))
+
+    # Fallback: first walkable tile anywhere
+    for yy in range(H):
+        for xx in range(W):
+            if is_walk(xx, yy):
+                return xx, yy
+    return 0, 0
+
 # ======================== UI helpers (MODULE-LEVEL) ========================
 try:
     import pygame as pg
@@ -413,11 +582,16 @@ def draw_text(surface, text, pos, color=(230,230,230), font=None, max_w=None):
     if line: surface.blit(font.render(line, True, color), (x,y))
 
 class Button:
-    def __init__(self, rect, label, cb):
+    def __init__(self, rect, label, cb, draw_bg: bool=True):
         if pg is None:
             raise RuntimeError("pygame not available")
-        self.rect = pg.Rect(rect); self.label = label; self.cb = cb
+        self.rect = pg.Rect(rect)
+        self.label = label
+        self.cb = cb
+        self.draw_bg = draw_bg
     def draw(self, surf):
+        if not self.draw_bg:
+            return
         label_font = pg.font.Font(None, 18)
         pg.draw.rect(surf, (60,60,70), self.rect, border_radius=8)
         pg.draw.rect(surf, (110,110,130), self.rect, 2, border_radius=8)
@@ -633,14 +807,20 @@ def draw_panel(surf, game):
         if getattr(game, 'can_bribe', False):
             add("Offer Bribe", game.offer_bribe)
         add("Flee", game.flee)
-        add("Inventory / Equip", lambda: setattr(game, 'mode', 'inventory'))
+        add("Inventory", lambda: setattr(game, 'mode', 'inventory'))
+        add("Equipment", lambda: setattr(game, 'mode', 'equip'))
     elif game.mode == "dialogue":
         add("Talk",  lambda: game.handle_dialogue_choice("Talk"))
         add("Flirt", lambda: game.handle_dialogue_choice("Flirt"))
         add("Leave", lambda: game.handle_dialogue_choice("Leave"))
-        add("Inventory / Equip", lambda: setattr(game, 'mode', 'inventory'))
+        add("Inventory", lambda: setattr(game, 'mode', 'inventory'))
+        add("Equipment", lambda: setattr(game, 'mode', 'equip'))
     elif game.mode == "inventory":
-        buttons += draw_inventory_panel(surf, game, x0, panel_w)
+        # Draw a full overlay inventory covering the center and right side
+        buttons += draw_inventory_overlay(surf, game)
+    elif getattr(game, 'mode', '') == "equip":
+        # Draw equipment screen over map area, keep sidebars
+        buttons += draw_equip_overlay(surf, game)
     else:
         add("Search Area", game.search_tile)
         if t.encounter and t.encounter.enemy and not t.encounter.spotted:
@@ -655,7 +835,8 @@ def draw_panel(surf, game):
             dest = t.link_to_map
             add(f"Travel to {dest}", game.travel_link)
             add("Leave NPC", lambda: game.handle_dialogue_choice("Leave"))
-        add("Inventory / Equip", lambda: setattr(game, 'mode', 'inventory'))
+        add("Inventory", lambda: setattr(game, 'mode', 'inventory'))
+        add("Equipment", lambda: setattr(game, 'mode', 'equip'))
 
     for b in buttons: b.draw(surf)
     return buttons
@@ -719,6 +900,387 @@ def draw_inventory_panel(surf, game, x0, panel_w):
 
     return buttons
 
+def draw_inventory_overlay(surf, game):
+    """Centered inventory modal over the map area, with border.
+
+    Keeps the right sidebar intact. Returns list of Button objects for clicks.
+    """
+    buttons: List[Button] = []
+    win_w, win_h = surf.get_size()
+    panel_w = int(PANEL_W_FIXED)
+
+    # Map view area (between left and right panels)
+    view_w = max(100, win_w - 2*panel_w)
+    view_h = win_h
+    view_rect = pg.Rect(panel_w, 0, view_w, view_h)
+
+    # Centered modal rect inside the map view
+    inset = 24
+    modal_w = max(420, int(view_w * 0.82))
+    modal_h = max(320, int(view_h * 0.82))
+    modal_x = view_rect.x + (view_w - modal_w)//2
+    modal_y = view_rect.y + (view_h - modal_h)//2
+    modal = pg.Rect(modal_x, modal_y, modal_w, modal_h)
+
+    # Dim background only over the map area
+    dim = pg.Surface((view_rect.w, view_rect.h), pg.SRCALPHA)
+    dim.fill((10, 10, 14, 140))
+    surf.blit(dim, (view_rect.x, view_rect.y))
+
+    # Modal panel with border
+    pg.draw.rect(surf, (24,26,34), modal, border_radius=10)
+    pg.draw.rect(surf, (96,102,124), modal, 2, border_radius=10)
+    # Inner outline for extra readability
+    pg.draw.rect(surf, (56,60,76), modal.inflate(-8, -8), 1, border_radius=8)
+
+    # Title
+    title_font = pg.font.Font(None, 30)
+    title_surf = title_font.render("Inventory", True, (235,235,245))
+    surf.blit(title_surf, (modal.x + 16, modal.y + 12))
+    # Header buttons: Equipment and Back
+    def _to_equip(): setattr(game, 'mode', 'equip')
+    buttons.append(Button((modal.right - 230, modal.y + 10, 110, 28), "Equipment", _to_equip))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode','explore')))
+
+    # Layout inside modal: icons grid left, details right
+    pad = 16
+    content = modal.inflate(-2*pad, -2*pad)
+    grid_area = pg.Rect(content.x, content.y + 36, int(content.w * 0.52), content.h - 52)
+    det_area  = pg.Rect(content.x + grid_area.w + 12, content.y + 36, content.w - grid_area.w - 12, content.h - 52)
+
+    # Draw boxes
+    for r in (grid_area, det_area):
+        pg.draw.rect(surf, (30,32,42), r, border_radius=8)
+        pg.draw.rect(surf, (70,74,92), r, 1, border_radius=8)
+
+    # State
+    if not hasattr(game, 'inv_page'): game.inv_page = 0
+    if not hasattr(game, 'inv_sel'):  game.inv_sel = None
+
+    items = game.player.inventory
+    total = len(items)
+
+    # Icon grid sizing (bigger buttons/icons)
+    icon = max(64, min(96, grid_area.w // 5))  # aim ~4 cols, larger tiles
+    gap = max(12, icon // 5)
+    # Label font and height tuned to icon size (support 2 lines)
+    lab_font = pg.font.Font(None, max(20, icon // 3))
+    lab_h = lab_font.get_linesize()
+    lab_lines = 2
+    cols = max(3, (grid_area.w - gap) // (icon + gap))
+    rows = max(2, (grid_area.h - gap) // (icon + lab_lines*lab_h + gap))
+    per_page = max(1, cols * rows)
+    pages = max(1, (total + per_page - 1) // per_page)
+    game.inv_page = max(0, min(game.inv_page, pages-1))
+    start = game.inv_page * per_page
+    end = min(total, start + per_page)
+
+    # Hover position (for highlight only)
+    mx, my = pg.mouse.get_pos()
+
+    # Color by major type
+    def type_color(it: dict) -> Tuple[int,int,int]:
+        t = item_major_type(it)
+        return {
+            'weapon': (140,120,220),
+            'armour': (120,170,220), 'armor': (120,170,220),
+            'clothing': (120,170,220),
+            'accessory': (200,160,220), 'accessories': (200,160,220),
+            'consumable': (180,220,140), 'consumables': (180,220,140),
+            'material': (220,180,120), 'materials': (220,180,120),
+            'trinket': (220,200,150), 'trinkets': (220,200,150),
+            'quest': (220,150,150), 'quest_item': (220,150,150), 'quest_items': (220,150,150),
+        }.get(t, (180,190,210))
+
+    # Draw icons grid
+    x = grid_area.x + gap
+    y = grid_area.y + gap
+    for i in range(start, end):
+        it = items[i]
+        col = (i - start) % cols
+        row = (i - start) // cols
+        r = pg.Rect(x + col * (icon + gap), y + row * (icon + 24 + gap), icon, icon)
+        # Icon background
+        base = (38,40,52)
+        border = (90,94,112)
+        sel = (game.inv_sel == i)
+        hov = r.collidepoint(mx, my)
+        if sel:
+            pg.draw.rect(surf, (48,52,68), r, border_radius=6)
+            pg.draw.rect(surf, (122,162,247), r, 2, border_radius=6)
+        else:
+            pg.draw.rect(surf, (48,52,68) if hov else base, r, border_radius=6)
+            pg.draw.rect(surf, border, r, 1, border_radius=6)
+        # Colored inner tag stripe
+        tag = r.inflate(-10, -10)
+        tag.h = max(8, icon // 6)
+        pg.draw.rect(surf, type_color(it), (tag.x, tag.y, tag.w, tag.h), border_radius=4)
+        # Icon glyph (first letter of type)
+        glyph = (str(item_type(it)) or '?')[:1].upper()
+        gfont = pg.font.Font(None, max(18, icon // 2))
+        gs = gfont.render(glyph, True, (235,235,245))
+        surf.blit(gs, (r.centerx - gs.get_width()//2, r.centery - gs.get_height()//2))
+        # Label (name) under icon — multi-line (up to 2)
+        name = item_name(it)
+        lab_y = r.bottom + 4
+        max_w = icon
+        # Simple two-line word wrap with ellipsis on the last line
+        words = str(name).split()
+        lines = []
+        cur = ""
+        for w in words:
+            test = (cur + " " + w).strip()
+            if lab_font.size(test)[0] <= max_w:
+                cur = test
+            else:
+                if cur:
+                    lines.append(cur)
+                else:
+                    # Single long word: truncate with ellipsis
+                    t = w
+                    while len(t) > 1 and lab_font.size(t + '…')[0] > max_w:
+                        t = t[:-1]
+                    lines.append(t + '…')
+                    cur = ""
+                    break
+                cur = w
+                if len(lines) >= lab_lines - 1:
+                    # finalize last line with ellipsis
+                    t = cur
+                    while len(t) > 1 and lab_font.size(t + '…')[0] > max_w:
+                        t = t[:-1]
+                    lines.append((t + '…') if t else '')
+                    cur = ""
+                    break
+        if cur and len(lines) < lab_lines:
+            lines.append(cur)
+        # Render lines centered under icon
+        for li, text in enumerate(lines[:lab_lines]):
+            ts = lab_font.render(text, True, (220,220,230))
+            surf.blit(ts, (r.centerx - ts.get_width()//2, lab_y + li*lab_h))
+        # Clickable button area: include icon + label block
+        click_rect = pg.Rect(r.x, r.y, r.w, r.h + lab_lines*lab_h + 6)
+        def make_sel(idx):
+            return lambda idx=idx: setattr(game, 'inv_sel', idx)
+        buttons.append(Button(click_rect, "", make_sel(i), draw_bg=False))
+
+    # Pager controls (bottom-left of grid area)
+    pager_y = grid_area.bottom - 30
+    buttons.append(Button((grid_area.x + 10, pager_y, 110, 26), "Prev Page", lambda: setattr(game,'inv_page', max(0, game.inv_page-1))))
+    buttons.append(Button((grid_area.x + 10 + 120, pager_y, 110, 26), "Next Page", lambda: setattr(game,'inv_page', min(pages-1, game.inv_page+1))))
+
+    # Details area for the selected item
+    if game.inv_sel is not None and 0 <= game.inv_sel < total:
+        it = items[game.inv_sel]
+        name_font = pg.font.Font(None, 28)
+        draw_text(surf, item_name(it), (det_area.x + 12, det_area.y + 10), font=name_font)
+        y2 = det_area.y + 48
+        typ = item_type(it); sub = item_subtype(it)
+        wt = item_weight(it); val = item_value(it)
+        draw_text(surf, f"Type: {typ} / {sub}", (det_area.x + 12, y2)); y2 += 22
+        draw_text(surf, f"Weight: {wt}", (det_area.x + 12, y2)); y2 += 22
+        draw_text(surf, f"Value: {val}", (det_area.x + 12, y2)); y2 += 26
+        desc = item_desc(it) or ""
+        draw_text(surf, desc, (det_area.x + 12, y2), max_w=det_area.w - 24); y2 += 90
+
+        # Action buttons along bottom of details
+        bx = det_area.x + 12; by = det_area.bottom - 34
+        mtyp = item_major_type(it)
+        sub_l = str(sub).lower()
+        if mtyp == 'weapon':
+            if sub_l in ('wand','staff'):
+                buttons.append(Button((bx, by, 160, 28), "Equip as Focus", lambda it=it: game.equip_focus(it))); bx += 170
+            else:
+                buttons.append(Button((bx, by, 160, 28), "Equip Weapon", lambda it=it: game.equip_weapon(it))); bx += 170
+        elif mtyp in ('armour','armor','clothing','accessory','accessories'):
+            buttons.append(Button((bx, by, 160, 28), "Equip", lambda it=it: game.equip_item(it))); bx += 170
+        if item_is_consumable(it):
+            buttons.append(Button((bx, by, 140, 28), "Consume", lambda idx=game.inv_sel: game.consume_item(idx))); bx += 150
+        if not item_is_quest(it):
+            buttons.append(Button((bx, by, 120, 28), "Drop", lambda idx=game.inv_sel: game.drop_item(idx))); bx += 130
+
+    # Back button moved to header above
+
+    # Tooltips removed per request
+
+    return buttons
+
+def draw_equip_overlay(surf, game):
+    """Centered equipment screen with silhouette and slot squares.
+
+    Keeps the right sidebar intact. Returns list of Button objects.
+    """
+    buttons: List[Button] = []
+    win_w, win_h = surf.get_size()
+    panel_w = int(PANEL_W_FIXED)
+
+    # Map view area
+    view_w = max(100, win_w - 2*panel_w)
+    view_h = win_h
+    view_rect = pg.Rect(panel_w, 0, view_w, view_h)
+
+    # Modal
+    modal_w = max(540, int(view_w * 0.86))
+    modal_h = max(380, int(view_h * 0.86))
+    modal_x = view_rect.x + (view_w - modal_w)//2
+    modal_y = view_rect.y + (view_h - modal_h)//2
+    modal = pg.Rect(modal_x, modal_y, modal_w, modal_h)
+
+    # Dim background
+    dim = pg.Surface((view_rect.w, view_rect.h), pg.SRCALPHA)
+    dim.fill((10, 10, 14, 140))
+    surf.blit(dim, (view_rect.x, view_rect.y))
+
+    # Panel
+    pg.draw.rect(surf, (24,26,34), modal, border_radius=10)
+    pg.draw.rect(surf, (96,102,124), modal, 2, border_radius=10)
+    pg.draw.rect(surf, (56,60,76), modal.inflate(-8, -8), 1, border_radius=8)
+
+    # Header
+    title_font = pg.font.Font(None, 30)
+    surf.blit(title_font.render("Equipment", True, (235,235,245)), (modal.x + 16, modal.y + 12))
+    buttons.append(Button((modal.right - 230, modal.y + 10, 110, 28), "Inventory", lambda: setattr(game,'mode','inventory')))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode','explore')))
+
+    # Layout left silhouette, right list
+    pad = 16
+    content = modal.inflate(-2*pad, -2*pad)
+    sil_area = pg.Rect(content.x, content.y + 36, int(content.w * 0.54), content.h - 52)
+    list_area = pg.Rect(content.x + sil_area.w + 12, content.y + 36, content.w - sil_area.w - 12, content.h - 52)
+    for r in (sil_area, list_area):
+        pg.draw.rect(surf, (30,32,42), r, border_radius=8)
+        pg.draw.rect(surf, (70,74,92), r, 1, border_radius=8)
+
+    # Try to draw a silhouette image if available
+    sil_img = None
+    try:
+        img_path = os.path.join(ROOT, 'assets', 'images', 'ui', 'silhouette.png')
+        if os.path.exists(img_path):
+            sil_img = pg.image.load(img_path).convert_alpha()
+            # Fit into area keeping aspect
+            iw, ih = sil_img.get_size()
+            scale = min((sil_area.w-40)/max(1, iw), (sil_area.h-40)/max(1, ih))
+            sil_img = pg.transform.smoothscale(sil_img, (int(iw*scale), int(ih*scale)))
+            surf.blit(sil_img, sil_img.get_rect(center=sil_area.center))
+    except Exception:
+        sil_img = None
+
+    # If no image, draw a simple silhouette shape
+    if sil_img is None:
+        cx, cy = sil_area.center
+        # Head
+        pg.draw.circle(surf, (38,40,52), (cx, sil_area.y + int(sil_area.h*0.12)), max(14, sil_area.w//12))
+        # Torso
+        torso = pg.Rect(0,0, int(sil_area.w*0.22), int(sil_area.h*0.34))
+        torso.center = (cx, sil_area.y + int(sil_area.h*0.42))
+        pg.draw.rect(surf, (38,40,52), torso, border_radius=12)
+        # Legs
+        legs = pg.Rect(0,0, int(sil_area.w*0.18), int(sil_area.h*0.32))
+        legs.center = (cx, sil_area.y + int(sil_area.h*0.70))
+        pg.draw.rect(surf, (38,40,52), legs, border_radius=12)
+
+    # Slot positions (normalized in sil_area)
+    slot_sz = max(56, min(90, sil_area.w // 5))
+    def at(nx: float, ny: float) -> pg.Rect:
+        px = sil_area.x + int(nx * sil_area.w) - slot_sz//2
+        py = sil_area.y + int(ny * sil_area.h) - slot_sz//2
+        return pg.Rect(px, py, slot_sz, slot_sz)
+
+    SLOT_POS = {
+        'head':         (0.50, 0.12),
+        'neck':         (0.50, 0.25),
+        'chest':        (0.50, 0.42),
+        'back':         (0.82, 0.42),
+        'gloves':       (0.82, 0.60),
+        'legs':         (0.50, 0.68),
+        'ring':         (0.18, 0.42),
+        'bracelet':     (0.18, 0.60),
+        'weapon_main':  (0.18, 0.82),
+        'weapon_off':   (0.82, 0.82),
+    }
+
+    # Helper to draw a small icon for an item
+    def type_color(it: dict) -> Tuple[int,int,int]:
+        t = item_major_type(it)
+        return {
+            'weapon': (140,120,220),
+            'armour': (120,170,220), 'armor': (120,170,220),
+            'clothing': (120,170,220),
+            'accessory': (200,160,220), 'accessories': (200,160,220),
+            'consumable': (180,220,140), 'consumables': (180,220,140),
+            'material': (220,180,120), 'materials': (220,180,120),
+            'trinket': (220,200,150), 'trinkets': (220,200,150),
+            'quest': (220,150,150), 'quest_item': (220,150,150), 'quest_items': (220,150,150),
+        }.get(t, (180,190,210))
+
+    # Draw slots
+    mx, my = pg.mouse.get_pos()
+    sel_slot = getattr(game, 'equip_sel_slot', None)
+    for key, (nx, ny) in SLOT_POS.items():
+        r = at(nx, ny)
+        eq = game.player.equipped_gear.get(key)
+        hov = r.collidepoint(mx, my)
+        base = (44,48,62) if hov or key == sel_slot else (38,40,52)
+        pg.draw.rect(surf, base, r, border_radius=8)
+        pg.draw.rect(surf, (96,102,124) if hov or key == sel_slot else (70,74,92), r, 2, border_radius=8)
+        # Slot label
+        lab = SLOT_LABELS.get(key, key.title())
+        f = pg.font.Font(None, 18)
+        ls = f.render(lab, True, (210,210,220))
+        surf.blit(ls, (r.centerx - ls.get_width()//2, r.bottom + 4))
+        # If equipped, draw small icon glyph
+        if eq:
+            tag = r.inflate(-10, -10)
+            tag.h = max(8, slot_sz // 6)
+            pg.draw.rect(surf, type_color(eq), (tag.x, tag.y, tag.w, tag.h), border_radius=4)
+            glyph = (str(item_type(eq)) or '?')[:1].upper()
+            gfont = pg.font.Font(None, max(18, slot_sz // 2))
+            gs = gfont.render(glyph, True, (235,235,245))
+            surf.blit(gs, (r.centerx - gs.get_width()//2, r.centery - gs.get_height()//2))
+        # Click handler for selecting slot
+        def make_sel(k=key):
+            return lambda k=k: setattr(game, 'equip_sel_slot', k)
+        buttons.append(Button(r, "", make_sel(key), draw_bg=False))
+
+    # Right list: items that can go to selected slot
+    fnt = pg.font.Font(None, 22)
+    header = f"Select for: {SLOT_LABELS.get(sel_slot, '—')}" if sel_slot else "Select a slot"
+    draw_text(surf, header, (list_area.x + 12, list_area.y - 26), font=fnt)
+
+    if sel_slot:
+        # Filter items
+        pool = [it for it in game.player.inventory if (slot_accepts(sel_slot, it) or (normalize_slot(sel_slot) in ('weapon_main','weapon_off') and item_type(it).lower() == 'weapon'))]
+        # List rows
+        row_h = 28
+        per_page = max(6, (list_area.h // row_h) - 2)
+        # Maintain a separate page selection for equip list
+        if not hasattr(game, 'equip_page'): game.equip_page = 0
+        total = len(pool)
+        pages = max(1, (total + per_page - 1)//per_page)
+        game.equip_page = max(0, min(game.equip_page, pages-1))
+        start = game.equip_page * per_page
+        items = pool[start:start+per_page]
+        y = list_area.y + 8
+        for i, it in enumerate(items):
+            r = pg.Rect(list_area.x + 8, y + i*row_h, list_area.w - 16, row_h - 4)
+            pg.draw.rect(surf, (34,36,46), r, border_radius=6)
+            pg.draw.rect(surf, (90,94,112), r, 1, border_radius=6)
+            label = f"{item_name(it)}  [{item_type(it)}/{item_subtype(it)}]"
+            draw_text(surf, label, (r.x+8, r.y+6))
+            def make_equip(it=it, slot=sel_slot):
+                return lambda it=it, slot=slot: game.equip_item_to_slot(slot, it)
+            buttons.append(Button(r, "", make_equip(), draw_bg=False))
+
+        # Pager and Unequip
+        pager_y = list_area.bottom - 34
+        buttons.append(Button((list_area.x + 8, pager_y, 110, 26), "Prev Page", lambda: setattr(game,'equip_page', max(0, game.equip_page-1))))
+        buttons.append(Button((list_area.x + 8 + 120, pager_y, 110, 26), "Next Page", lambda: setattr(game,'equip_page', min(pages-1, game.equip_page+1))))
+        # Unequip if there is an item in slot
+        if game.player.equipped_gear.get(sel_slot):
+            buttons.append(Button((list_area.right - 130, pager_y, 110, 26), "Unequip", lambda slot=sel_slot: game.unequip_slot(slot)))
+
+    return buttons
+
 # ======================== Game class + loop ========================
 class Game:
     def __init__(self, start_map: Optional[str]=None, start_entry: Optional[str]=None, start_pos: Optional[Tuple[int,int]]=None):
@@ -732,6 +1294,11 @@ class Game:
         # Load start map from world_map.json and build grid from editor/runtime
         wm_map, wm_entry, wm_pos = get_game_start()
         sel_map = start_map or wm_map or "Jungle of Hills"
+        # Stable map identifier (filename-style without .json) for link matching
+        if isinstance(sel_map, str) and sel_map.lower().endswith('.json'):
+            sel_map_id = sel_map[:-5]
+        else:
+            sel_map_id = sel_map
         entry_name = start_entry if start_entry is not None else wm_entry
         pos = start_pos if start_pos is not None else wm_pos
         scene = load_scene_by_name('map', sel_map)
@@ -740,6 +1307,8 @@ class Game:
         self.tile_px = int(runtime.get('tile_size', 32))
         self.grid    = grid_from_runtime(runtime, self.items, self.npcs)
         self.current_map_name = runtime.get('name', sel_map)
+        # Track a stable ID separate from display name to match links reliably
+        self.current_map_id = sel_map_id
         self.player  = Player()
         # Position player: entry takes precedence, else pos, else (0,0)
         if entry_name:
@@ -751,6 +1320,8 @@ class Game:
                 px, py = 0, 0
         else:
             px, py = 0, 0
+        # Ensure spawn is on a walkable tile
+        px, py = find_nearest_walkable(runtime, px, py)
         self.player.x = max(0, min(self.W-1, px))
         self.player.y = max(0, min(self.H-1, py))
         # Mark starting tile discovered
@@ -766,6 +1337,7 @@ class Game:
         self.can_bribe = False
         self.inv_page = 0
         self.inv_sel = None
+        self.equip_sel_slot = None
 
         weps  = [it for it in self.items if str(item_type(it)).lower() == 'weapon']
         melee = [w for w in weps if str(item_subtype(w)).lower() not in ('wand','staff')]
@@ -807,8 +1379,81 @@ class Game:
             self.say("You need a wand or staff as a focus.")
     def drop_item(self, idx: int):
         if 0 <= idx < len(self.player.inventory):
-            it = self.player.inventory.pop(idx)
+            it = self.player.inventory[idx]
+            if item_is_quest(it):
+                self.say("You cannot drop quest items."); return
+            self.player.inventory.pop(idx)
             self.say(f"Dropped: {item_name(it)}")
+            self.inv_sel = None
+    def equip_item(self, it: Dict):
+        m = item_major_type(it)
+        if m in ('armour','armor','clothing','accessory','accessories'):
+            slots = it.get('equip_slots') or []
+            raw = str(slots[0]).lower() if slots else str(item_subtype(it)).lower() or 'body'
+            slot = normalize_slot(raw)
+            if slot in ('weapon','weapon_main','weapon_off'):
+                # Redirect weapons to equip_weapon/focus
+                self.equip_item_to_slot('weapon_main', it)
+            else:
+                self.equip_item_to_slot(slot, it)
+        elif m == 'weapon':
+            sub = item_subtype(it).lower()
+            if sub in ('wand','staff'):
+                self.equip_focus(it)
+            else:
+                self.equip_weapon(it)
+        else:
+            self.say("That item cannot be equipped.")
+    
+    def equip_item_to_slot(self, slot: str, it: Dict):
+        slot = normalize_slot(slot)
+        if not slot_accepts(slot, it) and slot not in ('weapon_main','weapon_off'):
+            self.say(f"{item_name(it)} cannot be equipped to {SLOT_LABELS.get(slot, slot)}.")
+            return
+        # Move previously equipped item (if any) back to inventory
+        # Do not mutate inventory; just replace mapping
+        self.player.equipped_gear[slot] = it
+        # Also sync legacy fields for combat
+        if slot == 'weapon_main':
+            if str(item_subtype(it)).lower() in ('wand','staff'):
+                self.player.equipped_focus = it
+            else:
+                self.player.equipped_weapon = it
+        elif slot == 'weapon_off':
+            # Only set focus if it's a wand/staff and no main focus is set
+            if str(item_subtype(it)).lower() in ('wand','staff') and not self.player.equipped_focus:
+                self.player.equipped_focus = it
+        self.say(f"Equipped {item_name(it)} -> {SLOT_LABELS.get(slot, slot)}")
+
+    def unequip_slot(self, slot: str):
+        slot = normalize_slot(slot)
+        it = self.player.equipped_gear.pop(slot, None)
+        if it:
+            # Clear legacy fields if they pointed to this item
+            if slot == 'weapon_main' and self.player.equipped_weapon is it:
+                self.player.equipped_weapon = None
+            if slot in ('weapon_main','weapon_off') and self.player.equipped_focus is it:
+                self.player.equipped_focus = None
+            self.say(f"Unequipped {item_name(it)} from {SLOT_LABELS.get(slot, slot)}")
+    def consume_item(self, idx: int):
+        if 0 <= idx < len(self.player.inventory):
+            it = self.player.inventory[idx]
+            if not item_is_consumable(it):
+                self.say("That item cannot be consumed."); return
+            # Simple effect: restore small HP if a hint exists, else just consume
+            healed = 0
+            for key in ('heal','hp','health','restore_hp','hp_restore'):
+                try:
+                    val = int(it.get(key) or 0)
+                    if val > 0: healed = max(healed, val)
+                except Exception:
+                    pass
+            if healed <= 0:
+                # Heuristic: light consumables restore 3-8
+                healed = random.randint(3, 8)
+            self.player.hp = min(self.player.max_hp, self.player.hp + healed)
+            self.say(f"You consume {item_name(it)} (+{healed} HP).")
+            self.player.inventory.pop(idx)
             self.inv_sel = None
 
     def travel_link(self):
@@ -835,15 +1480,20 @@ class Game:
                     (lx, ly), to, _kind, _entry = link
                 except Exception:
                     continue
-                if str(to) == str(getattr(self, 'current_map_name', '')):
+                # Compare against a stable map ID rather than display name
+                if str(to) == str(getattr(self, 'current_map_id', '')):
                     back = (int(lx), int(ly)); break
             if back:
                 px, py = back
+        # Ensure destination spawn is on a walkable tile
+        px, py = find_nearest_walkable(runtime, px, py)
         # Rebuild grid, move player
         self.W, self.H = int(runtime.get('width', 12)), int(runtime.get('height', 8))
         self.tile_px = int(runtime.get('tile_size', 32))
         self.grid    = grid_from_runtime(runtime, self.items, self.npcs)
         self.current_map_name = runtime.get('name', dest_map)
+        # Update stable map ID to the destination base name
+        self.current_map_id = dest_map
         self.player.x = max(0, min(self.W-1, int(px)))
         self.player.y = max(0, min(self.H-1, int(py)))
         try:

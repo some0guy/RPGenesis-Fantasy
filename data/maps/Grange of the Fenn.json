@@ -3,6 +3,7 @@
   "description": "",
   "width": 12,
   "height": 20,
+  "tile_size": 41,
   "tiles": [
     [
       {
@@ -10,84 +11,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -96,84 +121,113 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
-        "links": [],
-        "note": ""
+        "links": [
+          {
+            "target_map": "Jungle of Hills.json",
+            "target_entry": ""
+          }
+        ],
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -182,84 +236,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -268,84 +346,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -354,84 +456,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -440,84 +566,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -526,84 +676,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -612,84 +786,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -698,84 +896,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -784,84 +1006,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -870,84 +1116,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -956,84 +1226,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -1042,84 +1336,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -1128,84 +1446,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -1214,84 +1556,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -1300,84 +1666,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -1386,84 +1776,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -1472,84 +1886,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -1558,84 +1996,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ],
     [
@@ -1644,84 +2106,108 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       },
       {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "note": ""
+        "note": "",
+        "encounter": "",
+        "texture": ""
       }
     ]
   ]
