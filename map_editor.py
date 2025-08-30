@@ -3,7 +3,7 @@ import os
 import json
 import math
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple, Callable
+from typing import Any, Dict, List, Optional, Tuple, Callable, Set
 
 import pygame
 
@@ -455,65 +455,179 @@ class Dropdown:
             draw_text(surf, opt, (x, r.y+6))
 
 class ScrollListWithButtons:
-    """Scrollable list that renders labels with Remove buttons; provides wheel scrolling.
-       Also exposes index_at_pos() to support right-click context menus."""
+    """Scrollable list that renders labels with Remove buttons; supports expand/collapse per row.
+       Also exposes index_at_pos() to support right-click context menus.
+
+       Items may be tuples of:
+         (label: str, on_remove: Callable)
+       or
+         (label: str, on_remove: Callable, details: Dict[str, Any]) where details may contain:
+           - 'kv': List[str]  # simple key/value lines
+           - 'desc': str      # long description text
+    """
     def __init__(self, rect: pygame.Rect):
         self.rect = pygame.Rect(rect)
-        self.items: List[Tuple[str, Callable[[], None]]] = []  # (label, on_remove)
+        self.items: List[Tuple] = []
         self.scroll = 0
         self.item_h = 24
         self.spacing = 6
-    def set_items(self, items: List[Tuple[str, Callable[[], None]]]):
+        self.expanded: Set[int] = set()
+
+    def set_items(self, items: List[Tuple]):
         self.items = items
-        self.scroll = 0
-    def index_at_pos(self, pos: Tuple[int,int]) -> Optional[int]:
-        x,y = pos
-        if not self.rect.collidepoint((x,y)):
-            return None
-        y_start = self.rect.y - self.scroll
+        # Preserve scroll and expanded state; clamp to new content
+        inner_w = self.rect.w - 12
+        try:
+            max_scroll = max(0, self._content_height(inner_w) - self.rect.h)
+        except Exception:
+            max_scroll = 0
+        self.scroll = max(0, min(self.scroll, max_scroll))
+        self.expanded = {i for i in self.expanded if 0 <= i < len(self.items)}
+
+    def _wrap(self, text: str, width_px: int) -> List[str]:
+        # Basic pixel-width word wrap using current FONT
+        words = (text or "").split(" ")
+        lines: List[str] = []
+        line = ""
+        for w in words:
+            test = (line + " " + w).strip()
+            if not line or FONT.size(test)[0] <= width_px:
+                line = test
+            else:
+                lines.append(line)
+                line = w
+        if line:
+            lines.append(line)
+        out: List[str] = []
+        for raw in "\n".join(lines).split("\n"):
+            cur = ""
+            for ch in raw:
+                if not cur or FONT.size(cur + ch)[0] <= width_px:
+                    cur += ch
+                else:
+                    out.append(cur)
+                    cur = ch
+            out.append(cur)
+        return out
+
+    def _details_for(self, idx: int) -> Dict[str, Any]:
+        if idx < 0 or idx >= len(self.items):
+            return {}
+        it = self.items[idx]
+        if len(it) >= 3 and isinstance(it[2], dict):
+            return it[2]
+        return {}
+
+    def _row_height(self, idx: int, width_px: int) -> int:
+        h = self.item_h
+        if idx in self.expanded:
+            details = self._details_for(idx)
+            pad = 6
+            h += pad  # spacing below header
+            kv = details.get('kv') or []
+            if kv:
+                h += len(kv) * (FONT.get_height() + 2)
+            desc = details.get('desc') or ""
+            if desc:
+                wrapped = self._wrap(desc, max(0, width_px - 16))
+                h += len(wrapped) * (FONT.get_height() + 2)
+            h += pad
+        return h
+
+    def _content_height(self, width_px: int) -> int:
+        total = 0
         for i in range(len(self.items)):
-            row_y = y_start + i * (self.item_h + self.spacing)
-            row_rect = pygame.Rect(self.rect.x+6, row_y, self.rect.w-12, self.item_h)
+            total += self._row_height(i, width_px) + self.spacing
+        if total > 0:
+            total -= self.spacing  # no spacing after last
+        return total
+
+    def index_at_pos(self, pos: Tuple[int,int]) -> Optional[int]:
+        x, y = pos
+        if not self.rect.collidepoint((x, y)):
+            return None
+        y_cursor = self.rect.y - self.scroll
+        inner_w = self.rect.w - 12
+        for i in range(len(self.items)):
+            h = self._row_height(i, inner_w)
+            row_rect = pygame.Rect(self.rect.x+6, y_cursor, self.rect.w-12, self.item_h)
             if row_rect.collidepoint((x, y)):
                 return i
+            y_cursor += h + self.spacing
         return None
+
     def handle(self, event):
         if event.type == pygame.MOUSEWHEEL:
             if self.rect.collidepoint(get_mouse_pos()):
-                content_h = len(self.items) * (self.item_h + self.spacing)
+                inner_w = self.rect.w - 12
+                content_h = self._content_height(inner_w)
                 max_scroll = max(0, content_h - self.rect.h)
                 self.scroll = max(0, min(max_scroll, self.scroll - event.y * 24))
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             x, y = event.pos
             if not self.rect.collidepoint((x, y)):
                 return
-            y_start = self.rect.y - self.scroll
-            for i, (label, on_remove) in enumerate(self.items):
-                row_y = y_start + i * (self.item_h + self.spacing)
-                row_rect = pygame.Rect(self.rect.x+6, row_y, self.rect.w-12, self.item_h)
-                btn_rect = pygame.Rect(row_rect.right-70, row_rect.y, 64, self.item_h)
+            y_cursor = self.rect.y - self.scroll
+            inner_w = self.rect.w - 12
+            for i, it in enumerate(self.items):
+                h_total = self._row_height(i, inner_w)
+                header_rect = pygame.Rect(self.rect.x+6, y_cursor, self.rect.w-12, self.item_h)
+                btn_rect = pygame.Rect(header_rect.right-70, header_rect.y, 64, self.item_h)
                 if btn_rect.collidepoint((x, y)):
-                    on_remove()
+                    # on_remove is at index 1
+                    try:
+                        on_remove = it[1]
+                        if callable(on_remove):
+                            on_remove()
+                    finally:
+                        pass
                     break
+                elif header_rect.collidepoint((x, y)):
+                    # toggle expand/collapse
+                    if i in self.expanded:
+                        self.expanded.remove(i)
+                    else:
+                        self.expanded.add(i)
+                    break
+                y_cursor += h_total + self.spacing
+
     def draw(self, surf):
         pygame.draw.rect(surf, PANEL_BG_DARK, self.rect, border_radius=8)
         pygame.draw.rect(surf, GRID_LINE, self.rect, 1, border_radius=8)
         clip = surf.get_clip()
         surf.set_clip(self.rect)
-        y_start = self.rect.y - self.scroll
+        y_cursor = self.rect.y - self.scroll
         try:
             mx, my = get_mouse_pos()
         except Exception:
             mx, my = pygame.mouse.get_pos()
-        for i, (label, _) in enumerate(self.items):
-            row_y = y_start + i * (self.item_h + self.spacing)
-            row_rect = pygame.Rect(self.rect.x+6, row_y, self.rect.w-12, self.item_h)
-            hovered = row_rect.collidepoint((mx, my))
-            pygame.draw.rect(surf, BTN_HOVER if hovered else PANEL_BG, row_rect, border_radius=6)
-            draw_text(surf, label[:60], (row_rect.x+8, row_rect.y+4))
-            btn_rect = pygame.Rect(row_rect.right-70, row_rect.y, 64, self.item_h)
+        inner_w = self.rect.w - 12
+        for i, it in enumerate(self.items):
+            label = it[0]
+            # Header row
+            header_rect = pygame.Rect(self.rect.x+6, y_cursor, self.rect.w-12, self.item_h)
+            hovered = header_rect.collidepoint((mx, my))
+            pygame.draw.rect(surf, BTN_HOVER if hovered else PANEL_BG, header_rect, border_radius=6)
+            draw_text(surf, label[:120], (header_rect.x+8, header_rect.y+4))
+            btn_rect = pygame.Rect(header_rect.right-70, header_rect.y, 64, self.item_h)
             pygame.draw.rect(surf, DANGER, btn_rect, border_radius=6)
             draw_text(surf, "Remove", (btn_rect.x+6, btn_rect.y+4))
+
+            # Expanded details
+            y = header_rect.bottom + 6
+            if i in self.expanded:
+                details = self._details_for(i)
+                kv = details.get('kv') or []
+                for ln in kv:
+                    surf.blit(FONT.render(ln, True, TEXT_DIM), (header_rect.x+10, y))
+                    y += FONT.get_height() + 2
+                desc = details.get('desc') or ""
+                if desc:
+                    for ln in self._wrap(desc, max(0, inner_w - 16)):
+                        surf.blit(FONT.render(ln, True, TEXT_MAIN), (header_rect.x+10, y))
+                        y += FONT.get_height() + 2
+            # advance cursor by computed total height for this item
+            y_cursor += self._row_height(i, inner_w) + self.spacing
         surf.set_clip(clip)
 
 # -------------------- StartScreen --------------------
@@ -1009,7 +1123,7 @@ class EditorScreen:
         self.history.push(do, undo, label="set_encounter")
 
     def _rebuild_scroll_items(self):
-        items: List[Tuple[str, Callable[[], None]]] = []
+        items: List[Tuple] = []
         if not self.selected:
             self.scroll_list.set_items([]); return
         x,y = self.selected
@@ -1018,12 +1132,34 @@ class EditorScreen:
         t = self.map.tiles[y][x]
         # NPCs
         for i, e in enumerate(t.npcs):
-            label = f"{e.get('name','(unnamed)')} [{e.get('id','')}] <{e.get('subcategory','')}>"
-            items.append((label, lambda i=i: self._record_remove_list_entry(t.npcs, i, 'rem_npc')))
+            name = e.get('name','(unnamed)')
+            sub  = e.get('subcategory','')
+            ident = e.get('id','')
+            label = name
+            details = {
+                'kv': [
+                    'Type: NPC',
+                    f"Subcategory: {sub}" if sub else "Subcategory: -",
+                    f"ID: {ident}" if ident else "ID: -",
+                ],
+                'desc': e.get('description','') or '',
+            }
+            items.append((label, lambda i=i: self._record_remove_list_entry(t.npcs, i, 'rem_npc'), details))
         # Items
         for i, e in enumerate(t.items):
-            label = f"{e.get('name','(unnamed)')} [{e.get('id','')}] <{e.get('subcategory','')}>"
-            items.append((label, lambda i=i: self._record_remove_list_entry(t.items, i, 'rem_item')))
+            name = e.get('name','(unnamed)')
+            sub  = e.get('subcategory','')
+            ident = e.get('id','')
+            label = name
+            details = {
+                'kv': [
+                    'Type: Item',
+                    f"Subcategory: {sub}" if sub else "Subcategory: -",
+                    f"ID: {ident}" if ident else "ID: -",
+                ],
+                'desc': e.get('description','') or '',
+            }
+            items.append((label, lambda i=i: self._record_remove_list_entry(t.items, i, 'rem_item'), details))
         # Link (max 1)
         for i, e in enumerate(t.links):
             label = f"Link → {e.get('target_map','?')} #{e.get('target_entry','')}"
@@ -1594,7 +1730,10 @@ class ListBox:
     def handle(self, event):
         if event.type == pygame.MOUSEWHEEL:
             if self.rect.collidepoint(get_mouse_pos()):
-                self.scroll = max(0, self.scroll - event.y * 24)
+                # Clamp scroll so it stops at the end of the list
+                content_h = len(self.items) * (self.item_h + self.spacing)
+                max_scroll = max(0, content_h - self.rect.h)
+                self.scroll = max(0, min(max_scroll, self.scroll - event.y * 24))
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if not self.rect.collidepoint(event.pos):
                 return
