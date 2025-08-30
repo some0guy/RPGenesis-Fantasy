@@ -97,10 +97,15 @@ def scene_to_runtime(scene: Dict[str, Any]) -> Dict[str, Any]:
                 x_str, y_str = key.split(','); x = int(x_str); y = int(y_str)
             except Exception:
                 continue
+            npc = payload.get('npc')
+            item = payload.get('item')
+            # Provide both singular and list forms for compatibility
             tiles[(x, y)] = {
-                'npc': payload.get('npc'),
+                'npc': npc,
                 'enemy': payload.get('enemy'),
-                'item': payload.get('item'),
+                'item': item,
+                'npcs': [npc] if npc else [],
+                'items': [item] if item else [],
             }
     elif isinstance(scene.get('tiles'), list):
         # map-editor 2D grid
@@ -109,19 +114,28 @@ def scene_to_runtime(scene: Dict[str, Any]) -> Dict[str, Any]:
             row = grid[y] or []
             for x in range(min(w, len(row))):
                 cell = (row[x] or {})
+                npcs = list(cell.get('npcs') or [])
+                items = list(cell.get('items') or [])
+                # Derive primary npc/enemy for simple game flows
+                def _is_enemy(e: dict) -> bool:
+                    sub = str((e.get('subcategory') or '')).lower()
+                    return sub in ('enemies','monsters') or bool(e.get('hostile'))
                 npc_payload = None
-                item_payload = None
-                # Pick the first NPC/item if present (schema-agnostic)
-                npcs = cell.get('npcs') or []
-                items = cell.get('items') or []
-                if npcs:
-                    npc_payload = npcs[0]
-                if items:
-                    item_payload = items[0]
+                enemy_payload = None
+                for e in npcs:
+                    if _is_enemy(e):
+                        enemy_payload = e; break
+                for e in npcs:
+                    if not _is_enemy(e):
+                        npc_payload = e; break
                 tiles[(x, y)] = {
                     'npc': npc_payload,
-                    'enemy': None,
-                    'item': item_payload,
+                    'enemy': enemy_payload,
+                    'item': (items[0] if items else None),
+                    'npcs': npcs,
+                    'items': items,
+                    # Carry through the editor's per-tile safety marker ('safe'|'danger'|'')
+                    'encounter': (cell.get('encounter') or ''),
                 }
 
     # Entries: pass through if present

@@ -3,7 +3,7 @@
   "description": "",
   "width": 20,
   "height": 10,
-  "tile_size": 32,
+  "tile_size": 62,
   "tiles": [
     [
       {
@@ -79,7 +79,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "safe",
         "texture": ""
       },
       {
@@ -261,7 +261,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -315,7 +315,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -324,7 +324,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -333,7 +333,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -342,7 +342,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -351,7 +351,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -360,7 +360,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -369,7 +369,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -378,7 +378,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       }
     ],
@@ -421,7 +421,7 @@
           }
         ],
         "note": "",
-        "encounter": "",
+        "encounter": "safe",
         "texture": ""
       },
       {
@@ -448,7 +448,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -457,7 +457,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -466,7 +466,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -475,7 +475,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -502,7 +502,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -603,7 +603,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -612,7 +612,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -621,7 +621,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -630,7 +630,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -657,7 +657,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -684,7 +684,23 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [
+          {
+            "subcategory": "animals",
+            "id": "NP00000034",
+            "name": "Dorian Vaeloria",
+            "description": ""
+          }
+        ],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "safe",
         "texture": ""
       },
       {
@@ -693,7 +709,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -702,16 +718,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -737,15 +744,15 @@
         "npcs": [],
         "items": [
           {
-            "subcategory": "quest_items",
-            "id": "IT00000006",
-            "name": "Moon-signet",
-            "description": "A silver ring etched with a crescent."
+            "subcategory": "materials",
+            "id": "IT00000005",
+            "name": "Moon-ore Shard",
+            "description": ""
           }
         ],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "safe",
         "texture": ""
       },
       {
@@ -810,6 +817,60 @@
         "items": [],
         "links": [],
         "note": "",
+        "encounter": "danger",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "danger",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
         "encounter": "",
         "texture": ""
       },
@@ -846,34 +907,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -900,34 +934,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -992,16 +999,23 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
         "walkable": true,
-        "npcs": [],
+        "npcs": [
+          {
+            "subcategory": "monsters",
+            "id": "NP00000086",
+            "name": "Kess Nightrun",
+            "description": ""
+          }
+        ],
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "safe",
         "texture": ""
       },
       {
@@ -1028,7 +1042,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1037,7 +1051,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1046,7 +1060,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1055,7 +1069,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1082,7 +1096,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1109,7 +1123,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1183,7 +1197,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1210,7 +1224,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1237,7 +1251,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1264,7 +1278,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1273,7 +1287,23 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [
+          {
+            "subcategory": "enemies",
+            "id": "NP00000069",
+            "name": "Isolde Goldbranch",
+            "description": ""
+          }
+        ],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "safe",
         "texture": ""
       },
       {
@@ -1282,16 +1312,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1338,7 +1359,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1347,7 +1368,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1356,7 +1377,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1365,34 +1386,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1419,7 +1413,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1446,7 +1440,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1473,7 +1467,34 @@
         "items": [],
         "links": [],
         "note": "",
+        "encounter": "danger",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
         "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1502,7 +1523,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1511,7 +1532,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1520,7 +1541,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1570,7 +1591,20 @@
       },
       {
         "walkable": true,
-        "npcs": [],
+        "npcs": [
+          {
+            "subcategory": "allies",
+            "id": "NP00000001",
+            "name": "Selune Vaeloria",
+            "description": ""
+          },
+          {
+            "subcategory": "citizens",
+            "id": "NP00000054",
+            "name": "Vael Vaeloria",
+            "description": ""
+          }
+        ],
         "items": [
           {
             "subcategory": "armour",
@@ -1601,11 +1635,17 @@
             "id": "IT00000005",
             "name": "Wanderer's Wraps Gloves",
             "description": "Wanderer's Wraps: frayed hems in dusty umber, sun-browned linen; binds tight without biting. It breathes easy; smells of road and sunlight."
+          },
+          {
+            "subcategory": "quest_items",
+            "id": "IT00000006",
+            "name": "Moon-signet",
+            "description": "A silver ring etched with a crescent."
           }
         ],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "safe",
         "texture": ""
       },
       {
@@ -1632,7 +1672,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1641,7 +1681,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1650,7 +1690,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1659,7 +1699,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1686,7 +1726,7 @@
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1720,7 +1760,7 @@
           }
         ],
         "note": "",
-        "encounter": "",
+        "encounter": "safe",
         "texture": ""
       },
       {

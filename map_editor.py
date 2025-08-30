@@ -739,8 +739,8 @@ class EditorScreen:
         self.btn_cat_links = Button((920, 130, 140, 30), "Links", lambda: self._switch_category("Links"))
 
         # NPCs / Items lists
-        self.dd_npc_sub  = Dropdown((920, 180, 140, 26), NPC_SUBCATS,  value=NPC_SUBCATS[0], on_change=lambda v: self._reload_npcs())
-        self.dd_item_sub = Dropdown((920, 180, 140, 26), ITEM_SUBCATS, value=ITEM_SUBCATS[0], on_change=lambda v: self._reload_items())
+        self.dd_npc_sub  = Dropdown((920, 180, 140, 26), NPC_SUBCATS,  value=NPC_SUBCATS[0], on_change=lambda v: self._reload_npcs(), get_icon=self._get_npc_sub_icon)
+        self.dd_item_sub = Dropdown((920, 180, 140, 26), ITEM_SUBCATS, value=ITEM_SUBCATS[0], on_change=lambda v: self._reload_items(), get_icon=self._get_item_sub_icon)
         self.list_box = ListBox((920, 214, 340, 160))
         self.btn_add_to_tile      = Button((920, 380, 160, 28), "Add to Selected", self.add_selected_to_tile)
 
@@ -824,6 +824,42 @@ class EditorScreen:
                     tex = pygame.transform.smoothscale(base, (size, size))
                     self._tex_scaled[key] = tex
             return tex
+        except Exception:
+            return None
+
+    def _get_npc_sub_icon(self, opt: str, size: int) -> Optional[pygame.Surface]:
+        try:
+            sub = (opt or '').lower()
+            color = None
+            if sub == 'enemies': color = COL_RED
+            elif sub == 'allies': color = COL_GREEN
+            elif sub == 'citizens': color = COL_BLUE
+            elif sub == 'monsters': color = COL_PURPLE
+            elif sub == 'animals': color = COL_YELLOW
+            if color is None: return None
+            s = max(10, size)
+            surf = pygame.Surface((s, s), pygame.SRCALPHA)
+            r = s // 3
+            cx = s // 2
+            cy = s // 2
+            pygame.draw.circle(surf, (10,10,12,255), (cx, cy), r+1)
+            pygame.draw.circle(surf, color, (cx, cy), r)
+            return surf
+        except Exception:
+            return None
+
+    def _get_item_sub_icon(self, opt: str, size: int) -> Optional[pygame.Surface]:
+        try:
+            sub = (opt or '').lower()
+            color = COL_ORANGE if sub == 'quest_items' else COL_WHITE
+            s = max(10, size)
+            surf = pygame.Surface((s, s), pygame.SRCALPHA)
+            r = s // 3
+            cx = s // 2
+            cy = s // 2
+            pygame.draw.circle(surf, (10,10,12,255), (cx, cy), r+1)
+            pygame.draw.circle(surf, color, (cx, cy), r)
+            return surf
         except Exception:
             return None
 

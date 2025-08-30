@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 import os, sys, json, re, argparse, random, math
-from typing import Dict, Any, List, Tuple, Optional
+from typing import Dict, Any, List, Tuple, Optional, Set
 from collections import deque
 from dataclasses import dataclass, field
 
@@ -398,11 +398,19 @@ def load_status() -> List[Dict]:   return safe_load_doc("status.json", "status")
 # ======================== Core structures ========================
 @dataclass
 class Encounter:
+    # Primary single targets (kept for compatibility with existing flows)
     npc: Optional[Dict] = None
     enemy: Optional[Dict] = None
+    # Full lists as placed by the map editor
+    npcs: List[Dict] = field(default_factory=list)
+    items: List[Dict] = field(default_factory=list)
+    # Other encounter aspects
     event: Optional[str] = None
     must_resolve: bool = False
     spotted: bool = False
+    # Movement constraint: where you came from when entering a blocking tile
+    allowed_back: Optional[Tuple[int,int]] = None
+    # Deprecated single-item fields retained for backward compatibility
     item_here: Optional[Dict] = None
     item_searched: bool = False
 
@@ -414,6 +422,8 @@ class Tile:
     encounter: Optional[Encounter] = None
     visited: int = 0
     description: str = ""
+    # Per-tile safety marker from the map editor: '', 'safe', or 'danger'
+    safety: str = ""
     walkable: bool = False   # NEW: path support
     has_link: bool = False
     link_to_map: Optional[str] = None
@@ -478,7 +488,7 @@ def grid_from_runtime(runtime: Dict[str, Any], items: List[Dict], npcs: List[Dic
     """Build a Tile grid from the scene_to_runtime() structure (editor or legacy).
 
     - walkable: from runtime['walkable']
-    - encounters: minimal mapping of editor payloads to Encounter(npc/item)
+    - encounters: map editor payloads to Encounter lists (npcs/items)
     """
     W = int(runtime.get('width', 12)); H = int(runtime.get('height', 8))
     grid: List[List[Tile]] = [[Tile(x=x, y=y) for x in range(W)] for y in range(H)]
@@ -491,12 +501,33 @@ def grid_from_runtime(runtime: Dict[str, Any], items: List[Dict], npcs: List[Dic
             t.walkable = bool(walk[y][x]) if y < len(walk) and x < len(walk[y]) else True
             cell = payload.get((x, y))
             if cell:
+                # Copy per-tile safety marker if present
+                try:
+                    t.safety = str(cell.get('encounter') or '').lower()
+                except Exception:
+                    t.safety = ''
                 enc = Encounter()
-                if cell.get('npc'):
-                    enc.npc = cell.get('npc'); enc.must_resolve = False
-                if cell.get('item'):
-                    enc.item_here = cell.get('item')
-                t.encounter = enc if (enc.npc or enc.item_here) else None
+                # Populate lists if provided by runtime
+                enc.npcs = list(cell.get('npcs') or [])
+                enc.items = list(cell.get('items') or [])
+                # Backwards compatible single fields
+                if cell.get('npc') and not enc.npcs:
+                    enc.npcs = [cell.get('npc')]
+                if cell.get('item') and not enc.items:
+                    enc.items = [cell.get('item')]
+                # Derive primary targets
+                def _is_enemy(e: Dict) -> bool:
+                    sub = (e.get('subcategory') or '').lower()
+                    return sub in ('enemies','monsters') or bool(e.get('hostile'))
+                for e in enc.npcs:
+                    if _is_enemy(e):
+                        enc.enemy = e
+                        break
+                for e in enc.npcs:
+                    if not _is_enemy(e):
+                        enc.npc = e
+                        break
+                t.encounter = enc if (enc.npcs or enc.items or enc.event) else None
 
     # Mark link tiles for UI from runtime['links']
     for link in (runtime.get('links') or []):
@@ -564,22 +595,70 @@ try:
 except Exception:
     pg = None  # checked at runtime
 
+# Color palette for recent log entries (matches map dots)
+LOG_COLORS = {
+    'enemy':   (220,70,70),
+    'monster': (170,110,240),
+    'ally':    (80,200,120),
+    'citizen': (80,150,240),
+    'animal':  (245,210,80),
+    'quest_item': (255,160,70),
+    'item':    (240,240,240),
+    'event':   (160,130,200),
+    'link':    (255,105,180),
+}
+
 def draw_text(surface, text, pos, color=(230,230,230), font=None, max_w=None):
+    """Render text with optional word wrapping.
+
+    Returns the pixel height consumed by the rendered text (number of lines * line_height).
+    Callers may ignore the return value when fixed spacing is desired.
+    """
+    # If string is prefixed with a bullet (bell or dot), preserve it while parsing [tag]
+    if isinstance(text, str):
+        try:
+            prefix = ''
+            if text.startswith("\u0007 "):
+                prefix, body = text[:2], text[2:]
+            elif text.startswith("• "):
+                prefix, body = text[:2], text[2:]
+            else:
+                body = text
+            if body.startswith('['):
+                close = body.find(']')
+                if close != -1:
+                    tag = body[1:close].strip().lower()
+                    if color == (230,230,230):
+                        color = LOG_COLORS.get(tag, color)
+                    body = body[close+1:].lstrip()
+            text = prefix + body
+        except Exception:
+            pass
     if font is None:
         if pg is None:
             raise RuntimeError("pygame not available")
         font = pg.font.Font(None, 18)
+    line_h = font.get_linesize()
     if not max_w:
-        surface.blit(font.render(text, True, color), pos); return
-    words = text.split(" "); x,y = pos; line = ""
+        surface.blit(font.render(text, True, color), pos)
+        return line_h
+    words = text.split(" ")
+    x, y = pos
+    line = ""
+    lines = 0
     for w in words:
         test = (line + " " + w).strip()
-        if font.size(test)[0] <= max_w: line = test
+        if font.size(test)[0] <= max_w:
+            line = test
         else:
-            surface.blit(font.render(line, True, color), (x,y))
-            y += font.get_linesize()
+            surface.blit(font.render(line, True, color), (x, y))
+            y += line_h
+            lines += 1
             line = w
-    if line: surface.blit(font.render(line, True, color), (x,y))
+    if line:
+        surface.blit(font.render(line, True, color), (x, y))
+        lines += 1
+    return max(0, lines * line_h)
 
 class Button:
     def __init__(self, rect, label, cb, draw_bg: bool=True):
@@ -637,12 +716,17 @@ def draw_grid(surf, game):
     cam_x = px_world - view_w//2
     cam_y = py_world - view_h//2
 
-    # Colors
-    COL_ENEMY  = (190,70,70)
-    COL_NPC    = (90,170,110)
-    COL_EVENT  = (160,130,200)
-    COL_LINK   = (255,105,180)  # match editor's link color (pink)
-    COL_PLAYER = (122,162,247)  # accent
+    # Colors (match editor palette more closely)
+    COL_ENEMY    = (220,70,70)
+    COL_ALLY     = (80,200,120)
+    COL_CITIZEN  = (80,150,240)
+    COL_MONSTER  = (170,110,240)
+    COL_ANIMAL   = (245,210,80)
+    COL_ITEM     = (240,240,240)
+    COL_QITEM    = (255,160,70)
+    COL_EVENT    = (160,130,200)
+    COL_LINK     = (255,105,180)  # match editor's link color (pink)
+    COL_PLAYER   = (122,162,247)  # accent
 
     for y in range(H):
         for x in range(W):
@@ -663,14 +747,48 @@ def draw_grid(surf, game):
             # Overlay markers (centered dots)
             dot_colors = []
             if tile.encounter:
-                if tile.encounter.enemy:
-                    dot_colors.append(COL_ENEMY)
-                if tile.encounter.npc:
-                    dot_colors.append(COL_NPC)
-                if tile.encounter.event:
-                    dot_colors.append(COL_EVENT)
-                if getattr(tile.encounter, 'item_here', None):
-                    dot_colors.append((230,230,230))  # item present
+                enc = tile.encounter
+                has: Set[str] = set()
+                # NPC categories
+                for e in getattr(enc, 'npcs', []) or []:
+                    sub = (e.get('subcategory') or '').lower()
+                    if sub == 'enemies':
+                        has.add('enemy')
+                    elif sub == 'allies':
+                        has.add('ally')
+                    elif sub == 'citizens':
+                        has.add('citizen')
+                    elif sub == 'monsters':
+                        has.add('monster')
+                    elif sub == 'animals':
+                        has.add('animal')
+                    else:
+                        if e.get('hostile'): has.add('enemy')
+                        else: has.add('ally')
+                # Items
+                its = getattr(enc, 'items', []) or []
+                if its:
+                    if any((it.get('subcategory','').lower() == 'quest_items') for it in its):
+                        has.add('quest_item')
+                    if any((it.get('subcategory','').lower() != 'quest_items') for it in its):
+                        has.add('item')
+                # Events
+                if enc.event:
+                    has.add('event')
+                order = ['enemy','ally','citizen','monster','animal','quest_item','item','event']
+                color_map = {
+                    'enemy': COL_ENEMY,
+                    'ally': COL_ALLY,
+                    'citizen': COL_CITIZEN,
+                    'monster': COL_MONSTER,
+                    'animal': COL_ANIMAL,
+                    'quest_item': COL_QITEM,
+                    'item': COL_ITEM,
+                    'event': COL_EVENT,
+                }
+                for k in order:
+                    if k in has:
+                        dot_colors.append(color_map[k])
             if tile.has_link:
                 dot_colors.append(COL_LINK)
             if dot_colors:
@@ -752,6 +870,14 @@ def draw_panel(surf, game):
     # Tile / Equipped summary
     t = game.tile()
     draw_text(surf, f"Tile ({t.x},{t.y})", (x0+16, y)); y += 22
+    # Area safety marker from map editor
+    try:
+        if getattr(t, 'safety', '') == 'safe':
+            draw_text(surf, "Area: Safe", (x0+16, y), color=(80,200,120)); y += 18
+        elif getattr(t, 'safety', '') == 'danger':
+            draw_text(surf, "Area: Danger", (x0+16, y), color=(220,70,70)); y += 18
+    except Exception:
+        pass
     desc_font = pg.font.Font(None, 22)
     draw_text(surf, t.description, (x0+16, y), max_w=panel_w-32, font=desc_font); y += desc_font.get_linesize() * 2
     # Equipped
@@ -775,8 +901,10 @@ def draw_panel(surf, game):
             draw_text(surf, f"NPC: {npcname} (Race: {npcrace})", (x0+16, y)); y += 18
         if t.encounter.event:
             draw_text(surf, f"Event: {t.encounter.event}", (x0+16, y)); y += 18
-        if not t.encounter.item_searched:
-            draw_text(surf, "Area can be searched.", (x0+16, y), (200,200,240)); y += 18
+        # Search status: show remaining items if any
+        remaining = len((getattr(t.encounter, 'items', None) or []))
+        if remaining > 0:
+            draw_text(surf, f"Searchable: {remaining} item(s) remain.", (x0+16, y), (200,200,240)); y += 18
         else:
             draw_text(surf, "Area already searched.", (x0+16, y), (160,160,180)); y += 18
 
@@ -786,7 +914,9 @@ def draw_panel(surf, game):
     draw_text(surf, f"Inventory: {len(game.player.inventory)}", (x0+16, y)); y += 24
     draw_text(surf, "Recent:", (x0+16, y)); y += 16
     for line in game.log:
-        draw_text(surf, f"• {line}", (x0+20, y), max_w=panel_w-36); y += 16
+        block_h = draw_text(surf, f"• {line}", (x0+20, y), max_w=panel_w-36)
+        # Add slight spacing between wrapped entries
+        y += int(block_h) + 4
 
     # Update scroll bounds and restore clip
     content_total_h = y - content_top
@@ -811,7 +941,6 @@ def draw_panel(surf, game):
         add("Equipment", lambda: setattr(game, 'mode', 'equip'))
     elif game.mode == "dialogue":
         add("Talk",  lambda: game.handle_dialogue_choice("Talk"))
-        add("Flirt", lambda: game.handle_dialogue_choice("Flirt"))
         add("Leave", lambda: game.handle_dialogue_choice("Leave"))
         add("Inventory", lambda: setattr(game, 'mode', 'inventory'))
         add("Equipment", lambda: setattr(game, 'mode', 'equip'))
@@ -1329,7 +1458,7 @@ class Game:
             self.grid[self.player.y][self.player.x].discovered = True
         except Exception:
             pass
-        self.log: List[str] = ["You arrive at the edge of the wilds."]
+        self.log = ["You arrive at the edge of the wilds."]
         self.mode = "explore"
         self.current_enemy_hp = 0
         self.current_enemy = None
@@ -1360,9 +1489,13 @@ class Game:
         if y is None: y = self.player.y
         return self.grid[y][x]
 
-    def say(self, msg: str):
+    def say(self, msg: str, tag: Optional[str]=None):
+        # Encode tag in-line for UI coloring as "[tag] message"
+        if tag:
+            msg = f"[{tag}] {msg}"
         self.log.append(msg)
-        if len(self.log) > 8: self.log = self.log[-8:]
+        if len(self.log) > 8:
+            self.log = self.log[-8:]
 
     # ---------- Equipment actions ----------
     def equip_weapon(self, it: Dict):
@@ -1504,17 +1637,17 @@ class Game:
         self.say(f"You travel to {self.current_map_name}.")
 
     def can_leave_tile(self) -> bool:
-        t = self.tile()
-        if not t.encounter: return True
-        if not t.encounter.must_resolve: return True
-        if self.mode in ("dialogue","combat","event"): return False
-        if t.encounter.npc or t.encounter.enemy or t.encounter.event: return False
+        # Legacy helper retained; movement rules are enforced in move()
+        if self.mode in ("dialogue","combat","event"):
+            return False
         return True
 
     def move(self, dx, dy):
+        # Block movement while in interactive modes
         if not self.can_leave_tile():
-            self.say("Resolve the encounter before moving on."); return
-        nx, ny = self.player.x + dx, self.player.y + dy
+            return
+        px, py = self.player.x, self.player.y
+        nx, ny = px + dx, py + dy
         if 0 <= nx < getattr(self, 'W', 12) and 0 <= ny < getattr(self, 'H', 8):
             # Block movement onto impassable tiles
             try:
@@ -1523,19 +1656,39 @@ class Game:
                     return
             except Exception:
                 pass
+            # If current tile has a blocking enemy encounter, restrict exit
+            cur_tile = self.tile()
+            enc = cur_tile.encounter
+            if enc and enc.enemy and enc.must_resolve:
+                back = getattr(enc, 'allowed_back', None)
+                if enc.spotted:
+                    self.say("You're engaged! You cannot retreat. Try Flee.")
+                    return
+                if back is None or (nx, ny) != tuple(back):
+                    self.say("You can't pass until you resolve this encounter, but you can go back.")
+                    return
             self.player.x, self.player.y = nx, ny
             t = self.tile(); t.discovered = True; t.visited += 1
             if t.encounter:
                 if t.encounter.enemy:
+                    # Mark that this tile must be resolved before passing through
+                    t.encounter.must_resolve = True
+                    t.encounter.allowed_back = (px, py)
                     self.mode = "combat" if t.encounter.spotted else "explore"
+                    # Determine enemy type for coloring
+                    sub = str((t.encounter.enemy or {}).get('subcategory') or '').lower()
+                    tag = 'monster' if sub == 'monsters' else 'enemy'
                     if t.encounter.spotted:
-                        self.start_combat(t.encounter.enemy); self.say(f"{t.encounter.enemy.get('name','A foe')} spots you!")
+                        self.start_combat(t.encounter.enemy); self.say(f"{t.encounter.enemy.get('name','A foe')} spots you!", tag)
                     else:
-                        self.say("An enemy lurks here... maybe you could sneak by.")
+                        self.say("An enemy lurks here... maybe you could sneak by.", tag)
                 elif t.encounter.npc:
-                    self.mode = "dialogue"; self.start_dialogue(t.encounter.npc); self.say(f"You meet {t.encounter.npc.get('name','someone')}.")
+                    # Friendly presence does not block or force dialogue; allow passing by
+                    sub = str((t.encounter.npc or {}).get('subcategory') or '').lower()
+                    tag = 'ally' if sub == 'allies' else ('citizen' if sub == 'citizens' else ('animal' if sub == 'animals' else None))
+                    self.say(f"You see {t.encounter.npc.get('name','someone')} here.", tag)
                 elif t.encounter.event:
-                    self.mode = "event"; self.say(f"You encounter {t.encounter.event}.")
+                    self.mode = "event"; self.say(f"You encounter {t.encounter.event}.", 'event')
             else:
                 self.mode = "explore"
 
@@ -1631,15 +1784,19 @@ class Game:
             self.say("No unnoticed enemy to sneak by."); return
         dc = 8 + random.randint(0,4); roll = 4 + random.randint(1,10)
         if roll >= dc:
-            self.say("You slip past unnoticed."); t.encounter.enemy = None; t.encounter.must_resolve = False; self.mode = "explore"
+            self.say("You slip past unnoticed.")
+            t.encounter.enemy = None
+            t.encounter.must_resolve = False
+            self.mode = "explore"
         else:
-            self.say("You stumble—you're spotted!"); t.encounter.spotted = True; self.start_combat(t.encounter.enemy)
+            self.say("You stumble-you're spotted!"); t.encounter.spotted = True; self.start_combat(t.encounter.enemy)
 
     def bypass_enemy(self):
         t = self.tile()
         if t.encounter and t.encounter.enemy and not t.encounter.spotted:
             self.say("You give the area a wide berth. (You can leave now.)")
-            t.encounter.must_resolve = False; self.mode = "explore"
+            t.encounter.must_resolve = False
+            self.mode = "explore"
         else:
             self.say("Too risky to bypass.")
 
@@ -1700,14 +1857,19 @@ class Game:
         t = self.tile()
         if not t.encounter:
             self.say("You find little of note."); return
-        if t.encounter.item_searched:
-            self.say("You've already scoured this area."); return
-        t.encounter.item_searched = True
-        if t.encounter.item_here:
-            item = t.encounter.item_here; self.player.inventory.append(item)
-            self.say(f"You found: {item_name(item)}!"); t.encounter.item_here = None
-        else:
-            self.say("You search thoroughly, but find nothing this time.")
+        items = list(getattr(t.encounter, 'items', []) or [])
+        if not items:
+            t.encounter.item_searched = True
+            self.say("You search thoroughly, but find nothing."); return
+        # Loot one item per search
+        item = items.pop(0)
+        t.encounter.items = items
+        self.player.inventory.append(item)
+        # Tag quests for orange recent text
+        tag = 'quest_item' if item_is_quest(item) else 'item'
+        self.say(f"You found: {item_name(item)}!", tag)
+        if not t.encounter.items:
+            t.encounter.item_searched = True
 
 # ======================== Start game (UI) ========================
 def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, start_pos: Optional[Tuple[int,int]]=None):
