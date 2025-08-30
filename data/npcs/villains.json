@@ -1,0 +1,67 @@
+[
+    {
+        "id": "NP00000105",
+        "name": "Crystal Pittman",
+        "title": "The Dark Sorcerer",
+        "description": "A master of forbidden magic, this sorcerer wields dark powers that threaten the very fabric of reality. Their ambition to rule the world is only matched by their thirst for immortality.",
+        "subcategory": "villains",
+        "strength": 51,
+        "intelligence": 98,
+        "agility": 31,
+        "health": 132,
+        "fear_factor": 2,
+        "race": "Human"
+    },
+    {
+        "id": "NP00000106",
+        "name": "Valerie Kelley",
+        "title": "The Tyrant King",
+        "description": "A ruthless ruler who commands an army of mindless soldiers, forcing those under their reign to obey or perish. Their cruelty knows no bounds, and their desire for power is insatiable.",
+        "subcategory": "villains",
+        "strength": 70,
+        "intelligence": 32,
+        "agility": 55,
+        "health": 143,
+        "fear_factor": 6,
+        "race": "Human"
+    },
+    {
+        "id": "NP00000107",
+        "name": "Angela Hayes",
+        "title": "The Shadow Assassin",
+        "description": "A mysterious and elusive figure who strikes from the shadows, assassinating targets with deadly precision. Their motives are unclear, but their loyalty is to the highest bidder.",
+        "subcategory": "villains",
+        "strength": 58,
+        "intelligence": 81,
+        "agility": 67,
+        "health": 76,
+        "fear_factor": 8,
+        "race": "Orc"
+    },
+    {
+        "id": "NP00000108",
+        "name": "Amy Cherry",
+        "title": "The Fallen Knight",
+        "description": "Once a noble warrior, now corrupted by dark magic and vengeance. They seek to destroy those who once called them a hero, turning their blade against former allies and spreading chaos wherever they go.",
+        "subcategory": "villains",
+        "strength": 91,
+        "intelligence": 66,
+        "agility": 73,
+        "health": 208,
+        "fear_factor": 4,
+        "race": "Tiefling"
+    },
+    {
+        "id": "NP00000109",
+        "name": "Monica Burns",
+        "title": "The Mad Scientist",
+        "description": "A genius mind twisted by their own inventions. They create terrifying mechanical monstrosities, hoping to bend nature itself to their will. Their obsession with progress comes at the cost of human lives.",
+        "subcategory": "villains",
+        "strength": 42,
+        "intelligence": 92,
+        "agility": 18,
+        "health": 45,
+        "fear_factor": 7,
+        "race": "Human"
+    }
+]

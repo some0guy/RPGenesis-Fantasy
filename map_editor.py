@@ -18,7 +18,7 @@ TILE_IMG_DIR = os.path.join(ROOT_DIR, "assets", "images", "map_tiles")
 
 os.makedirs(MAP_DIR, exist_ok=True)
 
-NPC_SUBCATS   = ["allies", "enemies", "monsters", "animals", "citizens"]
+NPC_SUBCATS   = ["allies", "enemies", "monsters", "villains", "animals", "citizens"]
 ITEM_SUBCATS  = ["accessories", "armour", "clothing", "materials", "quest_items", "trinkets", "weapons"]
 
 TILE_SIZE_DEFAULT = 32
@@ -47,20 +47,22 @@ SAFE_TINT_RGBA   = (50, 180, 90, 60)
 DANGER_TINT_RGBA = (200, 70, 70, 60)
 
 # Dot colors
-COL_RED    = (220,70,70)     # enemies
+COL_RED    = (220,70,70)     # monsters
 COL_GREEN  = (80,200,120)    # allies
 COL_BLUE   = (80,150,240)    # citizens
-COL_PURPLE = (170,110,240)   # monsters
+COL_PURPLE = (170,110,240)   # villains
 COL_YELLOW = (245,210,80)    # animals
 COL_WHITE  = (240,240,240)   # items (non-quest)
 COL_ORANGE = (255,160,70)    # quest items
 COL_PINK   = (255,105,180)   # links (hot pink)
+COL_GREY   = (160,160,170)   # enemies
 
 TYPE_DOT_COLORS = {
     "ally": COL_GREEN,
-    "enemy": COL_RED,
+    "enemy": COL_GREY,
     "citizen": COL_BLUE,
-    "monster": COL_PURPLE,
+    "monster": COL_RED,
+    "villain": COL_PURPLE,
     "animal": COL_YELLOW,
     "item": COL_WHITE,
     "quest_item": COL_ORANGE,
@@ -831,10 +833,11 @@ class EditorScreen:
         try:
             sub = (opt or '').lower()
             color = None
-            if sub == 'enemies': color = COL_RED
+            if sub == 'enemies': color = COL_GREY
             elif sub == 'allies': color = COL_GREEN
             elif sub == 'citizens': color = COL_BLUE
-            elif sub == 'monsters': color = COL_PURPLE
+            elif sub == 'monsters': color = COL_RED
+            elif sub == 'villains': color = COL_PURPLE
             elif sub == 'animals': color = COL_YELLOW
             if color is None: return None
             s = max(10, size)
@@ -945,7 +948,28 @@ class EditorScreen:
 
     def _reload_npcs(self):
         sub = self.dd_npc_sub.value
-        entries = read_json_list(os.path.join(NPC_DIR, f"{sub}.json"))
+        # Prefer single file data/npcs/<sub>.json if present
+        entries = []
+        file_path = os.path.join(NPC_DIR, f"{sub}.json")
+        if os.path.isfile(file_path):
+            entries = read_json_list(file_path)
+        else:
+            # Otherwise, look for a directory data/npcs/<sub>/ and merge all *.json lists
+            dir_candidates = [os.path.join(NPC_DIR, sub)]
+            # Be tolerant to common misspelling 'vilains'
+            if sub.lower() == 'villains':
+                dir_candidates.append(os.path.join(NPC_DIR, 'vilains'))
+            merged: List[Dict[str, Any]] = []
+            for d in dir_candidates:
+                if os.path.isdir(d):
+                    try:
+                        for fn in sorted(os.listdir(d)):
+                            if fn.lower().endswith('.json'):
+                                merged.extend(read_json_list(os.path.join(d, fn)))
+                    except Exception:
+                        pass
+            if merged:
+                entries = merged
         self.npc_entries = entries
         if self.category == "NPCs":
             self.list_box.set_items([self._display_label(e) for e in entries])
@@ -1359,6 +1383,7 @@ class EditorScreen:
                     elif sub == "enemies":  has.add("enemy")
                     elif sub == "citizens": has.add("citizen")
                     elif sub == "monsters": has.add("monster")
+                    elif sub == "villains": has.add("villain")
                     elif sub == "animals":  has.add("animal")
                 if any((it.get("subcategory","").lower()=="quest_items") for it in t.items):
                     has.add("quest_item")
@@ -1367,7 +1392,7 @@ class EditorScreen:
                 if t.links:
                     has.add("link")
 
-                order = ["enemy","ally","citizen","monster","animal","quest_item","item","link"]
+                order = ["enemy","villain","monster","ally","citizen","animal","quest_item","item","link"]
                 dots = [TYPE_DOT_COLORS[k] for k in order if k in has]
 
                 if dots:

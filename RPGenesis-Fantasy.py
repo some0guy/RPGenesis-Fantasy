@@ -378,9 +378,21 @@ def gather_npcs() -> List[Dict]:
     npcs: List[Dict] = []
     npcs_dir = os.path.join(DATA_DIR, "npcs")
     if os.path.isdir(npcs_dir):
-        for name in ["allies.json","animals.json","citizens.json","enemies.json","monsters.json"]:
+        for name in ["allies.json","animals.json","citizens.json","enemies.json","monsters.json","villains.json"]:
             for n in safe_load_doc(os.path.join("npcs", name), "npcs"):
                 npcs.append(n)
+        # Also support directory-based categories like data/npcs/vilains/*.json or data/npcs/villains/*.json
+        for subdir in ["vilains", "villains"]:
+            p = os.path.join(npcs_dir, subdir)
+            if os.path.isdir(p):
+                try:
+                    for fn in os.listdir(p):
+                        if fn.lower().endswith(".json"):
+                            rel = os.path.join("npcs", subdir, fn)
+                            for n in safe_load_doc(rel, "npcs"):
+                                npcs.append(n)
+                except Exception:
+                    pass
     if not npcs:
         npcs = [
             {"id":"NP00000001","name":"Lissar of the Birch","race":"wood_elf","romanceable":True, "hp": 14, "dex":5, "will":5, "greed":3,
@@ -518,7 +530,7 @@ def grid_from_runtime(runtime: Dict[str, Any], items: List[Dict], npcs: List[Dic
                 # Derive primary targets
                 def _is_enemy(e: Dict) -> bool:
                     sub = (e.get('subcategory') or '').lower()
-                    return sub in ('enemies','monsters') or bool(e.get('hostile'))
+                    return sub in ('enemies','monsters','villains','vilains') or bool(e.get('hostile'))
                 for e in enc.npcs:
                     if _is_enemy(e):
                         enc.enemy = e
@@ -717,10 +729,11 @@ def draw_grid(surf, game):
     cam_y = py_world - view_h//2
 
     # Colors (match editor palette more closely)
-    COL_ENEMY    = (220,70,70)
+    COL_ENEMY    = (160,160,170)  # grey
     COL_ALLY     = (80,200,120)
     COL_CITIZEN  = (80,150,240)
-    COL_MONSTER  = (170,110,240)
+    COL_MONSTER  = (220,70,70)    # red
+    COL_VILLAIN  = (170,110,240)  # purple
     COL_ANIMAL   = (245,210,80)
     COL_ITEM     = (240,240,240)
     COL_QITEM    = (255,160,70)
@@ -760,6 +773,8 @@ def draw_grid(surf, game):
                         has.add('citizen')
                     elif sub == 'monsters':
                         has.add('monster')
+                    elif sub == 'villains':
+                        has.add('villain')
                     elif sub == 'animals':
                         has.add('animal')
                     else:
@@ -775,9 +790,10 @@ def draw_grid(surf, game):
                 # Events
                 if enc.event:
                     has.add('event')
-                order = ['enemy','ally','citizen','monster','animal','quest_item','item','event']
+                order = ['enemy','villain','ally','citizen','monster','animal','quest_item','item','event']
                 color_map = {
                     'enemy': COL_ENEMY,
+                    'villain': COL_VILLAIN,
                     'ally': COL_ALLY,
                     'citizen': COL_CITIZEN,
                     'monster': COL_MONSTER,

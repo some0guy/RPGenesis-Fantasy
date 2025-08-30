@@ -119,7 +119,7 @@ def scene_to_runtime(scene: Dict[str, Any]) -> Dict[str, Any]:
                 # Derive primary npc/enemy for simple game flows
                 def _is_enemy(e: dict) -> bool:
                     sub = str((e.get('subcategory') or '')).lower()
-                    return sub in ('enemies','monsters') or bool(e.get('hostile'))
+                    return sub in ('enemies','monsters','villains','vilains') or bool(e.get('hostile'))
                 npc_payload = None
                 enemy_payload = None
                 for e in npcs:
