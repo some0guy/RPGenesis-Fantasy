@@ -3,304 +3,76 @@
   "version": 1,
   "npcs": [
     {
-      "id": "NP00000003",
-      "name": "Veld the Merchant",
-      "level": 3,
-      "appearance": {
-        "eyes": "amber",
-        "hair": "silver",
-        "skin": "freckled",
-        "height_cm": 174,
-        "build": "broad"
-      },
-      "dialogueFile": "data/dialogues/veld_the_merchant_np00000003.json",
-      "race": "dwarf",
-      "follower": "no"
+      "id": "NP00003000",
+      "name": "Merris Copperpot",
+      "race": "Halfling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": { "eye_color": "Brown", "hair_color": "Chestnut", "build": "Plump", "skin_tone": "Rosy" },
+      "description": "A plump halfling innkeeper with rosy cheeks and a laugh like clattering pans. She wears flour-stained aprons over simple dresses and keeps a string of copper pots as charms. Quick with gossip and quicker with a hot meal, she’s beloved by weary travelers and feared by drunks who cross her temper."
     },
     {
-      "id": "NP00000046",
-      "name": "Orrin Thornfield",
-      "level": 5,
-      "appearance": {
-        "eyes": "amber",
-        "hair": "white",
-        "skin": "freckled",
-        "height_cm": 176,
-        "build": "compact"
-      },
-      "dialogueFile": "data/dialogues/orrin_thornfield.json",
-      "race": "lizardfolk",
-      "follower": "no"
+      "id": "NP00003001",
+      "name": "Tharic Coalbrow",
+      "race": "Dwarf",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": { "eye_color": "Gray", "hair_color": "Black streaked with soot", "build": "Stocky", "skin_tone": "Darkened with ash" },
+      "description": "A stocky dwarf blacksmith whose beard is perpetually dusted with soot. His hammer never leaves his belt, and his gray eyes gleam with pride at each piece of steel he shapes. Gruff in tone, but secretly fond of children who pester him with questions."
     },
     {
-      "id": "NP00000047",
-      "name": "Varyn Ravenmere",
-      "level": 1,
-      "appearance": {
-        "eyes": "gold",
-        "hair": "midnight-blue",
-        "skin": "dark",
-        "height_cm": 185,
-        "build": "compact"
-      },
-      "dialogueFile": "data/dialogues/varyn_ravenmere.json",
-      "race": "lizardfolk",
-      "follower": "no"
+      "id": "NP00003002",
+      "name": "Elira Dawnmere",
+      "race": "Human",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": { "eye_color": "Blue", "hair_color": "Blonde", "build": "Slender", "skin_tone": "Fair" },
+      "description": "A slender seamstress with nimble fingers and blonde hair tucked beneath a kerchief. She favors dresses in pale colors, her blue eyes full of quiet dreams. Known for slipping little embroidered symbols into her stitching, each garment carrying a secret blessing for the wearer."
     },
     {
-      "id": "NP00000048",
-      "name": "Jorah Nightrun",
-      "level": 5,
-      "appearance": {
-        "eyes": "gold",
-        "hair": "blonde",
-        "skin": "tan",
-        "height_cm": 185,
-        "build": "stocky"
-      },
-      "dialogueFile": "data/dialogues/jorah_nightrun.json",
-      "race": "human",
-      "follower": "no"
+      "id": "NP00003003",
+      "name": "Osric Harthollow",
+      "race": "Human",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": { "eye_color": "Brown", "hair_color": "Balding", "build": "Round", "skin_tone": "Light" },
+      "description": "A balding, round-bellied miller with a booming voice. His clothes smell faintly of grain, and his boots are always dusted white with flour. Cheerful and loud, Osric has a fondness for ale and for retelling the same stories until they’re polished smooth as stones."
     },
     {
-      "id": "NP00000049",
-      "name": "Mira Moonhart",
-      "level": 2,
-      "appearance": {
-        "eyes": "gold",
-        "hair": "silver",
-        "skin": "ashen",
-        "height_cm": 171,
-        "build": "lithe"
-      },
-      "dialogueFile": "data/dialogues/mira_moonhart.json",
-      "race": "lizardfolk",
-      "follower": "no"
+      "id": "NP00003004",
+      "name": "Kaelen Veyra",
+      "race": "Elf",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": { "eye_color": "Emerald", "hair_color": "Silver", "build": "Slender", "skin_tone": "Pale" },
+      "description": "A pale elf scribe with silver hair bound neatly in a clasp, his emerald eyes always half-hidden behind spectacles. He dresses in layered robes, ink stains dotting his sleeves. Soft-spoken, yet his words carry sharp wit. Secretly collects strange rumors and loves to debate philosophy with drunkards."
     },
     {
-      "id": "NP00000050",
-      "name": "Eryndor Mistbrook",
-      "level": 1,
-      "appearance": {
-        "eyes": "steel-grey",
-        "hair": "black",
-        "skin": "tan",
-        "height_cm": 175,
-        "build": "slim"
-      },
-      "dialogueFile": "data/dialogues/eryndor_mistbrook.json",
-      "race": "lizardfolk",
-      "follower": "no"
+      "id": "NP00003005",
+      "name": "Branna Holloway",
+      "race": "Human",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": { "eye_color": "Hazel", "hair_color": "Red", "build": "Broad-shouldered", "skin_tone": "Tanned" },
+      "description": "A broad-shouldered farmer with hair the color of autumn leaves and sun-tanned skin. Wears roughspun linen patched a dozen times, her hands calloused from years at the plow. Branna speaks plainly, laughs loudly, and trusts slowly. Fiercely protective of her land and kin."
     },
     {
-      "id": "NP00000051",
-      "name": "Isolde Thornfield",
-      "level": 8,
-      "appearance": {
-        "eyes": "emerald",
-        "hair": "black",
-        "skin": "tan",
-        "height_cm": 153,
-        "build": "athletic"
-      },
-      "dialogueFile": "data/dialogues/isolde_thornfield.json",
-      "race": "catfolk",
-      "follower": "no"
+      "id": "NP00003006",
+      "name": "Liora Fenvale",
+      "race": "Half-Elf",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": { "eye_color": "Violet", "hair_color": "Brown", "build": "Slim", "skin_tone": "Olive" },
+      "description": "A slim half-elf herbalist with brown hair braided down her back and violet eyes that seem to notice everything. She wears patchwork skirts heavy with the scent of herbs and oils. Known for her gentle bedside manner, but her potions bite bitter if you’ve crossed her."
     },
     {
-      "id": "NP00000052",
-      "name": "Mira Rivenspire",
-      "level": 7,
-      "appearance": {
-        "eyes": "crimson",
-        "hair": "silver",
-        "skin": "ashen",
-        "height_cm": 160,
-        "build": "slim"
-      },
-      "dialogueFile": "data/dialogues/mira_rivenspire.json",
-      "race": "human",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000053",
-      "name": "Selune Wyrmfall",
-      "level": 7,
-      "appearance": {
-        "eyes": "ice-blue",
-        "hair": "black",
-        "skin": "freckled",
-        "height_cm": 177,
-        "build": "athletic"
-      },
-      "dialogueFile": "data/dialogues/selune_wyrmfall.json",
-      "race": "lizardfolk",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000054",
-      "name": "Vael Vaeloria",
-      "level": 4,
-      "appearance": {
-        "eyes": "ice-blue",
-        "hair": "chestnut",
-        "skin": "dark",
-        "height_cm": 196,
-        "build": "lithe"
-      },
-      "dialogueFile": "data/dialogues/vael_vaeloria.json",
-      "race": "human",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000055",
-      "name": "Fenric Stormbind",
-      "level": 1,
-      "appearance": {
-        "eyes": "sapphire",
-        "hair": "raven",
-        "skin": "tan",
-        "height_cm": 202,
-        "build": "lithe"
-      },
-      "dialogueFile": "data/dialogues/fenric_stormbind.json",
-      "race": "human",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000056",
-      "name": "Aria Thornfield",
-      "level": 10,
-      "appearance": {
-        "eyes": "steel-grey",
-        "hair": "midnight-blue",
-        "skin": "olive",
-        "height_cm": 170,
-        "build": "athletic"
-      },
-      "dialogueFile": "data/dialogues/aria_thornfield.json",
-      "race": "dwarf",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000057",
-      "name": "Gryff Rivenspire",
-      "level": 9,
-      "appearance": {
-        "eyes": "steel-grey",
-        "hair": "chestnut",
-        "skin": "bronze",
-        "height_cm": 164,
-        "build": "graceful"
-      },
-      "dialogueFile": "data/dialogues/gryff_rivenspire.json",
-      "race": "human",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000058",
-      "name": "Rowan Nightrun",
-      "level": 2,
-      "appearance": {
-        "eyes": "violet",
-        "hair": "auburn",
-        "skin": "bronze",
-        "height_cm": 177,
-        "build": "slim"
-      },
-      "dialogueFile": "data/dialogues/rowan_nightrun.json",
-      "race": "halfling",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000059",
-      "name": "Gryff Rivenspire",
-      "level": 1,
-      "appearance": {
-        "eyes": "crimson",
-        "hair": "black",
-        "skin": "bronze",
-        "height_cm": 187,
-        "build": "athletic"
-      },
-      "dialogueFile": "data/dialogues/gryff_rivenspire.json",
-      "race": "halfling",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000060",
-      "name": "Varyn Blackfen",
-      "level": 7,
-      "appearance": {
-        "eyes": "hazel",
-        "hair": "chestnut",
-        "skin": "ashen",
-        "height_cm": 202,
-        "build": "broad"
-      },
-      "dialogueFile": "data/dialogues/varyn_blackfen.json",
-      "race": "catfolk",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000061",
-      "name": "Syl Vaeloria",
-      "level": 4,
-      "appearance": {
-        "eyes": "sapphire",
-        "hair": "midnight-blue",
-        "skin": "ashen",
-        "height_cm": 202,
-        "build": "lithe"
-      },
-      "dialogueFile": "data/dialogues/syl_vaeloria.json",
-      "race": "halfling",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000062",
-      "name": "Iria Wyrmfall",
-      "level": 3,
-      "appearance": {
-        "eyes": "amber",
-        "hair": "midnight-blue",
-        "skin": "ashen",
-        "height_cm": 180,
-        "build": "graceful"
-      },
-      "dialogueFile": "data/dialogues/iria_wyrmfall.json",
-      "race": "halfling",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000063",
-      "name": "Selune Thornfield",
-      "level": 5,
-      "appearance": {
-        "eyes": "violet",
-        "hair": "black",
-        "skin": "tan",
-        "height_cm": 162,
-        "build": "stocky"
-      },
-      "dialogueFile": "data/dialogues/selune_thornfield.json",
-      "race": "human",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000064",
-      "name": "Thalen Rivenspire",
-      "level": 9,
-      "appearance": {
-        "eyes": "emerald",
-        "hair": "white",
-        "skin": "tan",
-        "height_cm": 181,
-        "build": "slim"
-      },
-      "dialogueFile": "data/dialogues/thalen_rivenspire.json",
-      "race": "wood_elf",
-      "follower": "no"
+      "id": "NP00003007",
+      "name": "Torven Blacktusk",
+      "race": "Orc",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": { "eye_color": "Amber", "hair_color": "Black", "build": "Burly", "skin_tone": "Green" },
+      "description": "A burly orc butcher with arms like slabs of ham and tusks chipped from old brawls. His apron is always streaked with blood, though his amber eyes are warm and kind. Gruff laughter and heavy hands hide the heart of a man who slips scraps to strays and coins to beggars."
     }
   ]
 }

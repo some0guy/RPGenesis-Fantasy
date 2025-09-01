@@ -5,303 +5,182 @@
     {
       "id": "NP00000001",
       "name": "Selune Vaeloria",
-      "romanceable": true,
-      "dialogueFile": "data/dialogues/selune_vaeloria.json",
-      "level": 2,
-      "appearance": {
-        "eyes": "crimson",
-        "hair": "blonde",
-        "skin": "fair",
-        "height_cm": 152,
-        "build": "athletic"
-      },
-      "race": "wood_elf",
-      "follower": "yes"
+      "race": "Wood Elf",
+      "sex": "Female",
+      "type": "ally",
+      "appearance": { "eye_color": "Crimson", "hair_color": "Blonde", "build": "Athletic", "skin_tone": "Fair" },
+      "description": "Crimson eyes under a fall of sunlit hair; leather harness fitted for silent runs through the canopy. She moves like a bowstring returning to rest—clean, sure, unshowy. Her voice is gentle until a fight calls it sharp, and when she smiles after, it’s half relief, half dare."
+    },
+    {
+      "id": "NP00000002",
+      "name": "Elara Thornfield",
+      "race": "Human",
+      "sex": "Female",
+      "type": "ally",
+      "appearance": { "eye_color": "Steel-grey", "hair_color": "Auburn", "build": "Lithe", "skin_tone": "Olive" },
+      "description": "Auburn hair bound in a practical tail, steel eyes that measure twice, cut once. Plain travel garb sits like it was tailored for war. She fixes buckles when nervous and people when needed; the blade is merely plan B."
+    },
+    {
+      "id": "NP00000003",
+      "name": "Jorah Skylark",
+      "race": "Human",
+      "sex": "Male",
+      "type": "ally",
+      "appearance": { "eye_color": "Sapphire", "hair_color": "White", "build": "Slim", "skin_tone": "Pale" },
+      "description": "White-haired minstrel with a travel-stained cloak and a voice that hushes taverns. He jokes to soften doors open, then slips the truth inside. Courage comes late for him—but it arrives in full measure."
+    },
+    {
+      "id": "NP00000004",
+      "name": "Kess Starcrest",
+      "race": "High Elf",
+      "sex": "Female",
+      "type": "ally",
+      "appearance": { "eye_color": "Gold", "hair_color": "Ash", "build": "Slender", "skin_tone": "Ashen" },
+      "description": "Ash-grey hair, gold eyes that weigh possibilities like coin. Silks layered over traveling boots—style never stopped her crossing a swamp. Her spells are neat as penmanship and twice as cutting."
+    },
+    {
+      "id": "NP00000005",
+      "name": "Vael Ironvale",
+      "race": "Dwarf",
+      "sex": "Male",
+      "type": "ally",
+      "appearance": { "eye_color": "Amber", "hair_color": "Strawberry", "build": "Broad", "skin_tone": "Olive" },
+      "description": "Broad chest, strawberry beard braided with iron beads; laughs like a forge roaring. He argues best after two ales and apologizes best after three. His shield is a wall; behind it, everyone fits."
     },
     {
       "id": "NP00000006",
-      "name": "Vael Vaeloria",
-      "level": 10,
-      "appearance": {
-        "eyes": "amber",
-        "hair": "strawberry",
-        "skin": "olive",
-        "height_cm": 197,
-        "build": "towering"
-      },
-      "dialogueFile": "data/dialogues/vael_vaeloria.json",
-      "race": "wood_elf",
-      "follower": "yes"
+      "name": "Liora Stormbind",
+      "race": "Wood Elf",
+      "sex": "Female",
+      "type": "ally",
+      "appearance": { "eye_color": "Emerald", "hair_color": "Raven", "build": "Compact", "skin_tone": "Pale" },
+      "description": "Raven hair, emerald stare. Wears ranger’s leathers cut close and quiet. Teases like a cat at the fire, kills like a dropped shadow when the woods demand it."
     },
     {
       "id": "NP00000007",
-      "name": "Kess Starcrest",
-      "level": 2,
-      "appearance": {
-        "eyes": "gold",
-        "hair": "ash",
-        "skin": "ashen",
-        "height_cm": 174,
-        "build": "stocky"
-      },
-      "dialogueFile": "data/dialogues/kess_starcrest.json",
-      "race": "high_elf",
-      "follower": "yes"
+      "name": "Kael Ashvale",
+      "race": "Kitsune",
+      "sex": "Male",
+      "type": "ally",
+      "appearance": { "eye_color": "Sapphire", "hair_color": "Black", "build": "Compact", "skin_tone": "Fair" },
+      "description": "Fox-bright grin, quick hands, quicker exits. Drapes himself in loose silk and luck. If trouble is a card game, he’s already palmed the ace—and your heart for good measure."
     },
     {
       "id": "NP00000008",
-      "name": "Jorah Skylark",
-      "level": 5,
-      "appearance": {
-        "eyes": "sapphire",
-        "hair": "white",
-        "skin": "pale",
-        "height_cm": 163,
-        "build": "slim"
-      },
-      "dialogueFile": "data/dialogues/jorah_skylark.json",
-      "race": "wood_elf",
-      "follower": "yes"
+      "name": "Iria Brightbough",
+      "race": "Starborn",
+      "sex": "Female",
+      "type": "ally",
+      "appearance": { "eye_color": "Steel-grey", "hair_color": "Auburn", "build": "Broad", "skin_tone": "Freckled" },
+      "description": "Freckles like stardust, auburn hair in a warrior’s braid. Her robes glow faintly when the night deepens; her laugh does the same for rooms. She believes in second chances—and keeps a blade for those who don’t."
     },
     {
       "id": "NP00000009",
-      "name": "Liora Stormbind",
-      "level": 5,
-      "appearance": {
-        "eyes": "emerald",
-        "hair": "raven",
-        "skin": "pale",
-        "height_cm": 178,
-        "build": "compact"
-      },
-      "dialogueFile": "data/dialogues/liora_stormbind.json",
-      "race": "wood_elf",
-      "follower": "yes"
+      "name": "Thalen Thornfield",
+      "race": "Kitsune",
+      "sex": "Male",
+      "type": "ally",
+      "appearance": { "eye_color": "Emerald", "hair_color": "Silver", "build": "Athletic", "skin_tone": "Pale" },
+      "description": "Silver hair, fox-tail swagger. Layered silk that promises an exit anywhere a curtain exists. He can flirt a guard to sleep and fence an heirloom awake."
     },
     {
       "id": "NP00000010",
-      "name": "Liora Thornfield",
-      "level": 1,
-      "appearance": {
-        "eyes": "steel-grey",
-        "hair": "auburn",
-        "skin": "olive",
-        "height_cm": 185,
-        "build": "lithe"
-      },
-      "dialogueFile": "data/dialogues/liora_thornfield.json",
-      "race": "human",
-      "follower": "yes"
+      "name": "Kess Vaeloria",
+      "race": "Sylph",
+      "sex": "Female",
+      "type": "ally",
+      "appearance": { "eye_color": "Ice-blue", "hair_color": "Midnight-blue", "build": "Athletic", "skin_tone": "Fair" },
+      "description": "Midnight hair that storms in the wind, eyes like winter sky. She crackles with a barely-stored lightning; her touch is a promise to behave—or to be spectacular."
     },
     {
       "id": "NP00000011",
-      "name": "Kael Ashvale",
-      "level": 1,
-      "appearance": {
-        "eyes": "sapphire",
-        "hair": "black",
-        "skin": "fair",
-        "height_cm": 186,
-        "build": "compact"
-      },
-      "dialogueFile": "data/dialogues/kael_ashvale.json",
-      "race": "kitsune",
-      "follower": "yes"
+      "name": "Syl Blackfen",
+      "race": "Drakesworn",
+      "sex": "Female",
+      "type": "ally",
+      "appearance": { "eye_color": "Crimson", "hair_color": "Chestnut", "build": "Compact", "skin_tone": "Freckled" },
+      "description": "Chestnut hair, crimson gaze; scale-leathers that smell of smoke and pepper oil. She speaks in short answers and long looks; her loyalty lands hard and stays."
     },
     {
       "id": "NP00000012",
-      "name": "Iria Brightbough",
-      "level": 1,
-      "appearance": {
-        "eyes": "steel-grey",
-        "hair": "auburn",
-        "skin": "freckled",
-        "height_cm": 195,
-        "build": "broad"
-      },
-      "dialogueFile": "data/dialogues/iria_brightbough.json",
-      "race": "starborn",
-      "follower": "yes"
+      "name": "Thalen Mistbrook",
+      "race": "Drakesworn",
+      "sex": "Male",
+      "type": "ally",
+      "appearance": { "eye_color": "Steel-grey", "hair_color": "White", "build": "Stocky", "skin_tone": "Ashen" },
+      "description": "Stocky swordsman with white hair like winter cut stone. Wears his armor plain and his promises plainer. Drinks deep, fights fair, forgives slow."
     },
     {
       "id": "NP00000013",
-      "name": "Thalen Thornfield",
-      "level": 7,
-      "appearance": {
-        "eyes": "emerald",
-        "hair": "silver",
-        "skin": "pale",
-        "height_cm": 201,
-        "build": "athletic"
-      },
-      "dialogueFile": "data/dialogues/thalen_thornfield.json",
-      "race": "kitsune",
-      "follower": "yes"
+      "name": "Rowan Skylark",
+      "race": "Human",
+      "sex": "Male",
+      "type": "ally",
+      "appearance": { "eye_color": "Amber", "hair_color": "Raven", "build": "Slim", "skin_tone": "Bronze" },
+      "description": "Bronzed charmer with a scarf too fine for his purse. Quick with a quip until the moment requires quiet—then his hands do the punctuation."
     },
     {
       "id": "NP00000014",
-      "name": "Kess Vaeloria",
-      "level": 8,
-      "appearance": {
-        "eyes": "ice-blue",
-        "hair": "midnight-blue",
-        "skin": "fair",
-        "height_cm": 197,
-        "build": "athletic"
-      },
-      "dialogueFile": "data/dialogues/kess_vaeloria.json",
-      "race": "sylph",
-      "follower": "yes"
+      "name": "Liora Ironvale",
+      "race": "Drakesworn",
+      "sex": "Female",
+      "type": "ally",
+      "appearance": { "eye_color": "Gold", "hair_color": "Silver", "build": "Compact", "skin_tone": "Dark" },
+      "description": "Gold-eyed with a smile that pretends it isn’t dangerous. Scale-mail tailored to move; a habit of winning arguments by wading through them."
     },
     {
       "id": "NP00000015",
-      "name": "Syl Blackfen",
-      "level": 5,
-      "appearance": {
-        "eyes": "crimson",
-        "hair": "chestnut",
-        "skin": "freckled",
-        "height_cm": 150,
-        "build": "compact"
-      },
-      "dialogueFile": "data/dialogues/syl_blackfen.json",
-      "race": "drakesworn",
-      "follower": "yes"
+      "name": "Serenya Mistbrook",
+      "race": "Fae",
+      "sex": "Female",
+      "type": "ally",
+      "appearance": { "eye_color": "Violet", "hair_color": "Blonde", "build": "Broad", "skin_tone": "Pale" },
+      "description": "Pale and petal-scented, garments like dew caught in silk. She’s playful until you lie, then the thorns show. Mercy is a favor she charges interest on."
     },
     {
       "id": "NP00000016",
-      "name": "Thalen Mistbrook",
-      "level": 4,
-      "appearance": {
-        "eyes": "steel-grey",
-        "hair": "white",
-        "skin": "ashen",
-        "height_cm": 158,
-        "build": "stocky"
-      },
-      "dialogueFile": "data/dialogues/thalen_mistbrook.json",
-      "race": "drakesworn",
-      "follower": "yes"
+      "name": "Rowan Blackfen",
+      "race": "Drakesworn",
+      "sex": "Male",
+      "type": "ally",
+      "appearance": { "eye_color": "Amber", "hair_color": "Chestnut", "build": "Compact", "skin_tone": "Bronze" },
+      "description": "Lean dragoon with soot under the nails and a grin that forgives. Keeps his kit immaculate and his secrets disheveled. Fire answers him like an old dog."
     },
     {
       "id": "NP00000017",
-      "name": "Thalen Skylark",
-      "level": 1,
-      "appearance": {
-        "eyes": "steel-grey",
-        "hair": "chestnut",
-        "skin": "bronze",
-        "height_cm": 164,
-        "build": "stocky"
-      },
-      "dialogueFile": "data/dialogues/thalen_skylark.json",
-      "race": "kitsune",
-      "follower": "yes"
+      "name": "Sable Brightbough",
+      "race": "Wood Elf",
+      "sex": "Female",
+      "type": "ally",
+      "appearance": { "eye_color": "Forest-green", "hair_color": "Raven", "build": "Compact", "skin_tone": "Olive" },
+      "description": "Ranger’s leathers dyed in forest dusk. Her silence is a comfort or a verdict; you’ll know which when the arrow lands."
     },
     {
       "id": "NP00000018",
-      "name": "Vael Ironvale",
-      "level": 3,
-      "appearance": {
-        "eyes": "amber",
-        "hair": "white",
-        "skin": "bronze",
-        "height_cm": 202,
-        "build": "lithe"
-      },
-      "dialogueFile": "data/dialogues/vael_ironvale.json",
-      "race": "dwarf",
-      "follower": "yes"
+      "name": "Lyra Skylark",
+      "race": "Oread",
+      "sex": "Female",
+      "type": "ally",
+      "appearance": { "eye_color": "Violet", "hair_color": "White", "build": "Athletic", "skin_tone": "Fair" },
+      "description": "White hair braided with gleaming stones; the patience of bedrock, the humor of a mountainside tavern. When she sings, tankards still themselves to listen."
     },
     {
       "id": "NP00000019",
-      "name": "Liora Ironvale",
-      "level": 3,
-      "appearance": {
-        "eyes": "gold",
-        "hair": "silver",
-        "skin": "dark",
-        "height_cm": 197,
-        "build": "compact"
-      },
-      "dialogueFile": "data/dialogues/liora_ironvale.json",
-      "race": "drakesworn",
-      "follower": "yes"
+      "name": "Mira Duskwind",
+      "race": "Half-Drow",
+      "sex": "Female",
+      "type": "ally",
+      "appearance": { "eye_color": "Violet", "hair_color": "Silver", "build": "Slender", "skin_tone": "Dusky" },
+      "description": "Silver waves against dusky skin; tight leathers that whisper at a sprint. She is equal parts soft conversation and sudden blade, with a knack for making both feel like invitations."
     },
     {
       "id": "NP00000020",
-      "name": "Iria Mistbrook",
-      "level": 2,
-      "appearance": {
-        "eyes": "violet",
-        "hair": "blonde",
-        "skin": "pale",
-        "height_cm": 188,
-        "build": "broad"
-      },
-      "dialogueFile": "data/dialogues/iria_mistbrook.json",
-      "race": "fae",
-      "follower": "yes"
-    },
-    {
-      "id": "NP00000021",
-      "name": "Rowan Blackfen",
-      "level": 1,
-      "appearance": {
-        "eyes": "amber",
-        "hair": "raven",
-        "skin": "bronze",
-        "height_cm": 186,
-        "build": "slim"
-      },
-      "dialogueFile": "data/dialogues/rowan_blackfen.json",
-      "race": "drakesworn",
-      "follower": "yes"
-    },
-    {
-      "id": "NP00000022",
-      "name": "Rowan Mistbrook",
-      "level": 7,
-      "appearance": {
-        "eyes": "violet",
-        "hair": "chestnut",
-        "skin": "dark",
-        "height_cm": 172,
-        "build": "compact"
-      },
-      "dialogueFile": "data/dialogues/rowan_mistbrook.json",
-      "race": "dwarf",
-      "follower": "yes"
-    },
-    {
-      "id": "NP00000023",
-      "name": "Sable Brightbough",
-      "level": 8,
-      "appearance": {
-        "eyes": "forest-green",
-        "hair": "raven",
-        "skin": "olive",
-        "height_cm": 200,
-        "build": "compact"
-      },
-      "dialogueFile": "data/dialogues/sable_brightbough.json",
-      "race": "wood_elf",
-      "follower": "yes"
-    },
-    {
-      "id": "NP00000024",
-      "name": "Lyra Skylark",
-      "level": 9,
-      "appearance": {
-        "eyes": "violet",
-        "hair": "white",
-        "skin": "fair",
-        "height_cm": 190,
-        "build": "athletic"
-      },
-      "dialogueFile": "data/dialogues/lyra_skylark.json",
-      "race": "oread",
-      "follower": "yes"
+      "name": "Garrin Stonewake",
+      "race": "Human",
+      "sex": "Male",
+      "type": "ally",
+      "appearance": { "eye_color": "Hazel", "hair_color": "Brown", "build": "Broad", "skin_tone": "Tan" },
+      "description": "River-guard turned road-warden; cloak patched, boots honest. He treats promises like oaths and oaths like anchors—heavy, necessary, trusted."
     }
   ]
 }

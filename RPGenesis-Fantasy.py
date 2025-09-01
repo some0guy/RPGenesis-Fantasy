@@ -2,6 +2,7 @@
 from __future__ import annotations
 import os, sys, json, re, argparse, random, math
 from typing import Dict, Any, List, Tuple, Optional, Set
+from datetime import datetime
 from collections import deque
 from dataclasses import dataclass, field
 
@@ -18,6 +19,8 @@ from rpgen_map_loader import (
 
 ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
+UI_DIR = DATA_DIR / "ui"
+SAVE_DIR = DATA_DIR / "saves"
 WORLD_MAP_PATH = DATA_DIR / "world_map.json"
 
 # -------------------- Project paths / version --------------------
@@ -308,9 +311,11 @@ SLOT_LABELS = {
     'neck': 'Necklace',
     'chest': 'Chestplate',
     'legs': 'Legs',
+    'boots': 'Boots',
     'gloves': 'Gloves',
     'ring': 'Ring',
     'bracelet': 'Bracelet',
+    'charm': 'Charm',
     'back': 'Cape/Backpack',
     'weapon_main': 'Weapon 1',
     'weapon_off': 'Weapon 2',
@@ -321,9 +326,11 @@ def normalize_slot(name: str) -> str:
     if n in ('head','helm','helmet','hat'): return 'head'
     if n in ('neck','amulet','necklace','torc'): return 'neck'
     if n in ('chest','torso','body','armor','armour','breastplate','chestplate'): return 'chest'
-    if n in ('legs','pants','trousers','greaves'): return 'legs'
+    if n in ('legs','pants','trousers'): return 'legs'
+    if n in ('boots','shoes','feet','foot','greaves'): return 'boots'
     if n in ('hands','hand','gloves','gauntlets'): return 'gloves'
     if n in ('wrist','bracelet','bracer','bracers'): return 'bracelet'
+    if n in ('charm','token','fetish'): return 'charm'
     if n in ('ring','finger'): return 'ring'
     if n in ('back','cloak','cape','backpack'): return 'back'
     if n in ('weapon1','mainhand','main','weapon_main','weapon'): return 'weapon_main'
@@ -342,13 +349,17 @@ def slot_accepts(slot: str, it: dict) -> bool:
     if slot == 'chest':
         return m in ('armour','armor','clothing') and sub in ('chest','torso','body','armor','armour','breastplate','chestplate')
     if slot == 'legs':
-        return m in ('armour','armor','clothing') and sub in ('legs','pants','trousers','greaves')
+        return m in ('armour','armor','clothing') and sub in ('legs','pants','trousers')
+    if slot == 'boots':
+        return m in ('armour','armor','clothing') and sub in ('boots','shoes','feet','foot','greaves')
     if slot == 'gloves':
         return m in ('armour','armor','clothing') and sub in ('hands','hand','gloves','gauntlets')
     if slot == 'ring':
         return m in ('accessory','accessories','trinket','trinkets') and sub in ('ring',)
     if slot == 'bracelet':
         return m in ('accessory','accessories','trinket','trinkets') and sub in ('bracelet','bracer','bracers','wrist')
+    if slot == 'charm':
+        return m in ('accessory','accessories','trinket','trinkets') and sub in ('charm','token','trinket')
     if slot == 'neck':
         return m in ('accessory','accessories','trinket','trinkets') and sub in ('neck','amulet','necklace','torc')
     if slot == 'back':
@@ -449,6 +460,7 @@ class Player:
     name: str = "Adventurer"
     race: str = "Human"
     role: str = "Wanderer"
+    level: int = 1
     hp: int = 20
     max_hp: int = 20
     atk: Tuple[int,int] = (3,6)
@@ -619,6 +631,11 @@ LOG_COLORS = {
     'event':   (160,130,200),
     'link':    (255,105,180),
 }
+
+# Tags that should not appear in the Recent log unless explicitly logged
+# without a tag (e.g., after talking to them). This hides low-signal noise
+# from friendly presence markers.
+LOG_HIDE_TAGS = {"ally", "citizen", "animal"}
 
 def draw_text(surface, text, pos, color=(230,230,230), font=None, max_w=None):
     """Render text with optional word wrapping.
@@ -966,6 +983,10 @@ def draw_panel(surf, game):
     elif getattr(game, 'mode', '') == "equip":
         # Draw equipment screen over map area, keep sidebars
         buttons += draw_equip_overlay(surf, game)
+    elif getattr(game, 'mode', '') == "save":
+        buttons += draw_save_overlay(surf, game)
+    elif getattr(game, 'mode', '') == "load":
+        buttons += draw_load_overlay(surf, game)
     else:
         add("Search Area", game.search_tile)
         if t.encounter and t.encounter.enemy and not t.encounter.spotted:
@@ -982,6 +1003,8 @@ def draw_panel(surf, game):
             add("Leave NPC", lambda: game.handle_dialogue_choice("Leave"))
         add("Inventory", lambda: setattr(game, 'mode', 'inventory'))
         add("Equipment", lambda: setattr(game, 'mode', 'equip'))
+        add("Save Game", lambda: setattr(game, 'mode', 'save'))
+        add("Load Game", lambda: setattr(game, 'mode', 'load'))
 
     for b in buttons: b.draw(surf)
     return buttons
@@ -1296,16 +1319,34 @@ def draw_equip_overlay(surf, game):
         pg.draw.rect(surf, (30,32,42), r, border_radius=8)
         pg.draw.rect(surf, (70,74,92), r, 1, border_radius=8)
 
-    # Try to draw a silhouette image if available
+    # Try to draw the actual player sprite; fall back to silhouette image/shapes
     sil_img = None
     try:
-        img_path = os.path.join(ROOT, 'assets', 'images', 'ui', 'silhouette.png')
-        if os.path.exists(img_path):
-            sil_img = pg.image.load(img_path).convert_alpha()
-            # Fit into area keeping aspect
-            iw, ih = sil_img.get_size()
-            scale = min((sil_area.w-40)/max(1, iw), (sil_area.h-40)/max(1, ih))
-            sil_img = pg.transform.smoothscale(sil_img, (int(iw*scale), int(ih*scale)))
+        candidates = [
+            os.path.join(ROOT, 'assets', 'images', 'player', 'player.png'),
+            os.path.join(ROOT, 'assets', 'images', 'ui', 'silhouette.png'),
+        ]
+        for img_path in candidates:
+            if os.path.exists(img_path):
+                img = pg.image.load(img_path).convert_alpha()
+                iw, ih = img.get_size()
+                # Pixel-crisp scaling:
+                # - If upscaling: use integer multiple (nearest-neighbor)
+                # - If downscaling: divide by an integer factor to keep pixels sharp
+                pad_w, pad_h = max(1, sil_area.w-40), max(1, sil_area.h-40)
+                if iw <= pad_w and ih <= pad_h:
+                    # Upscale by integer factor
+                    k = max(1, min(pad_w // iw, pad_h // ih))
+                    new_w, new_h = iw * k, ih * k
+                else:
+                    # Downscale by integer divisor
+                    import math as _math
+                    denom = max(2, int(_math.ceil(max(iw / pad_w, ih / pad_h))))
+                    new_w, new_h = max(1, iw // denom), max(1, ih // denom)
+                new_size = (int(new_w), int(new_h))
+                sil_img = pg.transform.scale(img, new_size)
+                break
+        if sil_img is not None:
             surf.blit(sil_img, sil_img.get_rect(center=sil_area.center))
     except Exception:
         sil_img = None
@@ -1333,16 +1374,41 @@ def draw_equip_overlay(surf, game):
 
     SLOT_POS = {
         'head':         (0.50, 0.12),
-        'neck':         (0.50, 0.25),
+        # Necklace aligned to the gap between left and center columns
+        'neck':         (0.34, 0.30),
+        'back':         (0.60, 0.30),
         'chest':        (0.50, 0.42),
-        'back':         (0.82, 0.42),
-        'gloves':       (0.82, 0.60),
-        'legs':         (0.50, 0.68),
-        'ring':         (0.18, 0.42),
-        'bracelet':     (0.18, 0.60),
-        'weapon_main':  (0.18, 0.82),
-        'weapon_off':   (0.82, 0.82),
+        # Move gloves down to ring row; move bracelet to former gloves position; add charm at former bracelet position
+        'gloves':       (0.82, 0.54),
+        'ring':         (0.18, 0.54),
+        # Bracelet aligned to the gap between center and right columns
+        'bracelet':     (0.66, 0.42),
+        'charm':        (0.18, 0.42),
+        # Legs moved up slightly; boots added below
+        'legs':         (0.50, 0.60),
+        'boots':        (0.50, 0.72),
+        # Move both weapon slots up slightly
+        'weapon_main':  (0.18, 0.76),
+        'weapon_off':   (0.82, 0.76),
     }
+
+    # Optional slot position overrides from data/ui/equip_slots.json
+    try:
+        cfg_path = UI_DIR / 'equip_slots.json'
+        cfg = load_json(str(cfg_path), {}) if cfg_path.exists() else {}
+        overrides = cfg.get('slot_positions') if isinstance(cfg, dict) else None
+        if isinstance(overrides, dict):
+            for k, v in overrides.items():
+                try:
+                    nx, ny = float(v[0]), float(v[1])
+                    # clamp to [0,1]
+                    nx = 0.0 if nx < 0 else (1.0 if nx > 1 else nx)
+                    ny = 0.0 if ny < 0 else (1.0 if ny > 1 else ny)
+                    SLOT_POS[k] = (nx, ny)
+                except Exception:
+                    pass
+    except Exception:
+        pass
 
     # Helper to draw a small icon for an item
     def type_color(it: dict) -> Tuple[int,int,int]:
@@ -1426,6 +1492,157 @@ def draw_equip_overlay(surf, game):
 
     return buttons
 
+def _list_save_slots() -> List[Tuple[int, Optional[Dict[str, Any]]]]:
+    SAVE_DIR.mkdir(parents=True, exist_ok=True)
+    slots: List[Tuple[int, Optional[Dict[str, Any]]]] = []
+    for i in range(1, 7):
+        path = SAVE_DIR / f"slot{i}.json"
+        if path.exists():
+            try:
+                with open(path, 'r', encoding='utf-8') as f:
+                    slots.append((i, json.load(f)))
+            except Exception:
+                slots.append((i, None))
+        else:
+            slots.append((i, None))
+    return slots
+
+def _render_slot_card(surf, r, slot_idx: int, data: Optional[Dict[str, Any]]):
+    pg.draw.rect(surf, (34,36,46), r, border_radius=8)
+    pg.draw.rect(surf, (90,94,112), r, 1, border_radius=8)
+    f_title = pg.font.Font(None, 24)
+    f_body  = pg.font.Font(None, 18)
+    title = f"Slot {slot_idx}"
+    surf.blit(f_title.render(title, True, (220,220,235)), (r.x+10, r.y+8))
+    if data and isinstance(data, dict):
+        ts = str(data.get('timestamp',''))
+        mp = str(data.get('map_name') or data.get('map_id') or '')
+        pos = data.get('pos') or [0,0]
+        p   = data.get('player') or {}
+        name = str(p.get('name','Adventurer'))
+        lvl = int(p.get('level', 1)) if str(p.get('level', '1')).isdigit() else 1
+        hp = f"{int(p.get('hp',0))}/{int(p.get('max_hp',0))}"
+        inv = len(p.get('inventory') or [])
+        pt_s = int(data.get('playtime_s') or 0)
+        h = pt_s // 3600; m = (pt_s % 3600) // 60; s = pt_s % 60
+        pt_fmt = f"{h:02d}:{m:02d}:{s:02d}"
+        # left column text
+        y = r.y + 34
+        draw_text(surf, f"Saved: {ts}", (r.x+10, y), font=f_body); y += 18
+        draw_text(surf, f"Map: {mp}", (r.x+10, y), font=f_body); y += 18
+        draw_text(surf, f"Pos: ({int(pos[0])},{int(pos[1])})", (r.x+10, y), font=f_body); y += 18
+        draw_text(surf, f"Player: {name}  Lvl: {lvl}  HP: {hp}", (r.x+10, y), font=f_body); y += 18
+        draw_text(surf, f"Inventory: {inv}   Playtime: {pt_fmt}", (r.x+10, y), font=f_body)
+        # mini map preview on right side
+        try:
+            preview_w = min(120, r.w // 3)
+            mini = pg.Rect(r.right - preview_w - 8, r.y + 8, preview_w, r.h - 16)
+            pg.draw.rect(surf, (26,28,36), mini, border_radius=6)
+            pg.draw.rect(surf, (80,84,100), mini, 1, border_radius=6)
+            scene = load_scene_by_name('map', mp)
+            runtime = scene_to_runtime(scene)
+            W, H = int(runtime.get('width',12)), int(runtime.get('height',8))
+            walk = runtime.get('walkable') or [[True]*W for _ in range(H)]
+            cell = max(2, min(8, (mini.w-8) // max(1, W)))
+            offx = mini.x + (mini.w - (cell*W))//2
+            offy = mini.y + (mini.h - (cell*H))//2
+            for yy in range(H):
+                for xx in range(W):
+                    clr = (52,56,70) if walk[yy][xx] else (28,30,38)
+                    pg.draw.rect(surf, clr, (offx+xx*cell, offy+yy*cell, cell-1, cell-1))
+            try:
+                px, py = int(pos[0]), int(pos[1])
+                if 0 <= px < W and 0 <= py < H:
+                    pg.draw.rect(surf, (200,220,120), (offx+px*cell, offy+py*cell, cell-1, cell-1))
+            except Exception:
+                pass
+        except Exception:
+            pass
+    else:
+        draw_text(surf, "Empty", (r.x+10, r.y+34), font=f_body)
+
+def draw_save_overlay(surf, game):
+    buttons: List[Button] = []
+    win_w, win_h = surf.get_size()
+    panel_w = int(PANEL_W_FIXED)
+    view_w = max(100, win_w - 2*panel_w)
+    view_h = win_h
+    view_rect = pg.Rect(panel_w, 0, view_w, view_h)
+    # Dim
+    dim = pg.Surface((view_rect.w, view_rect.h), pg.SRCALPHA)
+    dim.fill((10,10,14,140)); surf.blit(dim, (view_rect.x, view_rect.y))
+    # Modal
+    modal_w = max(540, int(view_w * 0.86))
+    modal_h = max(380, int(view_h * 0.86))
+    modal_x = view_rect.x + (view_w - modal_w)//2
+    modal_y = view_rect.y + (view_h - modal_h)//2
+    modal = pg.Rect(modal_x, modal_y, modal_w, modal_h)
+    pg.draw.rect(surf, (24,26,34), modal, border_radius=10)
+    pg.draw.rect(surf, (96,102,124), modal, 2, border_radius=10)
+    title_font = pg.font.Font(None, 30)
+    surf.blit(title_font.render("Save Game", True, (235,235,245)), (modal.x + 16, modal.y + 12))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode','explore')))
+
+    # Slots grid 2x3
+    pad = 16
+    content = modal.inflate(-2*pad, -2*pad)
+    cols, rows = 2, 3
+    cell_w = (content.w - (cols + 1) * pad) // cols
+    cell_h = (content.h - (rows + 1) * pad) // rows
+    slots = _list_save_slots()
+    idx = 0
+    for r_i in range(rows):
+        for c_i in range(cols):
+            idx += 1
+            x = content.x + pad + c_i * (cell_w + pad)
+            y = content.y + pad + r_i * (cell_h + pad)
+            rect = pg.Rect(x, y, cell_w, cell_h)
+            data = slots[idx-1][1]
+            _render_slot_card(surf, rect, idx, data)
+            buttons.append(Button(rect, "", lambda slot=idx: game.save_to_slot(slot), draw_bg=False))
+    return buttons
+
+def draw_load_overlay(surf, game):
+    buttons: List[Button] = []
+    win_w, win_h = surf.get_size()
+    panel_w = int(PANEL_W_FIXED)
+    view_w = max(100, win_w - 2*panel_w)
+    view_h = win_h
+    view_rect = pg.Rect(panel_w, 0, view_w, view_h)
+    # Dim
+    dim = pg.Surface((view_rect.w, view_rect.h), pg.SRCALPHA)
+    dim.fill((10,10,14,140)); surf.blit(dim, (view_rect.x, view_rect.y))
+    # Modal
+    modal_w = max(540, int(view_w * 0.86))
+    modal_h = max(380, int(view_h * 0.86))
+    modal_x = view_rect.x + (view_w - modal_w)//2
+    modal_y = view_rect.y + (view_h - modal_h)//2
+    modal = pg.Rect(modal_x, modal_y, modal_w, modal_h)
+    pg.draw.rect(surf, (24,26,34), modal, border_radius=10)
+    pg.draw.rect(surf, (96,102,124), modal, 2, border_radius=10)
+    title_font = pg.font.Font(None, 30)
+    surf.blit(title_font.render("Load Game", True, (235,235,245)), (modal.x + 16, modal.y + 12))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode','explore')))
+
+    # Slots grid 2x3
+    pad = 16
+    content = modal.inflate(-2*pad, -2*pad)
+    cols, rows = 2, 3
+    cell_w = (content.w - (cols + 1) * pad) // cols
+    cell_h = (content.h - (rows + 1) * pad) // rows
+    slots = _list_save_slots()
+    idx = 0
+    for r_i in range(rows):
+        for c_i in range(cols):
+            idx += 1
+            x = content.x + pad + c_i * (cell_w + pad)
+            y = content.y + pad + r_i * (cell_h + pad)
+            rect = pg.Rect(x, y, cell_w, cell_h)
+            data = slots[idx-1][1]
+            _render_slot_card(surf, rect, idx, data)
+            buttons.append(Button(rect, "", lambda slot=idx: game.load_from_slot(slot), draw_bg=False))
+    return buttons
+
 # ======================== Game class + loop ========================
 class Game:
     def __init__(self, start_map: Optional[str]=None, start_entry: Optional[str]=None, start_pos: Optional[Tuple[int,int]]=None):
@@ -1483,6 +1700,8 @@ class Game:
         self.inv_page = 0
         self.inv_sel = None
         self.equip_sel_slot = None
+        # Playtime tracker (milliseconds)
+        self.playtime_ms = 0
 
         weps  = [it for it in self.items if str(item_type(it)).lower() == 'weapon']
         melee = [w for w in weps if str(item_subtype(w)).lower() not in ('wand','staff')]
@@ -1500,12 +1719,130 @@ class Game:
             if len(weps) > 1:
                 self.player.inventory.append(weps[1])
 
+    # ---------- Save/Load ----------
+    def _save_meta(self) -> Dict[str, Any]:
+        return {
+            'schema': 'rpgen.save@1',
+            'version': 1,
+            'timestamp': datetime.now().isoformat(timespec='seconds'),
+            'map_id': self.current_map_id,
+            'map_name': self.current_map_name,
+            'pos': [int(self.player.x), int(self.player.y)],
+            'player': {
+                'name': self.player.name,
+                'race': self.player.race,
+                'role': self.player.role,
+                'level': int(getattr(self.player, 'level', 1)),
+                'hp': self.player.hp,
+                'max_hp': self.player.max_hp,
+                'atk': list(self.player.atk),
+                'stealth': self.player.stealth,
+                'dex': self.player.dex,
+                'affinity': dict(self.player.affinity),
+                'romance_flags': dict(self.player.romance_flags),
+                'inventory': list(self.player.inventory),
+                'equipped_weapon': self.player.equipped_weapon,
+                'equipped_focus': self.player.equipped_focus,
+                'equipped_gear': dict(self.player.equipped_gear),
+            },
+            'playtime_s': int(getattr(self, 'playtime_ms', 0) // 1000),
+        }
+
+    def save_to_slot(self, slot: int) -> bool:
+        try:
+            SAVE_DIR.mkdir(parents=True, exist_ok=True)
+            path = SAVE_DIR / f"slot{int(slot)}.json"
+            with open(path, 'w', encoding='utf-8') as f:
+                json.dump(self._save_meta(), f, ensure_ascii=False, indent=2)
+            self.say(f"Game saved to slot {slot}.")
+            return True
+        except Exception as e:
+            self.say(f"Failed to save: {e}")
+            return False
+
+    def _apply_loaded_state(self, data: Dict[str, Any]):
+        # Restore map
+        map_id = data.get('map_id') or data.get('map_name')
+        if not map_id:
+            return False
+        scene = load_scene_by_name('map', map_id)
+        runtime = scene_to_runtime(scene)
+        self.W, self.H = int(runtime.get('width', 12)), int(runtime.get('height', 8))
+        self.tile_px = int(runtime.get('tile_size', 32))
+        self.grid    = grid_from_runtime(runtime, self.items, self.npcs)
+        self.current_map_name = runtime.get('name', map_id)
+        self.current_map_id = map_id if isinstance(map_id, str) else self.current_map_id
+
+        # Restore player
+        p = data.get('player') or {}
+        self.player.name = p.get('name', self.player.name)
+        self.player.race = p.get('race', self.player.race)
+        self.player.role = p.get('role', self.player.role)
+        try:
+            self.player.level = int(p.get('level', getattr(self.player, 'level', 1)))
+        except Exception:
+            pass
+        try:
+            self.player.hp = int(p.get('hp', self.player.hp))
+            self.player.max_hp = int(p.get('max_hp', self.player.max_hp))
+        except Exception:
+            pass
+        try:
+            atk = p.get('atk') or self.player.atk
+            self.player.atk = (int(atk[0]), int(atk[1]))
+        except Exception:
+            pass
+        self.player.stealth = int(p.get('stealth', self.player.stealth))
+        self.player.dex = int(p.get('dex', self.player.dex))
+        self.player.affinity = dict(p.get('affinity', self.player.affinity))
+        self.player.romance_flags = dict(p.get('romance_flags', self.player.romance_flags))
+        self.player.inventory = list(p.get('inventory', self.player.inventory))
+        self.player.equipped_weapon = p.get('equipped_weapon')
+        self.player.equipped_focus  = p.get('equipped_focus')
+        self.player.equipped_gear   = dict(p.get('equipped_gear', self.player.equipped_gear))
+
+        # Position
+        pos = data.get('pos') or [0,0]
+        self.player.x = max(0, min(self.W-1, int(pos[0] if len(pos)>0 else 0)))
+        self.player.y = max(0, min(self.H-1, int(pos[1] if len(pos)>1 else 0)))
+        try:
+            self.grid[self.player.y][self.player.x].discovered = True
+        except Exception:
+            pass
+        self.mode = 'explore'
+        try:
+            self.playtime_ms = int((data.get('playtime_s') or 0) * 1000)
+        except Exception:
+            self.playtime_ms = getattr(self, 'playtime_ms', 0)
+        return True
+
+    def load_from_slot(self, slot: int) -> bool:
+        try:
+            path = SAVE_DIR / f"slot{int(slot)}.json"
+            with open(path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            ok = self._apply_loaded_state(data)
+            if ok:
+                self.say(f"Loaded game from slot {slot}.")
+            else:
+                self.say("Save file missing required data.")
+            return ok
+        except FileNotFoundError:
+            self.say("No save in that slot.")
+            return False
+        except Exception as e:
+            self.say(f"Failed to load: {e}")
+            return False
+
     def tile(self, x=None, y=None) -> Tile:
         if x is None: x = self.player.x
         if y is None: y = self.player.y
         return self.grid[y][x]
 
     def say(self, msg: str, tag: Optional[str]=None):
+        # Filter low-signal tags from the Recent log
+        if tag and str(tag).lower() in LOG_HIDE_TAGS:
+            return
         # Encode tag in-line for UI coloring as "[tag] message"
         if tag:
             msg = f"[{tag}] {msg}"
@@ -1715,7 +2052,8 @@ class Game:
         if not npc: return
         if choice == "Talk":
             self.player.affinity[nid] = self.player.affinity.get(nid,0) + 1
-            self.say(f"You talk with {npc.get('name','them')} (+affinity).")
+            # Log a simple, neutral interaction message
+            self.say(f"You spoke to {npc.get('name','them')}.")
         elif choice == "Flirt":
             if npc.get("romanceable"):
                 chance = 0.5 + 0.05 * self.player.affinity.get(nid,0)
@@ -1888,7 +2226,7 @@ class Game:
             t.encounter.item_searched = True
 
 # ======================== Start game (UI) ========================
-def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, start_pos: Optional[Tuple[int,int]]=None):
+def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, start_pos: Optional[Tuple[int,int]]=None, load_slot: Optional[int]=None):
     global pg
     if pg is None:
         try:
@@ -1901,26 +2239,47 @@ def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, s
     version = get_version()
     pg.init()
     pg.display.set_caption(f"RPGenesis {version} - Text RPG")
-    # Create normal window, then ask OS to maximize (Windows)
-    screen = pg.display.set_mode((1120, 700), pg.RESIZABLE)
-    try:
-        import ctypes
-        hwnd = pg.display.get_wm_info().get('window')
-        if hwnd:
-            ctypes.windll.user32.ShowWindow(hwnd, 3)  # SW_MAXIMIZE
-    except Exception:
-        pass
+    # Reuse existing window if present to preserve size/flags
+    screen = pg.display.get_surface()
+    if screen is None:
+        # First launch: create a window and maximize
+        screen = pg.display.set_mode((1120, 700), pg.RESIZABLE)
+        try:
+            import ctypes
+            hwnd = pg.display.get_wm_info().get('window')
+            if hwnd:
+                ctypes.windll.user32.ShowWindow(hwnd, 3)  # SW_MAXIMIZE
+        except Exception:
+            pass
     clock = pg.time.Clock()
 
     game = Game(start_map=start_map, start_entry=start_entry, start_pos=start_pos)
+    if load_slot is not None:
+        try:
+            game.load_from_slot(int(load_slot))
+        except Exception:
+            pass
     running = True
     while running:
         dt = clock.tick(60)
+        # accumulate playtime
+        try:
+            game.playtime_ms = int(getattr(game, 'playtime_ms', 0)) + int(dt)
+        except Exception:
+            pass
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
             elif event.type == pg.VIDEORESIZE:
-                screen = pg.display.set_mode((event.w, event.h), pg.RESIZABLE)
+                # Preserve current flags (fullscreen vs resizable)
+                try:
+                    f = screen.get_flags() if screen else 0
+                except Exception:
+                    f = 0
+                if f & pg.FULLSCREEN:
+                    screen = pg.display.set_mode((event.w, event.h), pg.FULLSCREEN)
+                else:
+                    screen = pg.display.set_mode((event.w, event.h), pg.RESIZABLE)
             elif event.type == pg.MOUSEWHEEL:
                 # Scroll right panel content when hovered
                 win_w, win_h = screen.get_size()
@@ -1958,6 +2317,248 @@ def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, s
         pg.display.flip()
     pg.quit()
 
+
+def _list_all_save_slots_sorted() -> List[Tuple[int, Optional[Dict[str, Any]]]]:
+    """Return all slot*.json under SAVE_DIR sorted by timestamp desc.
+
+    If timestamp missing, sort by slot number descending as fallback.
+    """
+    SAVE_DIR.mkdir(parents=True, exist_ok=True)
+    out: List[Tuple[int, Optional[Dict[str, Any]]]] = []
+    try:
+        for fn in os.listdir(SAVE_DIR):
+            if not fn.lower().startswith('slot') or not fn.lower().endswith('.json'):
+                continue
+            try:
+                num = int(re.sub(r"\D", "", fn))
+            except Exception:
+                continue
+            path = SAVE_DIR / fn
+            data = None
+            try:
+                with open(path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+            except Exception:
+                data = None
+            out.append((num, data))
+    except Exception:
+        pass
+    def key(v):
+        num, data = v
+        ts = ''
+        try:
+            ts = str((data or {}).get('timestamp') or '')
+        except Exception:
+            ts = ''
+        # Sort by timestamp desc primarily, then by slot number desc
+        return (ts or ''), f"{num:08d}"
+    out.sort(key=key, reverse=True)
+    return out
+
+
+def _latest_save_slot() -> Optional[int]:
+    lst = _list_all_save_slots_sorted()
+    return int(lst[0][0]) if lst else None
+
+
+def start_menu():
+    """Main menu loop: returns ('new', None) or ('load', slot) or ('quit', None)."""
+    global pg
+    if pg is None:
+        try:
+            import pygame as _pg
+            pg = _pg
+        except ImportError:
+            print("[ERR] pygame not installed. Run: pip install pygame"); sys.exit(1)
+    version = get_version()
+    pg.init()
+    pg.display.set_caption(f"RPGenesis {version} - Main Menu")
+    screen = pg.display.set_mode((1120, 700), pg.RESIZABLE)
+    try:
+        import ctypes; hwnd = pg.display.get_wm_info().get('window');
+        if hwnd: ctypes.windll.user32.ShowWindow(hwnd, 3)
+    except Exception: pass
+    clock = pg.time.Clock()
+
+    # Preload logo
+    logo = None
+    try:
+        lp = os.path.join(ROOT, 'assets', 'images', 'icons', 'main_logo.png')
+        if os.path.exists(lp):
+            logo = pg.image.load(lp).convert_alpha()
+    except Exception:
+        logo = None
+
+    mm_mode = 'menu'  # menu | load | options | info | credits
+    # Load options
+    def _opts_path():
+        return UI_DIR / 'options.json'
+    def _load_opts():
+        try:
+            if (_opts_path()).exists():
+                with open(_opts_path(), 'r', encoding='utf-8') as f:
+                    return json.load(f)
+        except Exception:
+            pass
+        return {'fullscreen': False, 'music_vol': 100, 'sfx_vol': 100}
+    def _save_opts(o):
+        try:
+            UI_DIR.mkdir(parents=True, exist_ok=True)
+            with open(_opts_path(), 'w', encoding='utf-8') as f:
+                json.dump(o, f, ensure_ascii=False, indent=2)
+        except Exception:
+            pass
+    opts = _load_opts()
+    load_page = 0
+    running = True
+    while running:
+        dt = clock.tick(60)
+        screen.fill((16,16,22))
+
+        win_w, win_h = screen.get_size()
+        panel = pg.Rect(0, 0, win_w, win_h)
+
+        # Draw logo centered top
+        top_y = 40
+        if logo is not None:
+            lw, lh = logo.get_size()
+            max_w = int(win_w * 0.6)
+            scale = min(1.0, max_w / max(1, lw))
+            if scale != 1.0:
+                lg = pg.transform.smoothscale(logo, (int(lw*scale), int(lh*scale)))
+            else:
+                lg = logo
+            screen.blit(lg, lg.get_rect(midtop=(win_w//2, top_y)))
+            top_y += lg.get_height() + 20
+        else:
+            top_y += 20
+
+        buttons: List[Button] = []
+        def add_btn(label, cb):
+            nonlocal top_y
+            r = pg.Rect(win_w//2 - 180, top_y, 360, 40)
+            buttons.append(Button(r, label, cb))
+            top_y += 48
+
+        if mm_mode == 'menu':
+            add_btn("New Game", lambda: (_start.set('new')))
+            latest = _latest_save_slot()
+            if latest is not None:
+                add_btn("Continue Game", lambda slot=latest: (_start.set(('load', slot))))
+            else:
+                add_btn("Continue Game (no saves)", lambda: None)
+            add_btn("Load Game", lambda: (_mode.set('load')))
+            add_btn("Options", lambda: (_mode.set('options')))
+            add_btn("Info",    lambda: (_mode.set('info')))
+            add_btn("Credits", lambda: (_mode.set('credits')))
+        elif mm_mode in ('info','credits'):
+            title = {'info':'Info','credits':'Credits'}[mm_mode]
+            f = pg.font.Font(None, 28)
+            screen.blit(f.render(title, True, (230,230,240)), (win_w//2 - 40, top_y))
+            top_y += 40
+            f2 = pg.font.Font(None, 20)
+            msg = (
+                "RPGenesis-Fantasy: WASD/Arrows move, I inventory. Press ESC to return." if mm_mode=='info' else
+                "Created by You. Press ESC to return."
+            )
+            draw_text(screen, msg, (win_w//2 - 240, top_y), max_w=480, font=f2)
+        elif mm_mode == 'options':
+            f = pg.font.Font(None, 28)
+            screen.blit(f.render('Options', True, (230,230,240)), (win_w//2 - 40, top_y))
+            top_y += 40
+            # Fullscreen toggle
+            fs_label = f"Fullscreen: {'On' if opts.get('fullscreen') else 'Off'}"
+            buttons.append(Button(pg.Rect(win_w//2 - 180, top_y, 360, 36), fs_label, lambda: (_mode.set('toggle_fs')))); top_y += 44
+            # Music/SFX volumes
+            volf = pg.font.Font(None, 22)
+            mv = int(opts.get('music_vol', 100)); sv = int(opts.get('sfx_vol', 100))
+            draw_text(screen, f"Music Volume: {mv}", (win_w//2 - 120, top_y), font=volf); 
+            buttons.append(Button(pg.Rect(win_w//2 - 180, top_y-4, 40, 32), "-", lambda: (_mode.set('mv-'))))
+            buttons.append(Button(pg.Rect(win_w//2 + 120, top_y-4, 40, 32), "+", lambda: (_mode.set('mv+')))); top_y += 40
+            draw_text(screen, f"SFX Volume: {sv}", (win_w//2 - 120, top_y), font=volf);
+            buttons.append(Button(pg.Rect(win_w//2 - 180, top_y-4, 40, 32), "-", lambda: (_mode.set('sv-'))))
+            buttons.append(Button(pg.Rect(win_w//2 + 120, top_y-4, 40, 32), "+", lambda: (_mode.set('sv+')))); top_y += 40
+        elif mm_mode == 'load':
+            # Paginated list of saves, most recent first
+            saves = _list_all_save_slots_sorted()
+            per_page = 6
+            total_pages = max(1, (len(saves) + per_page - 1)//per_page)
+            load_page = max(0, min(load_page, total_pages-1))
+            start = load_page * per_page
+            page_saves = saves[start:start+per_page]
+            # Grid 2x3
+            pad = 16
+            grid_w = min(880, int(win_w*0.8))
+            cell_w = (grid_w - pad*3)//2
+            cell_h = 120
+            left_x = (win_w - grid_w)//2
+            y0 = top_y
+            for i, (slot, data) in enumerate(page_saves):
+                c = i % 2; r = i // 2
+                x = left_x + pad + c*(cell_w + pad)
+                y = y0 + pad + r*(cell_h + pad)
+                rect = pg.Rect(x, y, cell_w, cell_h)
+                _render_slot_card(screen, rect, slot, data)
+                buttons.append(Button(rect, "", lambda s=slot: (_start.set(('load', s))), draw_bg=False))
+            # Pager
+            by = y0 + pad + 3*(cell_h + pad)
+            prev_r = pg.Rect(win_w//2 - 170, by, 140, 32)
+            next_r = pg.Rect(win_w//2 + 30,  by, 140, 32)
+            buttons.append(Button(prev_r, "Prev Page", lambda: (_page.set(load_page-1))))
+            buttons.append(Button(next_r, "Next Page", lambda: (_page.set(load_page+1))))
+
+        # Tiny signal variables updated by buttons via closures
+        class _Sig:
+            def __init__(self): self.v = None
+            def set(self, v): self.v = v
+        _start = _Sig(); _mode = _Sig(); _page = _Sig()
+
+        # Draw buttons
+        for b in buttons: b.draw(screen)
+        pg.display.flip()
+        # Handle events (after buttons exist)
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                running = False
+            elif event.type == pg.VIDEORESIZE:
+                screen = pg.display.set_mode((event.w, event.h), pg.RESIZABLE)
+            elif event.type == pg.KEYDOWN:
+                if event.key == pg.K_ESCAPE:
+                    if mm_mode == 'menu':
+                        running = False
+                    else:
+                        mm_mode = 'menu'
+            elif event.type == pg.MOUSEBUTTONDOWN:
+                for b in buttons: b.handle(event)
+
+        # Apply requested state changes
+        if _mode.v is not None:
+            val = _mode.v; _mode.v = None
+            if val == 'toggle_fs':
+                opts['fullscreen'] = not opts.get('fullscreen', False)
+                _save_opts(opts)
+                # Apply immediately
+                flags = pg.FULLSCREEN if opts['fullscreen'] else pg.RESIZABLE
+                screen = pg.display.set_mode(screen.get_size(), flags)
+            elif val in ('mv-','mv+','sv-','sv+'):
+                delta = -10 if val.endswith('-') else 10
+                key = 'music_vol' if val.startswith('mv') else 'sfx_vol'
+                opts[key] = max(0, min(100, int(opts.get(key, 100)) + delta))
+                _save_opts(opts)
+            else:
+                mm_mode = val
+        if _page.v is not None:
+            load_page = max(0, int(_page.v)); _page.v = None
+        if _start.v is not None:
+            sel = _start.v
+            if sel == 'new':
+                return ('new', None)
+            if isinstance(sel, tuple) and sel[0] == 'load':
+                slot = int(sel[1]); return ('load', slot)
+            _start.v = None
+
+    return ('quit', None)
+
 # ======================== CLI entry ========================
 def main(argv=None):
     ap = argparse.ArgumentParser(description="RPGenesis-Fantasy – validate then launch game UI")
@@ -1983,8 +2584,14 @@ def main(argv=None):
         print("\n[ABORT] Fix the issues above to launch the game (use --strict to elevate warnings).")
         sys.exit(1)
 
-    print("\n[OK] Validation passed. Launching game...")
-    start_game(start_map=args.start_map, start_entry=args.start_entry, start_pos=tuple(args.start_pos) if args.start_pos else None)
+    print("\n[OK] Validation passed. Launching main menu...")
+    sel, data = start_menu()
+    if sel == 'new':
+        start_game(start_map=args.start_map, start_entry=args.start_entry, start_pos=tuple(args.start_pos) if args.start_pos else None)
+    elif sel == 'load' and data is not None:
+        start_game(load_slot=int(data))
+    else:
+        print("Goodbye.")
 
 if __name__ == "__main__":
     main()

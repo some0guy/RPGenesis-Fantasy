@@ -3,520 +3,193 @@
   "version": 1,
   "npcs": [
     {
-      "id": "NP00000005",
-      "name": "Ul’MORR THE RIBKNIGHT",
-      "boss": true,
-      "stats": {
-        "hp": {
-          "fixed": 140
-        }
-      },
-      "level": 4,
-      "appearance": {
-        "eyes": "amber",
-        "hair": "silver",
-        "skin": "freckled",
-        "height_cm": 189,
-        "build": "stocky"
-      },
-      "dialogueFile": "data/dialogues/ul’morr_the_ribknight_np00000005.json",
-      "hostile": true,
-      "race": "fae",
-      "follower": "no"
+      "id": "NP00002000",
+      "name": "The Eclipse Colossus",
+      "race": "Titan",
+      "sex": null,
+      "type": "monster",
+      "appearance": { "eye_color": "Abyssal", "hair_color": null, "build": "Mountainous", "skin_tone": "Stone and Shadow" },
+      "description": "A towering behemoth whose body eclipses the sky itself. Its hide is stone fused with shadow, its eyes blazing like dying suns. Each step cracks the land like brittle glass, every roar a storm that shatters mountains. Worshippers describe the terror of standing beneath its eclipsing bulk as both awe and annihilation."
     },
     {
-      "id": "NP00000086",
-      "name": "Kess Nightrun",
-      "level": 5,
-      "appearance": {
-        "eyes": "amber",
-        "hair": "black",
-        "skin": "dark",
-        "height_cm": 155,
-        "build": "athletic"
-      },
-      "dialogueFile": "data/dialogues/kess_nightrun.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 39,
-          "max": 78
-        },
-        "damage": {
-          "min": 4,
-          "max": 12
-        }
-      },
-      "race": "revenant",
-      "follower": "no"
+      "id": "NP00002001",
+      "name": "Nytheris, Queen of a Thousand Eyes",
+      "race": "Aberration",
+      "sex": "Female",
+      "type": "monster",
+      "appearance": { "eye_color": "Multitude", "hair_color": "Silver-Black", "build": "Statuesque", "skin_tone": "Shimmering" },
+      "description": "Her statuesque body is flawless and dreadful, a living tapestry of unblinking eyes that open and close across her skin. Silver-black hair cascades like starfire, veiling and revealing the shifting orbs. She is beautiful in ways that terrify, sensual in ways that unsettle. Her voice is silk laid over barbed wire, luring mortals with promises they dare not accept. Every glance strips secrets, every whisper binds minds in feverish devotion."
     },
     {
-      "id": "NP00000087",
-      "name": "Isolde Wyrmfall",
-      "level": 9,
-      "appearance": {
-        "eyes": "emerald",
-        "hair": "midnight-blue",
-        "skin": "fair",
-        "height_cm": 162,
-        "build": "towering"
-      },
-      "dialogueFile": "data/dialogues/isolde_wyrmfall.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 19,
-          "max": 69
-        },
-        "damage": {
-          "min": 7,
-          "max": 12
-        }
-      },
-      "race": "drakesworn",
-      "follower": "no"
+      "id": "NP00002002",
+      "name": "The Veilmother",
+      "race": "Aberration",
+      "sex": "Female",
+      "type": "monster",
+      "appearance": { "eye_color": "Hidden", "hair_color": "Veiled", "build": "Tall and shifting", "skin_tone": "Shrouded" },
+      "description": "She drifts as a column of endless veils, each layer translucent and flowing, hinting at the shape of a woman beneath. Faces appear and vanish in the cloth as though spirits were trapped in her folds. Her presence is worshipful and dreadful, her whispers cling like perfume, drawing mortals close until devotion turns to despair. Her caress leaves the cold of graves, her embrace the suffocation of silken shrouds."
     },
     {
-      "id": "NP00000088",
-      "name": "Kael Moonhart",
-      "level": 4,
-      "appearance": {
-        "eyes": "gold",
-        "hair": "blonde",
-        "skin": "fair",
-        "height_cm": 186,
-        "build": "towering"
-      },
-      "dialogueFile": "data/dialogues/kael_moonhart.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 19,
-          "max": 79
-        },
-        "damage": {
-          "min": 3,
-          "max": 11
-        }
-      },
-      "race": "drow",
-      "follower": "no"
+      "id": "NP00002003",
+      "name": "The Crimson Bride",
+      "race": "Undead",
+      "sex": "Female",
+      "type": "monster",
+      "appearance": { "eye_color": "Crimson", "hair_color": "Black with crimson sheen", "build": "Tall", "skin_tone": "Pale" },
+      "description": "Draped in gowns woven of scarlet mist, she drifts like a dancer through ruined halls. Her veil flutters though no wind stirs, her crimson eyes smouldering beneath. Once kissed, never freed; her embrace is death disguised as passion, a union that consumes utterly. The Crimson Bride collects souls as dowries, and no vow is broken without blood."
     },
     {
-      "id": "NP00000089",
-      "name": "Corin Moonhart",
-      "level": 9,
-      "appearance": {
-        "eyes": "hazel",
-        "hair": "silver",
-        "skin": "tan",
-        "height_cm": 198,
-        "build": "athletic"
-      },
-      "dialogueFile": "data/dialogues/corin_moonhart.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 35,
-          "max": 89
-        },
-        "damage": {
-          "min": 4,
-          "max": 12
-        }
-      },
-      "race": "goblin",
-      "follower": "no"
+      "id": "NP00002004",
+      "name": "Serpenta the Coilmother",
+      "race": "Serpent Abomination",
+      "sex": "Female",
+      "type": "monster",
+      "appearance": { "eye_color": "Amber", "hair_color": null, "build": "Massive serpentine", "skin_tone": "Scaled Emerald" },
+      "description": "A colossal serpent with a woman’s torso rising from its coils, crowned with jeweled scales. Her amber eyes gleam with hypnotic malice, her voice a hiss of promises. Entire caravans vanish into her coils, crushed or caressed depending on her mood. She tastes devotion as keenly as she tastes fear."
     },
     {
-      "id": "NP00000090",
-      "name": "Aria Nightrun",
-      "level": 9,
-      "appearance": {
-        "eyes": "amber",
-        "hair": "chestnut",
-        "skin": "bronze",
-        "height_cm": 154,
-        "build": "stocky"
-      },
-      "dialogueFile": "data/dialogues/aria_nightrun.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 23,
-          "max": 57
-        },
-        "damage": {
-          "min": 6,
-          "max": 9
-        }
-      },
-      "race": "drow",
-      "follower": "no"
+      "id": "NP00002005",
+      "name": "The Ashen Wyrm",
+      "race": "Dragon",
+      "sex": null,
+      "type": "monster",
+      "appearance": { "eye_color": "Molten", "hair_color": null, "build": "Colossal", "skin_tone": "Ash and Fire" },
+      "description": "Scales the color of burned stone, wings trailing embers with each beat. Its breath is a storm of cinders that suffocates armies, its shadow long enough to darken valleys. Legends say it slumbers beneath volcanoes, and when it stirs, kingdoms fall in fire."
     },
     {
-      "id": "NP00000091",
-      "name": "Nyra Ironvale",
-      "level": 1,
-      "appearance": {
-        "eyes": "crimson",
-        "hair": "chestnut",
-        "skin": "fair",
-        "height_cm": 199,
-        "build": "graceful"
-      },
-      "dialogueFile": "data/dialogues/nyra_ironvale.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 28,
-          "max": 53
-        },
-        "damage": {
-          "min": 5,
-          "max": 16
-        }
-      },
-      "race": "orc",
-      "follower": "no"
+      "id": "NP00002006",
+      "name": "Thalora, Widow of the Web",
+      "race": "Drider",
+      "sex": "Female",
+      "type": "monster",
+      "appearance": { "eye_color": "Red", "hair_color": "White", "build": "Slender", "skin_tone": "Dusky" },
+      "description": "Half woman, half spider, with a dusky beauty marred by the grotesque elegance of her arachnid body. Her white hair cascades over bare shoulders, her red eyes gleaming with hunger. Silken threads spin from her fingertips and her lower body, ensnaring prey in webs both literal and emotional. She whispers lullabies to captives, stroking their hair before the fangs pierce."
     },
     {
-      "id": "NP00000092",
-      "name": "Nyra Ironvale",
-      "level": 2,
-      "appearance": {
-        "eyes": "violet",
-        "hair": "midnight-blue",
-        "skin": "tan",
-        "height_cm": 202,
-        "build": "graceful"
-      },
-      "dialogueFile": "data/dialogues/nyra_ironvale.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 34,
-          "max": 57
-        },
-        "damage": {
-          "min": 4,
-          "max": 9
-        }
-      },
-      "race": "lizardfolk",
-      "follower": "no"
+      "id": "NP00002007",
+      "name": "The Hollow King",
+      "race": "Undead Revenant",
+      "sex": "Male",
+      "type": "monster",
+      "appearance": { "eye_color": "Glowing Blue", "hair_color": "Ash", "build": "Tall and gaunt", "skin_tone": "Withered" },
+      "description": "A towering corpse wrapped in rotting regalia, crown fused into decayed bone. His eyes glow with cold fury, his voice echoing in empty chambers. He commands legions of the dead, his presence alone enough to still living hearts. His touch drains warmth, his embrace is despair eternal."
     },
     {
-      "id": "NP00000093",
-      "name": "Syl Goldbranch",
-      "level": 5,
-      "appearance": {
-        "eyes": "emerald",
-        "hair": "black",
-        "skin": "olive",
-        "height_cm": 198,
-        "build": "stocky"
-      },
-      "dialogueFile": "data/dialogues/syl_goldbranch.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 40,
-          "max": 62
-        },
-        "damage": {
-          "min": 4,
-          "max": 9
-        }
-      },
-      "race": "lizardfolk",
-      "follower": "no"
+      "id": "NP00002008",
+      "name": "The Maw of the Deep",
+      "race": "Leviathan",
+      "sex": null,
+      "type": "monster",
+      "appearance": { "eye_color": "Abyssal", "hair_color": null, "build": "Massive aquatic", "skin_tone": "Midnight Blue" },
+      "description": "From beneath fathoms, a maw lined with endless teeth rises, wider than castles. Tentacles writhe from its sides, dragging ships into the abyss. Sailors speak of siren hums that draw them willingly into its jaws, where water becomes grave and song becomes silence."
     },
     {
-      "id": "NP00000094",
-      "name": "Gryff Ravenmere",
-      "level": 7,
-      "appearance": {
-        "eyes": "hazel",
-        "hair": "midnight-blue",
-        "skin": "tan",
-        "height_cm": 177,
-        "build": "athletic"
-      },
-      "dialogueFile": "data/dialogues/gryff_ravenmere.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 21,
-          "max": 81
-        },
-        "damage": {
-          "min": 7,
-          "max": 13
-        }
-      },
-      "race": "drakesworn",
-      "follower": "no"
+      "id": "NP00002009",
+      "name": "The Flesh Colossus",
+      "race": "Aberration",
+      "sex": null,
+      "type": "monster",
+      "appearance": { "eye_color": "Bloodshot", "hair_color": null, "build": "Monstrous", "skin_tone": "Patchwork" },
+      "description": "A towering amalgamation of limbs and torsos, sewn together with sinew and malice. Its skin is stitched patchwork, its movements jerky yet devastating. Each face embedded in its flesh screams or weeps, and its hunger is insatiable. Villages are erased when the Colossus walks."
     },
     {
-      "id": "NP00000095",
-      "name": "Gryff Vaeloria",
-      "level": 2,
-      "appearance": {
-        "eyes": "emerald",
-        "hair": "strawberry",
-        "skin": "olive",
-        "height_cm": 186,
-        "build": "graceful"
-      },
-      "dialogueFile": "data/dialogues/gryff_vaeloria.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 22,
-          "max": 79
-        },
-        "damage": {
-          "min": 3,
-          "max": 16
-        }
-      },
-      "race": "lizardfolk",
-      "follower": "no"
+      "id": "NP00002010",
+      "name": "The Cosmic Titaness",
+      "race": "Eldritch Titan",
+      "sex": "Female",
+      "type": "monster",
+      "appearance": { "eye_color": "Starlit", "hair_color": "Nebula", "build": "Colossal, curvaceous", "skin_tone": "Celestial glow" },
+      "description": "Her form is vast and curvaceous, skin glowing with constellations that ripple like living sky. Nebula hair streams in endless waves, her starlit eyes both inviting and annihilating. Sensual in form, horrific in intent, she beckons mortals as lovers and devours them as sacrifices. The Cosmic Titaness embodies the seduction of infinity and the cruelty of the void."
     },
     {
-      "id": "NP00000096",
-      "name": "Gryff Blackfen",
-      "level": 6,
-      "appearance": {
-        "eyes": "gold",
-        "hair": "blonde",
-        "skin": "fair",
-        "height_cm": 177,
-        "build": "compact"
-      },
-      "dialogueFile": "data/dialogues/gryff_blackfen.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 19,
-          "max": 50
-        },
-        "damage": {
-          "min": 8,
-          "max": 9
-        }
-      },
-      "race": "revenant",
-      "follower": "no"
+      "id": "NP00002011",
+      "name": "The Iron Maw",
+      "race": "Construct",
+      "sex": null,
+      "type": "monster",
+      "appearance": { "eye_color": "Fiery", "hair_color": null, "build": "Massive mechanical", "skin_tone": "Iron and Rust" },
+      "description": "A giant construct of gears and chains, its maw a spinning grinder of iron teeth. Smoke pours from vents in its shoulders, each movement squealing with metal strain. Created to end wars, it now hunts endlessly, devouring flesh and steel alike."
     },
     {
-      "id": "NP00000097",
-      "name": "Thalen Rivenspire",
-      "level": 9,
-      "appearance": {
-        "eyes": "sapphire",
-        "hair": "ash",
-        "skin": "dark",
-        "height_cm": 202,
-        "build": "towering"
-      },
-      "dialogueFile": "data/dialogues/thalen_rivenspire.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 21,
-          "max": 58
-        },
-        "damage": {
-          "min": 6,
-          "max": 13
-        }
-      },
-      "race": "drow",
-      "follower": "no"
+      "id": "NP00002012",
+      "name": "Sylthara the Siren Queen",
+      "race": "Siren",
+      "sex": "Female",
+      "type": "monster",
+      "appearance": { "eye_color": "Sea-green", "hair_color": "Blue-black", "build": "Slender", "skin_tone": "Pearlescent" },
+      "description": "Her voice carries on waves, sweet as honey and deadly as poison. Long hair flows like tides, her pearlescent skin shimmering under moonlight. Sailors leap willingly into the sea for her, vanishing beneath her embrace. She is both muse and murderer, beauty sharpened into a hook."
     },
     {
-      "id": "NP00000098",
-      "name": "Varyn Ironvale",
-      "level": 6,
-      "appearance": {
-        "eyes": "violet",
-        "hair": "black",
-        "skin": "ashen",
-        "height_cm": 178,
-        "build": "compact"
-      },
-      "dialogueFile": "data/dialogues/varyn_ironvale.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 32,
-          "max": 74
-        },
-        "damage": {
-          "min": 8,
-          "max": 16
-        }
-      },
-      "race": "goblin",
-      "follower": "no"
+      "id": "NP00002013",
+      "name": "The Dreadroot Titan",
+      "race": "Plant Colossus",
+      "sex": null,
+      "type": "monster",
+      "appearance": { "eye_color": "Glowing Green", "hair_color": "Vines", "build": "Towering", "skin_tone": "Bark and Moss" },
+      "description": "A walking forest, limbs of bark and roots trailing like serpents. Eyes glow green with primal fury, each step birthing vines that entangle the ground. Entire villages vanish under its slow march, swallowed by living wilderness. To face it is to be buried alive by the hunger of nature itself."
     },
     {
-      "id": "NP00000099",
-      "name": "Kess Ironvale",
-      "level": 5,
-      "appearance": {
-        "eyes": "forest-green",
-        "hair": "ash",
-        "skin": "olive",
-        "height_cm": 168,
-        "build": "athletic"
-      },
-      "dialogueFile": "data/dialogues/kess_ironvale.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 19,
-          "max": 51
-        },
-        "damage": {
-          "min": 3,
-          "max": 16
-        }
-      },
-      "race": "lizardfolk",
-      "follower": "no"
+      "id": "NP00002014",
+      "name": "The Bone Matron",
+      "race": "Undead",
+      "sex": "Female",
+      "type": "monster",
+      "appearance": { "eye_color": "Empty sockets", "hair_color": "Wisps of white", "build": "Tall, skeletal", "skin_tone": "Bone-white" },
+      "description": "Her skeletal frame draped in funeral lace, she cradles bones like children. Each step rattles, each lullaby keens with loss. Yet her embrace is suffocating, her skeletal arms pulling prey into a mother’s cradle from which there is no release."
     },
     {
-      "id": "NP00000100",
-      "name": "Dorian Ashvale",
-      "level": 9,
-      "appearance": {
-        "eyes": "steel-grey",
-        "hair": "midnight-blue",
-        "skin": "ashen",
-        "height_cm": 191,
-        "build": "lithe"
-      },
-      "dialogueFile": "data/dialogues/dorian_ashvale.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 35,
-          "max": 73
-        },
-        "damage": {
-          "min": 6,
-          "max": 14
-        }
-      },
-      "race": "goblin",
-      "follower": "no"
+      "id": "NP00002015",
+      "name": "The Blight Seraph",
+      "race": "Fallen Angel",
+      "sex": "Female",
+      "type": "monster",
+      "appearance": { "eye_color": "Sickly Gold", "hair_color": "Tarnished Silver", "build": "Tall", "skin_tone": "Ashen" },
+      "description": "Wings once white now rot with mold, feathers falling like diseased snow. Her golden eyes weep pus and light, her lips whisper prayers of corruption. She beckons mortals with a lover’s touch, only to bless them with decay and despair."
     },
     {
-      "id": "NP00000101",
-      "name": "Liora Oakshield",
-      "level": 10,
-      "appearance": {
-        "eyes": "hazel",
-        "hair": "blonde",
-        "skin": "tan",
-        "height_cm": 192,
-        "build": "graceful"
-      },
-      "dialogueFile": "data/dialogues/liora_oakshield.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 36,
-          "max": 67
-        },
-        "damage": {
-          "min": 8,
-          "max": 9
-        }
-      },
-      "race": "orc",
-      "follower": "no"
+      "id": "NP00002016",
+      "name": "The Shattered Harbinger",
+      "race": "Aberration",
+      "sex": null,
+      "type": "monster",
+      "appearance": { "eye_color": "Fractured Light", "hair_color": null, "build": "Chaotic", "skin_tone": "Crystal and Flesh" },
+      "description": "Its body is broken geometry, shards of crystal fused with bleeding flesh. Its gaze refracts reality into madness, its steps splinter the ground. Wherever it walks, whispers follow, promising nothing but ruin and revelation."
     },
     {
-      "id": "NP00000102",
-      "name": "Neris Moonhart",
-      "level": 6,
-      "appearance": {
-        "eyes": "sapphire",
-        "hair": "midnight-blue",
-        "skin": "freckled",
-        "height_cm": 198,
-        "build": "towering"
-      },
-      "dialogueFile": "data/dialogues/neris_moonhart.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 38,
-          "max": 57
-        },
-        "damage": {
-          "min": 6,
-          "max": 12
-        }
-      },
-      "race": "orc",
-      "follower": "no"
+      "id": "NP00002017",
+      "name": "The Storm Bride",
+      "race": "Elemental",
+      "sex": "Female",
+      "type": "monster",
+      "appearance": { "eye_color": "Lightning", "hair_color": "Cloud-white", "build": "Slender", "skin_tone": "Stormlight" },
+      "description": "A woman-shaped tempest, her body streaked with lightning and rain. Her laugh is thunder, her kiss is ozone, her embrace the drowning pull of tides. Sailors call her name as both prayer and curse, for she loves as storms love: with ruinous passion."
     },
     {
-      "id": "NP00000103",
-      "name": "Kess Vaeloria",
-      "level": 6,
-      "appearance": {
-        "eyes": "ice-blue",
-        "hair": "chestnut",
-        "skin": "dark",
-        "height_cm": 159,
-        "build": "graceful"
-      },
-      "dialogueFile": "data/dialogues/kess_vaeloria.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 31,
-          "max": 58
-        },
-        "damage": {
-          "min": 7,
-          "max": 16
-        }
-      },
-      "race": "lizardfolk",
-      "follower": "no"
+      "id": "NP00002018",
+      "name": "The Devouring Choir",
+      "race": "Aberration",
+      "sex": null,
+      "type": "monster",
+      "appearance": { "eye_color": "None", "hair_color": null, "build": "Amorphous", "skin_tone": "Shifting" },
+      "description": "A writhing mass of mouths singing in endless harmony, each voice another life consumed. The sound is beautiful, irresistible, and those who listen too long are drawn into its chorus forever, their bodies and voices added to the song."
     },
     {
-      "id": "NP00000104",
-      "name": "Tamsin Starcrest",
-      "level": 7,
-      "appearance": {
-        "eyes": "gold",
-        "hair": "white",
-        "skin": "ashen",
-        "height_cm": 198,
-        "build": "slim"
-      },
-      "dialogueFile": "data/dialogues/tamsin_starcrest.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 40,
-          "max": 85
-        },
-        "damage": {
-          "min": 8,
-          "max": 13
-        }
-      },
-      "race": "drakesworn",
-      "follower": "no"
+      "id": "NP00002019",
+      "name": "The Gilded Horror",
+      "race": "Construct",
+      "sex": null,
+      "type": "monster",
+      "appearance": { "eye_color": "Ruby", "hair_color": null, "build": "Ornate and hulking", "skin_tone": "Gold and Bronze" },
+      "description": "A towering statue of gold and bronze come to life, jeweled eyes glimmering with malice. It moves with ponderous grace, each strike devastating. Once worshipped as divine, it now hungers for sacrifice, its gilded hands dripping with blood."
+    },
+    {
+      "id": "NP00002020",
+      "name": "The Whispered Hunger",
+      "race": "Aberration",
+      "sex": null,
+      "type": "monster",
+      "appearance": { "eye_color": "Black void", "hair_color": null, "build": "Lithe but endless", "skin_tone": "Shadow" },
+      "description": "A figure draped in shadows, mouthless yet whispering with infinite voices. It stalks dreams, feeding on desire and dread alike. Those who wake with its caress on their cheek never live long after—the hunger follows, patient and eternal."
     }
   ]
 }

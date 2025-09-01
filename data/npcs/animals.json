@@ -3,264 +3,324 @@
   "version": 1,
   "npcs": [
     {
-      "id": "NP00000002",
-      "name": "Moon Owl",
-      "level": 2,
-      "appearance": {
-        "eyes": "crimson",
-        "hair": "white",
-        "skin": "tan",
-        "height_cm": 202,
-        "build": "towering"
-      },
-      "follower": "no"
+      "id": "NP00004000",
+      "name": "Black Sheep",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "A woolly sheep with a coat of deep black. Docile and steady, it tends to linger at the edges of the flock."
     },
     {
-      "id": "NP00000026",
-      "name": "Liora Skylark",
-      "level": 7,
-      "appearance": {
-        "eyes": "sapphire",
-        "hair": "midnight-blue",
-        "skin": "ashen",
-        "height_cm": 200,
-        "build": "towering"
-      },
-      "follower": "no"
+      "id": "NP00004001",
+      "name": "Golden Hen",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Plump and bright-feathered, this hen struts proudly around farmyards. Its golden plumage shines in sunlight like ripe wheat."
     },
     {
-      "id": "NP00000027",
-      "name": "Selune Starcrest",
-      "level": 3,
-      "appearance": {
-        "eyes": "hazel",
-        "hair": "ash",
-        "skin": "dark",
-        "height_cm": 172,
-        "build": "compact"
-      },
-      "follower": "no"
+      "id": "NP00004002",
+      "name": "Willow Deer",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "A gentle woodland deer, antlers shaped like the curve of willow branches. Moves with grace, pausing often as though listening to whispers in the trees."
     },
     {
-      "id": "NP00000028",
-      "name": "Iria Wyrmfall",
-      "level": 7,
-      "appearance": {
-        "eyes": "gold",
-        "hair": "black",
-        "skin": "dark",
-        "height_cm": 185,
-        "build": "compact"
-      },
-      "follower": "no"
+      "id": "NP00004003",
+      "name": "Ashen Dove",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Soft-feathered dove with pale ash coloring. Carries a mournful coo, often seen near quiet ruins or graveyards."
     },
     {
-      "id": "NP00000029",
-      "name": "Neris Moonhart",
-      "level": 2,
-      "appearance": {
-        "eyes": "forest-green",
-        "hair": "silver",
-        "skin": "fair",
-        "height_cm": 195,
-        "build": "stocky"
-      },
-      "follower": "no"
+      "id": "NP00004004",
+      "name": "Stoneback Tortoise",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "A tortoise with a shell ridged like slabs of stone. Slow but enduring, often found basking in sunlit clearings."
     },
     {
-      "id": "NP00000030",
-      "name": "Selune Vaeloria",
-      "level": 6,
-      "appearance": {
-        "eyes": "gold",
-        "hair": "blonde",
-        "skin": "fair",
-        "height_cm": 177,
-        "build": "compact"
-      },
-      "follower": "no"
+      "id": "NP00004005",
+      "name": "Cinder Sparrow",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Tiny bird with dark red plumage. Its chirps are sharp and fast, flitting between hedges like sparks in the wind."
     },
     {
-      "id": "NP00000031",
-      "name": "Kael Skylark",
-      "level": 5,
-      "appearance": {
-        "eyes": "violet",
-        "hair": "ash",
-        "skin": "bronze",
-        "height_cm": 202,
-        "build": "stocky"
-      },
-      "follower": "no"
+      "id": "NP00004006",
+      "name": "Duskmire Goat",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Shaggy goat with curled horns, often found grazing on tough weeds. Known for bleating stubbornly at the worst moments."
     },
     {
-      "id": "NP00000032",
-      "name": "Sable Brightbough",
-      "level": 4,
-      "appearance": {
-        "eyes": "emerald",
-        "hair": "black",
-        "skin": "fair",
-        "height_cm": 166,
-        "build": "athletic"
-      },
-      "follower": "no"
+      "id": "NP00004007",
+      "name": "Moonlit Owl",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Feathers streaked with pale silver, eyes reflecting like coins under moonlight. Hunts silently, a watchful guardian of the night."
     },
     {
-      "id": "NP00000033",
-      "name": "Selune Vaeloria",
-      "level": 6,
-      "appearance": {
-        "eyes": "amber",
-        "hair": "midnight-blue",
-        "skin": "pale",
-        "height_cm": 196,
-        "build": "lithe"
-      },
-      "follower": "no"
+      "id": "NP00004008",
+      "name": "Frosttail Hare",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Quick-footed hare with a snowy tufted tail. Skittish but hardy, darting through frost and grass alike."
     },
     {
-      "id": "NP00000034",
-      "name": "Dorian Vaeloria",
-      "level": 1,
-      "appearance": {
-        "eyes": "sapphire",
-        "hair": "black",
-        "skin": "freckled",
-        "height_cm": 197,
-        "build": "towering"
-      },
-      "follower": "no"
+      "id": "NP00004009",
+      "name": "Amber Cow",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Broad-bodied and calm, this cow’s coat has an amber sheen. Provides milk with a sweet, nutty flavor prized in villages."
     },
     {
-      "id": "NP00000035",
-      "name": "Nyra Ashvale",
-      "level": 9,
-      "appearance": {
-        "eyes": "forest-green",
-        "hair": "black",
-        "skin": "dark",
-        "height_cm": 194,
-        "build": "stocky"
-      },
-      "follower": "no"
+      "id": "NP00004010",
+      "name": "Thornbeak Goose",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "A loud and territorial goose with a serrated bill. Honks furiously at anything that wanders too close."
     },
     {
-      "id": "NP00000036",
-      "name": "Nyra Duskwood",
-      "level": 3,
-      "appearance": {
-        "eyes": "steel-grey",
-        "hair": "black",
-        "skin": "bronze",
-        "height_cm": 176,
-        "build": "towering"
-      },
-      "follower": "no"
+      "id": "NP00004011",
+      "name": "Cloudmane Horse",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Tall and elegant horse with a flowing pale mane. Known for stamina and a proud, spirited nature."
     },
     {
-      "id": "NP00000037",
-      "name": "Kael Ravenmere",
-      "level": 7,
-      "appearance": {
-        "eyes": "sapphire",
-        "hair": "white",
-        "skin": "fair",
-        "height_cm": 165,
-        "build": "lithe"
-      },
-      "follower": "no"
+      "id": "NP00004012",
+      "name": "Silt River Duck",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Round-bellied duck with mud-brown plumage. Waddles near riverbanks, quacking noisily as it forages."
     },
     {
-      "id": "NP00000038",
-      "name": "Dorian Ashvale",
-      "level": 6,
-      "appearance": {
-        "eyes": "amber",
-        "hair": "auburn",
-        "skin": "olive",
-        "height_cm": 192,
-        "build": "slim"
-      },
-      "follower": "no"
+      "id": "NP00004013",
+      "name": "Rosefinch",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Bright little bird with a breast flushed rose-red. Its song is cheerful, often heard at dawn in spring meadows."
     },
     {
-      "id": "NP00000039",
-      "name": "Sable Thornfield",
-      "level": 3,
-      "appearance": {
-        "eyes": "emerald",
-        "hair": "raven",
-        "skin": "dark",
-        "height_cm": 205,
-        "build": "broad"
-      },
-      "follower": "no"
+      "id": "NP00004014",
+      "name": "Mire Snail",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Large land snail with a shell streaked in greenish muck. Leaves glistening trails along stones after rain."
     },
     {
-      "id": "NP00000040",
-      "name": "Gryff Ashvale",
-      "level": 8,
-      "appearance": {
-        "eyes": "steel-grey",
-        "hair": "raven",
-        "skin": "pale",
-        "height_cm": 180,
-        "build": "compact"
-      },
-      "follower": "no"
+      "id": "NP00004015",
+      "name": "Hearth Pig",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Round and good-natured, this pig often snoozes near fireplaces. Farmers raise them as much for companionship as for meat."
     },
     {
-      "id": "NP00000041",
-      "name": "Aria Stormbind",
-      "level": 9,
-      "appearance": {
-        "eyes": "gold",
-        "hair": "ash",
-        "skin": "freckled",
-        "height_cm": 181,
-        "build": "graceful"
-      },
-      "follower": "no"
+      "id": "NP00004016",
+      "name": "Silver Heron",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Tall bird with gleaming silver plumage. Wades gracefully through shallow rivers, spearing fish with uncanny precision."
     },
     {
-      "id": "NP00000042",
-      "name": "Rowan Brightbough",
-      "level": 6,
-      "appearance": {
-        "eyes": "forest-green",
-        "hair": "chestnut",
-        "skin": "ashen",
-        "height_cm": 167,
-        "build": "athletic"
-      },
-      "follower": "no"
+      "id": "NP00004017",
+      "name": "Dappled Fawn",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Young deer with a dappled coat like sunlight through leaves. Shy and delicate, a fleeting presence in the forest."
     },
     {
-      "id": "NP00000043",
-      "name": "Fenric Brightbough",
-      "level": 2,
-      "appearance": {
-        "eyes": "ice-blue",
-        "hair": "white",
-        "skin": "ashen",
-        "height_cm": 197,
-        "build": "compact"
-      },
-      "follower": "no"
+      "id": "NP00004018",
+      "name": "Copper Rooster",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "A proud rooster with copper-colored plumage. Struts and crows loudly at the first hint of dawn."
     },
     {
-      "id": "NP00000044",
-      "name": "Dorian Ravenmere",
-      "level": 6,
-      "appearance": {
-        "eyes": "ice-blue",
-        "hair": "midnight-blue",
-        "skin": "freckled",
-        "height_cm": 160,
-        "build": "compact"
-      },
-      "follower": "no"
+      "id": "NP00004019",
+      "name": "Sunset Swan",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Elegant swan with feathers that shimmer orange and red in fading light. Symbol of grace and fleeting beauty."
+    },
+    {
+      "id": "NP00004020",
+      "name": "Velvet Hare",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Soft-coated hare whose fur feels like velvet to the touch. Considered a gentle omen of luck."
+    },
+    {
+      "id": "NP00004021",
+      "name": "Bramble Hedgehog",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Tiny hedgehog with spines tipped darker like thorn brambles. Shuffles through hedges sniffing for insects."
+    },
+    {
+      "id": "NP00004022",
+      "name": "Dewdrop Calf",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Young calf with wide innocent eyes, its nose always damp. Follows people curiously like a lost child."
+    },
+    {
+      "id": "NP00004023",
+      "name": "Mossback Turtle",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Small turtle with moss growing across its shell. Slow but persistent, it often looks like a moving stone in streams."
+    },
+    {
+      "id": "NP00004024",
+      "name": "Twilight Dove",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Dove with plumage that shifts from gray to violet as evening falls. Its coo carries a calm, soothing note."
+    },
+    {
+      "id": "NP00004025",
+      "name": "Honeybee Swarm",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "A buzzing cluster of bees, wings shining like amber in sunlight. Though harmless if left alone, their hive is fiercely guarded."
+    },
+    {
+      "id": "NP00004026",
+      "name": "Lantern Firefly",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Tiny insect whose abdomen glows bright gold. In fields at night, they light the air like drifting lanterns."
+    },
+    {
+      "id": "NP00004027",
+      "name": "Fallow Stag",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "A regal stag with branching antlers. Moves with steady authority, often leading smaller herds across glades."
+    },
+    {
+      "id": "NP00004028",
+      "name": "Marsh Egret",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Slender white bird stalking marshes for frogs. Its cry is sharp and piercing, echoing across wetlands."
+    },
+    {
+      "id": "NP00004029",
+      "name": "Pine Marten",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Quick and curious, this brown-furred weasel-like animal bounds through forests with playful energy."
+    },
+    {
+      "id": "NP00004030",
+      "name": "Cobalt Jay",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "A bright blue forest bird with a shrill call. Known to steal shiny trinkets left unattended."
+    },
+    {
+      "id": "NP00004031",
+      "name": "Drift Hare",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "A long-legged hare that bounds across dunes and grassland with great speed. Its sandy coat helps it vanish quickly."
+    },
+    {
+      "id": "NP00004032",
+      "name": "Crown Antelope",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "An antelope with horn tips shaped like a regal crown. Agile and wary, always on the move through tall grass."
+    },
+    {
+      "id": "NP00004033",
+      "name": "Speckled Pigeon",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Plump city-dwelling pigeon with gray feathers speckled white. Familiar sight around markets and temple steps."
+    },
+    {
+      "id": "NP00004034",
+      "name": "Shimmerfin Carp",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "A river carp whose scales shimmer iridescently under light. Popular in ponds and lucky charms."
+    },
+    {
+      "id": "NP00004035",
+      "name": "Mourning Dove",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Soft gray dove with a low, haunting coo. A symbol of remembrance in many villages."
+    },
+    {
+      "id": "NP00004036",
+      "name": "Azure Swan",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Majestic swan with feathers of deep blue. A rare sight, admired as a symbol of purity and serenity."
+    },
+    {
+      "id": "NP00004037",
+      "name": "Spice Hen",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Farmyard hen with speckled brown plumage. Known for laying eggs with a richer taste, prized in kitchens."
+    },
+    {
+      "id": "NP00004038",
+      "name": "Timber Ox",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "Massive ox bred for hauling lumber. Its horns are blunt but thick, its gait steady and patient."
+    },
+    {
+      "id": "NP00004039",
+      "name": "Pearl Dove",
+      "race": "Animal",
+      "sex": null,
+      "type": "animal",
+      "description": "A small dove with feathers shimmering white like pearls. Associated with peace and new beginnings."
     }
   ]
 }

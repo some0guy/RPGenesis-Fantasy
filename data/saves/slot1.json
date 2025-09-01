@@ -1,0 +1,129 @@
+{
+  "schema": "rpgen.save@1",
+  "version": 1,
+  "timestamp": "2025-08-31T01:59:12",
+  "map_id": "Jungle of Hills",
+  "map_name": "Jungle of Hills",
+  "pos": [
+    10,
+    5
+  ],
+  "player": {
+    "name": "Adventurer",
+    "race": "Human",
+    "role": "Wanderer",
+    "hp": 20,
+    "max_hp": 20,
+    "atk": [
+      3,
+      6
+    ],
+    "stealth": 4,
+    "dex": 5,
+    "affinity": {},
+    "romance_flags": {},
+    "inventory": [
+      {
+        "category": "weapon",
+        "name": "Rough Dagger",
+        "style": "physical",
+        "type": "dagger",
+        "rarity": "common",
+        "value": 79,
+        "weight": 875,
+        "description": "A common dagger forged to our current spec.",
+        "components": [
+          {
+            "material": "steel_ingot",
+            "quantity": 1
+          }
+        ],
+        "damage_type": {
+          "physical": 14
+        },
+        "bonus": {},
+        "weapon_trait": "none",
+        "id": "IT00000001",
+        "desc": "A common dagger forged to our current spec."
+      },
+      {
+        "category": "weapon",
+        "name": "Sturdy Dagger",
+        "style": "physical",
+        "type": "dagger",
+        "rarity": "uncommon",
+        "value": 115,
+        "weight": 1129,
+        "description": "A uncommon dagger forged to our current spec.",
+        "components": [
+          {
+            "material": "steel_ingot",
+            "quantity": 1
+          },
+          {
+            "material": "leather",
+            "quantity": 1
+          }
+        ],
+        "damage_type": {
+          "physical": 27
+        },
+        "bonus": {},
+        "weapon_trait": "none",
+        "id": "IT00000002",
+        "desc": "A uncommon dagger forged to our current spec."
+      }
+    ],
+    "equipped_weapon": {
+      "category": "weapon",
+      "name": "Rough Dagger",
+      "style": "physical",
+      "type": "dagger",
+      "rarity": "common",
+      "value": 79,
+      "weight": 875,
+      "description": "A common dagger forged to our current spec.",
+      "components": [
+        {
+          "material": "steel_ingot",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "physical": 14
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000001",
+      "desc": "A common dagger forged to our current spec."
+    },
+    "equipped_focus": {
+      "category": "weapon",
+      "name": "Plain Staff",
+      "style": "magic",
+      "type": "staff",
+      "rarity": "common",
+      "value": 93,
+      "weight": 734,
+      "description": "A common staff forged to our current spec.",
+      "components": [
+        {
+          "material": "enchanted_wood",
+          "quantity": 1
+        },
+        {
+          "material": "mana_thread",
+          "quantity": 1
+        }
+      ],
+      "damage_type": {
+        "arcane": 18
+      },
+      "bonus": {},
+      "weapon_trait": "none",
+      "id": "IT00000145",
+      "desc": "A common staff forged to our current spec."
+    },
+    "equipped_gear": {}
+  }
+}

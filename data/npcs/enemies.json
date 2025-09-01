@@ -3,524 +3,364 @@
   "version": 1,
   "npcs": [
     {
-      "id": "NP00000004",
-      "name": "Duskwold Wolf",
-      "stats": {
-        "hp": {
-          "min": 36,
-          "max": 52
-        },
-        "damage": {
-          "min": 6,
-          "max": 12
-        }
-      },
-      "level": 4,
-      "appearance": {
-        "eyes": "steel-grey",
-        "hair": "blonde",
-        "skin": "ashen",
-        "height_cm": 196,
-        "build": "towering"
-      },
-      "dialogueFile": "data/dialogues/duskwold_wolf_np00000004.json",
-      "hostile": true,
-      "race": "goblin",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000066",
-      "name": "Lyra Wyrmfall",
-      "level": 10,
-      "appearance": {
-        "eyes": "sapphire",
-        "hair": "blonde",
-        "skin": "tan",
-        "height_cm": 189,
-        "build": "broad"
-      },
-      "dialogueFile": "data/dialogues/lyra_wyrmfall.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 20,
-          "max": 50
-        },
-        "damage": {
-          "min": 7,
-          "max": 16
-        }
-      },
-      "race": "goblin",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000067",
-      "name": "Rowan Wyrmfall",
-      "level": 9,
-      "appearance": {
-        "eyes": "crimson",
-        "hair": "white",
-        "skin": "ashen",
-        "height_cm": 196,
-        "build": "athletic"
-      },
-      "dialogueFile": "data/dialogues/rowan_wyrmfall.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 34,
-          "max": 86
-        },
-        "damage": {
-          "min": 8,
-          "max": 16
-        }
-      },
-      "race": "goblin",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000068",
-      "name": "Sable Ashvale",
-      "level": 6,
-      "appearance": {
-        "eyes": "crimson",
-        "hair": "chestnut",
-        "skin": "olive",
-        "height_cm": 164,
-        "build": "graceful"
-      },
-      "dialogueFile": "data/dialogues/sable_ashvale.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 26,
-          "max": 60
-        },
-        "damage": {
-          "min": 7,
-          "max": 15
-        }
-      },
-      "race": "orc",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000069",
-      "name": "Isolde Goldbranch",
-      "level": 2,
-      "appearance": {
-        "eyes": "sapphire",
-        "hair": "silver",
-        "skin": "dark",
-        "height_cm": 175,
-        "build": "compact"
-      },
-      "dialogueFile": "data/dialogues/isolde_goldbranch.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 18,
-          "max": 63
-        },
-        "damage": {
-          "min": 8,
-          "max": 15
-        }
-      },
-      "race": "orc",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000070",
-      "name": "Corin Ravenmere",
-      "level": 4,
-      "appearance": {
-        "eyes": "hazel",
-        "hair": "strawberry",
-        "skin": "freckled",
-        "height_cm": 205,
-        "build": "graceful"
-      },
-      "dialogueFile": "data/dialogues/corin_ravenmere.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 32,
-          "max": 90
-        },
-        "damage": {
-          "min": 4,
-          "max": 10
-        }
-      },
-      "race": "goblin",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000071",
-      "name": "Mira Ironvale",
-      "level": 1,
-      "appearance": {
-        "eyes": "ice-blue",
-        "hair": "silver",
-        "skin": "ashen",
-        "height_cm": 205,
-        "build": "lithe"
-      },
-      "dialogueFile": "data/dialogues/mira_ironvale.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 29,
-          "max": 54
-        },
-        "damage": {
-          "min": 6,
-          "max": 13
-        }
-      },
-      "race": "human",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000072",
-      "name": "Jorah Mistbrook",
-      "level": 8,
-      "appearance": {
-        "eyes": "forest-green",
-        "hair": "white",
-        "skin": "olive",
-        "height_cm": 155,
-        "build": "towering"
-      },
-      "dialogueFile": "data/dialogues/jorah_mistbrook.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 18,
-          "max": 87
-        },
-        "damage": {
-          "min": 7,
-          "max": 11
-        }
-      },
-      "race": "drow",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000073",
-      "name": "Neris Rivenspire",
-      "level": 10,
-      "appearance": {
-        "eyes": "amber",
-        "hair": "black",
-        "skin": "pale",
-        "height_cm": 166,
-        "build": "lithe"
-      },
-      "dialogueFile": "data/dialogues/neris_rivenspire.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 24,
-          "max": 53
-        },
-        "damage": {
-          "min": 5,
-          "max": 14
-        }
-      },
-      "race": "goblin",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000074",
-      "name": "Lyra Blackfen",
-      "level": 8,
-      "appearance": {
-        "eyes": "violet",
-        "hair": "chestnut",
-        "skin": "fair",
-        "height_cm": 194,
-        "build": "slim"
-      },
-      "dialogueFile": "data/dialogues/lyra_blackfen.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 25,
-          "max": 77
-        },
-        "damage": {
-          "min": 6,
-          "max": 9
-        }
-      },
-      "race": "hellkin",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000075",
-      "name": "Nyra Duskwood",
-      "level": 1,
-      "appearance": {
-        "eyes": "violet",
-        "hair": "raven",
-        "skin": "olive",
-        "height_cm": 166,
-        "build": "lithe"
-      },
-      "dialogueFile": "data/dialogues/nyra_duskwood.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 40,
-          "max": 68
-        },
-        "damage": {
-          "min": 8,
-          "max": 14
-        }
-      },
-      "race": "goblin",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000076",
-      "name": "Aria Skylark",
-      "level": 7,
-      "appearance": {
-        "eyes": "ice-blue",
-        "hair": "chestnut",
-        "skin": "pale",
-        "height_cm": 169,
-        "build": "lithe"
-      },
-      "dialogueFile": "data/dialogues/aria_skylark.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 35,
-          "max": 89
-        },
-        "damage": {
-          "min": 3,
-          "max": 15
-        }
-      },
-      "race": "goblin",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000077",
-      "name": "Kael Vaeloria",
-      "level": 10,
-      "appearance": {
-        "eyes": "violet",
-        "hair": "white",
-        "skin": "pale",
-        "height_cm": 197,
-        "build": "athletic"
-      },
-      "dialogueFile": "data/dialogues/kael_vaeloria.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 19,
-          "max": 59
-        },
-        "damage": {
-          "min": 4,
-          "max": 11
-        }
-      },
-      "race": "goblin",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000078",
-      "name": "Mira Ironvale",
-      "level": 4,
-      "appearance": {
-        "eyes": "steel-grey",
-        "hair": "raven",
-        "skin": "fair",
-        "height_cm": 202,
-        "build": "stocky"
-      },
-      "dialogueFile": "data/dialogues/mira_ironvale.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 33,
-          "max": 62
-        },
-        "damage": {
-          "min": 4,
-          "max": 10
-        }
-      },
-      "race": "orc",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000079",
-      "name": "Gryff Blackfen",
-      "level": 10,
-      "appearance": {
-        "eyes": "ice-blue",
-        "hair": "auburn",
-        "skin": "bronze",
-        "height_cm": 171,
-        "build": "compact"
-      },
-      "dialogueFile": "data/dialogues/gryff_blackfen.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 34,
-          "max": 61
-        },
-        "damage": {
-          "min": 7,
-          "max": 9
-        }
-      },
-      "race": "human",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000080",
-      "name": "Lyra Mistbrook",
-      "level": 2,
-      "appearance": {
-        "eyes": "gold",
-        "hair": "silver",
-        "skin": "olive",
-        "height_cm": 176,
-        "build": "graceful"
-      },
-      "dialogueFile": "data/dialogues/lyra_mistbrook.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 19,
-          "max": 68
-        },
-        "damage": {
-          "min": 4,
-          "max": 11
-        }
-      },
-      "race": "orc",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000081",
-      "name": "Syl Starcrest",
-      "level": 10,
-      "appearance": {
-        "eyes": "forest-green",
-        "hair": "ash",
-        "skin": "olive",
-        "height_cm": 200,
-        "build": "graceful"
-      },
-      "dialogueFile": "data/dialogues/syl_starcrest.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 26,
-          "max": 56
-        },
-        "damage": {
-          "min": 6,
-          "max": 12
-        }
-      },
-      "race": "hellkin",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000082",
-      "name": "Varyn Wyrmfall",
-      "level": 8,
-      "appearance": {
-        "eyes": "crimson",
-        "hair": "silver",
-        "skin": "pale",
-        "height_cm": 181,
-        "build": "graceful"
-      },
-      "dialogueFile": "data/dialogues/varyn_wyrmfall.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 24,
-          "max": 81
-        },
-        "damage": {
-          "min": 5,
-          "max": 14
-        }
-      },
-      "race": "hellkin",
-      "follower": "no"
-    },
-    {
-      "id": "NP00000083",
-      "name": "Vael Brightbough",
+      "id": "NP00000100",
+      "name": "Darkwood Bandit",
+      "race": "Human",
+      "sex": "Male",
+      "type": "enemy",
       "level": 3,
-      "appearance": {
-        "eyes": "forest-green",
-        "hair": "auburn",
-        "skin": "freckled",
-        "height_cm": 189,
-        "build": "stocky"
-      },
-      "dialogueFile": "data/dialogues/vael_brightbough.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 24,
-          "max": 83
-        },
-        "damage": {
-          "min": 5,
-          "max": 12
-        }
-      },
-      "race": "human",
-      "follower": "no"
+      "description": "Ragged leathers patched with rope and brass buckles, short blade under a road-stained cloak. Loiters with a crooked grin, feigning ease until he lunges; nervous but vicious, always hunting for a weak moment."
     },
     {
-      "id": "NP00000084",
-      "name": "Sable Duskwood",
+      "id": "NP00000101",
+      "name": "Highroad Brigand",
+      "race": "Human",
+      "sex": "Female",
+      "type": "enemy",
+      "level": 4,
+      "description": "Gambeson beneath a torn highwayman’s coat, crossbelt of knives. Prowls with swagger, taunting prey to run so she can chase; cruel humor thinly veiling ruthless intent."
+    },
+    {
+      "id": "NP00000102",
+      "name": "Ashfang Wolf",
+      "race": "Beast",
+      "sex": null,
+      "type": "enemy",
+      "level": 2,
+      "description": "Gaunt wolf with ashen fur and ember eyes. Hackles raised, it circles prey with patience, then springs with a hungry finality."
+    },
+    {
+      "id": "NP00000103",
+      "name": "Bloodfen Raider",
+      "race": "Orc",
+      "sex": "Male",
+      "type": "enemy",
       "level": 5,
-      "appearance": {
-        "eyes": "violet",
-        "hair": "white",
-        "skin": "pale",
-        "height_cm": 197,
-        "build": "slim"
-      },
-      "dialogueFile": "data/dialogues/sable_duskwood.json",
-      "hostile": true,
-      "stats": {
-        "hp": {
-          "min": 30,
-          "max": 53
-        },
-        "damage": {
-          "min": 3,
-          "max": 16
-        }
-      },
-      "race": "goblin",
-      "follower": "no"
+      "description": "Hide armor smeared in crimson, axe nicked from many kills. Roars into battle with reckless abandon, laughing through blood-slick teeth."
+    },
+    {
+      "id": "NP00000104",
+      "name": "Gallows Cutthroat",
+      "race": "Human",
+      "sex": "Male",
+      "type": "enemy",
+      "level": 3,
+      "description": "Tattered cloak and a rope scar about the neck. Lurks with dagger loose in hand, chuckling darkly at private jokes only he finds funny."
+    },
+    {
+      "id": "NP00000105",
+      "name": "Cinder Hound",
+      "race": "Beast",
+      "sex": null,
+      "type": "enemy",
+      "level": 4,
+      "description": "Charred fur, breath steaming with heat. Growls low, pacing like a predator held barely by a leash, always testing the chain."
+    },
+    {
+      "id": "NP00000106",
+      "name": "Hollow-Eye Cultist",
+      "race": "Human",
+      "sex": "Female",
+      "type": "enemy",
+      "level": 6,
+      "description": "Robes stiff with old wax and soot, eyes sunken and fever-bright. Murmurs hymns as she advances, dagger swaying like a pendulum."
+    },
+    {
+      "id": "NP00000107",
+      "name": "Stonehelm Mercenary",
+      "race": "Dwarf",
+      "sex": "Male",
+      "type": "enemy",
+      "level": 5,
+      "description": "Heavy mail beneath a dented breastplate, shield scarred by years of service. Fights methodically, each strike precise and deliberate, as though his foe is simply another contract."
+    },
+    {
+      "id": "NP00000108",
+      "name": "Pale Marsh Ghoul",
+      "race": "Undead",
+      "sex": null,
+      "type": "enemy",
+      "level": 4,
+      "description": "Skin stretched thin and gray, claws dripping marsh water. Moves in twitching bursts, then freezes to listen with a predator’s patience."
+    },
+    {
+      "id": "NP00000109",
+      "name": "Ironfang Boar",
+      "race": "Beast",
+      "sex": null,
+      "type": "enemy",
+      "level": 3,
+      "description": "Tusks gleaming like polished blades, hide thick with scars. Charges with reckless fury, eyes red with primal rage."
+    },
+    {
+      "id": "NP00000110",
+      "name": "Grave Hollow Skeleton",
+      "race": "Undead",
+      "sex": null,
+      "type": "enemy",
+      "level": 2,
+      "description": "Bones bound in rusted mail, sword hand twitching without rest. Advances steadily, with the patience of the grave."
+    },
+    {
+      "id": "NP00000111",
+      "name": "Frosttusk Raider",
+      "race": "Orc",
+      "sex": "Female",
+      "type": "enemy",
+      "level": 6,
+      "description": "White furs draped over shoulders, axe rimmed with frost. Shouts battle cries that shake snow from branches, charging with fearless momentum."
+    },
+    {
+      "id": "NP00000112",
+      "name": "Shalehide Bear",
+      "race": "Beast",
+      "sex": null,
+      "type": "enemy",
+      "level": 6,
+      "description": "Hide rough as rock, claws gouged with stone. Stands towering to intimidate, then crashes down like a landslide."
+    },
+    {
+      "id": "NP00000113",
+      "name": "Nightveil Spy",
+      "race": "Human",
+      "sex": "Female",
+      "type": "enemy",
+      "level": 5,
+      "description": "Cloaked in dark silks, daggers hidden in every fold. Watches from shadows, moving with the calm patience of one who has already chosen the perfect moment to strike."
+    },
+    {
+      "id": "NP00000114",
+      "name": "Ashmark Soldier",
+      "race": "Human",
+      "sex": "Male",
+      "type": "enemy",
+      "level": 4,
+      "description": "Chainmail scorched by old battles, tabard faded to gray. Stands in formation even when alone, disciplined to the core but weary in the eyes."
+    },
+    {
+      "id": "NP00000115",
+      "name": "Bleakfen Witch",
+      "race": "Human",
+      "sex": "Female",
+      "type": "enemy",
+      "level": 7,
+      "description": "Tattered robes layered with swamp moss, staff knotted with bones. Speaks in riddles, cackles with delight when her hexes bite deep."
+    },
+    {
+      "id": "NP00000116",
+      "name": "Crowtalon Harrier",
+      "race": "Beast",
+      "sex": null,
+      "type": "enemy",
+      "level": 3,
+      "description": "Black feathers ragged from constant flight, talons gleaming wet. Circles above prey with eerie patience, striking only when panic sets in."
+    },
+    {
+      "id": "NP00000117",
+      "name": "Fangtooth Raider",
+      "race": "Gnoll",
+      "sex": "Male",
+      "type": "enemy",
+      "level": 4,
+      "description": "Hyena-like face split with manic laughter, patchwork armor of bone and leather. Strikes in frenzied bursts, teeth gnashing as much as his axe."
+    },
+    {
+      "id": "NP00000118",
+      "name": "Hollow Mire Zombie",
+      "race": "Undead",
+      "sex": null,
+      "type": "enemy",
+      "level": 2,
+      "description": "Moss-draped corpse dragging half a leg, teeth clacking mindlessly. Shambles with persistence, arms grasping for anything warm."
+    },
+    {
+      "id": "NP00000119",
+      "name": "Oathbreaker Knight",
+      "race": "Human",
+      "sex": "Male",
+      "type": "enemy",
+      "level": 7,
+      "description": "Plate blackened and unadorned, tabard torn from disgrace. He stands proud but bitter, fighting with grim resolve to prove loyalty never mattered."
+    },
+    {
+      "id": "NP00000120",
+      "name": "Howling Warg",
+      "race": "Beast",
+      "sex": null,
+      "type": "enemy",
+      "level": 4,
+      "description": "Massive wolf with scarred muzzle, howling to unsettle prey. Its eyes shine with cunning, its stance aggressive and dominant."
+    },
+    {
+      "id": "NP00000121",
+      "name": "Duskfen Thief",
+      "race": "Human",
+      "sex": "Female",
+      "type": "enemy",
+      "level": 3,
+      "description": "Leather jerkin darkened with swamp oils, twin knives at the ready. She sneers as she darts forward, every move born of hunger and spite."
+    },
+    {
+      "id": "NP00000122",
+      "name": "Ashdrift Corsair",
+      "race": "Human",
+      "sex": "Male",
+      "type": "enemy",
+      "level": 5,
+      "description": "Salt-stained coat and boots, cutlass sharp with sea-worn scars. Laughs as he fights, scent of rum clinging even to his blade."
+    },
+    {
+      "id": "NP00000123",
+      "name": "Mournshade Acolyte",
+      "race": "Human",
+      "sex": "Female",
+      "type": "enemy",
+      "level": 5,
+      "description": "Robes stitched with sigils, eyes ringed with sleepless shadows. Recites prayers to dark gods even as she bleeds, smiling at every strike against her."
+    },
+    {
+      "id": "NP00000124",
+      "name": "Fellpine Tracker",
+      "race": "Elf",
+      "sex": "Male",
+      "type": "enemy",
+      "level": 5,
+      "description": "Cloaked in pine-green leathers, bow strung tight. Silent and disciplined, his arrows land before his footsteps are heard."
+    },
+    {
+      "id": "NP00000125",
+      "name": "Ashen Charger",
+      "race": "Beast",
+      "sex": null,
+      "type": "enemy",
+      "level": 4,
+      "description": "A skeletal horse wreathed in ash and smoke, hooves striking sparks. It rears with defiance, eyes burning with ghostly flame."
+    },
+    {
+      "id": "NP00000126",
+      "name": "Wraithveil Stalker",
+      "race": "Undead",
+      "sex": null,
+      "type": "enemy",
+      "level": 6,
+      "description": "Cloaked in spectral rags, form half in shadow. Flickers between sight and absence, voice whispering with a hunger that chills the soul."
+    },
+    {
+      "id": "NP00000127",
+      "name": "Ashfang Boar Rider",
+      "race": "Orc",
+      "sex": "Male",
+      "type": "enemy",
+      "level": 6,
+      "description": "Heavy axe in one hand, reins clutched in the other. His boar snorts and stamps, tusks clashing as he bellows challenges with brutal pride."
+    },
+    {
+      "id": "NP00000128",
+      "name": "Duskmire Assassin",
+      "race": "Human",
+      "sex": "Female",
+      "type": "enemy",
+      "level": 6,
+      "description": "Black leathers tight to the skin, twin daggers gleaming. She breathes steady, her gaze unflinching as if already rehearsing where the blade will slip between ribs."
+    },
+    {
+      "id": "NP00000129",
+      "name": "Frostvein Raider",
+      "race": "Human",
+      "sex": "Male",
+      "type": "enemy",
+      "level": 5,
+      "description": "Wolf pelts around his shoulders, axe rimed with frost. He fights with primal fury, every swing a test of strength and stubborn will."
+    },
+    {
+      "id": "NP00000130",
+      "name": "Hollowspire Sorcerer",
+      "race": "Human",
+      "sex": "Male",
+      "type": "enemy",
+      "level": 7,
+      "description": "Robes black as cinders, hands wreathed in violet flame. He speaks in cold tones, every word dripping with contempt and dark wisdom."
+    },
+    {
+      "id": "NP00000131",
+      "name": "Ashfang Bear",
+      "race": "Beast",
+      "sex": null,
+      "type": "enemy",
+      "level": 5,
+      "description": "Fur streaked with ash, muzzle blackened with soot. It stands with raw menace, claws gouging deep into the soil as it bellows."
+    },
+    {
+      "id": "NP00000132",
+      "name": "Rotfen Cannibal",
+      "race": "Human",
+      "sex": "Male",
+      "type": "enemy",
+      "level": 6,
+      "description": "Skin scarred with crude carvings, loincloth stiff with blood. He crouches low, licking cracked lips, muttering prayers to hunger."
+    },
+    {
+      "id": "NP00000133",
+      "name": "Crowveil Archer",
+      "race": "Human",
+      "sex": "Female",
+      "type": "enemy",
+      "level": 4,
+      "description": "Feathered cloak, longbow strung taut. She moves like the birds she imitates, striking with grace, gone before the body falls."
+    },
+    {
+      "id": "NP00000134",
+      "name": "Shatterjaw Troll",
+      "race": "Troll",
+      "sex": null,
+      "type": "enemy",
+      "level": 8,
+      "description": "Massive frame with mottled hide, jaw broken and regrown jagged. Lumbers forward with laughter like rocks grinding, every blow cracking earth."
+    },
+    {
+      "id": "NP00000135",
+      "name": "Blackfen Warlock",
+      "race": "Human",
+      "sex": "Male",
+      "type": "enemy",
+      "level": 7,
+      "description": "Dark robes threaded with swamp reeds, staff tipped with skull. His voice is calm, his spells cruel, and his patience endless."
+    },
+    {
+      "id": "NP00000136",
+      "name": "Emberhide Wolf",
+      "race": "Beast",
+      "sex": null,
+      "type": "enemy",
+      "level": 4,
+      "description": "Coat streaked with ember-like markings, eyes glowing faintly. Moves in coordinated packs, attacking with precision and savage joy."
+    },
+    {
+      "id": "NP00000137",
+      "name": "Dreadfen Lurker",
+      "race": "Undead",
+      "sex": null,
+      "type": "enemy",
+      "level": 5,
+      "description": "Corpse wrapped in reeds, face hidden by mud. Waits half-submerged until prey wanders too close, then drags them screaming into the mire."
+    },
+    {
+      "id": "NP00000138",
+      "name": "Ashfang Stag",
+      "race": "Beast",
+      "sex": null,
+      "type": "enemy",
+      "level": 4,
+      "description": "Antlers charred and twisted, breath smoking in the air. Stands regal yet aggressive, stomping before lowering horns to gore."
+    },
+    {
+      "id": "NP00000139",
+      "name": "Blightmire Shaman",
+      "race": "Human",
+      "sex": "Female",
+      "type": "enemy",
+      "level": 6,
+      "description": "Skin painted with ash symbols, staff crowned with crow bones. She chants in rasping tones, calling on foul spirits to curse and maim."
     }
   ]
 }

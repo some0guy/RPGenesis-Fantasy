@@ -1,67 +1,216 @@
-[
+{
+  "schema": "rpgen.npcs.villains.v1",
+  "version": 1,
+  "npcs": [
     {
-        "id": "NP00000105",
-        "name": "Crystal Pittman",
-        "title": "The Dark Sorcerer",
-        "description": "A master of forbidden magic, this sorcerer wields dark powers that threaten the very fabric of reality. Their ambition to rule the world is only matched by their thirst for immortality.",
-        "subcategory": "villains",
-        "strength": 51,
-        "intelligence": 98,
-        "agility": 31,
-        "health": 132,
-        "fear_factor": 2,
-        "race": "Human"
+      "id": "NP00001001",
+      "name": "Seraphine Nightveil",
+      "race": "Drow",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Violet",
+        "hair_color": "Silver",
+        "build": "Lithe",
+        "skin_tone": "Dusky"
+      },
+      "description": "Dusky skin veiled in translucent lace, her violet eyes shimmer with cruel delight beneath cascades of silver hair. She moves like a whispered secret in candlelight, a figure wrapped in shadow’s embrace. Draped in gowns that both reveal and conceal, she entices with the scent of jasmine and steel. Her lips curve in promises that rarely mean mercy, and her touch lingers long after the wound. There is allure in her cruelty, a hunger in her laughter, and those who meet her gaze feel the temptation to step willingly into her web."
     },
     {
-        "id": "NP00000106",
-        "name": "Valerie Kelley",
-        "title": "The Tyrant King",
-        "description": "A ruthless ruler who commands an army of mindless soldiers, forcing those under their reign to obey or perish. Their cruelty knows no bounds, and their desire for power is insatiable.",
-        "subcategory": "villains",
-        "strength": 70,
-        "intelligence": 32,
-        "agility": 55,
-        "health": 143,
-        "fear_factor": 6,
-        "race": "Human"
+      "id": "NP00001002",
+      "name": "Nyssara Thornkiss",
+      "race": "Tiefling",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Gold",
+        "hair_color": "Black",
+        "build": "Curvy",
+        "skin_tone": "Crimson"
+      },
+      "description": "Crimson skin gleams with a dangerous warmth, her golden eyes lit with wicked mirth beneath the frame of curling obsidian horns. Black hair spills in wild tresses that catch the firelight as if it belongs to her alone. Leather corsetry clings to her curves, polished and scarred from both battle and pleasure, leaving little doubt where her passions lie. Nyssara’s presence burns like an open flame—too close and you are scorched, too far and you crave the heat. She taunts with velvet words, delights in breaking vows, and kisses like a brand pressed to bare flesh."
     },
     {
-        "id": "NP00000107",
-        "name": "Angela Hayes",
-        "title": "The Shadow Assassin",
-        "description": "A mysterious and elusive figure who strikes from the shadows, assassinating targets with deadly precision. Their motives are unclear, but their loyalty is to the highest bidder.",
-        "subcategory": "villains",
-        "strength": 58,
-        "intelligence": 81,
-        "agility": 67,
-        "health": 76,
-        "fear_factor": 8,
-        "race": "Orc"
+      "id": "NP00001003",
+      "name": "Kaelira Voidpetal",
+      "race": "Elf",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Onyx",
+        "hair_color": "White",
+        "build": "Slender",
+        "skin_tone": "Pale"
+      },
+      "description": "White hair falls like silk over alabaster skin, her black eyes drinking in every flicker of fear. She dresses in gowns stitched with shadowy blossoms that sway like petals in a wind no one else feels. Pale fingers adorned with rings glide across blades and chalices alike, her lips painted the hue of crushed nightshade. There is beauty in her presence, but it is the beauty of a flower blooming in poisoned soil. She speaks gently, like a lullaby sung at a grave, and every promise drips with the perfume of death dressed in elegance."
     },
     {
-        "id": "NP00000108",
-        "name": "Amy Cherry",
-        "title": "The Fallen Knight",
-        "description": "Once a noble warrior, now corrupted by dark magic and vengeance. They seek to destroy those who once called them a hero, turning their blade against former allies and spreading chaos wherever they go.",
-        "subcategory": "villains",
-        "strength": 91,
-        "intelligence": 66,
-        "agility": 73,
-        "health": 208,
-        "fear_factor": 4,
-        "race": "Tiefling"
+      "id": "NP00001004",
+      "name": "Varenia Blackgilt",
+      "race": "Human",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Blue",
+        "hair_color": "Blonde",
+        "build": "Tall",
+        "skin_tone": "Fair"
+      },
+      "description": "Blonde hair braided with golden clasps frames her sharp features, while blue eyes sparkle with cunning calculation. Varenia wears a duelist’s coat cut from midnight cloth, embroidered with metallic threads that gleam in torchlight. Her tall, commanding frame is never slouched, each motion a measured step of one used to power. She wields her rapier like she wields her tongue—with precision, elegance, and a cruel edge that draws blood in more ways than one. To cross her is to gamble not only with your life, but your pride, for her victories are as humiliating as they are absolute."
     },
     {
-        "id": "NP00000109",
-        "name": "Monica Burns",
-        "title": "The Mad Scientist",
-        "description": "A genius mind twisted by their own inventions. They create terrifying mechanical monstrosities, hoping to bend nature itself to their will. Their obsession with progress comes at the cost of human lives.",
-        "subcategory": "villains",
-        "strength": 42,
-        "intelligence": 92,
-        "agility": 18,
-        "health": 45,
-        "fear_factor": 7,
-        "race": "Human"
+      "id": "NP00001005",
+      "name": "Thalara Vex",
+      "race": "Half-Elf",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Green",
+        "hair_color": "Auburn",
+        "build": "Athletic",
+        "skin_tone": "Olive"
+      },
+      "description": "Athletic and striking, her auburn hair bound by copper cuffs that jangle softly as she moves. Green eyes flash with predatory amusement, always scanning, always assessing. Her armor is fitted leather dyed in dark hues, the kind that reveals as much as it protects. Olive skin glows faintly beneath scars earned in ambushes and duels. Thalara leans on her bow like a lover, teasing and taunting even as she pulls the string taut. She smiles before she kills, and it is often the last warmth her prey will ever see."
+    },
+    {
+      "id": "NP00001006",
+      "name": "Elaris Crowbloom",
+      "race": "Elf",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Silver",
+        "hair_color": "Black",
+        "build": "Lithe",
+        "skin_tone": "Pale"
+      },
+      "description": "Her raven-black hair is pinned with bone-white flowers, silver eyes gleaming with moonlit cruelty. Pale skin glows against dresses that trail with feathers and thorns, leaving behind the faintest scent of grave lilies. Her lithe body moves with grace born not of kindness but of the huntress who delights in watching fear bloom. Elaris is a predator of the heart, her words whispered like vows yet meant as shackles. There is tenderness in her touch, but it is the tenderness of a spider testing its prey before the strike."
+    },
+    {
+      "id": "NP00001007",
+      "name": "Nytheris, Queen of a Thousand Eyes",
+      "race": "Aberration",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Many",
+        "hair_color": "Silver-black",
+        "build": "Statuesque",
+        "skin_tone": "Shimmering"
+      },
+      "description": "A statuesque form wrapped in silver-black hair that drapes like a curtain of stars, her shimmering skin alive with eyes that blink and watch from every angle. Each gaze stirs discomfort, each smile invites ruin. Her gowns shift with impossible geometry, veils of silk that part to reveal more eyes, more mouths, more secrets. She exudes allure and horror alike, every glance a temptation to step closer, every whisper a reminder that she sees everything you would rather hide."
+    },
+    {
+      "id": "NP00001008",
+      "name": "The Veilmother",
+      "race": "Aberration",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Hidden",
+        "hair_color": "Veiled",
+        "build": "Tall",
+        "skin_tone": "Shrouded"
+      },
+      "description": "Endless translucent veils shroud a body that seems both tall and insubstantial, her form never quite where it should be. The cloth breathes with her, twisting into shapes that suggest arms, legs, or something else entirely. Beneath the veils, whispers curl like smoke, words you almost understand but wish you hadn’t. She caresses faces unseen, leaving only the chill of devotion turned to dread. The Veilmother does not demand followers—she simply makes them forget they were ever free."
+    },
+    {
+      "id": "NP00001009",
+      "name": "The Crimson Bride",
+      "race": "Undead",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Crimson",
+        "hair_color": "Black with crimson sheen",
+        "build": "Tall",
+        "skin_tone": "Pale"
+      },
+      "description": "Draped in a gown that drinks torchlight and glitters with threads of scarlet, she walks as though each step were part of a dance long rehearsed. A veil conceals her face, but her crimson eyes burn through the gauze, watching every move with hunger. Pale skin contrasts with lips painted blood-red, a reminder of vows broken with slaughter. The Crimson Bride does not love; she claims. Her embrace leaves no warmth, only an ache where the heart once beat freely."
+    },
+    {
+      "id": "NP00001010",
+      "name": "Lord Ashmire",
+      "race": "Human",
+      "sex": "Male",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Coal",
+        "hair_color": "Ash-brown",
+        "build": "Lean",
+        "skin_tone": "Sallow"
+      },
+      "description": "Sharp of cheek and sharper of wit, Lord Ashmire cloaks himself in mourning blacks cut to blade-edge perfection. Ash-brown hair tied neatly, coal eyes that weigh the worth of every word before it’s spoken. He is lean but unyielding, moving with a predator’s economy. His fortune was built on ruin, his smile forged in fire, and he never lets anyone forget who stoked the flames. His touch is cold, his affection conditional, his loyalty purchasable—if you can stomach the cost."
+    },
+    {
+      "id": "NP00001011",
+      "name": "Lyrelle Sunvine",
+      "race": "Elf",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Green",
+        "hair_color": "Blonde",
+        "build": "Petite",
+        "skin_tone": "Fair"
+      },
+      "description": "Petite frame crowned with cropped golden hair, her green eyes shine bright as a new blade. She drapes herself in lacquered leathers trimmed in ivy patterns, every stitch neat and deliberate. Lyrelle smiles like a companion, disarms like a friend, and leaves behind wounds that feel like betrayal. She is the sun wrapped in thorns, the kiss with hidden venom, the blade beneath the bloom."
+    },
+    {
+      "id": "NP00001012",
+      "name": "Brunna Emberbraid",
+      "race": "Dwarf",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Amber",
+        "hair_color": "Red",
+        "build": "Stocky",
+        "skin_tone": "Ruddy"
+      },
+      "description": "Stocky shoulders and arms corded with strength, Brunna’s fiery hair is plaited into thick braids threaded with copper beads. Her amber eyes sparkle with challenge, her ruddy skin flushed as though heated from within. Clad in blackened plate edged in burnished copper, she swings her warhammer with laughter loud as thunder. She bargains like a brawl, loves like a fight, and leaves behind both bruises and longing."
+    },
+    {
+      "id": "NP00001013",
+      "name": "Maelis Fairwynd",
+      "race": "Human",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Hazel",
+        "hair_color": "Auburn",
+        "build": "Lithe",
+        "skin_tone": "Fair"
+      },
+      "description": "Auburn locks pinned with pearl combs, hazel eyes sharp as a merchant’s scales. She dresses in silks slit high for freedom of movement, each fold perfumed and tailored for both allure and agility. Gloves hide hands pricked with the faint scars of poison-dipped needles. Maelis speaks softly, her words coated in honey, but her terms always cut deep. In her presence, desire and danger twine like threads on a loom."
+    },
+    {
+      "id": "NP00001014",
+      "name": "Calvera Marrowveil",
+      "race": "Undead",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Ice-blue",
+        "hair_color": "Black",
+        "build": "Willowy",
+        "skin_tone": "Pale/Bone"
+      },
+      "description": "One half of her face flawless and alluring, the other half bare skull polished to a grin. Her black hair cascades around the veil that hides and reveals in cruel rhythm. Gowns of funerary lace wrap her willowy body, each thread whispering of graves newly filled. Calvera’s dance is macabre, her partners chosen for how little they will be missed. Ice-blue eyes glimmer with both pity and hunger, the promise of a kiss as cold as a tomb."
+    },
+    {
+      "id": "NP00001015",
+      "name": "Zareya Emberhorn",
+      "race": "Tiefling",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Gold",
+        "hair_color": "Black",
+        "build": "Curvy",
+        "skin_tone": "Crimson"
+      },
+      "description": "Crimson skin glossed with the sheen of heat, her curved horns banded in brass. Her black hair spills down her back, framing golden eyes that flash with mischief and malice. A corseted coat of ash-grey leather hugs her body, the laces straining with intent. Zareya collects promises like jewels and breaks them with relish. Her tail flicks in idle circles, her lips curl into knowing smirks, and where she kisses, she leaves marks that burn hotter than fire."
     }
-]
+  ]
+}
