@@ -9,7 +9,7 @@
       "sex": "Female",
       "type": "ally",
       "appearance": {
-        "eye_color": "Crimson",
+        "eye_color": "Green",
         "hair_color": "Blonde",
         "build": "Athletic",
         "skin_tone": "Fair",
@@ -21,7 +21,7 @@
           "pointed ears"
         ]
       },
-      "description": "Crimson eyes under a fall of sunlit hair; leather brigandine draped in road-dust and dusk leaves; the kind of archer who breathes between heartbeats and lets the arrow speak first. She believes in mercy, but her aim is quicker; her laughter is soft and warm and gone the second trouble creaks in the brush. She moves like a deer about to bolt, then turns and plants both feet like a tree; voice low, bowstring singing, eyes bright with the kind of faith that only breaks when it must. Her questions are sharp, and when she smiles after, it\u2019s half relief, half dare. Physique and style reflect their forest elf heritage: Tall, slender; bronze to olive skin; leaf-dyed hair and floral tattoos; bright woodland eyes and effortless stealth. Appearance: medium, straight, blonde hair; crimson eyes; fair, smooth skin; medium height, athletic build. Features: pointed ears.  Personality: calm, observant, quietly determined. She wears quiet leathers, leaf-dyed cloak, soft boots, beadwork and feather charms. She wears supple leaf-dyed leathers with bark-plate reinforcements, a hood drawn low and soft boots for silent steps."
+      "description": "Crimson eyes under a fall of sunlit hair; leather brigandine draped in road-dust and dusk leaves; the kind of archer who breathes between heartbeats and lets the arrow speak first. She believes in mercy, but her aim is quicker; her laughter is soft and warm and gone the second trouble creaks in the brush. She moves like a deer about to bolt, then turns and plants both feet like a tree; voice low, bowstring singing, eyes bright with the kind of faith that only breaks when it must. Her questions are sharp, and when she smiles after, it’s half relief, half dare. Physique and style reflect their forest elf heritage: Tall, slender; bronze to olive skin; leaf-dyed hair and floral tattoos; bright woodland eyes and effortless stealth. Appearance: medium, straight, blonde hair; crimson eyes; fair, smooth skin; medium height, athletic build. Features: pointed ears.  Personality: calm, observant, quietly determined. She wears quiet leathers, leaf-dyed cloak, soft boots, beadwork and feather charms. She wears supple leaf-dyed leathers with bark-plate reinforcements, a hood drawn low and soft boots for silent steps. Leaf-stitched leathers and pelts with living accents; minimal-to-medium coverage for agility."
     },
     {
       "id": "NP00000002",
@@ -40,7 +40,7 @@
         "skin_texture": "Smooth",
         "features": []
       },
-      "description": "Green-eyed tracker with wind-burned cheeks and a freckled smile; oilskin cloak, rope-lashed bedroll, and a knife that never quite leaves her palm. She speaks sparingly, tends fires like she\u2019s mending people, and watches for trouble the way other folks watch sunsets. When she laughs, it shows teeth; when she fights, it shows history. Physique and style reflect their human heritage: adaptable, varied, pragmatic layers and well-worn gear, with a traveler\u2019s economy of movement. Appearance: medium, straight, brown hair; green eyes; freckled, smooth skin; medium height, slim build. Features: .  Personality: witty, charming, quick on the turn. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears a travel-worn cloak over layered leathers, hood up and boots dusted from the road."
+      "description": "Green-eyed tracker with wind-burned cheeks and a freckled smile; oilskin cloak, rope-lashed bedroll, and a knife that never quite leaves her palm. She speaks sparingly, tends fires like she’s mending people, and watches for trouble the way other folks watch sunsets. When she laughs, it shows teeth; when she fights, it shows history. Physique and style reflect their human heritage: adaptable, varied, pragmatic layers and well-worn gear, with a traveler’s economy of movement. Appearance: medium, straight, brown hair; green eyes; freckled, smooth skin; medium height, slim build. Features: .  Personality: witty, charming, quick on the turn. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears a travel-worn cloak over layered leathers, hood up and boots dusted from the road."
     },
     {
       "id": "NP00000003",
@@ -59,7 +59,7 @@
         "skin_texture": "Smooth",
         "features": []
       },
-      "description": "Fiddler\u2019s hands and a duelist\u2019s posture; neat boots, bright smile, and a habit of talking doors open before knocking. He hums when he\u2019s lying and sings when he\u2019s scared; carries luck like a coin between finger and thumb. When the blade comes out, the charm turns to quiet\u2014one breath, one step, one line cut. Physique and style reflect their human heritage: trim build, fashionable layers, a flair for posture and presence. Appearance: medium, straight, black hair; blue eyes; fair, smooth skin; medium height, slim build. Features: .  Personality: witty, charming, quick on the turn. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears linen shirt and waistcoat under a stormcloak, high boots and a brace of knives at the small of the back."
+      "description": "Fiddler’s hands and a duelist’s posture; neat boots, bright smile, and a habit of talking doors open before knocking. He hums when he’s lying and sings when he’s scared; carries luck like a coin between finger and thumb. When the blade comes out, the charm turns to quiet—one breath, one step, one line cut. Physique and style reflect their human heritage: trim build, fashionable layers, a flair for posture and presence. Appearance: medium, straight, black hair; blue eyes; fair, smooth skin; medium height, slim build. Features: .  Personality: witty, charming, quick on the turn. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears linen shirt and waistcoat under a stormcloak, high boots and a brace of knives at the small of the back."
     },
     {
       "id": "NP00000004",
@@ -69,7 +69,7 @@
       "type": "ally",
       "appearance": {
         "eye_color": "Gold",
-        "hair_color": "Ash",
+        "hair_color": "Blonde",
         "build": "Slim",
         "skin_tone": "Ashen",
         "hair_length": "Medium",
@@ -80,7 +80,7 @@
           "pointed ears"
         ]
       },
-      "description": "Court-bred arcanist with ash-grey hair pinned by silver combs; voice cool as glass, gaze molten gold and politely bored until something truly interesting happens. Every gesture is a measured stanza; every spell, a verse with perfect meter. She keeps secrets folded like origami and unfolds them only when the table is hers. Physique and style reflect their great elf heritage: tall, fine-boned, luminous poise; high fashion with metallic accents; eyes like sunlit metal. Appearance: medium, straight, ash hair; gold eyes; ashen, smooth skin; medium height, slim build. Features: pointed ears.  Personality: composed, purposeful, sharp when it counts. She wears high court robes with metallic trim, jeweled clasps, silk gloves, polished boots. She wears a patched apron and simple workshirt, rolled sleeves and heavy boots\u2014artisan\u2019s garb in place of finery."
+      "description": "Court-bred arcanist with ash-grey hair pinned by silver combs; voice cool as glass, gaze molten gold and politely bored until something truly interesting happens. Every gesture is a measured stanza; every spell, a verse with perfect meter. She keeps secrets folded like origami and unfolds them only when the table is hers. Physique and style reflect their great elf heritage: tall, fine-boned, luminous poise; high fashion with metallic accents; eyes like sunlit metal. Appearance: medium, straight, ash hair; gold eyes; ashen, smooth skin; medium height, slim build. Features: pointed ears.  Personality: composed, purposeful, sharp when it counts. She wears high court robes with metallic trim, jeweled clasps, silk gloves, polished boots. She wears a patched apron and simple workshirt, rolled sleeves and heavy boots—artisan’s garb in place of finery. Ornamental robes or ceremonial armor with gold and silver jewelry; presence that commands the room."
     },
     {
       "id": "NP00000005",
@@ -99,7 +99,7 @@
         "skin_texture": "Rough",
         "features": []
       },
-      "description": "Forge-warden with gravel in his laugh and coal in his beard; carries a hammer that knows names and a ledger that remembers debts. He drinks to bargains, not to victories, and sharpens his friends the way he sharpens steel\u2014steady, hot, and honest. Physique and style reflect their iron dwarf heritage: compact power, soot-etched skin, iron-banded braids and tools worn to the hand. Appearance: medium, braided, black hair; brown eyes; ruddy, rough skin; medium height, bulky build. Features: .  Personality: witty, charming, quick on the turn. She wears forge leathers, iron-banded bracers, tool belt, hobnail boots. He wears stout mail over quilted gambeson with plate at shoulders and shins, a broad belt of hammered brass."
+      "description": "Forge-warden with gravel in his laugh and coal in his beard; carries a hammer that knows names and a ledger that remembers debts. He drinks to bargains, not to victories, and sharpens his friends the way he sharpens steel—steady, hot, and honest. Physique and style reflect their iron dwarf heritage: compact power, soot-etched skin, iron-banded braids and tools worn to the hand. Appearance: medium, braided, black hair; brown eyes; ruddy, rough skin; medium height, bulky build. Features: .  Personality: witty, charming, quick on the turn. She wears forge leathers, iron-banded bracers, tool belt, hobnail boots. He wears stout mail over quilted gambeson with plate at shoulders and shins, a broad belt of hammered brass."
     },
     {
       "id": "NP00000006",
@@ -108,8 +108,8 @@
       "sex": "Female",
       "type": "ally",
       "appearance": {
-        "eye_color": "Blue",
-        "hair_color": "Black",
+        "eye_color": "Green",
+        "hair_color": "Blonde",
         "build": "Slim",
         "skin_tone": "Olive",
         "hair_length": "Medium",
@@ -120,7 +120,7 @@
           "pointed ears"
         ]
       },
-      "description": "Weather-witch with stormlight in her pupils and thorn-ink curling her wrists; cloak hem stitched with dried leaves that whisper when she moves. She is patient with strangers and tender with clouds; impatient only with tyrants. Physique and style reflect their forest elf heritage: slender height, leaf-dyed hair, floral tattoos, greens and browns that melt into the treeline. Appearance: medium, wavy, black hair; blue eyes; olive, smooth skin; medium height, slim build. Features: pointed ears.  Personality: composed, purposeful, sharp when it counts. She wears quiet leathers, leaf-dyed cloak, soft boots, beadwork and feather charms. She wears a flowing saffron robe belted with braided cord, soft doeskin shoes and a travel-cloak pinned with a moon-brooch."
+      "description": "Weather-witch with stormlight in her pupils and thorn-ink curling her wrists; cloak hem stitched with dried leaves that whisper when she moves. She is patient with strangers and tender with clouds; impatient only with tyrants. Physique and style reflect their forest elf heritage: slender height, leaf-dyed hair, floral tattoos, greens and browns that melt into the treeline. Appearance: medium, wavy, black hair; blue eyes; olive, smooth skin; medium height, slim build. Features: pointed ears.  Personality: composed, purposeful, sharp when it counts. She wears quiet leathers, leaf-dyed cloak, soft boots, beadwork and feather charms. She wears a flowing saffron robe belted with braided cord, soft doeskin shoes and a travel-cloak pinned with a moon-brooch. Leaf-stitched leathers and pelts with living accents; minimal-to-medium coverage for agility."
     },
     {
       "id": "NP00000007",
@@ -142,7 +142,7 @@
           "tail"
         ]
       },
-      "description": "Smiling trickster with a fox\u2019s patience and a gambler\u2019s hands; silver hair, amber eyes, and the softest footfalls you never heard. He barters information for favors and favors for stories, then returns both with interest. Physique and style reflect their kitsune heritage: vulpine grace, quick fingers, lacquered charms and layered silks scented with citrus and smoke. Appearance: medium, straight, silver hair; amber eyes; pale, smooth skin; medium height, slim build. Features: fox ears, tail.  Personality: calm, observant, quietly determined. She wears layered silks, lacquered charms, soft-soled shoes, mask cord. He wears a doublet and riding breeches with knee boots, gloves tucked through the belt."
+      "description": "Smiling trickster with a fox’s patience and a gambler’s hands; silver hair, amber eyes, and the softest footfalls you never heard. He barters information for favors and favors for stories, then returns both with interest. Physique and style reflect their kitsune heritage: vulpine grace, quick fingers, lacquered charms and layered silks scented with citrus and smoke. Appearance: medium, straight, silver hair; amber eyes; pale, smooth skin; medium height, slim build. Features: fox ears, tail.  Personality: calm, observant, quietly determined. She wears layered silks, lacquered charms, soft-soled shoes, mask cord. He wears a doublet and riding breeches with knee boots, gloves tucked through the belt."
     },
     {
       "id": "NP00000008",
@@ -183,7 +183,7 @@
           "tail"
         ]
       },
-      "description": "Scout with a grin that signs contracts his legs can cash; twirls a ring like a coin, tests every door twice, and never quite looks where he\u2019s going\u2014because he already looked. Physique and style reflect their kitsune heritage: lean, quick, fox-bright eyes, a taste for lacquered accessories and soft-soled boots. Appearance: medium, straight, brown hair; brown eyes; fair, smooth skin; medium height, slim build. Features: fox ears, tail.  Personality: calm, observant, quietly determined. She wears layered silks, lacquered charms, soft-soled shoes, mask cord. He wears linen shirt and waistcoat under a stormcloak, high boots and a brace of knives at the small of the back."
+      "description": "Scout with a grin that signs contracts his legs can cash; twirls a ring like a coin, tests every door twice, and never quite looks where he’s going—because he already looked. Physique and style reflect their kitsune heritage: lean, quick, fox-bright eyes, a taste for lacquered accessories and soft-soled boots. Appearance: medium, straight, brown hair; brown eyes; fair, smooth skin; medium height, slim build. Features: fox ears, tail.  Personality: calm, observant, quietly determined. She wears layered silks, lacquered charms, soft-soled shoes, mask cord. He wears linen shirt and waistcoat under a stormcloak, high boots and a brace of knives at the small of the back."
     },
     {
       "id": "NP00000010",
@@ -251,7 +251,7 @@
           "scales"
         ]
       },
-      "description": "River-watch veteran with the patience of rock and the humor of rain; writes short letters home and longer ones he never sends. When he fights, he moves like a door closing\u2014clean, final, inevitable. Physique and style reflect their dragonborn heritage: plated scales, heavy shoulders, crest-polish ritual and a braided cord of service. Appearance: long, braided, none hair; green eyes; bronze-scaled, scaled skin; medium height, bulky build. Features: horns, tail, scales.  Personality: composed, purposeful, sharp when it counts. She wears scale-fitted mail, crest polish, heavy cloak cut for tail. He wears a doublet and riding breeches with knee boots, gloves tucked through the belt."
+      "description": "River-watch veteran with the patience of rock and the humor of rain; writes short letters home and longer ones he never sends. When he fights, he moves like a door closing—clean, final, inevitable. Physique and style reflect their dragonborn heritage: plated scales, heavy shoulders, crest-polish ritual and a braided cord of service. Appearance: long, braided, none hair; green eyes; bronze-scaled, scaled skin; medium height, bulky build. Features: horns, tail, scales.  Personality: composed, purposeful, sharp when it counts. She wears scale-fitted mail, crest polish, heavy cloak cut for tail. He wears a doublet and riding breeches with knee boots, gloves tucked through the belt."
     },
     {
       "id": "NP00000013",
@@ -270,7 +270,7 @@
         "skin_texture": "Smooth",
         "features": []
       },
-      "description": "White-haired minstrel with a travel-stained coat and boots that could tell their own stories; sings like he\u2019s bargaining with fate and smiles like he already lost once. Courage comes late for him\u2014but it arrives in full measure. Physique and style reflect their human heritage: compact strength, roadworthy leathers, instrument always close. Appearance: medium, straight, brown hair; brown eyes; tan, smooth skin; short height, compact build. Features: .  Personality: witty, charming, quick on the turn. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears steel plate over mail with a faded tabard, leather gloves and a sword belt worn smooth."
+      "description": "White-haired minstrel with a travel-stained coat and boots that could tell their own stories; sings like he’s bargaining with fate and smiles like he already lost once. Courage comes late for him—but it arrives in full measure. Physique and style reflect their human heritage: compact strength, roadworthy leathers, instrument always close. Appearance: medium, straight, brown hair; brown eyes; tan, smooth skin; short height, compact build. Features: .  Personality: witty, charming, quick on the turn. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears steel plate over mail with a faded tabard, leather gloves and a sword belt worn smooth."
     },
     {
       "id": "NP00000014",
@@ -312,7 +312,7 @@
         "skin_texture": "Smooth",
         "features": []
       },
-      "description": "Peacemaker with a gardener\u2019s patience and a diplomat\u2019s trowel; she weeds grudges and waters trust. Her pockets hold seeds, salves, and second chances. Physique and style reflect their sylvari heritage: leaf embroidery, petal-soft sleeves, a wristlet that flowers when truth is spoken. Appearance: medium, straight, brown hair; blue eyes; fair, smooth skin; medium height, slim build. Features: .  Personality: calm, observant, quietly determined. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears a doublet and riding breeches with knee boots, gloves tucked through the belt."
+      "description": "Peacemaker with a gardener’s patience and a diplomat’s trowel; she weeds grudges and waters trust. Her pockets hold seeds, salves, and second chances. Physique and style reflect their sylvari heritage: leaf embroidery, petal-soft sleeves, a wristlet that flowers when truth is spoken. Appearance: medium, straight, brown hair; blue eyes; fair, smooth skin; medium height, slim build. Features: .  Personality: calm, observant, quietly determined. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears a doublet and riding breeches with knee boots, gloves tucked through the belt."
     },
     {
       "id": "NP00000016",
@@ -345,7 +345,7 @@
       "type": "ally",
       "appearance": {
         "eye_color": "Hazel",
-        "hair_color": "Black",
+        "hair_color": "Blonde",
         "build": "Slim",
         "skin_tone": "Olive",
         "hair_length": "Long",
@@ -356,7 +356,7 @@
           "pointed ears"
         ]
       },
-      "description": "Pathfinder with the patience of moss and the appetite of a campfire; maps in her head, songs in her pocket, kindness where people don\u2019t expect it. Physique and style reflect their forest elf heritage: long stride, bow-callused fingers, quiet leathers and a sprig of green tucked behind one ear. Appearance: long, straight, black hair; hazel eyes; olive, smooth skin; medium height, slim build. Features: pointed ears.  Personality: calm, observant, quietly determined. She wears quiet leathers, leaf-dyed cloak, soft boots, beadwork and feather charms. She wears supple leaf-dyed leathers with bark-plate reinforcements, a hood drawn low and soft boots for silent steps."
+      "description": "Pathfinder with the patience of moss and the appetite of a campfire; maps in her head, songs in her pocket, kindness where people don’t expect it. Physique and style reflect their forest elf heritage: long stride, bow-callused fingers, quiet leathers and a sprig of green tucked behind one ear. Appearance: long, straight, black hair; hazel eyes; olive, smooth skin; medium height, slim build. Features: pointed ears.  Personality: calm, observant, quietly determined. She wears quiet leathers, leaf-dyed cloak, soft boots, beadwork and feather charms. She wears supple leaf-dyed leathers with bark-plate reinforcements, a hood drawn low and soft boots for silent steps. Leaf-stitched leathers and pelts with living accents; minimal-to-medium coverage for agility."
     },
     {
       "id": "NP00000018",
@@ -375,16 +375,16 @@
         "skin_texture": "Smooth",
         "features": []
       },
-      "description": "Earth-touched caravan guard with stone-bloom tattoos and a gentler voice than her size suggests; lifts wagons and morale in equal measure. She spars like a cliffside\u2014immovable until it moves, then catastrophic. Physique and style reflect their goliath heritage: stone mottling on skin, tall dense frame, simple leathers tied with cord and carved bone. Appearance: medium, straight, black hair; grey eyes; stone-marked, smooth skin; very tall height, tall and strong build. Features: .  Personality: calm, observant, quietly determined. She wears stone-dyed leathers, corded cloak, bone clasps, heavy sandals. She wears a travel-worn cloak over layered leathers, hood up and boots dusted from the road."
+      "description": "Earth-touched caravan guard with stone-bloom tattoos and a gentler voice than her size suggests; lifts wagons and morale in equal measure. She spars like a cliffside—immovable until it moves, then catastrophic. Physique and style reflect their goliath heritage: stone mottling on skin, tall dense frame, simple leathers tied with cord and carved bone. Appearance: medium, straight, black hair; grey eyes; stone-marked, smooth skin; very tall height, tall and strong build. Features: .  Personality: calm, observant, quietly determined. She wears stone-dyed leathers, corded cloak, bone clasps, heavy sandals. She wears a travel-worn cloak over layered leathers, hood up and boots dusted from the road."
     },
     {
       "id": "NP00000019",
       "name": "Mira Duskwind",
-      "race": "Half\u2013Dark Elf",
+      "race": "Dark Elf",
       "sex": "Female",
       "type": "ally",
       "appearance": {
-        "eye_color": "Violet",
+        "eye_color": "Red",
         "hair_color": "Black",
         "build": "Slim",
         "skin_tone": "Pale",
@@ -392,9 +392,12 @@
         "hair_style": "Straight",
         "height": "Medium",
         "skin_texture": "Smooth",
-        "features": []
+        "features": [
+          "pointed ears",
+          "silver tattoos"
+        ]
       },
-      "description": "Night-runner with a smile you notice a minute too late; deals in messages, counter-messages, and the silences between them. She keeps her promises like knives\u2014hidden, sharp, exactly where she left them. Physique and style reflect their dark elf lineage: slate-pale undertone, black hair, ghost-lit eyes, garments cut for shadow and speed. Appearance: medium, straight, black hair; violet eyes; pale, smooth skin; medium height, slim build. Features: .  Personality: witty, charming, quick on the turn. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears a flowing saffron robe belted with braided cord, soft doeskin shoes and a travel-cloak pinned with a moon-brooch."
+      "description": "Night-runner with a smile you notice a minute too late; deals in messages, counter-messages, and the silences between them. She keeps her promises like knives—hidden, sharp, exactly where she left them. Physique and style reflect their dark elf lineage: slate-pale undertone, black hair, ghost-lit eyes, garments cut for shadow and speed. Appearance: medium, straight, black hair; violet eyes; pale, smooth skin; medium height, slim build. Features: .  Personality: witty, charming, quick on the turn. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears a flowing saffron robe belted with braided cord, soft doeskin shoes and a travel-cloak pinned with a moon-brooch. Dark leathers and fabrics with silver embellishments and gemstones that gleam in low light."
     },
     {
       "id": "NP00000020",
@@ -413,7 +416,7 @@
         "skin_texture": "Smooth",
         "features": []
       },
-      "description": "River-guard turned road-warden; cloak patched, boots mended, heart still unbroken. He knows the names of crossings, the moods of bridges, and which ferrymen lie. He treats promises like oaths and oaths like anchors\u2014heavy, necessary, trusted. Physique and style reflect their human heritage: broad-shouldered endurance, layered travel-wear, hands callused from rope and oar. Appearance: medium, straight, brown hair; hazel eyes; tan, smooth skin; medium height, bulky build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears steel plate over mail with a faded tabard, leather gloves and a sword belt worn smooth."
+      "description": "River-guard turned road-warden; cloak patched, boots mended, heart still unbroken. He knows the names of crossings, the moods of bridges, and which ferrymen lie. He treats promises like oaths and oaths like anchors—heavy, necessary, trusted. Physique and style reflect their human heritage: broad-shouldered endurance, layered travel-wear, hands callused from rope and oar. Appearance: medium, straight, brown hair; hazel eyes; tan, smooth skin; medium height, bulky build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears steel plate over mail with a faded tabard, leather gloves and a sword belt worn smooth."
     },
     {
       "id": "NP00000021",
@@ -548,7 +551,7 @@
       "sex": "Female",
       "type": "ally",
       "appearance": {
-        "eye_color": "Crimson",
+        "eye_color": "Red",
         "hair_color": "White",
         "build": "Slim",
         "skin_tone": "Obsidian",
@@ -557,10 +560,11 @@
         "height": "Medium",
         "skin_texture": "Smooth",
         "features": [
-          "pointed ears"
+          "pointed ears",
+          "silver tattoos"
         ]
       },
-      "description": "Informant-archer who trades arrows for answers; smiles with only her eyes; perfume of smoke and night-blooming flowers clings to her cloak. Physique and style reflect their dark elf heritage: obsidian skin, white hair, crimson eyes, silks cut for movement and silence. Appearance: medium, straight, white hair; crimson eyes; obsidian, smooth skin; medium height, slim build. Features: pointed ears.  Personality: witty, charming, quick on the turn. She wears shadow-cut leathers, web-lace sleeves, soft-soled boots, poisoners' kit. She wears a sleeveless sky-blue gambeson with quilted panels, thigh-high boots and a narrow blade at the small of the back."
+      "description": "Informant-archer who trades arrows for answers; smiles with only her eyes; perfume of smoke and night-blooming flowers clings to her cloak. Physique and style reflect their dark elf heritage: obsidian skin, white hair, crimson eyes, silks cut for movement and silence. Appearance: medium, straight, white hair; crimson eyes; obsidian, smooth skin; medium height, slim build. Features: pointed ears.  Personality: witty, charming, quick on the turn. She wears shadow-cut leathers, web-lace sleeves, soft-soled boots, poisoners' kit. She wears a sleeveless sky-blue gambeson with quilted panels, thigh-high boots and a narrow blade at the small of the back. Dark leathers and fabrics with silver embellishments and gemstones that gleam in low light."
     },
     {
       "id": "NP00000028",
@@ -824,7 +828,7 @@
           "pointed ears"
         ]
       },
-      "description": "A Viridian Tiefling ally who carries themselves with distinction. She wears a flowing embroidered robe and sleeveless overcloak, a vine belt with pouches, leaf-stitched bracers, a long skirt with slits and strapped sandals.. white light brown antler-like pointed horns, short fur-tipped tail matching skin color, and bearing mark their tiefling heritage clearly. They wear attire suited to their station and embody the presence of their bloodline. Their heritage is obvious: light green or turquoise smooth skin, antler-like white or light-white light brown antler-like pointed horns, and a short fur-short fur-tipped tail matching skin color matching the skin tone. She wears city finery\u2014tailored waistcoat, lace jabot and slim trousers\u2014no leaves, only luxury."
+      "description": "A Viridian Tiefling ally who carries themselves with distinction. She wears a flowing embroidered robe and sleeveless overcloak, a vine belt with pouches, leaf-stitched bracers, a long skirt with slits and strapped sandals.. white light brown antler-like pointed horns, short fur-tipped tail matching skin color, and bearing mark their tiefling heritage clearly. They wear attire suited to their station and embody the presence of their bloodline. Their heritage is obvious: light green or turquoise smooth skin, antler-like white or light-white light brown antler-like pointed horns, and a short fur-short fur-tipped tail matching skin color matching the skin tone. She wears city finery—tailored waistcoat, lace jabot and slim trousers—no leaves, only luxury."
     },
     {
       "id": "NP00000040",
@@ -847,7 +851,7 @@
           "pointed ears"
         ]
       },
-      "description": "A Viridian Tiefling ally who carries themselves with distinction. She wears a flowing embroidered robe and sleeveless overcloak, a vine belt with pouches, leaf-stitched bracers, a long skirt with slits and strapped sandals.. white light brown antler-like pointed horns, short fur-tipped tail matching skin color, and bearing mark their tiefling heritage clearly. They wear attire suited to their station and embody the presence of their bloodline. Their heritage is obvious: light green or turquoise smooth skin, antler-like white or light-white light brown antler-like pointed horns, and a short fur-short fur-tipped tail matching skin color matching the skin tone. She wears city finery\u2014tailored waistcoat, lace jabot and slim trousers\u2014no leaves, only luxury."
+      "description": "A Viridian Tiefling ally who carries themselves with distinction. She wears a flowing embroidered robe and sleeveless overcloak, a vine belt with pouches, leaf-stitched bracers, a long skirt with slits and strapped sandals.. white light brown antler-like pointed horns, short fur-tipped tail matching skin color, and bearing mark their tiefling heritage clearly. They wear attire suited to their station and embody the presence of their bloodline. Their heritage is obvious: light green or turquoise smooth skin, antler-like white or light-white light brown antler-like pointed horns, and a short fur-short fur-tipped tail matching skin color matching the skin tone. She wears city finery—tailored waistcoat, lace jabot and slim trousers—no leaves, only luxury."
     }
   ]
 }

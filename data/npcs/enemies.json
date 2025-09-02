@@ -19,7 +19,7 @@
       "sex": "Female",
       "type": "enemy",
       "level": 4,
-      "description": "Gambeson beneath a torn highwayman\u2019s coat, crossbelt of knives. Prowls with swagger, taunting prey to run so she can chase; cruel humor thinly veiling ruthless intent.",
+      "description": "Gambeson beneath a torn highwayman’s coat, crossbelt of knives. Prowls with swagger, taunting prey to run so she can chase; cruel humor thinly veiling ruthless intent.",
       "appearance": {}
     },
     {
@@ -89,7 +89,7 @@
       "sex": null,
       "type": "enemy",
       "level": 4,
-      "description": "Skin stretched thin and gray, claws dripping marsh water. Moves in twitching bursts, then freezes to listen with a predator\u2019s patience.",
+      "description": "Skin stretched thin and gray, claws dripping marsh water. Moves in twitching bursts, then freezes to listen with a predator’s patience.",
       "appearance": {}
     },
     {
@@ -245,12 +245,22 @@
     {
       "id": "NP00000124",
       "name": "Fellpine Tracker",
-      "race": "Elf",
+      "race": "Forest Elf",
       "sex": "Male",
       "type": "enemy",
       "level": 5,
-      "description": "Cloaked in pine-green leathers, bow strung tight. Silent and disciplined, his arrows land before his footsteps are heard.",
-      "appearance": {}
+      "description": "Cloaked in pine-green leathers, bow strung tight. Silent and disciplined, his arrows land before his footsteps are heard. Leaf-stitched leathers and pelts with living accents; minimal-to-medium coverage for agility.",
+      "appearance": {
+        "height": "Medium",
+        "build": "Slim",
+        "skin_tone": "Olive",
+        "skin_texture": "Smooth",
+        "hair_color": "Blonde",
+        "eye_color": "Green",
+        "features": [
+          "pointed ears"
+        ]
+      }
     },
     {
       "id": "NP00000125",
@@ -712,7 +722,7 @@
         "eye_color": "Brown",
         "skin_tone": "Light"
       },
-      "description": "A Kitsune with fox ears and a swaying tail. Illusion and misdirection\u2014feints, afterimages, and knife-fast finishes."
+      "description": "A Kitsune with fox ears and a swaying tail. Illusion and misdirection—feints, afterimages, and knife-fast finishes."
     },
     {
       "id": "NP00000164",
