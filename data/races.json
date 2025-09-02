@@ -1,116 +1,475 @@
-{
-  "schema": "rpgen/races.v1",
-  "version": 1,
-  "races": [
-    {
-      "code": "human",
-      "name": "Human",
-      "desc": "Adaptable and ambitious; cultures vary wildly."
-    },
-    {
-      "code": "high_elf",
-      "name": "High Elf",
-      "desc": "Graceful, long-lived; attuned to arcane arts."
-    },
-    {
-      "code": "wood_elf",
-      "name": "Wood Elf",
-      "desc": "Forest-born wanderers with keen senses."
-    },
-    {
-      "code": "drow",
-      "name": "Drow",
-      "desc": "Umbral elves; silver tongues, shadowed pasts."
-    },
-    {
-      "code": "dwarf",
-      "name": "Dwarf",
-      "desc": "Stalwart crafters with iron traditions."
-    },
-    {
-      "code": "gnome",
-      "name": "Gnome",
-      "desc": "Spark-bright tinkerers, delight in curios."
-    },
-    {
-      "code": "halfling",
-      "name": "Halfling",
-      "desc": "Small in stature, enormous in heart."
-    },
-    {
-      "code": "orc",
-      "name": "Orc",
-      "desc": "Tough and driven; strength tempered by clan law."
-    },
-    {
-      "code": "goblin",
-      "name": "Goblin",
-      "desc": "Wily survivors; scavengers and inventors."
-    },
-    {
-      "code": "fae",
-      "name": "Fae-touched",
-      "desc": "Mortals brushed by the Courts of Faerie."
-    },
-    {
-      "code": "starborn",
-      "name": "Starborn",
-      "desc": "Aasimar-like; luminous souls bearing omens."
-    },
-    {
-      "code": "hellkin",
-      "name": "Hellkin",
-      "desc": "Tiefling-like; infernal trace in blood and horn."
-    },
-    {
-      "code": "drakesworn",
-      "name": "Drakesworn",
-      "desc": "Dragon-blooded; proud, scaled, and fierce."
-    },
-    {
-      "code": "sylph",
-      "name": "Sylph",
-      "desc": "Air-touched; voices like windchimes."
-    },
-    {
-      "code": "undine",
-      "name": "Undine",
-      "desc": "Water-touched; calm as deep tides."
-    },
-    {
-      "code": "ifrit",
-      "name": "Ifrit",
-      "desc": "Fire-touched; smoldering temper and spark."
-    },
-    {
-      "code": "oread",
-      "name": "Oread",
-      "desc": "Earth-touched; steady as stone."
-    },
-    {
-      "code": "kitsune",
-      "name": "Kitsune",
-      "desc": "Foxfolk tricksters with laughing eyes."
-    },
-    {
-      "code": "catfolk",
-      "name": "Catfolk",
-      "desc": "Curious, nimble, unerring balance."
-    },
-    {
-      "code": "lizardfolk",
-      "name": "Lizardfolk",
-      "desc": "Scaled marsh-walkers with cold pragmatism."
-    },
-    {
-      "code": "automata",
-      "name": "Automata",
-      "desc": "Clockwork souls in crafted shells."
-    },
-    {
-      "code": "revenant",
-      "name": "Revenant",
-      "desc": "A returned soul bound by purpose."
-    }
-  ]
-}
+[
+  {
+    "name": "Humans",
+    "race_group": null,
+    "appearance": "Medium height and build, with skin and hair in every shade imaginable. Immensely varied across regions and cultures.",
+    "nature_and_culture": "Thrive in every climate. Short lifespans drive ambition, invention, and volatility\u2014empires rise and fall within an elf\u2019s lifetime.",
+    "combat": "Wildly adaptable: disciplined legions, cunning raiders, swashbucklers, arcanists\u2014never the same twice.",
+    "spice": "Other races say humans burn twice as bright, half as long.",
+    "id": "RC00000001"
+  },
+  {
+    "name": "Forest Elves",
+    "race_group": "Elf",
+    "appearance": "Tall, slender; bronze to olive skin; leaf-dyed hair and floral tattoos. Eyes bright green, amber, or hazel.",
+    "nature_and_culture": "Tree-top cities and living bridges. Revere spirits of the wild and defend groves with quiet zeal.",
+    "combat": "Stealth archers and guerrillas, vanishing into undergrowth between precise volleys.",
+    "spice": "Their whispers ride the wind through branches.",
+    "id": "RC00000002"
+  },
+  {
+    "name": "Dark Elves",
+    "race_group": "Elf",
+    "appearance": "Obsidian, slate-gray, or violet skin; white, silver, or black hair; crimson or ghost-lit eyes.",
+    "nature_and_culture": "Underworld cities and secret covens. Politically ruthless but artistically refined; pragmatists above all.",
+    "combat": "Poisoners, assassins, and shadow mages; excel at surgical strikes and retreats.",
+    "spice": "Their eyes glimmer in the dark like a predator\u2019s.",
+    "id": "RC00000003"
+  },
+  {
+    "name": "Snow Elves",
+    "race_group": "Elf",
+    "appearance": "Porcelain skin, white/silver hair, pale blue or gray eyes. Furs and frost-woven fabrics.",
+    "nature_and_culture": "Isolationist keepers of high passes and tundras; winter is both teacher and god.",
+    "combat": "Endurance fighters using icy terrain to exhaust foes; frost-forged arms.",
+    "spice": "Breath mists in warmth; stray snowflakes follow their steps.",
+    "id": "RC00000004"
+  },
+  {
+    "name": "Great Elves",
+    "race_group": "Elf",
+    "appearance": "Very tall, flawless skin in pale golds or ivory; radiant blond, platinum, or jet hair; luminous gold/silver/sapphire eyes.",
+    "nature_and_culture": "Stewards of ancient citadels and high culture; stern traditionalists with long memories.",
+    "combat": "Elegant war-mages and champions; discipline married to arcana.",
+    "spice": "Their lineage carries a faint celestial resonance.",
+    "id": "RC00000005"
+  },
+  {
+    "name": "Iron Dwarves",
+    "race_group": "Dwarf",
+    "appearance": "Short, stocky; stone-gray or earthy brown skin; beards clasped with iron and steel.",
+    "nature_and_culture": "Forge-and-clan traditionalists of deep mountains; worth measured in craft and duty.",
+    "combat": "Shield walls, hammers, and implacable advance; masters of siege defense.",
+    "spice": "In battle, their heartbeats echo like hammer blows.",
+    "id": "RC00000006"
+  },
+  {
+    "name": "Hill Dwarves",
+    "race_group": "Dwarf",
+    "appearance": "Broad and ruddy with sun-bleached hair; practical garb embroidered with clan motifs.",
+    "nature_and_culture": "Valley farmers, brewers, and caravaners; convivial but stubborn.",
+    "combat": "Village militias with axes, crossbows, heavy shields; immovable on home ground.",
+    "spice": "Ale strong enough to floor an orc.",
+    "id": "RC00000007"
+  },
+  {
+    "name": "Ember Dwarves",
+    "race_group": "Dwarf",
+    "appearance": "Soot-darkened skin with ember-glowing eyes; hair red or coal-black, often singed.",
+    "nature_and_culture": "Volcanic-hall smith-kings; clans compete to forge legends; fire revered as divine.",
+    "combat": "Molten blades, warhammers, and fire magic; aggressive shock smiths.",
+    "spice": "Skin radiates heat, scorching parchment if held too long.",
+    "id": "RC00000008"
+  },
+  {
+    "name": "Coastal Dwarves",
+    "race_group": "Dwarf",
+    "appearance": "Weathered, salt-crusted; tanned skin; sea-bleached hair; beards braided with shells.",
+    "nature_and_culture": "Cliff citadels and sea-caves; bold traders and shipwrights, distrusted by mountain kin.",
+    "combat": "Harpoons, nets, boarding axes; ruthless in close-quarters fights on deck.",
+    "spice": "Creed: \u201cStone sinks, ships sail.\u201d",
+    "id": "RC00000009"
+  },
+  {
+    "name": "Ashfoot Orcs",
+    "race_group": "Orc",
+    "appearance": "Tall, scarred; gray-black skin like cooled ash; ember-glow eyes; calloused feet and tusks.",
+    "nature_and_culture": "Volcanic clans treating fire as sacred; ash-painted shamans and obsidian charms.",
+    "combat": "Brutal close-combat with obsidian and steel; barefoot coal-walkers.",
+    "spice": "War drums packed with volcanic stones rumble like quakes.",
+    "id": "RC00000010"
+  },
+  {
+    "name": "Storm Orcs",
+    "race_group": "Orc",
+    "appearance": "Tall, broad; storm-gray or sea-green skin; braids charred at the ends; tusks adorned with shells.",
+    "nature_and_culture": "Coast raiders who test souls in thunder; coming-of-age beneath lightning-clawed skies.",
+    "combat": "Thunderous charges and storm-touched magic; fearless boarding and cliff assaults.",
+    "spice": "Air around them smells of ozone; static crackles when enraged.",
+    "id": "RC00000011"
+  },
+  {
+    "name": "Mountain Orcs",
+    "race_group": "Orc",
+    "appearance": "Stocky, slate-skinned; tusks chipped on stone; bodies built for altitude.",
+    "nature_and_culture": "Crag fortresses, goat herds, and echoing chants across ridgelines.",
+    "combat": "High-ground ambushers triggering rockfalls before charging.",
+    "spice": "War-cries carry for miles, rolling like thunder.",
+    "id": "RC00000012"
+  },
+  {
+    "name": "Darkblood Tiefling",
+    "race_group": "Tiefling",
+    "appearance": "Light grey skin, cracked skin, craggily skin; black horns, very long horns, jagged horns, pointed horns; black hair, grey hair; grey eyes; pointed ears; black tail, very long tail, twisted tail, spiked tail; normal height, normal build.",
+    "nature_and_culture": "Secretive, distrusted even among Tieflings; often drawn to shadowy guilds, mercenary bands, or solitary wandering. They balance paranoia with fierce independence.",
+    "combat": "Quick, vicious fighters\u2014favor ambush tactics, shadow magic, and poison.",
+    "spice": "Darkblood Tieflings are said to carry whispers of their infernal ancestors in their dreams, and some claim their cracked skin glows faintly in moonlight.",
+    "id": "RC00000013"
+  },
+  {
+    "name": "Hellbound Tiefling",
+    "race_group": "Tiefling",
+    "appearance": "Red skin, orange skin, rough skin; grey horns, light brown horns, thick horns, long horns, blunt horns, pointed horns; red hair, orange hair, purple hair, pink hair; ember eyes, glowing eyes, golden eyes; pointed ears; red tail, orange tail, medium length tail, thick tail (same color as skin); tall height, strong build.",
+    "nature_and_culture": "Proud, theatrical, leaning into their infernal legacy\u2014many act as performers, warlocks, or leaders of dangerous cults.",
+    "combat": "Fearless, aggressive; often frontline warriors or pyromancers.",
+    "spice": "Rumored to smell faintly of brimstone when agitated, and their blood hisses when spilled on holy ground.",
+    "id": "RC00000014"
+  },
+  {
+    "name": "Voided Tiefling",
+    "race_group": "Tiefling",
+    "appearance": "Pitch black skin, smooth skin; black horns, long horns, straight horns, upward pointed horns, smooth horns; light colored hair (white, light blue, light purple, grey, red, orange, yellow, green, pink, teal); any eye color, black sclera; very long ears, pointed ears; pitch black tail, long tail, smooth tail (same color as skin); tall height, slim build.",
+    "nature_and_culture": "Nihilistic, fatalistic; often philosophers or dangerous mages obsessed with entropy and forbidden knowledge.",
+    "combat": "Cold precision; void magic, curses, and debilitating afflictions.",
+    "spice": "Their shadows sometimes move independently of their bodies.",
+    "id": "RC00000015"
+  },
+  {
+    "name": "Sableheart Tiefling",
+    "race_group": "Tiefling",
+    "appearance": "Light purple skin, light blue skin, silky skin, glossy skin; gold horns, silver horns, bronze horns, long horns, curved horns, polished horns, pointed horns; purple hair, pink hair; purple eyes; pointed ears; purple tail, blue tail, long tail (same color as skin); medium height, curvy build.",
+    "nature_and_culture": "Seductive, charismatic; often thrive as merchants, diplomats, or spies. They are masters of intrigue.",
+    "combat": "Subtle poisoners, fencers, illusionists.",
+    "spice": "Their voices carry a strange, honeyed resonance that makes even insults sound alluring.",
+    "id": "RC00000016"
+  },
+  {
+    "name": "Viridian Tiefling",
+    "race_group": "Tiefling",
+    "appearance": "Light green skin, turquoise skin, smooth skin; antler-like horns, white horns, light brown horns, pointed horns; brown hair, blonde hair; green eyes; pointed ears; green tail, turquoise tail, short tail, fur-tipped tail (same color as skin); very tall height, curvy build.",
+    "nature_and_culture": "Attuned to nature\u2019s darker aspects; many become astrologers, alchemists, or druids. They\u2019re often regarded as omens of strange change.",
+    "combat": "Poison, herbs, astrology-based divination; use nature\u2019s chaos as a weapon.",
+    "spice": "Viridian Tieflings often bear faintly glowing star-maps tattooed or etched into their skin.",
+    "id": "RC00000017"
+  },
+  {
+    "name": "Halflings",
+    "race_group": null,
+    "appearance": "Small, nimble; curly hair; cheerful eyes; simple but colorful attire lovingly patched.",
+    "nature_and_culture": "Comfort, community, and cleverness; farmers, traders, storytellers\u2014and thieves.",
+    "combat": "Stealth, trickery, and ranged strikes; turn big foes\u2019 strength against them.",
+    "spice": "Seem to slip into crowds and shadows by luck alone.",
+    "id": "RC00000018"
+  },
+  {
+    "name": "Goblins",
+    "race_group": null,
+    "appearance": "Short, wiry; green/gray/brown skin; big ears, jagged teeth; mismatched gear.",
+    "nature_and_culture": "Scrap-savvy tinkerers thriving in chaos; ghettos and ramshackle tribes alike.",
+    "combat": "Ambush swarms, traps, and unpredictable contraptions.",
+    "spice": "Laughter that\u2019s both infectious and terrifying.",
+    "id": "RC00000019"
+  },
+  {
+    "name": "Trollkin",
+    "race_group": null,
+    "appearance": "Tall, broad; mottled, rough skin with stone-like patches; eyes faintly luminous.",
+    "nature_and_culture": "Troll-blooded mercenaries and shamans walking the line between hunger and honor.",
+    "combat": "Regenerative brutes who outlast foes; heavy axes and bone totems.",
+    "spice": "Scars heal into ridges and patterns rather than fading.",
+    "id": "RC00000020"
+  },
+  {
+    "name": "Sylvari",
+    "race_group": null,
+    "appearance": "Bark-skin, moss hair; colors shift by season\u2014blossoms in spring, golds in autumn.",
+    "nature_and_culture": "Symbiotic forest dwellers growing as much as building; druids and green wardens.",
+    "combat": "Thorned arms, living vines, and nature magic; agile in woodland fights.",
+    "spice": "Heartbeats slow as sap drip.",
+    "id": "RC00000021"
+  },
+  {
+    "name": "Runeforged",
+    "race_group": null,
+    "appearance": "Stone/metal/crystal bodies etched with glowing runes; taller than humans.",
+    "nature_and_culture": "Awakened husks seeking purpose and origin; rare and revered\u2014or feared.",
+    "combat": "Juggernauts with crushing blows; self-inscribed runes empower.",
+    "spice": "Voices resonate like ringing anvils or grinding stone.",
+    "id": "RC00000022"
+  },
+  {
+    "name": "Myconids",
+    "race_group": null,
+    "appearance": "Mushroom-capped, spongy bodies in whites, purples, and reds.",
+    "nature_and_culture": "Spore-communal circles in caverns and swamps; alien but deeply communal.",
+    "combat": "Toxic/hallucinogenic spores, damp ambushes, and choking clouds.",
+    "spice": "Nearby, one hears faint whispers on drifting spores.",
+    "id": "RC00000023"
+  },
+  {
+    "name": "Kitsune",
+    "race_group": null,
+    "appearance": "Foxlike humanoids, often multi-tailed; golden/amber eyes; red, white, or black hair.",
+    "nature_and_culture": "Playful tricksters and illusionists in hidden forest clans near mortal towns.",
+    "combat": "Misdirection, illusions, and agile precision strikes.",
+    "spice": "Tails shimmer under moonlight, fading during illusions.",
+    "id": "RC00000024"
+  },
+  {
+    "name": "Neko",
+    "race_group": null,
+    "appearance": "Cat-eared, tailed; slit-pupil eyes; feline grace in every motion.",
+    "nature_and_culture": "Curious wanderers or city-dwellers; independent yet capable of deep bonds.",
+    "combat": "Ambush and mobility specialists\u2014leaps, claws, and quick blades.",
+    "spice": "A soothing purr that calms even hardened warriors.",
+    "id": "RC00000025"
+  },
+  {
+    "name": "Inugami",
+    "race_group": null,
+    "appearance": "Dog-eared, tailed; warm eyes from gold to blue; sturdier builds than Nekos.",
+    "nature_and_culture": "Pack-loyal oathkeepers honoring ancestors; fierce bonds of brotherhood.",
+    "combat": "Frontline stamina fighters; wrathful when packmates fall.",
+    "spice": "Always know the direction of \u201chome,\u201d however they define it.",
+    "id": "RC00000026"
+  },
+  {
+    "name": "Lamia",
+    "race_group": null,
+    "appearance": "Serpent-bodied with vivid scales; humanoid upper halves with slit eyes and fangs.",
+    "nature_and_culture": "Feared oracles of ruins and deserts; some monstrous, others wise hermits.",
+    "combat": "Constriction, venom, and hypnotic gazes; lightning-fast strikes.",
+    "spice": "Scale patterns shift subtly with mood\u2014mesmerizing to stare at.",
+    "id": "RC00000027"
+  },
+  {
+    "name": "Harpies",
+    "race_group": null,
+    "appearance": "Feathered wings, taloned feet; sharp-featured faces; hair mingles with plumage.",
+    "nature_and_culture": "Cliff and peak nomads living in flocks; shrill songs both haunting and piercing.",
+    "combat": "Aerial raiders diving and slashing before retreating; sonic disorientation.",
+    "spice": "Songs stir emotions without magic\u2014remnant of an ancient gift.",
+    "id": "RC00000028"
+  },
+  {
+    "name": "Minotaurs",
+    "race_group": null,
+    "appearance": "Bull-headed, towering and broad; horns carved with clan markings.",
+    "nature_and_culture": "Guardians and labyrinth-lore keepers; philosophers as often as wardens.",
+    "combat": "Devastating charges and greataxe sweeps; mastery of confined-space combat.",
+    "spice": "Never lost in a maze; some dream in winding paths.",
+    "id": "RC00000029"
+  },
+  {
+    "name": "Satyrs",
+    "race_group": null,
+    "appearance": "Goat legs, short horns, shaggy fur; youthful features and mischievous eyes.",
+    "nature_and_culture": "Revelers and grove-guardians\u2014music, dance, and sacred rites in balance.",
+    "combat": "Ambush, distraction, and song-woven magic with spears and bows.",
+    "spice": "Pipes and flutes that stir courage or sleep like spells.",
+    "id": "RC00000030"
+  },
+  {
+    "name": "Cervans",
+    "race_group": null,
+    "appearance": "Deerfolk with antlers that elaborate with age; faint dappled markings; doe-like eyes.",
+    "nature_and_culture": "Peaceful woodland clans that defend balance with sudden ferocity.",
+    "combat": "Swift hunters with bows/spears; antlers formidable up close.",
+    "spice": "Antlers glow faintly under moonlight, waxing and waning with it.",
+    "id": "RC00000031"
+  },
+  {
+    "name": "Nagaji",
+    "race_group": null,
+    "appearance": "Humanoids with scaled skin (green/gold/black), slit eyes, and forked tongues.",
+    "nature_and_culture": "Canny manipulators\u2014advisors, merchants, or rulers by patience and persuasion.",
+    "combat": "Polearms, venom blades, and charm/control magics; cold strategists.",
+    "spice": "Tongues taste emotions, sensing fear or lies in the air.",
+    "id": "RC00000032"
+  },
+  {
+    "name": "Arachne",
+    "race_group": null,
+    "appearance": "Human torsos fused to sleek spider bodies; multifaceted or glowing eyes.",
+    "nature_and_culture": "Silk weavers and secret keepers in webbed caverns and cliff nests; revered or reviled.",
+    "combat": "Ambushers who ensnare and strike from shadow; poisoned daggers in hand.",
+    "spice": "Silk hums faintly with their thoughts and can channel magic.",
+    "id": "RC00000033"
+  },
+  {
+    "name": "Caprines",
+    "race_group": null,
+    "appearance": "Ram-horned, muscular and rugged; spiraled horns, sharp proud features.",
+    "nature_and_culture": "Stubborn mountainfolk\u2014herders, builders, and headstrong warriors.",
+    "combat": "Horn charges, axes, and hammers; excel in brutal melee.",
+    "spice": "Horns ring like bells when struck\u2014ritual before battle.",
+    "id": "RC00000034"
+  },
+  {
+    "name": "Avianfolk",
+    "race_group": null,
+    "appearance": "Feathered humanoids with taloned feet; wing types vary\u2014owl, hawk, raven. Beaked or sharp-boned faces.",
+    "nature_and_culture": "Cliff rookeries and sky shrines; omens and augury bind their castes: owl-seers, hawk-warriors, raven-messengers.",
+    "combat": "Aerial skirmishers swooping with spears or talons; unrivaled scouts.",
+    "spice": "Feathers shift hue with mood\u2014silent chromatic speech.",
+    "subtypes": [
+      "Owlkin",
+      "Hawkkin",
+      "Ravenkin"
+    ],
+    "id": "RC00000035"
+  },
+  {
+    "name": "Ursans",
+    "race_group": null,
+    "appearance": "Bearfolk with thick coats in brown/black/white; massive frames and quiet eyes.",
+    "nature_and_culture": "Northern shamans and guardians valuing patience and strength; tribal leaders and guides.",
+    "combat": "Juggernauts with claws and mauls; weather blows others cannot.",
+    "spice": "Dream-walkers who commune with great ancestral bears.",
+    "id": "RC00000036"
+  },
+  {
+    "name": "Sharkkin",
+    "race_group": null,
+    "appearance": "Sleek, muscular; fins on limbs or back; predatory eyes; unnervingly smooth movements.",
+    "nature_and_culture": "Ruthless tide-clans in coastal strongholds or roaming fleets; feared hunters and raiders.",
+    "combat": "Harpoons, spears, and teeth; tireless, relentless close-range combat.",
+    "spice": "Blood-scent frenzies heighten strength and speed in water.",
+    "id": "RC00000037"
+  },
+  {
+    "name": "Rodentia",
+    "race_group": null,
+    "appearance": "Rat- and mousefolk; small, quick, sharp-featured; fur in browns/grays/whites.",
+    "nature_and_culture": "City alleys and underground warrens; resourceful, communal, underestimated survivors.",
+    "combat": "Swarming tactics, traps, and speed; daggers, slings, improvised arms.",
+    "spice": "Given time, they chew through almost anything\u2014even locks.",
+    "id": "RC00000038"
+  },
+  {
+    "name": "Cervari",
+    "race_group": null,
+    "appearance": "Humanoids with subtle equine traits\u2014long faces, horse-like ears, powerful legs; thick mane-like hair.",
+    "nature_and_culture": "Endurance nomads of open plains; tireless traders and messengers.",
+    "combat": "Rapid strike-and-withdraw skirmishers; refuse prolonged bog-downs.",
+    "spice": "Can run for days without tiring.",
+    "id": "RC00000039"
+  },
+  {
+    "name": "Centaurs",
+    "race_group": null,
+    "appearance": "Half-human, half-horse; powerful equine bodies with humanoid torsos.",
+    "nature_and_culture": "Restless herds roaming the plains; storytellers, poets, and warriors of the open sky.",
+    "combat": "Mounted combat without mounts\u2014lances, bows, trampling maneuvers.",
+    "spice": "Never fully sleep; part of the mind keeps watch.",
+    "id": "RC00000040"
+  },
+  {
+    "name": "Merfolk",
+    "race_group": null,
+    "appearance": "Amphibious; scaled legs/fins and webbed hands; skin shimmering blues/greens/silvers; seaweed-like hair.",
+    "nature_and_culture": "Ocean cities and coastal kingdoms\u2014singers, traders, and mystics.",
+    "combat": "Tridents, nets, and water magic; supreme underwater agility.",
+    "spice": "Songs travel miles through water, guiding or luring ships.",
+    "id": "RC00000041"
+  },
+  {
+    "name": "Gnollkin",
+    "race_group": null,
+    "appearance": "Hyena-headed; mottled tan/brown/gray fur; hunched, muscular builds; hungry eyes.",
+    "nature_and_culture": "Savanna and wasteland pack-hunters; laughter joyous to kin, chilling to foes.",
+    "combat": "Overwhelming raids with scavenged arms; bites as lethal as blades.",
+    "spice": "Pre-battle laughter spreads contagiously through the pack.",
+    "id": "RC00000042"
+  },
+  {
+    "name": "Porcans",
+    "race_group": null,
+    "appearance": "Boarfolk\u2014stocky, bristled, tusked; skin from ruddy pink to deep brown.",
+    "nature_and_culture": "Proud farmers and warriors of forests and hills; stubborn as stone.",
+    "combat": "Relentless brawlers with axes and clubs; terrifying charges.",
+    "spice": "Rage keeps them fighting long after wounds should fell them.",
+    "id": "RC00000043"
+  },
+  {
+    "name": "Mothfolk",
+    "race_group": null,
+    "appearance": "Ethereal humanoids with soft, patterned wings; furred antennae; luminous wide eyes; pale, dusted skin.",
+    "nature_and_culture": "Nocturnal mystics of moonlit glades; silk-and-pollen homes; peaceful yet uncanny.",
+    "combat": "Illusions and wing powder to blind or pacify; gentle enchantments.",
+    "spice": "Irresistibly drawn to flame; read omens in its flicker.",
+    "id": "RC00000044"
+  },
+  {
+    "name": "Jackalfolk (Anubari)",
+    "race_group": null,
+    "appearance": "Jackal-headed, lean and wiry; dark fur and golden eyes; movements sharp and watchful.",
+    "nature_and_culture": "Desert wanderers and death-ritual priests; feared and revered psychopomps.",
+    "combat": "Swift curved blades and short bows; speed and deception in dunes.",
+    "spice": "Whisper prayers over every dead\u2014friend or foe.",
+    "id": "RC00000045"
+  },
+  {
+    "name": "Owlkin",
+    "race_group": null,
+    "appearance": "Avian humanoids with large, expressive owl eyes; muted brown/gray/white plumage; rounded feather-hoods.",
+    "nature_and_culture": "Silent nocturnal hunters and contemplative mystics; villages high in trees or on cliffs.",
+    "combat": "Deadly silent ambushers with talons or bows; supreme night vision.",
+    "spice": "Unblinking gaze that seems to read the soul.",
+    "id": "RC00000046"
+  },
+  {
+    "name": "Kobolds",
+    "race_group": null,
+    "appearance": "Small, reptilian; scaly reds/browns/greens; twitching tails; sly bright eyes.",
+    "nature_and_culture": "Dragon-worshipping scavengers of warrens; dangerously inventive trapmakers.",
+    "combat": "Cowardly alone, deadly en masse; ambushes, pitfalls, spear swarms.",
+    "spice": "Can scent even a trace of dragon\u2019s blood.",
+    "id": "RC00000047"
+  },
+  {
+    "name": "Goliaths",
+    "race_group": null,
+    "appearance": "Towering, stone-gray or slate-blue skin veined with darker patterns; immense builds; pale eyes.",
+    "nature_and_culture": "Peak nomads who settle disputes with contests; survival and strength over pedigree.",
+    "combat": "Massive weapons and iron endurance; shrug off fatigue and cold.",
+    "spice": "Skin numbs to cold with altitude; some feel none at all.",
+    "id": "RC00000048"
+  },
+  {
+    "name": "Tabaxi",
+    "race_group": null,
+    "appearance": "Jaguar/leopard-folk with sleek spotted fur; lithe, feline motion; brilliant yellow/green eyes.",
+    "nature_and_culture": "Relic-chasers and story-hoarders; drift into cities as bards, rogues, scholars.",
+    "combat": "Agile skirmishers\u2014claws, bows, quick blades; speed over strength.",
+    "spice": "Once curious, they must chase\u2014prey, goals, or stories.",
+    "id": "RC00000049"
+  },
+  {
+    "name": "Tortles",
+    "race_group": null,
+    "appearance": "Turtlefolk with broad shells and leathery skin; calm eyes; measured voices.",
+    "nature_and_culture": "Patient wanderers and sea-road philosophers; homes carved into their shells.",
+    "combat": "Durable defenders with clubs, staves, and tridents; outlast rather than overpower.",
+    "spice": "Shells carved with their life journeys\u2014living memoirs.",
+    "id": "RC00000050"
+  },
+  {
+    "name": "Kenku",
+    "race_group": null,
+    "appearance": "Crowlike humanoids with black feathers and sharp beaks; small vestigial wings; deft claws.",
+    "nature_and_culture": "Cursed mimics turned spies and thieves; perfect voices that isolate them.",
+    "combat": "Stealth, knives, bows, and poisons; vanish into shadow after the strike.",
+    "spice": "Mimicry so perfect it fools lovers and kin alike.",
+    "id": "RC00000051"
+  },
+  {
+    "name": "Dragonborn",
+    "race_group": null,
+    "appearance": "Tall draconic humanoids with vibrant scaled skin; no wings or tails, but commanding presence.",
+    "nature_and_culture": "Honor-bound clans seeking lost draconic glory; martial, proud, and torn between worlds.",
+    "combat": "Ferocious melee with breath weapons\u2014fire, lightning, frost\u2014making devastating shock troops.",
+    "spice": "Anger brings a faint glow to their scales.",
+    "id": "RC00000052"
+  }
+]

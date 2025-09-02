@@ -1,48 +1,71 @@
 {
   "schema": "rpgen.npcs.villains.v1",
-  "version": 1,
+  "version": 2,
   "npcs": [
     {
       "id": "NP00001001",
       "name": "Seraphine Nightveil",
-      "race": "Drow",
+      "race": "Dark Elf",
       "sex": "Female",
       "type": "villain",
       "appearance": {
         "eye_color": "Violet",
-        "hair_color": "Silver",
-        "build": "Lithe",
-        "skin_tone": "Dusky"
+        "hair_color": "Silver-white",
+        "build": "Slim",
+        "skin_tone": "Obsidian",
+        "hair_length": "Long",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "pointed ears"
+        ]
       },
-      "description": "Dusky skin veiled in translucent lace, her violet eyes shimmer with cruel delight beneath cascades of silver hair. She moves like a whispered secret in candlelight, a figure wrapped in shadow’s embrace. Draped in gowns that both reveal and conceal, she entices with the scent of jasmine and steel. Her lips curve in promises that rarely mean mercy, and her touch lingers long after the wound. There is allure in her cruelty, a hunger in her laughter, and those who meet her gaze feel the temptation to step willingly into her web."
+      "description": "Obsidian skin wrapped in translucent black lace; violet glowing eyes beneath long silver-white hair. A slender, graceful body moves like a whispered secret\u2014teasing and predatory. Her gowns reveal and conceal in equal measure; her perfume is jasmine with a blade\u2019s edge. Seraphine speaks in soft promises that mean ruin and leaves touches that outlast the wound\u2014Dark Elf cruelty honed into art. Appearance: long, straight, silver-white hair; violet eyes; obsidian, smooth skin; medium height, slim build. Features: pointed ears.  Personality: calm, observant, quietly determined. She wears shadow-cut leathers, web-lace sleeves, soft-soled boots, poisoners' kit. She wears a patched apron and simple workshirt, rolled sleeves and heavy boots\u2014artisan\u2019s garb in place of finery."
     },
     {
       "id": "NP00001002",
       "name": "Nyssara Thornkiss",
-      "race": "Tiefling",
+      "race": "Hellbound Tiefling",
       "sex": "Female",
       "type": "villain",
       "appearance": {
         "eye_color": "Gold",
-        "hair_color": "Black",
-        "build": "Curvy",
-        "skin_tone": "Crimson"
+        "hair_color": "Red",
+        "build": "Strong",
+        "skin_tone": "Red",
+        "hair_length": "Medium",
+        "hair_style": "Wavy",
+        "height": "Tall",
+        "skin_texture": "Rough",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
       },
-      "description": "Crimson skin gleams with a dangerous warmth, her golden eyes lit with wicked mirth beneath the frame of curling obsidian horns. Black hair spills in wild tresses that catch the firelight as if it belongs to her alone. Leather corsetry clings to her curves, polished and scarred from both battle and pleasure, leaving little doubt where her passions lie. Nyssara’s presence burns like an open flame—too close and you are scorched, too far and you crave the heat. She taunts with velvet words, delights in breaking vows, and kisses like a brand pressed to bare flesh."
+      "description": "Crimson-red skin warm as banked coals, gold eyes bright with wicked mirth; grey light brown thick long blunt pointed horns frame a mane of wild hair. She wears heavy plate with spiked pauldrons and thick gauntlets, a chain belt over armored skirt panels, greaves and sabatons, a scorched cloak.. Leather corsetry clings to a voluptuous figure, polished and scarred by both battle and pleasure. Nyssara burns like an open flame: too close and you blister, too far and you ache for heat. She taunts in velvet and brands in kisses\u2014Hellbound and wholly delighted by your surrender. Appearance: medium, wavy, black hair; gold eyes; crimson, smooth skin; medium height, curvy build. Features: grey light brown thick long blunt pointed horns, red medium thick tail, pointed ears. Personality: calm, observant, quietly determined. She wears heavy plate with spiked pauldrons, thick gauntlets, chain belt, armored skirt panels, greaves and sabatons, scorched cloak. Their heritage is obvious: red or orange rough skin, thick long blunt grey or light-grey light brown thick long blunt pointed horns, red medium thick tail the same color as the skin. She wears plated laminar with soot-black surcoat, gorget and braced vambraces, a scorched cloak at the shoulders."
     },
     {
       "id": "NP00001003",
       "name": "Kaelira Voidpetal",
-      "race": "Elf",
+      "race": "Great Elf",
       "sex": "Female",
       "type": "villain",
       "appearance": {
-        "eye_color": "Onyx",
+        "eye_color": "Silver",
         "hair_color": "White",
-        "build": "Slender",
-        "skin_tone": "Pale"
+        "build": "Slim",
+        "skin_tone": "Ivory",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "pointed ears"
+        ]
       },
-      "description": "White hair falls like silk over alabaster skin, her black eyes drinking in every flicker of fear. She dresses in gowns stitched with shadowy blossoms that sway like petals in a wind no one else feels. Pale fingers adorned with rings glide across blades and chalices alike, her lips painted the hue of crushed nightshade. There is beauty in her presence, but it is the beauty of a flower blooming in poisoned soil. She speaks gently, like a lullaby sung at a grave, and every promise drips with the perfume of death dressed in elegance."
+      "description": "Ivory-pale skin and white hair like spill silk; silver eyes that weigh you as ledger, then close the account. She wears black gowns stitched with night-bloom blossoms, rings bright on pale fingers, lips painted deep violet. Kaelira is elegance weaponized\u2014promises sung like lullabies over graves, poison poured from crystal with priestly care\u2014Great Elf hauteur turned predatory. Appearance: medium, straight, white hair; silver eyes; ivory, smooth skin; medium height, slim build. Features: pointed ears.  Personality: composed, purposeful, sharp when it counts. She wears high court robes with metallic trim, jeweled clasps, silk gloves, polished boots. She wears supple leaf-dyed leathers with bark-plate reinforcements, a hood drawn low and soft boots for silent steps."
     },
     {
       "id": "NP00001004",
@@ -52,39 +75,56 @@
       "type": "villain",
       "appearance": {
         "eye_color": "Blue",
-        "hair_color": "Blonde",
+        "hair_color": "Blonde (braided with gold clasps)",
         "build": "Tall",
-        "skin_tone": "Fair"
+        "skin_tone": "Fair",
+        "hair_length": "Medium",
+        "hair_style": "Braided",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": []
       },
-      "description": "Blonde hair braided with golden clasps frames her sharp features, while blue eyes sparkle with cunning calculation. Varenia wears a duelist’s coat cut from midnight cloth, embroidered with metallic threads that gleam in torchlight. Her tall, commanding frame is never slouched, each motion a measured step of one used to power. She wields her rapier like she wields her tongue—with precision, elegance, and a cruel edge that draws blood in more ways than one. To cross her is to gamble not only with your life, but your pride, for her victories are as humiliating as they are absolute."
+      "description": "Tall duelist with fair skin and tight blonde braids bound in gold; blue eyes sharp as a thrust. A midnight coat embroidered in metal thread, a rapier like a second tongue. Varenia carries herself like a verdict\u2014beautiful, proud, and delighted to be cruel when it\u2019s efficient. Appearance: medium, braided, blonde (braided with gold clasps) hair; blue eyes; fair, smooth skin; tall height, tall build. Features: .  Personality: fierce, commanding, thrives under pressure. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears a travel-worn cloak over layered leathers, hood up and boots dusted from the road."
     },
     {
       "id": "NP00001005",
       "name": "Thalara Vex",
-      "race": "Half-Elf",
+      "race": "Half\u2013Forest Elf",
       "sex": "Female",
       "type": "villain",
       "appearance": {
         "eye_color": "Green",
-        "hair_color": "Auburn",
+        "hair_color": "Auburn (copper cuffs)",
         "build": "Athletic",
-        "skin_tone": "Olive"
+        "skin_tone": "Olive",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
       },
-      "description": "Athletic and striking, her auburn hair bound by copper cuffs that jangle softly as she moves. Green eyes flash with predatory amusement, always scanning, always assessing. Her armor is fitted leather dyed in dark hues, the kind that reveals as much as it protects. Olive skin glows faintly beneath scars earned in ambushes and duels. Thalara leans on her bow like a lover, teasing and taunting even as she pulls the string taut. She smiles before she kills, and it is often the last warmth her prey will ever see."
+      "description": "Olive skin traced by faint scars; auburn hair tied with copper cuffs; bright green eyes amused by danger. Leather armor fitted for speed and allure; a bow carried like a flirtation. Thalara plays with prey: a laugh, a wink, then the arrow lands\u2014a hunter raised between quiet groves and louder sins. Appearance: medium, straight, auburn (copper cuffs) hair; green eyes; olive, smooth skin; medium height, athletic build. Features: .  Personality: witty, charming, quick on the turn. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears a patched apron and simple workshirt, rolled sleeves and heavy boots\u2014artisan\u2019s garb in place of finery."
     },
     {
       "id": "NP00001006",
       "name": "Elaris Crowbloom",
-      "race": "Elf",
+      "race": "Great Elf",
       "sex": "Female",
       "type": "villain",
       "appearance": {
         "eye_color": "Silver",
-        "hair_color": "Black",
-        "build": "Lithe",
-        "skin_tone": "Pale"
+        "hair_color": "Black (raven)",
+        "build": "Slim",
+        "skin_tone": "Pale",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "pointed ears"
+        ]
       },
-      "description": "Her raven-black hair is pinned with bone-white flowers, silver eyes gleaming with moonlit cruelty. Pale skin glows against dresses that trail with feathers and thorns, leaving behind the faintest scent of grave lilies. Her lithe body moves with grace born not of kindness but of the huntress who delights in watching fear bloom. Elaris is a predator of the heart, her words whispered like vows yet meant as shackles. There is tenderness in her touch, but it is the tenderness of a spider testing its prey before the strike."
+      "description": "Pale skin set against raven-black hair crowned with bone-white flowers; silver eyes that gleam like moonlight on glass. Dresses trail feathers and thorned lace; the faint scent of grave lilies follows her hem. Elaris speaks vows like snares and touches like a spider testing silk\u2014tender, curious, lethal. Appearance: medium, straight, black (raven) hair; silver eyes; pale, smooth skin; medium height, slim build. Features: pointed ears.  Personality: composed, purposeful, sharp when it counts. She wears high court robes with metallic trim, jeweled clasps, silk gloves, polished boots. She wears a fitted leather corset over ink-stained linen sleeves, brass keys at the hip and a crystal shard bound in wire at the throat."
     },
     {
       "id": "NP00001007",
@@ -96,9 +136,14 @@
         "eye_color": "Many",
         "hair_color": "Silver-black",
         "build": "Statuesque",
-        "skin_tone": "Shimmering"
+        "skin_tone": "Shimmering",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Very tall",
+        "skin_texture": "Smooth",
+        "features": []
       },
-      "description": "A statuesque form wrapped in silver-black hair that drapes like a curtain of stars, her shimmering skin alive with eyes that blink and watch from every angle. Each gaze stirs discomfort, each smile invites ruin. Her gowns shift with impossible geometry, veils of silk that part to reveal more eyes, more mouths, more secrets. She exudes allure and horror alike, every glance a temptation to step closer, every whisper a reminder that she sees everything you would rather hide."
+      "description": "Statuesque and draped in silver-black hair like star-silk; her shimmering skin opens into uncountable blinking eyes. Gowns fold in impossible geometry, revealing more eyes, more secrets. Every smile invites ruin; every whisper unspools the truths you hid from yourself. Appearance: medium, straight, silver-black hair; many eyes; shimmering, smooth skin; very tall height, statuesque build. Features: .  Personality: witty, charming, quick on the turn. She wears impossible folds of fabric, veilwork, mind-strange ornaments. She wears bare-chested under a fur mantle, beadwork cords and bronze bangles, defiant and theatrical."
     },
     {
       "id": "NP00001008",
@@ -110,9 +155,14 @@
         "eye_color": "Hidden",
         "hair_color": "Veiled",
         "build": "Tall",
-        "skin_tone": "Shrouded"
+        "skin_tone": "Shrouded",
+        "hair_length": "Medium",
+        "hair_style": "Wavy",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": []
       },
-      "description": "Endless translucent veils shroud a body that seems both tall and insubstantial, her form never quite where it should be. The cloth breathes with her, twisting into shapes that suggest arms, legs, or something else entirely. Beneath the veils, whispers curl like smoke, words you almost understand but wish you hadn’t. She caresses faces unseen, leaving only the chill of devotion turned to dread. The Veilmother does not demand followers—she simply makes them forget they were ever free."
+      "description": "Endless translucent veils breathe and twist around a tall, insubstantial form. Faces bloom and sink within the cloth; whispers curl like smoke and cling like perfume. She does not demand followers\u2014she edits memory until obedience feels like nostalgia. Appearance: medium, wavy, veiled hair; hidden eyes; shrouded, smooth skin; tall height, tall build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears impossible folds of fabric, veilwork, mind-strange ornaments. She wears a travel-worn cloak over layered leathers, hood up and boots dusted from the road."
     },
     {
       "id": "NP00001009",
@@ -124,9 +174,14 @@
         "eye_color": "Crimson",
         "hair_color": "Black with crimson sheen",
         "build": "Tall",
-        "skin_tone": "Pale"
+        "skin_tone": "Pale",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": []
       },
-      "description": "Draped in a gown that drinks torchlight and glitters with threads of scarlet, she walks as though each step were part of a dance long rehearsed. A veil conceals her face, but her crimson eyes burn through the gauze, watching every move with hunger. Pale skin contrasts with lips painted blood-red, a reminder of vows broken with slaughter. The Crimson Bride does not love; she claims. Her embrace leaves no warmth, only an ache where the heart once beat freely."
+      "description": "A scarlet-threaded gown drinks torchlight; a veil conceals everything except those burning crimson eyes. Pale skin, lips the color of fresh blood, and steps like a practiced dance. She does not love\u2014she claims. Her embrace is a marriage to death, vows paid in throats. Appearance: medium, straight, black with crimson sheen hair; crimson eyes; pale, smooth skin; tall height, tall build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears funerary lace, grave-silk veil, bone clasps, silent slippers. She wears a travel-worn cloak over layered leathers, hood up and boots dusted from the road."
     },
     {
       "id": "NP00001010",
@@ -135,40 +190,57 @@
       "sex": "Male",
       "type": "villain",
       "appearance": {
-        "eye_color": "Coal",
-        "hair_color": "Ash-brown",
-        "build": "Lean",
-        "skin_tone": "Sallow"
+        "eye_color": "Black",
+        "hair_color": "Ash-brown (tied back)",
+        "build": "Slim",
+        "skin_tone": "Pale",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
       },
-      "description": "Sharp of cheek and sharper of wit, Lord Ashmire cloaks himself in mourning blacks cut to blade-edge perfection. Ash-brown hair tied neatly, coal eyes that weigh the worth of every word before it’s spoken. He is lean but unyielding, moving with a predator’s economy. His fortune was built on ruin, his smile forged in fire, and he never lets anyone forget who stoked the flames. His touch is cold, his affection conditional, his loyalty purchasable—if you can stomach the cost."
+      "description": "A lean aristocrat in mourning-black tailoring stitched with silver thread; ash-brown hair tied neatly, coal-black eyes that never soften. He smiles like a sealed contract and speaks like a blade\u2019s flat\u2014cold, convincing, inevitable. Appearance: medium, straight, ash-brown (tied back) hair; black eyes; pale, smooth skin; medium height, slim build. Features: .  Personality: calm, observant, quietly determined. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears linen shirt and waistcoat under a stormcloak, high boots and a brace of knives at the small of the back."
     },
     {
       "id": "NP00001011",
       "name": "Lyrelle Sunvine",
-      "race": "Elf",
+      "race": "Forest Elf",
       "sex": "Female",
       "type": "villain",
       "appearance": {
         "eye_color": "Green",
-        "hair_color": "Blonde",
+        "hair_color": "Blonde (cropped)",
         "build": "Petite",
-        "skin_tone": "Fair"
+        "skin_tone": "Fair",
+        "hair_length": "Short",
+        "hair_style": "Straight",
+        "height": "Short",
+        "skin_texture": "Smooth",
+        "features": [
+          "pointed ears"
+        ]
       },
-      "description": "Petite frame crowned with cropped golden hair, her green eyes shine bright as a new blade. She drapes herself in lacquered leathers trimmed in ivy patterns, every stitch neat and deliberate. Lyrelle smiles like a companion, disarms like a friend, and leaves behind wounds that feel like betrayal. She is the sun wrapped in thorns, the kiss with hidden venom, the blade beneath the bloom."
+      "description": "Petite, fair, with cropped gold hair and bright green eyes that smile before the knife does. Lacquered leathers trimmed in ivy motifs hide more blades than manners. Lyrelle giggles when she lies\u2014every syllable a flower with thorns. Appearance: short, straight, blonde (cropped) hair; green eyes; fair, smooth skin; short height, petite build. Features: pointed ears.  Personality: witty, charming, quick on the turn. She wears quiet leathers, leaf-dyed cloak, soft boots, beadwork and feather charms. She wears a sleeveless sky-blue gambeson with quilted panels, thigh-high boots and a narrow blade at the small of the back."
     },
     {
       "id": "NP00001012",
       "name": "Brunna Emberbraid",
-      "race": "Dwarf",
+      "race": "Ember Dwarf",
       "sex": "Female",
       "type": "villain",
       "appearance": {
         "eye_color": "Amber",
-        "hair_color": "Red",
-        "build": "Stocky",
-        "skin_tone": "Ruddy"
+        "hair_color": "Red (braided, copper beads)",
+        "build": "Bulky",
+        "skin_tone": "Soot-browned",
+        "hair_length": "Medium",
+        "hair_style": "Braided",
+        "height": "Medium",
+        "skin_texture": "Rough",
+        "features": []
       },
-      "description": "Stocky shoulders and arms corded with strength, Brunna’s fiery hair is plaited into thick braids threaded with copper beads. Her amber eyes sparkle with challenge, her ruddy skin flushed as though heated from within. Clad in blackened plate edged in burnished copper, she swings her warhammer with laughter loud as thunder. She bargains like a brawl, loves like a fight, and leaves behind both bruises and longing."
+      "description": "Stocky and fire-strong; ember-red braids bound with copper beads; amber eyes that dare you to swing first. Blackened plate trimmed in copper, a warhammer that sings of broken vows. She laughs like a bellows and collects grudges like heirlooms. Appearance: medium, braided, red (braided, copper beads) hair; amber eyes; soot-browned, rough skin; medium height, bulky build. Features: .  Personality: witty, charming, quick on the turn. She wears heat-tempered leathers, copper-riveted apron, rune-stitched cuffs. She wears boiled-leather jack with inset rune-plates, fingerless gloves and a many-pocketed tool harness."
     },
     {
       "id": "NP00001013",
@@ -178,11 +250,16 @@
       "type": "villain",
       "appearance": {
         "eye_color": "Hazel",
-        "hair_color": "Auburn",
-        "build": "Lithe",
-        "skin_tone": "Fair"
+        "hair_color": "Auburn (pearl combs)",
+        "build": "Slim",
+        "skin_tone": "Fair",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
       },
-      "description": "Auburn locks pinned with pearl combs, hazel eyes sharp as a merchant’s scales. She dresses in silks slit high for freedom of movement, each fold perfumed and tailored for both allure and agility. Gloves hide hands pricked with the faint scars of poison-dipped needles. Maelis speaks softly, her words coated in honey, but her terms always cut deep. In her presence, desire and danger twine like threads on a loom."
+      "description": "Slender, fair, with auburn hair pinned in pearls and hazel eyes that weigh profit against pulse. A slitted silk gown conceals poisoned needles and old scars. Maelis speaks softly and bills sharply\u2014beauty as ledger, betrayal as interest. Appearance: medium, straight, auburn (pearl combs) hair; hazel eyes; fair, smooth skin; medium height, slim build. Features: .  Personality: calm, observant, quietly determined. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears steel plate over mail with a faded tabard, leather gloves and a sword belt worn smooth."
     },
     {
       "id": "NP00001014",
@@ -193,24 +270,143 @@
       "appearance": {
         "eye_color": "Ice-blue",
         "hair_color": "Black",
-        "build": "Willowy",
-        "skin_tone": "Pale/Bone"
+        "build": "Slim",
+        "skin_tone": "Bone-white (half skull visage)",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": []
       },
-      "description": "One half of her face flawless and alluring, the other half bare skull polished to a grin. Her black hair cascades around the veil that hides and reveals in cruel rhythm. Gowns of funerary lace wrap her willowy body, each thread whispering of graves newly filled. Calvera’s dance is macabre, her partners chosen for how little they will be missed. Ice-blue eyes glimmer with both pity and hunger, the promise of a kiss as cold as a tomb."
+      "description": "Tall and slender in black funerary lace; one half face flawless and tempting, the other a polished skull grinning without mercy. Ice-blue eyes glow with hunger and pity\u2014she offers both, then takes more. Appearance: medium, straight, black hair; ice-blue eyes; bone-white (half skull visage), smooth skin; tall height, slim build. Features: .  Personality: calm, observant, quietly determined. She wears funerary lace, grave-silk veil, bone clasps, silent slippers. She wears padded jack with steel splints under a quilted surcoat, knotted scarf and fingerless gloves."
     },
     {
       "id": "NP00001015",
       "name": "Zareya Emberhorn",
-      "race": "Tiefling",
+      "race": "Sableheart Tiefling",
       "sex": "Female",
       "type": "villain",
       "appearance": {
         "eye_color": "Gold",
-        "hair_color": "Black",
+        "hair_color": "Purple",
         "build": "Curvy",
-        "skin_tone": "Crimson"
+        "skin_tone": "Light Purple",
+        "hair_length": "Long",
+        "hair_style": "Wavy",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
       },
-      "description": "Crimson skin glossed with the sheen of heat, her curved horns banded in brass. Her black hair spills down her back, framing golden eyes that flash with mischief and malice. A corseted coat of ash-grey leather hugs her body, the laces straining with intent. Zareya collects promises like jewels and breaks them with relish. Her tail flicks in idle circles, her lips curl into knowing smirks, and where she kisses, she leaves marks that burn hotter than fire."
+      "description": "Crimson skin with a soft ember glow; polished gold silver bronze long curved pointed horns banded in brass; gold eyes that flash with mischief. She wears a laced corset bodice and a layered skirt with a high slit, long silk gloves, a bolero jacket with long sleeves, strapped heeled boots and jewelry chains.. An ash-gray corseted leather suit hugs a voluptuous figure; long tail matching skin color curls when she lies. Zareya sells heat and keeps the fire\u2014playful, ruthless, irresistible. Appearance: long, wavy, black hair; gold eyes; crimson-red, smooth skin; medium height, curvy build. Features: polished gold silver bronze long curved pointed horns, long tail matching skin color, pointed ears. Personality: calm, observant, quietly determined. She wears corset bodice with laced front, layered skirt with high slit, long silk gloves, bolero jacket, strapped heeled boots, jewelry chains and earrings. Their heritage is obvious: light purple or light blue glossy skin, polished gold silver bronze long curved pointed horns, long tail matching skin color matching the skin tone. She wears a laced corset bodice and layered skirt with a high slit, long silk gloves, a bolero jacket and strapped heeled boots with jewelry chains."
+    },
+    {
+      "id": "NP00001016",
+      "name": "Morrigan Ashvein",
+      "race": "Mountain Orc",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Copper",
+        "hair_color": "Black (war braids)",
+        "build": "Bulky",
+        "skin_tone": "Granite-green",
+        "hair_length": "Medium",
+        "hair_style": "Braided",
+        "height": "Very tall",
+        "skin_texture": "Smooth",
+        "features": [
+          "tusks"
+        ]
+      },
+      "description": "A war-matron built like a siege tower; granite-green skin, tusks capped in iron, black braids laced with bone. She wears cliff-colored mail and speaks in avalanches. Morrigan conquers by treaty or by ruin\u2014whichever falls first. Appearance: medium, braided, black (war braids) hair; copper eyes; granite-green, smooth skin; very tall height, bulky build. Features: tusks.  Personality: composed, purposeful, sharp when it counts. She wears stone-hued lamellar, fur mantle, climbing straps, cliff boots. She wears thick boiled-leather with bone rivets, heavy bracers and greaves scarred from raids."
+    },
+    {
+      "id": "NP00001017",
+      "name": "Dame Auriel Highwind",
+      "race": "Great Elf",
+      "sex": "Female",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Sapphire",
+        "hair_color": "Platinum",
+        "build": "Tall",
+        "skin_tone": "Pale gold",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": [
+          "pointed ears"
+        ]
+      },
+      "description": "Platinum hair, pale-gold skin, sapphire eyes that judge like a cathedral. Inquisitorial plate chased with scripture; a radiant halberd that hums when liars breathe. Auriel calls her cruelty discipline and her zeal mercy\u2014she sleeps well. Appearance: medium, straight, platinum hair; sapphire eyes; pale gold, smooth skin; tall height, tall build. Features: pointed ears.  Personality: calm, observant, quietly determined. She wears high court robes with metallic trim, jeweled clasps, silk gloves, polished boots. She wears sheer silk layers in twilight hues, jewelry chains across the shoulders and bare midriff, elegance as armor."
+    },
+    {
+      "id": "NP00001018",
+      "name": "Vrex the Gilt Broker",
+      "race": "Coastal Dwarf",
+      "sex": "Male",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Sea-green",
+        "hair_color": "Salt-and-copper",
+        "build": "Stout",
+        "skin_tone": "Wind-browned",
+        "hair_length": "Long",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Rough",
+        "features": []
+      },
+      "description": "Stout frame in pearl-button waistcoat; beard rings minted from bribes; sea-green eyes that count faster than you can hide coin. Vrex launders gold in tides and blood in ledgers\u2014shipwrecks happen; fortunes happen faster. Appearance: long, straight, salt-and-copper hair; sea-green eyes; wind-browned, rough skin; medium height, stout build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears tarred twine vest, sea-cloak, shell-braided beard, deck boots. He wears stout mail over quilted gambeson with plate at shoulders and shins, a broad belt of hammered brass."
+    },
+    {
+      "id": "NP00001019",
+      "name": "Valis Nightroot",
+      "race": "Viridian Tiefling",
+      "sex": "Male",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Jade",
+        "hair_color": "Blonde",
+        "build": "Curvy",
+        "skin_tone": "Light Green",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
+      },
+      "description": "Olive skin with a green undertone; white light brown antler-like pointed horns; jade eyes that smile wrong. He wears a flowing embroidered robe and sleeveless overcloak, a vine belt with pouches, leaf-stitched bracers, a long skirt with slits and strapped sandals.. A perfumer-priest of poisons who anoints daggers and devotions alike. Valis sells absolution that tastes like mint and ends like sleep. Appearance: medium, straight, black hair; jade eyes; olive with green undertone, smooth skin; medium height, slim build. Features: white light brown antler-like pointed horns, short fur-tipped tail matching skin color, pointed ears. Personality: witty, charming, quick on the turn. She wears flowing embroidered robe, sleeveless overcloak, vine belt with pouches, leaf-stitched bracers, long skirt with slits, strapped sandals. Their heritage is obvious: light green or turquoise smooth skin, antler-like white or light-white light brown antler-like pointed horns, and a short fur-short fur-tipped tail matching skin color matching the skin tone. He wears a flowing embroidered robe and sleeveless overcloak, vine belt with pouches, leaf-stitched bracers and strapped sandals."
+    },
+    {
+      "id": "NP00001020",
+      "name": "Korrath Bloodtide",
+      "race": "Ashfoot Orc",
+      "sex": "Male",
+      "type": "villain",
+      "appearance": {
+        "eye_color": "Amber",
+        "hair_color": "Black topknot",
+        "build": "Bulky",
+        "skin_tone": "Charcoal-green",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Very tall",
+        "skin_texture": "Smooth",
+        "features": [
+          "tusks"
+        ]
+      },
+      "description": "Crime-matriarch in tusks and tattoos; amber eyes lit like forge-embers, charcoal-green skin painted with ash runes. His bulk is wrapped in leather stolen from both war and market stalls. Korrath runs rackets with a grin and settles debts with an axe. Ashfoot Orc heritage: volcanic scars, volcanic temper\u2014lava runs slow, but when it flows, everything burns. Appearance: medium, straight, black topknot hair; amber eyes; charcoal-green, smooth skin; very tall height, bulky build. Features: tusks.  Personality: composed, purposeful, sharp when it counts. She wears obsidian-inset armor, ash-dyed wraps, bone totems, bare feet. He wears thick boiled-leather with bone rivets, heavy bracers and greaves scarred from raids."
     }
   ]
 }

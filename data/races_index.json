@@ -1,0 +1,262 @@
+[
+    {
+        "id": "RC00000001",
+        "name": "Humans",
+        "race_group": null
+    },
+    {
+        "id": "RC00000002",
+        "name": "Forest Elves",
+        "race_group": "Elf"
+    },
+    {
+        "id": "RC00000003",
+        "name": "Dark Elves",
+        "race_group": "Elf"
+    },
+    {
+        "id": "RC00000004",
+        "name": "Snow Elves",
+        "race_group": "Elf"
+    },
+    {
+        "id": "RC00000005",
+        "name": "Great Elves",
+        "race_group": "Elf"
+    },
+    {
+        "id": "RC00000006",
+        "name": "Iron Dwarves",
+        "race_group": "Dwarf"
+    },
+    {
+        "id": "RC00000007",
+        "name": "Hill Dwarves",
+        "race_group": "Dwarf"
+    },
+    {
+        "id": "RC00000008",
+        "name": "Ember Dwarves",
+        "race_group": "Dwarf"
+    },
+    {
+        "id": "RC00000009",
+        "name": "Coastal Dwarves",
+        "race_group": "Dwarf"
+    },
+    {
+        "id": "RC00000010",
+        "name": "Ashfoot Orcs",
+        "race_group": "Orc"
+    },
+    {
+        "id": "RC00000011",
+        "name": "Storm Orcs",
+        "race_group": "Orc"
+    },
+    {
+        "id": "RC00000012",
+        "name": "Mountain Orcs",
+        "race_group": "Orc"
+    },
+    {
+        "id": "RC00000013",
+        "name": "Darkblood Tiefling",
+        "race_group": "Tiefling"
+    },
+    {
+        "id": "RC00000014",
+        "name": "Hellbound Tiefling",
+        "race_group": "Tiefling"
+    },
+    {
+        "id": "RC00000015",
+        "name": "Voided Tiefling",
+        "race_group": "Tiefling"
+    },
+    {
+        "id": "RC00000016",
+        "name": "Sableheart Tiefling",
+        "race_group": "Tiefling"
+    },
+    {
+        "id": "RC00000017",
+        "name": "Viridian Tiefling",
+        "race_group": "Tiefling"
+    },
+    {
+        "id": "RC00000018",
+        "name": "Halflings",
+        "race_group": null
+    },
+    {
+        "id": "RC00000019",
+        "name": "Goblins",
+        "race_group": null
+    },
+    {
+        "id": "RC00000020",
+        "name": "Trollkin",
+        "race_group": null
+    },
+    {
+        "id": "RC00000021",
+        "name": "Sylvari",
+        "race_group": null
+    },
+    {
+        "id": "RC00000022",
+        "name": "Runeforged",
+        "race_group": null
+    },
+    {
+        "id": "RC00000023",
+        "name": "Myconids",
+        "race_group": null
+    },
+    {
+        "id": "RC00000024",
+        "name": "Kitsune",
+        "race_group": null
+    },
+    {
+        "id": "RC00000025",
+        "name": "Neko",
+        "race_group": null
+    },
+    {
+        "id": "RC00000026",
+        "name": "Inugami",
+        "race_group": null
+    },
+    {
+        "id": "RC00000027",
+        "name": "Lamia",
+        "race_group": null
+    },
+    {
+        "id": "RC00000028",
+        "name": "Harpies",
+        "race_group": null
+    },
+    {
+        "id": "RC00000029",
+        "name": "Minotaurs",
+        "race_group": null
+    },
+    {
+        "id": "RC00000030",
+        "name": "Satyrs",
+        "race_group": null
+    },
+    {
+        "id": "RC00000031",
+        "name": "Cervans",
+        "race_group": null
+    },
+    {
+        "id": "RC00000032",
+        "name": "Nagaji",
+        "race_group": null
+    },
+    {
+        "id": "RC00000033",
+        "name": "Arachne",
+        "race_group": null
+    },
+    {
+        "id": "RC00000034",
+        "name": "Caprines",
+        "race_group": null
+    },
+    {
+        "id": "RC00000035",
+        "name": "Avianfolk",
+        "race_group": null
+    },
+    {
+        "id": "RC00000036",
+        "name": "Ursans",
+        "race_group": null
+    },
+    {
+        "id": "RC00000037",
+        "name": "Sharkkin",
+        "race_group": null
+    },
+    {
+        "id": "RC00000038",
+        "name": "Rodentia",
+        "race_group": null
+    },
+    {
+        "id": "RC00000039",
+        "name": "Cervari",
+        "race_group": null
+    },
+    {
+        "id": "RC00000040",
+        "name": "Centaurs",
+        "race_group": null
+    },
+    {
+        "id": "RC00000041",
+        "name": "Merfolk",
+        "race_group": null
+    },
+    {
+        "id": "RC00000042",
+        "name": "Gnollkin",
+        "race_group": null
+    },
+    {
+        "id": "RC00000043",
+        "name": "Porcans",
+        "race_group": null
+    },
+    {
+        "id": "RC00000044",
+        "name": "Mothfolk",
+        "race_group": null
+    },
+    {
+        "id": "RC00000045",
+        "name": "Jackalfolk (Anubari)",
+        "race_group": null
+    },
+    {
+        "id": "RC00000046",
+        "name": "Owlkin",
+        "race_group": null
+    },
+    {
+        "id": "RC00000047",
+        "name": "Kobolds",
+        "race_group": null
+    },
+    {
+        "id": "RC00000048",
+        "name": "Goliaths",
+        "race_group": null
+    },
+    {
+        "id": "RC00000049",
+        "name": "Tabaxi",
+        "race_group": null
+    },
+    {
+        "id": "RC00000050",
+        "name": "Tortles",
+        "race_group": null
+    },
+    {
+        "id": "RC00000051",
+        "name": "Kenku",
+        "race_group": null
+    },
+    {
+        "id": "RC00000052",
+        "name": "Dragonborn",
+        "race_group": null
+    }
+]

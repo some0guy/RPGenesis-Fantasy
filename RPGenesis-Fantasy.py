@@ -418,6 +418,33 @@ def load_enchants() -> List[Dict]: return safe_load_doc("enchants.json", "enchan
 def load_magic() -> List[Dict]:    return safe_load_doc("magic.json", "spells")
 def load_status() -> List[Dict]:   return safe_load_doc("status.json", "status")
 
+# Tolerant loaders for top-level array documents (e.g., races, classes)
+def load_races_list() -> List[Dict]:
+    path = DATA_DIR / "races.json"
+    try:
+        doc = load_json(str(path), [])
+        if isinstance(doc, list):
+            return list(doc)
+        if isinstance(doc, dict) and isinstance(doc.get("races"), list):
+            return list(doc.get("races"))
+    except Exception:
+        pass
+    return []
+
+def load_classes_list() -> List[Dict]:
+    path = DATA_DIR / "classes.json"
+    try:
+        if not path.exists() or path.stat().st_size == 0:
+            return []
+        doc = load_json(str(path), [])
+        if isinstance(doc, list):
+            return list(doc)
+        if isinstance(doc, dict) and isinstance(doc.get("classes"), list):
+            return list(doc.get("classes"))
+    except Exception:
+        pass
+    return []
+
 # ======================== Core structures ========================
 @dataclass
 class Encounter:
@@ -972,11 +999,13 @@ def draw_panel(surf, game):
         add("Flee", game.flee)
         add("Inventory", lambda: setattr(game, 'mode', 'inventory'))
         add("Equipment", lambda: setattr(game, 'mode', 'equip'))
+        add("Database", lambda: setattr(game, 'mode', 'database'))
     elif game.mode == "dialogue":
         add("Talk",  lambda: game.handle_dialogue_choice("Talk"))
         add("Leave", lambda: game.handle_dialogue_choice("Leave"))
         add("Inventory", lambda: setattr(game, 'mode', 'inventory'))
         add("Equipment", lambda: setattr(game, 'mode', 'equip'))
+        add("Database", lambda: setattr(game, 'mode', 'database'))
     elif game.mode == "inventory":
         # Draw a full overlay inventory covering the center and right side
         buttons += draw_inventory_overlay(surf, game)
@@ -987,6 +1016,8 @@ def draw_panel(surf, game):
         buttons += draw_save_overlay(surf, game)
     elif getattr(game, 'mode', '') == "load":
         buttons += draw_load_overlay(surf, game)
+    elif getattr(game, 'mode', '') == "database":
+        buttons += draw_database_overlay(surf, game)
     else:
         add("Search Area", game.search_tile)
         if t.encounter and t.encounter.enemy and not t.encounter.spotted:
@@ -1003,6 +1034,7 @@ def draw_panel(surf, game):
             add("Leave NPC", lambda: game.handle_dialogue_choice("Leave"))
         add("Inventory", lambda: setattr(game, 'mode', 'inventory'))
         add("Equipment", lambda: setattr(game, 'mode', 'equip'))
+        add("Database", lambda: setattr(game, 'mode', 'database'))
         add("Save Game", lambda: setattr(game, 'mode', 'save'))
         add("Load Game", lambda: setattr(game, 'mode', 'load'))
 
@@ -1643,6 +1675,626 @@ def draw_load_overlay(surf, game):
             buttons.append(Button(rect, "", lambda slot=idx: game.load_from_slot(slot), draw_bg=False))
     return buttons
 
+def draw_database_overlay(surf, game):
+    """Database browser: view Items, NPCs, Races, Traits, Enchants, Magic, Status, Classes.
+
+    Centered modal over the map area; returns list of Buttons for click handling.
+    """
+    buttons: List[Button] = []
+    win_w, win_h = surf.get_size()
+    panel_w = int(PANEL_W_FIXED)
+
+    # Map view area (between left and right panels)
+    view_w = max(100, win_w - 2*panel_w)
+    view_h = win_h
+    view_rect = pg.Rect(panel_w, 0, view_w, view_h)
+
+    # Dim background
+    dim = pg.Surface((view_rect.w, view_rect.h), pg.SRCALPHA)
+    dim.fill((10, 10, 14, 140))
+    surf.blit(dim, (view_rect.x, view_rect.y))
+
+    # Modal rect
+    inset = 24
+    modal_w = max(640, int(view_w * 0.90))
+    modal_h = max(420, int(view_h * 0.90))
+    modal_x = view_rect.x + (view_w - modal_w)//2
+    modal_y = view_rect.y + (view_h - modal_h)//2
+    modal = pg.Rect(modal_x, modal_y, modal_w, modal_h)
+
+    # Panel
+    pg.draw.rect(surf, (24,26,34), modal, border_radius=10)
+    pg.draw.rect(surf, (96,102,124), modal, 2, border_radius=10)
+    pg.draw.rect(surf, (56,60,76), modal.inflate(-8, -8), 1, border_radius=8)
+
+    # Header with tabs
+    if not hasattr(game, '_db_font_30'): game._db_font_30 = pg.font.Font(None, 30)
+    if not hasattr(game, '_db_font_26'): game._db_font_26 = pg.font.Font(None, 26)
+    if not hasattr(game, '_db_font_22'): game._db_font_22 = pg.font.Font(None, 22)
+    if not hasattr(game, '_db_font_20'): game._db_font_20 = pg.font.Font(None, 20)
+    title_font = game._db_font_30
+    surf.blit(title_font.render("Database", True, (235,235,245)), (modal.x + 16, modal.y + 12))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode','explore')))
+
+    # Initialize state on first open
+    if not hasattr(game, 'db_cat'): game.db_cat = 'Items'
+    if not hasattr(game, 'db_sub'): game.db_sub = 'All'
+    if not hasattr(game, 'db_page'): game.db_page = 0
+    if not hasattr(game, 'db_sel'): game.db_sel = None
+    if not hasattr(game, 'db_cache'):
+        # Build cache of datasets
+        def _safe(rel, key):
+            return safe_load_doc(rel, key)
+        # Items by subcategory
+        items_all = gather_items()
+        items = {
+            'All': items_all,
+            'Weapons':      _safe(os.path.join('items','weapons.json'), 'items'),
+            'Armour':       _safe(os.path.join('items','armour.json'), 'items'),
+            'Accessories':  _safe(os.path.join('items','accessories.json'), 'items'),
+            'Clothing':     _safe(os.path.join('items','clothing.json'), 'items'),
+            'Consumables':  _safe(os.path.join('items','consumables.json'), 'items'),
+            'Materials':    _safe(os.path.join('items','materials.json'), 'items'),
+            'Quest Items':  _safe(os.path.join('items','quest_items.json'), 'items'),
+            'Trinkets':     _safe(os.path.join('items','trinkets.json'), 'items'),
+        }
+        # NPCs by subcategory
+        npcs_all = gather_npcs()
+        villains_list: List[Dict] = []
+        try:
+            villains_list.extend(_safe(os.path.join('npcs','villains.json'), 'npcs'))
+        except Exception:
+            pass
+        try:
+            base_dir = DATA_DIR / 'npcs'
+            for subdir in ['vilains', 'villains']:
+                p = base_dir / subdir
+                if p.exists() and p.is_dir():
+                    for fn in os.listdir(p):
+                        if fn.lower().endswith('.json'):
+                            rel = os.path.join('npcs', subdir, fn)
+                            villains_list.extend(_safe(rel, 'npcs'))
+        except Exception:
+            pass
+        npcs = {
+            'All':      npcs_all,
+            'Allies':   _safe(os.path.join('npcs','allies.json'), 'npcs'),
+            'Animals':  _safe(os.path.join('npcs','animals.json'), 'npcs'),
+            'Citizens': _safe(os.path.join('npcs','citizens.json'), 'npcs'),
+            'Enemies':  _safe(os.path.join('npcs','enemies.json'), 'npcs'),
+            'Monsters': _safe(os.path.join('npcs','monsters.json'), 'npcs'),
+            'Villains': villains_list,
+        }
+        game.db_cache = {
+            'Items': items,
+            'NPCs': npcs,
+            'Races': list(getattr(game, 'races', []) or []),
+            'Traits': list(getattr(game, 'traits', []) or []),
+            'Enchants': list(getattr(game, 'enchants', []) or []),
+            'Magic': list(getattr(game, 'magic', []) or []),
+            'Status': list(getattr(game, 'status', []) or []),
+            'Classes': list(getattr(game, 'classes', []) or []),
+        }
+
+    # Tabs
+    tab_font = game._db_font_22
+    tab_y = modal.y + 50
+    tab_x = modal.x + 16
+    tab_h = 28
+    tab_pad = 10
+    tabs = ['Items','NPCs','Races','Traits','Enchants','Magic','Status','Classes']
+    for name in tabs:
+        tw = max(90, tab_font.size(name)[0] + 20)
+        r = pg.Rect(tab_x, tab_y, tw, tab_h)
+        sel = (game.db_cat == name)
+        pg.draw.rect(surf, (50,54,68) if sel else (34,36,46), r, border_radius=8)
+        pg.draw.rect(surf, (110,110,130), r, 2, border_radius=8)
+        surf.blit(tab_font.render(name, True, (235,235,245)), (r.x + 10, r.y + 5))
+        def make_tab(n=name):
+            return lambda n=n: (setattr(game,'db_cat', n), setattr(game,'db_page', 0), setattr(game,'db_sel', None))
+        buttons.append(Button(r, "", make_tab(name), draw_bg=False))
+        tab_x += tw + tab_pad
+
+    # Content areas
+    pad = 16
+    content = modal.inflate(-2*pad, -2*pad)
+    content.y = tab_y + tab_h + 12
+    content.h = modal.bottom - pad - content.y
+    list_area = pg.Rect(content.x, content.y + 36, int(content.w * 0.48), content.h - 36)
+    det_area  = pg.Rect(content.x + list_area.w + 12, content.y, content.w - list_area.w - 12, content.h)
+    for r in (pg.Rect(content.x, content.y, content.w, 28), list_area, det_area):
+        if r is list_area or r is det_area:
+            pg.draw.rect(surf, (30,32,42), r, border_radius=8)
+            pg.draw.rect(surf, (70,74,92), r, 1, border_radius=8)
+
+    # Subcategory chips for Items/NPCs
+    chip_font = game._db_font_20
+    chip_y = content.y
+    chip_x = content.x + 6
+    chips = []
+    if game.db_cat == 'Items':
+        chips = ['All','Weapons','Armour','Accessories','Clothing','Consumables','Materials','Quest Items','Trinkets']
+    elif game.db_cat == 'NPCs':
+        chips = ['All','Allies','Animals','Citizens','Enemies','Monsters','Villains']
+    if chips:
+        for ch in chips:
+            cw = max(80, chip_font.size(ch)[0] + 18)
+            r = pg.Rect(chip_x, chip_y, cw, 26)
+            sel = (game.db_sub == ch)
+            pg.draw.rect(surf, (48,52,68) if sel else (36,38,48), r, border_radius=8)
+            pg.draw.rect(surf, (96,102,124), r, 1, border_radius=8)
+            surf.blit(chip_font.render(ch, True, (230,230,240)), (r.x + 8, r.y + 4))
+            def make_chip(c=ch):
+                return lambda c=c: (setattr(game,'db_sub', c), setattr(game,'db_page',0), setattr(game,'db_sel', None))
+            buttons.append(Button(r, "", make_chip(ch), draw_bg=False))
+            chip_x += cw + 8
+    else:
+        # Title for non-chip categories
+        surf.blit(pg.font.Font(None, 22).render(game.db_cat, True, (220,220,235)), (content.x + 6, content.y + 4))
+
+    # Filter UI state
+    if not hasattr(game, 'db_query'): game.db_query = ''
+    if not hasattr(game, 'db_name_only'): game.db_name_only = False
+    if not hasattr(game, 'db_starts_with'): game.db_starts_with = False
+    if not hasattr(game, 'db_filter_focus'): game.db_filter_focus = False
+    if not hasattr(game, 'db_filters_open'): game.db_filters_open = False
+    if not hasattr(game, 'db_fields_sel'): game.db_fields_sel = {}
+
+    # Resolve dataset (sorted, cached)
+    entries: List[Dict] = []
+    cat = game.db_cat
+    sub = game.db_sub if (cat in ('Items','NPCs')) else None
+    if not hasattr(game, '_db_sorted_map'):
+        game._db_sorted_map = {}
+    key = (cat, sub)
+    if key in game._db_sorted_map:
+        entries = game._db_sorted_map[key]
+    else:
+        if cat in ('Items','NPCs'):
+            data_map: Dict[str, List[Dict]] = game.db_cache.get(cat, {}) or {}
+            base = list(data_map.get(sub or 'All', []))
+        else:
+            base = list(game.db_cache.get(cat, []) or [])
+        def _name_key(obj: Any) -> str:
+            try:
+                if cat == 'Items':
+                    return str(item_name(obj)).lower()
+                if cat == 'NPCs':
+                    return str((obj.get('name') if isinstance(obj, dict) else '') or (obj.get('id') if isinstance(obj, dict) else '') or '').lower()
+                if isinstance(obj, dict):
+                    return str(obj.get('name') or obj.get('id') or '').lower()
+                return str(obj).lower()
+            except Exception:
+                return ''
+        try:
+            base.sort(key=_name_key)
+        except Exception:
+            pass
+        entries = base
+        game._db_sorted_map[key] = entries
+
+    # Apply free-text filter to entries to produce filtered list for current view
+    def _entry_name(obj: Any) -> str:
+        try:
+            if isinstance(obj, dict):
+                return str(obj.get('name') or obj.get('id') or '')
+            return str(obj or '')
+        except Exception:
+            return ''
+
+    def _flatten(obj: Any) -> str:
+        # Build a lowercase haystack of keys and values across object
+        parts: List[str] = []
+        try:
+            if isinstance(obj, dict):
+                for k, v in obj.items():
+                    try:
+                        if isinstance(k, str):
+                            parts.append(k)
+                    except Exception:
+                        pass
+                    if isinstance(v, dict):
+                        for v2 in v.values():
+                            if isinstance(v2, (str, int, float)):
+                                parts.append(str(v2))
+                    elif isinstance(v, list):
+                        for v2 in v:
+                            if isinstance(v2, (str, int, float)):
+                                parts.append(str(v2))
+                    elif isinstance(v, (str, int, float)):
+                        parts.append(str(v))
+            else:
+                parts.append(str(obj))
+        except Exception:
+            pass
+        return ' '.join(parts).lower()
+
+    qkey = (game.db_cat, game.db_sub if game.db_cat in ('Items','NPCs') else None, bool(game.db_name_only), bool(game.db_starts_with), (game.db_query or '').strip(), tuple(sorted(game.db_fields_sel.get(game.db_cat, []))))
+    if getattr(game, '_db_prev_filter_key', None) != qkey:
+        game.db_page = 0
+        game.db_sel = None
+        game._db_prev_filter_key = qkey
+
+    query = (game.db_query or '').strip().lower()
+    filtered = entries
+    if query:
+        if game.db_starts_with:
+            filtered = [e for e in entries if _entry_name(e).lower().startswith(query)]
+        elif game.db_name_only:
+            filtered = [e for e in entries if query in _entry_name(e).lower()]
+        else:
+            # tokenized AND-match across selected fields (or all if none selected)
+            tokens = [t for t in re.split(r"\s+", query) if t]
+            selected = list(game.db_fields_sel.get(cat, []))
+            # Build map from label to path tuple
+            def _field_options_for(cat: str) -> List[Tuple[str, Tuple[str, ...]]]:
+                if cat == 'NPCs':
+                    return [
+                        ('Name', ('name','id')),
+                        ('Race', ('race',)),
+                        ('Sex',  ('sex',)),
+                        ('Type', ('type',)),
+                        ('Appearance', ('appearance.eye_color','appearance.hair_color','appearance.build','appearance.skin_tone')),
+                        ('Description', ('desc','description','bio')),
+                    ]
+                if cat == 'Items':
+                    return [
+                        ('Name', ('name','id')),
+                        ('Type', ('category','slot','item_type','Type','type','subtype','SubType')),
+                        ('Description', ('desc','description','flavor')),
+                    ]
+                if cat == 'Races':
+                    return [
+                        ('Name', ('name','id')),
+                        ('Group', ('race_group',)),
+                        ('Appearance', ('appearance',)),
+                        ('Nature & Culture', ('nature_and_culture',)),
+                        ('Combat', ('combat',)),
+                        ('Flavor', ('spice',)),
+                    ]
+                return [
+                    ('Name', ('name','id')),
+                    ('Details', ('effect','effects','tags','applies_to','school','damage','mp')),
+                ]
+            path_map = {lab: paths for (lab, paths) in _field_options_for(cat)}
+            # Helper: get values by paths
+            def _vals_by_paths(obj, paths: Tuple[str,...]) -> List[str]:
+                out: List[str] = []
+                for p in paths:
+                    try:
+                        cur = obj
+                        for part in p.split('.'):
+                            if isinstance(cur, dict):
+                                cur = cur.get(part)
+                            else:
+                                cur = None; break
+                        if cur is None: continue
+                        if isinstance(cur, (list, tuple)):
+                            for v in cur:
+                                if isinstance(v, (str,int,float)):
+                                    out.append(str(v))
+                        elif isinstance(cur, dict):
+                            for v in cur.values():
+                                if isinstance(v, (str,int,float)):
+                                    out.append(str(v))
+                        elif isinstance(cur, (str,int,float)):
+                            out.append(str(cur))
+                    except Exception:
+                        pass
+                return out
+            def _hay_sel(x):
+                if not selected:
+                    return _flatten(x)
+                buf: List[str] = []
+                for lab in selected:
+                    paths = path_map.get(lab)
+                    if not paths: continue
+                    buf.extend(_vals_by_paths(x, paths))
+                return ' '.join(buf).lower()
+            _cache = {}
+            def hay(x):
+                k=id(x); v=_cache.get(k)
+                if v is None:
+                    v=_hay_sel(x); _cache[k]=v
+                return v
+            filtered = [e for e in entries if all(t in hay(e) for t in tokens)]
+
+    # List rendering with pagination (two columns, left-to-right)
+    total = len(filtered)
+    row_h = 52  # taller rows for readability
+    inner_pad = 8
+    col_gap = 12
+    num_cols = 2
+    col_w = max(140, (list_area.w - inner_pad*2 - col_gap) // num_cols)
+    # Reserve space for filter input row
+    filter_h = 32
+    rows_vis = max(3, (list_area.h - inner_pad*2 - filter_h - 28) // row_h)
+    per_page = max(1, rows_vis * num_cols)
+    pages = max(1, (total + per_page - 1)//per_page)
+    game.db_page = max(0, min(int(getattr(game,'db_page',0)), pages-1))
+    start = game.db_page * per_page
+    end = min(total, start + per_page)
+
+    name_font = game._db_font_26
+    if not hasattr(game, '_db_label_cache'):
+        game._db_label_cache = {}
+    list_x0 = list_area.x + inner_pad
+    # Draw filter input + toggles
+    inp_w = max(100, list_area.w - 2*inner_pad - 360)
+    inp_rect = pg.Rect(list_x0, list_area.y + inner_pad, inp_w, 28)
+    is_focus = bool(getattr(game, 'db_filter_focus', False))
+    pg.draw.rect(surf, (38,40,52), inp_rect, border_radius=6)
+    pg.draw.rect(surf, (122,162,247) if is_focus else (96,102,124), inp_rect, 2, border_radius=6)
+    # Render query text
+    q_show = game.db_query or ''
+    q_font = game._db_font_20
+    qs = q_font.render(q_show, True, (235,235,245))
+    surf.blit(qs, (inp_rect.x + 8, inp_rect.y + (inp_rect.h - qs.get_height())//2))
+    # Caret (blink simple based on time)
+    try:
+        import time as _t
+        if is_focus and int(_t.time()*2)%2 == 0:
+            cx = inp_rect.x + 8 + qs.get_width() + 1
+            pg.draw.line(surf, (235,235,245), (cx, inp_rect.y + 6), (cx, inp_rect.bottom - 6), 2)
+    except Exception:
+        pass
+    # Input click handler
+    buttons.append(Button(inp_rect, "", lambda: setattr(game,'db_filter_focus', True), draw_bg=False))
+    # Toggle chips: Name Only, Starts With
+    tog_w = 120
+    tog_h = 28
+    tog1 = pg.Rect(inp_rect.right + 10, inp_rect.y, tog_w, tog_h)
+    tog2 = pg.Rect(tog1.right + 10, inp_rect.y, tog_w, tog_h)
+    for rect, label, val_name in ((tog1, 'Name Only', 'db_name_only'), (tog2, 'Starts With', 'db_starts_with')):
+        on = bool(getattr(game, val_name, False))
+        pg.draw.rect(surf, (58,62,78) if on else (36,38,48), rect, border_radius=8)
+        pg.draw.rect(surf, (122,162,247) if on else (96,102,124), rect, 2, border_radius=8)
+        ts = q_font.render(label, True, (230,230,240))
+        surf.blit(ts, (rect.x + (rect.w - ts.get_width())//2, rect.y + (rect.h - ts.get_height())//2))
+        def make_toggle(vn=val_name):
+            return lambda vn=vn: setattr(game, vn, not bool(getattr(game, vn, False)))
+        buttons.append(Button(rect, "", make_toggle(val_name), draw_bg=False))
+
+    # Dropdown for selecting which fields to search
+    dd_w = 130
+    dd_h = 28
+    dd_rect = pg.Rect(tog2.right + 10, inp_rect.y, dd_w, dd_h)
+    is_open = bool(getattr(game, 'db_filters_open', False))
+    pg.draw.rect(surf, (36,38,48), dd_rect, border_radius=8)
+    pg.draw.rect(surf, (96,102,124), dd_rect, 2, border_radius=8)
+    dd_label = ('Fields ▾' if not is_open else 'Fields ▴')
+    ds = q_font.render(dd_label, True, (230,230,240))
+    surf.blit(ds, (dd_rect.x + (dd_rect.w - ds.get_width())//2, dd_rect.y + (dd_rect.h - ds.get_height())//2))
+    buttons.append(Button(dd_rect, "", lambda: setattr(game,'db_filters_open', not bool(getattr(game,'db_filters_open', False))), draw_bg=False))
+
+    # Define available field options per category
+    def _field_options_for(cat: str) -> List[Tuple[str, Tuple[str, ...]]]:
+        if cat == 'NPCs':
+            return [
+                ('Name', ('name','id')),
+                ('Race', ('race',)),
+                ('Sex',  ('sex',)),
+                ('Type', ('type',)),
+                ('Appearance', ('appearance.eye_color','appearance.hair_color','appearance.build','appearance.skin_tone')),
+                ('Description', ('desc','description','bio')),
+            ]
+        if cat == 'Items':
+            return [
+                ('Name', ('name','id')),
+                ('Type', ('category','slot','item_type','Type','type','subtype','SubType')),
+                ('Description', ('desc','description','flavor')),
+            ]
+        if cat == 'Races':
+            return [
+                ('Name', ('name','id')),
+                ('Group', ('race_group',)),
+                ('Appearance', ('appearance',)),
+                ('Nature & Culture', ('nature_and_culture',)),
+                ('Combat', ('combat',)),
+                ('Flavor', ('spice',)),
+            ]
+        # Default for other categories
+        return [
+            ('Name', ('name','id')),
+            ('Details', ('effect','effects','tags','applies_to','school','damage','mp')),
+        ]
+
+    field_opts = _field_options_for(cat)
+    # Maintain selection per category
+    sel_labels: Set[str] = set(game.db_fields_sel.get(cat, []))
+    # Dropdown panel (drawn after list to ensure it stays on top) -- see bottom of function
+
+    list_y0 = list_area.y + inner_pad + filter_h
+
+    for i in range(start, end):
+        it = filtered[i]
+        local = i - start
+        col = local % num_cols
+        row = local // num_cols
+        x = list_x0 + col * (col_w + col_gap)
+        y = list_y0 + row * row_h
+        r = pg.Rect(x, y, col_w, row_h-4)
+        sel = (game.db_sel == i)
+        pg.draw.rect(surf, (52,56,70) if sel else (34,36,46), r, border_radius=6)
+        pg.draw.rect(surf, (90,94,112), r, 1, border_radius=6)
+        # Label by category
+        label = "?"
+        try:
+            if cat == 'Items':
+                label = f"{item_name(it)}"
+            elif cat == 'NPCs':
+                label = str(it.get('name') or it.get('id') or '?')
+            elif cat == 'Races':
+                label = str(it.get('name') or it.get('id') or '?')
+            elif cat in ('Traits','Enchants','Magic','Status','Classes'):
+                label = str(it.get('name') or it.get('id') or '?')
+        except Exception:
+            label = str(it)
+        cache_key = (label, int(name_font.get_height()))
+        lab_surf = game._db_label_cache.get(cache_key)
+        if lab_surf is None:
+            lab_surf = name_font.render(label, True, (230,230,240))
+            game._db_label_cache[cache_key] = lab_surf
+        ty = r.y + max(4, (r.h - lab_surf.get_height())//2)
+        surf.blit(lab_surf, (r.x + 10, ty))
+        def make_sel(idx=i):
+            return lambda idx=idx: setattr(game,'db_sel', idx)
+        if not is_open:
+            buttons.append(Button(r, "", make_sel(i), draw_bg=False))
+
+    # Pager controls (bottom-left)
+    pager_y = list_area.bottom - 30
+    buttons.append(Button((list_area.x + 8, pager_y, 110, 26), "Prev Page", lambda: setattr(game,'db_page', max(0, game.db_page-1))))
+    buttons.append(Button((list_area.x + 8 + 120, pager_y, 110, 26), "Next Page", lambda: setattr(game,'db_page', min(pages-1, game.db_page+1))))
+
+    # Draw dropdown panel last so it overlays the list
+    if is_open:
+        panel = pg.Rect(dd_rect.x, dd_rect.bottom + 6, max(dd_w, 240), 8 + 30 + ((len(field_opts)+1)//2)*30)
+        pg.draw.rect(surf, (30,32,42), panel, border_radius=8)
+        pg.draw.rect(surf, (70,74,92), panel, 1, border_radius=8)
+        # Quick actions
+        qa_w = 90; qa_h = 24
+        qa_all = pg.Rect(panel.x + 8, panel.y + 8, qa_w, qa_h)
+        qa_none= pg.Rect(qa_all.right + 8, panel.y + 8, qa_w, qa_h)
+        for rect, lab, mode in ((qa_all,'Select All','all'), (qa_none,'Clear','none')):
+            pg.draw.rect(surf, (36,38,48), rect, border_radius=6)
+            pg.draw.rect(surf, (96,102,124), rect, 1, border_radius=6)
+            t = q_font.render(lab, True, (230,230,240))
+            surf.blit(t, (rect.x + (rect.w - t.get_width())//2, rect.y + (rect.h - t.get_height())//2))
+            if mode == 'all':
+                buttons.append(Button(rect, "", lambda: (game.db_fields_sel.__setitem__(cat, [fo[0] for fo in field_opts])), draw_bg=False))
+            else:
+                buttons.append(Button(rect, "", lambda: (game.db_fields_sel.__setitem__(cat, [])), draw_bg=False))
+        # Options grid
+        sel_labels = set(game.db_fields_sel.get(cat, []))
+        grid_x = panel.x + 8
+        grid_y = qa_all.bottom + 8
+        col_w2 = (panel.w - 8 - 8 - 8) // 2
+        for idx, (lab, _paths) in enumerate(field_opts):
+            cx = grid_x + (idx % 2) * (col_w2 + 8)
+            cy = grid_y + (idx // 2) * 30
+            r = pg.Rect(cx, cy, col_w2, 26)
+            on = (lab in sel_labels)
+            pg.draw.rect(surf, (58,62,78) if on else (36,38,48), r, border_radius=6)
+            pg.draw.rect(surf, (122,162,247) if on else (96,102,124), r, 1, border_radius=6)
+            ts = q_font.render(lab, True, (230,230,240))
+            surf.blit(ts, (r.x + 8, r.y + (r.h - ts.get_height())//2))
+            def make_toggle_field(label=lab):
+                def _cb(label=label):
+                    s = set(game.db_fields_sel.get(cat, []))
+                    if label in s: s.remove(label)
+                    else: s.add(label)
+                    game.db_fields_sel[cat] = list(s)
+                return _cb
+            buttons.append(Button(r, "", make_toggle_field(lab), draw_bg=False))
+
+    # Details panel
+    det_font = pg.font.Font(None, 20)
+    head_font = pg.font.Font(None, 24)
+    if game.db_sel is not None and 0 <= game.db_sel < total:
+        it = filtered[game.db_sel]
+        # Title
+        title = str(it.get('name') or it.get('id') or '?') if isinstance(it, dict) else str(it)
+        surf.blit(head_font.render(title, True, (235,235,245)), (det_area.x + 12, det_area.y + 10))
+        yy = det_area.y + 40
+
+        def line(txt: str):
+            nonlocal yy
+            yy += draw_text(surf, txt, (det_area.x + 12, yy), max_w=det_area.w - 24, font=det_font) + 2
+
+        try:
+            if cat == 'Items':
+                wt = item_weight(it)
+                val = item_value(it)
+                t = str(item_type(it) or '-')
+                s = str(item_subtype(it) or '-')
+                line(f"ID: {it.get('id','-')}")
+                line(f"Type: {t} / {s}")
+                line(f"Weight: {wt}")
+                line(f"Value: {val}")
+                desc = item_desc(it) or '-'
+                yy += 4; line("Description:")
+                line(desc)
+            elif cat == 'NPCs':
+                line(f"ID: {it.get('id','-')}")
+                line(f"Race: {it.get('race') or '-'}")
+                flags = []
+                for k in ('hostile','romanceable'):
+                    try:
+                        if bool(it.get(k)): flags.append(k)
+                    except Exception: pass
+                if flags:
+                    line("Flags: " + ", ".join(flags))
+                for k in ('hp','dex','will','greed'):
+                    if k in it:
+                        line(f"{k.upper()}: {it.get(k)}")
+                # Appearance section (if provided)
+                ap = it.get('appearance')
+                if ap:
+                    yy += 4; line("Appearance:")
+                    if isinstance(ap, dict):
+                        # Pretty-print common appearance fields
+                        for k, v in ap.items():
+                            try:
+                                label = str(k).replace('_',' ').title()
+                                line(f"- {label}: {v}")
+                            except Exception:
+                                line(f"- {k}: {v}")
+                    else:
+                        line(str(ap))
+                # Description section: support several common keys
+                desc = it.get('desc') or it.get('description') or it.get('bio')
+                if desc:
+                    yy += 4; line("Description:")
+                    line(str(desc))
+            elif cat == 'Races':
+                line(f"ID: {it.get('id','-')}")
+                rg = it.get('race_group'); line(f"Group: {rg if rg else '-'}")
+                for k, lab in (('appearance','Appearance'), ('nature_and_culture','Nature & Culture'), ('combat','Combat'), ('spice','Flavor')):
+                    if it.get(k):
+                        yy += 4; line(lab + ":")
+                        line(str(it.get(k)))
+            elif cat in ('Traits','Enchants'):
+                line(f"ID: {it.get('id','-')}")
+                if it.get('applies_to'):
+                    line(f"Applies To: {it.get('applies_to')}")
+                eff = it.get('effect') or {}
+                if eff:
+                    yy += 4; line("Effect:")
+                    for k,v in eff.items():
+                        line(f"- {k}: {v}")
+            elif cat == 'Magic':
+                line(f"ID: {it.get('id','-')}")
+                if it.get('school'): line(f"School: {it.get('school')}")
+                if it.get('mp') is not None: line(f"MP: {it.get('mp')}")
+                dmg = it.get('damage') or {}
+                if isinstance(dmg, dict) and ('min' in dmg or 'max' in dmg):
+                    line(f"Damage: {dmg.get('min','?')} - {dmg.get('max','?')}")
+                if it.get('applies_status'): line(f"Applies Status: {it.get('applies_status')}")
+            elif cat == 'Status':
+                line(f"ID: {it.get('id','-')}")
+                tags = it.get('tags') or []
+                if tags: line("Tags: " + ", ".join([str(t) for t in tags]))
+                eff = it.get('effects') or {}
+                if eff:
+                    yy += 4; line("Effects:")
+                    for k,v in eff.items():
+                        if isinstance(v, dict):
+                            line(f"- {k}:")
+                            for k2,v2 in v.items():
+                                line(f"   • {k2}: {v2}")
+                        else:
+                            line(f"- {k}: {v}")
+            elif cat == 'Classes':
+                # Unknown schema; show raw keys
+                if isinstance(it, dict):
+                    for k,v in it.items():
+                        line(f"{k}: {v}")
+        except Exception:
+            pass
+
+    return buttons
+
 # ======================== Game class + loop ========================
 class Game:
     def __init__(self, start_map: Optional[str]=None, start_entry: Optional[str]=None, start_pos: Optional[Tuple[int,int]]=None):
@@ -1653,6 +2305,9 @@ class Game:
         self.enchants= load_enchants()
         self.magic   = load_magic()
         self.status  = load_status()
+        # Additional lore datasets
+        self.races   = load_races_list()
+        self.classes = load_classes_list()
         # Load start map from world_map.json and build grid from editor/runtime
         wm_map, wm_entry, wm_pos = get_game_start()
         sel_map = start_map or wm_map or "Jungle of Hills"
@@ -2297,12 +2952,30 @@ def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, s
                     mxs = max(0, int(getattr(game, 'ui_scroll_max', 0)))
                     if game.ui_scroll < 0: game.ui_scroll = 0
                     if game.ui_scroll > mxs: game.ui_scroll = mxs
+                # Database list uses paging; no wheel scroll needed here
             elif event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE: 
-                    if game.mode == "inventory":
+                    if game.mode in ("inventory", "equip", "database", "save", "load"):
                         game.mode = "explore"
                     else:
                         running = False
+                elif game.mode == 'database' and bool(getattr(game,'db_filter_focus', False)):
+                    # Text input for database filter
+                    if event.key == pg.K_RETURN:
+                        game.db_filter_focus = False
+                    elif event.key == pg.K_BACKSPACE:
+                        try:
+                            game.db_query = (game.db_query[:-1]) if game.db_query else ''
+                        except Exception:
+                            game.db_query = ''
+                    else:
+                        ch = getattr(event, 'unicode', '')
+                        try:
+                            if ch and ch.isprintable():
+                                if len(game.db_query) < 128:
+                                    game.db_query += ch
+                        except Exception:
+                            pass
                 elif event.key in (pg.K_w, pg.K_UP):    game.move(0,-1)
                 elif event.key in (pg.K_s, pg.K_DOWN):  game.move(0,1)
                 elif event.key in (pg.K_a, pg.K_LEFT):  game.move(-1,0)
