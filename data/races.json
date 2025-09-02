@@ -6,15 +6,15 @@
     "combat": "Wildly adaptable: disciplined legions, cunning raiders, swashbucklers, arcanists—never the same twice.",
     "spice": "Other races say humans burn twice as bright, half as long.",
     "id": "RC00000001",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
+    "skin_tone": ["pale","fair","tanned","olive","brown","dark","black"],
+    "skin_texture": ["smooth"],
+    "hair_colour": ["black","brown","blonde","red","white","grey"],
+    "hairstyle": ["short","long","wavy","curly","straight","braided"],
+    "eye_colour": ["brown","blue","green","hazel","grey","amber"],
+    "height": ["short","medium","tall"],
+    "build": ["slim","athletic","muscular","bulky","normal","curvy"],
     "features": [],
-    "appearance": "Medium height and build, with skin and hair in every shade imaginable. Immensely varied across regions and cultures."
+    "appearance": "Humans vary wildly—skin from pale to dark, hair in every common hue, and eyes of brown, blue, green, hazel, or grey. Medium height and build are most common, but stature ranges from slight to imposing. Clothing spans the spectrum: quilted gambesons and leathers for soldiers, loose linens and wool for peasants, silks and velvet for nobles—all shaped by region and fashion."
   },
   {
     "name": "Forest Elves",
@@ -23,19 +23,15 @@
     "combat": "Stealth archers and guerrillas, vanishing into undergrowth between precise volleys.",
     "spice": "Their whispers ride the wind through branches.",
     "id": "RC00000002",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [
-      "amber"
-    ],
-    "height": [
-      "tall"
-    ],
-    "build": [],
-    "features": [],
-    "appearance": "Tall, slender; bronze to olive skin; leaf-dyed hair and floral tattoos. Eyes bright green, amber, or hazel."
+    "skin_tone": ["fair","tanned","olive"],
+    "skin_texture": ["smooth"],
+    "hair_colour": ["blonde","white","auburn","light brown"],
+    "hairstyle": ["long","braided","loose"],
+    "eye_colour": ["green","hazel","amber"],
+    "height": ["medium"],
+    "build": ["slim","toned"],
+    "features": ["pointed ears","sharp eyes"],
+    "appearance": "Forest Elves are typically of fair, tanned, or olive complexion with hair of blonde, white, auburn, or light brown. Medium in height and slim yet toned, their sharp eyes and pointed ears lend a watchful grace. Their clothing is leather and pelt worked with leaves and living plants—minimal to moderate coverage for agility, often earth-dyed and silent in motion."
   },
   {
     "name": "Dark Elves",
@@ -44,19 +40,15 @@
     "combat": "Poisoners, assassins, and shadow mages; excel at surgical strikes and retreats.",
     "spice": "Their eyes glimmer in the dark like a predator’s.",
     "id": "RC00000003",
-    "skin_tone": [
-      "white"
-    ],
-    "skin_texture": [],
-    "hair_colour": [
-      "silver"
-    ],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Obsidian, slate-gray, or violet skin; white, silver, or black hair; crimson or ghost-lit eyes."
+    "skin_tone": ["pale dark brown"],
+    "skin_texture": ["smooth"],
+    "hair_colour": ["grey","brown","black","white","silver"],
+    "hairstyle": ["long","braided","straight"],
+    "eye_colour": ["red","amber","silver"],
+    "height": ["tall"],
+    "build": ["curvy"],
+    "features": ["pointed ears","silver tattoos","piercing eyes"],
+    "appearance": "Dark Elves bear pale, dusky-brown skin offset by hair of grey, brown, black, or silver-white. Tall and curvaceous, their angular features are sharpened by elegant pointed ears and a predatory glimmer to the eyes. They prefer dark leathers and fabrics cut close to the body, embellished with silver fittings and gemstones. Fine silver tattoos often wind across the skin, catching moonlight like constellations."
   },
   {
     "name": "Snow Elves",
@@ -65,17 +57,15 @@
     "combat": "Endurance fighters using icy terrain to exhaust foes; frost-forged arms.",
     "spice": "Breath mists in warmth; stray snowflakes follow their steps.",
     "id": "RC00000004",
-    "skin_tone": [
-      "white"
-    ],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Porcelain skin, white/silver hair, pale blue or gray eyes. Furs and frost-woven fabrics."
+    "skin_tone": ["pure white"],
+    "skin_texture": ["smooth"],
+    "hair_colour": ["white","grey","black","blue","purple"],
+    "hairstyle": ["short","long","loose"],
+    "eye_colour": ["ice blue","grey","violet"],
+    "height": ["small"],
+    "build": ["slim"],
+    "features": ["pointed ears","icy gaze"],
+    "appearance": "Snow Elves have pure white skin and slim, small frames. Hair ranges from white and grey to black with icy blue or purple tones; eyes glint in frosted hues. Their clothing is minimalistic—revealing leather and simple fabrics designed for speed and adapted bodies that thrive in cold. Lines are austere, colors pale, often trimmed with fur only for grip and wind-shear."
   },
   {
     "name": "Great Elves",
@@ -84,20 +74,15 @@
     "combat": "Elegant war-mages and champions; discipline married to arcana.",
     "spice": "Their lineage carries a faint celestial resonance.",
     "id": "RC00000005",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [
-      "platinum",
-      "silver"
-    ],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [
-      "very tall"
-    ],
-    "build": [],
-    "features": [],
-    "appearance": "Very tall, flawless skin in pale golds or ivory; radiant blond, platinum, or jet hair; luminous gold/silver/sapphire eyes."
+    "skin_tone": ["yellow","orange"],
+    "skin_texture": ["smooth"],
+    "hair_colour": ["blonde","brown","auburn","platinum","silver"],
+    "hairstyle": ["long","wavy","braided"],
+    "eye_colour": ["gold","silver","green","sapphire"],
+    "height": ["very tall"],
+    "build": ["curvy"],
+    "features": ["pointed ears","radiant aura"],
+    "appearance": "Great Elves tower over most, their skin glowing in hues of yellow or orange. Hair cascades in blonde, brown, auburn, or pale metallics; eyes gleam gold, silver, or jewel-tones. Their wardrobes favor ornamental robes and ceremonial armor heavy with gold and silver jewelry—vestments that turn battlefield and court into theatre."
   },
   {
     "name": "Iron Dwarves",
@@ -106,17 +91,15 @@
     "combat": "Shield walls, hammers, and implacable advance; masters of siege defense.",
     "spice": "In battle, their heartbeats echo like hammer blows.",
     "id": "RC00000006",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [
-      "short"
-    ],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Short, stocky; stone-gray or earthy brown skin; beards clasped with iron and steel."
+    "skin_tone": ["stone gray","earthy brown","ruddy"],
+    "skin_texture": ["rough","scarred"],
+    "hair_colour": ["black","brown","red","grey"],
+    "hairstyle": ["braided","short","long"],
+    "eye_colour": ["brown","grey"],
+    "height": ["short"],
+    "build": ["bulky","strong","muscular"],
+    "features": ["thick beards","braided beards"],
+    "appearance": "Iron Dwarves are short and powerfully built, with stone-gray or earthy brown complexions and work-roughened skin. Hair runs black, brown, or red, often braided; beards are clasped with iron and steel. Their attire favors mail, plate, and heavy leathers blackened by forge soot, along with aprons and tool-laden belts."
   },
   {
     "name": "Hill Dwarves",
@@ -125,15 +108,15 @@
     "combat": "Village militias with axes, crossbows, heavy shields; immovable on home ground.",
     "spice": "Ale strong enough to floor an orc.",
     "id": "RC00000007",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Broad and ruddy with sun-bleached hair; practical garb embroidered with clan motifs."
+    "skin_tone": ["ruddy","tanned","brown"],
+    "skin_texture": ["rough","smooth"],
+    "hair_colour": ["blonde","light brown","brown","red"],
+    "hairstyle": ["braided","short","long"],
+    "eye_colour": ["hazel","brown","green"],
+    "height": ["short"],
+    "build": ["bulky","strong"],
+    "features": ["beards","rosy cheeks"],
+    "appearance": "Broad and ruddy, Hill Dwarves wear their sun with pride. Hair is often sun-bleached blonde or light brown, with thick beards knotted for work. Garb is practical—quilted vests, sturdy boots, homespun shirts—embroidered with clan motifs and beer-stain honesty."
   },
   {
     "name": "Ember Dwarves",
@@ -142,15 +125,15 @@
     "combat": "Molten blades, warhammers, and fire magic; aggressive shock smiths.",
     "spice": "Skin radiates heat, scorching parchment if held too long.",
     "id": "RC00000008",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Soot-darkened skin with ember-glowing eyes; hair red or coal-black, often singed."
+    "skin_tone": ["soot-black","coal brown","ruddy"],
+    "skin_texture": ["rough","scorched"],
+    "hair_colour": ["red","black"],
+    "hairstyle": ["braided","short","singed"],
+    "eye_colour": ["amber","golden","ember"],
+    "height": ["short"],
+    "build": ["muscular","bulky"],
+    "features": ["glowing eyes","forge burns"],
+    "appearance": "Ember Dwarves carry soot-darkened skin and ember-glowing eyes. Hair is red or coal-black and often singed at the tips. Their armor is blackened steel, brass, and obsidian plates over fireproof leathers, with vents and grills like tiny furnaces."
   },
   {
     "name": "Coastal Dwarves",
@@ -159,15 +142,15 @@
     "combat": "Harpoons, nets, boarding axes; ruthless in close-quarters fights on deck.",
     "spice": "Creed: “Stone sinks, ships sail.”",
     "id": "RC00000009",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Weathered, salt-crusted; tanned skin; sea-bleached hair; beards braided with shells."
+    "skin_tone": ["tanned","weathered brown"],
+    "skin_texture": ["salt-crusted","rough"],
+    "hair_colour": ["white","blonde","light brown","brown"],
+    "hairstyle": ["braided","short","sea-bleached"],
+    "eye_colour": ["blue","grey","green"],
+    "height": ["short"],
+    "build": ["strong","bulky"],
+    "features": ["beards braided with shells"],
+    "appearance": "Weathered and sea-tough, Coastal Dwarves wear tanned skin and salt-crusted beards braided with shells. Hair runs sea-bleached white to blonde. Their clothes are tarred leathers, canvas coats, and rope belts—made for decks slick with brine."
   },
   {
     "name": "Ashfoot Orcs",
@@ -176,17 +159,15 @@
     "combat": "Brutal close-combat with obsidian and steel; barefoot coal-walkers.",
     "spice": "War drums packed with volcanic stones rumble like quakes.",
     "id": "RC00000010",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [
-      "tall"
-    ],
-    "build": [],
-    "features": [],
-    "appearance": "Tall, scarred; gray-black skin like cooled ash; ember-glow eyes; calloused feet and tusks."
+    "skin_tone": ["gray-black","charcoal"],
+    "skin_texture": ["scarred","rough"],
+    "hair_colour": ["black","dark brown"],
+    "hairstyle": ["braided","short","shaved"],
+    "eye_colour": ["amber","ember","red"],
+    "height": ["tall"],
+    "build": ["muscular","strong"],
+    "features": ["tusks","calloused feet","ash warpaint"],
+    "appearance": "Tall and scarred, Ashfoot Orcs wear gray-black skin like cooled ash. Ember-lit eyes glare above obsidian charms. They favor dark leather harnesses, ash-daubed skin, and rugged kilts, leaving feet bare to walk on coals during rites."
   },
   {
     "name": "Storm Orcs",
@@ -195,17 +176,15 @@
     "combat": "Thunderous charges and storm-touched magic; fearless boarding and cliff assaults.",
     "spice": "Air around them smells of ozone; static crackles when enraged.",
     "id": "RC00000011",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [
-      "tall"
-    ],
-    "build": [],
-    "features": [],
-    "appearance": "Tall, broad; storm-gray or sea-green skin; braids charred at the ends; tusks adorned with shells."
+    "skin_tone": ["storm gray","sea green"],
+    "skin_texture": ["rough","salt-worn"],
+    "hair_colour": ["black","dark brown"],
+    "hairstyle": ["braided","wind-tangled","charred tips"],
+    "eye_colour": ["blue","grey","sea green"],
+    "height": ["tall"],
+    "build": ["muscular","broad"],
+    "features": ["tusks","storm scars"],
+    "appearance": "Broad and tall, Storm Orcs bear storm-gray or sea-green skin. Hair is often braided and wind-tangled, sometimes charred at the ends. They wear sea-leathers, harnesses, and mail scavenged from boarding raids, hung with hooks and knots that sing in the wind."
   },
   {
     "name": "Mountain Orcs",
@@ -214,15 +193,15 @@
     "combat": "High-ground ambushers triggering rockfalls before charging.",
     "spice": "War-cries carry for miles, rolling like thunder.",
     "id": "RC00000012",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Stocky, slate-skinned; tusks chipped on stone; bodies built for altitude."
+    "skin_tone": ["slate gray","stone brown"],
+    "skin_texture": ["scarred","weathered"],
+    "hair_colour": ["black","dark brown"],
+    "hairstyle": ["braided","shaved","topknot"],
+    "eye_colour": ["brown","grey"],
+    "height": ["tall"],
+    "build": ["bulky","strong"],
+    "features": ["tusks","ritual scars"],
+    "appearance": "Stocky and slate-skinned, Mountain Orcs are built for altitude and cold. Their garb is layered furs, rock-dyed cloth, and strapped plate scavenged from fallen foes. Tusks are often filed or etched with clan marks."
   },
   {
     "name": "Darkblood Tiefling",
@@ -231,38 +210,15 @@
     "combat": "Quick, vicious fighters—favor ambush tactics, shadow magic, and poison.",
     "spice": "Darkblood Tieflings are said to carry whispers of their infernal ancestors in their dreams, and some claim their cracked skin glows faintly in moonlight.",
     "id": "RC00000013",
-    "skin_tone": [
-      "light grey"
-    ],
-    "skin_texture": [
-      "cracked",
-      "craggily"
-    ],
-    "hair_colour": [
-      "black",
-      "grey"
-    ],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [
-      "medium"
-    ],
-    "build": [
-      "normal",
-      "slim"
-    ],
-    "features": [
-      "black horns",
-      "black tail",
-      "jagged horns",
-      "pointed ears",
-      "pointed horns",
-      "spiked tail",
-      "twisted tail",
-      "very long horns",
-      "very long tail"
-    ],
-    "appearance": "Light grey skin, cracked skin, craggily skin; black horns, very long horns, jagged horns, pointed horns; black hair, grey hair; grey eyes; pointed ears; black tail, very long tail, twisted tail, spiked tail; normal height, normal build."
+    "skin_tone": ["light grey"],
+    "skin_texture": ["cracked","craggily"],
+    "hair_colour": ["black","grey"],
+    "hairstyle": ["long","straight","braided"],
+    "eye_colour": ["grey"],
+    "height": ["medium"],
+    "build": ["normal","slim"],
+    "features": ["black horns","very long horns","jagged horns","pointed horns","pointed ears","black tail","very long tail","twisted tail","spiked tail"],
+    "appearance": "Light-grey, cracked skin offsets black, jagged horns and a very long spiked tail. Hair is black or grey, eyes often a cool grey. They dress in shadow-dyed leathers and muted cloaks that conceal tools and blades, favoring movement and silence over ostentation."
   },
   {
     "name": "Hellbound Tiefling",
@@ -271,41 +227,15 @@
     "combat": "Fearless, aggressive; often frontline warriors or pyromancers.",
     "spice": "Rumored to smell faintly of brimstone when agitated, and their blood hisses when spilled on holy ground.",
     "id": "RC00000014",
-    "skin_tone": [
-      "orange",
-      "red"
-    ],
-    "skin_texture": [
-      "rough"
-    ],
-    "hair_colour": [
-      "orange",
-      "pink",
-      "purple",
-      "red"
-    ],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [
-      "tall"
-    ],
-    "build": [
-      "muscular",
-      "strong"
-    ],
-    "features": [
-      "blunt horns",
-      "grey horns",
-      "light brown horns",
-      "long horns",
-      "medium tail",
-      "orange tail",
-      "pointed ears",
-      "red tail",
-      "thick horns",
-      "thick tail"
-    ],
-    "appearance": "Red skin, orange skin, rough skin; grey horns, light brown horns, thick horns, long horns, blunt horns, pointed horns; red hair, orange hair, purple hair, pink hair; ember eyes, glowing eyes, golden eyes; pointed ears; red tail, orange tail, medium length tail, thick tail (same color as skin); tall height, strong build."
+    "skin_tone": ["red","orange"],
+    "skin_texture": ["rough"],
+    "hair_colour": ["red","orange","purple","pink"],
+    "hairstyle": ["long","wavy","braided"],
+    "eye_colour": ["golden","ember","amber"],
+    "height": ["tall"],
+    "build": ["strong","muscular"],
+    "features": ["grey horns","light brown horns","thick horns","long horns","blunt horns","pointed horns","pointed ears","red tail","orange tail","medium tail","thick tail"],
+    "appearance": "Rough red or orange skin, thick blunt horns of grey or light brown, and thick medium-length tails that match the body. Hair blazes in reds, oranges, or theatrical purples and pinks; eyes glow like embers. Their attire is dramatic—lacquered leathers, scaled coats, and flame motifs—made to be seen."
   },
   {
     "name": "Voided Tiefling",
@@ -314,56 +244,15 @@
     "combat": "Cold precision; void magic, curses, and debilitating afflictions.",
     "spice": "Their shadows sometimes move independently of their bodies.",
     "id": "RC00000015",
-    "skin_tone": [
-      "green",
-      "grey",
-      "light blue",
-      "light purple",
-      "orange",
-      "pitch black",
-      "red",
-      "yellow"
-    ],
-    "skin_texture": [
-      "smooth"
-    ],
-    "hair_colour": [
-      "blonde",
-      "green",
-      "grey",
-      "light blue",
-      "light purple",
-      "orange",
-      "pink",
-      "red",
-      "silver",
-      "teal",
-      "white",
-      "yellow"
-    ],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [
-      "tall"
-    ],
-    "build": [
-      "slim"
-    ],
-    "features": [
-      "black horns",
-      "black sclera",
-      "long horns",
-      "long tail",
-      "pitch black tail",
-      "pointed ears",
-      "smooth horns",
-      "smooth tail",
-      "straight horns",
-      "upward-pointed horns",
-      "very long ears",
-      "very long pointed ears"
-    ],
-    "appearance": "Pitch black skin, smooth skin; black horns, long horns, straight horns, upward pointed horns, smooth horns; light colored hair (white, light blue, light purple, grey, red, orange, yellow, green, pink, teal); any eye color, black sclera; very long ears, pointed ears; pitch black tail, long tail, smooth tail (same color as skin); tall height, slim build."
+    "skin_tone": ["pitch black"],
+    "skin_texture": ["smooth"],
+    "hair_colour": ["white","light blue","light purple","grey","red","orange","yellow","green","pink","teal","blonde","silver"],
+    "hairstyle": ["long","straight","wavy"],
+    "eye_colour": ["any"],
+    "height": ["tall"],
+    "build": ["slim"],
+    "features": ["black sclera","black horns","long horns","straight horns","smooth horns","upward-pointed horns","pitch black tail","long tail","smooth tail","very long pointed ears"],
+    "appearance": "Pitch-black, smooth skin swallows light. Horns are long, straight, and glossy black; ears are very long and pointed. Hair is always light-toned against the void—white, silver, or pastel shades. Any iris may occur, but all eyes show black sclera. They favor minimalist, severe garments in matte blacks and quiet silvers."
   },
   {
     "name": "Sableheart Tiefling",
@@ -372,41 +261,15 @@
     "combat": "Subtle poisoners, fencers, illusionists.",
     "spice": "Their voices carry a strange, honeyed resonance that makes even insults sound alluring.",
     "id": "RC00000016",
-    "skin_tone": [
-      "light blue",
-      "light purple"
-    ],
-    "skin_texture": [
-      "glossy",
-      "silky",
-      "smooth"
-    ],
-    "hair_colour": [
-      "pink",
-      "purple"
-    ],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [
-      "medium"
-    ],
-    "build": [
-      "curvy"
-    ],
-    "features": [
-      "bronze horns",
-      "curved horns",
-      "gold horns",
-      "long horns",
-      "pointed ears",
-      "pointed horns",
-      "polished bronze horns",
-      "polished gold horns",
-      "polished horns",
-      "polished silver horns",
-      "silver horns"
-    ],
-    "appearance": "Light purple skin, light blue skin, silky skin, glossy skin; gold horns, silver horns, bronze horns, long horns, curved horns, polished horns, pointed horns; purple hair, pink hair; purple eyes; pointed ears; purple tail, blue tail, long tail (same color as skin); medium height, curvy build."
+    "skin_tone": ["light purple","light blue"],
+    "skin_texture": ["glossy","silky","smooth"],
+    "hair_colour": ["purple","pink"],
+    "hairstyle": ["long","wavy","braided"],
+    "eye_colour": ["purple","blue"],
+    "height": ["medium"],
+    "build": ["curvy"],
+    "features": ["polished gold horns","polished silver horns","polished bronze horns","long horns","curved horns","pointed horns","pointed ears"],
+    "appearance": "Light purple or light blue skin gleams with a silky gloss. Long curved horns shine like polished gold, silver, or bronze above luxurious pink or purple hair. Their attire is opulent—clingy silks, fitted leather corsetry, and jewelry that catches every candle flame."
   },
   {
     "name": "Viridian Tiefling",
@@ -415,36 +278,15 @@
     "combat": "Poison, herbs, astrology-based divination; use nature’s chaos as a weapon.",
     "spice": "Viridian Tieflings often bear faintly glowing star-maps tattooed or etched into their skin.",
     "id": "RC00000017",
-    "skin_tone": [
-      "light green",
-      "turquoise"
-    ],
-    "skin_texture": [
-      "smooth"
-    ],
-    "hair_colour": [
-      "blonde",
-      "brown"
-    ],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [
-      "very tall"
-    ],
-    "build": [
-      "curvy"
-    ],
-    "features": [
-      "antler-like horns",
-      "fur-tipped tail",
-      "light brown horns",
-      "pointed ears",
-      "pointed horns",
-      "short tail",
-      "skin-coloured tail",
-      "white horns"
-    ],
-    "appearance": "Light green skin, turquoise skin, smooth skin; antler-like horns, white horns, light brown horns, pointed horns; brown hair, blonde hair; green eyes; pointed ears; green tail, turquoise tail, short tail, fur-tipped tail (same color as skin); very tall height, curvy build."
+    "skin_tone": ["light green","turquoise"],
+    "skin_texture": ["smooth"],
+    "hair_colour": ["brown","blonde"],
+    "hairstyle": ["long","braided","loose"],
+    "eye_colour": ["green","amber"],
+    "height": ["very tall"],
+    "build": ["curvy"],
+    "features": ["antler-like horns","white horns","light brown horns","pointed horns","short tail","fur-tipped tail","skin-coloured tail","pointed ears"],
+    "appearance": "Light green or turquoise skin pairs with antler-like white or light-brown horns. Hair is brown or blonde; eyes tend to verdant greens. Tails are short and fur-tipped, matching the skin. Their garments weave leather with moss, feathers, and natural ornaments—half druidic, half aristocratic."
   },
   {
     "name": "Halflings",
@@ -453,17 +295,15 @@
     "combat": "Stealth, trickery, and ranged strikes; turn big foes’ strength against them.",
     "spice": "Seem to slip into crowds and shadows by luck alone.",
     "id": "RC00000018",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [
-      "small"
-    ],
-    "build": [],
-    "features": [],
-    "appearance": "Small, nimble; curly hair; cheerful eyes; simple but colorful attire lovingly patched."
+    "skin_tone": ["fair","tanned","ruddy"],
+    "skin_texture": ["smooth"],
+    "hair_colour": ["brown","blonde","black","red"],
+    "hairstyle": ["curly","wavy","short","long"],
+    "eye_colour": ["hazel","green","brown","blue"],
+    "height": ["small"],
+    "build": ["petite","slim"],
+    "features": ["lightfooted","freckles"],
+    "appearance": "Small and nimble with cheerful eyes, Halflings favor curly hair and bright, practical clothes—waistcoats, patched trousers, sturdy boots. Colors are warm and homely, with a fondness for pockets and snack-stashes."
   },
   {
     "name": "Goblins",
@@ -472,15 +312,15 @@
     "combat": "Ambush swarms, traps, and unpredictable contraptions.",
     "spice": "Laughter that’s both infectious and terrifying.",
     "id": "RC00000019",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Goblinss tend toward gray, green skin."
+    "skin_tone": ["green","gray"],
+    "skin_texture": ["rough"],
+    "hair_colour": ["black","brown"],
+    "hairstyle": ["shaggy","cropped","spiky"],
+    "eye_colour": ["yellow","red","amber"],
+    "height": ["small"],
+    "build": ["slim"],
+    "features": ["pointed ears","sharp teeth"],
+    "appearance": "Goblins tend toward green or gray skin, with sharp noses, pointed ears, and jagged smiles. Clothes are scavenged—stitched leather, bent buckles, and too many pockets—smelling faintly of oil and mischief."
   },
   {
     "name": "Trollkin",
@@ -489,15 +329,15 @@
     "combat": "Regenerative brutes who outlast foes; heavy axes and bone totems.",
     "spice": "Scars heal into ridges and patterns rather than fading.",
     "id": "RC00000020",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Trollkins tend toward tall height."
+    "skin_tone": ["gray","green","stone blue"],
+    "skin_texture": ["rough","scarred"],
+    "hair_colour": ["black","dark brown"],
+    "hairstyle": ["braided","wild","shaggy"],
+    "eye_colour": ["yellow","green","brown"],
+    "height": ["tall"],
+    "build": ["bulky","muscular"],
+    "features": ["tusks","ridge scars","regeneration marks"],
+    "appearance": "Tall and heavy, Trollkin wear gray to green skin ridged with healed scars. Their garb is hide, bone, and iron—adorned with totems and trophies. A sour medicinal scent clings to their poultices and charms."
   },
   {
     "name": "Sylvari",
@@ -506,15 +346,15 @@
     "combat": "Thorned arms, living vines, and nature magic; agile in woodland fights.",
     "spice": "Heartbeats slow as sap drip.",
     "id": "RC00000021",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Bark-skin, moss hair; colors shift by season—blossoms in spring, golds in autumn."
+    "skin_tone": ["bark brown","leaf green","flower pink","autumn gold"],
+    "skin_texture": ["bark","smooth","mossy"],
+    "hair_colour": ["green","gold","red","brown"],
+    "hairstyle": ["leafy","vinebound","braided"],
+    "eye_colour": ["green","amber","brown"],
+    "height": ["medium"],
+    "build": ["slim","toned"],
+    "features": ["vines","blossoms","leaf ears"],
+    "appearance": "Sylvari wear bark-brown, leaf-green, or bloom-toned skin that shifts with seasons. Hair is moss, leaves, or flowerlike growths. Garments are grown rather than sewn—petal mantles, vine-wraps, and living bark cuirasses that flex like muscle."
   },
   {
     "name": "Runeforged",
@@ -523,15 +363,15 @@
     "combat": "Juggernauts with crushing blows; self-inscribed runes empower.",
     "spice": "Voices resonate like ringing anvils or grinding stone.",
     "id": "RC00000022",
-    "skin_tone": [],
-    "skin_texture": [],
+    "skin_tone": ["stone gray","iron","bronze","crystal"],
+    "skin_texture": ["stone","metal","crystalline"],
     "hair_colour": [],
     "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Stone/metal/crystal bodies etched with glowing runes; taller than humans."
+    "eye_colour": ["glowing blue","glowing amber","white"],
+    "height": ["tall"],
+    "build": ["bulky","muscular"],
+    "features": ["glowing runes","etched plates"],
+    "appearance": "Runeforged bodies are wrought of stone, metal, or crystal etched with glowing runes. Taller than humans and heavy as anvils, they wear interlocking plates and rune-scribed tabards—armor and skin in one."
   },
   {
     "name": "Myconids",
@@ -540,15 +380,15 @@
     "combat": "Toxic/hallucinogenic spores, damp ambushes, and choking clouds.",
     "spice": "Nearby, one hears faint whispers on drifting spores.",
     "id": "RC00000023",
-    "skin_tone": [],
-    "skin_texture": [],
+    "skin_tone": ["white","purple","red"],
+    "skin_texture": ["spongy","smooth"],
     "hair_colour": [],
     "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Mushroom-capped, spongy bodies in whites, purples, and reds."
+    "eye_colour": ["glowing white","amber"],
+    "height": ["short","medium"],
+    "build": ["slim","bulky"],
+    "features": ["mushroom caps","spore vents"],
+    "appearance": "Mushroom-capped and spongy, Myconids come in whites, purples, and reds. They wear fungus-grown capes and corded belts, shedding spores when startled; eyes glow faintly in the dark."
   },
   {
     "name": "Kitsune",
@@ -557,18 +397,15 @@
     "combat": "Misdirection, illusions, and agile precision strikes.",
     "spice": "Tails shimmer under moonlight, fading during illusions.",
     "id": "RC00000024",
-    "skin_tone": [
-      "red",
-      "white"
-    ],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Foxlike humanoids, often multi-tailed; golden/amber eyes; red, white, or black hair."
+    "skin_tone": ["fair","peach","light tan"],
+    "skin_texture": ["smooth"],
+    "hair_colour": ["red","white","black","brown"],
+    "hairstyle": ["long","wavy","braided","loose"],
+    "eye_colour": ["golden","amber","brown"],
+    "height": ["medium"],
+    "build": ["slim","toned"],
+    "features": ["fox ears","multiple tails","whiskers"],
+    "appearance": "Foxlike humanoids with keen, golden eyes and multiple sweeping tails. Hair runs red, white, black, or brown. They favor flowing robes, layered sashes, and masked hoods for festival or mischief; bells and charms hide in the folds."
   },
   {
     "name": "Neko",
@@ -577,15 +414,15 @@
     "combat": "Ambush and mobility specialists—leaps, claws, and quick blades.",
     "spice": "A soothing purr that calms even hardened warriors.",
     "id": "RC00000025",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Cat-eared, tailed; slit-pupil eyes; feline grace in every motion."
+    "skin_tone": ["fair","tanned","brown"],
+    "skin_texture": ["smooth"],
+    "hair_colour": ["black","brown","blonde","white"],
+    "hairstyle": ["short","bob","long","ponytail"],
+    "eye_colour": ["yellow","green","blue"],
+    "height": ["medium"],
+    "build": ["slim","petite"],
+    "features": ["cat ears","tail","slit pupils","whiskers"],
+    "appearance": "Cat-eared and tailed, Nekos move with feline grace. Their clothes lean to light leathers, cropped jackets, and fitted trousers for climbing and sprinting; bells and ribbons appear when they’re feeling playful."
   },
   {
     "name": "Inugami",
@@ -594,15 +431,15 @@
     "combat": "Frontline stamina fighters; wrathful when packmates fall.",
     "spice": "Always know the direction of “home,” however they define it.",
     "id": "RC00000026",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Clothing tends to feature clothing tends to feature clothing tends to feature warm eyes from gold to blue..."
+    "skin_tone": ["tanned","brown","olive"],
+    "skin_texture": ["smooth"],
+    "hair_colour": ["black","brown","dark blonde"],
+    "hairstyle": ["short","topknot","braided"],
+    "eye_colour": ["brown","blue","amber"],
+    "height": ["medium","tall"],
+    "build": ["strong","muscular"],
+    "features": ["canine ears","tail","fangs"],
+    "appearance": "Canine-featured humanoids with keen, loyal eyes. Inugami favor layered lamellar, padded jackets, and clan sashes; hair is often short or tied back for battle. Fetish cords and ancestor tags hang from belts and spears."
   },
   {
     "name": "Lamia",
@@ -611,15 +448,15 @@
     "combat": "Constriction, venom, and hypnotic gazes; lightning-fast strikes.",
     "spice": "Scale patterns shift subtly with mood—mesmerizing to stare at.",
     "id": "RC00000027",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Serpent-bodied with vivid scales; humanoid upper halves with slit eyes and fangs."
+    "skin_tone": ["sand","olive","gold","ebony"],
+    "skin_texture": ["scales","smooth"],
+    "hair_colour": ["black","brown","gold"],
+    "hairstyle": ["long","braided","loose"],
+    "eye_colour": ["gold","green","amber"],
+    "height": ["tall","very tall"],
+    "build": ["curvy","toned"],
+    "features": ["serpentine lower body","fangs","slit pupils"],
+    "appearance": "Serpent-bodied with vivid scales and a humanoid torso, Lamia wear jewelry, veils, and banded armlets that glitter against their coils. Hair tends to black or gold; eyes gleam like polished gems. Fabrics are airy and desert-bright, chosen for movement and allure."
   },
   {
     "name": "Harpies",
@@ -628,15 +465,15 @@
     "combat": "Aerial raiders diving and slashing before retreating; sonic disorientation.",
     "spice": "Songs stir emotions without magic—remnant of an ancient gift.",
     "id": "RC00000028",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Feathered wings, taloned feet; sharp-featured faces; hair mingles with plumage."
+    "skin_tone": ["tan","olive","pale"],
+    "skin_texture": ["smooth","feathered"],
+    "hair_colour": ["black","brown","white"],
+    "hairstyle": ["feather-mingled","long","cropped"],
+    "eye_colour": ["gold","amber","brown"],
+    "height": ["medium"],
+    "build": ["slim","toned"],
+    "features": ["feathered wings","taloned feet"],
+    "appearance": "Harpies have feathered wings and taloned feet, with hair that mingles into plumage. They favor leather harnesses, wind-cut tunics, and feathered pauldrons that keep the arms free for flight and claws freed for the strike."
   },
   {
     "name": "Minotaurs",
@@ -645,15 +482,15 @@
     "combat": "Devastating charges and greataxe sweeps; mastery of confined-space combat.",
     "spice": "Never lost in a maze; some dream in winding paths.",
     "id": "RC00000029",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Bull-headed, towering and broad; horns carved with clan markings."
+    "skin_tone": ["brown","black","red-brown"],
+    "skin_texture": ["furred","scarred"],
+    "hair_colour": ["black","brown"],
+    "hairstyle": ["mane","braided"],
+    "eye_colour": ["brown","amber"],
+    "height": ["very tall"],
+    "build": ["muscular","bulky"],
+    "features": ["bull horns","hooves","snout"],
+    "appearance": "Towering, bull-headed and broad, Minotaurs wear clan-carved horn rings and heavy harness leathers. Armored skirts and greaves leave hooves free; glyphs etched into horns mark ancestry and victories."
   },
   {
     "name": "Satyrs",
@@ -662,15 +499,15 @@
     "combat": "Ambush, distraction, and song-woven magic with spears and bows.",
     "spice": "Pipes and flutes that stir courage or sleep like spells.",
     "id": "RC00000030",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Goat legs, short horns, shaggy fur; youthful features and mischievous eyes."
+    "skin_tone": ["fair","olive","ruddy"],
+    "skin_texture": ["smooth","furred"],
+    "hair_colour": ["brown","black","red"],
+    "hairstyle": ["curly","long","braided"],
+    "eye_colour": ["green","gold","brown"],
+    "height": ["medium"],
+    "build": ["slim","toned"],
+    "features": ["short horns","goat legs","hooves"],
+    "appearance": "Goat-legged and bright-eyed, Satyrs wear wreaths, sashes, and open vests that leave room for revelry and dance. Short curling horns peek from hair; furred legs end in nimble hooves."
   },
   {
     "name": "Cervans",
@@ -679,15 +516,15 @@
     "combat": "Swift hunters with bows/spears; antlers formidable up close.",
     "spice": "Antlers glow faintly under moonlight, waxing and waning with it.",
     "id": "RC00000031",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Deerfolk with antlers that elaborate with age; faint dappled markings; doe-like eyes."
+    "skin_tone": ["tan","light brown","dappled"],
+    "skin_texture": ["smooth","furred"],
+    "hair_colour": ["brown","auburn","blonde"],
+    "hairstyle": ["braided","long","loose"],
+    "eye_colour": ["brown","amber","green"],
+    "height": ["tall"],
+    "build": ["slim","toned"],
+    "features": ["antlers","dappled markings"],
+    "appearance": "Deerfolk with branching antlers that elaborate with age, Cervans wear soft leather, bark plates, and cloaks mottled like the forest floor. Dappled markings trace shoulders and flanks; their steps are whisper-quiet."
   },
   {
     "name": "Nagaji",
@@ -696,15 +533,15 @@
     "combat": "Polearms, venom blades, and charm/control magics; cold strategists.",
     "spice": "Tongues taste emotions, sensing fear or lies in the air.",
     "id": "RC00000032",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Clothing tends to feature clothing tends to feature hair commonly appears in gold..."
+    "skin_tone": ["emerald","gold","olive","black"],
+    "skin_texture": ["scales","smooth"],
+    "hair_colour": ["black","dark brown","gold"],
+    "hairstyle": ["long","braided","sleek"],
+    "eye_colour": ["gold","green","amber"],
+    "height": ["medium","tall"],
+    "build": ["slim","toned"],
+    "features": ["slit pupils","forked tongue"],
+    "appearance": "Nagaji carry scaled skin in emeralds and golds with sleek black or gilded hair. Their clothing is layered silks over scaled cuirasses, jeweled collars masking a serpent’s smile; polearm tassels move like lures."
   },
   {
     "name": "Arachne",
@@ -713,15 +550,15 @@
     "combat": "Ambushers who ensnare and strike from shadow; poisoned daggers in hand.",
     "spice": "Silk hums faintly with their thoughts and can channel magic.",
     "id": "RC00000033",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Human torsos fused to sleek spider bodies; multifaceted or glowing eyes."
+    "skin_tone": ["pale","ebony","ashen"],
+    "skin_texture": ["smooth","chitinous"],
+    "hair_colour": ["black","white","silver"],
+    "hairstyle": ["long","braided","web-bound"],
+    "eye_colour": ["red","silver","white"],
+    "height": ["tall"],
+    "build": ["slim","toned"],
+    "features": ["spider lower body","spinnerets","extra eyes"],
+    "appearance": "Arachne possess human torsos fused to sleek spider bodies, with multifaceted or glowing eyes. They drape themselves in layered silk mantles and webbed harnesses, wearing blades as if part of the weave."
   },
   {
     "name": "Caprines",
@@ -730,15 +567,15 @@
     "combat": "Horn charges, axes, and hammers; excel in brutal melee.",
     "spice": "Horns ring like bells when struck—ritual before battle.",
     "id": "RC00000034",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Capriness tend toward muscular build."
+    "skin_tone": ["tan","brown","black"],
+    "skin_texture": ["furred","rough"],
+    "hair_colour": ["brown","black","white"],
+    "hairstyle": ["bearded","braided","shaggy"],
+    "eye_colour": ["amber","brown"],
+    "height": ["medium"],
+    "build": ["muscular","bulky"],
+    "features": ["goat horns","hooves","beards"],
+    "appearance": "Goatlike mountainfolk with stout frames and ringing horns, Caprines wear woolens, leather jerkins, and horn-guard helms. Beards are a point of pride, braided to display age and stubborn character."
   },
   {
     "name": "Avianfolk",
@@ -746,21 +583,17 @@
     "nature_and_culture": "Cliff rookeries and sky shrines; omens and augury bind their castes: owl-seers, hawk-warriors, raven-messengers.",
     "combat": "Aerial skirmishers swooping with spears or talons; unrivaled scouts.",
     "spice": "Feathers shift hue with mood—silent chromatic speech.",
-    "subtypes": [
-      "Owlkin",
-      "Hawkkin",
-      "Ravenkin"
-    ],
+    "subtypes": ["Owlkin","Hawkkin","Ravenkin"],
     "id": "RC00000035",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Feathered humanoids with taloned feet; wing types vary—owl, hawk, raven. Beaked or sharp-boned faces."
+    "skin_tone": ["pale","tan"],
+    "skin_texture": ["feathered","smooth"],
+    "hair_colour": ["white","black","brown"],
+    "hairstyle": ["feather-crest","short","long"],
+    "eye_colour": ["gold","yellow","black"],
+    "height": ["medium"],
+    "build": ["slim","toned"],
+    "features": ["wings","taloned feet","beak or beaked mask"],
+    "appearance": "Feathered humanoids with taloned feet and sweeping wings, Avianfolk wear leather harnesses, feathered capes, and sky-bright sashes that won’t snag in flight. Faces range from beaked to sharp-boned and masked."
   },
   {
     "name": "Ursans",
@@ -769,15 +602,15 @@
     "combat": "Juggernauts with claws and mauls; weather blows others cannot.",
     "spice": "Dream-walkers who commune with great ancestral bears.",
     "id": "RC00000036",
-    "skin_tone": [],
-    "skin_texture": [],
+    "skin_tone": ["brown","black","white"],
+    "skin_texture": ["furred","thick"],
     "hair_colour": [],
     "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Ursanss tend toward black, white skin."
+    "eye_colour": ["brown","black"],
+    "height": ["tall","very tall"],
+    "build": ["bulky","muscular"],
+    "features": ["claws","short tail","snout"],
+    "appearance": "Bearfolk of immense build with thick fur in browns, blacks, or winter white. They wear heavy furs, bone charms, and leather harnesses marked with clan sigils; their presence is calm until roused."
   },
   {
     "name": "Sharkkin",
@@ -786,17 +619,15 @@
     "combat": "Harpoons, spears, and teeth; tireless, relentless close-range combat.",
     "spice": "Blood-scent frenzies heighten strength and speed in water.",
     "id": "RC00000037",
-    "skin_tone": [],
-    "skin_texture": [],
+    "skin_tone": ["shark gray","blue-gray","white"],
+    "skin_texture": ["smooth"],
     "hair_colour": [],
     "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [
-      "muscular"
-    ],
-    "features": [],
-    "appearance": "Sleek, muscular; fins on limbs or back; predatory eyes; unnervingly smooth movements."
+    "eye_colour": ["black","steel"],
+    "height": ["tall"],
+    "build": ["muscular"],
+    "features": ["gills","fins","multiple rows of teeth"],
+    "appearance": "Sleek and muscular with fins along limbs or back, Sharkkin move like water itself. They wear oilskin wraps, harness nets, and shell-plated vambraces; eyes are flat-black and intent."
   },
   {
     "name": "Rodentia",
@@ -805,15 +636,15 @@
     "combat": "Swarming tactics, traps, and speed; daggers, slings, improvised arms.",
     "spice": "Given time, they chew through almost anything—even locks.",
     "id": "RC00000038",
-    "skin_tone": [],
-    "skin_texture": [],
+    "skin_tone": ["brown","gray","white"],
+    "skin_texture": ["furred","smooth"],
     "hair_colour": [],
     "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Rodentias tend toward small height."
+    "eye_colour": ["black","red"],
+    "height": ["small"],
+    "build": ["slim","petite"],
+    "features": ["whiskers","round ears","long tail"],
+    "appearance": "Small rodentfolk with twitching whiskers and long tails. They stitch waistcoats, scarves, and patchwork cloaks from cast-off fabrics—clever hands forever fidgeting with twine and gears."
   },
   {
     "name": "Cervari",
@@ -822,15 +653,15 @@
     "combat": "Rapid strike-and-withdraw skirmishers; refuse prolonged bog-downs.",
     "spice": "Can run for days without tiring.",
     "id": "RC00000039",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Humanoids with subtle equine traits—long faces, horse-like ears, powerful legs; thick mane-like hair."
+    "skin_tone": ["tan","light brown"],
+    "skin_texture": ["smooth"],
+    "hair_colour": ["brown","black","blonde"],
+    "hairstyle": ["mane","braided","short"],
+    "eye_colour": ["brown","amber"],
+    "height": ["tall","very tall"],
+    "build": ["athletic","slim"],
+    "features": ["equine ears","powerful legs"],
+    "appearance": "Humanoids with subtle equine traits—long faces, horse-like ears, and powerful legs. They favor wind-cut coats, scarfed collars, and light brigandine that won’t tangle at speed; hair grows thick like a mane."
   },
   {
     "name": "Centaurs",
@@ -839,15 +670,15 @@
     "combat": "Mounted combat without mounts—lances, bows, trampling maneuvers.",
     "spice": "Never fully sleep; part of the mind keeps watch.",
     "id": "RC00000040",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Half-human, half-horse; powerful equine bodies with humanoid torsos."
+    "skin_tone": ["tan","brown","black","white"],
+    "skin_texture": ["furred","smooth"],
+    "hair_colour": ["black","brown","blonde","red"],
+    "hairstyle": ["mane","braided","long"],
+    "eye_colour": ["brown","green","amber"],
+    "height": ["very tall"],
+    "build": ["muscular","athletic"],
+    "features": ["hooves","tail"],
+    "appearance": "Half-human, half-horse, Centaurs blend human torsos with powerful equine bodies. Armor is leather-and-ring mail that flexes at the waist, with lance harnesses and tassels that mark herd and deeds."
   },
   {
     "name": "Merfolk",
@@ -856,15 +687,15 @@
     "combat": "Tridents, nets, and water magic; supreme underwater agility.",
     "spice": "Songs travel miles through water, guiding or luring ships.",
     "id": "RC00000041",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Clothing tends to feature clothing tends to feature clothing tends to feature silvers..."
+    "skin_tone": ["sea green","blue","pale"],
+    "skin_texture": ["smooth","scaled"],
+    "hair_colour": ["blue","black","silver","green"],
+    "hairstyle": ["long","braided","flowing"],
+    "eye_colour": ["silver","blue","green"],
+    "height": ["medium","tall"],
+    "build": ["slim","toned"],
+    "features": ["gills","fins","scaled tail"],
+    "appearance": "Merfolk bear scaled tails and gilled throats, with skin in sea-greens and blues. Hair flows like kelp and is adorned with shell combs and pearl strings. Armor is coral plate and fish-scale lamellar, with netted capes for ceremony."
   },
   {
     "name": "Gnollkin",
@@ -873,15 +704,15 @@
     "combat": "Overwhelming raids with scavenged arms; bites as lethal as blades.",
     "spice": "Pre-battle laughter spreads contagiously through the pack.",
     "id": "RC00000042",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Gnollkins tend toward brown skin."
+    "skin_tone": ["brown","tan","spotted"],
+    "skin_texture": ["furred","rough"],
+    "hair_colour": ["brown","black","red"],
+    "hairstyle": ["mane","mohawk","shaggy"],
+    "eye_colour": ["yellow","amber","brown"],
+    "height": ["tall"],
+    "build": ["muscular","lean"],
+    "features": ["muzzle","hyena ears","tail"],
+    "appearance": "Hyena-folk with spotted fur and a rangy, hungry grace. Their gear is scavenged mail, bone charms, and trophy cords; they grin too wide and laugh before the charge."
   },
   {
     "name": "Porcans",
@@ -890,15 +721,15 @@
     "combat": "Relentless brawlers with axes and clubs; terrifying charges.",
     "spice": "Rage keeps them fighting long after wounds should fell them.",
     "id": "RC00000043",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Boarfolk—stocky, bristled, tusked; skin from ruddy pink to deep brown."
+    "skin_tone": ["ruddy pink","deep brown"],
+    "skin_texture": ["bristled","rough"],
+    "hair_colour": ["brown","black"],
+    "hairstyle": ["bristled","short"],
+    "eye_colour": ["brown","amber"],
+    "height": ["medium","tall"],
+    "build": ["bulky","muscular"],
+    "features": ["tusks","bristles"],
+    "appearance": "Boarfolk—stocky and bristled with jutting tusks. They favor strapped leathers, thick belts, and iron-studded bucklers; jaws are often pierced with rings that clack when they roar."
   },
   {
     "name": "Mothfolk",
@@ -907,17 +738,15 @@
     "combat": "Illusions and wing powder to blind or pacify; gentle enchantments.",
     "spice": "Irresistibly drawn to flame; read omens in its flicker.",
     "id": "RC00000044",
-    "skin_tone": [
-      "pale"
-    ],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Ethereal humanoids with soft, patterned wings; furred antennae; luminous wide eyes; pale, dusted skin."
+    "skin_tone": ["pale","cream","dusty rose"],
+    "skin_texture": ["soft","furred"],
+    "hair_colour": ["white","blonde","brown"],
+    "hairstyle": ["soft","long","bob"],
+    "eye_colour": ["black","silver"],
+    "height": ["medium"],
+    "build": ["slim"],
+    "features": ["moth wings","antennae"],
+    "appearance": "Ethereal humanoids with soft, patterned wings and furred antennae. Their garments are layered silks and pollen-dusted shawls; pale, powdered skin seems to glow under moonlight."
   },
   {
     "name": "Jackalfolk (Anubari)",
@@ -926,15 +755,15 @@
     "combat": "Swift curved blades and short bows; speed and deception in dunes.",
     "spice": "Whisper prayers over every dead—friend or foe.",
     "id": "RC00000045",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Jackal-headed, lean and wiry; dark fur and golden eyes; movements sharp and watchful."
+    "skin_tone": ["ebony","sand","bronze"],
+    "skin_texture": ["smooth","furred"],
+    "hair_colour": ["black","brown"],
+    "hairstyle": ["braided","short","topknot"],
+    "eye_colour": ["gold","amber"],
+    "height": ["medium","tall"],
+    "build": ["slim","toned"],
+    "features": ["jackal head","tail","long ears"],
+    "appearance": "Lean and wiry with jackal heads and long ears, the Anubari wear desert linens, wrapped sashes, and gold-inlaid collars. Kohl-lined eyes stare unblinking in the sun; blades curve like dunes."
   },
   {
     "name": "Owlkin",
@@ -943,17 +772,15 @@
     "combat": "Deadly silent ambushers with talons or bows; supreme night vision.",
     "spice": "Unblinking gaze that seems to read the soul.",
     "id": "RC00000046",
-    "skin_tone": [
-      "gray"
-    ],
-    "skin_texture": [],
+    "skin_tone": ["brown","gray","white"],
+    "skin_texture": ["feathered","smooth"],
     "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Avian humanoids with large, expressive owl eyes; muted brown/gray/white plumage; rounded feather-hoods."
+    "hairstyle": ["feather-hood"],
+    "eye_colour": ["gold","black","brown"],
+    "height": ["medium"],
+    "build": ["slim","toned"],
+    "features": ["wings","talons","feather hood"],
+    "appearance": "Avian humanoids with large, expressive owl eyes and rounded feather-hoods. Their leathers are silent, their cloaks mottled like bark and shadow; talons are wrapped when not hunting."
   },
   {
     "name": "Kobolds",
@@ -962,15 +789,15 @@
     "combat": "Cowardly alone, deadly en masse; ambushes, pitfalls, spear swarms.",
     "spice": "Can scent even a trace of dragon’s blood.",
     "id": "RC00000047",
-    "skin_tone": [],
-    "skin_texture": [],
+    "skin_tone": ["red","brown","green"],
+    "skin_texture": ["scaly","rough"],
     "hair_colour": [],
     "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Koboldss tend toward small height."
+    "eye_colour": ["yellow","red"],
+    "height": ["small"],
+    "build": ["slim"],
+    "features": ["small horns","tail","snout"],
+    "appearance": "Small reptilian folk with scaly hides and bright eyes. They lash together scrap armor, riveted bucket-helms, and oversized spears, painting draconic sigils on everything that holds still."
   },
   {
     "name": "Goliaths",
@@ -979,15 +806,15 @@
     "combat": "Massive weapons and iron endurance; shrug off fatigue and cold.",
     "spice": "Skin numbs to cold with altitude; some feel none at all.",
     "id": "RC00000048",
-    "skin_tone": [],
-    "skin_texture": [],
-    "hair_colour": [],
-    "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Towering, stone-gray or slate-blue skin veined with darker patterns; immense builds; pale eyes."
+    "skin_tone": ["stone gray","slate blue"],
+    "skin_texture": ["smooth","tattooed"],
+    "hair_colour": ["black","brown","shaved"],
+    "hairstyle": ["shaved","braided","topknot"],
+    "eye_colour": ["pale blue","grey","brown"],
+    "height": ["very tall"],
+    "build": ["muscular","bulky"],
+    "features": ["skin markings","ritual tattoos"],
+    "appearance": "Towering and broad, Goliaths wear stone-gray or slate-blue skin veined with dark markings. Their clothes are furs, heavy wraps, and strapped plates; tattoos recount climbs and challenges."
   },
   {
     "name": "Tabaxi",
@@ -996,15 +823,15 @@
     "combat": "Agile skirmishers—claws, bows, quick blades; speed over strength.",
     "spice": "Once curious, they must chase—prey, goals, or stories.",
     "id": "RC00000049",
-    "skin_tone": [],
-    "skin_texture": [],
+    "skin_tone": ["tawny","black","white","spotted"],
+    "skin_texture": ["furred","smooth"],
     "hair_colour": [],
     "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Jaguar/leopard-folk with sleek spotted fur; lithe, feline motion; brilliant yellow/green eyes."
+    "eye_colour": ["yellow","green","blue"],
+    "height": ["medium","tall"],
+    "build": ["slim","athletic"],
+    "features": ["whiskers","tail","claws"],
+    "appearance": "Jaguar- and leopard-folk with sleek spotted fur and brilliant eyes. They wear travel wraps, beadwork, and light armor—easy to climb in, easier to run."
   },
   {
     "name": "Tortles",
@@ -1013,15 +840,15 @@
     "combat": "Durable defenders with clubs, staves, and tridents; outlast rather than overpower.",
     "spice": "Shells carved with their life journeys—living memoirs.",
     "id": "RC00000050",
-    "skin_tone": [],
-    "skin_texture": [],
+    "skin_tone": ["olive","sea green","brown"],
+    "skin_texture": ["leathery","scaled"],
     "hair_colour": [],
     "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Clothing tends to feature clothing tends to feature clothing tends to feature leathery skin..."
+    "eye_colour": ["brown","amber","green"],
+    "height": ["tall"],
+    "build": ["bulky","muscular"],
+    "features": ["shell","beak","clawed hands"],
+    "appearance": "Tortles carry heavy shells inscribed with their histories. Skin is leathery and sea-toned; eyes placid. Their clothing is minimal—belts, satchels, and shell-carved harnesses—since the shell itself is both armor and home."
   },
   {
     "name": "Kenku",
@@ -1030,15 +857,15 @@
     "combat": "Stealth, knives, bows, and poisons; vanish into shadow after the strike.",
     "spice": "Mimicry so perfect it fools lovers and kin alike.",
     "id": "RC00000051",
-    "skin_tone": [],
-    "skin_texture": [],
+    "skin_tone": ["black"],
+    "skin_texture": ["feathered","smooth"],
     "hair_colour": [],
     "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Crowlike humanoids with black feathers and sharp beaks; small vestigial wings; deft claws."
+    "eye_colour": ["black","brown"],
+    "height": ["small","medium"],
+    "build": ["slim"],
+    "features": ["beak","vestigial wings","claws"],
+    "appearance": "Crowlike humanoids cloaked in black feathers, with sharp beaks and deft claws. They dress in dark cloaks, wrap their feet for silence, and line their sleeves with hidden pockets for tools and trinkets."
   },
   {
     "name": "Dragonborn",
@@ -1047,14 +874,14 @@
     "combat": "Ferocious melee with breath weapons—fire, lightning, frost—making devastating shock troops.",
     "spice": "Anger brings a faint glow to their scales.",
     "id": "RC00000052",
-    "skin_tone": [],
-    "skin_texture": [],
+    "skin_tone": ["red","gold","blue","green","white","black","bronze"],
+    "skin_texture": ["scaled","smooth"],
     "hair_colour": [],
     "hairstyle": [],
-    "eye_colour": [],
-    "height": [],
-    "build": [],
-    "features": [],
-    "appearance": "Tall draconic humanoids with vibrant scaled skin; no wings or tails, but commanding presence."
+    "eye_colour": ["gold","red","blue","white"],
+    "height": ["tall","very tall"],
+    "build": ["muscular","bulky"],
+    "features": ["scales","crest","slit pupils"],
+    "appearance": "Tall draconic humanoids with vibrant scales and commanding presence. They wear scale harnesses, tabards bearing clan sigils, and heavy bracers; wings and tails are absent, but their stride leaves space for greatness."
   }
 ]
