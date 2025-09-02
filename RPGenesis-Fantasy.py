@@ -1721,6 +1721,10 @@ def draw_database_overlay(surf, game):
     if not hasattr(game, 'db_sub'): game.db_sub = 'All'
     if not hasattr(game, 'db_page'): game.db_page = 0
     if not hasattr(game, 'db_sel'): game.db_sel = None
+    # Sorting state for database view
+    if not hasattr(game, 'db_sort_key'): game.db_sort_key = 'Name'
+    if not hasattr(game, 'db_sort_desc'): game.db_sort_desc = False  # False=A–Z, True=Z–A
+    if not hasattr(game, 'db_sort_open'): game.db_sort_open = False
     if not hasattr(game, 'db_cache'):
         # Build cache of datasets
         def _safe(rel, key):
@@ -1840,38 +1844,58 @@ def draw_database_overlay(surf, game):
     if not hasattr(game, 'db_filters_open'): game.db_filters_open = False
     if not hasattr(game, 'db_fields_sel'): game.db_fields_sel = {}
 
-    # Resolve dataset (sorted, cached)
+    # Resolve dataset (sorted view)
     entries: List[Dict] = []
     cat = game.db_cat
     sub = game.db_sub if (cat in ('Items','NPCs')) else None
-    if not hasattr(game, '_db_sorted_map'):
-        game._db_sorted_map = {}
-    key = (cat, sub)
-    if key in game._db_sorted_map:
-        entries = game._db_sorted_map[key]
+    # Select base entries from cache
+    if cat in ('Items','NPCs'):
+        data_map: Dict[str, List[Dict]] = game.db_cache.get(cat, {}) or {}
+        base = list(data_map.get(sub or 'All', []))
     else:
-        if cat in ('Items','NPCs'):
-            data_map: Dict[str, List[Dict]] = game.db_cache.get(cat, {}) or {}
-            base = list(data_map.get(sub or 'All', []))
-        else:
-            base = list(game.db_cache.get(cat, []) or [])
-        def _name_key(obj: Any) -> str:
-            try:
-                if cat == 'Items':
-                    return str(item_name(obj)).lower()
-                if cat == 'NPCs':
-                    return str((obj.get('name') if isinstance(obj, dict) else '') or (obj.get('id') if isinstance(obj, dict) else '') or '').lower()
-                if isinstance(obj, dict):
-                    return str(obj.get('name') or obj.get('id') or '').lower()
-                return str(obj).lower()
-            except Exception:
-                return ''
+        base = list(game.db_cache.get(cat, []) or [])
+
+    # Sort configuration
+    sort_key = getattr(game, 'db_sort_key', 'Name') or 'Name'
+    desc = bool(getattr(game, 'db_sort_desc', False))
+
+    def _safe_str(x: Any) -> str:
         try:
-            base.sort(key=_name_key)
+            return str(x or '')
         except Exception:
-            pass
+            return ''
+
+    def _sort_val_items(obj: Dict) -> tuple:
+        if sort_key == 'Type':
+            return (_safe_str(item_type(obj)).lower(), _safe_str(item_name(obj)).lower())
+        # default Name
+        return (_safe_str(item_name(obj)).lower(), _safe_str(obj.get('id')).lower())
+
+    def _sort_val_npcs(obj: Dict) -> tuple:
+        if sort_key == 'Race':
+            return (_safe_str(obj.get('race')).lower(), _safe_str(obj.get('name') or obj.get('id')).lower())
+        if sort_key == 'Sex':
+            return (_safe_str(obj.get('sex')).lower(), _safe_str(obj.get('name') or obj.get('id')).lower())
+        if sort_key == 'Type':
+            return (_safe_str(obj.get('type')).lower(), _safe_str(obj.get('name') or obj.get('id')).lower())
+        # default Name
+        return (_safe_str(obj.get('name') or obj.get('id')).lower(), _safe_str(obj.get('id')).lower())
+
+    def _sort_val_other(obj: Any) -> tuple:
+        if isinstance(obj, dict):
+            return (_safe_str(obj.get('name') or obj.get('id')).lower(), _safe_str(obj.get('id')).lower())
+        s = _safe_str(obj).lower()
+        return (s, s)
+
+    try:
+        if cat == 'Items':
+            entries = sorted(base, key=_sort_val_items, reverse=desc)
+        elif cat == 'NPCs':
+            entries = sorted(base, key=_sort_val_npcs, reverse=desc)
+        else:
+            entries = sorted(base, key=_sort_val_other, reverse=desc)
+    except Exception:
         entries = base
-        game._db_sorted_map[key] = entries
 
     # Apply free-text filter to entries to produce filtered list for current view
     def _entry_name(obj: Any) -> str:
@@ -1909,7 +1933,16 @@ def draw_database_overlay(surf, game):
             pass
         return ' '.join(parts).lower()
 
-    qkey = (game.db_cat, game.db_sub if game.db_cat in ('Items','NPCs') else None, bool(game.db_name_only), bool(game.db_starts_with), (game.db_query or '').strip(), tuple(sorted(game.db_fields_sel.get(game.db_cat, []))))
+    qkey = (
+        game.db_cat,
+        game.db_sub if game.db_cat in ('Items','NPCs') else None,
+        bool(game.db_name_only),
+        bool(game.db_starts_with),
+        (game.db_query or '').strip(),
+        tuple(sorted(game.db_fields_sel.get(game.db_cat, []))),
+        getattr(game, 'db_sort_key', 'Name'),
+        bool(getattr(game, 'db_sort_desc', False)),
+    )
     if getattr(game, '_db_prev_filter_key', None) != qkey:
         game.db_page = 0
         game.db_sel = None
@@ -2020,7 +2053,7 @@ def draw_database_overlay(surf, game):
         game._db_label_cache = {}
     list_x0 = list_area.x + inner_pad
     # Draw filter input + toggles
-    inp_w = max(100, list_area.w - 2*inner_pad - 360)
+    inp_w = max(100, list_area.w - 2*inner_pad - 600)
     inp_rect = pg.Rect(list_x0, list_area.y + inner_pad, inp_w, 28)
     is_focus = bool(getattr(game, 'db_filter_focus', False))
     pg.draw.rect(surf, (38,40,52), inp_rect, border_radius=6)
@@ -2065,7 +2098,49 @@ def draw_database_overlay(surf, game):
     dd_label = ('Fields ▾' if not is_open else 'Fields ▴')
     ds = q_font.render(dd_label, True, (230,230,240))
     surf.blit(ds, (dd_rect.x + (dd_rect.w - ds.get_width())//2, dd_rect.y + (dd_rect.h - ds.get_height())//2))
-    buttons.append(Button(dd_rect, "", lambda: setattr(game,'db_filters_open', not bool(getattr(game,'db_filters_open', False))), draw_bg=False))
+    def _toggle_fields():
+        game.db_filters_open = not bool(getattr(game,'db_filters_open', False))
+        if game.db_filters_open:
+            game.db_sort_open = False
+    buttons.append(Button(dd_rect, "", _toggle_fields, draw_bg=False))
+
+    # Sort controls: dropdown for field + order toggle
+    def _sort_options_for(cat: str) -> List[str]:
+        if cat == 'Items':
+            return ['Name','Type']
+        if cat == 'NPCs':
+            return ['Name','Race','Sex','Type']
+        return ['Name']
+
+    sort_opts = _sort_options_for(cat)
+    sort_w = 130
+    sort_h = dd_h
+    sort_rect = pg.Rect(dd_rect.right + 10, inp_rect.y, sort_w, sort_h)
+    sort_open = bool(getattr(game, 'db_sort_open', False))
+    pg.draw.rect(surf, (36,38,48), sort_rect, border_radius=8)
+    pg.draw.rect(surf, (96,102,124), sort_rect, 2, border_radius=8)
+    cur_sort = getattr(game, 'db_sort_key', 'Name')
+    sort_label = f"Sort: {cur_sort}"
+    ss = q_font.render(sort_label, True, (230,230,240))
+    surf.blit(ss, (sort_rect.x + (sort_rect.w - ss.get_width())//2, sort_rect.y + (sort_rect.h - ss.get_height())//2))
+    def _toggle_sort_dd():
+        game.db_sort_open = not bool(getattr(game, 'db_sort_open', False))
+        if game.db_sort_open:
+            game.db_filters_open = False
+    buttons.append(Button(sort_rect, "", _toggle_sort_dd, draw_bg=False))
+
+    # Direction toggle (A–Z / Z–A)
+    ord_w = 70
+    ord_rect = pg.Rect(sort_rect.right + 10, inp_rect.y, ord_w, sort_h)
+    ord_desc = bool(getattr(game,'db_sort_desc', False))
+    pg.draw.rect(surf, (36,38,48), ord_rect, border_radius=8)
+    pg.draw.rect(surf, (96,102,124), ord_rect, 2, border_radius=8)
+    ord_label = 'Z-A' if ord_desc else 'A-Z'
+    ord_surf = q_font.render(ord_label, True, (230,230,240))
+    surf.blit(ord_surf, (ord_rect.x + (ord_rect.w - ord_surf.get_width())//2, ord_rect.y + (ord_rect.h - ord_surf.get_height())//2))
+    def _toggle_dir():
+        game.db_sort_desc = not bool(getattr(game, 'db_sort_desc', False))
+    buttons.append(Button(ord_rect, "", _toggle_dir, draw_bg=False))
 
     # Define available field options per category
     def _field_options_for(cat: str) -> List[Tuple[str, Tuple[str, ...]]]:
@@ -2106,6 +2181,54 @@ def draw_database_overlay(surf, game):
 
     list_y0 = list_area.y + inner_pad + filter_h
 
+    # Dot colors matching the map overlay
+    COL_ENEMY    = (160,160,170)
+    COL_ALLY     = (80,200,120)
+    COL_CITIZEN  = (80,150,240)
+    COL_MONSTER  = (220,70,70)
+    COL_VILLAIN  = (170,110,240)
+    COL_ANIMAL   = (245,210,80)
+    COL_ITEM     = (240,240,240)
+    COL_QITEM    = (255,160,70)
+
+    def _npc_color(n: Dict) -> Tuple[int,int,int]:
+        # Prefer explicit subcategory chip when selected
+        subcat = (game.db_sub or '').lower() if cat == 'NPCs' else ''
+        mapping = {
+            'allies': COL_ALLY,
+            'animals': COL_ANIMAL,
+            'citizens': COL_CITIZEN,
+            'enemies': COL_ENEMY,
+            'monsters': COL_MONSTER,
+            'villains': COL_VILLAIN,
+        }
+        if subcat in mapping:
+            return mapping[subcat]
+        # Heuristics when viewing 'All'
+        try:
+            t = str(n.get('type') or '').lower()
+        except Exception:
+            t = ''
+        if 'villain' in t: return COL_VILLAIN
+        if 'monster' in t: return COL_MONSTER
+        if 'animal' in t: return COL_ANIMAL
+        if 'citizen' in t: return COL_CITIZEN
+        try:
+            if bool(n.get('hostile')): return COL_ENEMY
+        except Exception:
+            pass
+        return COL_ALLY
+
+    def _entry_dot_color(obj: Any) -> Optional[Tuple[int,int,int]]:
+        if cat == 'Items' and isinstance(obj, dict):
+            try:
+                return COL_QITEM if item_is_quest(obj) else COL_ITEM
+            except Exception:
+                return COL_ITEM
+        if cat == 'NPCs' and isinstance(obj, dict):
+            return _npc_color(obj)
+        return None
+
     for i in range(start, end):
         it = filtered[i]
         local = i - start
@@ -2136,10 +2259,20 @@ def draw_database_overlay(surf, game):
             lab_surf = name_font.render(label, True, (230,230,240))
             game._db_label_cache[cache_key] = lab_surf
         ty = r.y + max(4, (r.h - lab_surf.get_height())//2)
-        surf.blit(lab_surf, (r.x + 10, ty))
+        # Draw dot (if applicable) and adjust text x
+        dot = _entry_dot_color(it)
+        text_x = r.x + 10
+        if dot is not None:
+            rad = max(4, min(8, r.h // 6))
+            cx = r.x + 10 + rad
+            cy = r.y + r.h//2
+            pg.draw.circle(surf, (10,10,12), (int(cx), int(cy)), rad+1)
+            pg.draw.circle(surf, dot, (int(cx), int(cy)), rad)
+            text_x = cx + rad + 6
+        surf.blit(lab_surf, (text_x, ty))
         def make_sel(idx=i):
             return lambda idx=idx: setattr(game,'db_sel', idx)
-        if not is_open:
+        if not (is_open or sort_open):
             buttons.append(Button(r, "", make_sel(i), draw_bg=False))
 
     # Pager controls (bottom-left)
@@ -2187,6 +2320,28 @@ def draw_database_overlay(surf, game):
                     game.db_fields_sel[cat] = list(s)
                 return _cb
             buttons.append(Button(r, "", make_toggle_field(lab), draw_bg=False))
+
+    # Sort dropdown panel
+    if sort_open:
+        s_panel_h = 8 + len(sort_opts)*28 + 8
+        s_panel = pg.Rect(sort_rect.x, sort_rect.bottom + 6, sort_w, s_panel_h)
+        pg.draw.rect(surf, (30,32,42), s_panel, border_radius=8)
+        pg.draw.rect(surf, (70,74,92), s_panel, 1, border_radius=8)
+        y0 = s_panel.y + 8
+        for opt in sort_opts:
+            r = pg.Rect(s_panel.x + 8, y0, s_panel.w - 16, 24)
+            on = (opt == cur_sort)
+            pg.draw.rect(surf, (58,62,78) if on else (36,38,48), r, border_radius=6)
+            pg.draw.rect(surf, (122,162,247) if on else (96,102,124), r, 1, border_radius=6)
+            ts = q_font.render(opt, True, (230,230,240))
+            surf.blit(ts, (r.x + 8, r.y + (r.h - ts.get_height())//2))
+            def _make_set_sort(label=opt):
+                def _cb(label=label):
+                    game.db_sort_key = label
+                    game.db_sort_open = False
+                return _cb
+            buttons.append(Button(r, "", _make_set_sort(opt), draw_bg=False))
+            y0 += 28
 
     # Details panel
     det_font = pg.font.Font(None, 20)
