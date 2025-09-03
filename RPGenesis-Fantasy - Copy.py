@@ -738,10 +738,6 @@ class Button:
 
 PANEL_W_FIXED = 380  # Fixed width for left/right sidebars
 
-# Angle of diamond side relative to horizontal (deg). 26.565 ≈ classic 2:1.
-ISO_ANGLE_DEG = 50.0
-ISO_ROT_DEG = 15.0
-
 def draw_grid(surf, game):
     # Dynamic view area and camera
     win_w, win_h = surf.get_size()
@@ -753,31 +749,28 @@ def draw_grid(surf, game):
     pg.draw.rect(surf, (26,26,32), view_rect)
 
     W = getattr(game, 'W', 12); H = getattr(game, 'H', 8)
-    # Slightly zoomed view target (used to choose pixel size)
-    vis_w_tiles = min(10, max(1, W))
-    vis_h_tiles = min(6, max(1, H))
-    margin = 16
+    # Target visible tiles for a slightly zoomed view
+    vis_w_tiles = min(10, W)
+    vis_h_tiles = min(6, H)
+    margin = 12
+    gap = 4
+    # Compute tile size to fit target number of tiles
+    tile_px = max(20, min(96,
+        int(min(
+            (view_w - 2*margin) / max(1, vis_w_tiles) - gap,
+            (view_h - 2*margin) / max(1, vis_h_tiles) - gap
+        ))
+    ))
+    stride = tile_px + gap
+    # Save on game for other UI uses
+    game.tile_px = tile_px
 
-    # Choose isometric diamond width that fits the view
-    # Bounding width of an WxH iso grid is approximately (W+H)*half_w
-    # and height is (W+H)*half_h. We keep a gentle zoom using vis_*.
-    target_w = max(1, vis_w_tiles + vis_h_tiles)
-    tile_w = max(20, min(96, int((view_w - 2*margin) / target_w)))
-    # Square tiles regardless of viewing angle; rotation only changes orientation
-    s = tile_w
-    ang = math.radians(float(ISO_ROT_DEG))
-    ca, sa = math.cos(ang), math.sin(ang)
-    # Basis vectors for one tile step
-    exx, exy = ca * s, sa * s
-    eyx, eyy = -sa * s, ca * s
-    # Save on game for other UI uses (treat as square size)
-    game.tile_px = tile_w
-
-    # Camera: center on player's tile center in rotated-square space
-    px_world = (game.player.x + 0.5) * exx + (game.player.y + 0.5) * eyx
-    py_world = (game.player.x + 0.5) * exy + (game.player.y + 0.5) * eyy
-    cam_x = px_world - view_w * 0.5
-    cam_y = py_world - view_h * 0.5
+    # Camera center on player
+    px_world = game.player.x * stride + margin + tile_px//2
+    py_world = game.player.y * stride + margin + tile_px//2
+    # Center camera on player at all times (allow background beyond edges)
+    cam_x = px_world - view_w//2
+    cam_y = py_world - view_h//2
 
     # Colors (match editor palette more closely)
     COL_ENEMY    = (160,160,170)  # grey
@@ -792,49 +785,22 @@ def draw_grid(surf, game):
     COL_LINK     = (255,105,180)  # match editor's link color (pink)
     COL_PLAYER   = (122,162,247)  # accent
 
-    # Prepare diamond mask block removed (squares do not need it)
-
-    depth = max(4, int(s * 0.35))
-    origin_x, origin_y = view_rect.x + margin, view_rect.y + margin
-
     for y in range(H):
         for x in range(W):
-            # Center in rotated-square space
-            cx = origin_x + ((x + 0.5) * exx + (y + 0.5) * eyx) - cam_x
-            cy = origin_y + ((x + 0.5) * exy + (y + 0.5) * eyy) - cam_y
-            # Top square corners
-            p0 = (cx - 0.5*exx - 0.5*eyx, cy - 0.5*exy - 0.5*eyy)
-            p1 = (cx + 0.5*exx - 0.5*eyx, cy + 0.5*exy - 0.5*eyy)
-            p2 = (cx + 0.5*exx + 0.5*eyx, cy + 0.5*exy + 0.5*eyy)
-            p3 = (cx - 0.5*exx + 0.5*eyx, cy - 0.5*exy + 0.5*eyy)
-            # Bounding box for quick cull
-            minx = int(min(p0[0], p1[0], p2[0], p3[0]))
-            maxx = int(max(p0[0], p1[0], p2[0], p3[0]))
-            miny = int(min(p0[1], p1[1], p2[1], p3[1]))
-            maxy = int(max(p0[1], p1[1], p2[1], p3[1]))
-            br = pg.Rect(minx, miny, max(1, maxx-minx), max(1, maxy-miny))
-            if not br.colliderect(view_rect):
+            wx = x*stride + margin
+            wy = y*stride + margin
+            rx = wx - cam_x
+            ry = wy - cam_y
+            if rx > view_w or ry > view_h or rx + tile_px < 0 or ry + tile_px < 0:
                 continue
+            r = pg.Rect(int(view_rect.x + rx), int(view_rect.y + ry), tile_px, tile_px)
             tile = game.grid[y][x]
+            # Invisible impassable tiles: skip base/border entirely
             if tile.walkable:
+                # Constant base color (do not vary by discovered/visited)
                 base = (42,44,56)
-                # Extruded sides
-                p0d = (p0[0], p0[1] + depth)
-                p1d = (p1[0], p1[1] + depth)
-                p2d = (p2[0], p2[1] + depth)
-                p3d = (p3[0], p3[1] + depth)
-                face_r = [(int(p1[0]),int(p1[1])),(int(p2[0]),int(p2[1])),(int(p2d[0]),int(p2d[1])),(int(p1d[0]),int(p1d[1]))]
-                face_f = [(int(p2[0]),int(p2[1])),(int(p3[0]),int(p3[1])),(int(p3d[0]),int(p3d[1])),(int(p2d[0]),int(p2d[1]))]
-                col_r = (int(base[0]*0.85), int(base[1]*0.85), int(base[2]*0.85))
-                col_f = (int(base[0]*0.70), int(base[1]*0.70), int(base[2]*0.70))
-                pg.draw.polygon(surf, col_r, face_r)
-                pg.draw.polygon(surf, col_f, face_f)
-                pg.draw.lines(surf, (60,64,82), False, face_r + [face_r[0]], 1)
-                pg.draw.lines(surf, (60,64,82), False, face_f + [face_f[0]], 1)
-                # Top face
-                top_poly = [(int(p0[0]),int(p0[1])),(int(p1[0]),int(p1[1])),(int(p2[0]),int(p2[1])),(int(p3[0]),int(p3[1]))]
-                pg.draw.polygon(surf, base, top_poly)
-                pg.draw.polygon(surf, (70,74,92), top_poly, 1)
+                pg.draw.rect(surf, base, r, border_radius=6)
+                pg.draw.rect(surf, (70,74,92), r, 1, border_radius=6)
             # Overlay markers (centered dots)
             dot_colors = []
             if tile.encounter:
@@ -887,7 +853,7 @@ def draw_grid(surf, game):
                 dot_colors.append(COL_LINK)
             if dot_colors:
                 # layout centered: 1 center; 2 side-by-side; 3 triangle; 4 2x2; >4 balanced rows
-                pad = max(2, int(tile_w) // 16)
+                pad = max(2, tile_px // 16)
                 n = len(dot_colors)
                 if n <= 2:
                     row_counts = [n]
@@ -898,20 +864,20 @@ def draw_grid(surf, game):
                     row_counts = [base] * (rows - extra) + [base + 1] * extra
                 rows_cnt = len(row_counts)
                 max_cols = max(row_counts)
-                gap = max(2, int(tile_w) // 16)
-                avail_w = br.w - 2*pad
-                avail_h = br.h - 2*pad
-                r_w = (avail_w - (max_cols - 1) * gap) / (2 * max_cols) if max_cols else max(4, int(s)//8)
-                r_h = (avail_h - (rows_cnt - 1) * gap) / (2 * rows_cnt) if rows_cnt else max(4, int(s)//8)
-                rad = int(max(3, min(r_w, r_h, int(s) // 8)))
+                gap = max(2, tile_px // 16)
+                avail_w = r.w - 2*pad
+                avail_h = r.h - 2*pad
+                r_w = (avail_w - (max_cols - 1) * gap) / (2 * max_cols) if max_cols else tile_px//8
+                r_h = (avail_h - (rows_cnt - 1) * gap) / (2 * rows_cnt) if rows_cnt else tile_px//8
+                rad = int(max(3, min(r_w, r_h, tile_px // 8)))
                 gap_x = 2*rad + gap
                 gap_y = 2*rad + gap
                 total_h = rows_cnt * (2*rad) + (rows_cnt - 1) * gap
-                start_y = br.y + (br.h - total_h)//2 + rad
+                start_y = r.y + (r.h - total_h)//2 + rad
                 idx = 0
                 for ri, cnt in enumerate(row_counts):
                     total_w = cnt * (2*rad) + (cnt - 1) * gap
-                    start_x = br.x + (br.w - total_w)//2 + rad
+                    start_x = r.x + (r.w - total_w)//2 + rad
                     cy = start_y + ri * gap_y
                     for cj in range(cnt):
                         if idx >= n: break
@@ -920,16 +886,12 @@ def draw_grid(surf, game):
                         pg.draw.circle(surf, dot_colors[idx], (int(cx), int(cy)), rad)
                         idx += 1
 
-    # Player marker: outline around the player's rotated diamond
-    px = origin_x + px_world - cam_x
-    py = origin_y + py_world - cam_y
-    if 0 <= (px - view_rect.x) <= view_w and 0 <= (py - view_rect.y) <= view_h:
-        q0 = (px - 0.5*exx - 0.5*eyx, py - 0.5*exy - 0.5*eyy)
-        q1 = (px + 0.5*exx - 0.5*eyx, py + 0.5*exy - 0.5*eyy)
-        q2 = (px + 0.5*exx + 0.5*eyx, py + 0.5*exy + 0.5*eyy)
-        q3 = (px - 0.5*exx + 0.5*eyx, py - 0.5*exy + 0.5*eyy)
-        poly = [(int(q0[0]), int(q0[1])), (int(q1[0]), int(q1[1])), (int(q2[0]), int(q2[1])), (int(q3[0]), int(q3[1]))]
-        pg.draw.polygon(surf, COL_PLAYER, poly, 3)
+    # Player marker: outline around the player's tile (no white square)
+    px = px_world - cam_x
+    py = py_world - cam_y
+    if 0 <= px <= view_w and 0 <= py <= view_h:
+        pr = pg.Rect(int(view_rect.x + px - tile_px//2), int(view_rect.y + py - tile_px//2), tile_px, tile_px)
+        pg.draw.rect(surf, COL_PLAYER, pr, 3, border_radius=6)
 
 def draw_panel(surf, game):
     win_w, win_h = surf.get_size()

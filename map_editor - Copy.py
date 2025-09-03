@@ -3,7 +3,7 @@ import os
 import json
 import math
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple, Callable
+from typing import Any, Dict, List, Optional, Tuple, Callable, Set
 
 import pygame
 
@@ -18,7 +18,7 @@ TILE_IMG_DIR = os.path.join(ROOT_DIR, "assets", "images", "map_tiles")
 
 os.makedirs(MAP_DIR, exist_ok=True)
 
-NPC_SUBCATS   = ["allies", "enemies", "monsters", "animals", "citizens"]
+NPC_SUBCATS   = ["allies", "enemies", "monsters", "villains", "animals", "citizens"]
 ITEM_SUBCATS  = ["accessories", "armour", "clothing", "materials", "quest_items", "trinkets", "weapons"]
 
 TILE_SIZE_DEFAULT = 32
@@ -47,20 +47,22 @@ SAFE_TINT_RGBA   = (50, 180, 90, 60)
 DANGER_TINT_RGBA = (200, 70, 70, 60)
 
 # Dot colors
-COL_RED    = (220,70,70)     # enemies
+COL_RED    = (220,70,70)     # monsters
 COL_GREEN  = (80,200,120)    # allies
 COL_BLUE   = (80,150,240)    # citizens
-COL_PURPLE = (170,110,240)   # monsters
+COL_PURPLE = (170,110,240)   # villains
 COL_YELLOW = (245,210,80)    # animals
 COL_WHITE  = (240,240,240)   # items (non-quest)
 COL_ORANGE = (255,160,70)    # quest items
 COL_PINK   = (255,105,180)   # links (hot pink)
+COL_GREY   = (160,160,170)   # enemies
 
 TYPE_DOT_COLORS = {
     "ally": COL_GREEN,
-    "enemy": COL_RED,
+    "enemy": COL_GREY,
     "citizen": COL_BLUE,
-    "monster": COL_PURPLE,
+    "monster": COL_RED,
+    "villain": COL_PURPLE,
     "animal": COL_YELLOW,
     "item": COL_WHITE,
     "quest_item": COL_ORANGE,
@@ -71,16 +73,6 @@ TYPE_DOT_COLORS = {
 TOOLTIP_BG_RGBA = (20, 22, 26, 220)  # dark with alpha
 TOOLTIP_BORDER  = GRID_LINE
 TOOLTIP_TEXT    = TEXT_MAIN
-
-# -------------------- Isometric settings --------------------
-# Angle of the diamond's side relative to the horizontal, in degrees.
-# 26.565° corresponds to a 2:1 ratio (classic isometric). Increase for
-# steeper tiles or decrease for a flatter look.
-ISO_ANGLE_DEG: float = 26.565  # retained (unused when squares enforced)
-# Rotation of the whole grid in degrees (0 keeps classic orientation).
-ISO_ROT_DEG: float = 0.0
-# Extrusion depth for cube sides relative to tile size
-CUBE_DEPTH_PCT: float = 0.35
 
 # -------------------- JSON helpers --------------------
 def _as_list(obj: Any) -> List[Dict[str, Any]]:
@@ -465,63 +457,179 @@ class Dropdown:
             draw_text(surf, opt, (x, r.y+6))
 
 class ScrollListWithButtons:
-    """Scrollable list that renders labels with Remove buttons; provides wheel scrolling.
-       Also exposes index_at_pos() to support right-click context menus."""
+    """Scrollable list that renders labels with Remove buttons; supports expand/collapse per row.
+       Also exposes index_at_pos() to support right-click context menus.
+
+       Items may be tuples of:
+         (label: str, on_remove: Callable)
+       or
+         (label: str, on_remove: Callable, details: Dict[str, Any]) where details may contain:
+           - 'kv': List[str]  # simple key/value lines
+           - 'desc': str      # long description text
+    """
     def __init__(self, rect: pygame.Rect):
         self.rect = pygame.Rect(rect)
-        self.items: List[Tuple[str, Callable[[], None]]] = []  # (label, on_remove)
+        self.items: List[Tuple] = []
         self.scroll = 0
         self.item_h = 24
         self.spacing = 6
-    def set_items(self, items: List[Tuple[str, Callable[[], None]]]):
+        self.expanded: Set[int] = set()
+
+    def set_items(self, items: List[Tuple]):
         self.items = items
-        self.scroll = 0
-    def index_at_pos(self, pos: Tuple[int,int]) -> Optional[int]:
-        x,y = pos
-        if not self.rect.collidepoint((x,y)):
-            return None
-        y_start = self.rect.y - self.scroll
+        # Preserve scroll and expanded state; clamp to new content
+        inner_w = self.rect.w - 12
+        try:
+            max_scroll = max(0, self._content_height(inner_w) - self.rect.h)
+        except Exception:
+            max_scroll = 0
+        self.scroll = max(0, min(self.scroll, max_scroll))
+        self.expanded = {i for i in self.expanded if 0 <= i < len(self.items)}
+
+    def _wrap(self, text: str, width_px: int) -> List[str]:
+        # Basic pixel-width word wrap using current FONT
+        words = (text or "").split(" ")
+        lines: List[str] = []
+        line = ""
+        for w in words:
+            test = (line + " " + w).strip()
+            if not line or FONT.size(test)[0] <= width_px:
+                line = test
+            else:
+                lines.append(line)
+                line = w
+        if line:
+            lines.append(line)
+        out: List[str] = []
+        for raw in "\n".join(lines).split("\n"):
+            cur = ""
+            for ch in raw:
+                if not cur or FONT.size(cur + ch)[0] <= width_px:
+                    cur += ch
+                else:
+                    out.append(cur)
+                    cur = ch
+            out.append(cur)
+        return out
+
+    def _details_for(self, idx: int) -> Dict[str, Any]:
+        if idx < 0 or idx >= len(self.items):
+            return {}
+        it = self.items[idx]
+        if len(it) >= 3 and isinstance(it[2], dict):
+            return it[2]
+        return {}
+
+    def _row_height(self, idx: int, width_px: int) -> int:
+        h = self.item_h
+        if idx in self.expanded:
+            details = self._details_for(idx)
+            pad = 6
+            h += pad  # spacing below header
+            kv = details.get('kv') or []
+            if kv:
+                h += len(kv) * (FONT.get_height() + 2)
+            desc = details.get('desc') or ""
+            if desc:
+                wrapped = self._wrap(desc, max(0, width_px - 16))
+                h += len(wrapped) * (FONT.get_height() + 2)
+            h += pad
+        return h
+
+    def _content_height(self, width_px: int) -> int:
+        total = 0
         for i in range(len(self.items)):
-            row_y = y_start + i * (self.item_h + self.spacing)
-            row_rect = pygame.Rect(self.rect.x+6, row_y, self.rect.w-12, self.item_h)
+            total += self._row_height(i, width_px) + self.spacing
+        if total > 0:
+            total -= self.spacing  # no spacing after last
+        return total
+
+    def index_at_pos(self, pos: Tuple[int,int]) -> Optional[int]:
+        x, y = pos
+        if not self.rect.collidepoint((x, y)):
+            return None
+        y_cursor = self.rect.y - self.scroll
+        inner_w = self.rect.w - 12
+        for i in range(len(self.items)):
+            h = self._row_height(i, inner_w)
+            row_rect = pygame.Rect(self.rect.x+6, y_cursor, self.rect.w-12, self.item_h)
             if row_rect.collidepoint((x, y)):
                 return i
+            y_cursor += h + self.spacing
         return None
+
     def handle(self, event):
         if event.type == pygame.MOUSEWHEEL:
             if self.rect.collidepoint(get_mouse_pos()):
-                self.scroll = max(0, self.scroll - event.y * 24)
+                inner_w = self.rect.w - 12
+                content_h = self._content_height(inner_w)
+                max_scroll = max(0, content_h - self.rect.h)
+                self.scroll = max(0, min(max_scroll, self.scroll - event.y * 24))
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             x, y = event.pos
             if not self.rect.collidepoint((x, y)):
                 return
-            y_start = self.rect.y - self.scroll
-            for i, (label, on_remove) in enumerate(self.items):
-                row_y = y_start + i * (self.item_h + self.spacing)
-                row_rect = pygame.Rect(self.rect.x+6, row_y, self.rect.w-12, self.item_h)
-                btn_rect = pygame.Rect(row_rect.right-70, row_rect.y, 64, self.item_h)
+            y_cursor = self.rect.y - self.scroll
+            inner_w = self.rect.w - 12
+            for i, it in enumerate(self.items):
+                h_total = self._row_height(i, inner_w)
+                header_rect = pygame.Rect(self.rect.x+6, y_cursor, self.rect.w-12, self.item_h)
+                btn_rect = pygame.Rect(header_rect.right-70, header_rect.y, 64, self.item_h)
                 if btn_rect.collidepoint((x, y)):
-                    on_remove()
+                    # on_remove is at index 1
+                    try:
+                        on_remove = it[1]
+                        if callable(on_remove):
+                            on_remove()
+                    finally:
+                        pass
                     break
+                elif header_rect.collidepoint((x, y)):
+                    # toggle expand/collapse
+                    if i in self.expanded:
+                        self.expanded.remove(i)
+                    else:
+                        self.expanded.add(i)
+                    break
+                y_cursor += h_total + self.spacing
+
     def draw(self, surf):
         pygame.draw.rect(surf, PANEL_BG_DARK, self.rect, border_radius=8)
         pygame.draw.rect(surf, GRID_LINE, self.rect, 1, border_radius=8)
         clip = surf.get_clip()
         surf.set_clip(self.rect)
-        y_start = self.rect.y - self.scroll
+        y_cursor = self.rect.y - self.scroll
         try:
             mx, my = get_mouse_pos()
         except Exception:
             mx, my = pygame.mouse.get_pos()
-        for i, (label, _) in enumerate(self.items):
-            row_y = y_start + i * (self.item_h + self.spacing)
-            row_rect = pygame.Rect(self.rect.x+6, row_y, self.rect.w-12, self.item_h)
-            hovered = row_rect.collidepoint((mx, my))
-            pygame.draw.rect(surf, BTN_HOVER if hovered else PANEL_BG, row_rect, border_radius=6)
-            draw_text(surf, label[:60], (row_rect.x+8, row_rect.y+4))
-            btn_rect = pygame.Rect(row_rect.right-70, row_rect.y, 64, self.item_h)
+        inner_w = self.rect.w - 12
+        for i, it in enumerate(self.items):
+            label = it[0]
+            # Header row
+            header_rect = pygame.Rect(self.rect.x+6, y_cursor, self.rect.w-12, self.item_h)
+            hovered = header_rect.collidepoint((mx, my))
+            pygame.draw.rect(surf, BTN_HOVER if hovered else PANEL_BG, header_rect, border_radius=6)
+            draw_text(surf, label[:120], (header_rect.x+8, header_rect.y+4))
+            btn_rect = pygame.Rect(header_rect.right-70, header_rect.y, 64, self.item_h)
             pygame.draw.rect(surf, DANGER, btn_rect, border_radius=6)
             draw_text(surf, "Remove", (btn_rect.x+6, btn_rect.y+4))
+
+            # Expanded details
+            y = header_rect.bottom + 6
+            if i in self.expanded:
+                details = self._details_for(i)
+                kv = details.get('kv') or []
+                for ln in kv:
+                    surf.blit(FONT.render(ln, True, TEXT_DIM), (header_rect.x+10, y))
+                    y += FONT.get_height() + 2
+                desc = details.get('desc') or ""
+                if desc:
+                    for ln in self._wrap(desc, max(0, inner_w - 16)):
+                        surf.blit(FONT.render(ln, True, TEXT_MAIN), (header_rect.x+10, y))
+                        y += FONT.get_height() + 2
+            # advance cursor by computed total height for this item
+            y_cursor += self._row_height(i, inner_w) + self.spacing
         surf.set_clip(clip)
 
 # -------------------- StartScreen --------------------
@@ -633,8 +741,8 @@ class EditorScreen:
         self.btn_cat_links = Button((920, 130, 140, 30), "Links", lambda: self._switch_category("Links"))
 
         # NPCs / Items lists
-        self.dd_npc_sub  = Dropdown((920, 180, 140, 26), NPC_SUBCATS,  value=NPC_SUBCATS[0], on_change=lambda v: self._reload_npcs())
-        self.dd_item_sub = Dropdown((920, 180, 140, 26), ITEM_SUBCATS, value=ITEM_SUBCATS[0], on_change=lambda v: self._reload_items())
+        self.dd_npc_sub  = Dropdown((920, 180, 140, 26), NPC_SUBCATS,  value=NPC_SUBCATS[0], on_change=lambda v: self._reload_npcs(), get_icon=self._get_npc_sub_icon)
+        self.dd_item_sub = Dropdown((920, 180, 140, 26), ITEM_SUBCATS, value=ITEM_SUBCATS[0], on_change=lambda v: self._reload_items(), get_icon=self._get_item_sub_icon)
         self.list_box = ListBox((920, 214, 340, 160))
         self.btn_add_to_tile      = Button((920, 380, 160, 28), "Add to Selected", self.add_selected_to_tile)
 
@@ -672,13 +780,9 @@ class EditorScreen:
         self.inspector_header_rect = pygame.Rect(900, 450, 380, 32)
         self.scroll_list = ScrollListWithButtons(pygame.Rect(900, 484, 380, 140))  # wheel scrollable
         self.btn_edit_note    = Button((900, 630, 120, 26), "Edit Note", self.open_note_modal)
-        # Encounter marker controls
-        self.btn_mark_safe    = Button((900, 454, 110, 26), "Mark Safe", lambda: self.set_encounter('safe'))
-        self.btn_mark_danger  = Button((1016, 454, 130, 26), "Mark Danger", lambda: self.set_encounter('danger'))
-        self.btn_clear_marker = Button((1152, 454, 128, 26), "Clear", lambda: self.set_encounter(''))
-
-        # Map description at bottom
-        self.desc_area = TextArea((900, 662, 380, 48), self.map.description)
+      
+        # Map description at bottom (taller by default)
+        self.desc_area = TextArea((900, 622, 380, 120), self.map.description)
 
         # Default regions (updated each frame for responsive layout)
         self.canvas_rect = pygame.Rect(0, 50, 900, 670)
@@ -725,6 +829,43 @@ class EditorScreen:
         except Exception:
             return None
 
+    def _get_npc_sub_icon(self, opt: str, size: int) -> Optional[pygame.Surface]:
+        try:
+            sub = (opt or '').lower()
+            color = None
+            if sub == 'enemies': color = COL_GREY
+            elif sub == 'allies': color = COL_GREEN
+            elif sub == 'citizens': color = COL_BLUE
+            elif sub == 'monsters': color = COL_RED
+            elif sub == 'villains': color = COL_PURPLE
+            elif sub == 'animals': color = COL_YELLOW
+            if color is None: return None
+            s = max(10, size)
+            surf = pygame.Surface((s, s), pygame.SRCALPHA)
+            r = s // 3
+            cx = s // 2
+            cy = s // 2
+            pygame.draw.circle(surf, (10,10,12,255), (cx, cy), r+1)
+            pygame.draw.circle(surf, color, (cx, cy), r)
+            return surf
+        except Exception:
+            return None
+
+    def _get_item_sub_icon(self, opt: str, size: int) -> Optional[pygame.Surface]:
+        try:
+            sub = (opt or '').lower()
+            color = COL_ORANGE if sub == 'quest_items' else COL_WHITE
+            s = max(10, size)
+            surf = pygame.Surface((s, s), pygame.SRCALPHA)
+            r = s // 3
+            cx = s // 2
+            cy = s // 2
+            pygame.draw.circle(surf, (10,10,12,255), (cx, cy), r+1)
+            pygame.draw.circle(surf, color, (cx, cy), r)
+            return surf
+        except Exception:
+            return None
+
     def _apply_layout(self, surf):
         w, h = surf.get_size()
         top_h = 50
@@ -762,15 +903,19 @@ class EditorScreen:
         self.btn_add_link.rect.topleft = (sx, sy + 164)
         # Texture picker
         self.dd_texture.rect.topleft = (sx, sy + 362)
-        # Inspector + encounter row
+        # Inspector header and scroll list
         self.inspector_header_rect = pygame.Rect(self.sidebar_rect.x, sy + 400, self.sidebar_rect.w, 32)
-        self.btn_mark_safe.rect.topleft    = (self.sidebar_rect.x + 0,   sy + 404)
-        self.btn_mark_danger.rect.topleft  = (self.sidebar_rect.x + 116, sy + 404)
-        self.btn_clear_marker.rect.topleft = (self.sidebar_rect.x + 252, sy + 404)
-        self.scroll_list.rect = pygame.Rect(self.sidebar_rect.x, sy + 434, self.sidebar_rect.w, 140)
-        # Note + description
-        self.btn_edit_note.rect.topleft = (self.sidebar_rect.x + 0, sy + 580)
-        self.desc_area.rect = pygame.Rect(self.sidebar_rect.x, sy + 612, self.sidebar_rect.w, 48)
+        # Dynamic description size anchored to bottom
+        desc_h = max(80, min(200, int(self.sidebar_rect.h * 0.22)))
+        desc_y = self.sidebar_rect.bottom - (desc_h + 16)
+        self.desc_area.rect = pygame.Rect(self.sidebar_rect.x, desc_y, self.sidebar_rect.w, desc_h)
+        # Edit note button just above description
+        self.btn_edit_note.rect.topleft = (self.sidebar_rect.x + 0, self.desc_area.rect.y - 36)
+        # Scroll list fills space between inspector header and Edit Note button
+        sl_top = self.inspector_header_rect.bottom + 4
+        sl_bottom = self.btn_edit_note.rect.y - 12
+        sl_h = max(80, sl_bottom - sl_top)
+        self.scroll_list.rect = pygame.Rect(self.sidebar_rect.x, sl_top, self.sidebar_rect.w, sl_h)
 
     def any_dropdown_open(self) -> bool:
         return (
@@ -803,7 +948,28 @@ class EditorScreen:
 
     def _reload_npcs(self):
         sub = self.dd_npc_sub.value
-        entries = read_json_list(os.path.join(NPC_DIR, f"{sub}.json"))
+        # Prefer single file data/npcs/<sub>.json if present
+        entries = []
+        file_path = os.path.join(NPC_DIR, f"{sub}.json")
+        if os.path.isfile(file_path):
+            entries = read_json_list(file_path)
+        else:
+            # Otherwise, look for a directory data/npcs/<sub>/ and merge all *.json lists
+            dir_candidates = [os.path.join(NPC_DIR, sub)]
+            # Be tolerant to common misspelling 'vilains'
+            if sub.lower() == 'villains':
+                dir_candidates.append(os.path.join(NPC_DIR, 'vilains'))
+            merged: List[Dict[str, Any]] = []
+            for d in dir_candidates:
+                if os.path.isdir(d):
+                    try:
+                        for fn in sorted(os.listdir(d)):
+                            if fn.lower().endswith('.json'):
+                                merged.extend(read_json_list(os.path.join(d, fn)))
+                    except Exception:
+                        pass
+            if merged:
+                entries = merged
         self.npc_entries = entries
         if self.category == "NPCs":
             self.list_box.set_items([self._display_label(e) for e in entries])
@@ -1017,7 +1183,7 @@ class EditorScreen:
         self.history.push(do, undo, label="set_encounter")
 
     def _rebuild_scroll_items(self):
-        items: List[Tuple[str, Callable[[], None]]] = []
+        items: List[Tuple] = []
         if not self.selected:
             self.scroll_list.set_items([]); return
         x,y = self.selected
@@ -1026,90 +1192,53 @@ class EditorScreen:
         t = self.map.tiles[y][x]
         # NPCs
         for i, e in enumerate(t.npcs):
-            label = f"{e.get('name','(unnamed)')} [{e.get('id','')}] <{e.get('subcategory','')}>"
-            items.append((label, lambda i=i: self._record_remove_list_entry(t.npcs, i, 'rem_npc')))
+            name = e.get('name','(unnamed)')
+            sub  = e.get('subcategory','')
+            ident = e.get('id','')
+            label = name
+            details = {
+                'kv': [
+                    'Type: NPC',
+                    f"Subcategory: {sub}" if sub else "Subcategory: -",
+                    f"ID: {ident}" if ident else "ID: -",
+                ],
+                'desc': e.get('description','') or '',
+            }
+            items.append((label, lambda i=i: self._record_remove_list_entry(t.npcs, i, 'rem_npc'), details))
         # Items
         for i, e in enumerate(t.items):
-            label = f"{e.get('name','(unnamed)')} [{e.get('id','')}] <{e.get('subcategory','')}>"
-            items.append((label, lambda i=i: self._record_remove_list_entry(t.items, i, 'rem_item')))
+            name = e.get('name','(unnamed)')
+            sub  = e.get('subcategory','')
+            ident = e.get('id','')
+            label = name
+            details = {
+                'kv': [
+                    'Type: Item',
+                    f"Subcategory: {sub}" if sub else "Subcategory: -",
+                    f"ID: {ident}" if ident else "ID: -",
+                ],
+                'desc': e.get('description','') or '',
+            }
+            items.append((label, lambda i=i: self._record_remove_list_entry(t.items, i, 'rem_item'), details))
         # Link (max 1)
         for i, e in enumerate(t.links):
             label = f"Link → {e.get('target_map','?')} #{e.get('target_entry','')}"
             items.append((label, lambda i=i: self._record_remove_list_entry(t.links, i, 'rem_link')))
         self.scroll_list.set_items(items)
 
-    # ---------- canvas geometry (isometric + rotation) ----------
-    def _basis(self) -> Tuple[float, float, float, float]:
-        s = float(int(self.tile_size))
-        ang = math.radians(float(ISO_ROT_DEG))
-        ca, sa = math.cos(ang), math.sin(ang)
-        exx, exy = ca * s, sa * s
-        eyx, eyy = -sa * s, ca * s
-        return exx, exy, eyx, eyy
-
-    def _iso_dims(self) -> Tuple[int, int, float, float]:
-        # For square tiles, width == height
-        tile_w = int(self.tile_size)
-        tile_h = int(self.tile_size)
-        return tile_w, tile_h, tile_w * 0.5, tile_h * 0.5
-
-    def _iso_center(self, x: float, y: float) -> Tuple[float, float]:
-        exx, exy, eyx, eyy = self._basis()
-        cx = self.offset_x + (x + 0.5) * exx + (y + 0.5) * eyx
-        cy = self.offset_y + (x + 0.5) * exy + (y + 0.5) * eyy
-        return cx, cy
-
-    def tile_poly(self, x: int, y: int) -> List[Tuple[int,int]]:
-        exx, exy, eyx, eyy = self._basis()
-        cx, cy = self._iso_center(x, y)
-        p0 = (int(cx - 0.5*exx - 0.5*eyx), int(cy - 0.5*exy - 0.5*eyy))
-        p1 = (int(cx + 0.5*exx - 0.5*eyx), int(cy + 0.5*exy - 0.5*eyy))
-        p2 = (int(cx + 0.5*exx + 0.5*eyx), int(cy + 0.5*exy + 0.5*eyy))
-        p3 = (int(cx - 0.5*exx + 0.5*eyx), int(cy - 0.5*exy + 0.5*eyy))
-        return [p0, p1, p2, p3]
+    # ---------- canvas geometry ----------
+    def screen_to_tile(self, sx: int, sy: int) -> Optional[Tuple[int,int]]:
+        x = int((sx - self.offset_x) / self.tile_size)
+        y = int((sy - self.offset_y) / self.tile_size)
+        if 0 <= x < self.map.width and 0 <= y < self.map.height:
+            return (x,y)
+        return None
 
     def tile_rect(self, x: int, y: int) -> pygame.Rect:
-        # Axis-aligned bounding box of the rotated diamond
-        exx, exy, eyx, eyy = self._basis()
-        cx, cy = self._iso_center(x, y)
-        pts = [
-            (cx - 0.5*exx - 0.5*eyx, cy - 0.5*exy - 0.5*eyy),
-            (cx + 0.5*exx - 0.5*eyx, cy + 0.5*exy - 0.5*eyy),
-            (cx + 0.5*exx + 0.5*eyx, cy + 0.5*exy + 0.5*eyy),
-            (cx - 0.5*exx + 0.5*eyx, cy - 0.5*exy + 0.5*eyy),
-        ]
-        minx = int(min(p[0] for p in pts)); maxx = int(max(p[0] for p in pts))
-        miny = int(min(p[1] for p in pts)); maxy = int(max(p[1] for p in pts))
-        return pygame.Rect(minx, miny, max(1, maxx-minx), max(1, maxy-miny))
-
-    def _screen_to_world_float(self, sx: int, sy: int) -> Tuple[float, float]:
-        # Invert rotated square basis to get fractional tile coords
-        vx = sx - self.offset_x
-        vy = sy - self.offset_y
-        exx, exy, eyx, eyy = self._basis()
-        det = exx*eyy - exy*eyx
-        if abs(det) < 1e-6:
-            return 0.0, 0.0
-        # Solve A*[u;v] = [vx;vy], then subtract 0.5 to get tile index
-        u = ( eyy*vx - eyx*vy) / det
-        v = (-exy*vx + exx*vy) / det
-        return (u - 0.5), (v - 0.5)
-
-    def _point_in_tile(self, x: int, y: int, sx: int, sy: int) -> bool:
-        # Use fractional coords check from inverse mapping
-        fx, fy = self._screen_to_world_float(sx, sy)
-        return (x <= fx < x+1) and (y <= fy < y+1)
-
-    def screen_to_tile(self, sx: int, sy: int) -> Optional[Tuple[int,int]]:
-        fx, fy = self._screen_to_world_float(sx, sy)
-        bx, by = int(math.floor(fx)), int(math.floor(fy))
-        if 0 <= bx < self.map.width and 0 <= by < self.map.height and self._point_in_tile(bx, by, sx, sy):
-            return (bx, by)
-        for nx, ny in ((bx+1,by), (bx,by+1), (bx-1,by), (bx,by-1)):
-            if 0 <= nx < self.map.width and 0 <= ny < self.map.height:
-                if self._point_in_tile(nx, ny, sx, sy):
-                    return (nx, ny)
-        return None
+        ts = self.tile_size
+        x0 = self.offset_x + x * ts
+        y0 = self.offset_y + y * ts
+        return pygame.Rect(x0, y0, ts, ts)
 
     # ---------- note modal ----------
     def open_note_modal(self):
@@ -1205,79 +1334,40 @@ class EditorScreen:
         clip = surf.get_clip()
         surf.set_clip(canvas_rect)
 
-        # Square tiles with rotation + 2.5D sides
-        tile_w = int(self.tile_size)
-        exx, exy, eyx, eyy = self._basis()
-        depth = max(4, int(tile_w * CUBE_DEPTH_PCT))
-
+        # grid + tiles
         for y in range(self.map.height):
             for x in range(self.map.width):
-                cx, cy = self._iso_center(x, y)
-                # corners of the top square
-                p0 = (cx - 0.5*exx - 0.5*eyx, cy - 0.5*exy - 0.5*eyy)
-                p1 = (cx + 0.5*exx - 0.5*eyx, cy + 0.5*exy - 0.5*eyy)
-                p2 = (cx + 0.5*exx + 0.5*eyx, cy + 0.5*exy + 0.5*eyy)
-                p3 = (cx - 0.5*exx + 0.5*eyx, cy - 0.5*exy + 0.5*eyy)
-
-                base_col = (LIGHT_WALKABLE if (x+y)%2==0 else DARK_WALKABLE) if self.map.tiles[y][x].walkable else IMPASSABLE
-
-                # sides (extruded downward)
-                p0d = (p0[0], p0[1] + depth)
-                p1d = (p1[0], p1[1] + depth)
-                p2d = (p2[0], p2[1] + depth)
-                p3d = (p3[0], p3[1] + depth)
-                face_r = [(int(p1[0]),int(p1[1])),(int(p2[0]),int(p2[1])),(int(p2d[0]),int(p2d[1])),(int(p1d[0]),int(p1d[1]))]
-                face_f = [(int(p2[0]),int(p2[1])),(int(p3[0]),int(p3[1])),(int(p3d[0]),int(p3d[1])),(int(p2d[0]),int(p2d[1]))]
-                col_r = (int(base_col[0]*0.85), int(base_col[1]*0.85), int(base_col[2]*0.85))
-                col_f = (int(base_col[0]*0.70), int(base_col[1]*0.70), int(base_col[2]*0.70))
-                pygame.draw.polygon(surf, col_r, face_r)
-                pygame.draw.polygon(surf, col_f, face_f)
-                pygame.draw.lines(surf, GRID_LINE, False, face_r + [face_r[0]], 1)
-                pygame.draw.lines(surf, GRID_LINE, False, face_f + [face_f[0]], 1)
-
-                # top surface with texture: rotate a square texture surface
-                tile_surf = pygame.Surface((tile_w, tile_w), pygame.SRCALPHA)
-                tile_surf.fill((0,0,0,0))
-                pygame.draw.rect(tile_surf, base_col, (0,0,tile_w,tile_w))
+                r = self.tile_rect(x,y)
+                color = (LIGHT_WALKABLE if (x+y)%2==0 else DARK_WALKABLE) if self.map.tiles[y][x].walkable else IMPASSABLE
+                pygame.draw.rect(surf, color, r)
+                # draw texture if present
                 try:
                     tex_name = getattr(self.map.tiles[y][x], 'texture', "")
                     if tex_name:
-                        key = (tex_name, tile_w, tile_w, 'square')
+                        key = (tex_name, self.tile_size)
                         tex = self._tex_scaled.get(key)
                         if tex is None:
                             base = self._tex_images.get(tex_name)
                             if base is None:
+                                # lazy-load if missing from initial cache
                                 path = os.path.join(TILE_IMG_DIR, tex_name)
                                 if os.path.exists(path):
                                     base = pygame.image.load(path).convert_alpha()
                                     self._tex_images[tex_name] = base
                             if base is not None:
-                                tex = pygame.transform.smoothscale(base, (tile_w, tile_w)).convert_alpha()
+                                tex = pygame.transform.smoothscale(base, (r.w, r.h))
                                 self._tex_scaled[key] = tex
                         if tex is not None:
-                            tile_surf.blit(tex, (0,0))
+                            surf.blit(tex, (r.x, r.y))
                 except Exception:
                     pass
-
-                # encounter tint overlay on top surface
-                enc = self.map.tiles[y][x].encounter
-                if enc:
-                    tint = SAFE_TINT_RGBA if enc == 'safe' else DANGER_TINT_RGBA
-                    tint_surf = pygame.Surface((tile_w, tile_w), pygame.SRCALPHA)
+                pygame.draw.rect(surf, GRID_LINE, r, 1)
+                # encounter tint overlay
+                if self.map.tiles[y][x].encounter:
+                    tint = SAFE_TINT_RGBA if self.map.tiles[y][x].encounter == 'safe' else DANGER_TINT_RGBA
+                    tint_surf = pygame.Surface((r.w, r.h), pygame.SRCALPHA)
                     tint_surf.fill(tint)
-                    tile_surf.blit(tint_surf, (0,0))
-
-                # rotate top and blit into place
-                rot_deg = float(ISO_ROT_DEG)
-                out = pygame.transform.rotate(tile_surf, rot_deg) if abs(rot_deg) > 1e-6 else tile_surf
-                rect = out.get_rect(center=(int(cx), int(cy)))
-                surf.blit(out, rect)
-
-                # border + selection accent directly on main surface
-                top_poly = [(int(p0[0]),int(p0[1])),(int(p1[0]),int(p1[1])),(int(p2[0]),int(p2[1])),(int(p3[0]),int(p3[1]))]
-                pygame.draw.polygon(surf, GRID_LINE, top_poly, 1)
-                if self.selected == (x, y):
-                    pygame.draw.polygon(surf, ACCENT, top_poly, 2)
+                    surf.blit(tint_surf, (r.x, r.y))
 
         # overlays (centered colored dots)
         for y in range(self.map.height):
@@ -1293,6 +1383,7 @@ class EditorScreen:
                     elif sub == "enemies":  has.add("enemy")
                     elif sub == "citizens": has.add("citizen")
                     elif sub == "monsters": has.add("monster")
+                    elif sub == "villains": has.add("villain")
                     elif sub == "animals":  has.add("animal")
                 if any((it.get("subcategory","").lower()=="quest_items") for it in t.items):
                     has.add("quest_item")
@@ -1301,7 +1392,7 @@ class EditorScreen:
                 if t.links:
                     has.add("link")
 
-                order = ["enemy","ally","citizen","monster","animal","quest_item","item","link"]
+                order = ["enemy","villain","monster","ally","citizen","animal","quest_item","item","link"]
                 dots = [TYPE_DOT_COLORS[k] for k in order if k in has]
 
                 if dots:
@@ -1350,7 +1441,10 @@ class EditorScreen:
                             pygame.draw.circle(surf, col,        (int(cx), int(cy)), radius)
                             idx += 1
 
-        # selection outline already drawn per tile
+        # selection outline
+        if self.selected and (0 <= self.selected[0] < self.map.width) and (0 <= self.selected[1] < self.map.height):
+            r = self.tile_rect(*self.selected)
+            pygame.draw.rect(surf, ACCENT, r, 2)
 
         surf.set_clip(clip)
 
@@ -1426,10 +1520,7 @@ class EditorScreen:
         x0 = self.inspector_header_rect.x + 8
         y0 = self.inspector_header_rect.y + 8
         draw_text(surf, "Tile Info", (x0, y0), TEXT_MAIN, FONT_BOLD)
-        # encounter buttons row between header and list
-        self.btn_mark_safe.draw(surf)
-        self.btn_mark_danger.draw(surf)
-        self.btn_clear_marker.draw(surf)
+        # encounter buttons removed
         if self.selected and (0 <= self.selected[0] < self.map.width) and (0 <= self.selected[1] < self.map.height):
             x,y = self.selected
             t = self.map.tiles[y][x]
@@ -1540,12 +1631,9 @@ class EditorScreen:
                 self.link_entry_inp.handle(event); self.btn_add_link.handle(event)
 
         # inspector / scroll list
-        if event.type == pygame.MOUSEWHEEL or not dropdown_open:
+        if not dropdown_open:
             self.scroll_list.handle(event)
             self.btn_edit_note.handle(event)
-            self.btn_mark_safe.handle(event)
-            self.btn_mark_danger.handle(event)
-            self.btn_clear_marker.handle(event)
 
         # description
         if not dropdown_open:
@@ -1655,18 +1743,15 @@ class EditorScreen:
         elif event.type == pygame.MOUSEWHEEL:
             mouse_x, mouse_y = get_mouse_pos()
             if canvas_rect.collidepoint((mouse_x, mouse_y)):
-                # keep the tile under cursor fixed while zooming
-                fx, fy = self._screen_to_world_float(mouse_x, mouse_y)
                 old_ts = self.tile_size
+                world_x = (mouse_x - self.offset_x) / old_ts
+                world_y = (mouse_y - self.offset_y) / old_ts
                 zoom_factor = 1.1 if event.y > 0 else (1/1.1)
                 new_ts = max(TILE_MIN, min(TILE_MAX, int(old_ts * zoom_factor)))
                 if new_ts != old_ts:
                     self.tile_size = new_ts
-                    exx, exy, eyx, eyy = self._basis()
-                    cx = (fx + 0.5) * exx + (fy + 0.5) * eyx
-                    cy = (fx + 0.5) * exy + (fy + 0.5) * eyy
-                    self.offset_x = int(mouse_x - cx)
-                    self.offset_y = int(mouse_y - cy)
+                    self.offset_x = int(mouse_x - world_x * new_ts)
+                    self.offset_y = int(mouse_y - world_y * new_ts)
 
     def update(self, dt):
         self.name_inp.update(dt)
@@ -1706,7 +1791,10 @@ class ListBox:
     def handle(self, event):
         if event.type == pygame.MOUSEWHEEL:
             if self.rect.collidepoint(get_mouse_pos()):
-                self.scroll = max(0, self.scroll - event.y * 24)
+                # Clamp scroll so it stops at the end of the list
+                content_h = len(self.items) * (self.item_h + self.spacing)
+                max_scroll = max(0, content_h - self.rect.h)
+                self.scroll = max(0, min(max_scroll, self.scroll - event.y * 24))
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if not self.rect.collidepoint(event.pos):
                 return

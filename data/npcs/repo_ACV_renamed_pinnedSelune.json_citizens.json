@@ -1,0 +1,1038 @@
+{
+  "schema": "rpgen.npcs.citizens.v1",
+  "version": 1,
+  "npcs": [
+    {
+      "id": "NP00003000",
+      "name": "Merris Copperpot",
+      "race": "Halfling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Brown",
+        "hair_color": "Chestnut",
+        "build": "Plump",
+        "skin_tone": "Rosy",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Plump halfling innkeeper with rosy cheeks and a laugh like clattering pans. Flour-dusted aprons, copper-pot charms on a kitchen-string, quick hands that shoo drunks and plate pies with equal force. Halfling hospitality made muscle: she remembers everyone’s favorite stew and everyone’s worst decision. Appearance: medium, straight, chestnut hair; brown eyes; rosy, smooth skin; medium height, plump build. Features: .  Personality: witty, charming, quick on the turn. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears bare-chested under a fur mantle, beadwork cords and bronze bangles, defiant and theatrical."
+    },
+    {
+      "id": "NP00003001",
+      "name": "Tharic Coalbrow",
+      "race": "Ember Dwarf",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Gray",
+        "hair_color": "Black streaked with soot",
+        "build": "Bulky",
+        "skin_tone": "Soot-browned",
+        "hair_length": "Short",
+        "hair_style": "Braided",
+        "height": "Medium",
+        "skin_texture": "Rough",
+        "features": []
+      },
+      "description": "Stocky forge-smith, beard sparking with ember-red beads. Hammer on his belt, pride in his gray eyes, burn-scars mapped like old rivers. Laugh is short; advice is shorter. Ember Dwarf habits: heat-tempered leathers, ash-scented beard oil, prayers muttered into the quench. Appearance: short, braided, black streaked with soot hair; gray eyes; soot-browned, rough skin; medium height, bulky build. Features: .  Personality: witty, charming, quick on the turn. She wears heat-tempered leathers, copper-riveted apron, rune-stitched cuffs. He wears boiled-leather jack with inset rune-plates, fingerless gloves and a many-pocketed tool harness."
+    },
+    {
+      "id": "NP00003002",
+      "name": "Elira Dawnmere",
+      "race": "Human",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Blue",
+        "hair_color": "Blonde",
+        "build": "Slim",
+        "skin_tone": "Fair",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Slender seamstress with nimble fingers and a kerchiefed crown of blonde hair. Pale dresses, pale thread, blue eyes bright with careful dreams. She hides tiny protective stitches in hems—quiet blessings paid forward one garment at a time. Appearance: medium, straight, blonde hair; blue eyes; fair, smooth skin; medium height, slim build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears sailor’s stripes beneath an oilskin, corded belt and hook-knife, tar-stained boots."
+    },
+    {
+      "id": "NP00003003",
+      "name": "Osric Harthollow",
+      "race": "Human",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Brown",
+        "hair_color": "Balding",
+        "build": "Round",
+        "skin_tone": "Light",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Round-bellied miller with a booming hello and flour-dusted boots. Smells faintly of grain and river mist. His stories have been told so often they’ve learned to walk on their own—and buy him ale when they do. Appearance: medium, straight, balding hair; brown eyes; light, smooth skin; medium height, round build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears sailor’s stripes beneath an oilskin, corded belt and hook-knife, tar-stained boots."
+    },
+    {
+      "id": "NP00003004",
+      "name": "Kaelen Veyra",
+      "race": "Great Elf",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Emerald",
+        "hair_color": "Silver",
+        "build": "Slim",
+        "skin_tone": "Pale",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "pointed ears"
+        ]
+      },
+      "description": "Pale scribe with silver hair clasped neatly and emerald eyes behind slim spectacles. Layered robes ink-kissed at the cuffs. Great Elf manner: elegant diction, careful posture, and wit that bows before it cuts. Appearance: medium, straight, silver hair; emerald eyes; pale, smooth skin; medium height, slim build. Features: pointed ears.  Personality: composed, purposeful, sharp when it counts. She wears high court robes with metallic trim, jeweled clasps, silk gloves, polished boots. He wears a flowing saffron robe belted with braided cord, soft doeskin shoes and a travel-cloak pinned with a moon-brooch."
+    },
+    {
+      "id": "NP00003005",
+      "name": "Branna Holloway",
+      "race": "Human",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Hazel",
+        "hair_color": "Red",
+        "build": "Bulky",
+        "skin_tone": "Tanned",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Broad-shouldered farmer, sun-browned, hair the color of late harvest. Roughspun linen patched a dozen times; calluses you could read a field by. She laughs loud, trusts slow, and plants stubborn—each season an argument she intends to win. Appearance: medium, straight, red hair; hazel eyes; tanned, smooth skin; medium height, bulky build. Features: .  Personality: witty, charming, quick on the turn. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears a travel-worn cloak over layered leathers, hood up and boots dusted from the road."
+    },
+    {
+      "id": "NP00003006",
+      "name": "Aritheliel Fenvale",
+      "race": "Half–Forest Elf",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Violet",
+        "hair_color": "Brown",
+        "build": "Slim",
+        "skin_tone": "Olive",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Slim herbalist with violet eyes that count heartbeats. Patchwork skirts perfumed by sage and resin. Human warmth, Forest Elf patience: she soothes with tea, warns with nettle, and writes your name on a leaf if you’ve crossed her. Appearance: medium, straight, brown hair; violet eyes; olive, smooth skin; medium height, slim build. Features: .  Personality: calm, observant, quietly determined. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears layered green leathers over a linen tunic, a quiver high on the back, bracers etched with vinework."
+    },
+    {
+      "id": "NP00003007",
+      "name": "Torven Blacktusk",
+      "race": "Ashfoot Orc",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Amber",
+        "hair_color": "Black",
+        "build": "Burly",
+        "skin_tone": "Charcoal-green",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "tusks"
+        ]
+      },
+      "description": "Burly butcher with chipped tusks and an apron that’s seen storms. Amber eyes warm, hands gentle on strays and careful on knives. Ashfoot Orc roots: volcanic prayer-runes burned faint on his knuckles, smoke-salt on the tongue, steady as cooled stone. Appearance: medium, straight, black hair; amber eyes; charcoal-green, smooth skin; medium height, burly build. Features: tusks.  Personality: calm, observant, quietly determined. She wears obsidian-inset armor, ash-dyed wraps, bone totems, bare feet. He wears thick boiled-leather with bone rivets, heavy bracers and greaves scarred from raids."
+    },
+    {
+      "id": "NP00003008",
+      "name": "Sera Quickstep",
+      "race": "Halfling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Green",
+        "hair_color": "Honey-brown",
+        "build": "Compact",
+        "skin_tone": "Warm",
+        "hair_length": "Short",
+        "hair_style": "Wavy",
+        "height": "Short",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Market-runner who knows every shortcut and every price. Honey-brown curls, ink-smudged ledger, a grin that sells out stalls. She can weave through a crowd without touching a sleeve—unless it’s to lift your spirits. Appearance: short, wavy, honey-brown hair; green eyes; warm, smooth skin; short height, compact build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears a doublet and riding breeches with knee boots, gloves tucked through the belt."
+    },
+    {
+      "id": "NP00003009",
+      "name": "Dren Stonebinder",
+      "race": "Hill Dwarf",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Hazel",
+        "hair_color": "Sandy",
+        "build": "Sturdy",
+        "skin_tone": "Sun-browned",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Rough",
+        "features": []
+      },
+      "description": "Mason who hums to mortar. Sun-browned skin, sandy beard tied with bead-markers for bridges raised and taverns repaired. Hill Dwarf habit: a pocket for chalk, a pocket for bread, and a pocket for promises. Appearance: medium, straight, sandy hair; hazel eyes; sun-browned, rough skin; medium height, sturdy build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears embroidered work tunic, stout belt, canvas trousers, field boots. He wears simple pilgrim’s wraps and sandals, walking staff banded in tin instead of a warhammer."
+    },
+    {
+      "id": "NP00003010",
+      "name": "Maera Snowtress",
+      "race": "Snow Elf",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Ice-blue",
+        "hair_color": "White",
+        "build": "Slim",
+        "skin_tone": "Pale with frost freckles",
+        "hair_length": "Medium",
+        "hair_style": "Braided",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "pointed ears"
+        ]
+      },
+      "description": "Iceseller who never slips. White braid, ice-blue gaze, coats lined in hare-fur. Snow Elf poise: cool courtesy, warmer prices if you bring news from mountain passes. Appearance: medium, braided, white hair; ice-blue eyes; pale with frost freckles, smooth skin; medium height, slim build. Features: pointed ears.  Personality: calm, observant, quietly determined. She wears fur-lined coats, frost-woven wraps, high boots, glacier-gleam brooch. She wears layered green leathers over a linen tunic, a quiver high on the back, bracers etched with vinework."
+    },
+    {
+      "id": "NP00003011",
+      "name": "Keth Ironline",
+      "race": "Iron Dwarf",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Brown",
+        "hair_color": "Black",
+        "build": "Bulky",
+        "skin_tone": "Ruddy",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Rough",
+        "features": []
+      },
+      "description": "Railwright with arms like joists. Keeps the town’s winches honest and its cranes fed. Drinks water at work, ale at dusk, and respect at the same table as anyone who’ll give it. Appearance: medium, straight, black hair; brown eyes; ruddy, rough skin; medium height, bulky build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears forge leathers, iron-banded bracers, tool belt, hobnail boots. He wears simple pilgrim’s wraps and sandals, walking staff banded in tin instead of a warhammer."
+    },
+    {
+      "id": "NP00003012",
+      "name": "Ysil Darkstring",
+      "race": "Dark Elf",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Crimson",
+        "hair_color": "White",
+        "build": "Slim",
+        "skin_tone": "Obsidian",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "pointed ears"
+        ]
+      },
+      "description": "Luthier with white hair and crimson eyes, fingertips stained with oil and resin. Dark Elf craft turned to music: her instruments hold night in their soundbox and streetlight in their varnish. Appearance: medium, straight, white hair; crimson eyes; obsidian, smooth skin; medium height, slim build. Features: pointed ears.  Personality: composed, purposeful, sharp when it counts. She wears shadow-cut leathers, web-lace sleeves, soft-soled boots, poisoners' kit. She wears mirror-bright steel plate with leaf-engraved pauldrons, chain underlayers and a scarlet tabard—weighty and martial."
+    },
+    {
+      "id": "NP00003013",
+      "name": "Kaelrayx Thornhook",
+      "race": "Voided Tiefling",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Violet",
+        "hair_color": "White",
+        "build": "Slim",
+        "skin_tone": "Pitch Black",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
+      },
+      "description": "Dock-clerk whose ledgers never lose a page. He wears a high-collar robe and sleeveless outer cloak, a long sash belt with hanging charms, silver-stitched gloves, fitted trousers and heeled boots, a cloak patterned like stars.. black long straight smooth upward pointed horns, violet-tinged skin, ink under every nail. The sea brings him secrets; he files them next to tariffs and lets them gather interest. Appearance: medium, straight, black hair; violet eyes; pale with violet undertone, smooth skin; medium height, slim build. Features: black long straight smooth upward pointed horns, pitch black long smooth tail, pointed very long pointed ears. Personality: composed, purposeful, sharp when it counts. She wears high-collar robe, sleeveless outer cloak, long sash belt, silver-stitched gloves, fitted trousers, heeled boots, cloak patterned like stars. Their heritage is obvious: pitch-black smooth skin, black long straight smooth upward pointed horns set upward, very long pointed very long pointed ears, pitch black long smooth tail. He wears a stark white linen wrap that throws their pitch-black skin into contrast, barefoot and jewel-bright rings."
+    },
+    {
+      "id": "NP00003014",
+      "name": "Rook Tinsprocket",
+      "race": "Goblin",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Amber",
+        "hair_color": "Soot tuft",
+        "build": "Wirey",
+        "skin_tone": "Green",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Tinker with a satchel that ticks. Teeth like a grin of nails, goggles that make the world a polite blur. He charges extra for inventions that don’t explode and double for ones that do on command. Appearance: medium, straight, soot tuft hair; amber eyes; green, smooth skin; medium height, wirey build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears bare-chested under a fur mantle, beadwork cords and bronze bangles, defiant and theatrical."
+    },
+    {
+      "id": "NP00003015",
+      "name": "Anwen Reedwhistle",
+      "race": "Avianfolk",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Silver",
+        "hair_color": "Feather crest",
+        "build": "Light",
+        "skin_tone": "Pale",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "wings",
+          "talons"
+        ]
+      },
+      "description": "Courier who times her landings to the bell. Silver eyes that catch movement a heartbeat early. She writes letters in the air with her finger to remember them later. Appearance: medium, straight, feather crest hair; silver eyes; pale, smooth skin; medium height, light build. Features: wings, talons.  Personality: composed, purposeful, sharp when it counts. She wears feathered mantle, flight leathers, beadwork, talon guards. She wears steel plate over mail with a faded tabard, leather gloves and a sword belt worn smooth."
+    },
+    {
+      "id": "NP00003016",
+      "name": "Brother Malric",
+      "race": "Human",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Gray",
+        "hair_color": "Brown tonsure",
+        "build": "Spare",
+        "skin_tone": "Pale",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Archivist-priest with ink on his cuffs and patience for difficult truths. He lends books and collects apologies. His sermons are footnotes with teeth. Appearance: medium, straight, brown tonsure hair; gray eyes; pale, smooth skin; medium height, spare build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears steel plate over mail with a faded tabard, leather gloves and a sword belt worn smooth."
+    },
+    {
+      "id": "NP00003017",
+      "name": "Garna Wavecut",
+      "race": "Sharkkin",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Steel",
+        "hair_color": "None",
+        "build": "Bulky",
+        "skin_tone": "Slate with pale bands",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Fishmonger with a fillet knife that flashes like a gull. Slate hide, steel stare, voice calm as deep water. She salts gossip the way she salts catch—lightly, to keep it useful. Appearance: medium, straight, none hair; steel eyes; slate with pale bands, smooth skin; medium height, bulky build. Features: .  Personality: calm, observant, quietly determined. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears a doublet and riding breeches with knee boots, gloves tucked through the belt."
+    },
+    {
+      "id": "NP00003018",
+      "name": "Pellan Softroot",
+      "race": "Myconid",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Teal bioluminescence",
+        "hair_color": "Fruiting cap",
+        "build": "Round",
+        "skin_tone": "Mottled beige",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Rough",
+        "features": [
+          "spores",
+          "cap"
+        ]
+      },
+      "description": "Porter who never hurries and never drops a thing. Soft-glow spores drift when he laughs. He remembers which crates sing to each other when stacked. Appearance: medium, straight, fruiting cap hair; teal bioluminescence eyes; mottled beige, rough skin; medium height, round build. Features: spores, cap.  Personality: calm, observant, quietly determined. She wears woven hyphae wraps, spore-pouch sash, soft sandals. He wears sailor’s stripes beneath an oilskin, corded belt and hook-knife, tar-stained boots."
+    },
+    {
+      "id": "NP00003019",
+      "name": "Ilwen Grayglass",
+      "race": "Great Elf",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Grey",
+        "hair_color": "Ash",
+        "build": "Tall",
+        "skin_tone": "Pale",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": [
+          "pointed ears"
+        ]
+      },
+      "description": "Glazier whose windows keep more than wind out. Ash hair in a silk snood, grey eyes measuring the world in panes. Prices rise with your rudeness; fall if you notice the beveling. Appearance: medium, straight, ash hair; grey eyes; pale, smooth skin; tall height, tall build. Features: pointed ears.  Personality: composed, purposeful, sharp when it counts. She wears high court robes with metallic trim, jeweled clasps, silk gloves, polished boots. She wears supple leaf-dyed leathers with bark-plate reinforcements, a hood drawn low and soft boots for silent steps."
+    },
+    {
+      "id": "NP00003020",
+      "name": "Bera Copperbloom",
+      "race": "Coastal Dwarf",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Sea-green",
+        "hair_color": "Copper",
+        "build": "Sturdy",
+        "skin_tone": "Wind-browned",
+        "hair_length": "Medium",
+        "hair_style": "Braided",
+        "height": "Medium",
+        "skin_texture": "Rough",
+        "features": []
+      },
+      "description": "Netmaker with sea-salt in her beard beads and a gull that refuses to leave. Coastal Dwarf craft: tarred twine, shell charms, swearing gentle enough for children—unless the knots tangle. Appearance: medium, braided, copper hair; sea-green eyes; wind-browned, rough skin; medium height, sturdy build. Features: .  Personality: calm, observant, quietly determined. She wears tarred twine vest, sea-cloak, shell-braided beard, deck boots. She wears silk robes trimmed in gilt thread, beadwork at the hems and soft slippers that whisper over stone."
+    },
+    {
+      "id": "NP00003021",
+      "name": "Sorcha Lambkin",
+      "race": "Caprine",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Amber",
+        "hair_color": "Curled mane",
+        "build": "Slim",
+        "skin_tone": "Fawn",
+        "hair_length": "Long",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Goatherd who names every bell and every storm. Amber eyes, cloven patience, hands that can knit a fence from brambles if you turn your back long enough. Appearance: long, straight, curled mane hair; amber eyes; fawn, smooth skin; medium height, slim build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. She wears linen shirt and waistcoat under a stormcloak, high boots and a brace of knives at the small of the back."
+    },
+    {
+      "id": "NP00003022",
+      "name": "Harrek Stonebloom",
+      "race": "Goliath",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Brown",
+        "hair_color": "Shaved",
+        "build": "Bulky",
+        "skin_tone": "Stone-marked",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Very tall",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Mason’s apprentice who lifts lintels alone. Skin veined like granite, laugh like a dropped boulder. He blushes easily—a mountain with a sunrise caught in it. Appearance: medium, straight, shaved hair; brown eyes; stone-marked, smooth skin; very tall height, bulky build. Features: .  Personality: witty, charming, quick on the turn. She wears stone-dyed leathers, corded cloak, bone clasps, heavy sandals. He wears sheer gauze layers with metallic cords and rings, more pageant than practicality."
+    },
+    {
+      "id": "NP00003023",
+      "name": "Tess Vervain",
+      "race": "Sableheart Tiefling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Amethyst",
+        "hair_color": "Purple",
+        "build": "Curvy",
+        "skin_tone": "Light Purple",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
+      },
+      "description": "Perfumer whose shop smells like secrets. She wears a laced corset bodice and a layered skirt with a high slit, long silk gloves, a bolero jacket with long sleeves, strapped heeled boots and jewelry chains.. polished gold silver bronze long curved pointed horns, amethyst eyes, black gloves to hide the tincture stains. She sells a scent for bravery and a cheaper one for pretending. Appearance: medium, straight, black hair; amethyst eyes; deep brown with violet undertone, smooth skin; medium height, curvy build. Features: polished gold silver bronze long curved pointed horns, long tail matching skin color, pointed ears. Personality: composed, purposeful, sharp when it counts. She wears corset bodice with laced front, layered skirt with high slit, long silk gloves, bolero jacket, strapped heeled boots, jewelry chains and earrings. Their heritage is obvious: light purple or light blue glossy skin, polished gold silver bronze long curved pointed horns, long tail matching skin color matching the skin tone. She wears a fitted satin dress with metallic piping and opera-length gloves, anklets chiming softly."
+    },
+    {
+      "id": "NP00003024",
+      "name": "Merrit Brightspool",
+      "race": "Sylvari",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Leaf-green",
+        "hair_color": "Vine-twist",
+        "build": "Slim",
+        "skin_tone": "Bark-olive",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Florist who ties bouquets like binding spells. Bark-soft palms, leaf-green eyes, a murmured apology for every petal he trims. His shop is a quiet duel between sunlight and shadow. Appearance: medium, straight, vine-twist hair; leaf-green eyes; bark-olive, smooth skin; medium height, slim build. Features: .  Personality: calm, observant, quietly determined. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears a travel-worn cloak over layered leathers, hood up and boots dusted from the road."
+    },
+    {
+      "id": "NP00003025",
+      "name": "Grish Stormpan",
+      "race": "Storm Orc",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Ice-blue",
+        "hair_color": "Black knot",
+        "build": "Bulky",
+        "skin_tone": "Sea-green",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "tusks"
+        ]
+      },
+      "description": "Street-cook who slaps batter like a drum. Sea-green skin scarred by lightning, ice-blue stare softened by steam. Pancakes flip to the beat of rain on canvas; his salt is measured with two fingers and a blessing. Appearance: medium, straight, black knot hair; ice-blue eyes; sea-green, smooth skin; medium height, bulky build. Features: tusks.  Personality: calm, observant, quietly determined. She wears storm-marked mail, sea-cloak, rope belt, boarder's boots. He wears brutal hide cuirass with iron rings, rawhide straps and a wolf-pelt mantle."
+    },
+    {
+      "id": "NP00003026",
+      "name": "Fennel Glowcap",
+      "race": "Myconid",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Soft teal glow",
+        "hair_color": "Fruiting cap",
+        "build": "Small",
+        "skin_tone": "Beige mottled with moss",
+        "hair_length": "Long",
+        "hair_style": "Straight",
+        "height": "Short",
+        "skin_texture": "Rough",
+        "features": [
+          "spores",
+          "cap"
+        ]
+      },
+      "description": "Beekeeper who hums alongside her hives; spores drift gently when she works. Her honey is luminous at night, sold in clay pots shaped like lanterns. Myconid patience makes her voice slow, measured, soothing as beeswax smoke. Appearance: long, straight, fruiting cap hair; soft teal glow eyes; beige mottled with moss, rough skin; short height, small build. Features: spores, cap.  Personality: composed, purposeful, sharp when it counts. She wears woven hyphae wraps, spore-pouch sash, soft sandals. She wears padded jack with steel splints under a quilted surcoat, knotted scarf and fingerless gloves."
+    },
+    {
+      "id": "NP00003027",
+      "name": "Rilven Ashmark",
+      "race": "Snow Elf",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Ice-blue",
+        "hair_color": "Silver",
+        "build": "Slim",
+        "skin_tone": "Pale with frost freckles",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "pointed ears"
+        ]
+      },
+      "description": "Chandler who crafts candles of whale-fat and mountain herbs. Ice-blue eyes, silver hair, and fingers always smelling of tallow. He sells light with superstition: some burn steady, others bend shadows if asked nicely. Appearance: medium, straight, silver hair; ice-blue eyes; pale with frost freckles, smooth skin; medium height, slim build. Features: pointed ears.  Personality: composed, purposeful, sharp when it counts. She wears fur-lined coats, frost-woven wraps, high boots, glacier-gleam brooch. He wears mirror-bright steel plate with leaf-engraved pauldrons, chain underlayers and a scarlet tabard—weighty and martial."
+    },
+    {
+      "id": "NP00003028",
+      "name": "Brigda Saltbrew",
+      "race": "Coastal Dwarf",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Sea-green",
+        "hair_color": "Salt-and-copper",
+        "build": "Bulky",
+        "skin_tone": "Wind-browned",
+        "hair_length": "Medium",
+        "hair_style": "Braided",
+        "height": "Medium",
+        "skin_texture": "Rough",
+        "features": []
+      },
+      "description": "Brewer with a laugh as loud as gulls; her mead tastes faintly of brine and citrus. She keeps shells in her braids and storms in her barrels. Coastal Dwarf stubbornness: she says seawater in the mash ‘puts iron in the soul.’ Appearance: medium, braided, salt-and-copper hair; sea-green eyes; wind-browned, rough skin; medium height, bulky build. Features: .  Personality: witty, charming, quick on the turn. She wears tarred twine vest, sea-cloak, shell-braided beard, deck boots. She wears simple pilgrim’s wraps and sandals, walking staff banded in tin instead of a warhammer."
+    },
+    {
+      "id": "NP00003029",
+      "name": "Tovik Nailbite",
+      "race": "Goblin",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Yellow",
+        "hair_color": "Patchy black",
+        "build": "Wirery",
+        "skin_tone": "Sallow green",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Locksmith whose grin shows more gaps than teeth. His wiry frame wiggles through crawlspaces, his yellow eyes always too wide. He chews nails—actual nails—when nervous. Goblin craft: lockpicks made from bone and humor. Appearance: medium, straight, patchy black hair; yellow eyes; sallow green, smooth skin; medium height, wirery build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears linen shirt and waistcoat under a stormcloak, high boots and a brace of knives at the small of the back."
+    },
+    {
+      "id": "NP00003030",
+      "name": "Eira Brooklace",
+      "race": "Goliath",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Grey",
+        "hair_color": "Black braid",
+        "build": "Tall and muscular",
+        "skin_tone": "Stone-marked pale",
+        "hair_length": "Medium",
+        "hair_style": "Braided",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Stonecarver with boulder-etched muscles and hands scarred by chisel slips. Grey eyes watch her statues like children. Goliath heritage paints her skin in pale granite streaks; she calls them ‘unfinished prayers.’ Appearance: medium, braided, black braid hair; grey eyes; stone-marked pale, smooth skin; tall height, tall and muscular build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears stone-dyed leathers, corded cloak, bone clasps, heavy sandals. She wears a doublet and riding breeches with knee boots, gloves tucked through the belt."
+    },
+    {
+      "id": "NP00003031",
+      "name": "Saren Whisperwillow",
+      "race": "Sylvari",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Emerald",
+        "hair_color": "Leafy green",
+        "build": "Slim",
+        "skin_tone": "Bark-brown",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Storyteller whose voice rises like wind through leaves. His leafy hair shakes with emphasis; bark-brown skin etched with whorls that glow faintly when he speaks truth. His tales plant seeds—some grow into trust, others into trouble. Appearance: medium, straight, leafy green hair; emerald eyes; bark-brown, smooth skin; medium height, slim build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears steel plate over mail with a faded tabard, leather gloves and a sword belt worn smooth."
+    },
+    {
+      "id": "NP00003032",
+      "name": "Alenna Goldbranch",
+      "race": "Forest Elf",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Hazel",
+        "hair_color": "Brown",
+        "build": "Slim",
+        "skin_tone": "Olive",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "pointed ears"
+        ]
+      },
+      "description": "Winemaker who stains her lips purple and her laughter deeper. Olive skin, hazel eyes, hands perfumed with oak barrels. She insists every bottle has a memory corked inside—some happy, some best left sealed. Appearance: medium, straight, brown hair; hazel eyes; olive, smooth skin; medium height, slim build. Features: pointed ears.  Personality: witty, charming, quick on the turn. She wears quiet leathers, leaf-dyed cloak, soft boots, beadwork and feather charms. She wears layered green leathers over a linen tunic, a quiver high on the back, bracers etched with vinework."
+    },
+    {
+      "id": "NP00003033",
+      "name": "Korrin Brassbuckle",
+      "race": "Hill Dwarf",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Brown",
+        "hair_color": "Rust-red",
+        "build": "Stout",
+        "skin_tone": "Sun-browned",
+        "hair_length": "Medium",
+        "hair_style": "Braided",
+        "height": "Medium",
+        "skin_texture": "Rough",
+        "features": []
+      },
+      "description": "Tavern-keeper with rust-red beard braided into his belt. Stout frame, booming voice, and ale strong enough to wake ancestors. Hill Dwarf cheer: every toast is half joke, half battle cry. Appearance: medium, braided, rust-red hair; brown eyes; sun-browned, rough skin; medium height, stout build. Features: .  Personality: witty, charming, quick on the turn. She wears embroidered work tunic, stout belt, canvas trousers, field boots. He wears ringmail under an oilcloth coat, thick leather gloves and iron-toed boots black with soot."
+    },
+    {
+      "id": "NP00003034",
+      "name": "Yrris Starfall",
+      "race": "Viridian Tiefling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Green",
+        "hair_color": "Blonde",
+        "build": "Curvy",
+        "skin_tone": "Light Green",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
+      },
+      "description": "Astrologer who tattoos star-maps across her own arms. She wears a flowing embroidered robe and sleeveless overcloak, a vine belt with pouches, leaf-stitched bracers, a long skirt with slits and strapped sandals.. Olive skin glimmers green under candlelight; white light brown antler-like pointed horns capped in copper; green eyes that don’t blink when the sky turns strange. She whispers fortunes with ink-stained fingers. Appearance: medium, straight, black hair; green eyes; olive with green hue, smooth skin; medium height, slim build. Features: white light brown antler-like pointed horns, short fur-tipped tail matching skin color, pointed ears. Personality: composed, purposeful, sharp when it counts. She wears flowing embroidered robe, sleeveless overcloak, vine belt with pouches, leaf-stitched bracers, long skirt with slits, strapped sandals. Their heritage is obvious: light green or turquoise smooth skin, antler-like white or light-white light brown antler-like pointed horns, and a short fur-short fur-tipped tail matching skin color matching the skin tone. She wears a flowing embroidered robe and sleeveless overcloak, vine belt with pouches, leaf-stitched bracers and strapped sandals."
+    },
+    {
+      "id": "NP00003035",
+      "name": "Bram Oakhollow",
+      "race": "Human",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Brown",
+        "hair_color": "Grey",
+        "build": "Burly",
+        "skin_tone": "Weathered tan",
+        "hair_length": "Short",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Woodcutter with arms like old trunks, grey hair cropped, brown eyes full of patient storms. He treats every felled tree like a funeral, every hearth-stock like a christening. Appearance: short, straight, grey hair; brown eyes; weathered tan, smooth skin; medium height, burly build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears a doublet and riding breeches with knee boots, gloves tucked through the belt."
+    },
+    {
+      "id": "NP00003036",
+      "name": "Nimri Featherveil",
+      "race": "Avianfolk",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Silver",
+        "hair_color": "Feathered crest",
+        "build": "Slim",
+        "skin_tone": "Pale",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "wings",
+          "talons"
+        ]
+      },
+      "description": "Midwife who hums lullabies that echo like wings. Slim frame, silver eyes that notice breaths. She ties blessings on threadbare wings and never lets a first cry go unanswered. Appearance: medium, straight, feathered crest hair; silver eyes; pale, smooth skin; medium height, slim build. Features: wings, talons.  Personality: composed, purposeful, sharp when it counts. She wears feathered mantle, flight leathers, beadwork, talon guards. She wears padded jack with steel splints under a quilted surcoat, knotted scarf and fingerless gloves."
+    },
+    {
+      "id": "NP00003037",
+      "name": "Jorek Ironstem",
+      "race": "Iron Dwarf",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Black",
+        "hair_color": "Coal-grey",
+        "build": "Bulky",
+        "skin_tone": "Ruddy",
+        "hair_length": "Medium",
+        "hair_style": "Braided",
+        "height": "Medium",
+        "skin_texture": "Rough",
+        "features": []
+      },
+      "description": "Blacksmith who tempers steel with old hymns. Heavyset body, ruddy skin, coal-grey beard braided with iron filings. His hammers ring like church bells; his anvils whisper the day’s gossip. Appearance: medium, braided, coal-grey hair; black eyes; ruddy, rough skin; medium height, bulky build. Features: .  Personality: composed, purposeful, sharp when it counts. She wears forge leathers, iron-banded bracers, tool belt, hobnail boots. He wears stout mail over quilted gambeson with plate at shoulders and shins, a broad belt of hammered brass."
+    },
+    {
+      "id": "NP00003038",
+      "name": "Sivra Moonpetal",
+      "race": "Great Elf",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Blue",
+        "hair_color": "Silver",
+        "build": "Tall",
+        "skin_tone": "Ivory",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": [
+          "pointed ears"
+        ]
+      },
+      "description": "Florist whose bouquets lean toward the dangerous: nightshade nestled with roses, wolfsbane with lilies. Tall, ivory-skinned, silver-haired, with robes soft as twilight. Her blue eyes look at flowers and people with the same appraisal—beauty, fragility, bloom, decay. Appearance: medium, straight, silver hair; blue eyes; ivory, smooth skin; tall height, tall build. Features: pointed ears.  Personality: calm, observant, quietly determined. She wears high court robes with metallic trim, jeweled clasps, silk gloves, polished boots. She wears a flowing saffron robe belted with braided cord, soft doeskin shoes and a travel-cloak pinned with a moon-brooch."
+    },
+    {
+      "id": "NP00003039",
+      "name": "Grendel Quickfang",
+      "race": "Goblin",
+      "sex": "Male",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Orange",
+        "hair_color": "Stringy black",
+        "build": "Thin",
+        "skin_tone": "Green",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": []
+      },
+      "description": "Ratcatcher who carries a sack that wriggles. Thin frame, orange eyes, stringy hair, grin sharper than his traps. Goblin practicality: he eats what he catches, laughs while others squirm, and whistles to keep vermin calm. Appearance: medium, straight, stringy black hair; orange eyes; green, smooth skin; medium height, thin build. Features: .  Personality: calm, observant, quietly determined. She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. He wears a travel-worn cloak over layered leathers, hood up and boots dusted from the road."
+    },
+    {
+      "id": "NP00003040",
+      "name": "Veyra Nullbrand",
+      "race": "Darkblood Tiefling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Grey",
+        "hair_color": "Grey",
+        "build": "Slim",
+        "skin_tone": "Light Grey",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Cracked",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
+      },
+      "description": "A Darkblood Tiefling citizen who carries themselves with distinction. She wears leather breastplate with a high collar under a hooded cloak, scale-stitched bracers, a utility belt and fitted trousers with thigh straps, armored boots.. black very long jagged pointed horns, black very long twisted spiked tail, and bearing mark their tiefling heritage clearly. They wear attire suited to their station and embody the presence of their bloodline. Their heritage is obvious: light grey cracked craggily skin, black very long jagged pointed horns, black very long twisted spiked tail with a spiked tip. She wears black leather breastplate with a high collar, hooded cloak, scale-stitched bracers and fitted trousers with thigh straps."
+    },
+    {
+      "id": "NP00003041",
+      "name": "Ravyyx Voidveil",
+      "race": "Darkblood Tiefling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Grey",
+        "hair_color": "Black",
+        "build": "Slim",
+        "skin_tone": "Light Grey",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Cracked",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
+      },
+      "description": "A Darkblood Tiefling citizen who carries themselves with distinction. She wears leather breastplate with a high collar under a hooded cloak, scale-stitched bracers, a utility belt and fitted trousers with thigh straps, armored boots.. black very long jagged pointed horns, black very long twisted spiked tail, and bearing mark their tiefling heritage clearly. They wear attire suited to their station and embody the presence of their bloodline. Their heritage is obvious: light grey cracked craggily skin, black very long jagged pointed horns, black very long twisted spiked tail with a spiked tip. She wears black leather breastplate with a high collar, hooded cloak, scale-stitched bracers and fitted trousers with thigh straps."
+    },
+    {
+      "id": "NP00003042",
+      "name": "Azraxdrin Graveweave",
+      "race": "Hellbound Tiefling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Ember",
+        "hair_color": "Orange",
+        "build": "Strong",
+        "skin_tone": "Red",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Tall",
+        "skin_texture": "Rough",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
+      },
+      "description": "A Hellbound Tiefling citizen who carries themselves with distinction. She wears heavy plate with spiked pauldrons and thick gauntlets, a chain belt over armored skirt panels, greaves and sabatons, a scorched cloak.. grey light brown thick long blunt pointed horns, red medium thick tail, and bearing mark their tiefling heritage clearly. They wear attire suited to their station and embody the presence of their bloodline. Their heritage is obvious: red or orange rough skin, thick long blunt grey or light-grey light brown thick long blunt pointed horns, red medium thick tail the same color as the skin. She wears plated laminar with soot-black surcoat, gorget and braced vambraces, a scorched cloak at the shoulders."
+    },
+    {
+      "id": "NP00003043",
+      "name": "Vexvexriel Shadeweave",
+      "race": "Hellbound Tiefling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Golden",
+        "hair_color": "Red",
+        "build": "Strong",
+        "skin_tone": "Orange",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Tall",
+        "skin_texture": "Rough",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
+      },
+      "description": "A Hellbound Tiefling citizen who carries themselves with distinction. She wears heavy plate with spiked pauldrons and thick gauntlets, a chain belt over armored skirt panels, greaves and sabatons, a scorched cloak.. grey light brown thick long blunt pointed horns, red medium thick tail, and bearing mark their tiefling heritage clearly. They wear attire suited to their station and embody the presence of their bloodline. Their heritage is obvious: red or orange rough skin, thick long blunt grey or light-grey light brown thick long blunt pointed horns, red medium thick tail the same color as the skin. She wears heavy plate with spiked pauldrons, thick gauntlets and a chain belt over armored skirt panels, greaves and sabatons."
+    },
+    {
+      "id": "NP00003044",
+      "name": "Nyxtharyx Coalbrand",
+      "race": "Voided Tiefling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Brown",
+        "hair_color": "White",
+        "build": "Slim",
+        "skin_tone": "Pitch Black",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
+      },
+      "description": "A Voided Tiefling citizen who carries themselves with distinction. She wears a high-collar robe and sleeveless outer cloak, a long sash belt with hanging charms, silver-stitched gloves, fitted trousers and heeled boots, a cloak patterned like stars.. black long straight smooth upward pointed horns, pitch black long smooth tail, and bearing mark their tiefling heritage clearly. They wear attire suited to their station and embody the presence of their bloodline. Their heritage is obvious: pitch-black smooth skin, black long straight smooth upward pointed horns set upward, very long pointed very long pointed ears, pitch black long smooth tail. She wears obsidian-toned garments with a star-patterned cloak, fitted trousers and long gloves."
+    },
+    {
+      "id": "NP00003045",
+      "name": "Selia Shadeveil",
+      "race": "Voided Tiefling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Brown",
+        "hair_color": "White",
+        "build": "Slim",
+        "skin_tone": "Pitch Black",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
+      },
+      "description": "A Voided Tiefling citizen who carries themselves with distinction. She wears a high-collar robe and sleeveless outer cloak, a long sash belt with hanging charms, silver-stitched gloves, fitted trousers and heeled boots, a cloak patterned like stars.. black long straight smooth upward pointed horns, pitch black long smooth tail, and bearing mark their tiefling heritage clearly. They wear attire suited to their station and embody the presence of their bloodline. Their heritage is obvious: pitch-black smooth skin, black long straight smooth upward pointed horns set upward, very long pointed very long pointed ears, pitch black long smooth tail. She wears obsidian-toned garments with a star-patterned cloak, fitted trousers and long gloves."
+    },
+    {
+      "id": "NP00003046",
+      "name": "Ravrielius Nightglass",
+      "race": "Sableheart Tiefling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Purple",
+        "hair_color": "Pink",
+        "build": "Curvy",
+        "skin_tone": "Light Blue",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
+      },
+      "description": "A Sableheart Tiefling citizen who carries themselves with distinction. She wears a laced corset bodice and a layered skirt with a high slit, long silk gloves, a bolero jacket with long sleeves, strapped heeled boots and jewelry chains.. polished gold silver bronze long curved pointed horns, long tail matching skin color, and bearing mark their tiefling heritage clearly. They wear attire suited to their station and embody the presence of their bloodline. Their heritage is obvious: light purple or light blue glossy skin, polished gold silver bronze long curved pointed horns, long tail matching skin color matching the skin tone. She wears a fitted satin dress with metallic piping and opera-length gloves, anklets chiming softly."
+    },
+    {
+      "id": "NP00003047",
+      "name": "Sabledrixriel Gravesigil",
+      "race": "Sableheart Tiefling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Purple",
+        "hair_color": "Purple",
+        "build": "Curvy",
+        "skin_tone": "Light Blue",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Medium",
+        "skin_texture": "Smooth",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
+      },
+      "description": "A Sableheart Tiefling citizen who carries themselves with distinction. She wears a laced corset bodice and a layered skirt with a high slit, long silk gloves, a bolero jacket with long sleeves, strapped heeled boots and jewelry chains.. polished gold silver bronze long curved pointed horns, long tail matching skin color, and bearing mark their tiefling heritage clearly. They wear attire suited to their station and embody the presence of their bloodline. Their heritage is obvious: light purple or light blue glossy skin, polished gold silver bronze long curved pointed horns, long tail matching skin color matching the skin tone. She wears a laced corset bodice and layered skirt with a high slit, long silk gloves, a bolero jacket and strapped heeled boots with jewelry chains."
+    },
+    {
+      "id": "NP00003048",
+      "name": "Velririel Noctsigil",
+      "race": "Viridian Tiefling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Green",
+        "hair_color": "Blonde",
+        "build": "Curvy",
+        "skin_tone": "Light Green",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
+      },
+      "description": "A Viridian Tiefling citizen who carries themselves with distinction. She wears a flowing embroidered robe and sleeveless overcloak, a vine belt with pouches, leaf-stitched bracers, a long skirt with slits and strapped sandals.. white light brown antler-like pointed horns, short fur-tipped tail matching skin color, and bearing mark their tiefling heritage clearly. They wear attire suited to their station and embody the presence of their bloodline. Their heritage is obvious: light green or turquoise smooth skin, antler-like white or light-white light brown antler-like pointed horns, and a short fur-short fur-tipped tail matching skin color matching the skin tone. She wears a woodcutter’s kit—tough canvas jacket, rolled sleeves, bramble-snagged trousers and stout boots."
+    },
+    {
+      "id": "NP00003049",
+      "name": "Erebvexdrin Ashmire",
+      "race": "Viridian Tiefling",
+      "sex": "Female",
+      "type": "citizen",
+      "appearance": {
+        "eye_color": "Green",
+        "hair_color": "Brown",
+        "build": "Curvy",
+        "skin_tone": "Turquoise",
+        "hair_length": "Medium",
+        "hair_style": "Straight",
+        "height": "Tall",
+        "skin_texture": "Smooth",
+        "features": [
+          "horns",
+          "tail",
+          "pointed ears"
+        ]
+      },
+      "description": "A Viridian Tiefling citizen who carries themselves with distinction. She wears a flowing embroidered robe and sleeveless overcloak, a vine belt with pouches, leaf-stitched bracers, a long skirt with slits and strapped sandals.. white light brown antler-like pointed horns, short fur-tipped tail matching skin color, and bearing mark their tiefling heritage clearly. They wear attire suited to their station and embody the presence of their bloodline. Their heritage is obvious: light green or turquoise smooth skin, antler-like white or light-white light brown antler-like pointed horns, and a short fur-short fur-tipped tail matching skin color matching the skin tone. She wears a woodcutter’s kit—tough canvas jacket, rolled sleeves, bramble-snagged trousers and stout boots."
+    }
+  ]
+}
