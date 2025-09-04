@@ -739,8 +739,11 @@ class Button:
 PANEL_W_FIXED = 380  # Fixed width for left/right sidebars
 
 # Angle of diamond side relative to horizontal (deg). 26.565 ≈ classic 2:1.
-ISO_ANGLE_DEG = 50.0
-ISO_ROT_DEG = 15.0
+ISO_ANGLE_DEG = 35
+ISO_ROT_DEG = -25.0
+
+# Map zoom multiplier (1.0 = default size). Increase to zoom in, decrease to zoom out.
+MAP_ZOOM = 10.0
 
 def draw_grid(surf, game):
     # Dynamic view area and camera
@@ -763,13 +766,27 @@ def draw_grid(surf, game):
     # and height is (W+H)*half_h. We keep a gentle zoom using vis_*.
     target_w = max(1, vis_w_tiles + vis_h_tiles)
     tile_w = max(20, min(96, int((view_w - 2*margin) / target_w)))
-    # Square tiles regardless of viewing angle; rotation only changes orientation
-    s = tile_w
-    ang = math.radians(float(ISO_ROT_DEG))
-    ca, sa = math.cos(ang), math.sin(ang)
-    # Basis vectors for one tile step
-    exx, exy = ca * s, sa * s
-    eyx, eyy = -sa * s, ca * s
+    # Apply code-configurable zoom
+    tile_w = max(8, int(tile_w * float(MAP_ZOOM)))
+    # Derive diamond height from tilt angle; build rotated basis
+    ang_pitch = max(1e-3, math.radians(float(ISO_ANGLE_DEG)))
+    tile_h = max(1, int(round(tile_w * math.tan(ang_pitch))))
+    # Fit height too: shrink tile_w if vertical bound would overflow
+    max_total_h = max(1, (view_h - 2*margin))
+    total_h_for_tile = int(target_w * (tile_h * 0.5))  # (vis_w+vis_h) * half_h
+    if total_h_for_tile > max_total_h:
+        scale = max_total_h / float(total_h_for_tile)
+        tile_w = max(20, int(tile_w * scale))
+        tile_h = max(1, int(round(tile_w * math.tan(ang_pitch))))
+    hx, hy = tile_w * 0.5, tile_h * 0.5
+    ex0x, ex0y = +hx, +hy
+    ey0x, ey0y = -hx, +hy
+    ang_rot = math.radians(float(ISO_ROT_DEG))
+    ca, sa = math.cos(ang_rot), math.sin(ang_rot)
+    exx = ca * ex0x - sa * ex0y
+    exy = sa * ex0x + ca * ex0y
+    eyx = ca * ey0x - sa * ey0y
+    eyy = sa * ey0x + ca * ey0y
     # Save on game for other UI uses (treat as square size)
     game.tile_px = tile_w
 
@@ -794,7 +811,7 @@ def draw_grid(surf, game):
 
     # Prepare diamond mask block removed (squares do not need it)
 
-    depth = max(4, int(s * 0.35))
+    depth = max(4, int(tile_h * 0.35))
     origin_x, origin_y = view_rect.x + margin, view_rect.y + margin
 
     for y in range(H):
@@ -901,9 +918,9 @@ def draw_grid(surf, game):
                 gap = max(2, int(tile_w) // 16)
                 avail_w = br.w - 2*pad
                 avail_h = br.h - 2*pad
-                r_w = (avail_w - (max_cols - 1) * gap) / (2 * max_cols) if max_cols else max(4, int(s)//8)
-                r_h = (avail_h - (rows_cnt - 1) * gap) / (2 * rows_cnt) if rows_cnt else max(4, int(s)//8)
-                rad = int(max(3, min(r_w, r_h, int(s) // 8)))
+                r_w = (avail_w - (max_cols - 1) * gap) / (2 * max_cols) if max_cols else max(4, int(tile_w)//8)
+                r_h = (avail_h - (rows_cnt - 1) * gap) / (2 * rows_cnt) if rows_cnt else max(4, int(tile_w)//8)
+                rad = int(max(3, min(r_w, r_h, int(tile_w) // 8)))
                 gap_x = 2*rad + gap
                 gap_y = 2*rad + gap
                 total_h = rows_cnt * (2*rad) + (rows_cnt - 1) * gap

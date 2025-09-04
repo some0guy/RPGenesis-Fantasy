@@ -668,6 +668,9 @@ class EditorScreen:
             except Exception:
                 pass
 
+        # cached diamond masks per (w,h) for top faces
+        self._diamond_mask_cache: Dict[Tuple[int,int], pygame.Surface] = {}
+
         # Tile Info (scrollable list)
         self.inspector_header_rect = pygame.Rect(900, 450, 380, 32)
         self.scroll_list = ScrollListWithButtons(pygame.Rect(900, 484, 380, 140))  # wheel scrollable
@@ -719,11 +722,26 @@ class EditorScreen:
                         base = pygame.image.load(path).convert_alpha()
                         self._tex_images[opt] = base
                 if base is not None:
-                    tex = pygame.transform.smoothscale(base, (size, size))
+                    tex = pygame.transform.smoothscale(base, (size, size)).convert_alpha()
                     self._tex_scaled[key] = tex
             return tex
         except Exception:
             return None
+
+    def _get_diamond_mask(self, w: int, h: int) -> pygame.Surface:
+        """Return a white-on-transparent diamond mask Surface of size (w,h).
+
+        Use BLEND_RGBA_MULT to clip textures/tints to the diamond area.
+        """
+        key = (int(w), int(h))
+        surf = self._diamond_mask_cache.get(key)
+        if surf is None:
+            surf = pygame.Surface((w, h), pygame.SRCALPHA)
+            hw, hh = w * 0.5, h * 0.5
+            pts = [(int(hw), 0), (w, int(hh)), (int(hw), h), (0, int(hh))]
+            pygame.draw.polygon(surf, (255,255,255,255), pts)
+            self._diamond_mask_cache[key] = surf
+        return surf
 
     def _apply_layout(self, surf):
         w, h = surf.get_size()
@@ -1040,17 +1058,37 @@ class EditorScreen:
 
     # ---------- canvas geometry (isometric + rotation) ----------
     def _basis(self) -> Tuple[float, float, float, float]:
-        s = float(int(self.tile_size))
-        ang = math.radians(float(ISO_ROT_DEG))
-        ca, sa = math.cos(ang), math.sin(ang)
-        exx, exy = ca * s, sa * s
-        eyx, eyy = -sa * s, ca * s
+        """Return basis vectors (exx,exy,eyx,eyy) mapping tile steps to screen.
+
+        Incorporates tilt via ISO_ANGLE_DEG and rotation via ISO_ROT_DEG.
+        Without rotation, the top face diamond has width tile_w and height tile_h,
+        where tile_h = tile_w * tan(angle). Basis at 0° rot: ex=(+w/2, +h/2), ey=(-w/2, +h/2).
+        """
+        tile_w = float(int(self.tile_size))
+        # compute top diamond height from angle (guard against extreme small)
+        ang_pitch = max(1e-3, math.radians(float(ISO_ANGLE_DEG)))
+        tile_h = max(1.0, tile_w * math.tan(ang_pitch))
+        hx, hy = tile_w * 0.5, tile_h * 0.5
+        # base (no rotation)
+        ex0x, ex0y = +hx, +hy
+        ey0x, ey0y = -hx, +hy
+        # apply rotation
+        ang_rot = math.radians(float(ISO_ROT_DEG))
+        ca, sa = math.cos(ang_rot), math.sin(ang_rot)
+        exx = ca * ex0x - sa * ex0y
+        exy = sa * ex0x + ca * ex0y
+        eyx = ca * ey0x - sa * ey0y
+        eyy = sa * ey0x + ca * ey0y
         return exx, exy, eyx, eyy
 
     def _iso_dims(self) -> Tuple[int, int, float, float]:
-        # For square tiles, width == height
+        """Return (tile_w, tile_h, half_w, half_h) for top diamond face.
+
+        tile_h is derived from ISO_ANGLE_DEG as tile_h = tile_w * tan(angle).
+        """
         tile_w = int(self.tile_size)
-        tile_h = int(self.tile_size)
+        ang_pitch = max(1e-3, math.radians(float(ISO_ANGLE_DEG)))
+        tile_h = max(1, int(round(tile_w * math.tan(ang_pitch))))
         return tile_w, tile_h, tile_w * 0.5, tile_h * 0.5
 
     def _iso_center(self, x: float, y: float) -> Tuple[float, float]:
@@ -1205,10 +1243,10 @@ class EditorScreen:
         clip = surf.get_clip()
         surf.set_clip(canvas_rect)
 
-        # Square tiles with rotation + 2.5D sides
-        tile_w = int(self.tile_size)
+        # Isometric tiles with rotation + 2.5D sides
+        tile_w, tile_h, half_w, half_h = self._iso_dims()
         exx, exy, eyx, eyy = self._basis()
-        depth = max(4, int(tile_w * CUBE_DEPTH_PCT))
+        depth = max(4, int((tile_h) * CUBE_DEPTH_PCT))
 
         for y in range(self.map.height):
             for x in range(self.map.width):
@@ -1235,10 +1273,11 @@ class EditorScreen:
                 pygame.draw.lines(surf, GRID_LINE, False, face_r + [face_r[0]], 1)
                 pygame.draw.lines(surf, GRID_LINE, False, face_f + [face_f[0]], 1)
 
-                # top surface with texture: rotate a square texture surface
-                tile_surf = pygame.Surface((tile_w, tile_w), pygame.SRCALPHA)
-                tile_surf.fill((0,0,0,0))
-                pygame.draw.rect(tile_surf, base_col, (0,0,tile_w,tile_w))
+                # top surface with texture: rotate square then squash vertically to match tilt
+                # prepare square top (unrotated)
+                square = pygame.Surface((tile_w, tile_w), pygame.SRCALPHA)
+                square.fill((0,0,0,0))
+                pygame.draw.rect(square, base_col, (0,0,tile_w,tile_w))
                 try:
                     tex_name = getattr(self.map.tiles[y][x], 'texture', "")
                     if tex_name:
@@ -1255,21 +1294,27 @@ class EditorScreen:
                                 tex = pygame.transform.smoothscale(base, (tile_w, tile_w)).convert_alpha()
                                 self._tex_scaled[key] = tex
                         if tex is not None:
-                            tile_surf.blit(tex, (0,0))
+                            square.blit(tex, (0,0))
                 except Exception:
                     pass
 
-                # encounter tint overlay on top surface
+                # encounter tint overlay on top surface (pre-rotation)
                 enc = self.map.tiles[y][x].encounter
                 if enc:
                     tint = SAFE_TINT_RGBA if enc == 'safe' else DANGER_TINT_RGBA
                     tint_surf = pygame.Surface((tile_w, tile_w), pygame.SRCALPHA)
                     tint_surf.fill(tint)
-                    tile_surf.blit(tint_surf, (0,0))
+                    square.blit(tint_surf, (0,0))
 
-                # rotate top and blit into place
+                # rotate, then vertical squash to match tilt
                 rot_deg = float(ISO_ROT_DEG)
-                out = pygame.transform.rotate(tile_surf, rot_deg) if abs(rot_deg) > 1e-6 else tile_surf
+                rotated = pygame.transform.rotate(square, rot_deg) if abs(rot_deg) > 1e-3 else square
+                if tile_h != tile_w:
+                    ratio = max(0.1, float(tile_h) / float(tile_w))
+                    out_w, out_h = rotated.get_size()
+                    out = pygame.transform.smoothscale(rotated, (out_w, max(1, int(out_h * ratio))))
+                else:
+                    out = rotated
                 rect = out.get_rect(center=(int(cx), int(cy)))
                 surf.blit(out, rect)
 
