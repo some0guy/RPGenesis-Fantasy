@@ -646,6 +646,11 @@ try:
 except Exception:
     pg = None  # checked at runtime
 
+# Optional AA polygon helper for smoother dots
+try:
+    from pygame import gfxdraw as gfx
+except Exception:
+    gfx = None
 # Color palette for recent log entries (matches map dots)
 LOG_COLORS = {
     'enemy':   (220,70,70),
@@ -745,6 +750,14 @@ ISO_ROT_DEG = -25.0
 # Map zoom multiplier (1.0 = default size). Increase to zoom in, decrease to zoom out.
 MAP_ZOOM = 10.0
 
+# Dot layout tuning
+# Extra inset from tile edges in tile-space units (fraction of half-extent)
+DOT_EDGE_INSET = 0.12  # 0.0..0.25 typical; higher = further from edges
+# Scale for row/column spacing (lower compacts dots toward center)
+DOT_SPACING_SCALE = 0.88
+# Visual size scale for dots (1.0 original, <1 smaller)
+DOT_SIZE_SCALE = 0.88
+
 def draw_grid(surf, game):
     # Dynamic view area and camera
     win_w, win_h = surf.get_size()
@@ -808,6 +821,9 @@ def draw_grid(surf, game):
     COL_EVENT    = (160,130,200)
     COL_LINK     = (255,105,180)  # match editor's link color (pink)
     COL_PLAYER   = (122,162,247)  # accent
+    # Pixel-style outline colors
+    EDGE_DARK  = (16,18,22)
+    EDGE_LIGHT = (92,98,120)
 
     # Prepare diamond mask block removed (squares do not need it)
 
@@ -846,12 +862,15 @@ def draw_grid(surf, game):
                 col_f = (int(base[0]*0.70), int(base[1]*0.70), int(base[2]*0.70))
                 pg.draw.polygon(surf, col_r, face_r)
                 pg.draw.polygon(surf, col_f, face_f)
-                pg.draw.lines(surf, (60,64,82), False, face_r + [face_r[0]], 1)
-                pg.draw.lines(surf, (60,64,82), False, face_f + [face_f[0]], 1)
+                # darker pixel-style edge on vertical faces (thicker)
+                pg.draw.lines(surf, EDGE_DARK, False, face_r + [face_r[0]], 2)
+                pg.draw.lines(surf, EDGE_DARK, False, face_f + [face_f[0]], 2)
                 # Top face
                 top_poly = [(int(p0[0]),int(p0[1])),(int(p1[0]),int(p1[1])),(int(p2[0]),int(p2[1])),(int(p3[0]),int(p3[1]))]
                 pg.draw.polygon(surf, base, top_poly)
-                pg.draw.polygon(surf, (70,74,92), top_poly, 1)
+                # double-stroke for crisp pixel look (thicker)
+                pg.draw.polygon(surf, EDGE_DARK, top_poly, 3)
+                pg.draw.polygon(surf, EDGE_LIGHT, top_poly, 2)
             # Overlay markers (centered dots)
             dot_colors = []
             if tile.encounter:
@@ -921,20 +940,71 @@ def draw_grid(surf, game):
                 r_w = (avail_w - (max_cols - 1) * gap) / (2 * max_cols) if max_cols else max(4, int(tile_w)//8)
                 r_h = (avail_h - (rows_cnt - 1) * gap) / (2 * rows_cnt) if rows_cnt else max(4, int(tile_w)//8)
                 rad = int(max(3, min(r_w, r_h, int(tile_w) // 8)))
+                # apply visual scale for smaller dots
+                r_eff = max(2, int(rad * float(DOT_SIZE_SCALE)))
                 gap_x = 2*rad + gap
                 gap_y = 2*rad + gap
                 total_h = rows_cnt * (2*rad) + (rows_cnt - 1) * gap
                 start_y = br.y + (br.h - total_h)//2 + rad
                 idx = 0
+
+                # Draw a flat ellipse via the tile basis (exact orientation)
+                ex_norm = math.hypot(exx, exy)
+                ey_norm = math.hypot(eyx, eyy)
+                denom = max(ex_norm, ey_norm, 1e-6)
+                scale = float(r_eff) / denom
+                steps = max(28, int(20 + r_eff * 1.2))
+
+                def draw_flat_dot(cx, cy, color):
+                    pts = []
+                    for i in range(steps):
+                        t = (2.0 * math.pi) * (i / steps)
+                        dx = scale * (math.cos(t) * exx + math.sin(t) * eyx)
+                        dy = scale * (math.cos(t) * exy + math.sin(t) * eyy)
+                        pts.append((int(round(cx + dx)), int(round(cy + dy))))
+                    # top fill only (no 3D extrusion)
+                    if gfx is not None:
+                        gfx.filled_polygon(surf, pts, color)
+                        gfx.aapolygon(surf, pts, (10,10,12))
+                    else:
+                        pg.draw.polygon(surf, color, pts)
+                        pg.draw.lines(surf, (10,10,12), False, pts + [pts[0]], 1)
+
+                # Compute oriented positions using tile-space (u along ex, v along ey)
+                u_margin = r_eff / max(ex_norm, 1e-6)
+                v_margin = r_eff / max(ey_norm, 1e-6)
+                u_max = max(0.0, 0.5 - u_margin - float(DOT_EDGE_INSET))
+                v_max = max(0.0, 0.5 - v_margin - float(DOT_EDGE_INSET))
+                # convert pixel gaps to tile-space gaps
+                ugap = (2*r_eff + gap) / max(ex_norm, 1e-6)
+                vgap = (2*r_eff + gap) / max(ey_norm, 1e-6)
+                # base spacings
+                base_sv = 2*r_eff / max(ey_norm, 1e-6) + vgap
                 for ri, cnt in enumerate(row_counts):
-                    total_w = cnt * (2*rad) + (cnt - 1) * gap
-                    start_x = br.x + (br.w - total_w)//2 + rad
-                    cy = start_y + ri * gap_y
+                    # spacing along v (rows), centered around 0
+                    if rows_cnt > 1:
+                        max_spacing_v = (2*v_max) / (rows_cnt - 1)
+                        spacing_v = min(base_sv, max_spacing_v) * float(DOT_SPACING_SCALE)
+                        v_off = (ri - (rows_cnt - 1) * 0.5) * spacing_v
+                    else:
+                        v_off = 0.0
+                    # spacing along u (columns), centered within the row
+                    base_su = 2*r_eff / max(ex_norm, 1e-6) + ugap
+                    if cnt > 1:
+                        max_spacing_u = (2*u_max) / (cnt - 1)
+                        spacing_u = min(base_su, max_spacing_u) * float(DOT_SPACING_SCALE)
+                    else:
+                        spacing_u = 0.0
                     for cj in range(cnt):
                         if idx >= n: break
-                        cx = start_x + cj * gap_x
-                        pg.draw.circle(surf, (10,10,12), (int(cx), int(cy)), rad+1)
-                        pg.draw.circle(surf, dot_colors[idx], (int(cx), int(cy)), rad)
+                        if cnt > 1:
+                            u_off = (cj - (cnt - 1) * 0.5) * spacing_u
+                        else:
+                            u_off = 0.0
+                        # center in screen space
+                        dcx = u_off * exx + v_off * eyx
+                        dcy = u_off * exy + v_off * eyy
+                        draw_flat_dot(cx + dcx, cy + dcy, dot_colors[idx])
                         idx += 1
 
     # Player marker: outline around the player's rotated diamond
@@ -946,7 +1016,12 @@ def draw_grid(surf, game):
         q2 = (px + 0.5*exx + 0.5*eyx, py + 0.5*exy + 0.5*eyy)
         q3 = (px - 0.5*exx + 0.5*eyx, py - 0.5*exy + 0.5*eyy)
         poly = [(int(q0[0]), int(q0[1])), (int(q1[0]), int(q1[1])), (int(q2[0]), int(q2[1])), (int(q3[0]), int(q3[1]))]
-        pg.draw.polygon(surf, COL_PLAYER, poly, 3)
+        # Slight pixel outline around player diamond
+        pg.draw.polygon(surf, (10,12,16), poly, 4)
+        pg.draw.polygon(surf, (30,34,44), poly, 2)
+        pg.draw.polygon(surf, COL_PLAYER, poly, 1)
+
+    # (Removed) Map outer boundary outline per request
 
 def draw_panel(surf, game):
     win_w, win_h = surf.get_size()

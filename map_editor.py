@@ -6,6 +6,10 @@ from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Tuple, Callable
 
 import pygame
+try:
+    from pygame import gfxdraw as gfx
+except Exception:
+    gfx = None
 
 # -------------------- Paths & constants --------------------
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -81,6 +85,11 @@ ISO_ANGLE_DEG: float = 26.565  # retained (unused when squares enforced)
 ISO_ROT_DEG: float = 0.0
 # Extrusion depth for cube sides relative to tile size
 CUBE_DEPTH_PCT: float = 0.35
+
+# Dot layout tuning for editor view (should mirror game for consistency)
+DOT_EDGE_INSET: float = 0.12  # fraction inset from tile edges
+DOT_SPACING_SCALE: float = 0.88  # compact rows/cols toward center
+DOT_SIZE_SCALE: float = 0.88    # visual size scale for dots
 
 # -------------------- JSON helpers --------------------
 def _as_list(obj: Any) -> List[Dict[str, Any]]:
@@ -1247,6 +1256,8 @@ class EditorScreen:
         tile_w, tile_h, half_w, half_h = self._iso_dims()
         exx, exy, eyx, eyy = self._basis()
         depth = max(4, int((tile_h) * CUBE_DEPTH_PCT))
+        EDGE_DARK  = (16,18,22)
+        EDGE_LIGHT = (92,98,120)
 
         for y in range(self.map.height):
             for x in range(self.map.width):
@@ -1270,8 +1281,8 @@ class EditorScreen:
                 col_f = (int(base_col[0]*0.70), int(base_col[1]*0.70), int(base_col[2]*0.70))
                 pygame.draw.polygon(surf, col_r, face_r)
                 pygame.draw.polygon(surf, col_f, face_f)
-                pygame.draw.lines(surf, GRID_LINE, False, face_r + [face_r[0]], 1)
-                pygame.draw.lines(surf, GRID_LINE, False, face_f + [face_f[0]], 1)
+                pygame.draw.lines(surf, EDGE_DARK, False, face_r + [face_r[0]], 2)
+                pygame.draw.lines(surf, EDGE_DARK, False, face_f + [face_f[0]], 2)
 
                 # top surface with texture: rotate square then squash vertically to match tilt
                 # prepare square top (unrotated)
@@ -1320,7 +1331,9 @@ class EditorScreen:
 
                 # border + selection accent directly on main surface
                 top_poly = [(int(p0[0]),int(p0[1])),(int(p1[0]),int(p1[1])),(int(p2[0]),int(p2[1])),(int(p3[0]),int(p3[1]))]
-                pygame.draw.polygon(surf, GRID_LINE, top_poly, 1)
+                # pixel-style double stroke outline (thicker)
+                pygame.draw.polygon(surf, EDGE_DARK, top_poly, 3)
+                pygame.draw.polygon(surf, EDGE_LIGHT, top_poly, 2)
                 if self.selected == (x, y):
                     pygame.draw.polygon(surf, ACCENT, top_poly, 2)
 
@@ -1376,23 +1389,68 @@ class EditorScreen:
                     else:
                         r_h = self.tile_size // 8
                     radius = int(max(2, min(r_w, r_h, self.tile_size // 8)))
-                    gap_x = 2 * radius + gap
-                    gap_y = 2 * radius + gap
+                    # visual scale smaller
+                    r_eff = max(2, int(radius * float(DOT_SIZE_SCALE)))
+                    gap_x = 2 * r_eff + gap
+                    gap_y = 2 * r_eff + gap
                     # Vertical start so rows are centered
                     total_h = rows_count * (2 * radius) + (rows_count - 1) * gap
                     start_y = r.y + (r.h - total_h) // 2 + radius
                     idx = 0
+
+                    # Prepare basis-aligned ellipse drawing to exactly match tile orientation
+                    exx, exy, eyx, eyy = self._basis()
+                    ex_norm = math.hypot(exx, exy)
+                    ey_norm = math.hypot(eyx, eyy)
+                    denom = max(ex_norm, ey_norm, 1e-6)
+                    scale = float(r_eff) / denom
+                    steps = max(28, int(20 + r_eff * 1.2))
+
+                    def _draw_flat_dot(cx_f: float, cy_f: float, color: Tuple[int,int,int]):
+                        pts = []
+                        for i2 in range(steps):
+                            t = (2.0 * math.pi) * (i2 / steps)
+                            dx = scale * (math.cos(t) * exx + math.sin(t) * eyx)
+                            dy = scale * (math.cos(t) * exy + math.sin(t) * eyy)
+                            pts.append((int(round(cx_f + dx)), int(round(cy_f + dy))))
+                        if gfx is not None:
+                            gfx.filled_polygon(surf, pts, color)
+                            gfx.aapolygon(surf, pts, (10,10,12))
+                        else:
+                            pygame.draw.polygon(surf, color, pts)
+                            pygame.draw.lines(surf, (10,10,12), False, pts + [pts[0]], 1)
+                    # Oriented layout along tile basis (u along ex, v along ey)
+                    u_margin = r_eff / max(ex_norm, 1e-6)
+                    v_margin = r_eff / max(ey_norm, 1e-6)
+                    u_max = max(0.0, 0.5 - u_margin - float(DOT_EDGE_INSET))
+                    v_max = max(0.0, 0.5 - v_margin - float(DOT_EDGE_INSET))
+                    ugap = (2*r_eff + gap) / max(ex_norm, 1e-6)
+                    vgap = (2*r_eff + gap) / max(ey_norm, 1e-6)
+                    base_sv = 2*r_eff / max(ey_norm, 1e-6) + vgap
+                    cx_c, cy_c = r.centerx, r.centery
                     for ri, count in enumerate(row_counts):
-                        # Center columns within the row
-                        total_w = count * (2 * radius) + (count - 1) * gap
-                        start_x = r.x + (r.w - total_w) // 2 + radius
-                        cy = start_y + ri * gap_y
+                        if rows_count > 1:
+                            max_spacing_v = (2*v_max) / (rows_count - 1)
+                            spacing_v = min(base_sv, max_spacing_v) * float(DOT_SPACING_SCALE)
+                            v_off = (ri - (rows_count - 1) * 0.5) * spacing_v
+                        else:
+                            v_off = 0.0
+                        base_su = 2*r_eff / max(ex_norm, 1e-6) + ugap
+                        if count > 1:
+                            max_spacing_u = (2*u_max) / (count - 1)
+                            spacing_u = min(base_su, max_spacing_u) * float(DOT_SPACING_SCALE)
+                        else:
+                            spacing_u = 0.0
                         for cj in range(count):
                             if idx >= n: break
-                            cx = start_x + cj * gap_x
+                            if count > 1:
+                                u_off = (cj - (count - 1) * 0.5) * spacing_u
+                            else:
+                                u_off = 0.0
+                            dcx = u_off * exx + v_off * eyx
+                            dcy = u_off * exy + v_off * eyy
                             col = dots[idx]
-                            pygame.draw.circle(surf, (10,10,12), (int(cx), int(cy)), radius+1)
-                            pygame.draw.circle(surf, col,        (int(cx), int(cy)), radius)
+                            _draw_flat_dot(cx_c + dcx, cy_c + dcy, col)
                             idx += 1
 
         # selection outline already drawn per tile
@@ -1484,6 +1542,25 @@ class EditorScreen:
 
         self._rebuild_scroll_items()
         self.scroll_list.draw(surf)
+
+        # Draw outer map boundary with bold pixel-style outline
+        if self.map.width > 0 and self.map.height > 0:
+            exx, exy, eyx, eyy = self._basis()
+            def center_xy(ix:int, iy:int):
+                cx, cy = self._iso_center(ix, iy)
+                return cx, cy
+            c00x, c00y = center_xy(0, 0)
+            c10x, c10y = center_xy(self.map.width-1, 0)
+            c11x, c11y = center_xy(self.map.width-1, self.map.height-1)
+            c01x, c01y = center_xy(0, self.map.height-1)
+            p_top    = (c00x - 0.5*exx - 0.5*eyx, c00y - 0.5*exy - 0.5*eyy)
+            p_right  = (c10x + 0.5*exx - 0.5*eyx, c10y + 0.5*exy - 0.5*eyy)
+            p_bottom = (c11x + 0.5*exx + 0.5*eyx, c11y + 0.5*exy + 0.5*eyy)
+            p_left   = (c01x - 0.5*exx + 0.5*eyx, c01y - 0.5*exy + 0.5*eyy)
+            map_poly = [(int(p_top[0]), int(p_top[1])), (int(p_right[0]), int(p_right[1])), (int(p_bottom[0]), int(p_bottom[1])), (int(p_left[0]), int(p_left[1]))]
+            pygame.draw.polygon(surf, (8,9,12), map_poly, 5)
+            pygame.draw.polygon(surf, EDGE_DARK, map_poly, 3)
+            pygame.draw.polygon(surf, EDGE_LIGHT, map_poly, 1)
 
         # Note button
         self.btn_edit_note.draw(surf)
