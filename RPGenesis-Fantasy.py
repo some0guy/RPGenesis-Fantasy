@@ -728,15 +728,35 @@ class Button:
         self.rect = pg.Rect(rect)
         self.label = label
         self.cb = cb
+        # When False, we don't draw a filled bg, but still show a hover outline
         self.draw_bg = draw_bg
+
     def draw(self, surf):
-        if not self.draw_bg:
-            return
-        label_font = pg.font.Font(None, 18)
-        pg.draw.rect(surf, (60,60,70), self.rect, border_radius=8)
-        pg.draw.rect(surf, (110,110,130), self.rect, 2, border_radius=8)
-        label = label_font.render(self.label, True, (240,240,255))
-        surf.blit(label, (self.rect.x + 10, self.rect.y + (self.rect.h - label.get_height())//2))
+        # Hover detection (no state is stored; computed each frame)
+        try:
+            mx, my = pg.mouse.get_pos()
+            hov = self.rect.collidepoint(mx, my)
+        except Exception:
+            hov = False
+
+        # Colors
+        base_col   = (60,60,70)
+        hover_col  = (73,80,99)
+        border_col = (110,110,130)
+        accent_col = (122,162,247)
+
+        if self.draw_bg:
+            pg.draw.rect(surf, hover_col if hov else base_col, self.rect, border_radius=8)
+            pg.draw.rect(surf, accent_col if hov else border_col, self.rect, 2, border_radius=8)
+            if self.label:
+                label_font = pg.font.Font(None, 18)
+                label = label_font.render(self.label, True, (240,240,255))
+                surf.blit(label, (self.rect.x + 10, self.rect.y + (self.rect.h - label.get_height())//2))
+        else:
+            # Invisible hit area: on hover, show subtle outline to indicate interactivity
+            if hov:
+                pg.draw.rect(surf, accent_col, self.rect, 2, border_radius=8)
+
     def handle(self, event):
         if event.type == pg.MOUSEBUTTONDOWN and event.button == 1 and self.rect.collidepoint(event.pos):
             self.cb()
@@ -830,6 +850,45 @@ def draw_grid(surf, game):
     depth = max(4, int(tile_h * 0.35))
     origin_x, origin_y = view_rect.x + margin, view_rect.y + margin
 
+    # Compute passable-tiles reachability within N steps (fog-of-war radius)
+    # Only tiles reachable via walkable neighbors are considered visible.
+    max_steps = 1
+    vis: Set[Tuple[int,int]] = set()
+    try:
+        sx, sy = int(game.player.x), int(game.player.y)
+        from collections import deque as _dq
+        q = _dq()
+        q.append((sx, sy, 0))
+        seen = set()
+        while q:
+            x0, y0, d = q.popleft()
+            if (x0, y0) in seen: 
+                continue
+            seen.add((x0, y0))
+            vis.add((x0, y0))
+            if d >= max_steps:
+                continue
+            for dx, dy in ((1,0),(-1,0),(0,1),(0,-1)):
+                nx, ny = x0 + dx, y0 + dy
+                if 0 <= nx < W and 0 <= ny < H:
+                    try:
+                        if getattr(game.grid[ny][nx], 'walkable', False):
+                            q.append((nx, ny, d+1))
+                    except Exception:
+                        pass
+        # Persist discovery: any currently visible tile becomes 'discovered'
+        try:
+            for (vx, vy) in vis:
+                try:
+                    game.grid[vy][vx].discovered = True
+                except Exception:
+                    pass
+        except Exception:
+            pass
+    except Exception:
+        # Fallback: only current tile visible
+        vis = {(int(getattr(game.player, 'x', 0)), int(getattr(game.player, 'y', 0)))}
+
     for y in range(H):
         for x in range(W):
             # Center in rotated-square space
@@ -849,6 +908,8 @@ def draw_grid(surf, game):
             if not br.colliderect(view_rect):
                 continue
             tile = game.grid[y][x]
+            is_vis = (x, y) in vis
+            is_revealed = is_vis or bool(getattr(tile, 'discovered', False))
             if tile.walkable:
                 base = (42,44,56)
                 # Extruded sides
@@ -921,7 +982,7 @@ def draw_grid(surf, game):
                         dot_colors.append(color_map[k])
             if tile.has_link:
                 dot_colors.append(COL_LINK)
-            if dot_colors:
+            if is_revealed and dot_colors:
                 # layout centered: 1 center; 2 side-by-side; 3 triangle; 4 2x2; >4 balanced rows
                 pad = max(2, int(tile_w) // 16)
                 n = len(dot_colors)
@@ -1007,7 +1068,29 @@ def draw_grid(surf, game):
                         draw_flat_dot(cx + dcx, cy + dcy, dot_colors[idx])
                         idx += 1
 
-    # Player marker: outline around the player's rotated diamond
+            # Fog of war overlay for tiles not reachable within max_steps via walkable paths
+            if not is_revealed:
+                # Use top polygon for a clean mask
+                top_poly = [
+                    (int(p0[0]), int(p0[1])),
+                    (int(p1[0]), int(p1[1])),
+                    (int(p2[0]), int(p2[1])),
+                    (int(p3[0]), int(p3[1]))
+                ]
+                # Build an alpha surface around the tile's bounding box
+                fog_pad = 1
+                fx = minx - fog_pad
+                fy = miny - fog_pad
+                fw = max(1, (maxx - minx) + 2*fog_pad)
+                fh = max(1, (maxy - miny) + 2*fog_pad)
+                fog = pg.Surface((fw, fh), pg.SRCALPHA)
+                local_poly = [(px - fx, py - fy) for (px, py) in top_poly]
+                pg.draw.polygon(fog, (8, 10, 14, 190), local_poly)
+                # Slight edge to soften outline
+                pg.draw.polygon(fog, (12, 14, 18, 220), local_poly, 1)
+                surf.blit(fog, (fx, fy))
+
+    # Player marker: subtly highlight the tile you're standing on
     px = origin_x + px_world - cam_x
     py = origin_y + py_world - cam_y
     if 0 <= (px - view_rect.x) <= view_w and 0 <= (py - view_rect.y) <= view_h:
@@ -1016,7 +1099,21 @@ def draw_grid(surf, game):
         q2 = (px + 0.5*exx + 0.5*eyx, py + 0.5*exy + 0.5*eyy)
         q3 = (px - 0.5*exx + 0.5*eyx, py - 0.5*exy + 0.5*eyy)
         poly = [(int(q0[0]), int(q0[1])), (int(q1[0]), int(q1[1])), (int(q2[0]), int(q2[1])), (int(q3[0]), int(q3[1]))]
-        # Slight pixel outline around player diamond
+
+        # Translucent fill to make the current tile stand out a bit more
+        minx = min(p[0] for p in poly)
+        maxx = max(p[0] for p in poly)
+        miny = min(p[1] for p in poly)
+        maxy = max(p[1] for p in poly)
+        pad = 2
+        ow, oh = max(1, (maxx - minx) + 2*pad), max(1, (maxy - miny) + 2*pad)
+        overlay = pg.Surface((ow, oh), pg.SRCALPHA)
+        local_poly = [(p[0] - (minx - pad), p[1] - (miny - pad)) for p in poly]
+        tint = (*COL_PLAYER, 64)  # slight alpha
+        pg.draw.polygon(overlay, tint, local_poly)
+        surf.blit(overlay, (minx - pad, miny - pad))
+
+        # Crisp pixel outline around player diamond
         pg.draw.polygon(surf, (10,12,16), poly, 4)
         pg.draw.polygon(surf, (30,34,44), poly, 2)
         pg.draw.polygon(surf, COL_PLAYER, poly, 1)
@@ -3347,7 +3444,7 @@ def start_menu():
     except Exception:
         logo = None
 
-    mm_mode = 'menu'  # menu | load | options | info | credits
+    mm_mode = 'menu'  # menu | load | options | info | credits | database
     # Load options
     def _opts_path():
         return UI_DIR / 'options.json'
@@ -3367,6 +3464,10 @@ def start_menu():
         except Exception:
             pass
     opts = _load_opts()
+    # Lightweight state holder for Database when launched from main menu
+    class _DBState:
+        pass
+    db_state: Optional[_DBState] = None
     load_page = 0
     running = True
     while running:
@@ -3406,6 +3507,7 @@ def start_menu():
             else:
                 add_btn("Continue Game (no saves)", lambda: None)
             add_btn("Load Game", lambda: (_mode.set('load')))
+            add_btn("Database", lambda: (_mode.set('database')))
             add_btn("Options", lambda: (_mode.set('options')))
             add_btn("Info",    lambda: (_mode.set('info')))
             add_btn("Credits", lambda: (_mode.set('credits')))
@@ -3464,6 +3566,32 @@ def start_menu():
             next_r = pg.Rect(win_w//2 + 30,  by, 140, 32)
             buttons.append(Button(prev_r, "Prev Page", lambda: (_page.set(load_page-1))))
             buttons.append(Button(next_r, "Next Page", lambda: (_page.set(load_page+1))))
+        elif mm_mode == 'database':
+            # Ensure a minimal data context exists for the database browser
+            if db_state is None:
+                db_state = _DBState()
+                try:
+                    # Preload datasets similar to Game.__init__ for rich browsing
+                    db_state.items   = gather_items()
+                    db_state.npcs    = gather_npcs()
+                    db_state.traits  = load_traits()
+                    db_state.enchants= load_enchants()
+                    db_state.magic   = load_magic()
+                    db_state.status  = load_status()
+                    db_state.races   = load_races_list()
+                    db_state.classes = load_classes_list()
+                except Exception:
+                    # Fallbacks; draw_database_overlay tolerates empty lists
+                    db_state.items   = []
+                    db_state.npcs    = []
+                    db_state.traits  = []
+                    db_state.enchants= []
+                    db_state.magic   = []
+                    db_state.status  = []
+                    db_state.races   = []
+                    db_state.classes = []
+            # Render database overlay and collect its buttons
+            buttons += draw_database_overlay(screen, db_state)
 
         # Tiny signal variables updated by buttons via closures
         class _Sig:
@@ -3486,6 +3614,27 @@ def start_menu():
                         running = False
                     else:
                         mm_mode = 'menu'
+                        # Clear database text focus when leaving
+                        if db_state is not None:
+                            try: db_state.db_filter_focus = False
+                            except Exception: pass
+                elif mm_mode == 'database' and db_state is not None and bool(getattr(db_state,'db_filter_focus', False)):
+                    # Text input for database filter (main menu context)
+                    if event.key == pg.K_RETURN:
+                        db_state.db_filter_focus = False
+                    elif event.key == pg.K_BACKSPACE:
+                        try:
+                            db_state.db_query = (db_state.db_query[:-1]) if getattr(db_state,'db_query','') else ''
+                        except Exception:
+                            db_state.db_query = ''
+                    else:
+                        ch = getattr(event, 'unicode', '')
+                        try:
+                            if ch and ch.isprintable():
+                                if len(getattr(db_state,'db_query','')) < 128:
+                                    db_state.db_query = (getattr(db_state,'db_query','') + ch)
+                        except Exception:
+                            pass
             elif event.type == pg.MOUSEBUTTONDOWN:
                 for b in buttons: b.handle(event)
 
@@ -3505,6 +3654,14 @@ def start_menu():
                 _save_opts(opts)
             else:
                 mm_mode = val
+        # Handle Back button inside database overlay (sets mode='explore')
+        if mm_mode == 'database' and db_state is not None and getattr(db_state, 'mode', None) == 'explore':
+            mm_mode = 'menu'
+            try:
+                db_state.db_filter_focus = False
+                db_state.mode = None
+            except Exception:
+                pass
         if _page.v is not None:
             load_page = max(0, int(_page.v)); _page.v = None
         if _start.v is not None:

@@ -1,0 +1,25 @@
+name: Local Agent
+version: 1.0.0
+schema: v1
+models:
+  # Your main local model from LM Studio
+  - name: lmstudio-local
+    provider: lmstudio
+    # Use the exact model identifier reported by LM Studio’s /v1/models
+    model: codellama-13b-python
+    apiBase: http://localhost:1234/v1
+    roles: [chat, edit, autocomplete]
+
+  # Fast, local embeddings for code search (built-in to Continue on VS Code)
+  - name: default-transformers
+    provider: transformers.js
+    roles: [embed]
+
+# Helpful context providers (invoke with @ in chat)
+context:
+  - provider: repo-map         # Outline of files + signatures
+  - provider: file             # @File: add any file
+  - provider: code             # @Code: functions/classes across project
+  - provider: diff             # @Git Diff: your current changes
+  - provider: open             # @Open: all open buffers
+  - provider: tree             # @Tree: folder structure
