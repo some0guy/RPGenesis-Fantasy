@@ -272,7 +272,7 @@
     "nature_and_culture": "Adaptable, numerous; every city wears a human face somewhere.",
     "combat": "Disciplined lines or chaotic skirmishers; versatile arms.",
     "spice": "Unrivaled at surviving the impossible through sheer audacity.",
-    "id": "RC00000001",
+    "id": "RC_HUMAN",
     "skin_tone": [
       "pale",
       "fair",
@@ -327,10 +327,10 @@
   {
     "name": "Kitsune",
     "race_group": null,
-    "nature_and_culture": "Fox-spirits walking among mortals; charming, curious, occasionally chaotic.",
-    "combat": "Illusions, trickery, agile dueling; blades and fans.",
-    "spice": "Tails multiply with age and renown.",
-    "id": "RC00000018",
+    "nature_and_culture": "Fox-spirits walking among mortals. Tea-houses and shrine fairs are their favorite stages; oaths matter, but mischief is a virtue when aimed at the proud. Festival masks, riddles, and small kindnesses keep their networks tight.",
+    "combat": "Illusions, charm, and misdirection; folding fans and knives hidden in sleeves. Kitsunebi (spirit-fire) harries foes while tails trip and tangle.",
+    "spice": "Tails multiply with age and renown; some leave flickers of foxfire when they laugh. They favor citrus perfumes and warding charms stitched into hems.",
+    "id": "RC_KITSUNE",
     "skin_tone": [
       "fair",
       "olive",
@@ -345,13 +345,17 @@
       "red",
       "white",
       "brown",
-      "blonde"
+      "blonde",
+      "ginger",
+      "platinum"
     ],
     "hair_style": [
       "long",
       "wavy",
       "braided",
-      "short"
+      "short",
+      "topknot",
+      "ornate-pinned"
     ],
     "eye_color": [
       "gold",
@@ -370,45 +374,59 @@
     "features": [
       "fox ears",
       "fox tails",
-      "slit pupils"
+      "slit pupils",
+      "multiple tails",
+      "fox mask",
+      "charm talismans",
+      "whisker marks"
     ],
-    "appearance": "Human-fox hybrids with expressive ears and one or more tails; talismans and charms are common.",
+    "appearance": "Expressive ears and one or more tails; lacquered hairpins, omamori talismans, and painted masks. Graceful streetwear by day, ceremonial robes by night.",
     "curse": []
   },
   {
     "name": "Merfolk",
     "race_group": null,
-    "nature_and_culture": "Tide-courts, pearl cities, and kelp orchards; songs carry through currents.",
-    "combat": "Tridents, nets, tide-magic; crushing undertow tactics.",
-    "spice": "Some bear bioluminescent markings that shimmer with mood.",
-    "id": "RC00000019",
+    "nature_and_culture": "Tide-courts govern pearl cities and kelp orchards; clans migrate with the currents and trade with surface ports at moon-marked festivals. Apprentices learn current-sign and whale-song etiquette alongside coral craft. Sacred wrecks are tended as memorial gardens.",
+    "combat": "Tridents and barbed spears, coral shields, net-casters; conch signals for coordinated swarm tactics. Tide-magic drags foes off balance; grapples turn lethal in undertow.",
+    "spice": "Bioluminescent tattoos display lineage; some can dim or brighten them with breath. Gills flush silver at strong emotions; storm-sense prickles along their lateral lines.",
+    "id": "RC_MERFOLK",
     "skin_tone": [
       "sea-green",
       "blue",
       "pale",
-      "bronze"
+      "bronze",
+      "teal",
+      "coral",
+      "sea-grey"
     ],
     "skin_texture": [
       "scaled",
-      "smooth"
+      "smooth",
+      "sleek"
     ],
     "hair_colour": [
       "black",
       "blue",
       "green",
       "white",
-      "silver"
+      "silver",
+      "seafoam",
+      "indigo"
     ],
     "hair_style": [
       "long",
       "braided",
-      "flowing"
+      "flowing",
+      "beaded",
+      "shell-pinned"
     ],
     "eye_color": [
       "teal",
       "blue",
       "green",
-      "silver"
+      "silver",
+      "sea-glass",
+      "kelp-brown"
     ],
     "height": [
       "medium",
@@ -422,9 +440,13 @@
       "finned ears",
       "scales",
       "webbed fingers",
-      "tail (sea form)"
+      "tail (sea form)",
+      "gills",
+      "lateral lines",
+      "bioluminescent markings",
+      "webbed toes"
     ],
-    "appearance": "Sleek, scaled bodies with fin-frills and oceanic hues; sea-treasure adornments.",
+    "appearance": "Sleek, scaled bodies with fin-frills and oceanic hues; jewelry of shells, pearls, and sea-glass. Many use alchemical salves or old rites to split the tail into legs on shore.",
     "curse": []
   },
   {
@@ -433,7 +455,7 @@
     "nature_and_culture": "Outsiders to geometry and good sense. Some pass for mortal; others are nightmares made flesh.",
     "combat": "Uncanny reach, mind-bending shrieks, impossible angles.",
     "spice": "Mirrors dislike them; reflections lag a heartbeat.",
-    "id": "RC00000020",
+    "id": "RC_ABBERATION",
     "skin_tone": [
       "ashen",
       "oil-slick",
@@ -964,10 +986,10 @@
   {
     "name": "Harpy",
     "race_group": null,
-    "nature_and_culture": "Cliff-nest singers and sky-raiders; trade in messages, secrets, and storm-wisdom.",
-    "combat": "Aerial ambush; talon grapples; sling volleys.",
-    "spice": "Their songs ride the wind.",
-    "id": "RC00000021",
+    "nature_and_culture": "Cliff eyries mark the sky-routes between cities; storm-singers keep weather ledgers and sell their forecasts. Messenger guilds swear by wind and bell—secrets carried at altitude.",
+    "combat": "Dive-bomb strikes, slingstorms, talon snatches; bone-flute calls shift formations mid-flight. Squalls raised by chant scatter archers.",
+    "spice": "Hollow-boned lightness, uncanny weather-sense; names are sung before they are spoken. Salt and small bells are lucky when traveling the heights.",
+    "id": "RC_HARPY_AUTO",
     "skin_tone": [
       "pale",
       "tanned",
@@ -982,12 +1004,15 @@
       "brown",
       "silver",
       "white",
-      "blue-black"
+      "blue-black",
+      "storm-grey",
+      "sun-bleached"
     ],
     "hair_style": [
       "long",
       "braided",
-      "wind-tossed"
+      "wind-tossed",
+      "wind-knotted"
     ],
     "eye_color": [
       "amber",
@@ -1006,18 +1031,20 @@
       "feathered wings",
       "talons",
       "keen sight",
-      "avian brows"
+      "avian brows",
+      "hollow bones",
+      "avian crest"
     ],
-    "appearance": "Feathered wings folded close; taloned feet; windswept hair.",
+    "appearance": "Feathered wings and taloned feet; wind-tossed hair, harness gear, and sky-cloaks. Eyes narrow against glare; jewelry favors wind-chimes and featherwork.",
     "curse": []
   },
   {
     "name": "Nekomata",
     "race_group": null,
-    "nature_and_culture": "Street-wise charmers and moonlit tricksters; prized as wardens against spirits.",
-    "combat": "Acrobatic dueling; smoke-and-shadow feints.",
-    "spice": "Tails can split with age and power.",
-    "id": "RC00000022",
+    "nature_and_culture": "Moonlit tricksters and wardens against restless spirits. Alley shrines leave saucers of milk; Nekomata repay respect with quiet protection and inconvenient truths.",
+    "combat": "Acrobatic dueling, smoke bombs, lantern-lure feints; claws paired with short blades. They vanish over rooftops between heartbeats.",
+    "spice": "Split tails whisper in lanternlight; some coax ghostfire from paper charms. They trade gossip with street cats and charge a smile for news.",
+    "id": "RC_NEKOMATA_AUTO",
     "skin_tone": [
       "fair",
       "olive",
@@ -1031,7 +1058,9 @@
       "brown",
       "white",
       "auburn",
-      "silver"
+      "silver",
+      "ash-brown",
+      "smoke-grey"
     ],
     "hair_style": [
       "short",
@@ -1056,23 +1085,27 @@
       "cat ears",
       "split tail",
       "slit pupils",
-      "whisker-marks"
+      "whisker-marks",
+      "bell charms",
+      "lantern ghostfire"
     ],
-    "appearance": "Feline ears and a (sometimes split) tail; luminous eyes.",
+    "appearance": "Cat ears, luminous eyes, and a split tail that moves with a mind of its own. Charms, bells, and talismans nestle among layered street silks.",
     "curse": []
   },
   {
     "name": "Lamia",
     "race_group": null,
-    "nature_and_culture": "Serpentine aristocrats of desert courts; etiquette as weapon, hospitality as trap.",
-    "combat": "Coil-grapples, venom darts, beguiling hexes.",
-    "spice": "Scales catch starlight like spilled wine.",
-    "id": "RC00000023",
+    "nature_and_culture": "Serpentine aristocrats ruling oasis courts and caravan tollways. Hospitality is a chessboard—debts are woven like silks. Scholars of venom, etiquette, and desert astronomy.",
+    "combat": "Coil throws and constriction, glaives and venom darts; a hypnotic sway unbalances foes. Hex-singers veil commands beneath courtly compliments.",
+    "spice": "Some shed iridescent scales used as lucky coin; a soft rattling cadence rides their speech. Desert nights find them basking under star maps etched in sand.",
+    "id": "RC_LAMIA_AUTO",
     "skin_tone": [
       "sable",
       "sand",
       "emerald",
-      "opal-sheened"
+      "opal-sheened",
+      "wine-red",
+      "obsidian-sheen"
     ],
     "skin_texture": [
       "scaled",
@@ -1082,7 +1115,9 @@
       "black",
       "midnight blue",
       "bronze",
-      "white"
+      "white",
+      "copper",
+      "obsidian"
     ],
     "hair_style": [
       "long",
@@ -1106,9 +1141,11 @@
       "serpentine lower body",
       "fangs",
       "slitted eyes",
-      "hooded frill (some)"
+      "hooded frill (some)",
+      "heat-sense pits",
+      "banded patterning"
     ],
-    "appearance": "Human torso from a serpent coil; jeweled veils and silks.",
+    "appearance": "Jewel-toned scales and gold bands; veils that whisper, eyes like embers. Their coils move in elegant S-curves, strength hidden in grace.",
     "curse": []
   }
 ]
