@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 import os, sys, json, re, argparse, random, math
-from typing import Dict, Any, List, Tuple, Optional, Set
+from typing import Dict, Any, List, Tuple, Optional, Set, TYPE_CHECKING
 from datetime import datetime
 from collections import deque
 from dataclasses import dataclass, field
@@ -646,6 +646,10 @@ try:
 except Exception:
     pg = None  # checked at runtime
 
+# Provide type-only access to pygame for annotations without requiring runtime import
+if TYPE_CHECKING:  # used by Pylance/mypy; ignored at runtime
+    import pygame  # noqa: F401
+
 # Optional AA polygon helper for smoother dots
 try:
     from pygame import gfxdraw as gfx
@@ -923,9 +927,18 @@ def draw_grid(surf, game):
                 col_f = (int(base[0]*0.70), int(base[1]*0.70), int(base[2]*0.70))
                 pg.draw.polygon(surf, col_r, face_r)
                 pg.draw.polygon(surf, col_f, face_f)
-                # darker pixel-style edge on vertical faces (thicker)
-                pg.draw.lines(surf, EDGE_DARK, False, face_r + [face_r[0]], 2)
-                pg.draw.lines(surf, EDGE_DARK, False, face_f + [face_f[0]], 2)
+                # darker pixel-style edge on vertical faces
+                side_outline_w = 3 if is_revealed else 2
+                pg.draw.lines(surf, EDGE_DARK, False, face_r + [face_r[0]], side_outline_w)
+                pg.draw.lines(surf, EDGE_DARK, False, face_f + [face_f[0]], side_outline_w)
+                # subtle highlights on outer side edges to make them pop when visible
+                if is_revealed:
+                    # top bevel highlights along the top edges of the side faces
+                    pg.draw.line(surf, EDGE_LIGHT, (int(p1[0]), int(p1[1])), (int(p2[0]), int(p2[1])), 2)
+                    pg.draw.line(surf, EDGE_LIGHT, (int(p2[0]), int(p2[1])), (int(p3[0]), int(p3[1])), 2)
+                    # deep shadow along bottom edges to accent depth
+                    pg.draw.line(surf, EDGE_DARK, (int(p1d[0]), int(p1d[1])), (int(p2d[0]), int(p2d[1])), 3)
+                    pg.draw.line(surf, EDGE_DARK, (int(p2d[0]), int(p2d[1])), (int(p3d[0]), int(p3d[1])), 3)
                 # Top face
                 top_poly = [(int(p0[0]),int(p0[1])),(int(p1[0]),int(p1[1])),(int(p2[0]),int(p2[1])),(int(p3[0]),int(p3[1]))]
                 pg.draw.polygon(surf, base, top_poly)
@@ -1626,7 +1639,7 @@ def draw_equip_overlay(surf, game):
 
     # Slot positions (normalized in sil_area)
     slot_sz = max(56, min(90, sil_area.w // 5))
-    def at(nx: float, ny: float) -> pg.Rect:
+    def at(nx: float, ny: float) -> "pygame.Rect":
         px = sil_area.x + int(nx * sil_area.w) - slot_sz//2
         py = sil_area.y + int(ny * sil_area.h) - slot_sz//2
         return pg.Rect(px, py, slot_sz, slot_sz)

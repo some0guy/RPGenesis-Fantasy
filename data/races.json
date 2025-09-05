@@ -545,6 +545,7 @@
     ],
     "skin_texture": [
       "cracked",
+	  "rough",
       "craggily"
     ],
     "hair_colour": [
@@ -557,23 +558,26 @@
       "braided"
     ],
     "eye_colour": [
-      "grey"
+      "grey",
+	  "white",
+	  "yellow"
     ],
     "height": [
       "medium"
     ],
     "build": [
       "normal",
-      "slim"
+      "slim",
+	  "skinny"
     ],
     "features": [
       "black horns",
-      "very long horns",
+      "long horns",
       "jagged horns",
       "pointed horns",
       "pointed ears",
       "black tail",
-      "very long tail",
+      "long tail",
       "twisted tail",
       "spiked tail"
     ],
@@ -605,9 +609,13 @@
       "braided"
     ],
     "eye_colour": [
-      "golden",
-      "ember",
-      "amber"
+      "orange",
+      "yellow"
+	  "green",
+	  "blue",
+	  "purple",
+	  "hazel",
+	  "brown"
     ],
     "height": [
       "tall"
@@ -615,6 +623,7 @@
     "build": [
       "strong",
       "muscular"
+	  "toned"
     ],
     "features": [
       "grey horns",
@@ -625,7 +634,6 @@
       "pointed horns",
       "pointed ears",
       "red tail",
-      "orange tail",
       "medium tail",
       "thick tail"
     ],
@@ -643,6 +651,8 @@
     ],
     "skin_texture": [
       "smooth"
+	  "glossy",
+	  "shiny",
     ],
     "hair_colour": [
       "white",
@@ -695,7 +705,8 @@
     "id": "RC00000016",
     "skin_tone": [
       "light purple",
-      "light blue"
+      "light blue",
+	  "pink",
     ],
     "skin_texture": [
       "glossy",
@@ -704,16 +715,20 @@
     ],
     "hair_colour": [
       "purple",
-      "pink"
+      "pink",
+	  "blue",
+	  
     ],
     "hairstyle": [
       "long",
       "wavy",
-      "braided"
+      "braided",
+	  "loose,"
     ],
     "eye_colour": [
       "purple",
-      "blue"
+      "blue",
+	  "green",
     ],
     "height": [
       "medium"
@@ -742,13 +757,16 @@
     "skin_tone": [
       "light green",
       "turquoise"
+	  "yellow",
     ],
     "skin_texture": [
       "smooth"
     ],
     "hair_colour": [
       "brown",
-      "blonde"
+      "blonde",
+	  "auburn",
+	  "light brown"
     ],
     "hairstyle": [
       "long",
@@ -758,21 +776,23 @@
     "eye_colour": [
       "green",
       "amber"
+	  "
     ],
     "height": [
       "very tall"
     ],
     "build": [
-      "curvy"
+      "curvy",
+	  "tall"
     ],
     "features": [
       "antler-like horns",
+	  "antlers"
       "white horns",
       "light brown horns",
       "pointed horns",
       "short tail",
       "fur-tipped tail",
-      "skin-coloured tail",
       "pointed ears"
     ],
     "appearance": "Light green or turquoise skin pairs with antler-like white or light-brown horns. Hair is brown or blonde; eyes tend to verdant greens. Tails are short and fur-tipped, matching the skin. Their garments weave leather with moss, feathers, and natural ornaments—half druidic, half aristocratic."
