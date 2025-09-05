@@ -791,6 +791,9 @@ def draw_grid(surf, game):
     view_rect = pg.Rect(panel_w, 0, view_w, view_h)
     # Background for map area
     pg.draw.rect(surf, (26,26,32), view_rect)
+    # Fog-of-war overlay: start as a full overlay, then carve holes for revealed tiles
+    outside_fog = pg.Surface((view_w, view_h), pg.SRCALPHA)
+    outside_fog.fill((8, 10, 14, 190))
 
     W = getattr(game, 'W', 12); H = getattr(game, 'H', 8)
     # Slightly zoomed view target (used to choose pixel size)
@@ -914,9 +917,25 @@ def draw_grid(surf, game):
             tile = game.grid[y][x]
             is_vis = (x, y) in vis
             is_revealed = is_vis or bool(getattr(tile, 'discovered', False))
+            # Compute top polygon once; only revealed tiles will carve holes
+            top_poly = [
+                (int(p0[0]), int(p0[1])),
+                (int(p1[0]), int(p1[1])),
+                (int(p2[0]), int(p2[1])),
+                (int(p3[0]), int(p3[1]))
+            ]
+            if is_revealed:
+                _local = [(px - view_rect.x, py - view_rect.y) for (px, py) in top_poly]
+                pg.draw.polygon(outside_fog, (0,0,0,0), _local)
             if tile.walkable:
                 base = (42,44,56)
-                # Extruded sides
+                # Neighbor presence (used to hide outer perimeter edges/faces)
+                has_left   = (x - 1) >= 0
+                has_right  = (x + 1) < W
+                has_top    = (y - 1) >= 0
+                has_bottom = (y + 1) < H
+
+                # Extruded sides (compute once)
                 p0d = (p0[0], p0[1] + depth)
                 p1d = (p1[0], p1[1] + depth)
                 p2d = (p2[0], p2[1] + depth)
@@ -925,26 +944,46 @@ def draw_grid(surf, game):
                 face_f = [(int(p2[0]),int(p2[1])),(int(p3[0]),int(p3[1])),(int(p3d[0]),int(p3d[1])),(int(p2d[0]),int(p2d[1]))]
                 col_r = (int(base[0]*0.85), int(base[1]*0.85), int(base[2]*0.85))
                 col_f = (int(base[0]*0.70), int(base[1]*0.70), int(base[2]*0.70))
-                pg.draw.polygon(surf, col_r, face_r)
-                pg.draw.polygon(surf, col_f, face_f)
-                # darker pixel-style edge on vertical faces
+
+                # Draw internal side faces only (avoid perimeter cliff look)
                 side_outline_w = 3 if is_revealed else 2
-                pg.draw.lines(surf, EDGE_DARK, False, face_r + [face_r[0]], side_outline_w)
-                pg.draw.lines(surf, EDGE_DARK, False, face_f + [face_f[0]], side_outline_w)
-                # subtle highlights on outer side edges to make them pop when visible
-                if is_revealed:
-                    # top bevel highlights along the top edges of the side faces
-                    pg.draw.line(surf, EDGE_LIGHT, (int(p1[0]), int(p1[1])), (int(p2[0]), int(p2[1])), 2)
-                    pg.draw.line(surf, EDGE_LIGHT, (int(p2[0]), int(p2[1])), (int(p3[0]), int(p3[1])), 2)
-                    # deep shadow along bottom edges to accent depth
-                    pg.draw.line(surf, EDGE_DARK, (int(p1d[0]), int(p1d[1])), (int(p2d[0]), int(p2d[1])), 3)
-                    pg.draw.line(surf, EDGE_DARK, (int(p2d[0]), int(p2d[1])), (int(p3d[0]), int(p3d[1])), 3)
-                # Top face
-                top_poly = [(int(p0[0]),int(p0[1])),(int(p1[0]),int(p1[1])),(int(p2[0]),int(p2[1])),(int(p3[0]),int(p3[1]))]
+                if has_right:
+                    pg.draw.polygon(surf, col_r, face_r)
+                    pg.draw.lines(surf, EDGE_DARK, False, face_r + [face_r[0]], side_outline_w)
+                    if is_revealed:
+                        # Top bevel highlight on internal right edge
+                        pg.draw.line(surf, EDGE_LIGHT, (int(p1[0]), int(p1[1])), (int(p2[0]), int(p2[1])), 2)
+                        pg.draw.line(surf, EDGE_DARK,  (int(p1d[0]), int(p1d[1])), (int(p2d[0]), int(p2d[1])), 3)
+                if has_bottom:
+                    pg.draw.polygon(surf, col_f, face_f)
+                    pg.draw.lines(surf, EDGE_DARK, False, face_f + [face_f[0]], side_outline_w)
+                    if is_revealed:
+                        # Top bevel highlight on internal front/bottom edge
+                        pg.draw.line(surf, EDGE_LIGHT, (int(p2[0]), int(p2[1])), (int(p3[0]), int(p3[1])), 2)
+                        pg.draw.line(surf, EDGE_DARK,  (int(p2d[0]), int(p2d[1])), (int(p3d[0]), int(p3d[1])), 3)
+
+                # Top face (top_poly already computed above)
                 pg.draw.polygon(surf, base, top_poly)
-                # double-stroke for crisp pixel look (thicker)
-                pg.draw.polygon(surf, EDGE_DARK, top_poly, 3)
-                pg.draw.polygon(surf, EDGE_LIGHT, top_poly, 2)
+
+                # Edge-specific top outlines: draw only where there is an adjacent tile
+                def _edge(a, b):
+                    return (int(a[0]), int(a[1])), (int(b[0]), int(b[1]))
+                e_top    = _edge(p0, p1)  # neighbor at (x, y-1)
+                e_right  = _edge(p1, p2)  # neighbor at (x+1, y)
+                e_bottom = _edge(p2, p3)  # neighbor at (x, y+1)
+                e_left   = _edge(p3, p0)  # neighbor at (x-1, y)
+
+                def draw_edge(edge, do_draw: bool):
+                    if not do_draw:
+                        return
+                    a, b = edge
+                    pg.draw.line(surf, EDGE_DARK, a, b, 3)
+                    pg.draw.line(surf, EDGE_LIGHT, a, b, 2)
+
+                draw_edge(e_top, has_top)
+                draw_edge(e_right, has_right)
+                draw_edge(e_bottom, has_bottom)
+                draw_edge(e_left, has_left)
             # Overlay markers (centered dots)
             dot_colors = []
             if tile.encounter:
@@ -1081,27 +1120,10 @@ def draw_grid(surf, game):
                         draw_flat_dot(cx + dcx, cy + dcy, dot_colors[idx])
                         idx += 1
 
-            # Fog of war overlay for tiles not reachable within max_steps via walkable paths
-            if not is_revealed:
-                # Use top polygon for a clean mask
-                top_poly = [
-                    (int(p0[0]), int(p0[1])),
-                    (int(p1[0]), int(p1[1])),
-                    (int(p2[0]), int(p2[1])),
-                    (int(p3[0]), int(p3[1]))
-                ]
-                # Build an alpha surface around the tile's bounding box
-                fog_pad = 1
-                fx = minx - fog_pad
-                fy = miny - fog_pad
-                fw = max(1, (maxx - minx) + 2*fog_pad)
-                fh = max(1, (maxy - miny) + 2*fog_pad)
-                fog = pg.Surface((fw, fh), pg.SRCALPHA)
-                local_poly = [(px - fx, py - fy) for (px, py) in top_poly]
-                pg.draw.polygon(fog, (8, 10, 14, 190), local_poly)
-                # Slight edge to soften outline
-                pg.draw.polygon(fog, (12, 14, 18, 220), local_poly, 1)
-                surf.blit(fog, (fx, fy))
+            # (Removed) Per-tile fog overlay; global overlay now handles fog for unrevealed tiles and outside area uniformly
+
+    # Fog outside the map area: overlay after tiles so only outside-of-grid remains dark
+    surf.blit(outside_fog, (view_rect.x, view_rect.y))
 
     # Player marker: subtly highlight the tile you're standing on
     px = origin_x + px_world - cam_x

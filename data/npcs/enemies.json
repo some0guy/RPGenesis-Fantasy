@@ -1,6 +1,4 @@
 {
-  "schema": "rpgen.npcs.enemies.v1",
-  "version": 1,
   "npcs": [
     {
       "id": "NP00000100",
@@ -8,9 +6,20 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "level": 3,
-      "description": "Ragged leathers patched with rope and brass buckles, short blade under a road-stained cloak. Loiters with a crooked grin, feigning ease until he lunges; nervous but vicious, always hunting for a weak moment.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000101",
@@ -18,19 +27,20 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "level": 4,
-      "description": "Gambeson beneath a torn highwayman’s coat, crossbelt of knives. Prowls with swagger, taunting prey to run so she can chase; cruel humor thinly veiling ruthless intent.",
-      "appearance": {}
-    },
-    {
-      "id": "NP00000102",
-      "name": "Ashfang Wolf",
-      "race": "Beast",
-      "sex": null,
-      "type": "enemy",
-      "level": 2,
-      "description": "Gaunt wolf with ashen fur and ember eyes. Hackles raised, it circles prey with patience, then springs with a hungry finality.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000103",
@@ -38,9 +48,20 @@
       "race": "Orc",
       "sex": "Male",
       "type": "enemy",
-      "level": 5,
-      "description": "Hide armor smeared in crimson, axe nicked from many kills. Roars into battle with reckless abandon, laughing through blood-slick teeth.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000104",
@@ -48,19 +69,20 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "level": 3,
-      "description": "Tattered cloak and a rope scar about the neck. Lurks with dagger loose in hand, chuckling darkly at private jokes only he finds funny.",
-      "appearance": {}
-    },
-    {
-      "id": "NP00000105",
-      "name": "Cinder Hound",
-      "race": "Beast",
-      "sex": null,
-      "type": "enemy",
-      "level": 4,
-      "description": "Charred fur, breath steaming with heat. Growls low, pacing like a predator held barely by a leash, always testing the chain.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000106",
@@ -68,9 +90,20 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "level": 6,
-      "description": "Robes stiff with old wax and soot, eyes sunken and fever-bright. Murmurs hymns as she advances, dagger swaying like a pendulum.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000107",
@@ -78,39 +111,62 @@
       "race": "Dwarf",
       "sex": "Male",
       "type": "enemy",
-      "level": 5,
-      "description": "Heavy mail beneath a dented breastplate, shield scarred by years of service. Fights methodically, each strike precise and deliberate, as though his foe is simply another contract.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000108",
       "name": "Pale Marsh Ghoul",
-      "race": "Undead",
+      "race": "Human",
       "sex": null,
       "type": "enemy",
-      "level": 4,
-      "description": "Skin stretched thin and gray, claws dripping marsh water. Moves in twitching bursts, then freezes to listen with a predator’s patience.",
-      "appearance": {}
-    },
-    {
-      "id": "NP00000109",
-      "name": "Ironfang Boar",
-      "race": "Beast",
-      "sex": null,
-      "type": "enemy",
-      "level": 3,
-      "description": "Tusks gleaming like polished blades, hide thick with scars. Charges with reckless fury, eyes red with primal rage.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": ["undead"],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000110",
       "name": "Grave Hollow Skeleton",
-      "race": "Undead",
+      "race": "Human",
       "sex": null,
       "type": "enemy",
-      "level": 2,
-      "description": "Bones bound in rusted mail, sword hand twitching without rest. Advances steadily, with the patience of the grave.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": ["undead"],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000111",
@@ -118,19 +174,20 @@
       "race": "Orc",
       "sex": "Female",
       "type": "enemy",
-      "level": 6,
-      "description": "White furs draped over shoulders, axe rimmed with frost. Shouts battle cries that shake snow from branches, charging with fearless momentum.",
-      "appearance": {}
-    },
-    {
-      "id": "NP00000112",
-      "name": "Shalehide Bear",
-      "race": "Beast",
-      "sex": null,
-      "type": "enemy",
-      "level": 6,
-      "description": "Hide rough as rock, claws gouged with stone. Stands towering to intimidate, then crashes down like a landslide.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000113",
@@ -138,9 +195,20 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "level": 5,
-      "description": "Cloaked in dark silks, daggers hidden in every fold. Watches from shadows, moving with the calm patience of one who has already chosen the perfect moment to strike.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000114",
@@ -148,9 +216,20 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "level": 4,
-      "description": "Chainmail scorched by old battles, tabard faded to gray. Stands in formation even when alone, disciplined to the core but weary in the eyes.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000115",
@@ -158,39 +237,41 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "level": 7,
-      "description": "Tattered robes layered with swamp moss, staff knotted with bones. Speaks in riddles, cackles with delight when her hexes bite deep.",
-      "appearance": {}
-    },
-    {
-      "id": "NP00000116",
-      "name": "Crowtalon Harrier",
-      "race": "Beast",
-      "sex": null,
-      "type": "enemy",
-      "level": 3,
-      "description": "Black feathers ragged from constant flight, talons gleaming wet. Circles above prey with eerie patience, striking only when panic sets in.",
-      "appearance": {}
-    },
-    {
-      "id": "NP00000117",
-      "name": "Fangtooth Raider",
-      "race": "Gnoll",
-      "sex": "Male",
-      "type": "enemy",
-      "level": 4,
-      "description": "Hyena-like face split with manic laughter, patchwork armor of bone and leather. Strikes in frenzied bursts, teeth gnashing as much as his axe.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000118",
       "name": "Hollow Mire Zombie",
-      "race": "Undead",
+      "race": "Human",
       "sex": null,
       "type": "enemy",
-      "level": 2,
-      "description": "Moss-draped corpse dragging half a leg, teeth clacking mindlessly. Shambles with persistence, arms grasping for anything warm.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": ["undead"],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000119",
@@ -198,19 +279,20 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "level": 7,
-      "description": "Plate blackened and unadorned, tabard torn from disgrace. He stands proud but bitter, fighting with grim resolve to prove loyalty never mattered.",
-      "appearance": {}
-    },
-    {
-      "id": "NP00000120",
-      "name": "Howling Warg",
-      "race": "Beast",
-      "sex": null,
-      "type": "enemy",
-      "level": 4,
-      "description": "Massive wolf with scarred muzzle, howling to unsettle prey. Its eyes shine with cunning, its stance aggressive and dominant.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000121",
@@ -218,9 +300,20 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "level": 3,
-      "description": "Leather jerkin darkened with swamp oils, twin knives at the ready. She sneers as she darts forward, every move born of hunger and spite.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000122",
@@ -228,9 +321,20 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "level": 5,
-      "description": "Salt-stained coat and boots, cutlass sharp with sea-worn scars. Laughs as he fights, scent of rum clinging even to his blade.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000123",
@@ -238,9 +342,20 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "level": 5,
-      "description": "Robes stitched with sigils, eyes ringed with sleepless shadows. Recites prayers to dark gods even as she bleeds, smiling at every strike against her.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000124",
@@ -248,39 +363,41 @@
       "race": "Forest Elf",
       "sex": "Male",
       "type": "enemy",
-      "level": 5,
-      "description": "Cloaked in pine-green leathers, bow strung tight. Silent and disciplined, his arrows land before his footsteps are heard. Leaf-stitched leathers and pelts with living accents; minimal-to-medium coverage for agility.",
-      "appearance": {
-        "height": "Medium",
-        "build": "Slim",
-        "skin_tone": "Olive",
-        "skin_texture": "Smooth",
-        "hair_color": "Blonde",
-        "eye_color": "Green",
-        "features": [
-          "pointed ears"
-        ]
-      }
-    },
-    {
-      "id": "NP00000125",
-      "name": "Ashen Charger",
-      "race": "Beast",
-      "sex": null,
-      "type": "enemy",
-      "level": 4,
-      "description": "A skeletal horse wreathed in ash and smoke, hooves striking sparks. It rears with defiance, eyes burning with ghostly flame.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"height": "Medium", "build": "Slim", "skin_tone": "Olive", "skin_texture": "Smooth", "hair_color": "Blonde", "eye_color": "Green", "features": ["pointed ears"]},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000126",
       "name": "Wraithveil Stalker",
-      "race": "Undead",
+      "race": "Human",
       "sex": null,
       "type": "enemy",
-      "level": 6,
-      "description": "Cloaked in spectral rags, form half in shadow. Flickers between sight and absence, voice whispering with a hunger that chills the soul.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": ["undead"],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000127",
@@ -288,9 +405,20 @@
       "race": "Orc",
       "sex": "Male",
       "type": "enemy",
-      "level": 6,
-      "description": "Heavy axe in one hand, reins clutched in the other. His boar snorts and stamps, tusks clashing as he bellows challenges with brutal pride.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000128",
@@ -298,9 +426,20 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "level": 6,
-      "description": "Black leathers tight to the skin, twin daggers gleaming. She breathes steady, her gaze unflinching as if already rehearsing where the blade will slip between ribs.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000129",
@@ -308,9 +447,20 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "level": 5,
-      "description": "Wolf pelts around his shoulders, axe rimed with frost. He fights with primal fury, every swing a test of strength and stubborn will.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000130",
@@ -318,19 +468,20 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "level": 7,
-      "description": "Robes black as cinders, hands wreathed in violet flame. He speaks in cold tones, every word dripping with contempt and dark wisdom.",
-      "appearance": {}
-    },
-    {
-      "id": "NP00000131",
-      "name": "Ashfang Bear",
-      "race": "Beast",
-      "sex": null,
-      "type": "enemy",
-      "level": 5,
-      "description": "Fur streaked with ash, muzzle blackened with soot. It stands with raw menace, claws gouging deep into the soil as it bellows.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000132",
@@ -338,9 +489,20 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "level": 6,
-      "description": "Skin scarred with crude carvings, loincloth stiff with blood. He crouches low, licking cracked lips, muttering prayers to hunger.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000133",
@@ -348,19 +510,20 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "level": 4,
-      "description": "Feathered cloak, longbow strung taut. She moves like the birds she imitates, striking with grace, gone before the body falls.",
-      "appearance": {}
-    },
-    {
-      "id": "NP00000134",
-      "name": "Shatterjaw Troll",
-      "race": "Troll",
-      "sex": null,
-      "type": "enemy",
-      "level": 8,
-      "description": "Massive frame with mottled hide, jaw broken and regrown jagged. Lumbers forward with laughter like rocks grinding, every blow cracking earth.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000135",
@@ -368,39 +531,41 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "level": 7,
-      "description": "Dark robes threaded with swamp reeds, staff tipped with skull. His voice is calm, his spells cruel, and his patience endless.",
-      "appearance": {}
-    },
-    {
-      "id": "NP00000136",
-      "name": "Emberhide Wolf",
-      "race": "Beast",
-      "sex": null,
-      "type": "enemy",
-      "level": 4,
-      "description": "Coat streaked with ember-like markings, eyes glowing faintly. Moves in coordinated packs, attacking with precision and savage joy.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000137",
       "name": "Dreadfen Lurker",
-      "race": "Undead",
+      "race": "Human",
       "sex": null,
       "type": "enemy",
-      "level": 5,
-      "description": "Corpse wrapped in reeds, face hidden by mud. Waits half-submerged until prey wanders too close, then drags them screaming into the mire.",
-      "appearance": {}
-    },
-    {
-      "id": "NP00000138",
-      "name": "Ashfang Stag",
-      "race": "Beast",
-      "sex": null,
-      "type": "enemy",
-      "level": 4,
-      "description": "Antlers charred and twisted, breath smoking in the air. Stands regal yet aggressive, stomping before lowering horns to gore.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": ["undead"],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000139",
@@ -408,9 +573,20 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "level": 6,
-      "description": "Skin painted with ash symbols, staff crowned with crow bones. She chants in rasping tones, calling on foul spirits to curse and maim.",
-      "appearance": {}
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000140",
@@ -418,116 +594,20 @@
       "race": "Humans",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "With"
-      },
-      "description": "A quick-footed skirmisher with adaptable tricks. Feints, trips, and opportunistic retreats to reset the fight."
-    },
-    {
-      "id": "NP00000141",
-      "name": "Forest Brute",
-      "race": "Forest Elves",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Bronze To Olive"
-      },
-      "description": "A Forest Elves who fights with straightforward aggression. Probes guards, looks for a gap, and presses when it finds one."
-    },
-    {
-      "id": "NP00000142",
-      "name": "Dark Invoker",
-      "race": "Dark Elves",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Or Violet"
-      },
-      "description": "A Dark Elves who fights with straightforward aggression. Probes guards, looks for a gap, and presses when it finds one."
-    },
-    {
-      "id": "NP00000143",
-      "name": "Snow Marauder",
-      "race": "Snow Elves",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A Snow Elves who fights with straightforward aggression. Probes guards, looks for a gap, and presses when it finds one."
-    },
-    {
-      "id": "NP00000144",
-      "name": "Great Invoker",
-      "race": "Great Elves",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Flawless"
-      },
-      "description": "A Great Elves who fights with straightforward aggression. Probes guards, looks for a gap, and presses when it finds one."
-    },
-    {
-      "id": "NP00000145",
-      "name": "Iron Skirmisher",
-      "race": "Iron Dwarves",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Stone-Gray"
-      },
-      "description": "A Iron Dwarves who fights with straightforward aggression. Probes guards, looks for a gap, and presses when it finds one."
-    },
-    {
-      "id": "NP00000146",
-      "name": "Hill Stalker",
-      "race": "Hill Dwarves",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A Hill Dwarves who fights with straightforward aggression. Probes guards, looks for a gap, and presses when it finds one."
-    },
-    {
-      "id": "NP00000147",
-      "name": "Ember Stalker",
-      "race": "Ember Dwarves",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A Ember Dwarves who fights with straightforward aggression. Probes guards, looks for a gap, and presses when it finds one."
-    },
-    {
-      "id": "NP00000148",
-      "name": "Coastal Stalker",
-      "race": "Coastal Dwarves",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Tanned"
-      },
-      "description": "A Coastal Dwarves who fights with straightforward aggression. Probes guards, looks for a gap, and presses when it finds one."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "With"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000149",
@@ -535,12 +615,20 @@
       "race": "Ashfoot Orcs",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Gray-Black"
-      },
-      "description": "An Orc with jutting tusks and a thunderous pace. Charges headlong to break formations, then batters survivors."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Gray-Black"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000150",
@@ -548,12 +636,20 @@
       "race": "Storm Orcs",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Storm-Gray"
-      },
-      "description": "An Orc with jutting tusks and a thunderous pace. Charges headlong to break formations, then batters survivors."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Storm-Gray"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000151",
@@ -561,12 +657,20 @@
       "race": "Mountain Orcs",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "An Orc with jutting tusks and a thunderous pace. Charges headlong to break formations, then batters survivors."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000152",
@@ -574,12 +678,20 @@
       "race": "Darkblood Tiefling",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Craggily"
-      },
-      "description": "A Darkblood Tiefling with light grey cracked skin and jagged black horns. Their long twisted black tail ends in a spiked tip. Prefers ambushes and fear tactics, striking from shadow then fading back."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Craggily"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000153",
@@ -587,12 +699,20 @@
       "race": "Hellbound Tiefling",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Orange"
-      },
-      "description": "A Hellbound Tiefling with red or orange rough skin and thick blunt grey horns. Drives the frontline with brute force, chaining heavy blows and refusing to yield."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Orange"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000154",
@@ -600,12 +720,20 @@
       "race": "Voided Tiefling",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Pitch Black"
-      },
-      "description": "A Voided Tiefling with pitch black smooth skin and straight black horns pointed upward. Moves silently, disorienting foes with uncanny calm before a precise, surgical strike."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Pitch Black"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000155",
@@ -613,12 +741,20 @@
       "race": "Sableheart Tiefling",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light Blue"
-      },
-      "description": "A Sableheart Tiefling with light purple or light blue glossy skin and polished metallic horns. Fights with deceptive grace, baiting counters and slipping blades between defenses."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light Blue"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000156",
@@ -626,90 +762,20 @@
       "race": "Viridian Tiefling",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Turquoise"
-      },
-      "description": "A Viridian Tiefling with smooth turquoise or light green skin and antler-like horns. Stalks through cover, using poisons and terrain to harry opponents before closing in."
-    },
-    {
-      "id": "NP00000157",
-      "name": "Halflings Stalker",
-      "race": "Halflings",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A quick-footed skirmisher with adaptable tricks. Feints, trips, and opportunistic retreats to reset the fight."
-    },
-    {
-      "id": "NP00000158",
-      "name": "Goblins Saboteur",
-      "race": "Goblins",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Brown"
-      },
-      "description": "A small, fast opportunist with trap-logic instincts. Swarms when numbers permit; otherwise nips and runs."
-    },
-    {
-      "id": "NP00000159",
-      "name": "Trollkin Skirmisher",
-      "race": "Trollkin",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A trollkin with stubborn sinew and knitting wounds. Trades blows relentlessly, relying on recovery to outlast."
-    },
-    {
-      "id": "NP00000160",
-      "name": "Sylvari Invoker",
-      "race": "Sylvari",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A living-wood sylvari with thorned growths. Roots ankles with grasping vines, then pierces at close range."
-    },
-    {
-      "id": "NP00000161",
-      "name": "Runeforged Saboteur",
-      "race": "Runeforged",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "An animate construct with etched sigils that flare under stress. Alternates guard mode and sudden burst strikes."
-    },
-    {
-      "id": "NP00000162",
-      "name": "Myconids Brute",
-      "race": "Myconids",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A Myconid trailing spore haze. Uses choking clouds and blinding bursts to isolate targets."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Turquoise"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000163",
@@ -717,38 +783,41 @@
       "race": "Kitsune",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A Kitsune with fox ears and a swaying tail. Illusion and misdirection—feints, afterimages, and knife-fast finishes."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000164",
       "name": "Neko Raider",
-      "race": "Neko",
+      "race": "Nekomata",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A feline folk with quicksilver balance. Climbs, pounces, and disengages before counters can land."
-    },
-    {
-      "id": "NP00000165",
-      "name": "Inugami Blade",
-      "race": "Inugami",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A hound-blooded warrior with keen hearing. Packs coordinate howls to hem prey in tight circles."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000166",
@@ -756,181 +825,62 @@
       "race": "Lamia",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A serpent-bodied foe with coil-strong leverage. Grapples to constrict, then rakes with hooked blades."
-    },
-    {
-      "id": "NP00000167",
-      "name": "Harpies Saboteur",
-      "race": "Harpies",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A Harpies who fights with straightforward aggression. Probes guards, looks for a gap, and presses when it finds one."
-    },
-    {
-      "id": "NP00000168",
-      "name": "Minotaurs Warlock",
-      "race": "Minotaurs",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A horned charger that lowers its head before a burst rush. Breaks lines and scatters tightly packed foes."
-    },
-    {
-      "id": "NP00000169",
-      "name": "Satyrs Saboteur",
-      "race": "Satyrs",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A horned charger that lowers its head before a burst rush. Breaks lines and scatters tightly packed foes."
-    },
-    {
-      "id": "NP00000170",
-      "name": "Cervans Blade",
-      "race": "Cervans",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A fleet forest-runner with branching antlers. Skitters through brush, prodding with jabs and vanishing between trees."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000171",
       "name": "Nagaji Blade",
-      "race": "Nagaji",
+      "race": "Lamia",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Humanoids With Scaled"
-      },
-      "description": "A serpent-bodied foe with coil-strong leverage. Grapples to constrict, then rakes with hooked blades."
-    },
-    {
-      "id": "NP00000172",
-      "name": "Arachne Stalker",
-      "race": "Arachne",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A spider-bodied hunter that lays silk trip-lines. Entangles, isolates, and drags targets out of formation."
-    },
-    {
-      "id": "NP00000173",
-      "name": "Caprines Raider",
-      "race": "Caprines",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A horned charger that lowers its head before a burst rush. Breaks lines and scatters tightly packed foes."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Humanoids With Scaled"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000174",
       "name": "Avianfolk Blade",
-      "race": "Avianfolk",
+      "race": "Harpy",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "Winged folk who strike from above, talons and short dives. Hit-and-run swoops with sudden elevation changes."
-    },
-    {
-      "id": "NP00000175",
-      "name": "Ursans Brute",
-      "race": "Ursans",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A bearfolk brute with crushing grapples. Soaks punishment, then mauls at close range."
-    },
-    {
-      "id": "NP00000176",
-      "name": "Sharkkin Marauder",
-      "race": "Sharkkin",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A water-borne raider with razor rows of teeth. Lunges from surf or shallows, then withdraws to blue depths."
-    },
-    {
-      "id": "NP00000177",
-      "name": "Rodentia Marauder",
-      "race": "Rodentia",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A small, fast opportunist with trap-logic instincts. Swarms when numbers permit; otherwise nips and runs."
-    },
-    {
-      "id": "NP00000178",
-      "name": "Cervari Stalker",
-      "race": "Cervari",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A fleet forest-runner with branching antlers. Skitters through brush, prodding with jabs and vanishing between trees."
-    },
-    {
-      "id": "NP00000179",
-      "name": "Centaurs Raider",
-      "race": "Centaurs",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A Centaurs who fights with straightforward aggression. Probes guards, looks for a gap, and presses when it finds one."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000180",
@@ -938,155 +888,41 @@
       "race": "Merfolk",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A water-borne raider with razor rows of teeth. Lunges from surf or shallows, then withdraws to blue depths."
-    },
-    {
-      "id": "NP00000181",
-      "name": "Gnollkin Skirmisher",
-      "race": "Gnollkin",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A gnollkin hyena-raider with a manic cackle. Harasses flanks, then piles on when blood is drawn."
-    },
-    {
-      "id": "NP00000182",
-      "name": "Porcans Scout",
-      "race": "Porcans",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "An Orc with jutting tusks and a thunderous pace. Charges headlong to break formations, then batters survivors."
-    },
-    {
-      "id": "NP00000183",
-      "name": "Mothfolk Marauder",
-      "race": "Mothfolk",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Dusted"
-      },
-      "description": "A Mothfolk who fights with straightforward aggression. Probes guards, looks for a gap, and presses when it finds one."
-    },
-    {
-      "id": "NP00000184",
-      "name": "Jackalfolk Marauder",
-      "race": "Jackalfolk (Anubari)",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A Jackalfolk (Anubari) who fights with straightforward aggression. Probes guards, looks for a gap, and presses when it finds one."
-    },
-    {
-      "id": "NP00000185",
-      "name": "Owlkin Blade",
-      "race": "Owlkin",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "Winged folk who strike from above, talons and short dives. Hit-and-run swoops with sudden elevation changes."
-    },
-    {
-      "id": "NP00000186",
-      "name": "Kobolds Blade",
-      "race": "Kobolds",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A small, fast opportunist with trap-logic instincts. Swarms when numbers permit; otherwise nips and runs."
-    },
-    {
-      "id": "NP00000187",
-      "name": "Goliaths Raider",
-      "race": "Goliaths",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Stone-Gray"
-      },
-      "description": "A towering goliath with stone-etched skin. Uses reach and throws to control space, then crushes with both hands."
-    },
-    {
-      "id": "NP00000188",
-      "name": "Tabaxi Saboteur",
-      "race": "Tabaxi",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "A feline folk with quicksilver balance. Climbs, pounces, and disengages before counters can land."
-    },
-    {
-      "id": "NP00000189",
-      "name": "Tortles Scout",
-      "race": "Tortles",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Turtlefolk With Broad Shells"
-      },
-      "description": "A tortle with a scarred shell and patient stare. Turtles under guard, then counter-slams overextended attackers."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light"},
+      "clothing": [],
+      "personality": []
     },
     {
       "id": "NP00000190",
       "name": "Kenku Marauder",
-      "race": "Kenku",
+      "race": "Harpy",
       "sex": "Unknown",
       "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
-      },
-      "description": "Winged folk who strike from above, talons and short dives. Hit-and-run swoops with sudden elevation changes."
-    },
-    {
-      "id": "NP00000191",
-      "name": "Dragonborn Invoker",
-      "race": "Dragonborn",
-      "sex": "Unknown",
-      "type": "enemy",
-      "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Tall Draconic Humanoids With Vibrant Scaled"
-      },
-      "description": "A Dragonborn with scale-plated hide and curling horns. Opens with a short elemental breath, then presses in with heavy cuts."
+      "skin_tone": "",
+      "skin_texture": "",
+      "hair_colour": "",
+      "hair_length": "",
+      "hair_style": "",
+      "eye_color": "",
+      "height": "",
+      "build": "",
+      "curse": [],
+      "clothing_alignment": [],
+      "features": [],
+      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light"},
+      "clothing": [],
+      "personality": []
     }
   ]
 }
