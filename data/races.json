@@ -272,7 +272,7 @@
     "nature_and_culture": "Adaptable, numerous; every city wears a human face somewhere.",
     "combat": "Disciplined lines or chaotic skirmishers; versatile arms.",
     "spice": "Unrivaled at surviving the impossible through sheer audacity.",
-    "id": "RC_HUMAN",
+    "id": "RC00000018",
     "skin_tone": [
       "pale",
       "fair",
@@ -330,7 +330,7 @@
     "nature_and_culture": "Fox-spirits walking among mortals. Tea-houses and shrine fairs are their favorite stages; oaths matter, but mischief is a virtue when aimed at the proud. Festival masks, riddles, and small kindnesses keep their networks tight.",
     "combat": "Illusions, charm, and misdirection; folding fans and knives hidden in sleeves. Kitsunebi (spirit-fire) harries foes while tails trip and tangle.",
     "spice": "Tails multiply with age and renown; some leave flickers of foxfire when they laugh. They favor citrus perfumes and warding charms stitched into hems.",
-    "id": "RC_KITSUNE",
+    "id": "RC00000019",
     "skin_tone": [
       "fair",
       "olive",
@@ -389,7 +389,7 @@
     "nature_and_culture": "Tide-courts govern pearl cities and kelp orchards; clans migrate with the currents and trade with surface ports at moon-marked festivals. Apprentices learn current-sign and whale-song etiquette alongside coral craft. Sacred wrecks are tended as memorial gardens.",
     "combat": "Tridents and barbed spears, coral shields, net-casters; conch signals for coordinated swarm tactics. Tide-magic drags foes off balance; grapples turn lethal in undertow.",
     "spice": "Bioluminescent tattoos display lineage; some can dim or brighten them with breath. Gills flush silver at strong emotions; storm-sense prickles along their lateral lines.",
-    "id": "RC_MERFOLK",
+    "id": "RC00000020",
     "skin_tone": [
       "sea-green",
       "blue",
@@ -450,12 +450,12 @@
     "curse": []
   },
   {
-    "name": "Abberation",
+    "name": "Aberration",
     "race_group": null,
     "nature_and_culture": "Outsiders to geometry and good sense. Some pass for mortal; others are nightmares made flesh.",
     "combat": "Uncanny reach, mind-bending shrieks, impossible angles.",
     "spice": "Mirrors dislike them; reflections lag a heartbeat.",
-    "id": "RC_ABBERATION",
+    "id": "RC00000021",
     "skin_tone": [
       "ashen",
       "oil-slick",
@@ -989,7 +989,7 @@
     "nature_and_culture": "Cliff eyries mark the sky-routes between cities; storm-singers keep weather ledgers and sell their forecasts. Messenger guilds swear by wind and bell—secrets carried at altitude.",
     "combat": "Dive-bomb strikes, slingstorms, talon snatches; bone-flute calls shift formations mid-flight. Squalls raised by chant scatter archers.",
     "spice": "Hollow-boned lightness, uncanny weather-sense; names are sung before they are spoken. Salt and small bells are lucky when traveling the heights.",
-    "id": "RC_HARPY_AUTO",
+    "id": "RC00000022",
     "skin_tone": [
       "pale",
       "tanned",
@@ -1026,7 +1026,7 @@
     "build": [
       "slim",
       "toned",
-	  "skinny"
+      "skinny"
     ],
     "features": [
       "feathered wings",
@@ -1045,7 +1045,7 @@
     "nature_and_culture": "Moonlit tricksters and wardens against restless spirits. Alley shrines leave saucers of milk; Nekomata repay respect with quiet protection and inconvenient truths.",
     "combat": "Acrobatic dueling, smoke bombs, lantern-lure feints; claws paired with short blades. They vanish over rooftops between heartbeats.",
     "spice": "Split tails whisper in lanternlight; some coax ghostfire from paper charms. They trade gossip with street cats and charge a smile for news.",
-    "id": "RC_NEKOMATA_AUTO",
+    "id": "RC00000023",
     "skin_tone": [
       "fair",
       "olive",
@@ -1099,7 +1099,7 @@
     "nature_and_culture": "Serpentine aristocrats ruling oasis courts and caravan tollways. Hospitality is a chessboard—debts are woven like silks. Scholars of venom, etiquette, and desert astronomy.",
     "combat": "Coil throws and constriction, glaives and venom darts; a hypnotic sway unbalances foes. Hex-singers veil commands beneath courtly compliments.",
     "spice": "Some shed iridescent scales used as lucky coin; a soft rattling cadence rides their speech. Desert nights find them basking under star maps etched in sand.",
-    "id": "RC_LAMIA_AUTO",
+    "id": "RC00000024",
     "skin_tone": [
       "sable",
       "sand",

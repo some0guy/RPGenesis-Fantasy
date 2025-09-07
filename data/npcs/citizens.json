@@ -45,7 +45,7 @@
     {
       "id": "NP00003004",
       "name": "Kaelen Veyra",
-      "race": "Great Elf",
+      "race": "Great Elves",
       "sex": "Male",
       "type": "citizen",
       "skin_tone": "orange",
@@ -87,7 +87,7 @@
     {
       "id": "NP00003007",
       "name": "Torven Blacktusk",
-      "race": "Ashfoot Orc",
+      "race": "Ashfoot Orcs",
       "sex": "Male",
       "type": "citizen",
       "skin_tone": "green",
@@ -108,7 +108,7 @@
     {
       "id": "NP00003010",
       "name": "Maera Snowtress",
-      "race": "Snow Elf",
+      "race": "Snow Elves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "white",
@@ -129,7 +129,7 @@
     {
       "id": "NP00003011",
       "name": "Keth Ironline",
-      "race": "Iron Dwarf",
+      "race": "Iron Dwarves",
       "sex": "Male",
       "type": "citizen",
       "skin_tone": "light brown",
@@ -150,7 +150,7 @@
     {
       "id": "NP00003032",
       "name": "Alenna Goldbranch",
-      "race": "Forest Elf",
+      "race": "Forest Elves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "white",
@@ -171,7 +171,7 @@
     {
       "id": "NP00003038",
       "name": "Sivra Moonpetal",
-      "race": "Great Elf",
+      "race": "Great Elves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "yellow",
@@ -242,7 +242,7 @@
     {
       "id": "NP00003012",
       "name": "Ysil Darkstring",
-      "race": "Dark Elf",
+      "race": "Dark Elves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "dark brown",
@@ -284,7 +284,7 @@
     {
       "id": "NP00003006",
       "name": "Liora Fenvale",
-      "race": "Half–Forest Elf",
+      "race": "Forest Elves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "olive",
@@ -305,7 +305,7 @@
     {
       "id": "NP00003009",
       "name": "Dren Stonebinder",
-      "race": "Hill Dwarf",
+      "race": "Hill Dwarves",
       "sex": "Male",
       "type": "citizen",
       "skin_tone": "brown",
@@ -326,7 +326,7 @@
     {
       "id": "NP00003020",
       "name": "Bera Copperbloom",
-      "race": "Coastal Dwarf",
+      "race": "Coastal Dwarves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "brown",
@@ -372,7 +372,7 @@
     {
       "id": "NP00003028",
       "name": "Brigda Saltbrew",
-      "race": "Coastal Dwarf",
+      "race": "Coastal Dwarves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "light brown",
@@ -393,7 +393,7 @@
     {
       "id": "NP00003033",
       "name": "Korrin Brassbuckle",
-      "race": "Hill Dwarf",
+      "race": "Hill Dwarves",
       "sex": "Male",
       "type": "citizen",
       "skin_tone": "brown",
@@ -435,7 +435,7 @@
     {
       "id": "NP00003037",
       "name": "Jorek Ironstem",
-      "race": "Iron Dwarf",
+      "race": "Iron Dwarves",
       "sex": "Male",
       "type": "citizen",
       "skin_tone": "brown",
@@ -456,7 +456,7 @@
     {
       "id": "NP00003001",
       "name": "Tharic Coalbrow",
-      "race": "Ember Dwarf",
+      "race": "Ember Dwarves",
       "sex": "Male",
       "type": "citizen",
       "skin_tone": "light brown",
@@ -523,7 +523,7 @@
     {
       "id": "NP00003019",
       "name": "Ilwen Grayglass",
-      "race": "Great Elf",
+      "race": "Great Elves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "orange",
@@ -544,7 +544,7 @@
     {
       "id": "NP00003025",
       "name": "Grish Stormpan",
-      "race": "Storm Orc",
+      "race": "Storm Orcs",
       "sex": "Male",
       "type": "citizen",
       "skin_tone": "green",
@@ -565,7 +565,7 @@
     {
       "id": "NP00003027",
       "name": "Rilven Ashmark",
-      "race": "Snow Elf",
+      "race": "Snow Elves",
       "sex": "Male",
       "type": "citizen",
       "skin_tone": "white",
@@ -832,7 +832,7 @@
     {
       "id": "NP00003070",
       "name": "Ulgra Skulltide",
-      "race": "Ashfoot Orc",
+      "race": "Ashfoot Orcs",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "charcoal",
@@ -857,7 +857,7 @@
     {
       "id": "NP00003071",
       "name": "Asha Ashwalker",
-      "race": "Ashfoot Orc",
+      "race": "Ashfoot Orcs",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "grey-black",
@@ -882,7 +882,7 @@
     {
       "id": "NP00003072",
       "name": "Ysilra Dawnmere",
-      "race": "Snow Elf",
+      "race": "Snow Elves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "pure white",
@@ -906,7 +906,7 @@
     {
       "id": "NP00003073",
       "name": "Hildra Orefall",
-      "race": "Iron Dwarf",
+      "race": "Iron Dwarves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "stone grey",
@@ -930,7 +930,7 @@
     {
       "id": "NP00003074",
       "name": "Ysil Dawnmere",
-      "race": "Forest Elf",
+      "race": "Forest Elves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "tanned",
@@ -954,7 +954,7 @@
     {
       "id": "NP00003075",
       "name": "Yorin Starcrest",
-      "race": "Forest Elf",
+      "race": "Forest Elves",
       "sex": "Male",
       "type": "citizen",
       "skin_tone": "tanned",
@@ -978,7 +978,7 @@
     {
       "id": "NP00003076",
       "name": "Naeris Whisperwind",
-      "race": "Dark Elf",
+      "race": "Dark Elves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "pale dark brown",
@@ -1003,7 +1003,7 @@
     {
       "id": "NP00003077",
       "name": "Theriz Leafsong",
-      "race": "Dark Elf",
+      "race": "Dark Elves",
       "sex": "Male",
       "type": "citizen",
       "skin_tone": "pale dark brown",
@@ -1028,7 +1028,7 @@
     {
       "id": "NP00003078",
       "name": "Vera Starcrest",
-      "race": "Half–Forest Elf",
+      "race": "Forest Elves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "brown",
@@ -1049,7 +1049,7 @@
     {
       "id": "NP00003079",
       "name": "Jorin Silverbranch",
-      "race": "Half–Forest Elf",
+      "race": "Forest Elves",
       "sex": "Male",
       "type": "citizen",
       "skin_tone": "brown",
@@ -1070,7 +1070,7 @@
     {
       "id": "NP00003080",
       "name": "Tova Anvilward",
-      "race": "Hill Dwarf",
+      "race": "Hill Dwarves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "ruddy",
@@ -1094,7 +1094,7 @@
     {
       "id": "NP00003081",
       "name": "Jorik Coalhelm",
-      "race": "Coastal Dwarf",
+      "race": "Coastal Dwarves",
       "sex": "Male",
       "type": "citizen",
       "skin_tone": "tanned",
@@ -1117,7 +1117,7 @@
     {
       "id": "NP00003082",
       "name": "Therra Anvilward",
-      "race": "Ember Dwarf",
+      "race": "Ember Dwarves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "ruddy",
@@ -1141,7 +1141,7 @@
     {
       "id": "NP00003083",
       "name": "Kaela Stonebrew",
-      "race": "Ember Dwarf",
+      "race": "Ember Dwarves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "ruddy",
@@ -1196,7 +1196,7 @@
     {
       "id": "NP00003085",
       "name": "Galka Ashwalker",
-      "race": "Storm Orc",
+      "race": "Storm Orcs",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "sea green",
@@ -1220,7 +1220,7 @@
     {
       "id": "NP00003086",
       "name": "Galka Ashwalker",
-      "race": "Storm Orc",
+      "race": "Storm Orcs",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "sea green",
@@ -1338,7 +1338,7 @@
     {
       "id": "NP00003092",
       "name": "Lunessa Stardrift",
-      "race": "Snow Elf",
+      "race": "Snow Elves",
       "sex": "Female",
       "type": "citizen",
       "skin_tone": "pale",

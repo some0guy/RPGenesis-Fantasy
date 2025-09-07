@@ -3,7 +3,7 @@
     {
       "id": "NP00000004",
       "name": "Kess Starcrest",
-      "race": "Great Elf",
+      "race": "Great Elves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "yellow",
@@ -24,7 +24,7 @@
     {
       "id": "NP00000019",
       "name": "Mira Duskwind",
-      "race": "Half–Dark Elf",
+      "race": "Dark Elves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "dark brown",
@@ -95,7 +95,7 @@
     {
       "id": "NP00000001",
       "name": "Selune Vaeloria",
-      "race": "Forest Elf",
+      "race": "Forest Elves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "white",
@@ -137,7 +137,7 @@
     {
       "id": "NP00000006",
       "name": "Liora Stormbind",
-      "race": "Forest Elf",
+      "race": "Forest Elves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "light brown",
@@ -242,7 +242,7 @@
     {
       "id": "NP00000021",
       "name": "Razan Stormhand",
-      "race": "Storm Orc",
+      "race": "Storm Orcs",
       "sex": "Male",
       "type": "ally",
       "skin_tone": "green",
@@ -288,7 +288,7 @@
     {
       "id": "NP00000027",
       "name": "Nerith Shadowlace",
-      "race": "Dark Elf",
+      "race": "Dark Elves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "dark brown",
@@ -455,7 +455,7 @@
     {
       "id": "NP00000005",
       "name": "Vael Ironvale",
-      "race": "Iron Dwarf",
+      "race": "Iron Dwarves",
       "sex": "Male",
       "type": "ally",
       "skin_tone": "brown",
@@ -497,7 +497,7 @@
     {
       "id": "NP00000028",
       "name": "Sister Rowan Emberfall",
-      "race": "Hill Dwarf",
+      "race": "Hill Dwarves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "brown",
@@ -518,7 +518,7 @@
     {
       "id": "NP00000017",
       "name": "Sable Brightbough",
-      "race": "Forest Elf",
+      "race": "Forest Elves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "white",
@@ -560,7 +560,7 @@
     {
       "id": "NP00000024",
       "name": "Brom Emberforge",
-      "race": "Ember Dwarf",
+      "race": "Ember Dwarves",
       "sex": "Male",
       "type": "ally",
       "skin_tone": "light brown",
@@ -656,7 +656,7 @@
     {
       "id": "NP00003050",
       "name": "Seraphine Silverbranch",
-      "race": "Great Elf",
+      "race": "Great Elves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "orange",
@@ -680,7 +680,7 @@
     {
       "id": "NP00003051",
       "name": "Aurelian Leafsong",
-      "race": "Great Elf",
+      "race": "Great Elves",
       "sex": "Male",
       "type": "ally",
       "skin_tone": "yellow",
@@ -704,7 +704,7 @@
     {
       "id": "NP00003052",
       "name": "Sylla Leafsong",
-      "race": "Half–Dark Elf",
+      "race": "Dark Elves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "brown",
@@ -725,7 +725,7 @@
     {
       "id": "NP00003053",
       "name": "Saden Moonbloom",
-      "race": "Half–Dark Elf",
+      "race": "Dark Elves",
       "sex": "Male",
       "type": "ally",
       "skin_tone": "fair",
@@ -835,7 +835,7 @@
     {
       "id": "NP00003057",
       "name": "Galka Ashwalker",
-      "race": "Storm Orc",
+      "race": "Storm Orcs",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "sea green",
@@ -859,7 +859,7 @@
     {
       "id": "NP00003058",
       "name": "Orula Stormjaw",
-      "race": "Storm Orc",
+      "race": "Storm Orcs",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "storm grey",
@@ -883,7 +883,7 @@
     {
       "id": "NP00003059",
       "name": "Naeris Thornvale",
-      "race": "Dark Elf",
+      "race": "Dark Elves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "pale dark brown",
@@ -908,7 +908,7 @@
     {
       "id": "NP00003060",
       "name": "Valis Whisperwind",
-      "race": "Dark Elf",
+      "race": "Dark Elves",
       "sex": "Male",
       "type": "ally",
       "skin_tone": "pale dark brown",
@@ -1028,7 +1028,7 @@
     {
       "id": "NP00003064",
       "name": "Hildra Orefall",
-      "race": "Iron Dwarf",
+      "race": "Iron Dwarves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "earthy brown",
@@ -1052,7 +1052,7 @@
     {
       "id": "NP00003065",
       "name": "Svara Orefall",
-      "race": "Iron Dwarf",
+      "race": "Iron Dwarves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "stone grey",
@@ -1076,7 +1076,7 @@
     {
       "id": "NP00003066",
       "name": "Tova Orefall",
-      "race": "Hill Dwarf",
+      "race": "Hill Dwarves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "brown",
@@ -1100,7 +1100,7 @@
     {
       "id": "NP00003067",
       "name": "Halm Orefall",
-      "race": "Hill Dwarf",
+      "race": "Hill Dwarves",
       "sex": "Male",
       "type": "ally",
       "skin_tone": "tanned",
@@ -1124,7 +1124,7 @@
     {
       "id": "NP00003068",
       "name": "Vulka Brasspick",
-      "race": "Ember Dwarf",
+      "race": "Ember Dwarves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "ruddy",
@@ -1148,7 +1148,7 @@
     {
       "id": "NP00003069",
       "name": "Ashra Saltbeard",
-      "race": "Ember Dwarf",
+      "race": "Ember Dwarves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "coal brown",
@@ -1203,7 +1203,7 @@
     {
       "id": "NP00003091",
       "name": "Maeralyn Snowbloom",
-      "race": "Snow Elf",
+      "race": "Snow Elves",
       "sex": "Female",
       "type": "ally",
       "skin_tone": "pale",

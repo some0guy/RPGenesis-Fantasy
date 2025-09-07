@@ -97,16 +97,6 @@
       "pearlescent skin"
     ]
   },
-  "Abberation": {
-    "must_have": [
-      "1girl",
-      "abberation"
-    ],
-    "positive": [
-      "unique appearance",
-      "fantasy clothing"
-    ]
-  },
   "Forest Elves": {
     "must_have": [
       "1girl",
@@ -260,6 +250,16 @@
       "serpentine eyes",
       "ritual jewelry",
       "glowing markings"
+    ]
+  },
+  "Aberration": {
+    "must_have": [
+      "1girl",
+      "aberration"
+    ],
+    "positive": [
+      "unique appearance",
+      "fantasy clothing"
     ]
   }
 }
