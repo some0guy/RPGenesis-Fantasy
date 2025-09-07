@@ -1,0 +1,265 @@
+{
+  "Darkblood Tiefling": {
+    "must_have": [
+      "1girl",
+      "tiefling",
+      "horns",
+      "tail"
+    ],
+    "positive": [
+      "infernal aesthetic",
+      "glowing sigils",
+      "arcane markings"
+    ]
+  },
+  "Hellbound Tiefling": {
+    "must_have": [
+      "1girl",
+      "tiefling",
+      "horns",
+      "tail"
+    ],
+    "positive": [
+      "infernal aesthetic",
+      "glowing sigils",
+      "arcane markings"
+    ]
+  },
+  "Voided Tiefling": {
+    "must_have": [
+      "1girl",
+      "tiefling",
+      "horns",
+      "tail"
+    ],
+    "positive": [
+      "infernal aesthetic",
+      "glowing sigils",
+      "arcane markings"
+    ]
+  },
+  "Sableheart Tiefling": {
+    "must_have": [
+      "1girl",
+      "tiefling",
+      "horns",
+      "tail"
+    ],
+    "positive": [
+      "infernal aesthetic",
+      "glowing sigils",
+      "arcane markings"
+    ]
+  },
+  "Viridian Tiefling": {
+    "must_have": [
+      "1girl",
+      "tiefling",
+      "horns",
+      "tail"
+    ],
+    "positive": [
+      "infernal aesthetic",
+      "glowing sigils",
+      "arcane markings"
+    ]
+  },
+  "Human": {
+    "must_have": [
+      "1girl",
+      "human"
+    ],
+    "positive": [
+      "unique appearance",
+      "fantasy clothing"
+    ]
+  },
+  "Kitsune": {
+    "must_have": [
+      "1girl",
+      "kitsune"
+    ],
+    "positive": [
+      "unique appearance",
+      "fantasy clothing"
+    ]
+  },
+  "Merfolk": {
+    "must_have": [
+      "1girl",
+      "merfolk",
+      "fish tail",
+      "webbed hands"
+    ],
+    "positive": [
+      "bioluminescent glow",
+      "sea-silk wrap",
+      "pearlescent skin"
+    ]
+  },
+  "Abberation": {
+    "must_have": [
+      "1girl",
+      "abberation"
+    ],
+    "positive": [
+      "unique appearance",
+      "fantasy clothing"
+    ]
+  },
+  "Forest Elves": {
+    "must_have": [
+      "1girl",
+      "forest elves"
+    ],
+    "positive": [
+      "unique appearance",
+      "fantasy clothing"
+    ]
+  },
+  "Dark Elves": {
+    "must_have": [
+      "1girl",
+      "dark elves"
+    ],
+    "positive": [
+      "unique appearance",
+      "fantasy clothing"
+    ]
+  },
+  "Snow Elves": {
+    "must_have": [
+      "1girl",
+      "snow elves"
+    ],
+    "positive": [
+      "unique appearance",
+      "fantasy clothing"
+    ]
+  },
+  "Great Elves": {
+    "must_have": [
+      "1girl",
+      "great elves"
+    ],
+    "positive": [
+      "unique appearance",
+      "fantasy clothing"
+    ]
+  },
+  "Iron Dwarves": {
+    "must_have": [
+      "1girl",
+      "iron dwarves"
+    ],
+    "positive": [
+      "unique appearance",
+      "fantasy clothing"
+    ]
+  },
+  "Hill Dwarves": {
+    "must_have": [
+      "1girl",
+      "hill dwarves"
+    ],
+    "positive": [
+      "unique appearance",
+      "fantasy clothing"
+    ]
+  },
+  "Ember Dwarves": {
+    "must_have": [
+      "1girl",
+      "ember dwarves"
+    ],
+    "positive": [
+      "unique appearance",
+      "fantasy clothing"
+    ]
+  },
+  "Coastal Dwarves": {
+    "must_have": [
+      "1girl",
+      "coastal dwarves"
+    ],
+    "positive": [
+      "unique appearance",
+      "fantasy clothing"
+    ]
+  },
+  "Ashfoot Orcs": {
+    "must_have": [
+      "1girl",
+      "orc",
+      "tusks"
+    ],
+    "positive": [
+      "tribal warpaint",
+      "scars",
+      "muscled build"
+    ]
+  },
+  "Storm Orcs": {
+    "must_have": [
+      "1girl",
+      "orc",
+      "tusks"
+    ],
+    "positive": [
+      "tribal warpaint",
+      "scars",
+      "muscled build"
+    ]
+  },
+  "Mountain Orcs": {
+    "must_have": [
+      "1girl",
+      "orc",
+      "tusks"
+    ],
+    "positive": [
+      "tribal warpaint",
+      "scars",
+      "muscled build"
+    ]
+  },
+  "Harpy": {
+    "must_have": [
+      "1girl",
+      "harpy",
+      "bird wings instead of arms",
+      "taloned feet"
+    ],
+    "positive": [
+      "feathered headdress",
+      "ritual feathers",
+      "mid-air pose"
+    ]
+  },
+  "Nekomata": {
+    "must_have": [
+      "1girl",
+      "nekomata",
+      "cat ears",
+      "twin tails"
+    ],
+    "positive": [
+      "playful expression",
+      "ritual collar",
+      "feline eyes"
+    ]
+  },
+  "Lamia": {
+    "must_have": [
+      "1girl",
+      "lamia",
+      "lower body snake tail",
+      "scales"
+    ],
+    "positive": [
+      "serpentine eyes",
+      "ritual jewelry",
+      "glowing markings"
+    ]
+  }
+}

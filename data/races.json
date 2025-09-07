@@ -1025,7 +1025,8 @@
     ],
     "build": [
       "slim",
-      "toned"
+      "toned",
+	  "skinny"
     ],
     "features": [
       "feathered wings",

@@ -1,0 +1,230 @@
+{
+  "source_file": "races.json",
+  "version": 1,
+  "prompts": [
+    {
+      "race": "Darkblood Tiefling",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a darkblood tiefling, waist-up, centered, neutral background, studio lighting, horns, long horns, jagged horns, pointed horns, pointed ears, tail, long tail, twisted tail, spiked tail",
+      "must_have": [
+		"grey skin",
+        "horns",
+        "long horns",
+        "jagged horns",
+        "pointed horns",
+        "pointed ears",
+        "tail",
+        "long tail",
+        "twisted tail",
+        "spiked tail"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Hellbound Tiefling",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a hellbound tiefling, waist-up, centered, neutral background, studio lighting, horns, light horns, thick horns, long horns, blunt horns, pointed horns, pointed ears, tail, medium tail, thick tail",
+      "must_have": [
+        "horns",
+        "light horns",
+        "thick horns",
+        "long horns",
+        "blunt horns",
+        "pointed horns",
+        "pointed ears",
+        "tail",
+        "medium tail",
+        "thick tail"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Voided Tiefling",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a voided tiefling, waist-up, centered, neutral background, studio lighting, horns, long horns, straight horns, smooth horns, upward-pointed horns, pitch tail, long tail, smooth tail, very long pointed ears",
+      "must_have": [
+        "horns",
+        "long horns",
+        "straight horns",
+        "smooth horns",
+        "upward-pointed horns",
+        "long tail",
+        "smooth tail",
+        "pointed ears"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Sableheart Tiefling",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a sableheart tiefling, waist-up, centered, neutral background, studio lighting, polished horns, long horns, curved horns, pointed horns, pointed ears",
+      "must_have": [
+        "polished horns",
+        "long horns",
+        "curved horns",
+        "pointed horns",
+        "pointed ears"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Viridian Tiefling",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a viridian tiefling, waist-up, centered, neutral background, studio lighting, antler-like horns, horns, light horns, pointed horns, short tail, fur-tipped tail, pointed ears",
+      "must_have": [
+        "antler-like horns",
+        "horns",
+        "light horns",
+        "pointed horns",
+        "short tail",
+        "fur-tipped tail",
+        "pointed ears"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Human",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a human, waist-up, centered, neutral background, studio lighting, rounded ears",
+      "must_have": [
+        "rounded ears"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Kitsune",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a kitsune, waist-up, centered, neutral background, studio lighting, fox ears, fox tails, slit pupils",
+      "must_have": [
+        "fox ears",
+        "fox tail",
+        "slit pupils"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Merfolk",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a merfolk, waist-up, centered, neutral background, studio lighting, finned ears, scales, webbed fingers, tail sea form, gills",
+      "must_have": [
+        "finned ears",
+        "scales",
+        "webbed fingers",
+        "tail sea form",
+        "gills"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Abberation",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a abberation, waist-up, centered, neutral background, studio lighting, too many eyes, vestigial limbs, uncanny eyes",
+      "must_have": [
+        "too many eyes",
+        "vestigial limbs",
+        "uncanny eyes"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Forest Elves",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a forest elves, waist-up, centered, neutral background, studio lighting, pointed ears",
+      "must_have": [
+        "pointed ears"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Dark Elves",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a dark elves, waist-up, centered, neutral background, studio lighting, pointed ears",
+      "must_have": [
+        "pointed ears"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Snow Elves",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a snow elves, waist-up, centered, neutral background, studio lighting, pointed ears",
+      "must_have": [
+        "pointed ears"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Great Elves",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a great elves, waist-up, centered, neutral background, studio lighting, pointed ears",
+      "must_have": [
+        "pointed ears"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Iron Dwarves",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a iron dwarves, waist-up, centered, neutral background, studio lighting, thick beards, braided beards",
+      "must_have": [
+        "thick beards",
+        "braided beards"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Hill Dwarves",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a hill dwarves, waist-up, centered, neutral background, studio lighting, beards",
+      "must_have": [
+        "beards"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Ember Dwarves",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a ember dwarves, waist-up, centered, neutral background, studio lighting, glowing eyes",
+      "must_have": [
+        "glowing eyes"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Coastal Dwarves",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a coastal dwarves, waist-up, centered, neutral background, studio lighting, beards braided with shells",
+      "must_have": [
+        "beards braided with shells"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Ashfoot Orcs",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a ashfoot orcs, waist-up, centered, neutral background, studio lighting, tusks",
+      "must_have": [
+        "tusks"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Storm Orcs",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a storm orcs, waist-up, centered, neutral background, studio lighting, tusks",
+      "must_have": [
+        "tusks"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    },
+    {
+      "race": "Mountain Orcs",
+      "positive": "masterpiece, best quality, ultra-detailed, fantasy portrait of a mountain orcs, waist-up, centered, neutral background, studio lighting, tusks",
+      "must_have": [
+        "tusks"
+      ],
+      "negative": "low quality, blurry, jpeg artifacts, watermark, signature, text, bad anatomy, deformed, mutated, extra limbs, extra fingers, fused digits, missing fingers, cross-eye, wonky eyes, lopsided face",
+      "notes": "No hair/skin/eye colours or clothing included. Append those later per NPC."
+    }
+  ]
+}
