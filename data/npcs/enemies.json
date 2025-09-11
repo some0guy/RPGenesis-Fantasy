@@ -45,7 +45,7 @@
     {
       "id": "NP00000103",
       "name": "Bloodfen Raider",
-      "race": "Orc",
+      "race": "Mountain Orc",
       "sex": "Male",
       "type": "enemy",
       "skin_tone": "",
@@ -108,7 +108,7 @@
     {
       "id": "NP00000107",
       "name": "Stonehelm Mercenary",
-      "race": "Dwarf",
+      "race": "Hill Dwarf",
       "sex": "Male",
       "type": "enemy",
       "skin_tone": "",
@@ -140,7 +140,9 @@
       "eye_color": "",
       "height": "",
       "build": "",
-      "curse": ["undead"],
+      "curse": [
+        "undead"
+      ],
       "clothing_alignment": [],
       "features": [],
       "appearance": {},
@@ -161,7 +163,9 @@
       "eye_color": "",
       "height": "",
       "build": "",
-      "curse": ["undead"],
+      "curse": [
+        "undead"
+      ],
       "clothing_alignment": [],
       "features": [],
       "appearance": {},
@@ -171,7 +175,7 @@
     {
       "id": "NP00000111",
       "name": "Frosttusk Raider",
-      "race": "Orc",
+      "race": "Mountain Orc",
       "sex": "Female",
       "type": "enemy",
       "skin_tone": "",
@@ -266,7 +270,9 @@
       "eye_color": "",
       "height": "",
       "build": "",
-      "curse": ["undead"],
+      "curse": [
+        "undead"
+      ],
       "clothing_alignment": [],
       "features": [],
       "appearance": {},
@@ -374,7 +380,17 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"height": "Medium", "build": "Slim", "skin_tone": "Olive", "skin_texture": "Smooth", "hair_color": "Blonde", "eye_color": "Green", "features": ["pointed ears"]},
+      "appearance": {
+        "height": "Medium",
+        "build": "Slim",
+        "skin_tone": "Olive",
+        "skin_texture": "Smooth",
+        "hair_color": "Blonde",
+        "eye_color": "Green",
+        "features": [
+          "pointed ears"
+        ]
+      },
       "clothing": [],
       "personality": []
     },
@@ -392,7 +408,9 @@
       "eye_color": "",
       "height": "",
       "build": "",
-      "curse": ["undead"],
+      "curse": [
+        "undead"
+      ],
       "clothing_alignment": [],
       "features": [],
       "appearance": {},
@@ -402,7 +420,7 @@
     {
       "id": "NP00000127",
       "name": "Ashfang Boar Rider",
-      "race": "Orc",
+      "race": "Mountain Orc",
       "sex": "Male",
       "type": "enemy",
       "skin_tone": "",
@@ -560,7 +578,9 @@
       "eye_color": "",
       "height": "",
       "build": "",
-      "curse": ["undead"],
+      "curse": [
+        "undead"
+      ],
       "clothing_alignment": [],
       "features": [],
       "appearance": {},
@@ -591,7 +611,7 @@
     {
       "id": "NP00000140",
       "name": "Humans Saboteur",
-      "race": "Humans",
+      "race": "Human",
       "sex": "Unknown",
       "type": "enemy",
       "skin_tone": "",
@@ -605,14 +625,18 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "With"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "With"
+      },
       "clothing": [],
       "personality": []
     },
     {
       "id": "NP00000149",
       "name": "Ashfoot Brute",
-      "race": "Ashfoot Orcs",
+      "race": "Ashfoot Orc",
       "sex": "Unknown",
       "type": "enemy",
       "skin_tone": "",
@@ -626,14 +650,18 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Gray-Black"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Gray-Black"
+      },
       "clothing": [],
       "personality": []
     },
     {
       "id": "NP00000150",
       "name": "Storm Raider",
-      "race": "Storm Orcs",
+      "race": "Storm Orc",
       "sex": "Unknown",
       "type": "enemy",
       "skin_tone": "",
@@ -647,14 +675,18 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Storm-Gray"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Storm-Gray"
+      },
       "clothing": [],
       "personality": []
     },
     {
       "id": "NP00000151",
       "name": "Mountain Invoker",
-      "race": "Mountain Orcs",
+      "race": "Mountain Orc",
       "sex": "Unknown",
       "type": "enemy",
       "skin_tone": "",
@@ -668,7 +700,11 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Light"
+      },
       "clothing": [],
       "personality": []
     },
@@ -689,7 +725,11 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Craggily"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Craggily"
+      },
       "clothing": [],
       "personality": []
     },
@@ -710,7 +750,11 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Orange"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Orange"
+      },
       "clothing": [],
       "personality": []
     },
@@ -731,7 +775,11 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Pitch Black"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Pitch Black"
+      },
       "clothing": [],
       "personality": []
     },
@@ -752,7 +800,11 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light Blue"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Light Blue"
+      },
       "clothing": [],
       "personality": []
     },
@@ -773,7 +825,11 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Turquoise"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Turquoise"
+      },
       "clothing": [],
       "personality": []
     },
@@ -794,7 +850,11 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Light"
+      },
       "clothing": [],
       "personality": []
     },
@@ -815,7 +875,11 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Light"
+      },
       "clothing": [],
       "personality": []
     },
@@ -836,7 +900,11 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Light"
+      },
       "clothing": [],
       "personality": []
     },
@@ -857,7 +925,11 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Humanoids With Scaled"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Humanoids With Scaled"
+      },
       "clothing": [],
       "personality": []
     },
@@ -878,7 +950,11 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Light"
+      },
       "clothing": [],
       "personality": []
     },
@@ -899,7 +975,11 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Light"
+      },
       "clothing": [],
       "personality": []
     },
@@ -920,7 +1000,11 @@
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {"hair_color": "Black", "eye_color": "Brown", "skin_tone": "Light"},
+      "appearance": {
+        "hair_color": "Black",
+        "eye_color": "Brown",
+        "skin_tone": "Light"
+      },
       "clothing": [],
       "personality": []
     }

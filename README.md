@@ -8,7 +8,7 @@ This is the data-first scaffold for a text-based fantasy RPG.
   - `dialogues/` — per-NPC dialogue trees
   - `items/` — items split by type
   - `npcs/` — categorized NPCs
-  - root JSON: `appearance.json`, `enchants.json`, `traits.json`, `encounters.json`, `loot_tables.json`, `magic.json`, `names.json`, `status.json`, `world_map.json`
+  - root JSON: `appearance.json`, `enchants.json`, `traits.json`, `encounters.json`, `loot_tables.json`, `magic.json`, `status.json`, `world_map.json`
 - `logs/` — log files
 - `scripts/` — utilities for validation/migration
 - `tools/` — local tools (untracked by git)
@@ -30,4 +30,3 @@ Validate with: `python scripts/validate_json.py`
 - Edited/viewed in the map editor (Start → World View).
 - Stores a simple grid layout: `{ layout: { "Map Name": { x, y } }, start: { map, entry, pos } }`.
 - Controls: `S` to save, `Tab` to cycle, arrow keys to move, `Esc` back.
-

@@ -1,0 +1,1218 @@
+[
+  {
+    "id": "CU00000001",
+    "name": "Undead",
+    "requires": "dead",
+    "race_restriction": [],
+    "summary": "Death first, then return: the soul is bound to flesh again by rite or will. The body moves; the name remains.",
+    "acquisition": [
+      "death and reanimation",
+      "forbidden rites",
+      "grave pact",
+      "call of vengeance"
+    ],
+    "appearance_overrides": {
+      "skin_tone": [
+        "white",
+        "grey"
+      ],
+      "skin_texture": [
+        "cold",
+        "scarred"
+      ],
+      "hair_colour": [],
+      "features": [
+        "sunken eyes",
+        "visible veins",
+        "glowing eyes"
+      ]
+    },
+    "progression": [
+      "Stitch",
+      "Bound",
+      "Held"
+    ],
+    "cures": [
+      "true resurrection",
+      "saintly ablution",
+      "pyre with name-rite"
+    ],
+    "sustenance": "living flesh",
+    "weakness": [
+      "radiant power",
+      "consecrated ground",
+      "exorcism rites"
+    ],
+    "empowerment": [
+      "nightfall",
+      "grave soil",
+      "ancestral names spoken"
+    ],
+    "powers": [
+      "ignore poison",
+      "ignore bleeding",
+      "resist exhaustion"
+    ],
+    "state": "permanent",
+    "trigger": [],
+    "buffs": {
+      "descriptive": [
+        "immune to poison",
+        "ignore bleeding",
+        "reduced fatigue"
+      ],
+      "numeric": [
+        "+2 Vitality (Vit) at night"
+      ],
+      "other_effects": [
+        "Immune to poison",
+        "Ignore bleeding"
+      ]
+    },
+    "debuffs": {
+      "descriptive": [
+        "reduced healing from mundane care",
+        "sunlight sensitivity",
+        "radiant vulnerability"
+      ],
+      "numeric": [
+        "-2 Technique (Tec) in sunlight"
+      ],
+      "other_effects": [
+        "Takes +5 radiant damage",
+        "-5 Healing from normal medicine"
+      ]
+    },
+    "mechanics": {
+      "modifiers": [
+        {
+          "stat": "Vitality (Vit)",
+          "value": 2,
+          "condition": "at night"
+        },
+        {
+          "stat": "Technique (Tec)",
+          "value": -2,
+          "condition": "in sunlight"
+        }
+      ],
+      "resistances": [],
+      "vulnerabilities": [],
+      "senses": [],
+      "movement": [],
+      "damage_reduction": [],
+      "abilities": [],
+      "other_effects": []
+    }
+  },
+  {
+    "id": "CU00000002",
+    "name": "Ghoul",
+    "requires": "dead",
+    "race_restriction": [],
+    "summary": "A body rises without a soul. Hunger wears it like a mask.",
+    "acquisition": [
+      "grave-feast curse",
+      "famine at burial",
+      "ghoul bite in the grave"
+    ],
+    "appearance_overrides": {
+      "skin_tone": [
+        "grey"
+      ],
+      "skin_texture": [
+        "rough"
+      ],
+      "hair_colour": [
+        "black",
+        "brown"
+      ],
+      "features": [
+        "claws",
+        "jagged teeth"
+      ]
+    },
+    "progression": [
+      "Craving",
+      "Feast",
+      "Burrow"
+    ],
+    "cures": [
+      "seven-day clean fast under watch",
+      "gravekeeper’s absolution",
+      "shared living meals for a moon"
+    ],
+    "sustenance": "corpses and carrion",
+    "weakness": [
+      "sunlight nausea",
+      "holy wards",
+      "pure salt"
+    ],
+    "empowerment": [
+      "moonless nights",
+      "fresh graves",
+      "grave soil"
+    ],
+    "powers": [
+      "ignore pain",
+      "burrow quickly",
+      "resist disease"
+    ],
+    "state": "permanent",
+    "trigger": [],
+    "buffs": {
+      "descriptive": [
+        "pain suppression",
+        "enhanced digging",
+        "disease resistance"
+      ],
+      "numeric": [],
+      "other_effects": [
+        "Pain immunity",
+        "+2 Dig speed",
+        "Resist disease (+2)"
+      ]
+    },
+    "debuffs": {
+      "descriptive": [
+        "carrion compulsion",
+        "daylight nausea",
+        "holy ward repulsion"
+      ],
+      "numeric": [
+        "Daylight nausea (-2 Vitality (Vit))"
+      ],
+      "other_effects": [
+        "Repelled by holy wards",
+        "Compelled to eat carrion"
+      ]
+    },
+    "mechanics": {
+      "modifiers": [],
+      "resistances": [],
+      "vulnerabilities": [],
+      "senses": [],
+      "movement": [],
+      "damage_reduction": [],
+      "abilities": [],
+      "other_effects": [
+        "Daylight nausea (-2 Vitality (Vit))"
+      ]
+    }
+  },
+  {
+    "id": "CU00000003",
+    "name": "Vampire",
+    "requires": "living",
+    "race_restriction": [],
+    "summary": "A living being remade by a blood-curse: elegant, cold, and hungry. They burn in day and bloom at night.",
+    "acquisition": [
+      "vampiric bite",
+      "dark baptism",
+      "blood pact",
+      "sire’s choice"
+    ],
+    "appearance_overrides": {
+      "skin_tone": [
+        "white",
+        "pale"
+      ],
+      "skin_texture": [
+        "smooth",
+        "cold"
+      ],
+      "hair_colour": [
+        "black",
+        "brown"
+      ],
+      "features": [
+        "fangs",
+        "sharp nails"
+      ]
+    },
+    "progression": [
+      "Fledgling",
+      "Mature",
+      "Elder"
+    ],
+    "cures": [
+      "stake at heart and sunrise",
+      "liturgy of dawn",
+      "break sire-chain by willing sacrifice"
+    ],
+    "sustenance": "blood",
+    "weakness": [
+      "sunlight",
+      "holy water",
+      "uninvited thresholds"
+    ],
+    "empowerment": [
+      "nightfall",
+      "fresh blood",
+      "moonlit rituals"
+    ],
+    "powers": [
+      "regeneration",
+      "charm gaze",
+      "enhanced senses",
+      "mist or bat form (rare)"
+    ],
+    "state": "permanent",
+    "trigger": [],
+    "buffs": {
+      "descriptive": [
+        "regeneration after feeding",
+        "heightened senses",
+        "enhanced agility"
+      ],
+      "numeric": [
+        "+2 Technique (Tec)",
+        "+2 Insight (Ins) in darkness"
+      ],
+      "other_effects": [
+        "Regeneration after feeding"
+      ]
+    },
+    "debuffs": {
+      "descriptive": [
+        "sunlight harm",
+        "holy water burns"
+      ],
+      "numeric": [
+        "-2 Faith (Fth) near holy relics"
+      ],
+      "other_effects": [
+        "Takes +5 sunlight damage",
+        "Must feed daily"
+      ]
+    },
+    "mechanics": {
+      "modifiers": [
+        {
+          "stat": "Technique (Tec)",
+          "value": 2
+        },
+        {
+          "stat": "Insight (Ins)",
+          "value": 2,
+          "condition": "in darkness"
+        },
+        {
+          "stat": "Faith (Fth)",
+          "value": -2,
+          "condition": "near holy relics"
+        }
+      ],
+      "resistances": [],
+      "vulnerabilities": [],
+      "senses": [],
+      "movement": [],
+      "damage_reduction": [],
+      "abilities": [],
+      "other_effects": []
+    }
+  },
+  {
+    "id": "CU00000004",
+    "name": "Lycanthrope",
+    "requires": "living",
+    "race_restriction": [
+      "Elf",
+      "Dwarf",
+      "Orc",
+      "Tiefling",
+      "Human",
+      "Aberration",
+      "Kitsune"
+    ],
+    "summary": "Moon-bitten metamorphosis: a second heart that howls inside the living.",
+    "acquisition": [
+      "beast bite",
+      "ancestral mark",
+      "moon pact"
+    ],
+    "appearance_overrides": {
+      "skin_tone": [],
+      "skin_texture": [
+        "rough"
+      ],
+      "hair_colour": [
+        "brown",
+        "black"
+      ],
+      "features": [
+        "claws",
+        "fangs",
+        "wolf ears",
+        "tail (some lines)"
+      ]
+    },
+    "progression": [
+      "Mark",
+      "Shift",
+      "Alpha"
+    ],
+    "cures": [
+      "silver baptism under new moon",
+      "pack absolution",
+      "slay progenitor"
+    ],
+    "sustenance": "fresh kills during the hunt",
+    "weakness": [
+      "silver",
+      "wolfsbane",
+      "oath-breaking against pack"
+    ],
+    "empowerment": [
+      "full moon",
+      "blood scent",
+      "pack chorus"
+    ],
+    "powers": [
+      "rapid healing",
+      "enhanced strength",
+      "keen senses",
+      "track by scent"
+    ],
+    "state": "conditional",
+    "trigger": [
+      "full moon"
+    ],
+    "buffs": {
+      "descriptive": [
+        "rapid healing (triggered)",
+        "enhanced strength (triggered)",
+        "keen senses (triggered)"
+      ],
+      "numeric": [
+        "+4 Physique (Phy) (full moon)",
+        "+2 Vitality (Vit) (full moon)"
+      ],
+      "other_effects": [
+        "Rapid healing (full moon)"
+      ]
+    },
+    "debuffs": {
+      "descriptive": [
+        "silver vulnerability",
+        "control loss under trigger",
+        "wolfsbane sensitivity"
+      ],
+      "numeric": [
+        "-3 Faith (Fth) during full moon"
+      ],
+      "other_effects": [
+        "Takes +5 damage from silver",
+        "-2 Control when packless"
+      ]
+    },
+    "mechanics": {
+      "modifiers": [
+        {
+          "stat": "Physique (Phy)",
+          "value": 4,
+          "condition": "full moon"
+        },
+        {
+          "stat": "Vitality (Vit)",
+          "value": 2,
+          "condition": "full moon"
+        },
+        {
+          "stat": "Faith (Fth)",
+          "value": -3,
+          "condition": "during full moon"
+        }
+      ],
+      "resistances": [],
+      "vulnerabilities": [],
+      "senses": [],
+      "movement": [],
+      "damage_reduction": [],
+      "abilities": [],
+      "other_effects": []
+    }
+  },
+  {
+    "id": "CU00000005",
+    "name": "Siren",
+    "requires": "living",
+    "race_restriction": [
+      "Merfolk"
+    ],
+    "summary": "A Merfolk’s voice taken by the tide: every word a current, every note a hook.",
+    "acquisition": [
+      "kiss by moonlit water",
+      "oath to the tide",
+      "pearls traded for voice"
+    ],
+    "appearance_overrides": {
+      "skin_tone": [
+        "pale"
+      ],
+      "skin_texture": [
+        "silky"
+      ],
+      "hair_colour": [
+        "black",
+        "brown",
+        "blonde"
+      ],
+      "features": [
+        "slit pupils",
+        "webbed fingers"
+      ]
+    },
+    "progression": [
+      "Humming",
+      "Chorus",
+      "Aria"
+    ],
+    "cures": [
+      "silent vigil for three tides",
+      "break the mirror-shell",
+      "renounce the sea-name"
+    ],
+    "sustenance": "living bodies drawn beneath water",
+    "weakness": [
+      "drought",
+      "saltless lands",
+      "silence geas"
+    ],
+    "empowerment": [
+      "storms",
+      "shoreline at night",
+      "choral duets"
+    ],
+    "powers": [
+      "charm on song",
+      "short water-breathing",
+      "sense currents"
+    ],
+    "state": "permanent",
+    "trigger": [],
+    "buffs": {
+      "descriptive": [
+        "enhanced breath control",
+        "increased swim speed",
+        "hydrolocation sense"
+      ],
+      "numeric": [],
+      "other_effects": [
+        "+2 Swim speed",
+        "Hold breath x2",
+        "Current sense (+2 near water)"
+      ]
+    },
+    "debuffs": {
+      "descriptive": [
+        "dryness fatigue",
+        "voice strain away from water",
+        "saltless land weakness"
+      ],
+      "numeric": [
+        "-2 Vitality (Vit) in dry climates"
+      ],
+      "other_effects": [
+        "Voice strain away from water",
+        "Saltless land weakness"
+      ]
+    },
+    "mechanics": {
+      "modifiers": [
+        {
+          "stat": "Vitality (Vit)",
+          "value": -2,
+          "condition": "in dry climates"
+        }
+      ],
+      "resistances": [],
+      "vulnerabilities": [],
+      "senses": [],
+      "movement": [],
+      "damage_reduction": [],
+      "abilities": [],
+      "other_effects": []
+    }
+  },
+  {
+    "id": "CU00000006",
+    "name": "Blight",
+    "requires": "living",
+    "race_restriction": [
+      "Elf"
+    ],
+    "summary": "An Elven body colonised by fungus and root: alive, but overgrown by decay.",
+    "acquisition": [
+      "broke grove-oath",
+      "touched a cursed tree",
+      "chosen by decay spirits"
+    ],
+    "appearance_overrides": {
+      "skin_tone": [
+        "pale",
+        "brown"
+      ],
+      "skin_texture": [
+        "scarred",
+        "rough"
+      ],
+      "hair_colour": [
+        "black",
+        "brown"
+      ],
+      "features": [
+        "spore pores",
+        "moss patches"
+      ]
+    },
+    "progression": [
+      "Wilt",
+      "Fruiting",
+      "Husk"
+    ],
+    "cures": [
+      "replant a harmed grove",
+      "accept a druid’s geas",
+      "three spring rains over open skin"
+    ],
+    "sustenance": "plant life drained into rot",
+    "weakness": [
+      "holy spring water",
+      "clean fire",
+      "new growth rites"
+    ],
+    "empowerment": [
+      "damp caverns",
+      "compost heaps",
+      "old forests"
+    ],
+    "powers": [
+      "resist entangle",
+      "see deadwood paths",
+      "command small fungi"
+    ],
+    "state": "permanent",
+    "trigger": [],
+    "buffs": {
+      "descriptive": [
+        "entangle resistance",
+        "toxin resilience",
+        "undergrowth darkvision"
+      ],
+      "numeric": [],
+      "other_effects": [
+        "Entangle resistance (+2)",
+        "Poison resilience (+2)",
+        "Darkvision +5m in undergrowth"
+      ]
+    },
+    "debuffs": {
+      "descriptive": [
+        "animal hostility",
+        "plant wilting aura",
+        "fire vulnerability"
+      ],
+      "numeric": [],
+      "other_effects": [
+        "Animals hostile",
+        "Plants wilt nearby",
+        "Takes +5 fire damage"
+      ]
+    },
+    "mechanics": {
+      "modifiers": [],
+      "resistances": [],
+      "vulnerabilities": [],
+      "senses": [],
+      "movement": [],
+      "damage_reduction": [],
+      "abilities": [],
+      "other_effects": []
+    }
+  },
+  {
+    "id": "CU00000007",
+    "name": "Lich",
+    "requires": "living",
+    "race_restriction": [],
+    "summary": "A living soul torn from its body and bound to a phylactery; the body (or another corpse) is a tethered vessel, skeletal yet bearing echoes of its race.",
+    "acquisition": [
+      "ritual phylactery",
+      "forsaken mortality",
+      "arcane obsession"
+    ],
+    "appearance_overrides": {
+      "skin_tone": [],
+      "skin_texture": [],
+      "hair_colour": [],
+      "features": [
+        "skull face",
+        "exposed ribs",
+        "phylactery chains",
+        "glowing eyes"
+      ]
+    },
+    "progression": [
+      "Bind",
+      "Ascend",
+      "Eternal"
+    ],
+    "cures": [
+      "phylactery destroyed",
+      "true name spoken in sancta",
+      "willing surrender of soul"
+    ],
+    "sustenance": "arcane energy and phylactery essence",
+    "weakness": [
+      "phylactery harm",
+      "true name rites",
+      "dispel rituals"
+    ],
+    "empowerment": [
+      "near phylactery",
+      "arcane nexuses",
+      "names unspoken"
+    ],
+    "powers": [
+      "return if body destroyed (while phylactery endures)",
+      "potent spellcasting",
+      "resist age and disease"
+    ],
+    "race_traits": {
+      "Lamia": "fully skeletal tail coils, serpent fangs, cracked horns, shed skin as ceremonial wraps",
+      "Harpy": "skeletal wings exposed, digitigrade talons, bone feather-crest; hair may remain",
+      "Elf": "elongated skull, delicate lattice ribs; snow elves bear frost runes",
+      "Dwarf": "compact heavy bones, chiseled runes like masonry",
+      "Orc": "tusked skull, broad bone frame, fused armor fragments",
+      "Tiefling": "horned skull, void-cracked bone, skeletal tail",
+      "Nekomata": "feline skull hints, twin skeletal tails with rune tips",
+      "Kitsune": "fox-like skull, multiple skeletal tails etched with talismans",
+      "Merfolk": "skeletal fish-tail, fin bones, gill carvings on skull",
+      "Human": "classical human skeleton; adaptable attire"
+    },
+    "clothing_style": [
+      "bare",
+      "minimal",
+      "full"
+    ],
+    "state": "permanent",
+    "trigger": [],
+    "buffs": {
+      "descriptive": [
+        "immortality via phylactery",
+        "increased spell potency",
+        "fear resistance"
+      ],
+      "numeric": [],
+      "other_effects": [
+        "+5 Arcane power",
+        "Immortal while phylactery intact",
+        "Immune to aging and disease"
+      ]
+    },
+    "debuffs": {
+      "descriptive": [
+        "phylactery dependency",
+        "true name vulnerability",
+        "reduced empathy"
+      ],
+      "numeric": [
+        "-5 Social (Soc)"
+      ],
+      "other_effects": [
+        "Takes +10 damage if phylactery harmed",
+        "Vulnerable to true name rites"
+      ]
+    },
+    "mechanics": {
+      "modifiers": [
+        {
+          "stat": "Social (Soc)",
+          "value": -5
+        }
+      ],
+      "resistances": [],
+      "vulnerabilities": [],
+      "senses": [],
+      "movement": [],
+      "damage_reduction": [],
+      "abilities": [],
+      "other_effects": []
+    }
+  },
+  {
+    "id": "CU00000008",
+    "name": "Gorgon",
+    "requires": "living",
+    "race_restriction": [
+      "Lamia"
+    ],
+    "summary": "A Lamia cursed with petrifying gaze; stone remembers whoever meets their eyes.",
+    "acquisition": [
+      "divine punishment",
+      "serpentine oath broken",
+      "mirror rite inverted"
+    ],
+    "appearance_overrides": {
+      "skin_tone": [
+        "grey"
+      ],
+      "skin_texture": [
+        "rough"
+      ],
+      "hair_colour": [
+        "black",
+        "grey"
+      ],
+      "features": [
+        "stony scales"
+      ]
+    },
+    "progression": [
+      "Glare",
+      "Stare",
+      "Medusan"
+    ],
+    "cures": [
+      "mirror ritual under moon",
+      "divine blessing from offended power"
+    ],
+    "sustenance": "petrified victims",
+    "weakness": [
+      "blindfolding rites",
+      "polished silver mirrors",
+      "shattering vibrations"
+    ],
+    "empowerment": [
+      "stone halls",
+      "echoing chambers",
+      "moonlit reflection"
+    ],
+    "powers": [
+      "partial petrification",
+      "stone skin resistance"
+    ],
+    "state": "permanent",
+    "trigger": [],
+    "buffs": {
+      "descriptive": [
+        "stone skin resilience",
+        "steadfast balance",
+        "gaze hardening"
+      ],
+      "numeric": [],
+      "other_effects": [
+        "Stone skin (+2 DR)",
+        "Stable footing (+2)",
+        "Gaze hardening (+2)"
+      ]
+    },
+    "debuffs": {
+      "descriptive": [
+        "mirror backlash risk",
+        "joint stiffness",
+        "brittle when stressed"
+      ],
+      "numeric": [
+        "Joint stiffness (-2 Technique (Tec))"
+      ],
+      "other_effects": [
+        "Mirror backlash risk",
+        "Brittle when stressed (Takes +5 shatter)"
+      ]
+    },
+    "mechanics": {
+      "modifiers": [],
+      "resistances": [],
+      "vulnerabilities": [],
+      "senses": [],
+      "movement": [],
+      "damage_reduction": [],
+      "abilities": [],
+      "other_effects": [
+        "Joint stiffness (-2 Technique (Tec))"
+      ]
+    }
+  },
+  {
+    "id": "CU00000009",
+    "name": "Basilisk",
+    "requires": "living",
+    "race_restriction": [
+      "Lamia"
+    ],
+    "summary": "A Lamia transfigured into a venomous abomination; gaze and breath carry killing rot.",
+    "acquisition": [
+      "deep-venom rite",
+      "druidic malediction",
+      "wrath of serpent gods"
+    ],
+    "appearance_overrides": {
+      "skin_tone": [
+        "green",
+        "brown"
+      ],
+      "skin_texture": [
+        "scaled",
+        "glossy"
+      ],
+      "hair_colour": [
+        "black"
+      ],
+      "features": [
+        "venom fangs"
+      ]
+    },
+    "progression": [
+      "Adder",
+      "Viper",
+      "Basilisk"
+    ],
+    "cures": [
+      "milk the venom at eclipse",
+      "stone-bath with serpent hymn",
+      "cooling druid geas"
+    ],
+    "sustenance": "venom and fear from prey",
+    "weakness": [
+      "cold iron needles",
+      "clear running water",
+      "true calm"
+    ],
+    "empowerment": [
+      "dry heat",
+      "crowd panic",
+      "sun-baked stone"
+    ],
+    "powers": [
+      "venom breath",
+      "killing gaze",
+      "poison resistance"
+    ],
+    "state": "permanent",
+    "trigger": [],
+    "buffs": {
+      "descriptive": [
+        "poison immunity",
+        "venom potency",
+        "heat tolerance"
+      ],
+      "numeric": [],
+      "other_effects": [
+        "Poison immunity",
+        "Venom potency (+2)",
+        "Heat tolerance (+2)"
+      ]
+    },
+    "debuffs": {
+      "descriptive": [
+        "cold sensitivity",
+        "aversion to clear running water",
+        "lethargy if rapidly cooled"
+      ],
+      "numeric": [],
+      "other_effects": [
+        "Cold sensitivity (-2)",
+        "Aversion to clear running water",
+        "Overheat lethargy if cooled suddenly (-2 Actions)"
+      ]
+    },
+    "mechanics": {
+      "modifiers": [],
+      "resistances": [],
+      "vulnerabilities": [],
+      "senses": [],
+      "movement": [],
+      "damage_reduction": [],
+      "abilities": [],
+      "other_effects": []
+    }
+  },
+  {
+    "id": "CU00000010",
+    "name": "Wraith",
+    "requires": "dead",
+    "race_restriction": [],
+    "summary": "A tethered soul without a body: memory and will remain, but warmth is gone.",
+    "acquisition": [
+      "violent death",
+      "betrayal at deathbed",
+      "shadow pact"
+    ],
+    "appearance_overrides": {
+      "skin_tone": [
+        "pale"
+      ],
+      "skin_texture": [
+        "cool"
+      ],
+      "hair_colour": [
+        "black"
+      ],
+      "features": [
+        "mist form",
+        "glowing eyes"
+      ]
+    },
+    "progression": [
+      "Shadebound",
+      "Haunt",
+      "Specter"
+    ],
+    "cures": [
+      "sunrise vigil with witness",
+      "naming rite and burial",
+      "burn tethered relic in sancta"
+    ],
+    "sustenance": "life force",
+    "weakness": [
+      "sunlight",
+      "holy bells",
+      "iron chimes"
+    ],
+    "empowerment": [
+      "deep shadow",
+      "fresh grief",
+      "their true name spoken"
+    ],
+    "powers": [
+      "phase through thin barriers",
+      "drain vitality",
+      "see in darkness"
+    ],
+    "state": "permanent",
+    "trigger": [],
+    "buffs": {
+      "descriptive": [
+        "brief intangibility",
+        "cold drain touch",
+        "enhanced night sight"
+      ],
+      "numeric": [],
+      "other_effects": [
+        "Brief intangibility (+1s)",
+        "Cold drain (+2)",
+        "Darkvision +10m"
+      ]
+    },
+    "debuffs": {
+      "descriptive": [
+        "sunlight pain",
+        "bell and chime disruption",
+        "anchor instability"
+      ],
+      "numeric": [
+        "Bell/chime disruption (-2 Insight (Ins))"
+      ],
+      "other_effects": [
+        "Sunlight pain (Takes +5)",
+        "Anchor instability"
+      ]
+    },
+    "mechanics": {
+      "modifiers": [],
+      "resistances": [],
+      "vulnerabilities": [],
+      "senses": [],
+      "movement": [],
+      "damage_reduction": [],
+      "abilities": [],
+      "other_effects": [
+        "Bell/chime disruption (-2 Insight (Ins))"
+      ]
+    }
+  },
+  {
+    "id": "CU00000011",
+    "name": "Shade",
+    "requires": "dead",
+    "race_restriction": [],
+    "summary": "A fragment of a soul—a lingering outline without self.",
+    "acquisition": [
+      "death without rites",
+      "soul shattered by terror",
+      "grave magic miscast"
+    ],
+    "appearance_overrides": {
+      "skin_tone": [
+        "pale"
+      ],
+      "skin_texture": [
+        "cool"
+      ],
+      "hair_colour": [],
+      "features": [
+        "dim outline",
+        "faint shadow"
+      ]
+    },
+    "progression": [
+      "Mote",
+      "Echo",
+      "Stain"
+    ],
+    "cures": [
+      "light and noise in abundance",
+      "speak a remembered name thrice",
+      "salt-and-ash sweeping"
+    ],
+    "sustenance": "ambient memory and shadow",
+    "weakness": [
+      "bright light",
+      "crowded warmth",
+      "salt lines"
+    ],
+    "empowerment": [
+      "silence",
+      "old places",
+      "deep shadow"
+    ],
+    "powers": [
+      "harder to notice",
+      "drift along walls",
+      "linger without anchor"
+    ],
+    "state": "permanent",
+    "trigger": [],
+    "buffs": {
+      "descriptive": [
+        "enhanced stealth",
+        "wall-cling drift",
+        "low presence"
+      ],
+      "numeric": [],
+      "other_effects": [
+        "Stealth (+2)",
+        "Wall drift (slow)",
+        "Low presence (+2 to avoid notice)"
+      ]
+    },
+    "debuffs": {
+      "descriptive": [
+        "light fragility",
+        "weak agency",
+        "voice impairment"
+      ],
+      "numeric": [
+        "Weak agency (-2 Physique (Phy))",
+        "Voice impairment (-2 Social (Soc))"
+      ],
+      "other_effects": [
+        "Light fragility (Takes +5)"
+      ]
+    },
+    "mechanics": {
+      "modifiers": [],
+      "resistances": [],
+      "vulnerabilities": [],
+      "senses": [],
+      "movement": [],
+      "damage_reduction": [],
+      "abilities": [],
+      "other_effects": [
+        "Weak agency (-2 Physique (Phy))",
+        "Voice impairment (-2 Social (Soc))"
+      ]
+    }
+  },
+  {
+    "id": "CU00000012",
+    "name": "Shrieker",
+    "requires": "living",
+    "race_restriction": [
+      "Harpy"
+    ],
+    "summary": "A Harpy cursed to scream endlessly; their voice splits bone and will.",
+    "acquisition": [
+      "oath broken on the wind",
+      "offended storm-spirit",
+      "sacred silence defiled"
+    ],
+    "appearance_overrides": {
+      "skin_tone": [
+        "tan",
+        "grey",
+        "brown"
+      ],
+      "skin_texture": [
+        "rough",
+        "sleek"
+      ],
+      "hair_colour": [
+        "black",
+        "brown"
+      ],
+      "features": [
+        "digitigrade legs",
+        "talons",
+        "skeletal wings (if lich overlap)",
+        "open-mouthed scream"
+      ]
+    },
+    "progression": [
+      "Keening",
+      "Sunder",
+      "Stormwail"
+    ],
+    "cures": [
+      "three nights vowed silence at cliff shrine",
+      "carry a storm’s name until forgiven",
+      "share breath with a willing choir"
+    ],
+    "sustenance": "anguish and screams of the living",
+    "weakness": [
+      "gag bindings",
+      "sound-dampening wards",
+      "oaths kept and witnessed"
+    ],
+    "empowerment": [
+      "high places",
+      "echo chambers",
+      "fear scent"
+    ],
+    "powers": [
+      "sonic shriek",
+      "ride updrafts",
+      "echolocation in mist"
+    ],
+    "state": "permanent",
+    "trigger": [],
+    "buffs": {
+      "descriptive": [
+        "sonic projection",
+        "aerial maneuvering",
+        "echo sense"
+      ],
+      "numeric": [],
+      "other_effects": [
+        "Sonic projection (+2)",
+        "Aerial maneuvering (+2)",
+        "Echo sense (+2)"
+      ]
+    },
+    "debuffs": {
+      "descriptive": [
+        "throat strain",
+        "sound-dampening weakness",
+        "lightning attraction"
+      ],
+      "numeric": [],
+      "other_effects": [
+        "Throat strain (-2 after shriek)",
+        "Sound-dampening weakness (-2)",
+        "Attracts lightning (Takes +5)"
+      ]
+    },
+    "mechanics": {
+      "modifiers": [],
+      "resistances": [],
+      "vulnerabilities": [],
+      "senses": [],
+      "movement": [],
+      "damage_reduction": [],
+      "abilities": [],
+      "other_effects": []
+    }
+  }
+]

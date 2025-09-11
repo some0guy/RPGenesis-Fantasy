@@ -1,0 +1,4526 @@
+{
+  "version": "3.0.0",
+  "attacks": [
+    {
+      "id": "AT00000001",
+      "name": "Bite",
+      "summary": "Sink your teeth; heals on hit if the target bleeds.",
+      "type": "melee",
+      "tags": [
+        "natural",
+        "vampiric"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)",
+          "bonus": 0
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "piercing"
+            ],
+            "lifesteal": "50% of damage (if living)"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Vampire",
+          "Ghoul"
+        ]
+      }
+    },
+    {
+      "id": "AT00000002",
+      "name": "Claw",
+      "summary": "Rake enemies with sharpened claws.",
+      "type": "melee",
+      "tags": [
+        "natural"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "slashing"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Ghoul",
+          "Lycanthrope"
+        ]
+      }
+    },
+    {
+      "id": "AT00000003",
+      "name": "Chill Touch",
+      "summary": "Necrotic touch that saps vitality.",
+      "type": "touch",
+      "tags": [
+        "necrotic"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Arc}",
+            "types": [
+              "necrotic"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Weakened",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Wraith",
+          "Undead"
+        ]
+      }
+    },
+    {
+      "id": "AT00000004",
+      "name": "Soulfire Bolt",
+      "summary": "Necrotic flame that ignores disease resistance.",
+      "type": "spell",
+      "tags": [
+        "necrotic",
+        "ranged"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "2d6 + {Arc}",
+            "types": [
+              "necrotic"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Lich"
+        ]
+      }
+    },
+    {
+      "id": "AT00000005",
+      "name": "Siren Song",
+      "summary": "A hypnotic aria that dazes foes.",
+      "type": "shout",
+      "tags": [
+        "sonic",
+        "control"
+      ],
+      "target": {
+        "scope": "all enemies"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Dazed",
+            "duration": "1 turn",
+            "save_ends": true
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Siren"
+        ]
+      }
+    },
+    {
+      "id": "AT00000006",
+      "name": "Shriek",
+      "summary": "A bone-splitting scream that damages creatures and objects.",
+      "type": "shout",
+      "tags": [
+        "sonic"
+      ],
+      "target": {
+        "scope": "all enemies"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "2d6 + {Arc}",
+            "types": [
+              "sonic"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Shrieker"
+        ]
+      }
+    },
+    {
+      "id": "AT00000007",
+      "name": "Petrifying Gaze",
+      "summary": "Lock eyes and turn them to stone if their will fails.",
+      "type": "technique",
+      "tags": [
+        "gaze",
+        "petrify"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Petrified",
+            "duration": "save ends"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Gorgon"
+        ]
+      }
+    },
+    {
+      "id": "AT00000008",
+      "name": "Venom Breath",
+      "summary": "A spray of venomous mist that poisons foes.",
+      "type": "breath",
+      "tags": [
+        "poison"
+      ],
+      "target": {
+        "scope": "all enemies"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "2d6",
+            "types": [
+              "poison"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Poisoned",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Basilisk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000009",
+      "name": "Constrict",
+      "summary": "Wrap around and crush with immense strength.",
+      "type": "melee",
+      "tags": [
+        "grapple"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Physique (Phy)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Grappled",
+            "duration": "ongoing"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Lamia"
+        ]
+      }
+    },
+    {
+      "id": "AT00000010",
+      "name": "Dive Talons",
+      "summary": "A swooping strike that hits hardest with momentum.",
+      "type": "technique",
+      "tags": [
+        "physical"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "slashing"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Harpy"
+        ]
+      }
+    },
+    {
+      "id": "AT00000011",
+      "name": "Twin-Tail Swipe",
+      "summary": "A double strike with the tails; second hit weaker.",
+      "type": "melee",
+      "tags": [
+        "natural",
+        "multi-hit"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d4 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ],
+            "notes": "Second tail"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Nekomata"
+        ]
+      }
+    },
+    {
+      "id": "AT00000012",
+      "name": "Foxfire",
+      "summary": "A flickering ghost-flame that clings to the target.",
+      "type": "spell",
+      "tags": [
+        "fire",
+        "dot"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d4 + {Arc}",
+            "types": [
+              "fire"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Ignited",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Kitsune"
+        ]
+      }
+    },
+    {
+      "id": "AT00000013",
+      "name": "Trident Thrust",
+      "summary": "A powerful underwater thrust with a trident.",
+      "type": "weapon",
+      "tags": [
+        "piercing"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "piercing"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Merfolk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000014",
+      "name": "Shield Bash",
+      "summary": "Strike with shield, knocking the target back.",
+      "type": "melee",
+      "tags": [
+        "bludgeoning",
+        "control"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Physique (Phy)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d4 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "effect",
+          "effect": {
+            "name": "Knockback",
+            "duration": "instant"
+          }
+        }
+      ]
+    },
+    {
+      "id": "AT00000015",
+      "name": "Wispfade Strike",
+      "summary": "A chilling strike advantaged in dim light.",
+      "type": "melee",
+      "tags": [
+        "cold"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "cold"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Shade"
+        ]
+      }
+    },
+    {
+      "id": "AT00000016",
+      "name": "Grave Dust",
+      "summary": "A cloud of necrotic dust that weakens vitality.",
+      "type": "spell",
+      "tags": [
+        "necrotic"
+      ],
+      "target": {
+        "scope": "all enemies"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d4 + {Arc}",
+            "types": [
+              "necrotic"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Weakened",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Undead",
+          "Lich"
+        ]
+      }
+    },
+    {
+      "id": "AT00000017",
+      "name": "Grave Chill",
+      "summary": "Exclusive Undead power: grave chill.",
+      "type": "technique",
+      "tags": [
+        "undead",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Arc}",
+            "types": [
+              "necrotic"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Weakened",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Undead"
+        ]
+      }
+    },
+    {
+      "id": "AT00000018",
+      "name": "Tomb Dust",
+      "summary": "Exclusive Undead power: tomb dust.",
+      "type": "technique",
+      "tags": [
+        "undead",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d4 + {Arc}",
+            "types": [
+              "necrotic"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Blind",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Undead"
+        ]
+      }
+    },
+    {
+      "id": "AT00000019",
+      "name": "Rend & Gnash",
+      "summary": "Exclusive Ghoul power: rend & gnash.",
+      "type": "technique",
+      "tags": [
+        "ghoul",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "slashing"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Bleeding",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Ghoul"
+        ]
+      }
+    },
+    {
+      "id": "AT00000020",
+      "name": "Carrion Stench",
+      "summary": "Exclusive Ghoul power: carrion stench.",
+      "type": "technique",
+      "tags": [
+        "ghoul",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d4",
+            "types": [
+              "poison"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Poisoned",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Ghoul"
+        ]
+      }
+    },
+    {
+      "id": "AT00000021",
+      "name": "Crimson Frenzy",
+      "summary": "Exclusive Vampire power: crimson frenzy.",
+      "type": "technique",
+      "tags": [
+        "vampire",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "2d4 + {Phy}",
+            "types": [
+              "piercing"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Bleeding",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Vampire"
+        ]
+      }
+    },
+    {
+      "id": "AT00000022",
+      "name": "Charm Gaze",
+      "summary": "Exclusive Vampire power: charm gaze.",
+      "type": "technique",
+      "tags": [
+        "vampire",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Charmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Vampire"
+        ]
+      }
+    },
+    {
+      "id": "AT00000023",
+      "name": "Ravage",
+      "summary": "Exclusive Lycanthrope power: ravage.",
+      "type": "technique",
+      "tags": [
+        "lycanthrope",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "slashing"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Bleeding",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Lycanthrope"
+        ]
+      }
+    },
+    {
+      "id": "AT00000024",
+      "name": "Howl of the Hunt",
+      "summary": "Exclusive Lycanthrope power: howl of the hunt.",
+      "type": "technique",
+      "tags": [
+        "lycanthrope",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Frightened",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Lycanthrope"
+        ]
+      }
+    },
+    {
+      "id": "AT00000025",
+      "name": "Drowning Hymn",
+      "summary": "Exclusive Siren power: drowning hymn.",
+      "type": "technique",
+      "tags": [
+        "siren",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "sonic"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Dazed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Siren"
+        ]
+      }
+    },
+    {
+      "id": "AT00000026",
+      "name": "Luring Verse",
+      "summary": "Exclusive Siren power: luring verse.",
+      "type": "technique",
+      "tags": [
+        "siren",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Charmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Siren"
+        ]
+      }
+    },
+    {
+      "id": "AT00000027",
+      "name": "Spore Burst",
+      "summary": "Exclusive Blight power: spore burst.",
+      "type": "technique",
+      "tags": [
+        "blight",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "poison"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Blinded",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Blight"
+        ]
+      }
+    },
+    {
+      "id": "AT00000028",
+      "name": "Creeping Rot",
+      "summary": "Exclusive Blight power: creeping rot.",
+      "type": "technique",
+      "tags": [
+        "blight",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d4 + {Arc}",
+            "types": [
+              "poison"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Poisoned",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Blight"
+        ]
+      }
+    },
+    {
+      "id": "AT00000029",
+      "name": "Soul Detonation",
+      "summary": "Exclusive Lich power: soul detonation.",
+      "type": "technique",
+      "tags": [
+        "lich",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "2d6 + {Arc}",
+            "types": [
+              "necrotic"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Weakened",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Lich"
+        ]
+      }
+    },
+    {
+      "id": "AT00000030",
+      "name": "Bone Shards",
+      "summary": "Exclusive Lich power: bone shards.",
+      "type": "technique",
+      "tags": [
+        "lich",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "2d4 + {Arc}",
+            "types": [
+              "piercing"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Lich"
+        ]
+      }
+    },
+    {
+      "id": "AT00000031",
+      "name": "Calcify",
+      "summary": "Exclusive Gorgon power: calcify.",
+      "type": "technique",
+      "tags": [
+        "gorgon",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "cold"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Petrified",
+            "duration": "save ends"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Gorgon"
+        ]
+      }
+    },
+    {
+      "id": "AT00000032",
+      "name": "Stone Flurry",
+      "summary": "Exclusive Gorgon power: stone flurry.",
+      "type": "technique",
+      "tags": [
+        "gorgon",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Gorgon"
+        ]
+      }
+    },
+    {
+      "id": "AT00000033",
+      "name": "Toxic Miasma",
+      "summary": "Exclusive Basilisk power: toxic miasma.",
+      "type": "technique",
+      "tags": [
+        "basilisk",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "poison"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Poisoned",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Basilisk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000034",
+      "name": "Paralytic Glare",
+      "summary": "Exclusive Basilisk power: paralytic glare.",
+      "type": "technique",
+      "tags": [
+        "basilisk",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Paralyzed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Basilisk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000035",
+      "name": "Soul Drain",
+      "summary": "Exclusive Wraith power: soul drain.",
+      "type": "technique",
+      "tags": [
+        "wraith",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Arc}",
+            "types": [
+              "necrotic"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Weakened",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Wraith"
+        ]
+      }
+    },
+    {
+      "id": "AT00000036",
+      "name": "Phase Lunge",
+      "summary": "Exclusive Wraith power: phase lunge.",
+      "type": "technique",
+      "tags": [
+        "wraith",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "cold"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Wraith"
+        ]
+      }
+    },
+    {
+      "id": "AT00000037",
+      "name": "Nightknife",
+      "summary": "Exclusive Shade power: nightknife.",
+      "type": "technique",
+      "tags": [
+        "shade",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "piercing",
+              "cold"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Shade"
+        ]
+      }
+    },
+    {
+      "id": "AT00000038",
+      "name": "Shadow Stitch",
+      "summary": "Exclusive Shade power: shadow stitch.",
+      "type": "technique",
+      "tags": [
+        "shade",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "cold"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Rooted",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Shade"
+        ]
+      }
+    },
+    {
+      "id": "AT00000039",
+      "name": "Bone-Shatter Scream",
+      "summary": "Exclusive Shrieker power: bone-shatter scream.",
+      "type": "technique",
+      "tags": [
+        "shrieker",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "2d6 + {Arc}",
+            "types": [
+              "sonic"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Weakened",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Shrieker"
+        ]
+      }
+    },
+    {
+      "id": "AT00000040",
+      "name": "Sonic Lance",
+      "summary": "Exclusive Shrieker power: sonic lance.",
+      "type": "technique",
+      "tags": [
+        "shrieker",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Arc}",
+            "types": [
+              "sonic"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Shrieker"
+        ]
+      }
+    },
+    {
+      "id": "AT00000041",
+      "name": "Rain of Arrows",
+      "summary": "Exclusive Forest Elves technique: rain of arrows.",
+      "type": "technique",
+      "tags": [
+        "elf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "piercing"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Bleeding",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Forest Elves"
+        ],
+        "equipment": [
+          "Bow",
+          "Arrows"
+        ]
+      }
+    },
+    {
+      "id": "AT00000042",
+      "name": "Sylvan Step",
+      "summary": "Exclusive Forest Elves technique: sylvan step.",
+      "type": "technique",
+      "tags": [
+        "elf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Evasion +2",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Forest Elves"
+        ]
+      }
+    },
+    {
+      "id": "AT00000043",
+      "name": "Rain of Arrows",
+      "summary": "Exclusive Dark Elves technique: rain of arrows.",
+      "type": "technique",
+      "tags": [
+        "elf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "piercing"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Bleeding",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Dark Elves"
+        ],
+        "equipment": [
+          "Bow",
+          "Arrows"
+        ]
+      }
+    },
+    {
+      "id": "AT00000044",
+      "name": "Sylvan Step",
+      "summary": "Exclusive Dark Elves technique: sylvan step.",
+      "type": "technique",
+      "tags": [
+        "elf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Evasion +2",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Dark Elves"
+        ]
+      }
+    },
+    {
+      "id": "AT00000045",
+      "name": "Rain of Arrows",
+      "summary": "Exclusive Snow Elves technique: rain of arrows.",
+      "type": "technique",
+      "tags": [
+        "elf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "piercing"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Bleeding",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Snow Elves"
+        ],
+        "equipment": [
+          "Bow",
+          "Arrows"
+        ]
+      }
+    },
+    {
+      "id": "AT00000046",
+      "name": "Sylvan Step",
+      "summary": "Exclusive Snow Elves technique: sylvan step.",
+      "type": "technique",
+      "tags": [
+        "elf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Evasion +2",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Snow Elves"
+        ]
+      }
+    },
+    {
+      "id": "AT00000047",
+      "name": "Rain of Arrows",
+      "summary": "Exclusive Great Elves technique: rain of arrows.",
+      "type": "technique",
+      "tags": [
+        "elf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "piercing"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Bleeding",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Great Elves"
+        ],
+        "equipment": [
+          "Bow",
+          "Arrows"
+        ]
+      }
+    },
+    {
+      "id": "AT00000048",
+      "name": "Sylvan Step",
+      "summary": "Exclusive Great Elves technique: sylvan step.",
+      "type": "technique",
+      "tags": [
+        "elf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Evasion +2",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Great Elves"
+        ]
+      }
+    },
+    {
+      "id": "AT00000049",
+      "name": "Hammer Blow",
+      "summary": "Exclusive Iron Dwarves technique: hammer blow.",
+      "type": "technique",
+      "tags": [
+        "dwarf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Physique (Phy)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Staggered",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Iron Dwarves"
+        ],
+        "equipment": [
+          "Hammer",
+          "Shield"
+        ]
+      }
+    },
+    {
+      "id": "AT00000050",
+      "name": "Stonewall Stance",
+      "summary": "Exclusive Iron Dwarves technique: stonewall stance.",
+      "type": "technique",
+      "tags": [
+        "dwarf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "DR +2",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Iron Dwarves"
+        ]
+      }
+    },
+    {
+      "id": "AT00000051",
+      "name": "Hammer Blow",
+      "summary": "Exclusive Hill Dwarves technique: hammer blow.",
+      "type": "technique",
+      "tags": [
+        "dwarf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Physique (Phy)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Staggered",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Hill Dwarves"
+        ],
+        "equipment": [
+          "Hammer",
+          "Shield"
+        ]
+      }
+    },
+    {
+      "id": "AT00000052",
+      "name": "Stonewall Stance",
+      "summary": "Exclusive Hill Dwarves technique: stonewall stance.",
+      "type": "technique",
+      "tags": [
+        "dwarf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "DR +2",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Hill Dwarves"
+        ]
+      }
+    },
+    {
+      "id": "AT00000053",
+      "name": "Hammer Blow",
+      "summary": "Exclusive Ember Dwarves technique: hammer blow.",
+      "type": "technique",
+      "tags": [
+        "dwarf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Physique (Phy)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Staggered",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Ember Dwarves"
+        ],
+        "equipment": [
+          "Hammer",
+          "Shield"
+        ]
+      }
+    },
+    {
+      "id": "AT00000054",
+      "name": "Stonewall Stance",
+      "summary": "Exclusive Ember Dwarves technique: stonewall stance.",
+      "type": "technique",
+      "tags": [
+        "dwarf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "DR +2",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Ember Dwarves"
+        ]
+      }
+    },
+    {
+      "id": "AT00000055",
+      "name": "Hammer Blow",
+      "summary": "Exclusive Coastal Dwarves technique: hammer blow.",
+      "type": "technique",
+      "tags": [
+        "dwarf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Physique (Phy)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Staggered",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Coastal Dwarves"
+        ],
+        "equipment": [
+          "Hammer",
+          "Shield"
+        ]
+      }
+    },
+    {
+      "id": "AT00000056",
+      "name": "Stonewall Stance",
+      "summary": "Exclusive Coastal Dwarves technique: stonewall stance.",
+      "type": "technique",
+      "tags": [
+        "dwarf",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "DR +2",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Coastal Dwarves"
+        ]
+      }
+    },
+    {
+      "id": "AT00000057",
+      "name": "Rending Charge",
+      "summary": "Exclusive Ashfoot Orcs technique: rending charge.",
+      "type": "technique",
+      "tags": [
+        "orc",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "slashing"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Prone",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Ashfoot Orcs"
+        ]
+      }
+    },
+    {
+      "id": "AT00000058",
+      "name": "Warcry",
+      "summary": "Exclusive Ashfoot Orcs technique: warcry.",
+      "type": "technique",
+      "tags": [
+        "orc",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Inspired (allies)",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Ashfoot Orcs"
+        ]
+      }
+    },
+    {
+      "id": "AT00000059",
+      "name": "Rending Charge",
+      "summary": "Exclusive Storm Orcs technique: rending charge.",
+      "type": "technique",
+      "tags": [
+        "orc",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "slashing"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Prone",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Storm Orcs"
+        ]
+      }
+    },
+    {
+      "id": "AT00000060",
+      "name": "Warcry",
+      "summary": "Exclusive Storm Orcs technique: warcry.",
+      "type": "technique",
+      "tags": [
+        "orc",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Inspired (allies)",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Storm Orcs"
+        ]
+      }
+    },
+    {
+      "id": "AT00000061",
+      "name": "Rending Charge",
+      "summary": "Exclusive Mountain Orcs technique: rending charge.",
+      "type": "technique",
+      "tags": [
+        "orc",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "slashing"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Prone",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Mountain Orcs"
+        ]
+      }
+    },
+    {
+      "id": "AT00000062",
+      "name": "Warcry",
+      "summary": "Exclusive Mountain Orcs technique: warcry.",
+      "type": "technique",
+      "tags": [
+        "orc",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Inspired (allies)",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Mountain Orcs"
+        ]
+      }
+    },
+    {
+      "id": "AT00000063",
+      "name": "Infernal Bolt",
+      "summary": "Exclusive Darkblood Tiefling technique: infernal bolt.",
+      "type": "technique",
+      "tags": [
+        "tiefling",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Arc}",
+            "types": [
+              "fire",
+              "necrotic"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Darkblood Tiefling"
+        ]
+      }
+    },
+    {
+      "id": "AT00000064",
+      "name": "Temptation's Veil",
+      "summary": "Exclusive Darkblood Tiefling technique: temptation's veil.",
+      "type": "technique",
+      "tags": [
+        "tiefling",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Charmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Darkblood Tiefling"
+        ]
+      }
+    },
+    {
+      "id": "AT00000065",
+      "name": "Infernal Bolt",
+      "summary": "Exclusive Hellbound Tiefling technique: infernal bolt.",
+      "type": "technique",
+      "tags": [
+        "tiefling",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Arc}",
+            "types": [
+              "fire",
+              "necrotic"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Hellbound Tiefling"
+        ]
+      }
+    },
+    {
+      "id": "AT00000066",
+      "name": "Temptation's Veil",
+      "summary": "Exclusive Hellbound Tiefling technique: temptation's veil.",
+      "type": "technique",
+      "tags": [
+        "tiefling",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Charmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Hellbound Tiefling"
+        ]
+      }
+    },
+    {
+      "id": "AT00000067",
+      "name": "Infernal Bolt",
+      "summary": "Exclusive Voided Tiefling technique: infernal bolt.",
+      "type": "technique",
+      "tags": [
+        "tiefling",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Arc}",
+            "types": [
+              "fire",
+              "necrotic"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Voided Tiefling"
+        ]
+      }
+    },
+    {
+      "id": "AT00000068",
+      "name": "Temptation's Veil",
+      "summary": "Exclusive Voided Tiefling technique: temptation's veil.",
+      "type": "technique",
+      "tags": [
+        "tiefling",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Charmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Voided Tiefling"
+        ]
+      }
+    },
+    {
+      "id": "AT00000069",
+      "name": "Infernal Bolt",
+      "summary": "Exclusive Sableheart Tiefling technique: infernal bolt.",
+      "type": "technique",
+      "tags": [
+        "tiefling",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Arc}",
+            "types": [
+              "fire",
+              "necrotic"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Sableheart Tiefling"
+        ]
+      }
+    },
+    {
+      "id": "AT00000070",
+      "name": "Temptation's Veil",
+      "summary": "Exclusive Sableheart Tiefling technique: temptation's veil.",
+      "type": "technique",
+      "tags": [
+        "tiefling",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Charmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Sableheart Tiefling"
+        ]
+      }
+    },
+    {
+      "id": "AT00000071",
+      "name": "Infernal Bolt",
+      "summary": "Exclusive Viridian Tiefling technique: infernal bolt.",
+      "type": "technique",
+      "tags": [
+        "tiefling",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Arc}",
+            "types": [
+              "fire",
+              "necrotic"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Viridian Tiefling"
+        ]
+      }
+    },
+    {
+      "id": "AT00000072",
+      "name": "Temptation's Veil",
+      "summary": "Exclusive Viridian Tiefling technique: temptation's veil.",
+      "type": "technique",
+      "tags": [
+        "tiefling",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Charmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Viridian Tiefling"
+        ]
+      }
+    },
+    {
+      "id": "AT00000073",
+      "name": "Cultural Strike",
+      "summary": "Exclusive Human technique: cultural strike.",
+      "type": "technique",
+      "tags": [
+        "human",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Human"
+        ]
+      }
+    },
+    {
+      "id": "AT00000074",
+      "name": "Ancestral Guard",
+      "summary": "Exclusive Human technique: ancestral guard.",
+      "type": "technique",
+      "tags": [
+        "human",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "DR +1",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Human"
+        ]
+      }
+    },
+    {
+      "id": "AT00000075",
+      "name": "Cultural Strike",
+      "summary": "Exclusive Aberration technique: cultural strike.",
+      "type": "technique",
+      "tags": [
+        "aberration",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Aberration"
+        ]
+      }
+    },
+    {
+      "id": "AT00000076",
+      "name": "Ancestral Guard",
+      "summary": "Exclusive Aberration technique: ancestral guard.",
+      "type": "technique",
+      "tags": [
+        "aberration",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "DR +1",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Aberration"
+        ]
+      }
+    },
+    {
+      "id": "AT00000077",
+      "name": "Phantom Pounce",
+      "summary": "Exclusive Umbral Nekomata technique: phantom pounce.",
+      "type": "technique",
+      "tags": [
+        "nekomata",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "piercing"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Umbral Nekomata"
+        ]
+      }
+    },
+    {
+      "id": "AT00000078",
+      "name": "Smoke Veil",
+      "summary": "Exclusive Umbral Nekomata technique: smoke veil.",
+      "type": "technique",
+      "tags": [
+        "nekomata",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Disadvantage vs you",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Umbral Nekomata"
+        ]
+      }
+    },
+    {
+      "id": "AT00000079",
+      "name": "Phantom Pounce",
+      "summary": "Exclusive Blossom Nekomata technique: phantom pounce.",
+      "type": "technique",
+      "tags": [
+        "nekomata",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "piercing"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Blossom Nekomata"
+        ]
+      }
+    },
+    {
+      "id": "AT00000080",
+      "name": "Smoke Veil",
+      "summary": "Exclusive Blossom Nekomata technique: smoke veil.",
+      "type": "technique",
+      "tags": [
+        "nekomata",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Disadvantage vs you",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Blossom Nekomata"
+        ]
+      }
+    },
+    {
+      "id": "AT00000081",
+      "name": "Phantom Pounce",
+      "summary": "Exclusive Brimtail Nekomata technique: phantom pounce.",
+      "type": "technique",
+      "tags": [
+        "nekomata",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "piercing"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Brimtail Nekomata"
+        ]
+      }
+    },
+    {
+      "id": "AT00000082",
+      "name": "Smoke Veil",
+      "summary": "Exclusive Brimtail Nekomata technique: smoke veil.",
+      "type": "technique",
+      "tags": [
+        "nekomata",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Disadvantage vs you",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Brimtail Nekomata"
+        ]
+      }
+    },
+    {
+      "id": "AT00000083",
+      "name": "Foxfire Spiral",
+      "summary": "Exclusive Lunarveil Kitsune technique: foxfire spiral.",
+      "type": "technique",
+      "tags": [
+        "kitsune",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "fire"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Ignited",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Lunarveil Kitsune"
+        ]
+      }
+    },
+    {
+      "id": "AT00000084",
+      "name": "Illusory Double",
+      "summary": "Exclusive Lunarveil Kitsune technique: illusory double.",
+      "type": "technique",
+      "tags": [
+        "kitsune",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Evasion +2",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Lunarveil Kitsune"
+        ]
+      }
+    },
+    {
+      "id": "AT00000085",
+      "name": "Foxfire Spiral",
+      "summary": "Exclusive Infernal Kitsune technique: foxfire spiral.",
+      "type": "technique",
+      "tags": [
+        "kitsune",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "fire"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Ignited",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Infernal Kitsune"
+        ]
+      }
+    },
+    {
+      "id": "AT00000086",
+      "name": "Illusory Double",
+      "summary": "Exclusive Infernal Kitsune technique: illusory double.",
+      "type": "technique",
+      "tags": [
+        "kitsune",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Evasion +2",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Infernal Kitsune"
+        ]
+      }
+    },
+    {
+      "id": "AT00000087",
+      "name": "Foxfire Spiral",
+      "summary": "Exclusive Ethereal Kitsune technique: foxfire spiral.",
+      "type": "technique",
+      "tags": [
+        "kitsune",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "fire"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Ignited",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Ethereal Kitsune"
+        ]
+      }
+    },
+    {
+      "id": "AT00000088",
+      "name": "Illusory Double",
+      "summary": "Exclusive Ethereal Kitsune technique: illusory double.",
+      "type": "technique",
+      "tags": [
+        "kitsune",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Evasion +2",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Ethereal Kitsune"
+        ]
+      }
+    },
+    {
+      "id": "AT00000089",
+      "name": "Foxfire Spiral",
+      "summary": "Exclusive Maple Kitsune technique: foxfire spiral.",
+      "type": "technique",
+      "tags": [
+        "kitsune",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "fire"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Ignited",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Maple Kitsune"
+        ]
+      }
+    },
+    {
+      "id": "AT00000090",
+      "name": "Illusory Double",
+      "summary": "Exclusive Maple Kitsune technique: illusory double.",
+      "type": "technique",
+      "tags": [
+        "kitsune",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Evasion +2",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Maple Kitsune"
+        ]
+      }
+    },
+    {
+      "id": "AT00000091",
+      "name": "Foxfire Spiral",
+      "summary": "Exclusive Arctic Kitsune technique: foxfire spiral.",
+      "type": "technique",
+      "tags": [
+        "kitsune",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "fire"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Ignited",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Arctic Kitsune"
+        ]
+      }
+    },
+    {
+      "id": "AT00000092",
+      "name": "Illusory Double",
+      "summary": "Exclusive Arctic Kitsune technique: illusory double.",
+      "type": "technique",
+      "tags": [
+        "kitsune",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "auto",
+        "auto": true
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Evasion +2",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Arctic Kitsune"
+        ]
+      }
+    },
+    {
+      "id": "AT00000093",
+      "name": "Tidal Pull",
+      "summary": "Exclusive Coralheart Merfolk technique: tidal pull.",
+      "type": "technique",
+      "tags": [
+        "merfolk",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Prone",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Coralheart Merfolk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000094",
+      "name": "Brine Surge",
+      "summary": "Exclusive Coralheart Merfolk technique: brine surge.",
+      "type": "technique",
+      "tags": [
+        "merfolk",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "cold"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Slowed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Coralheart Merfolk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000095",
+      "name": "Tidal Pull",
+      "summary": "Exclusive Tideling Merfolk technique: tidal pull.",
+      "type": "technique",
+      "tags": [
+        "merfolk",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Prone",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Tideling Merfolk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000096",
+      "name": "Brine Surge",
+      "summary": "Exclusive Tideling Merfolk technique: brine surge.",
+      "type": "technique",
+      "tags": [
+        "merfolk",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "cold"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Slowed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Tideling Merfolk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000097",
+      "name": "Tidal Pull",
+      "summary": "Exclusive Moonsong Merfolk technique: tidal pull.",
+      "type": "technique",
+      "tags": [
+        "merfolk",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Prone",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Moonsong Merfolk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000098",
+      "name": "Brine Surge",
+      "summary": "Exclusive Moonsong Merfolk technique: brine surge.",
+      "type": "technique",
+      "tags": [
+        "merfolk",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "cold"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Slowed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Moonsong Merfolk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000099",
+      "name": "Tidal Pull",
+      "summary": "Exclusive Glacialis Merfolk technique: tidal pull.",
+      "type": "technique",
+      "tags": [
+        "merfolk",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Prone",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Glacialis Merfolk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000100",
+      "name": "Brine Surge",
+      "summary": "Exclusive Glacialis Merfolk technique: brine surge.",
+      "type": "technique",
+      "tags": [
+        "merfolk",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "cold"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Slowed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Glacialis Merfolk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000101",
+      "name": "Tidal Pull",
+      "summary": "Exclusive Nethryn Merfolk technique: tidal pull.",
+      "type": "technique",
+      "tags": [
+        "merfolk",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Prone",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Nethryn Merfolk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000102",
+      "name": "Brine Surge",
+      "summary": "Exclusive Nethryn Merfolk technique: brine surge.",
+      "type": "technique",
+      "tags": [
+        "merfolk",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "cold"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Slowed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Nethryn Merfolk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000103",
+      "name": "Tail Sweep",
+      "summary": "Exclusive Ambercoil Lamia technique: tail sweep.",
+      "type": "technique",
+      "tags": [
+        "lamia",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Prone",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Ambercoil Lamia"
+        ]
+      }
+    },
+    {
+      "id": "AT00000104",
+      "name": "Serpentine Hypnosis",
+      "summary": "Exclusive Ambercoil Lamia technique: serpentine hypnosis.",
+      "type": "technique",
+      "tags": [
+        "lamia",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Charmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Ambercoil Lamia"
+        ]
+      }
+    },
+    {
+      "id": "AT00000105",
+      "name": "Tail Sweep",
+      "summary": "Exclusive Verdant Lamia technique: tail sweep.",
+      "type": "technique",
+      "tags": [
+        "lamia",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Prone",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Verdant Lamia"
+        ]
+      }
+    },
+    {
+      "id": "AT00000106",
+      "name": "Serpentine Hypnosis",
+      "summary": "Exclusive Verdant Lamia technique: serpentine hypnosis.",
+      "type": "technique",
+      "tags": [
+        "lamia",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Charmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Verdant Lamia"
+        ]
+      }
+    },
+    {
+      "id": "AT00000107",
+      "name": "Tail Sweep",
+      "summary": "Exclusive Lustmire Lamia technique: tail sweep.",
+      "type": "technique",
+      "tags": [
+        "lamia",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Prone",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Lustmire Lamia"
+        ]
+      }
+    },
+    {
+      "id": "AT00000108",
+      "name": "Serpentine Hypnosis",
+      "summary": "Exclusive Lustmire Lamia technique: serpentine hypnosis.",
+      "type": "technique",
+      "tags": [
+        "lamia",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Charmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Lustmire Lamia"
+        ]
+      }
+    },
+    {
+      "id": "AT00000109",
+      "name": "Tail Sweep",
+      "summary": "Exclusive Riverlit Lamia technique: tail sweep.",
+      "type": "technique",
+      "tags": [
+        "lamia",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Prone",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Riverlit Lamia"
+        ]
+      }
+    },
+    {
+      "id": "AT00000110",
+      "name": "Serpentine Hypnosis",
+      "summary": "Exclusive Riverlit Lamia technique: serpentine hypnosis.",
+      "type": "technique",
+      "tags": [
+        "lamia",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Charmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Riverlit Lamia"
+        ]
+      }
+    },
+    {
+      "id": "AT00000111",
+      "name": "Wing Buffet",
+      "summary": "Exclusive Cliffside Harpy technique: wing buffet.",
+      "type": "technique",
+      "tags": [
+        "harpy",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Disarmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Cliffside Harpy"
+        ]
+      }
+    },
+    {
+      "id": "AT00000112",
+      "name": "Sky Screech",
+      "summary": "Exclusive Cliffside Harpy technique: sky screech.",
+      "type": "technique",
+      "tags": [
+        "harpy",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "sonic"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Dazed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Cliffside Harpy"
+        ]
+      }
+    },
+    {
+      "id": "AT00000113",
+      "name": "Wing Buffet",
+      "summary": "Exclusive Nightfall Harpy technique: wing buffet.",
+      "type": "technique",
+      "tags": [
+        "harpy",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Disarmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Nightfall Harpy"
+        ]
+      }
+    },
+    {
+      "id": "AT00000114",
+      "name": "Sky Screech",
+      "summary": "Exclusive Nightfall Harpy technique: sky screech.",
+      "type": "technique",
+      "tags": [
+        "harpy",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "sonic"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Dazed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Nightfall Harpy"
+        ]
+      }
+    },
+    {
+      "id": "AT00000115",
+      "name": "Wing Buffet",
+      "summary": "Exclusive Snowpeak Harpy technique: wing buffet.",
+      "type": "technique",
+      "tags": [
+        "harpy",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Disarmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Snowpeak Harpy"
+        ]
+      }
+    },
+    {
+      "id": "AT00000116",
+      "name": "Sky Screech",
+      "summary": "Exclusive Snowpeak Harpy technique: sky screech.",
+      "type": "technique",
+      "tags": [
+        "harpy",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "sonic"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Dazed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Snowpeak Harpy"
+        ]
+      }
+    },
+    {
+      "id": "AT00000117",
+      "name": "Wing Buffet",
+      "summary": "Exclusive Bramblewing Harpy technique: wing buffet.",
+      "type": "technique",
+      "tags": [
+        "harpy",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Disarmed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Bramblewing Harpy"
+        ]
+      }
+    },
+    {
+      "id": "AT00000118",
+      "name": "Sky Screech",
+      "summary": "Exclusive Bramblewing Harpy technique: sky screech.",
+      "type": "technique",
+      "tags": [
+        "harpy",
+        "exclusive"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Arc}",
+            "types": [
+              "sonic"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Dazed",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Bramblewing Harpy"
+        ]
+      }
+    }
+  ]
+}

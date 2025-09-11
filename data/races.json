@@ -1,27 +1,445 @@
 [
   {
-    "name": "Darkblood Tiefling",
-    "race_group": "Tiefling",
-    "nature_and_culture": "Secretive, distrusted even among Tieflings; often drawn to shadowy guilds, mercenary bands, or solitary wandering. They balance paranoia with fierce independence.",
-    "combat": "Quick, vicious fighters-favor ambush tactics, shadow magic, and poison.",
-    "spice": "Darkblood Tieflings are said to carry whispers of their infernal ancestors in their dreams, and some claim their cracked skin glows faintly in moonlight.",
-    "id": "RC00000013",
+    "id": "RC00000001",
+    "name": "Forest Elves",
+    "race_group": "Elf",
     "skin_tone": [
-      "light grey"
+      "green"
     ],
     "skin_texture": [
-      "cracked",
+      "smooth"
+    ],
+    "hair_colour": [
+      "brown",
+      "red",
+      "white"
+    ],
+    "hair_style": [
+      "braided",
+      "long",
+      "loose"
+    ],
+    "eye_color": [
+      "green",
+      "orange"
+    ],
+    "height": [
+      "medium"
+    ],
+    "build": [
+      "slim"
+    ],
+    "features": [
+      "pointed ears"
+    ],
+    "appearance": "Forest Elves are typically of fair, tanned, or olive complexion with hair of blonde, white, auburn, or light brown. Medium in height and slim yet toned, their sharp eyes and pointed ears lend a watchful grace. Their clothing is leather and pelt worked with leaves and living plants-minimal to moderate coverage for agility, often earth-dyed and silent in motion.",
+    "nature_and_culture": "Tree-top cities and living bridges. Revere spirits of the wild and defend groves with quiet zeal.",
+    "combat": "Stealth archers and guerrillas, vanishing into undergrowth between precise volleys.",
+    "spice": "Their whispers ride the wind through branches."
+  },
+  {
+    "id": "RC00000002",
+    "name": "Dark Elves",
+    "race_group": "Elf",
+    "skin_tone": [
+      "brown",
+      "white"
+    ],
+    "skin_texture": [
+      "smooth"
+    ],
+    "hair_colour": [
+      "black",
+      "brown",
+      "grey",
+      "white"
+    ],
+    "hair_style": [
+      "braided",
+      "long",
+      "straight"
+    ],
+    "eye_color": [
+      "grey",
+      "orange",
+      "red"
+    ],
+    "height": [
+      "tall"
+    ],
+    "build": [
+      "curvy"
+    ],
+    "features": [
+      "pointed ears"
+    ],
+    "appearance": "Dark Elves bear pale, dusky-brown skin offset by hair of grey, brown, black, or silver-white. Tall and curvaceous, their angular features are sharpened by elegant pointed ears and a predatory glimmer to the eyes. They prefer dark leathers and fabrics cut close to the body, embellished with silver fittings and gemstones. Fine silver tattoos often wind across the skin, catching moonlight like constellations.",
+    "nature_and_culture": "Underworld cities and secret covens. Politically ruthless but artistically refined; pragmatists above all.",
+    "combat": "Poisoners, assassins, and shadow mages; excel at surgical strikes and retreats.",
+    "spice": "Their eyes glimmer in the dark like a predator's."
+  },
+  {
+    "id": "RC00000003",
+    "name": "Snow Elves",
+    "race_group": "Elf",
+    "skin_tone": [
+      "white"
+    ],
+    "skin_texture": [
+      "smooth"
+    ],
+    "hair_colour": [
+      "black",
+      "blue",
+      "grey",
+      "purple",
+      "white"
+    ],
+    "hair_style": [
+      "long",
+      "loose",
+      "short"
+    ],
+    "eye_color": [
+      "blue",
+      "grey",
+      "purple"
+    ],
+    "height": [
+      "short"
+    ],
+    "build": [
+      "slim"
+    ],
+    "features": [
+      "pointed ears"
+    ],
+    "appearance": "Snow Elves have pure white skin and slim, small frames. Hair ranges from white and grey to black with icy blue or purple tones; eyes glint in frosted hues. Their clothing is minimalistic-revealing leather and simple fabrics designed for speed and adapted bodies that thrive in cold. Lines are austere, colors pale, often trimmed with fur only for grip and wind-shear.",
+    "nature_and_culture": "Isolationist keepers of high passes and tundras; winter is both teacher and god.",
+    "combat": "Endurance fighters using icy terrain to exhaust foes; frost-forged arms.",
+    "spice": "Breath mists in warmth; stray snowflakes follow their steps."
+  },
+  {
+    "id": "RC00000004",
+    "name": "Great Elves",
+    "race_group": "Elf",
+    "skin_tone": [
+      "orange",
+      "yellow"
+    ],
+    "skin_texture": [
+      "smooth"
+    ],
+    "hair_colour": [
+      "brown",
+      "grey",
+      "red"
+    ],
+    "hair_style": [
+      "braided",
+      "long",
+      "wavy"
+    ],
+    "eye_color": [
+      "green",
+      "grey",
+      "yellow"
+    ],
+    "height": [
+      "very tall"
+    ],
+    "build": [
+      "curvy"
+    ],
+    "features": [
+      "pointed ears"
+    ],
+    "appearance": "Great Elves tower over most, their skin glowing in hues of yellow or orange. Hair cascades in blonde, brown, auburn, or pale metallics; eyes gleam gold, silver, or jewel-tones. Their wardrobes favor ornamental robes and ceremonial armor heavy with gold and silver jewelry-vestments that turn battlefield and court into theatre.",
+    "nature_and_culture": "Stewards of ancient citadels and high culture; stern traditionalists with long memories.",
+    "combat": "Elegant war-mages and champions; discipline married to arcana.",
+    "spice": "Their lineage carries a faint celestial resonance."
+  },
+  {
+    "id": "RC00000005",
+    "name": "Iron Dwarves",
+    "race_group": "Dwarf",
+    "skin_tone": [
+      "brown",
+      "grey"
+    ],
+    "skin_texture": [
       "rough",
-      "craggily"
+      "scarred"
+    ],
+    "hair_colour": [
+      "black",
+      "brown",
+      "grey",
+      "red"
+    ],
+    "hair_style": [
+      "braided",
+      "long",
+      "short"
+    ],
+    "eye_color": [
+      "brown",
+      "grey"
+    ],
+    "height": [
+      "short"
+    ],
+    "build": [
+      "bulky",
+      "muscular",
+      "strong"
+    ],
+    "features": [],
+    "appearance": "Iron Dwarves are short and powerfully built, with stone-grey or earthy brown complexions and work-roughened skin. Hair runs black, brown, or red, often braided; beards are clasped with iron and steel. Their attire favors mail, plate, and heavy leathers blackened by forge soot, along with aprons and tool-laden belts.",
+    "nature_and_culture": "Forge-and-clan traditionalists of deep mountains; worth measured in craft and duty.",
+    "combat": "Shield walls, hammers, and implacable advance; masters of siege defense.",
+    "spice": "In battle, their heartbeats echo like hammer blows."
+  },
+  {
+    "id": "RC00000006",
+    "name": "Hill Dwarves",
+    "race_group": "Dwarf",
+    "skin_tone": [
+      "brown"
+    ],
+    "skin_texture": [
+      "rough",
+      "smooth"
+    ],
+    "hair_colour": [
+      "brown",
+      "red"
+    ],
+    "hair_style": [
+      "braided",
+      "long",
+      "short"
+    ],
+    "eye_color": [
+      "brown",
+      "green"
+    ],
+    "height": [
+      "short"
+    ],
+    "build": [
+      "bulky",
+      "strong"
+    ],
+    "features": [],
+    "appearance": "Broad and ruddy, Hill Dwarves wear their sun with pride. Hair is often sun-bleached blonde or light brown, with thick beards knotted for work. Garb is practical-quilted vests, sturdy boots, homespun shirts-embroidered with clan motifs and beer-stain honesty.",
+    "nature_and_culture": "Valley farmers, brewers, and caravaners; convivial but stubborn.",
+    "combat": "Village militias with axes, crossbows, heavy shields; immovable on home ground.",
+    "spice": "Ale strong enough to floor an orc."
+  },
+  {
+    "id": "RC00000007",
+    "name": "Ember Dwarves",
+    "race_group": "Dwarf",
+    "skin_tone": [
+      "black",
+      "brown"
+    ],
+    "skin_texture": [
+      "rough"
+    ],
+    "hair_colour": [
+      "black",
+      "red"
+    ],
+    "hair_style": [
+      "braided",
+      "short"
+    ],
+    "eye_color": [
+      "orange",
+      "yellow"
+    ],
+    "height": [
+      "short"
+    ],
+    "build": [
+      "bulky",
+      "muscular"
+    ],
+    "features": [],
+    "appearance": "Ember Dwarves carry soot-darkened skin and ember-glowing eyes. Hair is red or coal-black and often singed at the tips. Their armor is blackened steel, brass, and obsidian plates over fireproof leathers, with vents and grills like tiny furnaces.",
+    "nature_and_culture": "Volcanic-hall smith-kings; clans compete to forge legends; fire revered as divine.",
+    "combat": "Molten blades, warhammers, and fire magic; aggressive shock smiths.",
+    "spice": "Skin radiates heat, scorching parchment if held too long."
+  },
+  {
+    "id": "RC00000008",
+    "name": "Coastal Dwarves",
+    "race_group": "Dwarf",
+    "skin_tone": [
+      "brown"
+    ],
+    "skin_texture": [
+      "rough"
+    ],
+    "hair_colour": [
+      "brown",
+      "white"
+    ],
+    "hair_style": [
+      "braided",
+      "short"
+    ],
+    "eye_color": [
+      "blue",
+      "green",
+      "grey"
+    ],
+    "height": [
+      "short"
+    ],
+    "build": [
+      "bulky",
+      "strong"
+    ],
+    "features": [],
+    "appearance": "Weathered and sea-tough, Coastal Dwarves wear tanned skin and salt-crusted beards braided with shells. Hair runs sea-bleached white to blonde. Their clothes are tarred leathers, canvas coats, and rope belts-made for decks slick with brine.",
+    "nature_and_culture": "Cliff citadels and sea-caves; bold traders and shipwrights, distrusted by mountain kin.",
+    "combat": "Harpoons, nets, boarding axes; ruthless in close-quarters fights on deck.",
+    "spice": "Creed: \"Stone sinks, ships sail.\""
+  },
+  {
+    "id": "RC00000009",
+    "name": "Ashfoot Orcs",
+    "race_group": "Orc",
+    "skin_tone": [
+      "black",
+      "grey"
+    ],
+    "skin_texture": [
+      "rough",
+      "scarred"
+    ],
+    "hair_colour": [
+      "black",
+      "brown"
+    ],
+    "hair_style": [
+      "braided",
+      "short"
+    ],
+    "eye_color": [
+      "orange",
+      "red"
+    ],
+    "height": [
+      "tall"
+    ],
+    "build": [
+      "muscular",
+      "strong"
+    ],
+    "features": [
+      "tusks"
+    ],
+    "appearance": "Tall and scarred, Ashfoot Orcs wear grey-black skin like cooled ash. Ember-lit eyes glare above obsidian charms. They favor dark leather harnesses, ash-daubed skin, and rugged kilts, leaving feet bare to walk on coals during rites.",
+    "nature_and_culture": "Volcanic clans treating fire as sacred; ash-painted shamans and obsidian charms.",
+    "combat": "Brutal close-combat with obsidian and steel; barefoot coal-walkers.",
+    "spice": "War drums packed with volcanic stones rumble like quakes."
+  },
+  {
+    "id": "RC00000010",
+    "name": "Storm Orcs",
+    "race_group": "Orc",
+    "skin_tone": [
+      "green",
+      "grey"
+    ],
+    "skin_texture": [
+      "rough"
+    ],
+    "hair_colour": [
+      "black",
+      "brown"
+    ],
+    "hair_style": [
+      "braided"
+    ],
+    "eye_color": [
+      "blue",
+      "green",
+      "grey"
+    ],
+    "height": [
+      "tall"
+    ],
+    "build": [
+      "muscular"
+    ],
+    "features": [
+      "tusks"
+    ],
+    "appearance": "Broad and tall, Storm Orcs bear storm-grey or sea-green skin. Hair is often braided and wind-tangled, sometimes charred at the ends. They wear sea-leathers, harnesses, and mail scavenged from boarding raids, hung with hooks and knots that sing in the wind.",
+    "nature_and_culture": "Coast raiders who test souls in thunder; coming-of-age beneath lightning-clawed skies.",
+    "combat": "Thunderous charges and storm-touched magic; fearless boarding and cliff assaults.",
+    "spice": "Air around them smells of ozone; static crackles when enraged."
+  },
+  {
+    "id": "RC00000011",
+    "name": "Mountain Orcs",
+    "race_group": "Orc",
+    "skin_tone": [
+      "brown",
+      "grey"
+    ],
+    "skin_texture": [
+      "scarred"
+    ],
+    "hair_colour": [
+      "black",
+      "brown"
+    ],
+    "hair_style": [
+      "braided"
+    ],
+    "eye_color": [
+      "brown",
+      "grey"
+    ],
+    "height": [
+      "tall"
+    ],
+    "build": [
+      "bulky",
+      "strong"
+    ],
+    "features": [
+      "tusks"
+    ],
+    "appearance": "Stocky and slate-skinned, Mountain Orcs are built for altitude and cold. Their garb is layered furs, rock-dyed cloth, and strapped plate scavenged from fallen foes. Tusks are often filed or etched with clan marks.",
+    "nature_and_culture": "Crag fortresses, goat herds, and echoing chants across ridgelines.",
+    "combat": "High-ground ambushers triggering rockfalls before charging.",
+    "spice": "War-cries carry for miles, rolling like thunder."
+  },
+  {
+    "id": "RC00000012",
+    "name": "Darkblood Tiefling",
+    "race_group": "Tiefling",
+    "skin_tone": [
+      "grey"
+    ],
+    "skin_texture": [
+      "rough"
     ],
     "hair_colour": [
       "black",
       "grey"
     ],
     "hair_style": [
+      "braided",
       "long",
-      "straight",
-      "braided"
+      "straight"
     ],
     "eye_color": [
       "grey",
@@ -32,109 +450,86 @@
       "medium"
     ],
     "build": [
-      "normal",
-      "slim",
-      "skinny"
+      "slim"
     ],
     "features": [
-      "black horns",
-      "long horns",
-      "jagged horns",
-      "pointed horns",
+      "horns",
       "pointed ears",
-      "black tail",
-      "long tail",
-      "twisted tail",
-      "spiked tail"
+      "tail"
     ],
     "appearance": "Light-grey, cracked skin offsets black, jagged horns and a very long spiked tail. Hair is black or grey, eyes often a cool grey. They dress in shadow-dyed leathers and muted cloaks.",
-    "curse": []
+    "nature_and_culture": "Secretive, distrusted even among Tieflings; often drawn to shadowy guilds, mercenary bands, or solitary wandering. They balance paranoia with fierce independence.",
+    "combat": "Quick, vicious fighters-favor ambush tactics, shadow magic, and poison.",
+    "spice": "Darkblood Tieflings are said to carry whispers of their infernal ancestors in their dreams, and some claim their cracked skin glows faintly in moonlight."
   },
   {
+    "id": "RC00000013",
     "name": "Hellbound Tiefling",
     "race_group": "Tiefling",
-    "nature_and_culture": "Proud, theatrical, leaning into their infernal legacy-many act as performers, warlocks, or leaders of dangerous cults.",
-    "combat": "Fearless, aggressive; often frontline warriors or pyromancers.",
-    "spice": "Rumored to smell faintly of brimstone when agitated, and their blood hisses when spilled on holy ground.",
-    "id": "RC00000014",
     "skin_tone": [
-      "red",
-      "orange"
+      "orange",
+      "red"
     ],
     "skin_texture": [
       "rough"
     ],
     "hair_colour": [
-      "red",
       "orange",
+      "pink",
       "purple",
-      "pink"
+      "red"
     ],
     "hair_style": [
+      "braided",
       "long",
-      "wavy",
-      "braided"
+      "wavy"
     ],
     "eye_color": [
-      "orange",
-      "yellow",
-      "green",
       "blue",
+      "brown",
+      "green",
+      "orange",
       "purple",
-      "hazel",
-      "brown"
+      "yellow"
     ],
     "height": [
       "tall"
     ],
     "build": [
-      "strong",
       "muscular",
-      "toned"
+      "strong"
     ],
     "features": [
-      "grey horns",
-      "light brown horns",
-      "thick horns",
-      "long horns",
-      "blunt horns",
-      "pointed horns",
+      "horns",
       "pointed ears",
-      "red tail",
-      "medium tail",
-      "thick tail"
+      "tail"
     ],
     "appearance": "Rough red or orange skin, thick blunt horns of grey or light brown, and thick medium-length tails that match the body. Hair blazes in reds, oranges, or theatrical purples and pinks.",
-    "curse": []
+    "nature_and_culture": "Proud, theatrical, leaning into their infernal legacy-many act as performers, warlocks, or leaders of dangerous cults.",
+    "combat": "Fearless, aggressive; often frontline warriors or pyromancers.",
+    "spice": "Rumored to smell faintly of brimstone when agitated, and their blood hisses when spilled on holy ground."
   },
   {
+    "id": "RC00000014",
     "name": "Voided Tiefling",
     "race_group": "Tiefling",
-    "nature_and_culture": "Nihilistic, fatalistic; often philosophers or dangerous mages obsessed with entropy and forbidden knowledge.",
-    "combat": "Cold precision; void magic, curses, and debilitating afflictions.",
-    "spice": "Their shadows sometimes move independently of their bodies.",
-    "id": "RC00000015",
     "skin_tone": [
-      "pitch black"
+      "black"
     ],
     "skin_texture": [
-      "smooth",
       "glossy",
-      "shiny"
+      "smooth"
     ],
     "hair_colour": [
-      "white",
-      "light blue",
-      "light purple",
-      "grey",
-      "red",
-      "orange",
-      "yellow",
+      "blue",
       "green",
+      "grey",
+      "orange",
       "pink",
-      "teal",
-      "blonde",
-      "silver"
+      "purple",
+      "red",
+      "white",
+      "yellow"
     ],
     "hair_style": [
       "long",
@@ -151,31 +546,23 @@
       "slim"
     ],
     "features": [
-      "black sclera",
-      "black horns",
-      "long horns",
-      "straight horns",
-      "smooth horns",
-      "upward-pointed horns",
-      "pitch black tail",
-      "long tail",
-      "smooth tail",
-      "very long pointed ears"
+      "horns",
+      "pointed ears",
+      "tail"
     ],
     "appearance": "Pitch-black, smooth skin swallows light. Horns are long, straight, and glossy black; ears are very long and pointed. Hair is always light-toned against the void-white, silver, or pastel shades.",
-    "curse": []
+    "nature_and_culture": "Nihilistic, fatalistic; often philosophers or dangerous mages obsessed with entropy and forbidden knowledge.",
+    "combat": "Cold precision; void magic, curses, and debilitating afflictions.",
+    "spice": "Their shadows sometimes move independently of their bodies."
   },
   {
+    "id": "RC00000015",
     "name": "Sableheart Tiefling",
     "race_group": "Tiefling",
-    "nature_and_culture": "Seductive, charismatic; often thrive as merchants, diplomats, or spies. They are masters of intrigue.",
-    "combat": "Subtle poisoners, fencers, illusionists.",
-    "spice": "Their voices carry a strange, honeyed resonance that makes even insults sound alluring.",
-    "id": "RC00000016",
     "skin_tone": [
-      "light purple",
-      "light blue",
-      "pink"
+      "blue",
+      "pink",
+      "purple"
     ],
     "skin_texture": [
       "glossy",
@@ -183,20 +570,20 @@
       "smooth"
     ],
     "hair_colour": [
-      "purple",
+      "blue",
       "pink",
-      "blue"
+      "purple"
     ],
     "hair_style": [
-      "long",
-      "wavy",
       "braided",
-      "loose"
+      "long",
+      "loose",
+      "wavy"
     ],
     "eye_color": [
-      "purple",
       "blue",
-      "green"
+      "green",
+      "purple"
     ],
     "height": [
       "medium"
@@ -205,27 +592,20 @@
       "curvy"
     ],
     "features": [
-      "polished gold horns",
-      "polished silver horns",
-      "polished bronze horns",
-      "long horns",
-      "curved horns",
-      "pointed horns",
+      "horns",
       "pointed ears"
     ],
     "appearance": "Light purple or light blue skin gleams with a silky gloss. Long curved horns shine like polished metal above luxurious hair.",
-    "curse": []
+    "nature_and_culture": "Seductive, charismatic; often thrive as merchants, diplomats, or spies. They are masters of intrigue.",
+    "combat": "Subtle poisoners, fencers, illusionists.",
+    "spice": "Their voices carry a strange, honeyed resonance that makes even insults sound alluring."
   },
   {
+    "id": "RC00000016",
     "name": "Viridian Tiefling",
     "race_group": "Tiefling",
-    "nature_and_culture": "Attuned to nature's darker aspects; many become astrologers, alchemists, or druids.",
-    "combat": "Poison, herbs, astrology-based divination; use nature's chaos as a weapon.",
-    "spice": "Viridian Tieflings often bear faintly glowing star-maps etched into their skin.",
-    "id": "RC00000017",
     "skin_tone": [
-      "light green",
-      "turquoise",
+      "green",
       "yellow"
     ],
     "skin_texture": [
@@ -233,77 +613,62 @@
     ],
     "hair_colour": [
       "brown",
-      "blonde",
-      "auburn",
-      "light brown"
+      "red"
     ],
     "hair_style": [
-      "long",
       "braided",
+      "long",
       "loose"
     ],
     "eye_color": [
       "green",
-      "amber"
+      "orange"
     ],
     "height": [
       "very tall"
     ],
     "build": [
-      "curvy",
-      "tall"
+      "curvy"
     ],
     "features": [
-      "antler-like horns",
-      "antlers",
-      "white horns",
-      "light brown horns",
-      "pointed horns",
-      "short tail",
-      "fur-tipped tail",
-      "pointed ears"
+      "horns",
+      "pointed ears",
+      "tail"
     ],
     "appearance": "Light green or turquoise skin with antler-like horns; short fur-tipped tail matches the skin.",
-    "curse": []
+    "nature_and_culture": "Attuned to nature's darker aspects; many become astrologers, alchemists, or druids.",
+    "combat": "Poison, herbs, astrology-based divination; use nature's chaos as a weapon.",
+    "spice": "Viridian Tieflings often bear faintly glowing star-maps etched into their skin."
   },
   {
+    "id": "RC00000017",
     "name": "Human",
     "race_group": null,
-    "nature_and_culture": "Adaptable, numerous; every city wears a human face somewhere.",
-    "combat": "Disciplined lines or chaotic skirmishers; versatile arms.",
-    "spice": "Unrivaled at surviving the impossible through sheer audacity.",
-    "id": "RC00000018",
     "skin_tone": [
-      "pale",
-      "fair",
-      "tan",
       "brown",
-      "dark"
+      "white"
     ],
     "skin_texture": [
-      "smooth",
-      "weathered"
+      "smooth"
     ],
     "hair_colour": [
       "black",
       "brown",
-      "blonde",
-      "red",
       "grey",
+      "red",
       "white"
     ],
     "hair_style": [
-      "short",
+      "braided",
       "long",
-      "wavy",
+      "short",
       "straight",
-      "braided"
+      "wavy"
     ],
     "eye_color": [
-      "brown",
-      "hazel",
-      "green",
       "blue",
+      "brown",
+      "green",
       "grey"
     ],
     "height": [
@@ -312,150 +677,22 @@
       "tall"
     ],
     "build": [
-      "slim",
       "athletic",
-      "average",
+      "slim",
       "stocky"
     ],
     "features": [
-      "rounded ears",
-      "varied features"
+      "pointed ears"
     ],
     "appearance": "Endlessly varied; fashions range from practical workwear to lavish court dress.",
-    "curse": []
+    "nature_and_culture": "Adaptable, numerous; every city wears a human face somewhere.",
+    "combat": "Disciplined lines or chaotic skirmishers; versatile arms.",
+    "spice": "Unrivaled at surviving the impossible through sheer audacity."
   },
   {
-    "name": "Kitsune",
-    "race_group": null,
-    "nature_and_culture": "Fox-spirits walking among mortals. Tea-houses and shrine fairs are their favorite stages; oaths matter, but mischief is a virtue when aimed at the proud. Festival masks, riddles, and small kindnesses keep their networks tight.",
-    "combat": "Illusions, charm, and misdirection; folding fans and knives hidden in sleeves. Kitsunebi (spirit-fire) harries foes while tails trip and tangle.",
-    "spice": "Tails multiply with age and renown; some leave flickers of foxfire when they laugh. They favor citrus perfumes and warding charms stitched into hems.",
-    "id": "RC00000019",
-    "skin_tone": [
-      "fair",
-      "olive",
-      "tan",
-      "brown"
-    ],
-    "skin_texture": [
-      "smooth"
-    ],
-    "hair_colour": [
-      "black",
-      "red",
-      "white",
-      "brown",
-      "blonde",
-      "ginger",
-      "platinum"
-    ],
-    "hair_style": [
-      "long",
-      "wavy",
-      "braided",
-      "short",
-      "topknot",
-      "ornate-pinned"
-    ],
-    "eye_color": [
-      "gold",
-      "amber",
-      "green",
-      "blue"
-    ],
-    "height": [
-      "short",
-      "medium"
-    ],
-    "build": [
-      "slim",
-      "athletic"
-    ],
-    "features": [
-      "fox ears",
-      "fox tails",
-      "slit pupils",
-      "multiple tails",
-      "fox mask",
-      "charm talismans",
-      "whisker marks"
-    ],
-    "appearance": "Expressive ears and one or more tails; lacquered hairpins, omamori talismans, and painted masks. Graceful streetwear by day, ceremonial robes by night.",
-    "curse": []
-  },
-  {
-    "name": "Merfolk",
-    "race_group": null,
-    "nature_and_culture": "Tide-courts govern pearl cities and kelp orchards; clans migrate with the currents and trade with surface ports at moon-marked festivals. Apprentices learn current-sign and whale-song etiquette alongside coral craft. Sacred wrecks are tended as memorial gardens.",
-    "combat": "Tridents and barbed spears, coral shields, net-casters; conch signals for coordinated swarm tactics. Tide-magic drags foes off balance; grapples turn lethal in undertow.",
-    "spice": "Bioluminescent tattoos display lineage; some can dim or brighten them with breath. Gills flush silver at strong emotions; storm-sense prickles along their lateral lines.",
-    "id": "RC00000020",
-    "skin_tone": [
-      "sea-green",
-      "blue",
-      "pale",
-      "bronze",
-      "teal",
-      "coral",
-      "sea-grey"
-    ],
-    "skin_texture": [
-      "scaled",
-      "smooth",
-      "sleek"
-    ],
-    "hair_colour": [
-      "black",
-      "blue",
-      "green",
-      "white",
-      "silver",
-      "seafoam",
-      "indigo"
-    ],
-    "hair_style": [
-      "long",
-      "braided",
-      "flowing",
-      "beaded",
-      "shell-pinned"
-    ],
-    "eye_color": [
-      "teal",
-      "blue",
-      "green",
-      "silver",
-      "sea-glass",
-      "kelp-brown"
-    ],
-    "height": [
-      "medium",
-      "tall"
-    ],
-    "build": [
-      "slender",
-      "athletic"
-    ],
-    "features": [
-      "finned ears",
-      "scales",
-      "webbed fingers",
-      "tail (sea form)",
-      "gills",
-      "lateral lines",
-      "bioluminescent markings",
-      "webbed toes"
-    ],
-    "appearance": "Sleek, scaled bodies with fin-frills and oceanic hues; jewelry of shells, pearls, and sea-glass. Many use alchemical salves or old rites to split the tail into legs on shore.",
-    "curse": []
-  },
-  {
+    "id": "RC00000018",
     "name": "Aberration",
     "race_group": null,
-    "nature_and_culture": "Outsiders to geometry and good sense. Some pass for mortal; others are nightmares made flesh.",
-    "combat": "Uncanny reach, mind-bending shrieks, impossible angles.",
-    "spice": "Mirrors dislike them; reflections lag a heartbeat.",
-    "id": "RC00000021",
     "skin_tone": [
       "ashen",
       "oil-slick",
@@ -467,7 +704,6 @@
       "pitted"
     ],
     "hair_colour": [
-      "none",
       "black",
       "white"
     ],
@@ -476,9 +712,7 @@
       "stringy"
     ],
     "eye_color": [
-      "void",
-      "amber",
-      "many"
+      "orange"
     ],
     "height": [
       "short",
@@ -489,664 +723,717 @@
       "gaunt",
       "warped"
     ],
-    "features": [
-      "too many eyes",
-      "twitching shadow",
-      "vestigial limbs"
-    ],
+    "features": [],
     "appearance": "Wrong in little ways that add up; jewelry tarnishes quickly around them.",
-    "curse": []
+    "nature_and_culture": "Outsiders to geometry and good sense. Some pass for mortal; others are nightmares made flesh.",
+    "combat": "Uncanny reach, mind-bending shrieks, impossible angles.",
+    "spice": "Mirrors dislike them; reflections lag a heartbeat."
   },
   {
-    "name": "Forest Elves",
-    "race_group": "Elf",
-    "nature_and_culture": "Tree-top cities and living bridges. Revere spirits of the wild and defend groves with quiet zeal.",
-    "combat": "Stealth archers and guerrillas, vanishing into undergrowth between precise volleys.",
-    "spice": "Their whispers ride the wind through branches.",
-    "id": "RC00000002",
+    "id": "RC00000019",
+    "name": "Umbral Nekomata",
+    "race_group": "Nekomata",
     "skin_tone": [
-      "fair",
-      "tanned",
-      "olive"
+      "varied"
     ],
     "skin_texture": [
-      "smooth"
+      "varied"
     ],
     "hair_colour": [
-      "blonde",
-      "white",
-      "auburn",
-      "light brown"
+      "varied"
+    ],
+    "hair_style": [
+      "varied"
+    ],
+    "eye_color": [
+      "varied"
     ],
     "height": [
       "medium"
     ],
     "build": [
-      "slim",
-      "toned"
+      "varied"
     ],
-    "features": [
-      "pointed ears",
-      "sharp eyes"
-    ],
-    "appearance": "Forest Elves are typically of fair, tanned, or olive complexion with hair of blonde, white, auburn, or light brown. Medium in height and slim yet toned, their sharp eyes and pointed ears lend a watchful grace. Their clothing is leather and pelt worked with leaves and living plants-minimal to moderate coverage for agility, often earth-dyed and silent in motion.",
-    "eye_color": [
-      "green",
-      "hazel",
-      "amber"
-    ],
-    "hair_style": [
-      "long",
-      "braided",
-      "loose"
-    ],
-    "curse": []
+    "features": [],
+    "appearance": "Their fur runs in shades of midnight black, smoky grey, and deep violet. Eyes glow faintly like silver moons, and their twin tails carry wisps of shadow. Their hair is dark and flows as though it’s drifting in unseen currents.",
+    "nature_and_culture": "These Nekomata haunt ruins, rooftops, and borderlands between mortal places and haunted realms. They are keepers of secrets, illusionists, and shadow brokers—trading whispers instead of coin. Entire villages believe them cursed, yet their counsel is often sought in desperate times.",
+    "combat": "Masters of illusion and misdirection, they create shadow doubles or fold themselves into darkness. Their twin tails weave veils of smoke to disorient foes, while their claws flash out from hiding to strike unguarded flesh.",
+    "spice": "The Umbral Nekomata carries the thrill of the forbidden—shadows coil at their heels, and when they smile, it’s unclear if it’s kindness, cruelty, or both. They embody the mystery of the night and the danger hidden within it."
   },
   {
-    "name": "Dark Elves",
-    "race_group": "Elf",
-    "nature_and_culture": "Underworld cities and secret covens. Politically ruthless but artistically refined; pragmatists above all.",
-    "combat": "Poisoners, assassins, and shadow mages; excel at surgical strikes and retreats.",
-    "spice": "Their eyes glimmer in the dark like a predator's.",
-    "id": "RC00000003",
+    "id": "RC00000020",
+    "name": "Blossom Nekomata",
+    "race_group": "Nekomata",
     "skin_tone": [
-      "pale dark brown"
+      "varied"
     ],
     "skin_texture": [
-      "smooth"
+      "varied"
     ],
     "hair_colour": [
-      "grey",
-      "brown",
+      "varied"
+    ],
+    "hair_style": [
+      "varied"
+    ],
+    "eye_color": [
+      "varied"
+    ],
+    "height": [
+      "medium"
+    ],
+    "build": [
+      "varied"
+    ],
+    "features": [],
+    "appearance": "Their fur is soft and often pale, patterned in pastel creams and soft browns. Their hair flows like spring winds, often braided with petals, ribbons, or vines. Their tails bloom with faint magical blossoms when emotions surge.",
+    "nature_and_culture": "These Nekomata live among groves and rural shrines, serving as healers, tea-brewers, and storytellers. Their connection to nature allows them to coax flowers into bloom with laughter or soothe weary spirits with lullabies. They are adored by villagers yet remain otherworldly in their calm.",
+    "combat": "Gentle though they appear, Blossom Nekomata are skilled at weaving enchantments into song and charm. Their tails release clouds of intoxicating pollen or radiant blossoms that obscure vision, heal allies, or entrap foes.",
+    "spice": "There is a quiet intoxication to them—warm smiles that promise comfort, petals that cling to skin and clothes, eyes that glisten with dew and dawnlight. Blossom Nekomata blur the line between temptation and tranquility."
+  },
+  {
+    "id": "RC00000021",
+    "name": "Brimtail Nekomata",
+    "race_group": "Nekomata",
+    "skin_tone": [
+      "varied"
+    ],
+    "skin_texture": [
+      "varied"
+    ],
+    "hair_colour": [
+      "varied"
+    ],
+    "hair_style": [
+      "varied"
+    ],
+    "eye_color": [
+      "varied"
+    ],
+    "height": [
+      "medium"
+    ],
+    "build": [
+      "varied"
+    ],
+    "features": [],
+    "appearance": "Their fur is often charred-black, ember-red, or ash-grey, with tails tipped in smoldering fire. Their eyes burn gold or scarlet, and faint smoke rises from their footsteps. Their hair carries streaks of fiery copper or deep crimson.",
+    "nature_and_culture": "Brimtail Nekomata are wanderers and exorcists, feared for their destructive power and revered for their ability to burn away curses. They are found near volcanic shrines, fire temples, or roaming roads as mercenary wardens. Both priests and criminals respect their fire-touched presence.",
+    "combat": "They wield their twin tails like brands, lashing with fire, striking with molten sparks. Their illusions burn, scalding those who see through them. They fight with aggressive grace, setting the battlefield alight with every motion.",
+    "spice": "The air around them crackles with heat. Their touch leaves warmth that lingers too long, their gaze sears with equal parts promise and peril. To stand near a Brimtail Nekomata is to feel both drawn to the flame and terrified of being consumed."
+  },
+  {
+    "id": "RC00000022",
+    "name": "Lunarveil Kitsune",
+    "race_group": "Kitsune",
+    "skin_tone": [
+      "varied"
+    ],
+    "skin_texture": [
+      "varied"
+    ],
+    "hair_colour": [
+      "varied"
+    ],
+    "hair_style": [
+      "varied"
+    ],
+    "eye_color": [
+      "varied"
+    ],
+    "height": [
+      "medium"
+    ],
+    "build": [
+      "varied"
+    ],
+    "features": [],
+    "appearance": "Moonveil Kitsune have fur that gleams silver-white or pale blue, with faint shimmer as though moonlight clings to every strand. Their tails glow faintly at night, and their eyes reflect starlight like pools of silver. Their hair flows in dark silken cascades, often streaked with white or lavender.",
+    "nature_and_culture": "Moonveil Kitsune dwell near sacred shrines, mountains, and lakes where moonlight is strongest. They are keepers of dreams and watchers of the night, often serving as oracles or ritual dancers. Their counsel is sought in matters of love, destiny, and betrayal, for their whispers are said to carry lunar truth.",
+    "combat": "They weave illusions and dream-magic into battle, turning moonlight into spears or cloaks of silver mist. Their tails can confuse foes with hypnotic light, while their claws strike in silence.",
+    "spice": "Their very presence feels like a dream half-remembered—soft, luminous, and dangerous. To look into their eyes is to see yourself reflected, stripped of all disguises."
+  },
+  {
+    "id": "RC00000023",
+    "name": "Infernal Kitsune",
+    "race_group": "Kitsune",
+    "skin_tone": [
+      "varied"
+    ],
+    "skin_texture": [
+      "varied"
+    ],
+    "hair_colour": [
+      "varied"
+    ],
+    "hair_style": [
+      "varied"
+    ],
+    "eye_color": [
+      "varied"
+    ],
+    "height": [
+      "medium"
+    ],
+    "build": [
+      "varied"
+    ],
+    "features": [],
+    "appearance": "Infernal Kitsune bear fur in fiery reds, deep oranges, or ash-black streaked with ember glow. Their tails spark with fire when agitated, and their eyes burn gold or crimson. Their hair is often wild, with streaks like flame.",
+    "nature_and_culture": "They thrive as wanderers, tricksters, and duelists—rarely bound to one place. Infernal Kitsune are drawn to chaos and temptation, delighting in games of wit and daring. Many serve as fire-dancers, mercenaries, or spiritual exorcists who burn away corruption at great cost.",
+    "combat": "They fight with burning tails and fire magic, striking with bursts of flame or illusions that sear both body and mind. Every step can scorch, and every laugh feels like a spark thrown into dry wood.",
+    "spice": "There is danger in their charm, and allure in their destruction. To touch them is to feel both warmth and the threat of being consumed."
+  },
+  {
+    "id": "RC00000024",
+    "name": "Ethereal Kitsune",
+    "race_group": "Kitsune",
+    "skin_tone": [
+      "varied"
+    ],
+    "skin_texture": [
+      "varied"
+    ],
+    "hair_colour": [
+      "varied"
+    ],
+    "hair_style": [
+      "varied"
+    ],
+    "eye_color": [
+      "varied"
+    ],
+    "height": [
+      "medium"
+    ],
+    "build": [
+      "varied"
+    ],
+    "features": [],
+    "appearance": "Their bodies appear faintly translucent, with fur in white, pale lavender, or ghostly blues. Their tails shimmer like spirit-flame, flickering at the edges, and their eyes glow faintly with otherworldly light. Their hair drifts as though touched by unseen winds.",
+    "nature_and_culture": "Ethereal Kitsune are spirit-walkers, caught between the mortal and divine realms. They often serve as mediums, guiding the dead or communing with ancient gods. Their voices sound distant, as though echoing across a veil.",
+    "combat": "They phase in and out of reality, slipping through blows and striking from impossible angles. Their tails release ghostfire that chills or confuses, and their illusions bend the line between life and afterlife.",
+    "spice": "To be near them is to feel your soul stirred, a sensation both intoxicating and unsettling. They embody the ache of something beautiful just beyond reach."
+  },
+  {
+    "id": "RC00000025",
+    "name": "Maple Kitsune",
+    "race_group": "Kitsune",
+    "skin_tone": [
+      "varied"
+    ],
+    "skin_texture": [
+      "varied"
+    ],
+    "hair_colour": [
+      "varied"
+    ],
+    "hair_style": [
+      "varied"
+    ],
+    "eye_color": [
+      "varied"
+    ],
+    "height": [
+      "medium"
+    ],
+    "build": [
+      "varied"
+    ],
+    "features": [],
+    "appearance": "Maple Kitsune wear coats of warm auburn, russet, or gold, their tails tipped in fiery autumn hues. Their hair often shines in shades of chestnut or crimson, with maple-leaf patterns shimmering faintly across their fur. Their eyes are amber or deep brown, soft yet piercing.",
+    "nature_and_culture": "These Kitsune are tied to autumn, harvest, and change. They are philosophers, teachers, and wanderers who remind mortals of life’s cycles—birth, decay, renewal. Many serve as storytellers and lorekeepers in rural communities.",
+    "combat": "They weave illusions of falling leaves, turning battlefields into whirling storms of crimson. Their tails shed fiery foliage that burns or blinds foes, and their voices can lull enemies into accepting inevitable defeat.",
+    "spice": "Their presence feels like the golden twilight of autumn—warm, melancholic, and eternal. They are beautiful reminders of change, both desired and dreaded."
+  },
+  {
+    "id": "RC00000026",
+    "name": "Arctic Kitsune",
+    "race_group": "Kitsune",
+    "skin_tone": [
+      "varied"
+    ],
+    "skin_texture": [
+      "varied"
+    ],
+    "hair_colour": [
+      "varied"
+    ],
+    "hair_style": [
+      "varied"
+    ],
+    "eye_color": [
+      "varied"
+    ],
+    "height": [
+      "medium"
+    ],
+    "build": [
+      "varied"
+    ],
+    "features": [],
+    "appearance": "Arctic Kitsune have pristine white or pale grey fur, with tails that shimmer like snow under moonlight. Their hair ranges from silvery-white to icy blue, and their eyes are glacial blue or frost-green. Frost often clings to their breath and tails.",
+    "nature_and_culture": "They dwell in frozen shrines, icy caverns, and remote peaks. Arctic Kitsune serve as guardians of forgotten places, watching over travelers lost in blizzards and punishing those who defile sacred frostlands. They are both saviors and executioners in the snow.",
+    "combat": "They fight with cold precision, weaving ice magic into every strike. Their tails lash with freezing wind, their claws encase foes in frost, and their illusions create mirages of endless snowfields.",
+    "spice": "Their touch is biting, their gaze piercing, yet their beauty is undeniable. They embody the cruel serenity of winter—silent, beautiful, merciless."
+  },
+  {
+    "id": "RC00000027",
+    "name": "Coralheart Merfolk",
+    "race_group": "Merfolk",
+    "skin_tone": [
+      "varied"
+    ],
+    "skin_texture": [
+      "varied"
+    ],
+    "hair_colour": [
+      "varied"
+    ],
+    "hair_style": [
+      "varied"
+    ],
+    "eye_color": [
+      "varied"
+    ],
+    "height": [
+      "medium"
+    ],
+    "build": [
+      "varied"
+    ],
+    "features": [],
+    "appearance": "Coralheart Merfolk are adorned with vibrant reef-like features: scales gleaming in pinks, purples, and oranges, and tails patterned with coral ridges. Their hair often carries hues of seafoam green or sandy gold, with strands that glimmer like pearls. Some are marked with natural coral growths that sparkle faintly under the water.",
+    "nature_and_culture": "Coralhearts live in sprawling reef-cities, structures formed partly from living coral shaped by their own magic. They are artisans, healers, and builders, weaving their culture into reefs that act as both home and fortress. They are fiercely protective of their waters, welcoming allies with open hands yet turning predatory when their sanctuaries are threatened.",
+    "combat": "They wield coral-forged weapons and enchantments that can mend or maim. Coralhearts use the terrain itself in combat, summoning living reefs to ensnare foes or fortify allies. Their tails strike with surprising force, often encrusted with hard coral ridges.",
+    "spice": "The Coralheart radiates warmth, community, and allure—the living embodiment of reefs that nurture life. Their touch can feel soft as sea grass or as sharp as broken coral. To stand among them is to be caught between hospitality and the unyielding resilience of the ocean."
+  },
+  {
+    "id": "RC00000028",
+    "name": "Tideling Merfolk",
+    "race_group": "Merfolk",
+    "skin_tone": [
+      "varied"
+    ],
+    "skin_texture": [
+      "varied"
+    ],
+    "hair_colour": [
+      "varied"
+    ],
+    "hair_style": [
+      "varied"
+    ],
+    "eye_color": [
+      "varied"
+    ],
+    "height": [
+      "medium"
+    ],
+    "build": [
+      "varied"
+    ],
+    "features": [],
+    "appearance": "Tideveil Merfolk have scales in muted blues, greys, and greens, like stones beneath shallow waters. Their fins are delicate and translucent, trailing like veils in the surf. Their hair flows in pale seafoam hues or dark kelp strands, often veiling their faces. Their eyes gleam with a reflective, water-glass sheen.",
+    "nature_and_culture": "Tideveil dwell in the liminal space of shore and tide, inhabiting rockpools, caves, and misty coasts. They are elusive and secretive, known to slip away like the tide itself. Folklore says they trade secrets for shells and pebbles, guiding or cursing sailors depending on their mood. They live communally in small tidepool sanctuaries, hidden between stone and surf.",
+    "combat": "They fight with deception and agility, pulling foes into shallow traps or blinding them with sprays of foam and mist. Their veillike fins can confuse vision in battle, creating fleeting shapes in the surf. They are not brute warriors, but elusive tricksters and ambushers.",
+    "spice": "To encounter a Tideveil Merfolk is like glimpsing a figure in the fog—beautiful, distant, and never fully grasped. Their touch is cool and fleeting, like sea-mist on the skin, and their laughter carries on the wind like a haunting promise."
+  },
+  {
+    "id": "RC00000029",
+    "name": "Moonsong Merfolk",
+    "race_group": "Merfolk",
+    "skin_tone": [
+      "varied"
+    ],
+    "skin_texture": [
+      "varied"
+    ],
+    "hair_colour": [
+      "varied"
+    ],
+    "hair_style": [
+      "varied"
+    ],
+    "eye_color": [
+      "varied"
+    ],
+    "height": [
+      "medium"
+    ],
+    "build": [
+      "varied"
+    ],
+    "features": [],
+    "appearance": "Moonsong Merfolk are ethereal in form, with scales that shimmer like silver under moonlight and long flowing fins that glisten as if soaked in starlight. Their hair is pale—white, silver, or deep midnight blue—and their eyes glow faintly when the moon is high. Their voices resonate unnaturally, carrying far across water.",
+    "nature_and_culture": "They are creatures of the lunar tide, gathering in hidden coves and sea caves where moonlight strikes the waves. Moonsongs are revered and feared by other merfolk for their unearthly voices, which can heal, enchant, or destroy. They often live apart, forming choirs only on nights of full moons, where their song is said to shape currents and stir storms.",
+    "combat": "Moonsong Merfolk fight with their voices, weaving magic into haunting melodies that cloud minds, incite fear, or lull foes into dreamlike states. In close combat, they rely on agility and distraction, but their true power lies in the enchantments carried on their song.",
+    "spice": "To hear a Moonsong is to feel the heart pulled in two directions—towards longing and towards oblivion. Their beauty is heightened in moonlight, their laughter like silver bells on the surf. Sailors whisper that those who fall in love with a Moonsong never return to shore."
+  },
+  {
+    "id": "RC00000030",
+    "name": "Glacialis Merfolk",
+    "race_group": "Merfolk",
+    "skin_tone": [
+      "varied"
+    ],
+    "skin_texture": [
+      "varied"
+    ],
+    "hair_colour": [
+      "varied"
+    ],
+    "hair_style": [
+      "varied"
+    ],
+    "eye_color": [
+      "varied"
+    ],
+    "height": [
+      "medium"
+    ],
+    "build": [
+      "varied"
+    ],
+    "features": [],
+    "appearance": "Glacialis Merfolk bear scales of icy blue, white, and silver, with tails edged in jagged crystalline fins. Their hair is pale as frost—white, silvery, or pale blue—and their eyes shimmer like frozen lakes. Frost often clings to their bodies, and even underwater their presence chills the surrounding current.",
+    "nature_and_culture": "They dwell in the frozen oceans of the far north and south, carving sanctuaries into glaciers and ice caverns. Stoic and solemn, Glacialis guard sacred ice-temples where they preserve ancient lore in crystal tablets. They are feared and respected by other merfolk for their unyielding discipline and command of the frozen seas.",
+    "combat": "They wield frost magic through their fins and tails, conjuring walls of ice or freezing currents to entrap foes. Their tails strike with crushing force, often sheathed in razor-sharp ice. They are relentless, turning the battlefield into a frozen graveyard.",
+    "spice": "The Glacialis radiates an aura of distant majesty—cold beauty, sharp as frostbite. Their words cut like ice, and their gaze freezes the heart with equal parts fear and awe."
+  },
+  {
+    "id": "RC00000031",
+    "name": "Nethryn Merfolk",
+    "race_group": "Merfolk",
+    "skin_tone": [
+      "varied"
+    ],
+    "skin_texture": [
+      "varied"
+    ],
+    "hair_colour": [
+      "varied"
+    ],
+    "hair_style": [
+      "varied"
+    ],
+    "eye_color": [
+      "varied"
+    ],
+    "height": [
+      "medium"
+    ],
+    "build": [
+      "varied"
+    ],
+    "features": [],
+    "appearance": "Nethryn Merfolk are long and slender, with eel-like tails and pale, translucent or midnight-black skin. Bioluminescent patterns glow faintly along their bodies, shifting like runes. Their eyes shine in piercing blues, greens, or eerie whites, adapted to the abyss where no sunlight reaches.",
+    "nature_and_culture": "Nethryn dwell in the trenches and hadal depths of the sea, where light is a myth and pressure crushes all but the strongest. They are secretive and feared, whispered of by other merfolk as kin of leviathans and keepers of ancient abyssal gods. Their society is ritualistic, built around survival, sacrifice, and reverence for the crushing dark.",
+    "combat": "They are ambushers and predators, using bioluminescent lures to draw prey close before striking with terrifying speed. Their bodies withstand immense pressure, allowing them to fight with unnatural force. Their song is a deep, resonant hum that rattles bones and drowns thoughts.",
+    "spice": "The Nethryn embody the abyss itself—alien, unknowable, terrifyingly beautiful. To meet their gaze is to feel the crushing weight of the sea and the promise of never surfacing again."
+  },
+  {
+    "id": "RC00000032",
+    "name": "Ambercoil Lamia",
+    "race_group": "Lamia",
+    "skin_tone": [
+      "sun-kissed bronze (human torso)"
+    ],
+    "skin_texture": [
+      "fine desert-dry smoothness; scales like hammered metal"
+    ],
+    "hair_colour": [
       "black",
-      "white",
-      "silver"
+      "brown",
+      "yellow"
+    ],
+    "hair_style": [
+      "braids with wire and beads; gauze-veiled updos in heat"
+    ],
+    "eye_color": [
+      "brown",
+      "yellow"
     ],
     "height": [
       "tall"
     ],
     "build": [
-      "curvy"
+      "lithe"
     ],
     "features": [
-      "pointed ears",
-      "silver tattoos",
-      "piercing eyes"
+      "scales"
     ],
-    "appearance": "Dark Elves bear pale, dusky-brown skin offset by hair of grey, brown, black, or silver-white. Tall and curvaceous, their angular features are sharpened by elegant pointed ears and a predatory glimmer to the eyes. They prefer dark leathers and fabrics cut close to the body, embellished with silver fittings and gemstones. Fine silver tattoos often wind across the skin, catching moonlight like constellations.",
-    "eye_color": [
-      "red",
-      "amber",
-      "silver"
-    ],
-    "hair_style": [
-      "long",
-      "braided",
-      "straight"
-    ],
-    "curse": []
+    "appearance": "Gold- and amber-toned scales with burnished bronze patterns; jewellery appears to ‘grow’ from the scales; desert silks and coin-fringed wraps.",
+    "nature_and_culture": "Nomadic oasis wardens and mirage-shrine keepers. Trade water, passage, and shade in exchange for vows and offerings. Etiquette is sacred; hospitality ends the instant a guest breaks house rules. Lineages recorded as gemstones set into living jewellery.",
+    "combat": "Dazzle foes with sun-refraction from bangles and belly-scales; close with constriction and sand-drag blinds. Heat-aspected venom induces fever and thirst. Curved blades and hook-knives hidden in bangles; ‘mirage footwork’ misleads pursuit.",
+    "spice": "They promise mercy like cool shade—then teach you thirst. A kiss tastes of citrus and heat; a promise weighs like gold."
   },
   {
-    "name": "Snow Elves",
-    "race_group": "Elf",
-    "nature_and_culture": "Isolationist keepers of high passes and tundras; winter is both teacher and god.",
-    "combat": "Endurance fighters using icy terrain to exhaust foes; frost-forged arms.",
-    "spice": "Breath mists in warmth; stray snowflakes follow their steps.",
-    "id": "RC00000004",
+    "id": "RC00000033",
+    "name": "Verdant Lamia",
+    "race_group": "Lamia",
     "skin_tone": [
-      "pure white"
+      "brown",
+      "green"
     ],
     "skin_texture": [
-      "smooth"
+      "dew-sheened; scales veined like leaves"
     ],
     "hair_colour": [
-      "white",
-      "grey",
       "black",
+      "brown",
+      "green"
+    ],
+    "hair_style": [
+      "braided"
+    ],
+    "eye_color": [
       "blue",
+      "orange",
+      "yellow"
+    ],
+    "height": [
+      "tall"
+    ],
+    "build": [
+      "strong"
+    ],
+    "features": [
+      "frill"
+    ],
+    "appearance": "Jade and deep-green scaling laced with brighter chlorophyll streaks; ceremonial bark-cloth and leaf-blade jewellery; orchid and moss adornments.",
+    "nature_and_culture": "Temple custodians of overgrown ziggurats. Matriarchal custom tempered by merit—rare blooms and potent venoms earn rank. Keep ‘venom cellars’ like vintners and celebrate rain festivals with drum choirs and blossom masks.",
+    "combat": "Canopy ambush and idol-shadow strikes. Botanical venoms (paralytic, hallucinogenic, fever-breaking). Thorn-dart blowpipes and leaf-shaped glaives. Tactics called by hymn verses: bait, snare, choke, bloom.",
+    "spice": "Their kisses numb; their bites burn fever out. If the jungle wants you, roots will make room—if not, they’ll remember where you fell."
+  },
+  {
+    "id": "RC00000034",
+    "name": "Lustmire Lamia",
+    "race_group": "Lamia",
+    "skin_tone": [
+      "brown"
+    ],
+    "skin_texture": [
+      "slick marsh-gloss; scales oil-sheened"
+    ],
+    "hair_colour": [
+      "black",
+      "brown",
       "purple"
     ],
-    "height": [
-      "short"
-    ],
-    "build": [
-      "slim"
-    ],
-    "features": [
-      "pointed ears",
-      "icy gaze"
-    ],
-    "appearance": "Snow Elves have pure white skin and slim, small frames. Hair ranges from white and grey to black with icy blue or purple tones; eyes glint in frosted hues. Their clothing is minimalistic-revealing leather and simple fabrics designed for speed and adapted bodies that thrive in cold. Lines are austere, colors pale, often trimmed with fur only for grip and wind-shear.",
-    "eye_color": [
-      "ice blue",
-      "grey",
-      "violet"
-    ],
     "hair_style": [
-      "short",
-      "long",
-      "loose"
+      "ropey",
+      "wet-styled with bone charms and reed beads"
     ],
-    "curse": []
-  },
-  {
-    "name": "Great Elves",
-    "race_group": "Elf",
-    "nature_and_culture": "Stewards of ancient citadels and high culture; stern traditionalists with long memories.",
-    "combat": "Elegant war-mages and champions; discipline married to arcana.",
-    "spice": "Their lineage carries a faint celestial resonance.",
-    "id": "RC00000005",
-    "skin_tone": [
-      "yellow",
-      "orange"
-    ],
-    "skin_texture": [
-      "smooth"
-    ],
-    "hair_colour": [
-      "blonde",
-      "brown",
-      "auburn",
-      "platinum",
-      "silver"
-    ],
-    "height": [
-      "very tall"
-    ],
-    "build": [
-      "curvy"
-    ],
-    "features": [
-      "pointed ears",
-      "radiant aura"
-    ],
-    "appearance": "Great Elves tower over most, their skin glowing in hues of yellow or orange. Hair cascades in blonde, brown, auburn, or pale metallics; eyes gleam gold, silver, or jewel-tones. Their wardrobes favor ornamental robes and ceremonial armor heavy with gold and silver jewelry-vestments that turn battlefield and court into theatre.",
     "eye_color": [
-      "gold",
-      "silver",
       "green",
-      "sapphire"
+      "white",
+      "yellow"
     ],
-    "hair_style": [
-      "long",
-      "wavy",
-      "braided"
+    "height": [
+      "tall"
     ],
-    "curse": []
+    "build": [
+      "seductive upper poise; crushing lower strength"
+    ],
+    "features": [],
+    "appearance": "Peat-black and bruise-purple scaling with sickly green iridescence; bone charms and bog beads; breath like fen-mint and rot-sweetness.",
+    "nature_and_culture": "Rule stilt-villages and sunken sanctums. Trade witchcraft for warmth; desire is currency. Undertakers of the mire—retrieve the lost, sanctify the drowned, bargain with marsh lights. Courts convene on drifting lantern flotillas.",
+    "combat": "Terrain control with reed snares and sucking mud; cold constriction from below. Venom induces euphoria and compliancy. Improvised sacraments: lantern oil as fire, broken bottles as rites.",
+    "spice": "They make sin feel like absolution—until the peat takes your last breath as tithe."
   },
   {
-    "name": "Iron Dwarves",
-    "race_group": "Dwarf",
-    "nature_and_culture": "Forge-and-clan traditionalists of deep mountains; worth measured in craft and duty.",
-    "combat": "Shield walls, hammers, and implacable advance; masters of siege defense.",
-    "spice": "In battle, their heartbeats echo like hammer blows.",
-    "id": "RC00000006",
+    "id": "RC00000035",
+    "name": "Riverlit Lamia",
+    "race_group": "Lamia",
     "skin_tone": [
-      "stone grey",
-      "earthy brown",
-      "ruddy"
+      "white"
     ],
     "skin_texture": [
-      "rough",
-      "scarred"
+      "silky"
     ],
     "hair_colour": [
       "black",
       "brown",
-      "red",
-      "grey"
-    ],
-    "height": [
-      "short"
-    ],
-    "build": [
-      "bulky",
-      "strong",
-      "muscular"
-    ],
-    "features": [
-      "thick beards",
-      "braided beards"
-    ],
-    "appearance": "Iron Dwarves are short and powerfully built, with stone-grey or earthy brown complexions and work-roughened skin. Hair runs black, brown, or red, often braided; beards are clasped with iron and steel. Their attire favors mail, plate, and heavy leathers blackened by forge soot, along with aprons and tool-laden belts.",
-    "eye_color": [
-      "brown",
       "grey"
     ],
     "hair_style": [
-      "braided",
-      "short",
-      "long"
+      "straight"
     ],
-    "curse": []
+    "eye_color": [
+      "blue",
+      "grey",
+      "white"
+    ],
+    "height": [
+      "tall"
+    ],
+    "build": [
+      "sleek"
+    ],
+    "features": [],
+    "appearance": "Riverstone scales shot with silver; glimmering garments that catch moonlight; jewellery that rings like ripples against a skiff.",
+    "nature_and_culture": "Ferry-saints and way-shrine keepers along river trade. Offer ‘safe crossings’ for stories and love-tokens. Stage floating theatres and tidal pageants; laws wax gentle and wane strict with the moon.",
+    "combat": "Dazzle with gleam, snare ankles from shallows, drag fights into water. Venom chills and slows pulse. Hook-chains, river knives, glass needles hidden in hair.",
+    "spice": "They light the water so you miss the depth; the last sound is a bracelet bell, then the hush of closing river."
   },
   {
-    "name": "Hill Dwarves",
-    "race_group": "Dwarf",
-    "nature_and_culture": "Valley farmers, brewers, and caravaners; convivial but stubborn.",
-    "combat": "Village militias with axes, crossbows, heavy shields; immovable on home ground.",
-    "spice": "Ale strong enough to floor an orc.",
-    "id": "RC00000007",
+    "name": "Cliffside Harpy",
+    "race_group": "Harpy",
     "skin_tone": [
-      "ruddy",
-      "tanned",
-      "brown"
+      "tan",
+      "grey"
     ],
     "skin_texture": [
-      "rough",
       "smooth"
     ],
     "hair_colour": [
-      "blonde",
-      "light brown",
-      "brown",
-      "red"
-    ],
-    "height": [
-      "short"
-    ],
-    "build": [
-      "bulky",
-      "strong"
-    ],
-    "features": [
-      "beards",
-      "rosy cheeks"
-    ],
-    "appearance": "Broad and ruddy, Hill Dwarves wear their sun with pride. Hair is often sun-bleached blonde or light brown, with thick beards knotted for work. Garb is practical-quilted vests, sturdy boots, homespun shirts-embroidered with clan motifs and beer-stain honesty.",
-    "eye_color": [
-      "hazel",
-      "brown",
-      "green"
-    ],
-    "hair_style": [
-      "braided",
-      "short",
-      "long"
-    ],
-    "curse": []
-  },
-  {
-    "name": "Ember Dwarves",
-    "race_group": "Dwarf",
-    "nature_and_culture": "Volcanic-hall smith-kings; clans compete to forge legends; fire revered as divine.",
-    "combat": "Molten blades, warhammers, and fire magic; aggressive shock smiths.",
-    "spice": "Skin radiates heat, scorching parchment if held too long.",
-    "id": "RC00000008",
-    "skin_tone": [
-      "soot-black",
-      "coal brown",
-      "ruddy"
-    ],
-    "skin_texture": [
-      "rough",
-      "scorched"
-    ],
-    "hair_colour": [
-      "red",
-      "black"
-    ],
-    "height": [
-      "short"
-    ],
-    "build": [
-      "muscular",
-      "bulky"
-    ],
-    "features": [
-      "glowing eyes",
-      "forge burns"
-    ],
-    "appearance": "Ember Dwarves carry soot-darkened skin and ember-glowing eyes. Hair is red or coal-black and often singed at the tips. Their armor is blackened steel, brass, and obsidian plates over fireproof leathers, with vents and grills like tiny furnaces.",
-    "eye_color": [
-      "amber",
-      "golden",
-      "ember"
-    ],
-    "hair_style": [
-      "braided",
-      "short",
-      "singed"
-    ],
-    "curse": []
-  },
-  {
-    "name": "Coastal Dwarves",
-    "race_group": "Dwarf",
-    "nature_and_culture": "Cliff citadels and sea-caves; bold traders and shipwrights, distrusted by mountain kin.",
-    "combat": "Harpoons, nets, boarding axes; ruthless in close-quarters fights on deck.",
-    "spice": "Creed: \"Stone sinks, ships sail.\"",
-    "id": "RC00000009",
-    "skin_tone": [
-      "tanned",
-      "weathered brown"
-    ],
-    "skin_texture": [
-      "salt-crusted",
-      "rough"
-    ],
-    "hair_colour": [
-      "white",
-      "blonde",
-      "light brown",
+      "black",
       "brown"
     ],
-    "height": [
+    "hair_style": [
+      "braided",
       "short"
     ],
-    "build": [
-      "strong",
-      "bulky"
-    ],
-    "features": [
-      "beards braided with shells"
-    ],
-    "appearance": "Weathered and sea-tough, Coastal Dwarves wear tanned skin and salt-crusted beards braided with shells. Hair runs sea-bleached white to blonde. Their clothes are tarred leathers, canvas coats, and rope belts-made for decks slick with brine.",
-    "eye_color": [
-      "blue",
-      "grey",
-      "green"
-    ],
-    "hair_style": [
-      "braided",
-      "short",
-      "sea-bleached"
-    ],
-    "curse": []
-  },
-  {
-    "name": "Ashfoot Orcs",
-    "race_group": "Orc",
-    "nature_and_culture": "Volcanic clans treating fire as sacred; ash-painted shamans and obsidian charms.",
-    "combat": "Brutal close-combat with obsidian and steel; barefoot coal-walkers.",
-    "spice": "War drums packed with volcanic stones rumble like quakes.",
-    "id": "RC00000010",
-    "skin_tone": [
-      "grey-black",
-      "charcoal"
-    ],
-    "skin_texture": [
-      "scarred",
-      "rough"
-    ],
-    "hair_colour": [
-      "black",
-      "dark brown"
-    ],
-    "height": [
-      "tall"
-    ],
-    "build": [
-      "muscular",
-      "strong"
-    ],
-    "features": [
-      "tusks",
-      "calloused feet",
-      "ash warpaint"
-    ],
-    "appearance": "Tall and scarred, Ashfoot Orcs wear grey-black skin like cooled ash. Ember-lit eyes glare above obsidian charms. They favor dark leather harnesses, ash-daubed skin, and rugged kilts, leaving feet bare to walk on coals during rites.",
     "eye_color": [
       "amber",
-      "ember",
-      "red"
-    ],
-    "hair_style": [
-      "braided",
-      "short",
-      "shaved"
-    ],
-    "curse": []
-  },
-  {
-    "name": "Storm Orcs",
-    "race_group": "Orc",
-    "nature_and_culture": "Coast raiders who test souls in thunder; coming-of-age beneath lightning-clawed skies.",
-    "combat": "Thunderous charges and storm-touched magic; fearless boarding and cliff assaults.",
-    "spice": "Air around them smells of ozone; static crackles when enraged.",
-    "id": "RC00000011",
-    "skin_tone": [
-      "storm grey",
-      "sea green"
-    ],
-    "skin_texture": [
-      "rough",
-      "salt-worn"
-    ],
-    "hair_colour": [
-      "black",
-      "dark brown"
-    ],
-    "height": [
-      "tall"
-    ],
-    "build": [
-      "muscular",
-      "broad"
-    ],
-    "features": [
-      "tusks",
-      "storm scars"
-    ],
-    "appearance": "Broad and tall, Storm Orcs bear storm-grey or sea-green skin. Hair is often braided and wind-tangled, sometimes charred at the ends. They wear sea-leathers, harnesses, and mail scavenged from boarding raids, hung with hooks and knots that sing in the wind.",
-    "eye_color": [
-      "blue",
-      "grey",
-      "sea green"
-    ],
-    "hair_style": [
-      "braided",
-      "wind-tangled",
-      "charred tips"
-    ],
-    "curse": []
-  },
-  {
-    "name": "Mountain Orcs",
-    "race_group": "Orc",
-    "nature_and_culture": "Crag fortresses, goat herds, and echoing chants across ridgelines.",
-    "combat": "High-ground ambushers triggering rockfalls before charging.",
-    "spice": "War-cries carry for miles, rolling like thunder.",
-    "id": "RC00000012",
-    "skin_tone": [
-      "slate grey",
-      "stone brown"
-    ],
-    "skin_texture": [
-      "scarred",
-      "weathered"
-    ],
-    "hair_colour": [
-      "black",
-      "dark brown"
-    ],
-    "height": [
-      "tall"
-    ],
-    "build": [
-      "bulky",
-      "strong"
-    ],
-    "features": [
-      "tusks",
-      "ritual scars"
-    ],
-    "appearance": "Stocky and slate-skinned, Mountain Orcs are built for altitude and cold. Their garb is layered furs, rock-dyed cloth, and strapped plate scavenged from fallen foes. Tusks are often filed or etched with clan marks.",
-    "eye_color": [
-      "brown",
       "grey"
     ],
-    "hair_style": [
-      "braided",
-      "shaved",
-      "topknot"
+    "height": [
+      "tall"
     ],
-    "curse": []
+    "build": [
+      "athletic",
+      "sleek"
+    ],
+    "features": [
+      "wings",
+      "claws",
+      "talons",
+      "feathered crest"
+    ],
+    "appearance": "Wind-cut hunters of sheer crags; slate-dusted plumage and cliff-chipped talons. Their silhouettes ride thermals like kites.",
+    "nature_and_culture": "Aerie clans claim ledges as lineages. Trials of ascent decide leadership; treaties are carved into the stone and read by touch.",
+    "combat": "Hit-and-run dives, updraft slashes, and grapple throws off ledges. Screech feints disrupt footing before the talons come in.",
+    "spice": "Kisses taste of sun-warm rock and wild air; they collect promises the way cliffs collect echoes.",
+    "id": "RC00000036"
   },
   {
-    "name": "Harpy",
-    "race_group": null,
-    "nature_and_culture": "Cliff eyries mark the sky-routes between cities; storm-singers keep weather ledgers and sell their forecasts. Messenger guilds swear by wind and bell—secrets carried at altitude.",
-    "combat": "Dive-bomb strikes, slingstorms, talon snatches; bone-flute calls shift formations mid-flight. Squalls raised by chant scatter archers.",
-    "spice": "Hollow-boned lightness, uncanny weather-sense; names are sung before they are spoken. Salt and small bells are lucky when traveling the heights.",
-    "id": "RC00000022",
+    "name": "Nightfall Harpy",
+    "race_group": "Harpy",
     "skin_tone": [
       "pale",
-      "tanned",
-      "bronze"
-    ],
-    "skin_texture": [
-      "smooth",
-      "weathered"
-    ],
-    "hair_colour": [
-      "black",
-      "brown",
-      "silver",
-      "white",
-      "blue-black",
-      "storm-grey",
-      "sun-bleached"
-    ],
-    "hair_style": [
-      "long",
-      "braided",
-      "wind-tossed",
-      "wind-knotted"
-    ],
-    "eye_color": [
-      "amber",
-      "brown",
-      "grey"
-    ],
-    "height": [
-      "medium",
-      "tall"
-    ],
-    "build": [
-      "slim",
-      "toned",
-      "skinny"
-    ],
-    "features": [
-      "feathered wings",
-      "talons",
-      "keen sight",
-      "avian brows",
-      "hollow bones",
-      "avian crest"
-    ],
-    "appearance": "Feathered wings and taloned feet; wind-tossed hair, harness gear, and sky-cloaks. Eyes narrow against glare; jewelry favors wind-chimes and featherwork.",
-    "curse": []
-  },
-  {
-    "name": "Nekomata",
-    "race_group": null,
-    "nature_and_culture": "Moonlit tricksters and wardens against restless spirits. Alley shrines leave saucers of milk; Nekomata repay respect with quiet protection and inconvenient truths.",
-    "combat": "Acrobatic dueling, smoke bombs, lantern-lure feints; claws paired with short blades. They vanish over rooftops between heartbeats.",
-    "spice": "Split tails whisper in lanternlight; some coax ghostfire from paper charms. They trade gossip with street cats and charge a smile for news.",
-    "id": "RC00000023",
-    "skin_tone": [
-      "fair",
-      "olive",
       "brown"
     ],
     "skin_texture": [
       "smooth"
     ],
     "hair_colour": [
-      "black",
-      "brown",
-      "white",
-      "auburn",
-      "silver",
-      "ash-brown",
-      "smoke-grey"
+      "black"
     ],
     "hair_style": [
-      "short",
-      "long",
-      "wavy",
-      "braided"
+      "loose",
+      "long"
     ],
     "eye_color": [
-      "gold",
-      "green",
+      "yellow",
       "blue"
     ],
     "height": [
-      "short",
       "medium"
     ],
     "build": [
       "slim",
-      "athletic"
+      "willowy"
     ],
     "features": [
-      "cat ears",
-      "split tail",
+      "wings",
+      "claws",
       "slit pupils",
-      "whisker-marks",
-      "bell charms",
-      "lantern ghostfire"
+      "feathered crest"
     ],
-    "appearance": "Cat ears, luminous eyes, and a split tail that moves with a mind of its own. Charms, bells, and talismans nestle among layered street silks.",
-    "curse": []
+    "appearance": "Dusk-feathered silhouettes with lamp-bright eyes; they move where the horizon thins and the world forgets its edges.",
+    "nature_and_culture": "Twilight courts trade news, secrets, and safe paths under star-rituals. Memory-keepers sing histories in low, owl-soft tones.",
+    "combat": "Ambush from shadow, muffled wingbeats, and eye-glare dazes. They blind with dust-swirl and finish with precise talon cuts.",
+    "spice": "Their breath is cool as evening; you’ll follow the hush and not notice the drop.",
+    "id": "RC00000037"
   },
   {
-    "name": "Lamia",
-    "race_group": null,
-    "nature_and_culture": "Serpentine aristocrats ruling oasis courts and caravan tollways. Hospitality is a chessboard—debts are woven like silks. Scholars of venom, etiquette, and desert astronomy.",
-    "combat": "Coil throws and constriction, glaives and venom darts; a hypnotic sway unbalances foes. Hex-singers veil commands beneath courtly compliments.",
-    "spice": "Some shed iridescent scales used as lucky coin; a soft rattling cadence rides their speech. Desert nights find them basking under star maps etched in sand.",
-    "id": "RC00000024",
+    "name": "Snowpeak Harpy",
+    "race_group": "Harpy",
     "skin_tone": [
-      "sable",
-      "sand",
-      "emerald",
-      "opal-sheened",
-      "wine-red",
-      "obsidian-sheen"
+      "white"
     ],
     "skin_texture": [
-      "scaled",
-      "glossy"
+      "crisp"
     ],
     "hair_colour": [
-      "black",
-      "midnight blue",
-      "bronze",
-      "white",
-      "copper",
-      "obsidian"
+      "white"
     ],
     "hair_style": [
-      "long",
       "braided",
-      "ornamented"
+      "buns"
     ],
     "eye_color": [
-      "amber",
-      "emerald",
-      "crimson"
+      "blue",
+      "grey"
     ],
     "height": [
-      "tall",
       "very tall"
     ],
     "build": [
-      "willowy",
-      "curvy"
+      "sleek",
+      "strong"
     ],
     "features": [
-      "serpentine lower body",
-      "fangs",
-      "slitted eyes",
-      "hooded frill (some)",
-      "heat-sense pits",
-      "banded patterning"
+      "wings",
+      "talons",
+      "frill"
     ],
-    "appearance": "Jewel-toned scales and gold bands; veils that whisper, eyes like embers. Their coils move in elegant S-curves, strength hidden in grace.",
-    "curse": []
+    "appearance": "Ice-pale sentinels with frost-quiet plumage; their cries cut like cold and carry for leagues across snowfields.",
+    "nature_and_culture": "High watchkeepers mark avalanches and guide caravans by bell-call. Etiquette is spare and exact as winter.",
+    "combat": "Whiteout blinds, downdraft slams, and talon locks. They tire foes in thin air, then end fights with a single drop-strike.",
+    "spice": "Polite as snowfall, decisive as a cornice break.",
+    "id": "RC00000038"
+  },
+  {
+    "name": "Bramblewing Harpy",
+    "race_group": "Harpy",
+    "skin_tone": [
+      "brown"
+    ],
+    "skin_texture": [
+      "rough"
+    ],
+    "hair_colour": [
+      "brown",
+      "black"
+    ],
+    "hair_style": [
+      "wild",
+      "short"
+    ],
+    "eye_color": [
+      "green",
+      "amber"
+    ],
+    "height": [
+      "medium"
+    ],
+    "build": [
+      "compact",
+      "athletic"
+    ],
+    "features": [
+      "wings",
+      "claws",
+      "talons",
+      "frill"
+    ],
+    "appearance": "Thicket-nesters with thorn-snagged silhouettes and earth-warm plumage; they smell of resin and rain.",
+    "nature_and_culture": "They weave nests like fortresses and keep forest pacts with druid-groves. Feasts are loud, laughing, and sap-sticky.",
+    "combat": "Low-flight jukes through trees, branch-feint grapples, and raking passes. They fight dirty, fast, and close.",
+    "spice": "Hands smell of pine; hearts beat like drumskins. Careful—affection comes with talons.",
+    "id": "RC00000039"
   }
 ]

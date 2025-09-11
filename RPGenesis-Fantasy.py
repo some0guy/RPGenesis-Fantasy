@@ -22,6 +22,7 @@ DATA_DIR = ROOT / "data"
 UI_DIR = DATA_DIR / "ui"
 SAVE_DIR = DATA_DIR / "saves"
 WORLD_MAP_PATH = DATA_DIR / "world_map.json"
+ASSETS_DIR = ROOT / "assets"
 
 # -------------------- Project paths / version --------------------
 VERSION_FILE = ROOT / "VERSION.txt"
@@ -42,7 +43,6 @@ EXPECTED = {
         "data/encounters.json",
         "data/loot_tables.json",
         "data/magic.json",
-        "data/names.json",
         "data/status.json",
     ],
     "item_files": [
@@ -418,6 +418,26 @@ def load_enchants() -> List[Dict]: return safe_load_doc("enchants.json", "enchan
 def load_magic() -> List[Dict]:    return safe_load_doc("magic.json", "spells")
 def load_status() -> List[Dict]:   return safe_load_doc("status.json", "status")
 
+def load_curses() -> List[Dict]:
+    """Load curses from abilities/curses.json with tolerant schema.
+
+    Supports either a top-level list or a dict containing a list under
+    common keys like 'curses', 'entries', or 'list'.
+    """
+    path = DATA_DIR / "abilities" / "curses.json"
+    try:
+        doc = load_json(str(path), [])
+        if isinstance(doc, list):
+            return [x for x in doc if isinstance(x, dict)]
+        if isinstance(doc, dict):
+            for key in ("curses", "entries", "list", "data"):
+                v = doc.get(key)
+                if isinstance(v, list):
+                    return [x for x in v if isinstance(x, dict)]
+        return []
+    except Exception:
+        return []
+
 # Tolerant loaders for top-level array documents (e.g., races, classes)
 def load_races_list() -> List[Dict]:
     path = DATA_DIR / "races.json"
@@ -491,8 +511,15 @@ class Player:
     hp: int = 20
     max_hp: int = 20
     atk: Tuple[int,int] = (3,6)
-    stealth: int = 4
-    dex: int = 5
+    # Core attributes (custom system)
+    phy: int = 5   # Physique (PHY)
+    dex: int = 5   # Technique (DEX)
+    vit: int = 5   # Vitality (VIT)
+    arc: int = 5   # Arcane (ARC)
+    kno: int = 5   # Knowledge (KNO)
+    ins: int = 5   # Insight (INS)
+    soc: int = 5   # Social (SOC)
+    fth: int = 5   # Faith (FTH)
     affinity: Dict[str,int] = field(default_factory=dict)
     romance_flags: Dict[str,bool] = field(default_factory=dict)
     inventory: List[Dict] = field(default_factory=list)
@@ -500,6 +527,8 @@ class Player:
     equipped_focus: Optional[Dict] = None
     # Generic equipment slots for armour/clothing/accessory
     equipped_gear: Dict[str, Dict] = field(default_factory=dict)
+    # Optional portrait reference (relative to project or assets/)
+    portrait: Optional[str] = "images/player/player.png"
 
 def pick_enemy(npcs: List[Dict]) -> Optional[Dict]:
     hostile = [n for n in npcs if n.get("hostile")]
@@ -668,6 +697,18 @@ LOG_COLORS = {
     'link':    (255,105,180),
 }
 
+# Stat colors
+STAT_COLORS = {
+    'phy': (220,70,70),     # Physique: red
+    'dex': (80,200,120),    # Technique: green
+    'arc': (170,110,240),   # Arcane: purple
+    'vit': (80,150,240),    # Vitality: blue
+    'kno': (160,210,255),   # Knowledge: lighter blue
+    'ins': (255,160,70),    # Insight: orange
+    'soc': (255,105,180),   # Social: pink
+    'fth': (245,210,80),    # Faith: yellow
+}
+
 # Tags that should not appear in the Recent log unless explicitly logged
 # without a tag (e.g., after talking to them). This hides low-signal noise
 # from friendly presence markers.
@@ -724,6 +765,101 @@ def draw_text(surface, text, pos, color=(230,230,230), font=None, max_w=None):
         surface.blit(font.render(line, True, color), (x, y))
         lines += 1
     return max(0, lines * line_h)
+
+# --- Portrait helpers for combat overlay ---
+def _slugify_name(name: str) -> str:
+    try:
+        s = re.sub(r"[^a-z0-9]+", "_", str(name or "").lower())
+        return s.strip("_") or "portrait"
+    except Exception:
+        return "portrait"
+
+def _first_existing_path(cands) -> Optional[Path]:
+    for c in cands:
+        try:
+            p = Path(c)
+            if not p.is_absolute():
+                p1 = ROOT / p
+                if p1.exists():
+                    return p1
+                p2 = ASSETS_DIR / p
+                if p2.exists():
+                    return p2
+            if p.exists():
+                return p
+        except Exception:
+            pass
+    return None
+
+def _load_portrait_cached(game, key: str, size: Tuple[int,int]):
+    if pg is None:
+        return None
+    if not hasattr(game, "_portrait_cache"):
+        game._portrait_cache = {}
+    cache_key = (key, int(size[0]), int(size[1]))
+    surf = game._portrait_cache.get(cache_key)
+    if surf is not None:
+        return surf
+    path = _first_existing_path([key])
+    if not path:
+        return None
+    try:
+        img = pg.image.load(str(path)).convert_alpha()
+        w, h = int(size[0]), int(size[1])
+        if w <= 0 or h <= 0:
+            return None
+        iw, ih = img.get_width(), img.get_height()
+        if iw <= 0 or ih <= 0:
+            return None
+        scale = min(w / float(iw), h / float(ih))
+        tw, th = max(1, int(iw * scale)), max(1, int(ih * scale))
+        img2 = pg.transform.smoothscale(img, (tw, th)) if hasattr(pg.transform, 'smoothscale') else pg.transform.scale(img, (tw, th))
+        out = pg.Surface((w, h), pg.SRCALPHA)
+        out.fill((0,0,0,0))
+        out.blit(img2, ((w - tw)//2, (h - th)//2))
+        game._portrait_cache[cache_key] = out
+        return out
+    except Exception:
+        return None
+
+def _enemy_portrait_candidates(enemy: Dict) -> List[str]:
+    cands: List[str] = []
+    if not isinstance(enemy, dict):
+        return cands
+    for k in ("portrait","image","img","sprite"):
+        v = enemy.get(k)
+        if isinstance(v, str) and v.strip():
+            cands.append(v.strip())
+    slug = _slugify_name(enemy.get("name") or enemy.get("id") or "enemy")
+    for sub in ("portraits/enemies", "portraits/npcs", "portraits"):
+        cands.append(f"{sub}/{slug}.png")
+        cands.append(f"{sub}/{slug}.jpg")
+    if isinstance(enemy.get("id"), str):
+        eid = enemy["id"]
+        for sub in ("portraits/enemies", "portraits/npcs", "portraits"):
+            cands.append(f"{sub}/{eid}.png")
+            cands.append(f"{sub}/{eid}.jpg")
+    return cands
+
+def _player_portrait_candidates(player) -> List[str]:
+    cands: List[str] = []
+    try:
+        v = getattr(player, "portrait", None)
+        if isinstance(v, str) and v.strip():
+            cands.append(v.strip())
+    except Exception:
+        pass
+    # Default player image location
+    cands.append("images/player/player.png")
+    slug = _slugify_name(getattr(player, 'name', 'player'))
+    role = _slugify_name(getattr(player, 'role', ''))
+    race = _slugify_name(getattr(player, 'race', ''))
+    for sub in ("portraits/allies", "portraits/party", "portraits"):
+        for nm in ("player", slug, role, race):
+            if nm:
+                cands.append(f"{sub}/{nm}.png")
+                cands.append(f"{sub}/{nm}.jpg")
+    return cands
 
 class Button:
     def __init__(self, rect, label, cb, draw_bg: bool=True):
@@ -1165,7 +1301,7 @@ def draw_panel(surf, game):
     pg.draw.rect(surf, (18,18,24), (x0,0, panel_w, win_h))
     pg.draw.rect(surf, (70,74,92), (x0,0, panel_w, win_h), 1)
     header_font = pg.font.Font(None, 22)
-    draw_text(surf, f"RPGenesis v{get_version()} – Field Log", (x0+16, 12), font=header_font)
+    draw_text(surf, f"RPGenesis v{get_version()} - Field Log", (x0+16, 12), font=header_font)
 
     # Left panel content: Party header + player stats
     yL = 12
@@ -1176,8 +1312,15 @@ def draw_panel(surf, game):
     draw_text(surf, f"HP: {game.player.hp}/{game.player.max_hp}", (16, yL)); yL += 18
     mn,mx = game.player.atk
     draw_text(surf, f"ATK: {mn}-{mx}", (16, yL)); yL += 18
-    draw_text(surf, f"DEX: {game.player.dex}", (16, yL)); yL += 18
-    draw_text(surf, f"Stealth: {game.player.stealth}", (16, yL)); yL += 18
+    # Core Attributes
+    draw_text(surf, f"Physique (PHY): {game.player.phy}", (16, yL), color=STAT_COLORS['phy']); yL += 18
+    draw_text(surf, f"Technique (DEX): {game.player.dex}", (16, yL), color=STAT_COLORS['dex']); yL += 18
+    draw_text(surf, f"Vitality (VIT): {game.player.vit}", (16, yL), color=STAT_COLORS['vit']); yL += 18
+    draw_text(surf, f"Arcane (ARC): {game.player.arc}", (16, yL), color=STAT_COLORS['arc']); yL += 18
+    draw_text(surf, f"Knowledge (KNO): {game.player.kno}", (16, yL), color=STAT_COLORS['kno']); yL += 18
+    draw_text(surf, f"Insight (INS): {game.player.ins}", (16, yL), color=STAT_COLORS['ins']); yL += 18
+    draw_text(surf, f"Social (SOC): {game.player.soc}", (16, yL), color=STAT_COLORS['soc']); yL += 18
+    draw_text(surf, f"Faith (FTH): {game.player.fth}", (16, yL), color=STAT_COLORS['fth']); yL += 18
 
     # Scrollable right panel content (below header, above buttons)
     content_top = 44
@@ -1188,6 +1331,8 @@ def draw_panel(surf, game):
     if not hasattr(game, 'ui_scroll'):
         game.ui_scroll = 0
     y = content_top - max(0, int(getattr(game, 'ui_scroll', 0)))
+
+    # (In combat, the modal handles enemy/allies UI; sidebar remains Field Log)
 
     # Tile / Equipped summary
     t = game.tile()
@@ -1253,15 +1398,8 @@ def draw_panel(surf, game):
         buttons.append(Button((x0+16, y0, panel_w-32, 34), label, cb)); y0 += 38
 
     if game.mode == "combat":
-        add("Attack (Weapon)", game.attack)
-        add("Cast Spell", game.cast_spell)
-        add("Talk", game.talk_enemy)
-        if getattr(game, 'can_bribe', False):
-            add("Offer Bribe", game.offer_bribe)
-        add("Flee", game.flee)
-        add("Inventory", lambda: setattr(game, 'mode', 'inventory'))
-        add("Equipment", lambda: setattr(game, 'mode', 'equip'))
-        add("Database", lambda: setattr(game, 'mode', 'database'))
+        # Show a dedicated combat overlay in the map area
+        buttons += draw_combat_overlay(surf, game)
     elif game.mode == "dialogue":
         add("Talk",  lambda: game.handle_dialogue_choice("Talk"))
         add("Leave", lambda: game.handle_dialogue_choice("Leave"))
@@ -1280,13 +1418,24 @@ def draw_panel(surf, game):
         buttons += draw_load_overlay(surf, game)
     elif getattr(game, 'mode', '') == "database":
         buttons += draw_database_overlay(surf, game)
+    elif getattr(game, 'mode', '') == "battlefield":
+        buttons += draw_battlefield_overlay(surf, game)
     else:
         add("Search Area", game.search_tile)
-        if t.encounter and t.encounter.enemy and not t.encounter.spotted:
-            add("Sneak Past",            game.try_sneak)
-            add("Bypass (Skirt Around)", game.bypass_enemy)
-        if t.encounter and t.encounter.enemy and t.encounter.spotted:
-            add("Fight", lambda: game.start_combat(t.encounter.enemy))
+        # Enemy present: allow direct attack always
+        if t.encounter and t.encounter.enemy:
+            # If not spotted yet, flag as spotted when attacking to enter combat
+            def _attack_now():
+                try:
+                    if not getattr(t.encounter, 'spotted', False):
+                        t.encounter.spotted = True
+                except Exception:
+                    pass
+                game.start_combat(t.encounter.enemy)
+            add("Attack", _attack_now)
+            # When enemy is unaware, offer a single combined avoid option
+            if not t.encounter.spotted:
+                add("Avoid (Sneak/Bypass)", game.avoid_enemy)
         if t.encounter and t.encounter.npc:
             add("Talk",      lambda: game.start_dialogue(t.encounter.npc))
         # Travel via link if present
@@ -1297,6 +1446,7 @@ def draw_panel(surf, game):
         add("Inventory", lambda: setattr(game, 'mode', 'inventory'))
         add("Equipment", lambda: setattr(game, 'mode', 'equip'))
         add("Database", lambda: setattr(game, 'mode', 'database'))
+        add("Battlefield", lambda: (_ensure_battlefield_demo(game), setattr(game, 'mode', 'battlefield')))
         add("Save Game", lambda: setattr(game, 'mode', 'save'))
         add("Load Game", lambda: setattr(game, 'mode', 'load'))
 
@@ -1362,6 +1512,162 @@ def draw_inventory_panel(surf, game, x0, panel_w):
 
     return buttons
 
+def draw_combat_overlay(surf, game):
+    """Battle overlay centered over the map area with enemy info and big actions.
+
+    Returns list of Button objects for click handling.
+    """
+    buttons: List[Button] = []
+    win_w, win_h = surf.get_size()
+    panel_w = int(PANEL_W_FIXED)
+
+    # Map view area (between left and right panels)
+    view_w = max(100, win_w - 2*panel_w)
+    view_h = win_h
+    view_rect = pg.Rect(panel_w, 0, view_w, view_h)
+
+    # Dim background only over the map area
+    dim = pg.Surface((view_rect.w, view_rect.h), pg.SRCALPHA)
+    dim.fill((10, 10, 14, 160))
+    surf.blit(dim, (view_rect.x, view_rect.y))
+
+    # Modal rectangle
+    modal_w = max(640, int(view_w * 0.86))
+    modal_h = max(360, int(view_h * 0.72))
+    modal_x = view_rect.x + (view_w - modal_w)//2
+    modal_y = view_rect.y + (view_h - modal_h)//2
+    modal = pg.Rect(modal_x, modal_y, modal_w, modal_h)
+
+    # Panel
+    pg.draw.rect(surf, (24,26,34), modal, border_radius=10)
+    pg.draw.rect(surf, (96,102,124), modal, 2, border_radius=10)
+    pg.draw.rect(surf, (56,60,76), modal.inflate(-8, -8), 1, border_radius=8)
+
+    # Header
+    title_font = pg.font.Font(None, 30)
+    subtitle_font = pg.font.Font(None, 22)
+    # Compact fonts for stat bars
+    stat_name_font = pg.font.Font(None, 20)
+    stat_label_font = pg.font.Font(None, 16)
+    surf.blit(title_font.render("Battle", True, (235,235,245)), (modal.x + 16, modal.y + 12))
+
+    # Content layout: sidebars (allies/enemies) and big center battlefield with action bar
+    pad = 16
+    content = modal.inflate(-2*pad, -2*pad)
+    side_w = max(180, int(content.w * 0.22))
+    left = pg.Rect(content.x, content.y + 36, side_w, content.h - 36)
+    right = pg.Rect(content.right - side_w, content.y + 36, side_w, content.h - 36)
+    center = pg.Rect(left.right + 12, content.y + 36, right.left - (left.right + 12), content.h - 36)
+    # Split center into battlefield (top) + actions (bottom)
+    act_h = max(96, int(center.h * 0.22))
+    bf_area = pg.Rect(center.x, center.y, center.w, center.h - act_h - 8)
+    act_area = pg.Rect(center.x, bf_area.bottom + 8, center.w, act_h)
+    # Draw frames first so battlefield always sits on top within its center region
+    for r in (left, right, act_area):
+        pg.draw.rect(surf, (30,32,42), r, border_radius=8)
+        pg.draw.rect(surf, (70,74,92), r, 1, border_radius=8)
+    # Draw battlefield scene centered on top of frames
+    try:
+        _draw_battlefield_canvas(surf, game, bf_area)
+    except Exception:
+        pass
+    # (frames already drawn above)
+
+    # Enemy panel (now on the right)
+    enemy = getattr(game, 'current_enemy', None) or (getattr(game.tile().encounter, 'enemy', None) if game.tile().encounter else None)
+    ehp_cur = int(getattr(game, 'current_enemy_hp', 0) or (enemy.get('hp', 12) if isinstance(enemy, dict) else 0))
+    ehp_max = int((enemy.get('hp', ehp_cur) if isinstance(enemy, dict) else ehp_cur) or max(1, ehp_cur))
+    ex = right.x + 12; ey = right.y + 12
+    if enemy:
+        ename = str(enemy.get('name', 'Enemy'))
+        surf.blit(stat_name_font.render(ename, True, (230,230,245)), (ex, ey)); ey += 14
+        # Enemy race (if available)
+        try:
+            erace = str(enemy.get('race') or '')
+        except Exception:
+            erace = ''
+        if erace:
+            surf.blit(stat_label_font.render(f"Race: {erace}", True, (200,205,220)), (ex, ey)); ey += 14
+        # HP bar (compact)
+        bar_w, bar_h = right.w - 24, 12
+        rect = pg.Rect(ex, ey, bar_w, bar_h)
+        pg.draw.rect(surf, (40,42,56), rect, border_radius=6)
+        frac = max(0.0, min(1.0, ehp_cur / float(max(1, ehp_max))))
+        fill = rect.inflate(-4, -4)
+        fill.w = int((rect.w - 4) * frac)
+        pg.draw.rect(surf, (200,70,70), fill, border_radius=5)
+        pg.draw.rect(surf, (96,102,124), rect, 1, border_radius=6)
+        # HP label (compact) + race inline
+        hp_txt = f"HP: {ehp_cur}/{ehp_max}"
+        try:
+            if erace:
+                hp_txt += f"    Race: {erace}"
+        except Exception:
+            pass
+        surf.blit(stat_label_font.render(hp_txt, True, (235,235,245)), (ex, ey + bar_h + 6)); ey += bar_h + 22
+        # Status
+        try:
+            est = [str(s) for s in (enemy.get('status') or [])]
+        except Exception:
+            est = []
+        if est:
+            draw_text(surf, "Status: " + ", ".join(est), (ex, ey), max_w=right.w - 24); ey += 18
+        # Flavor/desc if present
+        desc = str(enemy.get('desc') or enemy.get('description') or '')
+        if desc:
+            draw_text(surf, desc, (ex, ey), max_w=right.w - 24)
+    else:
+        draw_text(surf, "No target.", (ex, ey))
+
+    # Allies (left sidebar): player stats
+    rx, ry = left.x + 12, left.y + 12
+    pname = f"{game.player.name}"
+    surf.blit(stat_name_font.render(pname, True, (230,230,245)), (rx, ry)); ry += 14
+    # Player race
+    try:
+        prace = str(game.player.race)
+    except Exception:
+        prace = ''
+    if prace:
+        surf.blit(stat_label_font.render(f"Race: {prace}", True, (200,205,220)), (rx, ry)); ry += 14
+    # Player HP bar
+    php_cur = int(game.player.hp); php_max = int(game.player.max_hp or max(1, game.player.hp))
+    pbar = pg.Rect(rx, ry, left.w - 24, 12)
+    pg.draw.rect(surf, (40,42,56), pbar, border_radius=6)
+    pfill = pbar.inflate(-4, -4)
+    pfill.w = int((pbar.w - 4) * max(0.0, min(1.0, php_cur / float(max(1, php_max)))))
+    pg.draw.rect(surf, (120,200,120), pfill, border_radius=5)
+    pg.draw.rect(surf, (96,102,124), pbar, 1, border_radius=6)
+    surf.blit(stat_label_font.render(f"HP: {php_cur}/{php_max}", True, (235,235,245)), (rx, ry + 14)); ry += 28
+    # Equipped summary
+    wep = item_name(game.player.equipped_weapon) if game.player.equipped_weapon else "Unarmed"
+    foc = item_name(game.player.equipped_focus) if game.player.equipped_focus else "None"
+    draw_text(surf, f"Weapon: {wep}", (rx, ry)); ry += 14
+    draw_text(surf, f"Focus : {foc}", (rx, ry)); ry += 18
+
+    # Action buttons grid (2 columns) centered in action area
+    bx, by = act_area.x + 12, act_area.y + 12
+    bw = (act_area.w - 24 - 8) // 2
+    bh = 36
+    gap = 8
+    def add_btn(x, y, label, cb):
+        buttons.append(Button((x, y, bw, bh), label, cb))
+
+    add_btn(bx, by, "Attack", game.attack); add_btn(bx + bw + gap, by, "Cast Spell", game.cast_spell); by += bh + gap
+    add_btn(bx, by, "Talk", game.talk_enemy)
+    if getattr(game, 'can_bribe', False):
+        add_btn(bx + bw + gap, by, "Offer Bribe", game.offer_bribe)
+    else:
+        # Reserve space for consistent layout
+        pass
+    by += bh + gap
+    add_btn(bx, by, "Flee", game.flee)
+    add_btn(bx + bw + gap, by, "Inventory", lambda: setattr(game, 'mode', 'inventory')); by += bh + gap
+    add_btn(bx, by, "Equipment", lambda: setattr(game, 'mode', 'equip'))
+    add_btn(bx + bw + gap, by, "Database", lambda: setattr(game, 'mode', 'database'))
+
+    return buttons
+
 def draw_inventory_overlay(surf, game):
     """Centered inventory modal over the map area, with border.
 
@@ -1402,7 +1708,7 @@ def draw_inventory_overlay(surf, game):
     # Header buttons: Equipment and Back
     def _to_equip(): setattr(game, 'mode', 'equip')
     buttons.append(Button((modal.right - 230, modal.y + 10, 110, 28), "Equipment", _to_equip))
-    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode','explore')))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode', 'combat' if getattr(game,'current_enemy', None) else 'explore')))
 
     # Layout inside modal: icons grid left, details right
     pad = 16
@@ -1567,6 +1873,278 @@ def draw_inventory_overlay(surf, game):
 
     return buttons
 
+def _ensure_battlefield_demo(game):
+    # Prepare a simple demo lineup if none exists yet
+    if not hasattr(game, 'bf_allies'):
+        game.bf_allies = [
+            'images/player/player.png',
+            'images/allies/fighter.png',
+            'images/allies/witch.png',
+        ]
+    if not hasattr(game, 'bf_enemies'):
+        game.bf_enemies = [
+            'images/enemies/demon_girl.png',
+            'images/enemies/demon_girl_large.png',
+        ]
+    if not hasattr(game, '_bf_cache'):
+        game._bf_cache = {}
+
+def _load_sprite_cached(game, key: str, max_size: Tuple[int,int]):
+    if pg is None:
+        return None
+    if not hasattr(game, '_bf_cache'):
+        game._bf_cache = {}
+    cache_key = (key, int(max_size[0]), int(max_size[1]))
+    surf = game._bf_cache.get(cache_key)
+    if surf is not None:
+        return surf
+    # Reuse portrait path resolver
+    path = _first_existing_path([key])
+    if not path:
+        return None
+    try:
+        img = pg.image.load(str(path)).convert_alpha()
+        iw, ih = img.get_width(), img.get_height()
+        if iw <= 0 or ih <= 0:
+            return None
+        mw, mh = int(max_size[0]), int(max_size[1])
+        scale = min(mw / float(iw), mh / float(ih))
+        tw, th = max(1, int(iw * scale)), max(1, int(ih * scale))
+        out = pg.transform.smoothscale(img, (tw, th)) if hasattr(pg.transform, 'smoothscale') else pg.transform.scale(img, (tw, th))
+        game._bf_cache[cache_key] = out
+        return out
+    except Exception:
+        return None
+
+def _draw_battlefield_canvas(surf, game, bf: 'pg.Rect', hover_side: Optional[str] = None, hover_index: int = -1):
+    """Draw the battlefield scene (sky, ground, and unit sprites) into bf rect."""
+    # Sky gradient
+    sky = pg.Surface((bf.w, bf.h), pg.SRCALPHA)
+    top_col = (32,36,48)
+    mid_col = (38,42,56)
+    for y in range(bf.h):
+        t = y / max(1, bf.h)
+        r = int(top_col[0]*(1-t) + mid_col[0]*t)
+        g = int(top_col[1]*(1-t) + mid_col[1]*t)
+        b = int(top_col[2]*(1-t) + mid_col[2]*t)
+        pg.draw.line(sky, (r,g,b), (0, y), (bf.w, y))
+    surf.blit(sky, (bf.x, bf.y))
+    # Ground
+    ground_h = int(bf.h * 0.36)
+    ground = pg.Rect(bf.x, bf.bottom - ground_h, bf.w, ground_h)
+    pg.draw.rect(surf, (46,50,62), ground)
+    # Ground stripes/hatching
+    for i in range(0, ground_h, 14):
+        c = (54,58,72) if (i//14)%2==0 else (50,54,66)
+        pg.draw.rect(surf, c, pg.Rect(ground.x, ground.y + i, ground.w, 8))
+    # Horizon line
+    pg.draw.line(surf, (96,102,124), (bf.x, ground.y), (bf.right, ground.y), 2)
+
+    # Slot layout
+    cols, rows = 3, 2
+    slot_w = int(bf.w * 0.36)
+    left_area = pg.Rect(bf.x + 20, ground.y - int(ground_h*0.65), slot_w, int(ground_h*0.65))
+    right_area= pg.Rect(bf.right - 20 - slot_w, left_area.y, slot_w, left_area.h)
+    def slot_center(area: 'pg.Rect', c: int, r: int) -> Tuple[int,int]:
+        cx = area.x + int((c + 0.5) * (area.w / cols))
+        cy = area.y + int((r + 0.6) * (area.h / rows))
+        return cx, cy
+
+    # gather participants based on current combat state
+    allies: List[str] = []
+    enemies: List[str] = []
+
+    # Resolve a first-existing key from candidate paths, else fallback
+    def _pick_key(cands: List[str], fallback: str) -> str:
+        p = _first_existing_path(cands)
+        if p is not None:
+            try:
+                # Return as project-relative string
+                return str(p.relative_to(ASSETS_DIR))
+            except Exception:
+                return str(p)
+        return fallback
+
+    # Ally: player portrait/sprite
+    try:
+        pcands = _player_portrait_candidates(game.player)
+    except Exception:
+        pcands = []
+    allies.append(_pick_key(pcands + ['images/player/player.png'], 'images/player/player.png'))
+
+    # Enemies: current encounter enemy, with default fallback
+    enemy = getattr(game, 'current_enemy', None) or (getattr(game.tile().encounter, 'enemy', None) if game.tile().encounter else None)
+    if enemy:
+        try:
+            slug = _slugify_name(enemy.get('name') or enemy.get('id') or 'enemy')
+        except Exception:
+            slug = 'enemy'
+        eid = str(enemy.get('id') or '')
+        ecands: List[str] = []
+        # Prefer explicit sprite/image if present
+        for k in ('sprite','image','portrait','img'):
+            v = enemy.get(k)
+            if isinstance(v, str) and v.strip():
+                ecands.append(v.strip())
+        for sub in ('images/enemies','images/npcs','images'):
+            ecands.append(f"{sub}/{slug}.png"); ecands.append(f"{sub}/{slug}.jpg")
+            if eid:
+                ecands.append(f"{sub}/{eid}.png"); ecands.append(f"{sub}/{eid}.jpg")
+        enemies.append(_pick_key(ecands, 'images/enemies/default.png'))
+    else:
+        # No active enemy; keep any demo lineup
+        enemies = list(getattr(game, 'bf_enemies', []) or [])
+
+    # Draw team helper
+    def draw_team(area: 'pg.Rect', items: List[str], flip=False, side_name: str = ''):
+        # Make sprites larger for classic RPG look (increase scale)
+        SCALE = 1.9
+        max_w = int((area.w / cols) * SCALE) - 8
+        max_h = int((area.h / rows) * SCALE) - 6
+        for idx, key in enumerate(items[:cols*rows]):
+            r = idx // cols
+            c = idx % cols
+            cx, cy = slot_center(area, c, r)
+            # Shadow
+            sh_w = max(18, int(max_w * 0.55))
+            sh_h = max(6, int(max_h * 0.18))
+            sh = pg.Surface((sh_w, sh_h), pg.SRCALPHA)
+            pg.draw.ellipse(sh, (10,10,12,90), pg.Rect(0,0,sh_w, sh_h))
+            surf.blit(sh, (cx - sh_w//2, ground.y - sh_h//2))
+            # Sprite
+            spr = _load_sprite_cached(game, key, (max_w, max_h))
+            if spr is not None:
+                img = pg.transform.flip(spr, True, False) if flip else spr
+                ix, iy = (cx - img.get_width()//2, ground.y - img.get_height())
+                # First draw the sprite
+                surf.blit(img, (ix, iy))
+                # Then draw the highlight outline on top (so it doesn't get hidden)
+                if hover_side and side_name == hover_side and (hover_index < 0 or hover_index == idx):
+                    try:
+                        if not hasattr(game, '_bf_outline'):
+                            game._bf_outline = {}
+                        okey = (key, int(img.get_width()), int(img.get_height()), bool(flip))
+                        outline_pts = game._bf_outline.get(okey)
+                        if outline_pts is None:
+                            m = pg.mask.from_surface(img)
+                            outline_pts = m.outline()
+                            if not outline_pts:
+                                outline_pts = [(0,0),(img.get_width(),0),(img.get_width(),img.get_height()),(0,img.get_height())]
+                            game._bf_outline[okey] = outline_pts
+                        pts = [(ix + p[0], iy + p[1]) for p in outline_pts]
+                        # Outer accent stroke
+                        try:
+                            pg.draw.lines(surf, COL_PLAYER, True, pts, 3)
+                        except Exception:
+                            pg.draw.polygon(surf, COL_PLAYER, pts, 3)
+                        # Inner dark stroke for readability
+                        try:
+                            pg.draw.lines(surf, (20,22,28), True, pts, 1)
+                        except Exception:
+                            pass
+                    except Exception:
+                        glow = pg.Rect(ix-4, iy-4, img.get_width()+8, img.get_height()+8)
+                        pg.draw.rect(surf, COL_PLAYER, glow, 3, border_radius=8)
+            # Slot indicator
+            pg.draw.circle(surf, (92,98,120), (cx, ground.y), 3)
+
+    draw_team(left_area, allies, flip=False, side_name='allies')
+    draw_team(right_area, enemies, flip=True, side_name='enemies')
+def draw_battlefield_overlay(surf, game):
+    """Simple battlefield view: a center arena with ally/enemy slots and sprites.
+
+    Returns list of Buttons for interaction (Back only for now).
+    """
+    buttons: List[Button] = []
+    win_w, win_h = surf.get_size()
+    panel_w = int(PANEL_W_FIXED)
+
+    # Map view area (between side panels)
+    view_w = max(100, win_w - 2*panel_w)
+    view_h = win_h
+    view_rect = pg.Rect(panel_w, 0, view_w, view_h)
+
+    # Dim background over the map area
+    dim = pg.Surface((view_rect.w, view_rect.h), pg.SRCALPHA)
+    dim.fill((10, 10, 14, 160))
+    surf.blit(dim, (view_rect.x, view_rect.y))
+
+    # Battlefield rect inside view
+    margin = 28
+    bf = pg.Rect(view_rect.x + margin, view_rect.y + margin, view_rect.w - 2*margin, view_rect.h - 2*margin)
+    # Sky gradient
+    sky = pg.Surface((bf.w, bf.h), pg.SRCALPHA)
+    top_col = (32,36,48)
+    mid_col = (38,42,56)
+    for y in range(bf.h):
+        t = y / max(1, bf.h)
+        r = int(top_col[0]*(1-t) + mid_col[0]*t)
+        g = int(top_col[1]*(1-t) + mid_col[1]*t)
+        b = int(top_col[2]*(1-t) + mid_col[2]*t)
+        pg.draw.line(sky, (r,g,b), (0, y), (bf.w, y))
+    surf.blit(sky, (bf.x, bf.y))
+    # Ground
+    ground_h = int(bf.h * 0.36)
+    ground = pg.Rect(bf.x, bf.bottom - ground_h, bf.w, ground_h)
+    pg.draw.rect(surf, (46,50,62), ground)
+    # Ground stripes
+    for i in range(0, ground_h, 14):
+        c = (54,58,72) if (i//14)%2==0 else (50,54,66)
+        pg.draw.rect(surf, c, pg.Rect(ground.x, ground.y + i, ground.w, 8))
+    # Horizon line
+    pg.draw.line(surf, (96,102,124), (bf.x, ground.y), (bf.right, ground.y), 2)
+
+    # Slots (3x2 per side)
+    cols, rows = 3, 2
+    slot_w = int(bf.w * 0.36)
+    left_area = pg.Rect(bf.x + 20, ground.y - int(ground_h*0.65), slot_w, int(ground_h*0.65))
+    right_area= pg.Rect(bf.right - 20 - slot_w, left_area.y, slot_w, left_area.h)
+    def slot_center(area: pg.Rect, c: int, r: int) -> Tuple[int,int]:
+        cx = area.x + int((c + 0.5) * (area.w / cols))
+        cy = area.y + int((r + 0.6) * (area.h / rows))
+        return cx, cy
+
+    # Ensure demo participants
+    _ensure_battlefield_demo(game)
+    allies = list(getattr(game, 'bf_allies', []) or [])
+    enemies = list(getattr(game, 'bf_enemies', []) or [])
+
+    # Draw shadows and sprites
+    def draw_team(area: pg.Rect, items: List[str], flip=False):
+        SCALE = 1.9
+        max_w = int((area.w / cols) * SCALE) - 8
+        max_h = int((area.h / rows) * SCALE) - 6
+        for idx, key in enumerate(items[:cols*rows]):
+            r = idx // cols
+            c = idx % cols
+            cx, cy = slot_center(area, c, r)
+            # Shadow ellipse on ground
+            sh_w = max(18, int(max_w * 0.55))
+            sh_h = max(6, int(max_h * 0.18))
+            sh = pg.Surface((sh_w, sh_h), pg.SRCALPHA)
+            pg.draw.ellipse(sh, (10,10,12,90), pg.Rect(0,0,sh_w, sh_h))
+            surf.blit(sh, (cx - sh_w//2, ground.y - sh_h//2))
+            # Sprite
+            spr = _load_sprite_cached(game, key, (max_w, max_h))
+            if spr is not None:
+                img = pg.transform.flip(spr, True, False) if flip else spr
+                surf.blit(img, (cx - img.get_width()//2, ground.y - img.get_height()))
+            # Slot indicator (optional subtle)
+            pg.draw.circle(surf, (92,98,120), (cx, ground.y), 3)
+
+    draw_team(left_area, allies, flip=False)
+    draw_team(right_area, enemies, flip=True)
+
+    # Frame
+    pg.draw.rect(surf, (96,102,124), bf, 2, border_radius=10)
+
+    # Header + Back button
+    title = pg.font.Font(None, 30).render("Battlefield", True, (235,235,245))
+    surf.blit(title, (bf.x + 12, bf.y + 8))
+    buttons.append(Button((bf.right - 112, bf.y + 8, 100, 28), "Back", lambda: setattr(game,'mode','explore')))
+
+    return buttons
+
 def draw_equip_overlay(surf, game):
     """Centered equipment screen with silhouette and slot squares.
 
@@ -1602,7 +2180,7 @@ def draw_equip_overlay(surf, game):
     title_font = pg.font.Font(None, 30)
     surf.blit(title_font.render("Equipment", True, (235,235,245)), (modal.x + 16, modal.y + 12))
     buttons.append(Button((modal.right - 230, modal.y + 10, 110, 28), "Inventory", lambda: setattr(game,'mode','inventory')))
-    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode','explore')))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode', 'combat' if getattr(game,'current_enemy', None) else 'explore')))
 
     # Layout left silhouette, right list
     pad = 16
@@ -2040,6 +2618,7 @@ def draw_database_overlay(surf, game):
             'Magic': list(getattr(game, 'magic', []) or []),
             'Status': list(getattr(game, 'status', []) or []),
             'Classes': list(getattr(game, 'classes', []) or []),
+            'Curses': list(getattr(game, 'curses', []) or []),
         }
 
     # Tabs
@@ -2048,7 +2627,7 @@ def draw_database_overlay(surf, game):
     tab_x = modal.x + 16
     tab_h = 28
     tab_pad = 10
-    tabs = ['Items','NPCs','Races','Traits','Enchants','Magic','Status','Classes']
+    tabs = ['Items','NPCs','Races','Traits','Enchants','Magic','Status','Classes','Curses']
     for name in tabs:
         tw = max(90, tab_font.size(name)[0] + 20)
         r = pg.Rect(tab_x, tab_y, tw, tab_h)
@@ -2247,9 +2826,20 @@ def draw_database_overlay(surf, game):
                         ('Combat', ('combat',)),
                         ('Flavor', ('spice',)),
                     ]
+                if cat == 'Curses':
+                    return [
+                        ('Name', ('name','id')),
+                        ('Summary', ('summary',)),
+                        ('Requires', ('requires',)),
+                        ('State', ('state',)),
+                        ('Acquisition', ('acquisition',)),
+                        ('Weakness', ('weakness',)),
+                        ('Powers', ('powers',)),
+                        ('Cures', ('cures',)),
+                    ]
                 return [
                     ('Name', ('name','id')),
-                    ('Details', ('effect','effects','tags','applies_to','school','damage','mp')),
+                    ('Details', ('effect','effects','tags','applies_to','school','damage','mp','summary','requires','weakness','powers','cures','state','acquisition')),
                 ]
             path_map = {lab: paths for (lab, paths) in _field_options_for(cat)}
             # Helper: get values by paths
@@ -2432,10 +3022,9 @@ def draw_database_overlay(surf, game):
             ]
         # Default for other categories
         return [
-            ('Name', ('name','id')),
-            ('Details', ('effect','effects','tags','applies_to','school','damage','mp')),
-        ]
-
+                ('Name', ('name','id')),
+                ('Details', ('effect','effects','tags','applies_to','school','damage','mp','summary','requires','weakness','powers','cures','state','acquisition')),
+            ]
     field_opts = _field_options_for(cat)
     # Maintain selection per category
     sel_labels: Set[str] = set(game.db_fields_sel.get(cat, []))
@@ -2511,7 +3100,7 @@ def draw_database_overlay(surf, game):
                 label = str(it.get('name') or it.get('id') or '?')
             elif cat == 'Races':
                 label = str(it.get('name') or it.get('id') or '?')
-            elif cat in ('Traits','Enchants','Magic','Status','Classes'):
+            elif cat in ('Traits','Enchants','Magic','Status','Classes','Curses'):
                 label = str(it.get('name') or it.get('id') or '?')
         except Exception:
             label = str(it)
@@ -2688,6 +3277,29 @@ def draw_database_overlay(surf, game):
                 if isinstance(dmg, dict) and ('min' in dmg or 'max' in dmg):
                     line(f"Damage: {dmg.get('min','?')} - {dmg.get('max','?')}")
                 if it.get('applies_status'): line(f"Applies Status: {it.get('applies_status')}")
+            elif cat == 'Curses':
+                line(f"ID: {it.get('id','-')}")
+                if it.get('requires'): line(f"Requires: {it.get('requires')}")
+                if it.get('state'): line(f"State: {it.get('state')}")
+                if it.get('summary'):
+                    yy += 4; line("Summary:")
+                    line(str(it.get('summary')))
+                for key, lab in (("acquisition","Acquisition"),("powers","Powers"),("weakness","Weakness"),("cures","Cures"),("empowerment","Empowerment")):
+                    arr = it.get(key) or []
+                    if isinstance(arr, list) and arr:
+                        yy += 4; line(lab + ":")
+                        for v in arr:
+                            line(f"- {v}")
+                if it.get('sustenance'):
+                    line(f"Sustenance: {it.get('sustenance')}")
+                ao = it.get('appearance_overrides') or {}
+                if isinstance(ao, dict) and ao:
+                    yy += 4; line("Appearance Overrides:")
+                    for k,v in ao.items():
+                        if isinstance(v, list):
+                            line(f"- {k}: " + ", ".join([str(x) for x in v]))
+                        else:
+                            line(f"- {k}: {v}")
             elif cat == 'Status':
                 line(f"ID: {it.get('id','-')}")
                 tags = it.get('tags') or []
@@ -2722,6 +3334,7 @@ class Game:
         self.enchants= load_enchants()
         self.magic   = load_magic()
         self.status  = load_status()
+        self.curses  = load_curses()
         # Additional lore datasets
         self.races   = load_races_list()
         self.classes = load_classes_list()
@@ -2808,8 +3421,15 @@ class Game:
                 'hp': self.player.hp,
                 'max_hp': self.player.max_hp,
                 'atk': list(self.player.atk),
-                'stealth': self.player.stealth,
+                # Core attributes
+                'phy': self.player.phy,
                 'dex': self.player.dex,
+                'vit': self.player.vit,
+                'arc': self.player.arc,
+                'kno': self.player.kno,
+                'ins': self.player.ins,
+                'soc': self.player.soc,
+                'fth': self.player.fth,
                 'affinity': dict(self.player.affinity),
                 'romance_flags': dict(self.player.romance_flags),
                 'inventory': list(self.player.inventory),
@@ -2864,8 +3484,21 @@ class Game:
             self.player.atk = (int(atk[0]), int(atk[1]))
         except Exception:
             pass
-        self.player.stealth = int(p.get('stealth', self.player.stealth))
-        self.player.dex = int(p.get('dex', self.player.dex))
+        # Core attributes (with backward-compatibility mapping)
+        self.player.dex = int(p.get('dex', getattr(self.player, 'dex', 5)))
+        self.player.phy = int(p.get('phy', getattr(self.player, 'phy', 5)))
+        self.player.vit = int(p.get('vit', getattr(self.player, 'vit', 5)))
+        self.player.arc = int(p.get('arc', getattr(self.player, 'arc', 5)))
+        self.player.kno = int(p.get('kno', getattr(self.player, 'kno', 5)))
+        self.player.ins = int(p.get('ins', getattr(self.player, 'ins', 5)))
+        self.player.soc = int(p.get('soc', getattr(self.player, 'soc', 5)))
+        self.player.fth = int(p.get('fth', getattr(self.player, 'fth', 5)))
+        # Legacy: map saved 'stealth' into Insight if present
+        try:
+            if 'stealth' in p and 'ins' not in p:
+                self.player.ins = int(p.get('stealth', self.player.ins))
+        except Exception:
+            pass
         self.player.affinity = dict(p.get('affinity', self.player.affinity))
         self.player.romance_flags = dict(p.get('romance_flags', self.player.romance_flags))
         self.player.inventory = list(p.get('inventory', self.player.inventory))
@@ -3150,6 +3783,7 @@ class Game:
         self.current_enemy.setdefault('will', 4)
         self.current_enemy.setdefault('greed', 4)
         self.can_bribe = False
+        self.mode = "combat"
 
     def _maybe_apply_status(self, source: str, target: Dict, weapon_or_spell: Optional[Dict]=None):
         chance = 0.15
@@ -3225,6 +3859,25 @@ class Game:
             self.mode = "explore"
         else:
             self.say("Too risky to bypass.")
+
+    def avoid_enemy(self):
+        """Combined action for avoiding an enemy: choose sneak or bypass.
+
+        If the enemy is unaware, prefer a sneak attempt when the player's
+        stealth is decent; otherwise skirt around safely.
+        """
+        t = self.tile()
+        if not (t.encounter and t.encounter.enemy and not t.encounter.spotted):
+            self.say("Too risky to avoid."); return
+        try:
+            tech = int(getattr(self.player, 'dex', 0))
+        except Exception:
+            tech = 0
+        # Heuristic: try to sneak if Technique (DEX) >= 5, else bypass safely
+        if tech >= 5:
+            self.try_sneak()
+        else:
+            self.bypass_enemy()
 
     def talk_enemy(self):
         if not self.current_enemy: return
@@ -3613,6 +4266,7 @@ def start_menu():
                     db_state.enchants= load_enchants()
                     db_state.magic   = load_magic()
                     db_state.status  = load_status()
+                    db_state.curses  = load_curses()
                     db_state.races   = load_races_list()
                     db_state.classes = load_classes_list()
                 except Exception:
@@ -3745,3 +4399,15 @@ def main(argv=None):
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
+
+

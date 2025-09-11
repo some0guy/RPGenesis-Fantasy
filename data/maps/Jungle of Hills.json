@@ -1006,9 +1006,15 @@
         "walkable": true,
         "npcs": [
           {
-            "subcategory": "monsters",
-            "id": "NP00000086",
-            "name": "Kess Nightrun",
+            "subcategory": "villains",
+            "id": "NP00001004",
+            "name": "Varenia Blackgilt",
+            "description": ""
+          },
+          {
+            "subcategory": "villains",
+            "id": "NP00001003",
+            "name": "Kaelira Voidpetal",
             "description": ""
           }
         ],

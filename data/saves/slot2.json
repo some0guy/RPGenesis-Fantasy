@@ -1,25 +1,32 @@
 {
   "schema": "rpgen.save@1",
   "version": 1,
-  "timestamp": "2025-08-31T01:59:23",
+  "timestamp": "2025-09-11T12:36:51",
   "map_id": "Jungle of Hills",
   "map_name": "Jungle of Hills",
   "pos": [
-    12,
-    8
+    5,
+    5
   ],
   "player": {
     "name": "Adventurer",
     "race": "Human",
     "role": "Wanderer",
+    "level": 1,
     "hp": 20,
     "max_hp": 20,
     "atk": [
       3,
       6
     ],
-    "stealth": 4,
+    "phy": 5,
     "dex": 5,
+    "vit": 5,
+    "arc": 5,
+    "kno": 5,
+    "ins": 4,
+    "soc": 5,
+    "fth": 5,
     "affinity": {},
     "romance_flags": {},
     "inventory": [
@@ -125,5 +132,6 @@
       "desc": "A common staff forged to our current spec."
     },
     "equipped_gear": {}
-  }
+  },
+  "playtime_s": 6
 }

@@ -6,10 +6,6 @@ from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Tuple, Callable
 
 import pygame
-try:
-    from pygame import gfxdraw as gfx
-except Exception:
-    gfx = None
 
 # -------------------- Paths & constants --------------------
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -22,7 +18,7 @@ TILE_IMG_DIR = os.path.join(ROOT_DIR, "assets", "images", "map_tiles")
 
 os.makedirs(MAP_DIR, exist_ok=True)
 
-NPC_SUBCATS   = ["allies", "enemies", "monsters", "animals", "citizens"]
+NPC_SUBCATS   = ["allies", "enemies", "monsters", "animals", "citizens", "villains"]
 ITEM_SUBCATS  = ["accessories", "armour", "clothing", "materials", "quest_items", "trinkets", "weapons"]
 
 TILE_SIZE_DEFAULT = 32
@@ -46,6 +42,10 @@ BTN_HOVER      = (73,80,99)
 INPUT_BG       = (18,19,23)
 DANGER         = (220, 66, 66)
 
+# Edge outline colors for outer map boundary
+EDGE_DARK  = DARK_WALKABLE  # inner dark stroke
+EDGE_LIGHT = GRID_LINE      # thin light outline
+
 # Encounter tint (RGBA)
 SAFE_TINT_RGBA   = (50, 180, 90, 60)
 DANGER_TINT_RGBA = (200, 70, 70, 60)
@@ -55,6 +55,7 @@ COL_RED    = (220,70,70)     # enemies
 COL_GREEN  = (80,200,120)    # allies
 COL_BLUE   = (80,150,240)    # citizens
 COL_PURPLE = (170,110,240)   # monsters
+COL_VIOLET = (190,120,255)   # villains
 COL_YELLOW = (245,210,80)    # animals
 COL_WHITE  = (240,240,240)   # items (non-quest)
 COL_ORANGE = (255,160,70)    # quest items
@@ -63,6 +64,7 @@ COL_PINK   = (255,105,180)   # links (hot pink)
 TYPE_DOT_COLORS = {
     "ally": COL_GREEN,
     "enemy": COL_RED,
+    "villain": COL_VIOLET,
     "citizen": COL_BLUE,
     "monster": COL_PURPLE,
     "animal": COL_YELLOW,
@@ -78,11 +80,10 @@ TOOLTIP_TEXT    = TEXT_MAIN
 
 # -------------------- Isometric settings --------------------
 # Angle of the diamond's side relative to the horizontal, in degrees.
-# 26.565° corresponds to a 2:1 ratio (classic isometric). Increase for
-# steeper tiles or decrease for a flatter look.
-ISO_ANGLE_DEG: float = 26.565  # retained (unused when squares enforced)
-# Rotation of the whole grid in degrees (0 keeps classic orientation).
-ISO_ROT_DEG: float = 0.0
+# Match the in-game renderer projection so editor looks identical
+# Game uses 35° tilt and -25° rotation (see RPGenesis-Fantasy.py)
+ISO_ANGLE_DEG: float = 35.0
+ISO_ROT_DEG: float = -25.0
 # Extrusion depth for cube sides relative to tile size
 CUBE_DEPTH_PCT: float = 0.35
 
@@ -613,6 +614,11 @@ class EditorScreen:
         self.offset_x = 60
         self.offset_y = 60
         self.selected: Optional[Tuple[int,int]] = None
+        # Auto-fit is optional; default off so mouse wheel zoom works normally
+        self.auto_fit: bool = False
+        self.zoom_scale: float = 0.80  # used only when auto_fit is True
+        # Default to top-down (face-down) view; no isometric projection
+        self.view_iso: bool = False
 
         # History
         self.history = History()
@@ -631,7 +637,7 @@ class EditorScreen:
         self.resize_h_inp = TextInput((825, 12, 60, 28), str(self.map.height))
         self.btn_resize   = Button((890, 12, 110, 28), "Apply Size", self.apply_resize)
 
-        # cursor mode: Select / Walls / Safety / Texture
+        # cursor mode: Select / Walls / Safety (simplified)
         self.left_click_mode = "select"
         self.btn_cycle_left_mode = Button((1010, 12, 180, 28), "Mode: Select", self.cycle_left_mode)
 
@@ -658,27 +664,7 @@ class EditorScreen:
         self.link_entry_inp = TextInput((1150, 180, 110, 26), "")
         self.btn_add_link   = Button((920, 214, 180, 28), "Add Link to Tile", self.add_link_to_selected)
 
-        # Texture painting: dropdown of PNGs in assets/images/map_tiles
-        try:
-            files = [f for f in os.listdir(TILE_IMG_DIR) if f.lower().endswith(".png")]
-        except Exception:
-            files = []
-        self.texture_files: List[str] = sorted(files)
-        default_tex = self.texture_files[0] if self.texture_files else ""
-        # Place above inspector section
-        self.dd_texture = Dropdown((920, 412, 260, 26), self.texture_files, value=default_tex, on_change=None, get_icon=self._get_texture_icon)
-        # texture cache: original images and scaled per tile_size
-        self._tex_images: Dict[str, pygame.Surface] = {}
-        self._tex_scaled: Dict[Tuple[str, int], pygame.Surface] = {}
-        for name in self.texture_files:
-            try:
-                surf = pygame.image.load(os.path.join(TILE_IMG_DIR, name)).convert_alpha()
-                self._tex_images[name] = surf
-            except Exception:
-                pass
-
-        # cached diamond masks per (w,h) for top faces
-        self._diamond_mask_cache: Dict[Tuple[int,int], pygame.Surface] = {}
+        # no diamond masks needed in simplified Top view
 
         # Tile Info (scrollable list)
         self.inspector_header_rect = pygame.Rect(900, 450, 380, 32)
@@ -719,38 +705,10 @@ class EditorScreen:
             self.list_box.set_items([])
 
     # ---------- helpers ----------
-    def _get_texture_icon(self, opt: str, size: int) -> Optional[pygame.Surface]:
-        try:
-            key = (opt, size)
-            tex = self._tex_scaled.get(key)
-            if tex is None:
-                base = self._tex_images.get(opt)
-                if base is None:
-                    path = os.path.join(TILE_IMG_DIR, opt)
-                    if os.path.exists(path):
-                        base = pygame.image.load(path).convert_alpha()
-                        self._tex_images[opt] = base
-                if base is not None:
-                    tex = pygame.transform.smoothscale(base, (size, size)).convert_alpha()
-                    self._tex_scaled[key] = tex
-            return tex
-        except Exception:
-            return None
+    # Iso/Top toggle removed for simplified editor
+    # Texture icon helper removed in simplified Top view
 
-    def _get_diamond_mask(self, w: int, h: int) -> pygame.Surface:
-        """Return a white-on-transparent diamond mask Surface of size (w,h).
-
-        Use BLEND_RGBA_MULT to clip textures/tints to the diamond area.
-        """
-        key = (int(w), int(h))
-        surf = self._diamond_mask_cache.get(key)
-        if surf is None:
-            surf = pygame.Surface((w, h), pygame.SRCALPHA)
-            hw, hh = w * 0.5, h * 0.5
-            pts = [(int(hw), 0), (w, int(hh)), (int(hw), h), (0, int(hh))]
-            pygame.draw.polygon(surf, (255,255,255,255), pts)
-            self._diamond_mask_cache[key] = surf
-        return surf
+    # diamond mask helper removed in simplified Top view
 
     def _apply_layout(self, surf):
         w, h = surf.get_size()
@@ -787,8 +745,6 @@ class EditorScreen:
         self.dd_link_map.rect.topleft = (sx, sy + 130)
         self.link_entry_inp.rect.topleft = (self.sidebar_rect.right - self.link_entry_inp.rect.w - 20, sy + 130)
         self.btn_add_link.rect.topleft = (sx, sy + 164)
-        # Texture picker
-        self.dd_texture.rect.topleft = (sx, sy + 362)
         # Inspector + encounter row
         self.inspector_header_rect = pygame.Rect(self.sidebar_rect.x, sy + 400, self.sidebar_rect.w, 32)
         self.btn_mark_safe.rect.topleft    = (self.sidebar_rect.x + 0,   sy + 404)
@@ -802,18 +758,16 @@ class EditorScreen:
     def any_dropdown_open(self) -> bool:
         return (
             self.dd_npc_sub.is_open() or self.dd_item_sub.is_open() or self.dd_link_map.is_open()
-            or getattr(self.dd_texture, 'is_open', lambda: False)()
         )
 
     def cycle_left_mode(self):
-        modes = ["select", "paint", "safety", "texture"]
+        modes = ["select", "paint", "safety"]
         idx = modes.index(self.left_click_mode)
         self.left_click_mode = modes[(idx+1)%len(modes)]
         label = {
             "select":"Mode: Select",
             "paint":"Mode: Walls",
             "safety":"Mode: Safety",
-            "texture":"Mode: Texture",
         }[self.left_click_mode]
         self.btn_cycle_left_mode.text = label
 
@@ -874,18 +828,7 @@ class EditorScreen:
         else:
             self.history.push(do, undo, label)
 
-    def _record_set_texture(self, x:int, y:int, tex: str, *, batch=False, label="texture"):
-        t = self.map.tiles[y][x]
-        old = getattr(t, 'texture', "")
-        new = tex
-        if old == new:
-            return
-        def do():  setattr(t, 'texture', new)
-        def undo(): setattr(t, 'texture', old)
-        if batch:
-            self.history.add_to_batch(do, undo)
-        else:
-            self.history.push(do, undo, label)
+    # texture editing removed in simplified view
 
     def _record_add_list_entry(self, lst: List[Dict[str,Any]], entry: Dict[str,Any], label="add"):
         def do():  lst.append(entry)
@@ -1074,6 +1017,9 @@ class EditorScreen:
         where tile_h = tile_w * tan(angle). Basis at 0° rot: ex=(+w/2, +h/2), ey=(-w/2, +h/2).
         """
         tile_w = float(int(self.tile_size))
+        # Face-down straight view: axis-aligned squares
+        if not getattr(self, 'view_iso', True):
+            return tile_w, 0.0, 0.0, tile_w
         # compute top diamond height from angle (guard against extreme small)
         ang_pitch = max(1e-3, math.radians(float(ISO_ANGLE_DEG)))
         tile_h = max(1.0, tile_w * math.tan(ang_pitch))
@@ -1096,8 +1042,11 @@ class EditorScreen:
         tile_h is derived from ISO_ANGLE_DEG as tile_h = tile_w * tan(angle).
         """
         tile_w = int(self.tile_size)
-        ang_pitch = max(1e-3, math.radians(float(ISO_ANGLE_DEG)))
-        tile_h = max(1, int(round(tile_w * math.tan(ang_pitch))))
+        if not getattr(self, 'view_iso', True):
+            tile_h = tile_w
+        else:
+            ang_pitch = max(1e-3, math.radians(float(ISO_ANGLE_DEG)))
+            tile_h = max(1, int(round(tile_w * math.tan(ang_pitch))))
         return tile_w, tile_h, tile_w * 0.5, tile_h * 0.5
 
     def _iso_center(self, x: float, y: float) -> Tuple[float, float]:
@@ -1116,46 +1065,28 @@ class EditorScreen:
         return [p0, p1, p2, p3]
 
     def tile_rect(self, x: int, y: int) -> pygame.Rect:
-        # Axis-aligned bounding box of the rotated diamond
-        exx, exy, eyx, eyy = self._basis()
-        cx, cy = self._iso_center(x, y)
-        pts = [
-            (cx - 0.5*exx - 0.5*eyx, cy - 0.5*exy - 0.5*eyy),
-            (cx + 0.5*exx - 0.5*eyx, cy + 0.5*exy - 0.5*eyy),
-            (cx + 0.5*exx + 0.5*eyx, cy + 0.5*exy + 0.5*eyy),
-            (cx - 0.5*exx + 0.5*eyx, cy - 0.5*exy + 0.5*eyy),
-        ]
-        minx = int(min(p[0] for p in pts)); maxx = int(max(p[0] for p in pts))
-        miny = int(min(p[1] for p in pts)); maxy = int(max(p[1] for p in pts))
-        return pygame.Rect(minx, miny, max(1, maxx-minx), max(1, maxy-miny))
+        """Axis-aligned tile rect in Top view."""
+        tile_w = int(self.tile_size)
+        return pygame.Rect(int(self.offset_x + x*tile_w), int(self.offset_y + y*tile_w), tile_w, tile_w)
 
     def _screen_to_world_float(self, sx: int, sy: int) -> Tuple[float, float]:
-        # Invert rotated square basis to get fractional tile coords
-        vx = sx - self.offset_x
-        vy = sy - self.offset_y
-        exx, exy, eyx, eyy = self._basis()
-        det = exx*eyy - exy*eyx
-        if abs(det) < 1e-6:
-            return 0.0, 0.0
-        # Solve A*[u;v] = [vx;vy], then subtract 0.5 to get tile index
-        u = ( eyy*vx - eyx*vy) / det
-        v = (-exy*vx + exx*vy) / det
+        """Fractional tile coords (x,y) relative to grid, Top view."""
+        tile_w = float(int(self.tile_size))
+        u = (sx - self.offset_x) / tile_w
+        v = (sy - self.offset_y) / tile_w
         return (u - 0.5), (v - 0.5)
 
     def _point_in_tile(self, x: int, y: int, sx: int, sy: int) -> bool:
-        # Use fractional coords check from inverse mapping
-        fx, fy = self._screen_to_world_float(sx, sy)
-        return (x <= fx < x+1) and (y <= fy < y+1)
+        return self.tile_rect(x, y).collidepoint((sx, sy))
 
     def screen_to_tile(self, sx: int, sy: int) -> Optional[Tuple[int,int]]:
-        fx, fy = self._screen_to_world_float(sx, sy)
-        bx, by = int(math.floor(fx)), int(math.floor(fy))
-        if 0 <= bx < self.map.width and 0 <= by < self.map.height and self._point_in_tile(bx, by, sx, sy):
-            return (bx, by)
-        for nx, ny in ((bx+1,by), (bx,by+1), (bx-1,by), (bx,by-1)):
-            if 0 <= nx < self.map.width and 0 <= ny < self.map.height:
-                if self._point_in_tile(nx, ny, sx, sy):
-                    return (nx, ny)
+        tile_w = int(self.tile_size)
+        if tile_w <= 0:
+            return None
+        tx = int(math.floor((sx - self.offset_x) / float(tile_w)))
+        ty = int(math.floor((sy - self.offset_y) / float(tile_w)))
+        if 0 <= tx < self.map.width and 0 <= ty < self.map.height:
+            return (tx, ty)
         return None
 
     # ---------- note modal ----------
@@ -1244,6 +1175,68 @@ class EditorScreen:
         surf.blit(tip, (x0, y0))
 
     # ---------- render ----------
+    def _auto_fit_view(self, surf):
+        """Center and scale the canvas to mirror the game but more zoomed out.
+
+        Uses (W+H) diamond extent heuristic like the in-game renderer and
+        centers the grid within the canvas area. Disabled while panning.
+        """
+        if not self.auto_fit or self.panning:
+            return
+        # Fit full map within canvas with margins
+        W, H = int(self.map.width), int(self.map.height)
+        if W <= 0 or H <= 0:
+            return
+        canvas_rect = self.canvas_rect
+        margin = 16
+        avail_w = max(1, canvas_rect.w - 2*margin)
+        avail_h = max(1, canvas_rect.h - 2*margin)
+
+        # Match game: tile_h = tile_w * tan(angle); target extent ~= (W+H)
+        ang_pitch = max(1e-3, math.radians(float(ISO_ANGLE_DEG)))
+        target = max(1, W + H)
+        tw_by_w = avail_w / float(target)
+        tw_by_h = (2.0 * avail_h) / (float(target) * math.tan(ang_pitch))
+        tw_raw = max(1.0, min(tw_by_w, tw_by_h))
+        tw = int(max(TILE_MIN, min(TILE_MAX, tw_raw * float(self.zoom_scale))))
+        # Only update if changed to avoid jitter
+        if tw != int(self.tile_size):
+            self.tile_size = tw
+
+        # Center the grid by computing its bounding box at offset=(0,0)
+        # and shifting so center matches canvas center.
+        exx, exy, eyx, eyy = self._basis()
+        def center_xy(ix:int, iy:int):
+            cx = (ix + 0.5) * exx + (iy + 0.5) * eyx
+            cy = (ix + 0.5) * exy + (iy + 0.5) * eyy
+            return cx, cy
+        corners = [
+            center_xy(0, 0),
+            center_xy(W-1, 0),
+            center_xy(W-1, H-1),
+            center_xy(0, H-1),
+        ]
+        # Each tile’s top diamond extends by 0.5*ex and 0.5*ey vectors
+        half_ex = (0.5*exx, 0.5*exy)
+        half_ey = (0.5*eyx, 0.5*eyy)
+        pts = []
+        for cx, cy in corners:
+            p0 = (cx - half_ex[0] - half_ey[0], cy - half_ex[1] - half_ey[1])
+            p1 = (cx + half_ex[0] - half_ey[0], cy + half_ex[1] - half_ey[1])
+            p2 = (cx + half_ex[0] + half_ey[0], cy + half_ex[1] + half_ey[1])
+            p3 = (cx - half_ex[0] + half_ey[0], cy - half_ex[1] + half_ey[1])
+            pts.extend((p0,p1,p2,p3))
+        if not pts:
+            return
+        minx = min(p[0] for p in pts); maxx = max(p[0] for p in pts)
+        miny = min(p[1] for p in pts); maxy = max(p[1] for p in pts)
+        grid_cx = (minx + maxx) * 0.5
+        grid_cy = (miny + maxy) * 0.5
+        canvas_cx = canvas_rect.x + canvas_rect.w * 0.5
+        canvas_cy = canvas_rect.y + canvas_rect.h * 0.5
+        self.offset_x = int(canvas_cx - grid_cx)
+        self.offset_y = int(canvas_cy - grid_cy)
+
     def draw_canvas(self, surf):
         # Update layout and use current canvas rect
         self._apply_layout(surf)
@@ -1251,30 +1244,47 @@ class EditorScreen:
         pygame.draw.rect(surf, CANVAS_BG, canvas_rect)
         clip = surf.get_clip()
         surf.set_clip(canvas_rect)
+        # Auto-fit view to mirror main game (optional)
+        if getattr(self, 'auto_fit', False):
+            self._auto_fit_view(surf)
 
         # Isometric tiles with rotation + 2.5D sides
         tile_w, tile_h, half_w, half_h = self._iso_dims()
         exx, exy, eyx, eyy = self._basis()
-        depth = max(4, int((tile_h) * CUBE_DEPTH_PCT))
+        is_iso = bool(getattr(self, 'view_iso', True))
+        depth = 0 if not is_iso else max(4, int((tile_h) * CUBE_DEPTH_PCT))
         EDGE_DARK  = (16,18,22)
         EDGE_LIGHT = (92,98,120)
 
+        # Depth-sort tiles by screen-space center Y so farther tiles draw first
+        draw_order: List[Tuple[float, int, int]] = []
         for y in range(self.map.height):
             for x in range(self.map.width):
-                cx, cy = self._iso_center(x, y)
-                # corners of the top square
-                p0 = (cx - 0.5*exx - 0.5*eyx, cy - 0.5*exy - 0.5*eyy)
-                p1 = (cx + 0.5*exx - 0.5*eyx, cy + 0.5*exy - 0.5*eyy)
-                p2 = (cx + 0.5*exx + 0.5*eyx, cy + 0.5*exy + 0.5*eyy)
-                p3 = (cx - 0.5*exx + 0.5*eyx, cy - 0.5*exy + 0.5*eyy)
+                _cx, cy = self._iso_center(x, y)
+                # Use cy (and y as a tie-breaker) for stable sorting
+                draw_order.append((cy, y, x))
+        draw_order.sort()
 
+        for _cy, y, x in draw_order:
+            cx, cy = self._iso_center(x, y)
+            # corners of the top square
+            p0 = (cx - 0.5*exx - 0.5*eyx, cy - 0.5*exy - 0.5*eyy)
+            p1 = (cx + 0.5*exx - 0.5*eyx, cy + 0.5*exy - 0.5*eyy)
+            p2 = (cx + 0.5*exx + 0.5*eyx, cy + 0.5*exy + 0.5*eyy)
+            p3 = (cx - 0.5*exx + 0.5*eyx, cy - 0.5*exy + 0.5*eyy)
+
+            # Simpler, clearer top-down style: solid fill in Top view
+            if not is_iso:
+                base_col = LIGHT_WALKABLE if self.map.tiles[y][x].walkable else IMPASSABLE
+            else:
                 base_col = (LIGHT_WALKABLE if (x+y)%2==0 else DARK_WALKABLE) if self.map.tiles[y][x].walkable else IMPASSABLE
 
-                # sides (extruded downward)
-                p0d = (p0[0], p0[1] + depth)
-                p1d = (p1[0], p1[1] + depth)
-                p2d = (p2[0], p2[1] + depth)
-                p3d = (p3[0], p3[1] + depth)
+            # sides (extruded downward)
+            p0d = (p0[0], p0[1] + depth)
+            p1d = (p1[0], p1[1] + depth)
+            p2d = (p2[0], p2[1] + depth)
+            p3d = (p3[0], p3[1] + depth)
+            if is_iso and depth > 0:
                 face_r = [(int(p1[0]),int(p1[1])),(int(p2[0]),int(p2[1])),(int(p2d[0]),int(p2d[1])),(int(p1d[0]),int(p1d[1]))]
                 face_f = [(int(p2[0]),int(p2[1])),(int(p3[0]),int(p3[1])),(int(p3d[0]),int(p3d[1])),(int(p2d[0]),int(p2d[1]))]
                 col_r = (int(base_col[0]*0.85), int(base_col[1]*0.85), int(base_col[2]*0.85))
@@ -1284,30 +1294,24 @@ class EditorScreen:
                 pygame.draw.lines(surf, EDGE_DARK, False, face_r + [face_r[0]], 2)
                 pygame.draw.lines(surf, EDGE_DARK, False, face_f + [face_f[0]], 2)
 
+            if not is_iso:
+                # Simple top-down fill: draw a solid square, with optional encounter tint
+                rect = pygame.Rect(int(cx - half_w), int(cy - half_h), int(tile_w), int(tile_w))
+                pygame.draw.rect(surf, base_col, rect)
+                # Apply green/red encounter tint for 'safe'/'danger'
+                enc = getattr(self.map.tiles[y][x], 'encounter', '')
+                if enc:
+                    tint = SAFE_TINT_RGBA if enc == 'safe' else DANGER_TINT_RGBA
+                    overlay = pygame.Surface((rect.w, rect.h), pygame.SRCALPHA)
+                    overlay.fill(tint)
+                    surf.blit(overlay, rect.topleft)
+            else:
                 # top surface with texture: rotate square then squash vertically to match tilt
                 # prepare square top (unrotated)
                 square = pygame.Surface((tile_w, tile_w), pygame.SRCALPHA)
                 square.fill((0,0,0,0))
                 pygame.draw.rect(square, base_col, (0,0,tile_w,tile_w))
-                try:
-                    tex_name = getattr(self.map.tiles[y][x], 'texture', "")
-                    if tex_name:
-                        key = (tex_name, tile_w, tile_w, 'square')
-                        tex = self._tex_scaled.get(key)
-                        if tex is None:
-                            base = self._tex_images.get(tex_name)
-                            if base is None:
-                                path = os.path.join(TILE_IMG_DIR, tex_name)
-                                if os.path.exists(path):
-                                    base = pygame.image.load(path).convert_alpha()
-                                    self._tex_images[tex_name] = base
-                            if base is not None:
-                                tex = pygame.transform.smoothscale(base, (tile_w, tile_w)).convert_alpha()
-                                self._tex_scaled[key] = tex
-                        if tex is not None:
-                            square.blit(tex, (0,0))
-                except Exception:
-                    pass
+                # textures removed in simplified view; use solid color only
 
                 # encounter tint overlay on top surface (pre-rotation)
                 enc = self.map.tiles[y][x].encounter
@@ -1318,9 +1322,9 @@ class EditorScreen:
                     square.blit(tint_surf, (0,0))
 
                 # rotate, then vertical squash to match tilt
-                rot_deg = float(ISO_ROT_DEG)
+                rot_deg = float(ISO_ROT_DEG if is_iso else 0.0)
                 rotated = pygame.transform.rotate(square, rot_deg) if abs(rot_deg) > 1e-3 else square
-                if tile_h != tile_w:
+                if is_iso and (tile_h != tile_w):
                     ratio = max(0.1, float(tile_h) / float(tile_w))
                     out_w, out_h = rotated.get_size()
                     out = pygame.transform.smoothscale(rotated, (out_w, max(1, int(out_h * ratio))))
@@ -1329,13 +1333,32 @@ class EditorScreen:
                 rect = out.get_rect(center=(int(cx), int(cy)))
                 surf.blit(out, rect)
 
-                # border + selection accent directly on main surface
-                top_poly = [(int(p0[0]),int(p0[1])),(int(p1[0]),int(p1[1])),(int(p2[0]),int(p2[1])),(int(p3[0]),int(p3[1]))]
-                # pixel-style double stroke outline (thicker)
-                pygame.draw.polygon(surf, EDGE_DARK, top_poly, 3)
-                pygame.draw.polygon(surf, EDGE_LIGHT, top_poly, 2)
-                if self.selected == (x, y):
-                    pygame.draw.polygon(surf, ACCENT, top_poly, 2)
+            # border + selection accent directly on main surface
+            top_poly = [(int(p0[0]),int(p0[1])),(int(p1[0]),int(p1[1])),(int(p2[0]),int(p2[1])),(int(p3[0]),int(p3[1]))]
+            if is_iso:
+                # Keep a lighter double-stroke for iso
+                pygame.draw.polygon(surf, EDGE_DARK, top_poly, 2)
+                pygame.draw.polygon(surf, EDGE_LIGHT, top_poly, 1)
+            # In Top view, grid is drawn separately after all tiles
+            if is_iso and self.selected == (x, y):
+                pygame.draw.polygon(surf, ACCENT, top_poly, 2)
+
+        # Draw grid overlay in Top view for clear full borders
+        if not is_iso and self.map.width > 0 and self.map.height > 0:
+            left = self.tile_rect(0, 0).left
+            top = self.tile_rect(0, 0).top
+            right = self.tile_rect(self.map.width - 1, 0).right
+            bottom = self.tile_rect(0, self.map.height - 1).bottom
+            # vertical lines
+            for gx in range(self.map.width + 1):
+                r0 = self.tile_rect(min(gx, self.map.width - 1), 0)
+                xpix = r0.left if gx < self.map.width else r0.right
+                pygame.draw.line(surf, GRID_LINE, (xpix, top), (xpix, bottom), 1)
+            # horizontal lines
+            for gy in range(self.map.height + 1):
+                r0 = self.tile_rect(0, min(gy, self.map.height - 1))
+                ypix = r0.top if gy < self.map.height else r0.bottom
+                pygame.draw.line(surf, GRID_LINE, (left, ypix), (right, ypix), 1)
 
         # overlays (centered colored dots)
         for y in range(self.map.height):
@@ -1347,11 +1370,12 @@ class EditorScreen:
                 has = set()
                 for e in t.npcs:
                     sub = (e.get("subcategory") or "").lower()
-                    if sub == "allies":   has.add("ally")
-                    elif sub == "enemies":  has.add("enemy")
-                    elif sub == "citizens": has.add("citizen")
-                    elif sub == "monsters": has.add("monster")
-                    elif sub == "animals":  has.add("animal")
+                    if sub == "allies":      has.add("ally")
+                    elif sub == "enemies":   has.add("enemy")
+                    elif sub == "villains":  has.add("villain")
+                    elif sub == "citizens":  has.add("citizen")
+                    elif sub == "monsters":  has.add("monster")
+                    elif sub == "animals":   has.add("animal")
                 if any((it.get("subcategory","").lower()=="quest_items") for it in t.items):
                     has.add("quest_item")
                 if any((it.get("subcategory","").lower()!="quest_items") for it in t.items):
@@ -1359,101 +1383,39 @@ class EditorScreen:
                 if t.links:
                     has.add("link")
 
-                order = ["enemy","ally","citizen","monster","animal","quest_item","item","link"]
+                order = ["enemy","villain","ally","citizen","monster","animal","quest_item","item","link"]
                 dots = [TYPE_DOT_COLORS[k] for k in order if k in has]
 
                 if dots:
+                    # Simple circle dots in rows inside the tile rect
                     pad = max(2, self.tile_size // 16)
                     n = len(dots)
-                    # Determine row distribution (centered), with special-cases
-                    if n <= 2:
-                        row_counts = [n]  # 1 or 2 side-by-side
-                    else:
-                        rows = math.ceil(math.sqrt(n))
-                        base = n // rows
-                        extra = n % rows
-                        # Put smaller rows on top for triangle-like layouts (e.g., 3 => [1,2])
-                        row_counts = [base] * (rows - extra) + [base + 1] * extra
-                    rows_count = len(row_counts)
-                    max_cols = max(row_counts)
-                    # Compute radius to fit all rows/cols with padding, but cap to a friendly max
-                    avail_w = self.tile_size - 2 * pad
-                    avail_h = self.tile_size - 2 * pad
-                    gap = max(2, self.tile_size // 16)
-                    if max_cols > 0:
-                        r_w = (avail_w - (max_cols - 1) * gap) / (2 * max_cols)
-                    else:
-                        r_w = self.tile_size // 8
-                    if rows_count > 0:
-                        r_h = (avail_h - (rows_count - 1) * gap) / (2 * rows_count)
-                    else:
-                        r_h = self.tile_size // 8
-                    radius = int(max(2, min(r_w, r_h, self.tile_size // 8)))
-                    # visual scale smaller
-                    r_eff = max(2, int(radius * float(DOT_SIZE_SCALE)))
-                    gap_x = 2 * r_eff + gap
-                    gap_y = 2 * r_eff + gap
-                    # Vertical start so rows are centered
-                    total_h = rows_count * (2 * radius) + (rows_count - 1) * gap
-                    start_y = r.y + (r.h - total_h) // 2 + radius
-                    idx = 0
+                    max_cols = 3
+                    cols = min(max_cols, n)
+                    rows = int(math.ceil(n / cols))
+                    avail_w = r.w - 2 * pad
+                    avail_h = r.h - 2 * pad
+                    radius = max(2, int(min(avail_w / (cols * 2.5), avail_h / (rows * 2.5), self.tile_size // 8) * float(DOT_SIZE_SCALE)))
+                    gap_x = max(2, int((avail_w - cols * 2 * radius) / max(1, cols - 1))) if cols > 1 else 0
+                    gap_y = max(2, int((avail_h - rows * 2 * radius) / max(1, rows - 1))) if rows > 1 else 0
+                    start_x = r.x + (r.w - (cols * (2 * radius) + (cols - 1) * gap_x)) // 2 + radius
+                    start_y = r.y + (r.h - (rows * (2 * radius) + (rows - 1) * gap_y)) // 2 + radius
+                    for i, colr in enumerate(dots):
+                        row_i = i // cols
+                        col_i = i % cols
+                        cx_d = start_x + col_i * (2 * radius + gap_x)
+                        cy_d = start_y + row_i * (2 * radius + gap_y)
+                        pygame.draw.circle(surf, colr, (int(cx_d), int(cy_d)), radius)
+                        pygame.draw.circle(surf, (10,10,12), (int(cx_d), int(cy_d)), radius, 1)
 
-                    # Prepare basis-aligned ellipse drawing to exactly match tile orientation
-                    exx, exy, eyx, eyy = self._basis()
-                    ex_norm = math.hypot(exx, exy)
-                    ey_norm = math.hypot(eyx, eyy)
-                    denom = max(ex_norm, ey_norm, 1e-6)
-                    scale = float(r_eff) / denom
-                    steps = max(28, int(20 + r_eff * 1.2))
-
-                    def _draw_flat_dot(cx_f: float, cy_f: float, color: Tuple[int,int,int]):
-                        pts = []
-                        for i2 in range(steps):
-                            t = (2.0 * math.pi) * (i2 / steps)
-                            dx = scale * (math.cos(t) * exx + math.sin(t) * eyx)
-                            dy = scale * (math.cos(t) * exy + math.sin(t) * eyy)
-                            pts.append((int(round(cx_f + dx)), int(round(cy_f + dy))))
-                        if gfx is not None:
-                            gfx.filled_polygon(surf, pts, color)
-                            gfx.aapolygon(surf, pts, (10,10,12))
-                        else:
-                            pygame.draw.polygon(surf, color, pts)
-                            pygame.draw.lines(surf, (10,10,12), False, pts + [pts[0]], 1)
-                    # Oriented layout along tile basis (u along ex, v along ey)
-                    u_margin = r_eff / max(ex_norm, 1e-6)
-                    v_margin = r_eff / max(ey_norm, 1e-6)
-                    u_max = max(0.0, 0.5 - u_margin - float(DOT_EDGE_INSET))
-                    v_max = max(0.0, 0.5 - v_margin - float(DOT_EDGE_INSET))
-                    ugap = (2*r_eff + gap) / max(ex_norm, 1e-6)
-                    vgap = (2*r_eff + gap) / max(ey_norm, 1e-6)
-                    base_sv = 2*r_eff / max(ey_norm, 1e-6) + vgap
-                    cx_c, cy_c = r.centerx, r.centery
-                    for ri, count in enumerate(row_counts):
-                        if rows_count > 1:
-                            max_spacing_v = (2*v_max) / (rows_count - 1)
-                            spacing_v = min(base_sv, max_spacing_v) * float(DOT_SPACING_SCALE)
-                            v_off = (ri - (rows_count - 1) * 0.5) * spacing_v
-                        else:
-                            v_off = 0.0
-                        base_su = 2*r_eff / max(ex_norm, 1e-6) + ugap
-                        if count > 1:
-                            max_spacing_u = (2*u_max) / (count - 1)
-                            spacing_u = min(base_su, max_spacing_u) * float(DOT_SPACING_SCALE)
-                        else:
-                            spacing_u = 0.0
-                        for cj in range(count):
-                            if idx >= n: break
-                            if count > 1:
-                                u_off = (cj - (count - 1) * 0.5) * spacing_u
-                            else:
-                                u_off = 0.0
-                            dcx = u_off * exx + v_off * eyx
-                            dcy = u_off * exy + v_off * eyy
-                            col = dots[idx]
-                            _draw_flat_dot(cx_c + dcx, cy_c + dcy, col)
-                            idx += 1
-
-        # selection outline already drawn per tile
+        # Selection highlight on top in Top view (clear and obvious)
+        if (not is_iso) and self.selected and (0 <= self.selected[0] < self.map.width) and (0 <= self.selected[1] < self.map.height):
+            rx, ry = self.selected
+            r = self.tile_rect(rx, ry)
+            hl = pygame.Surface((r.w, r.h), pygame.SRCALPHA)
+            hl.fill((ACCENT[0], ACCENT[1], ACCENT[2], 60))
+            surf.blit(hl, (r.x, r.y))
+            pygame.draw.rect(surf, ACCENT, r, 2)
 
         surf.set_clip(clip)
 
@@ -1495,33 +1457,7 @@ class EditorScreen:
             self.link_entry_inp.draw(surf)
             self.btn_add_link.draw(surf)
 
-        # texture selector (visible for texture mode)
-        if self.left_click_mode == "texture":
-            draw_text(surf, "Texture", (label_x, self.dd_texture.rect.y - 20), TEXT_DIM)
-            self.dd_texture.draw_base(surf)
-            # Mini preview box next to dropdown
-            prev_rect = pygame.Rect(self.dd_texture.rect.right + 8, self.dd_texture.rect.y, self.dd_texture.rect.h, self.dd_texture.rect.h)
-            pygame.draw.rect(surf, PANEL_BG_DARK, prev_rect, border_radius=6)
-            pygame.draw.rect(surf, GRID_LINE, prev_rect, 1, border_radius=6)
-            tex_name = getattr(self.dd_texture, 'value', "")
-            if tex_name:
-                try:
-                    key = (tex_name, prev_rect.h)
-                    tex = self._tex_scaled.get(key)
-                    if tex is None:
-                        base = self._tex_images.get(tex_name)
-                        if base is None:
-                            path = os.path.join(TILE_IMG_DIR, tex_name)
-                            if os.path.exists(path):
-                                base = pygame.image.load(path).convert_alpha()
-                                self._tex_images[tex_name] = base
-                        if base is not None:
-                            tex = pygame.transform.smoothscale(base, (prev_rect.w, prev_rect.h))
-                            self._tex_scaled[key] = tex
-                    if tex is not None:
-                        surf.blit(tex, (prev_rect.x, prev_rect.y))
-                except Exception:
-                    pass
+        # texture selector removed in simplified Top view
 
         # inspector header & scroll list (Tile Info)
         pygame.draw.rect(surf, PANEL_BG_DARK, self.inspector_header_rect, border_radius=8)
@@ -1543,7 +1479,7 @@ class EditorScreen:
         self._rebuild_scroll_items()
         self.scroll_list.draw(surf)
 
-        # Draw outer map boundary with bold pixel-style outline
+        # Draw outer map boundary (simplified in Top view)
         if self.map.width > 0 and self.map.height > 0:
             exx, exy, eyx, eyy = self._basis()
             def center_xy(ix:int, iy:int):
@@ -1558,9 +1494,12 @@ class EditorScreen:
             p_bottom = (c11x + 0.5*exx + 0.5*eyx, c11y + 0.5*exy + 0.5*eyy)
             p_left   = (c01x - 0.5*exx + 0.5*eyx, c01y - 0.5*exy + 0.5*eyy)
             map_poly = [(int(p_top[0]), int(p_top[1])), (int(p_right[0]), int(p_right[1])), (int(p_bottom[0]), int(p_bottom[1])), (int(p_left[0]), int(p_left[1]))]
-            pygame.draw.polygon(surf, (8,9,12), map_poly, 5)
-            pygame.draw.polygon(surf, EDGE_DARK, map_poly, 3)
-            pygame.draw.polygon(surf, EDGE_LIGHT, map_poly, 1)
+            if getattr(self, 'view_iso', True):
+                pygame.draw.polygon(surf, (8,9,12), map_poly, 4)
+                pygame.draw.polygon(surf, EDGE_DARK, map_poly, 2)
+                pygame.draw.polygon(surf, EDGE_LIGHT, map_poly, 1)
+            else:
+                pygame.draw.polygon(surf, EDGE_LIGHT, map_poly, 1)
 
         # Note button
         self.btn_edit_note.draw(surf)
@@ -1576,9 +1515,7 @@ class EditorScreen:
             self.dd_item_sub.draw_popup(surf)
         else:
             self.dd_link_map.draw_popup(surf)
-        # texture dropdown popup
-        if self.left_click_mode == "texture":
-            self.dd_texture.draw_popup(surf)
+        # no texture dropdown popup in simplified view
 
     def draw(self, surf):
         self._apply_layout(surf)
@@ -1648,9 +1585,7 @@ class EditorScreen:
             self.dd_item_sub.handle(event)
         else:
             self.dd_link_map.handle(event)
-        # texture dropdown input
-        if self.left_click_mode == "texture":
-            self.dd_texture.handle(event)
+        # no texture dropdown input in simplified view
 
         dropdown_open = self.any_dropdown_open()
 
@@ -1723,22 +1658,7 @@ class EditorScreen:
                     if t:
                         self._record_tile_walkable(*t, to_walk, batch=True)
                         self.selected = t
-            elif self.left_click_mode == "texture":
-                if event.button in (1,3):
-                    self.left_dragging = True
-                    self.painting_button = event.button
-                    if not self.painting_batch_active:
-                        self.painting_batch_active = True
-                        self.history.begin_batch("texture_drag")
-                    t = self.screen_to_tile(*event.pos)
-                    if t:
-                        if event.button == 3:
-                            self._record_set_texture(*t, "", batch=True)
-                        else:
-                            tex = getattr(self.dd_texture, 'value', "")
-                            if tex:
-                                self._record_set_texture(*t, tex, batch=True)
-                        self.selected = t
+            # texture mode removed
 
         elif event.type == pygame.MOUSEMOTION and self.left_dragging and self.left_click_mode == "paint":
             t = self.screen_to_tile(*event.pos)
@@ -1754,16 +1674,7 @@ class EditorScreen:
                     self._record_set_encounter(*t, state, batch=True)
                     self.selected = t
 
-        elif event.type == pygame.MOUSEMOTION and self.left_dragging and self.left_click_mode == "texture":
-                t = self.screen_to_tile(*event.pos)
-                if t:
-                    if getattr(self, 'painting_button', 1) == 3:
-                        self._record_set_texture(*t, "", batch=True)
-                    else:
-                        tex = getattr(self.dd_texture, 'value', "")
-                        if tex:
-                            self._record_set_texture(*t, tex, batch=True)
-                    self.selected = t
+        # no texture drag handling
 
 
 
@@ -1777,18 +1688,16 @@ class EditorScreen:
         elif event.type == pygame.MOUSEWHEEL:
             mouse_x, mouse_y = get_mouse_pos()
             if canvas_rect.collidepoint((mouse_x, mouse_y)):
-                # keep the tile under cursor fixed while zooming
-                fx, fy = self._screen_to_world_float(mouse_x, mouse_y)
-                old_ts = self.tile_size
+                # keep the tile under cursor fixed while zooming (top-down)
+                old_ts = float(self.tile_size)
+                u_old = (mouse_x - self.offset_x) / max(1.0, old_ts)
+                v_old = (mouse_y - self.offset_y) / max(1.0, old_ts)
                 zoom_factor = 1.1 if event.y > 0 else (1/1.1)
-                new_ts = max(TILE_MIN, min(TILE_MAX, int(old_ts * zoom_factor)))
-                if new_ts != old_ts:
+                new_ts = int(max(TILE_MIN, min(TILE_MAX, int(old_ts * zoom_factor))))
+                if new_ts != int(old_ts):
                     self.tile_size = new_ts
-                    exx, exy, eyx, eyy = self._basis()
-                    cx = (fx + 0.5) * exx + (fy + 0.5) * eyx
-                    cy = (fx + 0.5) * exy + (fy + 0.5) * eyy
-                    self.offset_x = int(mouse_x - cx)
-                    self.offset_y = int(mouse_y - cy)
+                    self.offset_x = int(mouse_x - u_old * float(new_ts))
+                    self.offset_y = int(mouse_y - v_old * float(new_ts))
 
     def update(self, dt):
         self.name_inp.update(dt)

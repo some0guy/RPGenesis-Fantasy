@@ -1,0 +1,611 @@
+{
+  "version": "3.0.0",
+  "attacks": [
+    {
+      "id": "AT00000001",
+      "name": "Bite",
+      "summary": "Sink your teeth; heals on hit if the target bleeds.",
+      "type": "melee",
+      "tags": [
+        "natural",
+        "vampiric"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)",
+          "bonus": 0
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "piercing"
+            ],
+            "lifesteal": "50% of damage (if living)"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Vampire",
+          "Ghoul"
+        ]
+      }
+    },
+    {
+      "id": "AT00000002",
+      "name": "Claw",
+      "summary": "Rake enemies with sharpened claws.",
+      "type": "melee",
+      "tags": [
+        "natural"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "slashing"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Ghoul",
+          "Lycanthrope"
+        ]
+      }
+    },
+    {
+      "id": "AT00000003",
+      "name": "Chill Touch",
+      "summary": "Necrotic touch that saps vitality.",
+      "type": "touch",
+      "tags": [
+        "necrotic"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Arc}",
+            "types": [
+              "necrotic"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Weakened",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Wraith",
+          "Undead"
+        ]
+      }
+    },
+    {
+      "id": "AT00000004",
+      "name": "Soulfire Bolt",
+      "summary": "Necrotic flame that ignores disease resistance.",
+      "type": "spell",
+      "tags": [
+        "necrotic",
+        "ranged"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "2d6 + {Arc}",
+            "types": [
+              "necrotic"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Lich"
+        ]
+      }
+    },
+    {
+      "id": "AT00000005",
+      "name": "Siren Song",
+      "summary": "A hypnotic aria that dazes foes.",
+      "type": "shout",
+      "tags": [
+        "sonic",
+        "control"
+      ],
+      "target": {
+        "scope": "all enemies"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Insight (Ins)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Dazed",
+            "duration": "1 turn",
+            "save_ends": true
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Siren"
+        ]
+      }
+    },
+    {
+      "id": "AT00000006",
+      "name": "Shriek",
+      "summary": "A bone-splitting scream that damages creatures and objects.",
+      "type": "shout",
+      "tags": [
+        "sonic"
+      ],
+      "target": {
+        "scope": "all enemies"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "2d6 + {Arc}",
+            "types": [
+              "sonic"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Shrieker"
+        ]
+      }
+    },
+    {
+      "id": "AT00000007",
+      "name": "Petrifying Gaze",
+      "summary": "Lock eyes and turn them to stone if their will fails.",
+      "type": "technique",
+      "tags": [
+        "gaze",
+        "petrify"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Ins}"
+        }
+      },
+      "components": [
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Petrified",
+            "duration": "save ends"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Gorgon"
+        ]
+      }
+    },
+    {
+      "id": "AT00000008",
+      "name": "Venom Breath",
+      "summary": "A spray of venomous mist that poisons foes.",
+      "type": "breath",
+      "tags": [
+        "poison"
+      ],
+      "target": {
+        "scope": "all enemies"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "2d6",
+            "types": [
+              "poison"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Poisoned",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Basilisk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000009",
+      "name": "Constrict",
+      "summary": "Wrap around and crush with immense strength.",
+      "type": "melee",
+      "tags": [
+        "grapple"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Physique (Phy)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Grappled",
+            "duration": "ongoing"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Lamia"
+        ]
+      }
+    },
+    {
+      "id": "AT00000010",
+      "name": "Dive Talons",
+      "summary": "A swooping strike that hits hardest with momentum.",
+      "type": "technique",
+      "tags": [
+        "physical"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "slashing"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Harpy"
+        ]
+      }
+    },
+    {
+      "id": "AT00000011",
+      "name": "Twin-Tail Swipe",
+      "summary": "A double strike with the tails; second hit weaker.",
+      "type": "melee",
+      "tags": [
+        "natural",
+        "multi-hit"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d4 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ],
+            "notes": "Second tail"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Nekomata"
+        ]
+      }
+    },
+    {
+      "id": "AT00000012",
+      "name": "Foxfire",
+      "summary": "A flickering ghost-flame that clings to the target.",
+      "type": "spell",
+      "tags": [
+        "fire",
+        "dot"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Arcane (Arc)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d4 + {Arc}",
+            "types": [
+              "fire"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Ignited",
+            "duration": "2 turns"
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Kitsune"
+        ]
+      }
+    },
+    {
+      "id": "AT00000013",
+      "name": "Trident Thrust",
+      "summary": "A powerful underwater thrust with a trident.",
+      "type": "weapon",
+      "tags": [
+        "piercing"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d8 + {Phy}",
+            "types": [
+              "piercing"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "race": [
+          "Merfolk"
+        ]
+      }
+    },
+    {
+      "id": "AT00000014",
+      "name": "Shield Bash",
+      "summary": "Strike with shield, knocking the target back.",
+      "type": "melee",
+      "tags": [
+        "bludgeoning",
+        "control"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Physique (Phy)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d4 + {Phy}",
+            "types": [
+              "bludgeoning"
+            ]
+          }
+        },
+        {
+          "kind": "effect",
+          "effect": {
+            "name": "Knockback",
+            "duration": "instant"
+          }
+        }
+      ]
+    },
+    {
+      "id": "AT00000015",
+      "name": "Wispfade Strike",
+      "summary": "A chilling strike advantaged in dim light.",
+      "type": "melee",
+      "tags": [
+        "cold"
+      ],
+      "target": {
+        "scope": "single enemy"
+      },
+      "resolution": {
+        "mode": "to_hit",
+        "to_hit": {
+          "stat": "Technique (Tec)"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d6 + {Phy}",
+            "types": [
+              "cold"
+            ]
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Shade"
+        ]
+      }
+    },
+    {
+      "id": "AT00000016",
+      "name": "Grave Dust",
+      "summary": "A cloud of necrotic dust that weakens vitality.",
+      "type": "spell",
+      "tags": [
+        "necrotic"
+      ],
+      "target": {
+        "scope": "all enemies"
+      },
+      "resolution": {
+        "mode": "save",
+        "save": {
+          "stat": "Vitality (Vit)",
+          "dc": "10 + {Arc}"
+        }
+      },
+      "components": [
+        {
+          "kind": "damage",
+          "damage": {
+            "roll": "1d4 + {Arc}",
+            "types": [
+              "necrotic"
+            ]
+          }
+        },
+        {
+          "kind": "condition",
+          "condition": {
+            "name": "Weakened",
+            "duration": "1 turn"
+          }
+        }
+      ],
+      "prerequisites": {
+        "curse": [
+          "Undead",
+          "Lich"
+        ]
+      }
+    }
+  ]
+}
