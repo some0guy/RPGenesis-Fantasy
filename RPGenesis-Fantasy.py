@@ -1431,7 +1431,21 @@ def draw_panel(surf, game):
                         t.encounter.spotted = True
                 except Exception:
                     pass
-                game.start_combat(t.encounter.enemy)
+                # Collect all hostile NPCs on this tile if present
+                hostiles = []
+                try:
+                    def _is_enemy(e: Dict) -> bool:
+                        sub = (e.get('subcategory') or '').lower()
+                        return sub in ('enemies','monsters','villains','vilains') or bool(e.get('hostile'))
+                    for e in (t.encounter.npcs or []):
+                        if isinstance(e, dict) and _is_enemy(e):
+                            hostiles.append(e)
+                except Exception:
+                    pass
+                if hostiles:
+                    game.start_combat_group(hostiles)
+                else:
+                    game.start_combat(t.encounter.enemy)
             add("Attack", _attack_now)
             # When enemy is unaware, offer a single combined avoid option
             if not t.encounter.spotted:
@@ -1573,19 +1587,52 @@ def draw_combat_overlay(surf, game):
         pass
     # (frames already drawn above)
 
-    # Enemy panel (now on the right)
-    enemy = getattr(game, 'current_enemy', None) or (getattr(game.tile().encounter, 'enemy', None) if game.tile().encounter else None)
-    ehp_cur = int(getattr(game, 'current_enemy_hp', 0) or (enemy.get('hp', 12) if isinstance(enemy, dict) else 0))
-    ehp_max = int((enemy.get('hp', ehp_cur) if isinstance(enemy, dict) else ehp_cur) or max(1, ehp_cur))
+    # Enemy panel (now on the right) supports multiple enemies
+    enemies_list = list(getattr(game, 'current_enemies', []) or [])
+    if not enemies_list:
+        enemy = getattr(game, 'current_enemy', None) or (getattr(game.tile().encounter, 'enemy', None) if game.tile().encounter else None)
+        if enemy:
+            enemies_list = [enemy]
     ex = right.x + 12; ey = right.y + 12
-    if enemy:
+    for idx_e, enemy in enumerate(enemies_list):
+        ehp_cur = 0
+        ehp_max = 0
+        try:
+            if hasattr(game, 'current_enemies') and hasattr(game, 'current_enemies_hp') and game.current_enemies:
+                # derive hp from parallel list when available
+                if idx_e < len(game.current_enemies_hp):
+                    ehp_cur = int(game.current_enemies_hp[idx_e])
+                    ehp_max = int(enemy.get('hp', ehp_cur) or ehp_cur)
+                else:
+                    ehp_cur = int(enemy.get('hp', 12)); ehp_max = ehp_cur
+            else:
+                ehp_cur = int(getattr(game, 'current_enemy_hp', 0) or (enemy.get('hp', 12) if isinstance(enemy, dict) else 0))
+                ehp_max = int((enemy.get('hp', ehp_cur) if isinstance(enemy, dict) else ehp_cur) or max(1, ehp_cur))
+        except Exception:
+            ehp_cur = int(enemy.get('hp', 12) if isinstance(enemy, dict) else 12); ehp_max = ehp_cur
         ename = str(enemy.get('name', 'Enemy'))
         surf.blit(stat_name_font.render(ename, True, (230,230,245)), (ex, ey)); ey += 14
         # Enemy race (if available)
         try:
-            erace = str(enemy.get('race') or '')
+            erace = str(enemy.get('race') or enemy.get('Race') or '')
         except Exception:
             erace = ''
+        # Fallback: lookup enemy by id/name in loaded NPCs to get race
+        if not erace:
+            try:
+                eid = str(enemy.get('id') or '')
+                ename_lc = str(enemy.get('name') or '').lower()
+                for _n in (getattr(game, 'npcs', []) or []):
+                    if not isinstance(_n, dict):
+                        continue
+                    nid = str(_n.get('id') or '')
+                    nm  = str(_n.get('name') or '').lower()
+                    if (eid and nid == eid) or (ename_lc and nm == ename_lc):
+                        erace = str(_n.get('race') or _n.get('Race') or '')
+                        if erace:
+                            break
+            except Exception:
+                pass
         if erace:
             surf.blit(stat_label_font.render(f"Race: {erace}", True, (200,205,220)), (ex, ey)); ey += 14
         # HP bar (compact)
@@ -1616,7 +1663,9 @@ def draw_combat_overlay(surf, game):
         desc = str(enemy.get('desc') or enemy.get('description') or '')
         if desc:
             draw_text(surf, desc, (ex, ey), max_w=right.w - 24)
-    else:
+        # Spacing between enemies
+        ey += 10
+    if not enemies_list:
         draw_text(surf, "No target.", (ex, ey))
 
     # Allies (left sidebar): player stats
@@ -1972,27 +2021,30 @@ def _draw_battlefield_canvas(surf, game, bf: 'pg.Rect', hover_side: Optional[str
         pcands = []
     allies.append(_pick_key(pcands + ['images/player/player.png'], 'images/player/player.png'))
 
-    # Enemies: current encounter enemy, with default fallback
-    enemy = getattr(game, 'current_enemy', None) or (getattr(game.tile().encounter, 'enemy', None) if game.tile().encounter else None)
-    if enemy:
-        try:
-            slug = _slugify_name(enemy.get('name') or enemy.get('id') or 'enemy')
-        except Exception:
-            slug = 'enemy'
-        eid = str(enemy.get('id') or '')
-        ecands: List[str] = []
-        # Prefer explicit sprite/image if present
-        for k in ('sprite','image','portrait','img'):
-            v = enemy.get(k)
-            if isinstance(v, str) and v.strip():
-                ecands.append(v.strip())
-        for sub in ('images/enemies','images/npcs','images'):
-            ecands.append(f"{sub}/{slug}.png"); ecands.append(f"{sub}/{slug}.jpg")
-            if eid:
-                ecands.append(f"{sub}/{eid}.png"); ecands.append(f"{sub}/{eid}.jpg")
-        enemies.append(_pick_key(ecands, 'images/enemies/default.png'))
+    # Enemies: support multiple current enemies; else single fallback
+    cur_list = list(getattr(game, 'current_enemies', []) or [])
+    if not cur_list:
+        enemy = getattr(game, 'current_enemy', None) or (getattr(game.tile().encounter, 'enemy', None) if game.tile().encounter else None)
+        if enemy:
+            cur_list = [enemy]
+    if cur_list:
+        for enemy in cur_list:
+            try:
+                slug = _slugify_name(enemy.get('name') or enemy.get('id') or 'enemy')
+            except Exception:
+                slug = 'enemy'
+            eid = str(enemy.get('id') or '')
+            ecands: List[str] = []
+            for k in ('sprite','image','portrait','img'):
+                v = enemy.get(k)
+                if isinstance(v, str) and v.strip():
+                    ecands.append(v.strip())
+            for sub in ('images/enemies','images/npcs','images'):
+                ecands.append(f"{sub}/{slug}.png"); ecands.append(f"{sub}/{slug}.jpg")
+                if eid:
+                    ecands.append(f"{sub}/{eid}.png"); ecands.append(f"{sub}/{eid}.jpg")
+            enemies.append(_pick_key(ecands, 'images/enemies/default.png'))
     else:
-        # No active enemy; keep any demo lineup
         enemies = list(getattr(game, 'bf_enemies', []) or [])
 
     # Draw team helper
@@ -3777,11 +3829,37 @@ class Game:
             self.say("You share a few words.")
 
     def start_combat(self, enemy):
-        self.current_enemy = enemy; self.current_enemy_hp = enemy.get("hp", 12)
+        # Backward-compatible single-target combat
+        self.current_enemies = [enemy]
+        self.current_enemies_hp = [int(enemy.get("hp", 12))]
+        self.current_enemy = enemy; self.current_enemy_hp = int(enemy.get("hp", 12))
         self.current_enemy.setdefault('status', [])
         self.current_enemy.setdefault('dex', 4)
         self.current_enemy.setdefault('will', 4)
         self.current_enemy.setdefault('greed', 4)
+        self.can_bribe = False
+        self.mode = "combat"
+
+    def start_combat_group(self, enemies: List[Dict]):
+        # Initialize group combat with multiple enemies
+        self.current_enemies = []
+        self.current_enemies_hp = []
+        for e in (enemies or []):
+            if not isinstance(e, dict):
+                continue
+            e.setdefault('status', [])
+            e.setdefault('dex', 4)
+            e.setdefault('will', 4)
+            e.setdefault('greed', 4)
+            self.current_enemies.append(e)
+            try:
+                self.current_enemies_hp.append(int(e.get('hp', 12)))
+            except Exception:
+                self.current_enemies_hp.append(12)
+        if not self.current_enemies:
+            return
+        self.current_enemy = self.current_enemies[0]
+        self.current_enemy_hp = self.current_enemies_hp[0]
         self.can_bribe = False
         self.mode = "combat"
 
@@ -3815,8 +3893,25 @@ class Game:
         self._maybe_apply_status('melee', self.current_enemy, wep)
         if self.current_enemy_hp <= 0:
             self.say("Enemy defeated!")
-            t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
-            self.current_enemy = None; self.mode = "explore"
+            try:
+                idx = self.current_enemies.index(self.current_enemy) if hasattr(self, 'current_enemies') else 0
+            except Exception:
+                idx = 0
+            # Remove defeated enemy from group
+            try:
+                if hasattr(self, 'current_enemies'):
+                    self.current_enemies.pop(idx)
+                if hasattr(self, 'current_enemies_hp') and len(self.current_enemies_hp) > idx:
+                    self.current_enemies_hp.pop(idx)
+            except Exception:
+                pass
+            if getattr(self, 'current_enemies', []) and len(self.current_enemies) > 0:
+                # Next enemy becomes current
+                self.current_enemy = self.current_enemies[0]
+                self.current_enemy_hp = int(self.current_enemies_hp[0] if self.current_enemies_hp else int(self.current_enemy.get('hp',12)))
+            else:
+                t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
+                self.current_enemy = None; self.mode = "explore"
         else:
             self.enemy_turn()
 
@@ -3833,8 +3928,23 @@ class Game:
         self._maybe_apply_status('spell', self.current_enemy, self.player.equipped_focus)
         if self.current_enemy_hp <= 0:
             self.say("Enemy crumples.")
-            t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
-            self.current_enemy = None; self.mode = "explore"
+            try:
+                idx = self.current_enemies.index(self.current_enemy) if hasattr(self, 'current_enemies') else 0
+            except Exception:
+                idx = 0
+            try:
+                if hasattr(self, 'current_enemies'):
+                    self.current_enemies.pop(idx)
+                if hasattr(self, 'current_enemies_hp') and len(self.current_enemies_hp) > idx:
+                    self.current_enemies_hp.pop(idx)
+            except Exception:
+                pass
+            if getattr(self, 'current_enemies', []) and len(self.current_enemies) > 0:
+                self.current_enemy = self.current_enemies[0]
+                self.current_enemy_hp = int(self.current_enemies_hp[0] if self.current_enemies_hp else int(self.current_enemy.get('hp',12)))
+            else:
+                t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
+                self.current_enemy = None; self.mode = "explore"
         else:
             self.enemy_turn()
 
