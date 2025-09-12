@@ -1,0 +1,870 @@
+[
+  {
+    "id": "CL00000001",
+    "name": "Titan",
+    "primary_stats": [
+      "Phy",
+      "Vit"
+    ],
+    "stat_block": {
+      "Phy": 15,
+      "Tec": 5,
+      "Vit": 15,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Crippled": "+10%",
+      "Exhausted": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000002",
+    "name": "Marksman",
+    "primary_stats": [
+      "Phy",
+      "Tec"
+    ],
+    "stat_block": {
+      "Phy": 15,
+      "Tec": 15,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Crippled": "+10%",
+      "Slowed": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000003",
+    "name": "Spellsword",
+    "primary_stats": [
+      "Phy",
+      "Arc"
+    ],
+    "stat_block": {
+      "Phy": 15,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 15,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Crippled": "+10%",
+      "Suppressed": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000004",
+    "name": "Sentinel",
+    "primary_stats": [
+      "Phy",
+      "Kno"
+    ],
+    "stat_block": {
+      "Phy": 15,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 15,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Crippled": "+10%",
+      "Distracted": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000005",
+    "name": "Wayfarer",
+    "primary_stats": [
+      "Phy",
+      "Ins"
+    ],
+    "stat_block": {
+      "Phy": 15,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 15,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Crippled": "+10%",
+      "Deafened": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000006",
+    "name": "Champion",
+    "primary_stats": [
+      "Phy",
+      "Soc"
+    ],
+    "stat_block": {
+      "Phy": 15,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 15,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Crippled": "+10%",
+      "Charmed": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000007",
+    "name": "Rogue",
+    "primary_stats": [
+      "Tec",
+      "Vit"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 15,
+      "Vit": 15,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Slowed": "+10%",
+      "Exhausted": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000008",
+    "name": "Engineer",
+    "primary_stats": [
+      "Tec",
+      "Arc"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 15,
+      "Vit": 5,
+      "Arc": 15,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Slowed": "+10%",
+      "Suppressed": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000009",
+    "name": "Archivist",
+    "primary_stats": [
+      "Tec",
+      "Kno"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 15,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 15,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Slowed": "+10%",
+      "Distracted": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000010",
+    "name": "Ranger",
+    "primary_stats": [
+      "Tec",
+      "Ins"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 15,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 15,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Slowed": "+10%",
+      "Deafened": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000011",
+    "name": "Bard",
+    "primary_stats": [
+      "Tec",
+      "Soc"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 15,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 15,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Slowed": "+10%",
+      "Charmed": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000012",
+    "name": "Healer",
+    "primary_stats": [
+      "Vit",
+      "Arc"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 15,
+      "Arc": 15,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Exhausted": "+10%",
+      "Suppressed": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000013",
+    "name": "Druid",
+    "primary_stats": [
+      "Vit",
+      "Kno"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 15,
+      "Arc": 5,
+      "Kno": 15,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Exhausted": "+10%",
+      "Distracted": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000014",
+    "name": "Oracle",
+    "primary_stats": [
+      "Vit",
+      "Ins"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 15,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 15,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Exhausted": "+10%",
+      "Deafened": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000015",
+    "name": "Guardian",
+    "primary_stats": [
+      "Vit",
+      "Soc"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 15,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 15,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Exhausted": "+10%",
+      "Charmed": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000016",
+    "name": "Wizard",
+    "primary_stats": [
+      "Arc",
+      "Kno"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 15,
+      "Kno": 15,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Suppressed": "+10%",
+      "Distracted": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000017",
+    "name": "Sorcerer",
+    "primary_stats": [
+      "Arc",
+      "Ins"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 15,
+      "Kno": 5,
+      "Ins": 15,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Suppressed": "+10%",
+      "Deafened": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000018",
+    "name": "Magician",
+    "primary_stats": [
+      "Arc",
+      "Soc"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 15,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 15,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Suppressed": "+10%",
+      "Charmed": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000019",
+    "name": "Sage",
+    "primary_stats": [
+      "Kno",
+      "Ins"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 15,
+      "Ins": 15,
+      "Soc": 5,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Distracted": "+10%",
+      "Deafened": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000020",
+    "name": "Envoy",
+    "primary_stats": [
+      "Kno",
+      "Soc"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 15,
+      "Ins": 5,
+      "Soc": 15,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Distracted": "+10%",
+      "Charmed": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000021",
+    "name": "Mystic",
+    "primary_stats": [
+      "Ins",
+      "Soc"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 15,
+      "Soc": 15,
+      "Fth": 5
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Deafened": "+10%",
+      "Charmed": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000022",
+    "name": "Crusader",
+    "primary_stats": [
+      "Phy",
+      "Fth"
+    ],
+    "stat_block": {
+      "Phy": 15,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 15
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Crippled": "+10%",
+      "Marked": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000023",
+    "name": "Paragon",
+    "primary_stats": [
+      "Tec",
+      "Fth"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 15,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 15
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Slowed": "+10%",
+      "Marked": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000024",
+    "name": "Anointed",
+    "primary_stats": [
+      "Arc",
+      "Fth"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 15,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 15
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Suppressed": "+10%",
+      "Marked": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000025",
+    "name": "Martyr",
+    "primary_stats": [
+      "Vit",
+      "Fth"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 15,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 15
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Exhausted": "+10%",
+      "Marked": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000026",
+    "name": "Theologian",
+    "primary_stats": [
+      "Kno",
+      "Fth"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 15,
+      "Ins": 5,
+      "Soc": 5,
+      "Fth": 15
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Distracted": "+10%",
+      "Marked": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000027",
+    "name": "Prophet",
+    "primary_stats": [
+      "Ins",
+      "Fth"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 15,
+      "Soc": 5,
+      "Fth": 15
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Deafened": "+10%",
+      "Marked": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  },
+  {
+    "id": "CL00000028",
+    "name": "Evangelist",
+    "primary_stats": [
+      "Soc",
+      "Fth"
+    ],
+    "stat_block": {
+      "Phy": 5,
+      "Tec": 5,
+      "Vit": 5,
+      "Arc": 5,
+      "Kno": 5,
+      "Ins": 5,
+      "Soc": 15,
+      "Fth": 15
+    },
+    "starting_attacks": [],
+    "proficiencies": {
+      "weapons": [],
+      "armor": [],
+      "tools": []
+    },
+    "class_traits": [],
+    "affliction_resistance": {
+      "Charmed": "+10%",
+      "Marked": "+10%"
+    },
+    "notes": "",
+    "version": 1
+  }
+]

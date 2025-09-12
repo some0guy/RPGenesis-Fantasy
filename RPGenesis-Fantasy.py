@@ -2,6 +2,23 @@
 from __future__ import annotations
 import os, sys, json, re, argparse, random, math
 from typing import Dict, Any, List, Tuple, Optional, Set, TYPE_CHECKING
+try:
+    # Python 3.10+
+    from typing import TypeAlias  # type: ignore
+except Exception:  # pragma: no cover
+    # Fallback for older runtimes without TypeAlias
+    try:
+        from typing_extensions import TypeAlias  # type: ignore
+    except Exception:  # Last resort: keep static checkers happy
+        TypeAlias = Any  # type: ignore
+
+# Lightweight alias for pygame.Rect used only for type checking.
+# Avoids Pylance "Variable not allowed in type expression" when pygame stubs are missing.
+if TYPE_CHECKING:
+    import pygame as _pg
+    Rect: TypeAlias = _pg.Rect
+else:
+    Rect: TypeAlias = Any
 from datetime import datetime
 from collections import deque
 from dataclasses import dataclass, field
@@ -918,6 +935,9 @@ DOT_SPACING_SCALE = 0.88
 # Visual size scale for dots (1.0 original, <1 smaller)
 DOT_SIZE_SCALE = 0.88
 
+# Shared UI palette
+COL_PLAYER = (122, 162, 247)  # accent color for player highlighting
+
 def draw_grid(surf, game):
     # Dynamic view area and camera
     win_w, win_h = surf.get_size()
@@ -1545,8 +1565,8 @@ def draw_combat_overlay(surf, game):
     dim.fill((10, 10, 14, 160))
     surf.blit(dim, (view_rect.x, view_rect.y))
 
-    # Modal rectangle
-    modal_w = max(640, int(view_w * 0.86))
+    # Modal rectangle (wider, closer to sidebars)
+    modal_w = max(640, int(view_w * 0.95))
     modal_h = max(360, int(view_h * 0.72))
     modal_x = view_rect.x + (view_w - modal_w)//2
     modal_y = view_rect.y + (view_h - modal_h)//2
@@ -1566,12 +1586,12 @@ def draw_combat_overlay(surf, game):
     surf.blit(title_font.render("Battle", True, (235,235,245)), (modal.x + 16, modal.y + 12))
 
     # Content layout: sidebars (allies/enemies) and big center battlefield with action bar
-    pad = 16
+    pad = 12
     content = modal.inflate(-2*pad, -2*pad)
     side_w = max(180, int(content.w * 0.22))
     left = pg.Rect(content.x, content.y + 36, side_w, content.h - 36)
     right = pg.Rect(content.right - side_w, content.y + 36, side_w, content.h - 36)
-    center = pg.Rect(left.right + 12, content.y + 36, right.left - (left.right + 12), content.h - 36)
+    center = pg.Rect(left.right + 8, content.y + 36, right.left - (left.right + 8), content.h - 36)
     # Split center into battlefield (top) + actions (bottom)
     act_h = max(96, int(center.h * 0.22))
     bf_area = pg.Rect(center.x, center.y, center.w, center.h - act_h - 8)
@@ -1588,6 +1608,7 @@ def draw_combat_overlay(surf, game):
     # (frames already drawn above)
 
     # Enemy panel (now on the right) supports multiple enemies
+    CARD_OUTER_GAP = 16  # vertical spacing from container and between stat boxes
     enemies_list = list(getattr(game, 'current_enemies', []) or [])
     if not enemies_list:
         enemy = getattr(game, 'current_enemy', None) or (getattr(game.tile().encounter, 'enemy', None) if game.tile().encounter else None)
@@ -1595,6 +1616,8 @@ def draw_combat_overlay(surf, game):
             enemies_list = [enemy]
     ex = right.x + 12; ey = right.y + 12
     for idx_e, enemy in enumerate(enemies_list):
+        # Start of this enemy's stat card block (for enclosing box)
+        card_y0 = ey
         ehp_cur = 0
         ehp_max = 0
         try:
@@ -1663,13 +1686,21 @@ def draw_combat_overlay(surf, game):
         desc = str(enemy.get('desc') or enemy.get('description') or '')
         if desc:
             draw_text(surf, desc, (ex, ey), max_w=right.w - 24)
+        # Draw enclosing outline box for this enemy's stats (inner padding)
+        card_pad_x, card_pad_y = 10, 8
+        card_x = right.x + card_pad_x
+        card_w = right.w - 2*card_pad_x
+        card_h = (ey - card_y0) + 2*card_pad_y
+        card_r = pg.Rect(card_x, max(right.y + CARD_OUTER_GAP, card_y0 - card_pad_y), card_w, max(24, card_h))
+        pg.draw.rect(surf, (70,74,92), card_r, 1, border_radius=6)
         # Spacing between enemies
-        ey += 10
+        ey = card_r.bottom + CARD_OUTER_GAP
     if not enemies_list:
         draw_text(surf, "No target.", (ex, ey))
 
     # Allies (left sidebar): player stats
     rx, ry = left.x + 12, left.y + 12
+    p_card_y0 = ry
     pname = f"{game.player.name}"
     surf.blit(stat_name_font.render(pname, True, (230,230,245)), (rx, ry)); ry += 14
     # Player race
@@ -1693,6 +1724,13 @@ def draw_combat_overlay(surf, game):
     foc = item_name(game.player.equipped_focus) if game.player.equipped_focus else "None"
     draw_text(surf, f"Weapon: {wep}", (rx, ry)); ry += 14
     draw_text(surf, f"Focus : {foc}", (rx, ry)); ry += 18
+    # Draw enclosing outline box for player's stats (inner padding)
+    p_pad_x, p_pad_y = 10, 8
+    p_card_x = left.x + p_pad_x
+    p_card_w = left.w - 2*p_pad_x
+    p_card_h = (ry - p_card_y0) + 2*p_pad_y
+    p_card_r = pg.Rect(p_card_x, max(left.y + CARD_OUTER_GAP, p_card_y0 - p_pad_y), p_card_w, max(24, p_card_h))
+    pg.draw.rect(surf, (70,74,92), p_card_r, 1, border_radius=6)
 
     # Action buttons grid (2 columns) centered in action area
     bx, by = act_area.x + 12, act_area.y + 12
@@ -1965,7 +2003,7 @@ def _load_sprite_cached(game, key: str, max_size: Tuple[int,int]):
     except Exception:
         return None
 
-def _draw_battlefield_canvas(surf, game, bf: 'pg.Rect', hover_side: Optional[str] = None, hover_index: int = -1):
+def _draw_battlefield_canvas(surf, game, bf: 'Rect', hover_side: Optional[str] = None, hover_index: int = -1):
     """Draw the battlefield scene (sky, ground, and unit sprites) into bf rect."""
     # Sky gradient
     sky = pg.Surface((bf.w, bf.h), pg.SRCALPHA)
@@ -1994,7 +2032,7 @@ def _draw_battlefield_canvas(surf, game, bf: 'pg.Rect', hover_side: Optional[str
     slot_w = int(bf.w * 0.36)
     left_area = pg.Rect(bf.x + 20, ground.y - int(ground_h*0.65), slot_w, int(ground_h*0.65))
     right_area= pg.Rect(bf.right - 20 - slot_w, left_area.y, slot_w, left_area.h)
-    def slot_center(area: 'pg.Rect', c: int, r: int) -> Tuple[int,int]:
+    def slot_center(area: 'Rect', c: int, r: int) -> Tuple[int,int]:
         cx = area.x + int((c + 0.5) * (area.w / cols))
         cy = area.y + int((r + 0.6) * (area.h / rows))
         return cx, cy
@@ -2048,7 +2086,7 @@ def _draw_battlefield_canvas(surf, game, bf: 'pg.Rect', hover_side: Optional[str
         enemies = list(getattr(game, 'bf_enemies', []) or [])
 
     # Draw team helper
-    def draw_team(area: 'pg.Rect', items: List[str], flip=False, side_name: str = ''):
+    def draw_team(area: 'Rect', items: List[str], flip=False, side_name: str = ''):
         # Make sprites larger for classic RPG look (increase scale)
         SCALE = 1.9
         max_w = int((area.w / cols) * SCALE) - 8
@@ -2121,8 +2159,8 @@ def draw_battlefield_overlay(surf, game):
     dim.fill((10, 10, 14, 160))
     surf.blit(dim, (view_rect.x, view_rect.y))
 
-    # Battlefield rect inside view
-    margin = 28
+    # Battlefield rect inside view — widen nearly to sidebars
+    margin = 10
     bf = pg.Rect(view_rect.x + margin, view_rect.y + margin, view_rect.w - 2*margin, view_rect.h - 2*margin)
     # Sky gradient
     sky = pg.Surface((bf.w, bf.h), pg.SRCALPHA)
@@ -2151,7 +2189,7 @@ def draw_battlefield_overlay(surf, game):
     slot_w = int(bf.w * 0.36)
     left_area = pg.Rect(bf.x + 20, ground.y - int(ground_h*0.65), slot_w, int(ground_h*0.65))
     right_area= pg.Rect(bf.right - 20 - slot_w, left_area.y, slot_w, left_area.h)
-    def slot_center(area: pg.Rect, c: int, r: int) -> Tuple[int,int]:
+    def slot_center(area: 'Rect', c: int, r: int) -> Tuple[int,int]:
         cx = area.x + int((c + 0.5) * (area.w / cols))
         cy = area.y + int((r + 0.6) * (area.h / rows))
         return cx, cy
@@ -2162,7 +2200,7 @@ def draw_battlefield_overlay(surf, game):
     enemies = list(getattr(game, 'bf_enemies', []) or [])
 
     # Draw shadows and sprites
-    def draw_team(area: pg.Rect, items: List[str], flip=False):
+    def draw_team(area: 'Rect', items: List[str], flip=False):
         SCALE = 1.9
         max_w = int((area.w / cols) * SCALE) - 8
         max_h = int((area.h / rows) * SCALE) - 6
