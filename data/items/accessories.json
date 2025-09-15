@@ -1,15 +1,384 @@
-{
-  "schema": "rpgen.items.accessories.v1",
-  "version": 1,
-  "items": [
-    {
-      "id": "IT00000001",
-      "name": "Luck Charm",
-      "type": "accessory",
-      "rarity": "uncommon",
-      "traits": [
-        "TR00000001"
-      ]
-    }
-  ]
-}
+[
+  {
+    "category": "accessory",
+    "slot": "ring",
+    "name": "Plain Iron Band",
+    "rarity": "common",
+    "value": 45,
+    "weight": 40,
+    "description": "A common ring crafted with care.",
+    "components": [],
+    "bonus": {
+      "attack": 1
+    },
+    "resist": {},
+    "accessory_trait": "none",
+    "id": "IT00005001",
+    "desc": "A common ring to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "ring",
+    "name": "Runed Signet",
+    "rarity": "uncommon",
+    "value": 120,
+    "weight": 35,
+    "description": "A uncommon ring crafted with care.",
+    "components": [],
+    "bonus": {
+      "arc": 1,
+      "kno": 1,
+      "crit_chance": 1
+    },
+    "resist": {},
+    "accessory_trait": "none",
+    "id": "IT00005002",
+    "desc": "A uncommon ring to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "ring",
+    "name": "Stormkissed Ring",
+    "rarity": "rare",
+    "value": 360,
+    "weight": 30,
+    "description": "A rare ring crafted with care.",
+    "components": [],
+    "bonus": {
+      "tec": 2,
+      "attack": 1
+    },
+    "resist": {
+      "shocked": 10
+    },
+    "accessory_trait": "none",
+    "id": "IT00005003",
+    "desc": "A rare ring to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "ring",
+    "name": "Kingsfall Signet",
+    "rarity": "legendary",
+    "value": 2100,
+    "weight": 26,
+    "description": "A legendary ring crafted with care.",
+    "components": [],
+    "bonus": {
+      "attack": 3,
+      "phy": 2
+    },
+    "resist": {},
+    "accessory_trait": "echo_strike",
+    "id": "IT00005004",
+    "desc": "A legendary ring to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "ring",
+    "name": "Evershine Diadem-Ring",
+    "rarity": "mythic",
+    "value": 5400,
+    "weight": 24,
+    "description": "A mythic ring crafted with care.",
+    "components": [],
+    "bonus": {
+      "ins": 3,
+      "soc": 2,
+      "crit_chance": 2
+    },
+    "resist": {
+      "charmed": 15
+    },
+    "accessory_trait": "soulbound",
+    "id": "IT00005005",
+    "desc": "A mythic ring to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "necklace",
+    "name": "Braided Cord",
+    "rarity": "common",
+    "value": 45,
+    "weight": 40,
+    "description": "A common necklace crafted with care.",
+    "components": [],
+    "bonus": {
+      "vit": 1
+    },
+    "resist": {},
+    "accessory_trait": "none",
+    "id": "IT00005006",
+    "desc": "A common necklace to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "necklace",
+    "name": "Moonlit Pendant",
+    "rarity": "uncommon",
+    "value": 120,
+    "weight": 35,
+    "description": "A uncommon necklace crafted with care.",
+    "components": [],
+    "bonus": {
+      "ins": 1,
+      "fth": 1
+    },
+    "resist": {
+      "slowed": 8
+    },
+    "accessory_trait": "none",
+    "id": "IT00005007",
+    "desc": "A uncommon necklace to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "necklace",
+    "name": "Embered Talisman",
+    "rarity": "rare",
+    "value": 360,
+    "weight": 30,
+    "description": "A rare necklace crafted with care.",
+    "components": [],
+    "bonus": {
+      "attack": 1,
+      "arc": 1
+    },
+    "resist": {
+      "burnt": 12
+    },
+    "accessory_trait": "none",
+    "id": "IT00005008",
+    "desc": "A rare necklace to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "necklace",
+    "name": "Starforged Medallion",
+    "rarity": "legendary",
+    "value": 2100,
+    "weight": 26,
+    "description": "A legendary necklace crafted with care.",
+    "components": [],
+    "bonus": {
+      "vit": 2,
+      "defense": 2,
+      "fth": 1
+    },
+    "resist": {},
+    "accessory_trait": "aura_guard",
+    "id": "IT00005009",
+    "desc": "A legendary necklace to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "necklace",
+    "name": "Chrono-Spiral Locket",
+    "rarity": "mythic",
+    "value": 5400,
+    "weight": 24,
+    "description": "A mythic necklace crafted with care.",
+    "components": [],
+    "bonus": {
+      "kno": 3,
+      "arc": 2
+    },
+    "resist": {
+      "distracted": 15
+    },
+    "accessory_trait": "timebend",
+    "id": "IT00005010",
+    "desc": "A mythic necklace to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "bracelet",
+    "name": "Leather Wristlet",
+    "rarity": "common",
+    "value": 45,
+    "weight": 40,
+    "description": "A common bracelet crafted with care.",
+    "components": [],
+    "bonus": {
+      "tec": 1
+    },
+    "resist": {},
+    "accessory_trait": "none",
+    "id": "IT00005011",
+    "desc": "A common bracelet to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "bracelet",
+    "name": "Runeforged Cuff",
+    "rarity": "uncommon",
+    "value": 120,
+    "weight": 35,
+    "description": "A uncommon bracelet crafted with care.",
+    "components": [],
+    "bonus": {
+      "arc": 1,
+      "defense": 1
+    },
+    "resist": {},
+    "accessory_trait": "none",
+    "id": "IT00005012",
+    "desc": "A uncommon bracelet to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "bracelet",
+    "name": "Bloodbound Bracer",
+    "rarity": "rare",
+    "value": 360,
+    "weight": 30,
+    "description": "A rare bracelet crafted with care.",
+    "components": [],
+    "bonus": {
+      "attack": 2
+    },
+    "resist": {
+      "bleeding": 12
+    },
+    "accessory_trait": "lifedrink",
+    "id": "IT00005013",
+    "desc": "A rare bracelet to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "bracelet",
+    "name": "Dragonsbreach Bangle",
+    "rarity": "legendary",
+    "value": 2100,
+    "weight": 26,
+    "description": "A legendary bracelet crafted with care.",
+    "components": [],
+    "bonus": {
+      "attack": 2,
+      "phy": 2
+    },
+    "resist": {
+      "burnt": 15
+    },
+    "accessory_trait": "none",
+    "id": "IT00005014",
+    "desc": "A legendary bracelet to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "bracelet",
+    "name": "Abyssal Crown Vambrace",
+    "rarity": "mythic",
+    "value": 5400,
+    "weight": 24,
+    "description": "A mythic bracelet crafted with care.",
+    "components": [],
+    "bonus": {
+      "vit": 3,
+      "defense": 3
+    },
+    "resist": {
+      "tormented": 10
+    },
+    "accessory_trait": "warding",
+    "id": "IT00005015",
+    "desc": "A mythic bracelet to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "charm",
+    "name": "Wooden Fetish",
+    "rarity": "common",
+    "value": 45,
+    "weight": 40,
+    "description": "A common charm crafted with care.",
+    "components": [],
+    "bonus": {
+      "fth": 1
+    },
+    "resist": {},
+    "accessory_trait": "none",
+    "id": "IT00005016",
+    "desc": "A common charm to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "charm",
+    "name": "Gilded Prayer Charm",
+    "rarity": "uncommon",
+    "value": 120,
+    "weight": 35,
+    "description": "A uncommon charm crafted with care.",
+    "components": [],
+    "bonus": {
+      "soc": 1,
+      "fth": 1
+    },
+    "resist": {
+      "marked": 10
+    },
+    "accessory_trait": "none",
+    "id": "IT00005017",
+    "desc": "A uncommon charm to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "charm",
+    "name": "Siren’s Shell Charm",
+    "rarity": "rare",
+    "value": 360,
+    "weight": 30,
+    "description": "A rare charm crafted with care.",
+    "components": [],
+    "bonus": {
+      "ins": 2
+    },
+    "resist": {
+      "distracted": 10
+    },
+    "accessory_trait": "none",
+    "id": "IT00005018",
+    "desc": "A rare charm to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "charm",
+    "name": "Gorgon Eye Charm",
+    "rarity": "legendary",
+    "value": 2100,
+    "weight": 26,
+    "description": "A legendary charm crafted with care.",
+    "components": [],
+    "bonus": {
+      "arc": 2,
+      "kno": 2
+    },
+    "resist": {
+      "stunned": 15
+    },
+    "accessory_trait": "none",
+    "id": "IT00005019",
+    "desc": "A legendary charm to our current spec."
+  },
+  {
+    "category": "accessory",
+    "slot": "charm",
+    "name": "Lich Phylactery Shard",
+    "rarity": "mythic",
+    "value": 5400,
+    "weight": 24,
+    "description": "A mythic charm crafted with care.",
+    "components": [],
+    "bonus": {
+      "kno": 3,
+      "arc": 3
+    },
+    "resist": {
+      "exhausted": 15,
+      "bleeding": 10
+    },
+    "accessory_trait": "soul_anchor",
+    "id": "IT00005020",
+    "desc": "A mythic charm to our current spec."
+  }
+]

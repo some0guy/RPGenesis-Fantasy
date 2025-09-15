@@ -1,0 +1,231 @@
+[
+  {
+    "name": "Dagger",
+    "style": "Melee",
+    "handed": "One",
+    "speed": "Very Fast",
+    "damage_types": [
+      "Pierce",
+      "Slash"
+    ]
+  },
+  {
+    "name": "Shortsword",
+    "style": "Melee",
+    "handed": "Two",
+    "speed": "Fast",
+    "damage_types": [
+      "Slash",
+      "Impale"
+    ]
+  },
+  {
+    "name": "Longsword",
+    "style": "Melee",
+    "handed": "One",
+    "speed": "Medium",
+    "damage_types": [
+      "Slash",
+      "Impale"
+    ]
+  },
+  {
+    "name": "Claymore",
+    "style": "Melee",
+    "handed": "Two",
+    "speed": "Slow",
+    "damage_types": [
+      "Cleave",
+      "Impale",
+      "Bash"
+    ]
+  },
+  {
+    "name": "Spear",
+    "style": "Melee",
+    "handed": "One",
+    "speed": "Medium",
+    "damage_types": [
+      "Impale"
+    ]
+  },
+  {
+    "name": "Halberd",
+    "style": "Melee",
+    "handed": "Two",
+    "speed": "Slow",
+    "damage_types": [
+      "Cleave",
+      "Pierce"
+    ]
+  },
+  {
+    "name": "Axe",
+    "style": "Melee",
+    "handed": "One",
+    "speed": "Medium",
+    "damage_types": [
+      "Slash",
+      "Crush"
+    ]
+  },
+  {
+    "name": "Greataxe",
+    "style": "Melee",
+    "handed": "Two",
+    "speed": "Slow",
+    "damage_types": [
+      "Cleave",
+      "Crush"
+    ]
+  },
+  {
+    "name": "Mace",
+    "style": "Melee",
+    "handed": "One",
+    "speed": "Medium",
+    "damage_types": [
+      "Crush"
+    ]
+  },
+  {
+    "name": "Warhammer",
+    "style": "Melee",
+    "handed": "Two",
+    "speed": "Slow",
+    "damage_types": [
+      "Crush"
+    ]
+  },
+  {
+    "name": "Flail",
+    "style": "Melee",
+    "handed": "One",
+    "speed": "Fast",
+    "damage_types": [
+      "Crush",
+      "Slash"
+    ]
+  },
+  {
+    "name": "Whip",
+    "style": "Melee",
+    "handed": "One",
+    "speed": "Fast",
+    "damage_types": [
+      "Slash"
+    ]
+  },
+  {
+    "name": "Shortbow",
+    "style": "Ranged",
+    "handed": "Two",
+    "speed": "Fast",
+    "damage_types": [
+      "Pierce"
+    ]
+  },
+  {
+    "name": "Longbow",
+    "style": "Ranged",
+    "handed": "Two",
+    "speed": "Medium",
+    "damage_types": [
+      "Pierce"
+    ]
+  },
+  {
+    "name": "Light Crossbow",
+    "style": "Ranged",
+    "handed": "One",
+    "speed": "Very Fast",
+    "damage_types": [
+      "Pierce"
+    ]
+  },
+  {
+    "name": "Heavy Crossbow",
+    "style": "Ranged",
+    "handed": "Two",
+    "speed": "Slow",
+    "damage_types": [
+      "Impale"
+    ]
+  },
+  {
+    "name": "Throwing Knives",
+    "style": "Ranged",
+    "handed": "One",
+    "speed": "Very Fast",
+    "damage_types": [
+      "Pierce",
+      "Slash"
+    ]
+  },
+  {
+    "name": "Handcannon",
+    "style": "Ranged",
+    "handed": "Two",
+    "speed": "Slow",
+    "damage_types": [
+      "Impale",
+      "Crush"
+    ]
+  },
+  {
+    "name": "Staff",
+    "style": "Arcane",
+    "handed": "One",
+    "speed": "Slow",
+    "damage_types": [
+      "Arcane",
+      "Bash"
+    ]
+  },
+  {
+    "name": "Wand",
+    "style": "Arcane",
+    "handed": "One",
+    "speed": "Fast",
+    "damage_types": [
+      "Arcane"
+    ]
+  },
+  {
+    "name": "Orb",
+    "style": "Arcane",
+    "handed": "One",
+    "speed": "Medium",
+    "damage_types": [
+      "Arcane"
+    ]
+  },
+  {
+    "name": "Scripture",
+    "style": "Holy",
+    "handed": "One",
+    "speed": "Medium",
+    "damage_types": [
+      "Holy"
+    ]
+  },
+  {
+    "name": "Talisman",
+    "style": "Holy",
+    "handed": "One",
+    "speed": "Fast",
+    "damage_types": [
+      "Holy"
+    ]
+  },
+  {
+    "name": "Censer",
+    "style": "Holy",
+    "handed": "One",
+    "speed": "Slow",
+    "damage_types": [
+      "Holy",
+      "Bash"
+    ]
+  }
+]

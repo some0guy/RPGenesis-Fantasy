@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import os, sys, json, re, argparse, random, math
+import os, sys, json, re, argparse, random, math, hashlib
 from typing import Dict, Any, List, Tuple, Optional, Set, TYPE_CHECKING
 try:
     # Python 3.10+
@@ -152,7 +152,15 @@ def validate_project(root: str, strict: bool=False):
             doc = load_json(abspath(rel), {"items": []})
         except Exception as e:
             warns.append(f"[WARN] {rel}: {e}"); doc = {"items": []}
-        for it in doc.get("items", []):
+        items_in = []
+        try:
+            if isinstance(doc, list):
+                items_in = list(doc)
+            elif isinstance(doc, dict):
+                items_in = list(doc.get("items", []) or [])
+        except Exception:
+            items_in = []
+        for it in items_in:
             if not isinstance(it, dict):
                 continue
             iid = it.get("id")
@@ -169,7 +177,15 @@ def validate_project(root: str, strict: bool=False):
             doc = load_json(abspath(rel), {"npcs": []})
         except Exception as e:
             warns.append(f"[WARN] {rel}: {e}"); doc = {"npcs": []}
-        for npc in doc.get("npcs", []):
+        npcs_in = []
+        try:
+            if isinstance(doc, list):
+                npcs_in = list(doc)
+            elif isinstance(doc, dict):
+                npcs_in = list(doc.get("npcs", []) or [])
+        except Exception:
+            npcs_in = []
+        for npc in npcs_in:
             if not isinstance(npc, dict):
                 continue
             nid = npc.get("id")
@@ -245,7 +261,14 @@ def validate_project(root: str, strict: bool=False):
 # ======================== Game data API ========================
 def safe_load_doc(rel: str, array_key: str) -> List[dict]:
     doc = load_json(os.path.join(DATA_DIR, rel), {array_key: []})
-    return [x for x in doc.get(array_key, []) if isinstance(x, dict)]
+    try:
+        if isinstance(doc, list):
+            return [x for x in doc if isinstance(x, dict)]
+        if isinstance(doc, dict):
+            return [x for x in doc.get(array_key, []) if isinstance(x, dict)]
+    except Exception:
+        pass
+    return []
 
 def _coalesce(*vals, default=None):
     for v in vals:
@@ -393,6 +416,132 @@ def _weapon_stats(it: Dict) -> Tuple[int,int,float,List[str]]:
     st_ch = max(0.0, min(1.0, st_ch))
     return min_b, max_b, st_ch, list(statuses)
 
+# ======================== Loot rolling (weapons) ========================
+
+def _stable_int_hash(s: str) -> int:
+    try:
+        h = hashlib.sha256(s.encode('utf-8', errors='ignore')).hexdigest()
+        return int(h[:16], 16)
+    except Exception:
+        return abs(hash(s)) & 0xFFFFFFFF
+
+def _weighted_choice(weights: List[Tuple[str, int]], rng: random.Random) -> str:
+    total = sum(max(0, int(w)) for _, w in weights) or 1
+    r = rng.randrange(total)
+    acc = 0
+    for key, w in weights:
+        acc += max(0, int(w))
+        if r < acc:
+            return key
+    return weights[-1][0]
+
+RARITY_WEIGHTS: List[Tuple[str,int]] = [
+    ("common", 40), ("uncommon", 28), ("rare", 18), ("exotic", 9), ("legendary", 4), ("mythic", 1)
+]
+
+RARITY_DMG_MULT = {
+    "common": 1.00, "uncommon": 1.05, "rare": 1.12, "exotic": 1.20, "legendary": 1.30, "mythic": 1.45
+}
+
+def _affix_budget_for_rarity(r: str, rng: random.Random) -> int:
+    base = {"common": 0, "uncommon": 1, "rare": 2, "exotic": 3, "legendary": rng.choice([3,4]), "mythic": 4}.get(r, 0)
+    return int(base)
+
+class _Affix(Tuple[str, Dict[str, Any]]):
+    pass
+
+PREFIX_POOL: List[Dict[str, Any]] = [
+    {"name":"Runed",      "adds": {"arcane": (2.0, 0.8)},    "bonus": {},        "traits": [],          "styles": ["physical","arcane","ranged"]},
+    {"name":"Stormkissed","adds": {"lightning": (1.6,0.6)},  "bonus": {"attack": 1}, "traits": [],          "styles": ["physical","ranged"]},
+    {"name":"Embered",    "adds": {"fire": (1.4,0.5)},       "bonus": {},        "traits": [],          "styles": ["physical","ranged","arcane"]},
+    {"name":"Bloodbound", "adds": {"bleed": (1.2,0.6)},      "bonus": {},        "traits": ["lifedrink"], "styles": ["physical"]},
+    {"name":"Moonlit",    "adds": {"ice": (1.4,0.6)},        "bonus": {},        "traits": [],          "styles": ["physical","arcane"]},
+    {"name":"Kingsfall",  "adds": {"physical_pct": (0.08,0.02)}, "bonus": {"attack": 2}, "traits": ["knockback"], "min_rarity":"legendary", "styles": ["physical"]},
+]
+
+SUFFIX_POOL: List[Dict[str, Any]] = [
+    {"name":"of the Vanguard", "adds": {},                "bonus": {"attack": 2}, "traits": ["stagger"],    "styles": ["physical","ranged","arcane"]},
+    {"name":"of the Glacier",  "adds": {"ice": (1.2,0.5)},  "bonus": {},         "traits": ["chill"],      "styles": ["physical","arcane"]},
+    {"name":"of Echoes",        "adds": {},                "bonus": {},         "traits": ["echo_strike"], "styles": ["physical","ranged","arcane"]},
+    {"name":"of Embers",        "adds": {"fire": (1.2,0.5)}, "bonus": {},         "traits": ["burn"],       "styles": ["physical","ranged","arcane"]},
+    {"name":"of Bursting",      "adds": {"stagger": (1.0,0.4)}, "bonus": {},      "traits": [],           "types": ["projectile","handcannon","bomb"]},
+]
+
+# Gear (armour/clothing/accessories) affixes
+GEAR_PREFIX_POOL: List[Dict[str, Any]] = [
+    {"name":"Stalwart",   "adds_def": {"physical": (2.0, 0.8)},     "bonus": {"defense": 1}},
+    {"name":"Wardwoven",  "adds_def": {"arcane": (1.6, 0.6)},       "bonus": {"mana": 2}},
+    {"name":"Emberward",  "adds_def": {"fire": (1.4, 0.5)},         "bonus": {}},
+    {"name":"Frostbound", "adds_def": {"ice": (1.4, 0.6)},          "bonus": {}},
+    {"name":"Stormguard", "adds_def": {"lightning": (1.4, 0.6)},    "bonus": {}},
+    {"name":"Fleetstep",  "adds_def": {},                            "bonus": {"dexterity": 1}},
+]
+
+GEAR_SUFFIX_POOL: List[Dict[str, Any]] = [
+    {"name":"of the Oak",     "adds_def": {"stagger": (1.0, 0.5)},   "bonus": {"defense": 1}},
+    {"name":"of the Glacier", "adds_def": {"ice": (1.2, 0.5)},       "bonus": {}},
+    {"name":"of Embers",      "adds_def": {"fire": (1.2, 0.5)},      "bonus": {}},
+    {"name":"of Storms",      "adds_def": {"lightning": (1.2, 0.5)}, "bonus": {}},
+    {"name":"of the Fox",     "adds_def": {},                        "bonus": {"dexterity": 1}},
+]
+
+def _style_for_weapon(base: Dict[str, Any]) -> str:
+    st = str(base.get('style') or '').lower()
+    if st: return st
+    sub = str(base.get('type') or base.get('subtype') or '').lower()
+    if sub in ('wand','staff','focus'): return 'arcane'
+    if sub in ('bow','crossbow','projectile','gun','handcannon'): return 'ranged'
+    return 'physical'
+
+def _scale_damage_map(dmg: Dict[str, Any], scale: float) -> Dict[str, int]:
+    out: Dict[str,int] = {}
+    for k, v in (dmg or {}).items():
+        try:
+            out[k] = max(0, int(round(float(v) * float(scale))))
+        except Exception:
+            pass
+    return out
+
+def _apply_affixes(base_dmg: Dict[str,int], base_bonus: Dict[str,int], base_traits: List[str], lvl: int, affixes: List[Dict[str,Any]], rng: random.Random) -> Tuple[Dict[str,int], Dict[str,int], List[str]]:
+    dmg = dict(base_dmg)
+    bonus = dict(base_bonus)
+    traits = list(base_traits)
+    for af in affixes:
+        adds = af.get('adds') or {}
+        for k, spec in adds.items():
+            if k == 'physical_pct':
+                # Percent increase to physical bucket
+                pct, slope = spec
+                inc = (pct + slope * max(0, lvl))
+                phys = int(dmg.get('physical', 0))
+                phys = int(round(phys * (1.0 + inc)))
+                dmg['physical'] = phys
+            else:
+                base, per_lvl = spec
+                add = int(round(float(base) + float(per_lvl) * max(0, lvl)))
+                dmg[k] = int(dmg.get(k, 0)) + max(0, add)
+        for b, val in (af.get('bonus') or {}).items():
+            bonus[b] = int(bonus.get(b, 0)) + int(val)
+        for t in (af.get('traits') or []):
+            if t not in traits:
+                traits.append(t)
+    return dmg, bonus, traits
+
+def _build_name(base_type: str, prefixes: List[str], suffixes: List[str]) -> str:
+    core = base_type.title() if base_type else 'Weapon'
+    if prefixes and suffixes:
+        return f"{prefixes[0]} {core} {suffixes[0]}"
+    if prefixes:
+        return f"{prefixes[0]} {core}"
+    if suffixes:
+        return f"{core} {suffixes[0]}"
+    return core
+
+def _jitter(val: int, pct: float, rng: random.Random) -> int:
+    span = max(1, int(abs(val) * pct))
+    return max(0, int(val + rng.randint(-span, span)))
+
+
 def gather_items() -> List[Dict]:
     items: List[Dict] = []
     items_dir = os.path.join(DATA_DIR, "items")
@@ -469,18 +618,43 @@ def load_races_list() -> List[Dict]:
     return []
 
 def load_classes_list() -> List[Dict]:
-    path = DATA_DIR / "classes.json"
-    try:
-        if not path.exists() or path.stat().st_size == 0:
-            return []
-        doc = load_json(str(path), [])
-        if isinstance(doc, list):
-            return list(doc)
-        if isinstance(doc, dict) and isinstance(doc.get("classes"), list):
-            return list(doc.get("classes"))
-    except Exception:
-        pass
+    """Load Classes from the project data with tolerant schema.
+
+    Priority:
+    1) data/abilities/classes.json
+    2) data/abilities/class.json
+    3) data/classes.json
+
+    Supports top-level list, or dict with a 'classes' list.
+    """
+    candidates = [
+        DATA_DIR / "abilities" / "classes.json",
+        DATA_DIR / "abilities" / "class.json",
+        DATA_DIR / "classes.json",
+    ]
+    for path in candidates:
+        try:
+            if not path.exists() or path.stat().st_size == 0:
+                continue
+            doc = load_json(str(path), [])
+            if isinstance(doc, list):
+                return [x for x in doc if isinstance(x, dict)]
+            if isinstance(doc, dict) and isinstance(doc.get("classes"), list):
+                return [x for x in doc.get("classes") if isinstance(x, dict)]
+        except Exception:
+            continue
     return []
+
+# ---------- Class mechanics helpers ----------
+def _class_by_name(classes: List[Dict], name: str) -> Optional[Dict[str, Any]]:
+    nm = str(name or '').strip().lower()
+    for c in (classes or []):
+        try:
+            if str(c.get('name') or '').strip().lower() == nm:
+                return c
+        except Exception:
+            continue
+    return None
 
 # ======================== Core structures ========================
 @dataclass
@@ -546,6 +720,32 @@ class Player:
     equipped_gear: Dict[str, Dict] = field(default_factory=dict)
     # Optional portrait reference (relative to project or assets/)
     portrait: Optional[str] = "images/player/player.png"
+
+# Party member (ally) uses the same stat shape as Player for simplicity
+@dataclass
+class Ally:
+    id: str
+    name: str
+    race: str = "Human"
+    role: str = "Ally"
+    level: int = 1
+    xp: int = 0
+    hp: int = 14
+    max_hp: int = 14
+    atk: Tuple[int,int] = (2,4)
+    phy: int = 5
+    dex: int = 5
+    vit: int = 5
+    arc: int = 5
+    kno: int = 5
+    ins: int = 5
+    soc: int = 5
+    fth: int = 5
+    inventory: List[Dict] = field(default_factory=list)
+    equipped_weapon: Optional[Dict] = None
+    equipped_focus: Optional[Dict] = None
+    equipped_gear: Dict[str, Dict] = field(default_factory=dict)
+    portrait: Optional[str] = None
 
 def pick_enemy(npcs: List[Dict]) -> Optional[Dict]:
     hostile = [n for n in npcs if n.get("hostile")]
@@ -724,6 +924,16 @@ STAT_COLORS = {
     'ins': (255,160,70),    # Insight: orange
     'soc': (255,105,180),   # Social: pink
     'fth': (245,210,80),    # Faith: yellow
+}
+
+# Rarity colors for item display (inventory/equipment)
+RARITY_COLORS = {
+    'common':    (200, 200, 210),   # light grey
+    'uncommon':  (80, 200, 120),    # green
+    'rare':      (80, 150, 240),    # blue
+    'exotic':    (170, 110, 240),   # purple
+    'legendary': (255, 160, 70),    # orange
+    'mythic':    (245, 210, 80),    # gold
 }
 
 # Tags that should not appear in the Recent log unless explicitly logged
@@ -1329,6 +1539,7 @@ def draw_panel(surf, game):
     draw_text(surf, f"You: {game.player.name}", (16, yL)); yL += 18
     draw_text(surf, f"Race: {game.player.race}", (16, yL)); yL += 18
     draw_text(surf, f"Class: {game.player.role}", (16, yL)); yL += 18
+    draw_text(surf, f"Level: {getattr(game.player,'level',1)}  XP: {getattr(game.player,'xp',0)}/{game._xp_needed(getattr(game.player,'level',1))}", (16, yL)); yL += 18
     draw_text(surf, f"HP: {game.player.hp}/{game.player.max_hp}", (16, yL)); yL += 18
     mn,mx = game.player.atk
     draw_text(surf, f"ATK: {mn}-{mx}", (16, yL)); yL += 18
@@ -1367,11 +1578,8 @@ def draw_panel(surf, game):
         pass
     desc_font = pg.font.Font(None, 22)
     draw_text(surf, t.description, (x0+16, y), max_w=panel_w-32, font=desc_font); y += desc_font.get_linesize() * 2
-    # Equipped
-    wep = item_name(game.player.equipped_weapon) if game.player.equipped_weapon else "None"
-    foc = item_name(game.player.equipped_focus) if game.player.equipped_focus else "None"
-    draw_text(surf, f"Weapon: {wep}", (x0+16, y)); y += 18
-    draw_text(surf, f"Focus : {foc}", (x0+16, y)); y += 24
+    # Equipped summary removed: use Equipment overlay to view gear
+    y += 8
 
     # Encounter info
     if t.encounter:
@@ -1420,12 +1628,21 @@ def draw_panel(surf, game):
     if game.mode == "combat":
         # Show a dedicated combat overlay in the map area
         buttons += draw_combat_overlay(surf, game)
+    elif game.mode == "death":
+        # Death screen overlay with options
+        buttons += draw_death_overlay(surf, game)
     elif game.mode == "dialogue":
         add("Talk",  lambda: game.handle_dialogue_choice("Talk"))
+        add("Insult", lambda: game.handle_dialogue_choice("Insult"))
+        # Offer Recruit when speaking to an ally-type NPC
+        try:
+            if getattr(game, 'current_npc', None) and str((game.current_npc.get('subcategory') or '')).lower() == 'allies':
+                add("Recruit", lambda: game.handle_dialogue_choice("Recruit"))
+        except Exception:
+            pass
         add("Leave", lambda: game.handle_dialogue_choice("Leave"))
         add("Inventory", lambda: setattr(game, 'mode', 'inventory'))
         add("Equipment", lambda: setattr(game, 'mode', 'equip'))
-        add("Database", lambda: setattr(game, 'mode', 'database'))
     elif game.mode == "inventory":
         # Draw a full overlay inventory covering the center and right side
         buttons += draw_inventory_overlay(surf, game)
@@ -1438,8 +1655,7 @@ def draw_panel(surf, game):
         buttons += draw_load_overlay(surf, game)
     elif getattr(game, 'mode', '') == "database":
         buttons += draw_database_overlay(surf, game)
-    elif getattr(game, 'mode', '') == "battlefield":
-        buttons += draw_battlefield_overlay(surf, game)
+    # Removed standalone 'battlefield' mode; battlefield now only appears within combat overlay
     else:
         add("Search Area", game.search_tile)
         # Enemy present: allow direct attack always
@@ -1470,8 +1686,30 @@ def draw_panel(surf, game):
             # When enemy is unaware, offer a single combined avoid option
             if not t.encounter.spotted:
                 add("Avoid (Sneak/Bypass)", game.avoid_enemy)
-        if t.encounter and t.encounter.npc:
-            add("Talk",      lambda: game.start_dialogue(t.encounter.npc))
+        if t.encounter and (t.encounter.npc or (t.encounter.npcs and len(t.encounter.npcs) > 0)):
+            # List all friendly NPCs on this tile and allow choosing one to talk to
+            try:
+                def _is_enemy_e(e: Dict) -> bool:
+                    sub = (e.get('subcategory') or '').lower()
+                    return sub in ('enemies','monsters','villains','vilains') or bool(e.get('hostile'))
+                friendlies = [e for e in (t.encounter.npcs or []) if isinstance(e, dict) and not _is_enemy_e(e)]
+                if not friendlies and t.encounter.npc:
+                    friendlies = [t.encounter.npc]
+            except Exception:
+                friendlies = [t.encounter.npc] if t.encounter and t.encounter.npc else []
+
+            # Add a button per friendly to begin dialogue
+            for npc in friendlies[:6]:
+                nm = str(npc.get('name') or 'Someone')
+                add(f"Talk: {nm}",      lambda npc=npc: (setattr(game, 'current_npc', npc), setattr(game, 'mode', 'dialogue')))
+            # Quick recruit entry remains for allies for convenience
+            try:
+                for npc in friendlies[:6]:
+                    if str((npc or {}).get('subcategory') or '').lower() == 'allies':
+                        add(f"Ask To Join: {npc.get('name','Ally')}", lambda npc=npc: (setattr(game, 'current_npc', npc), game.handle_dialogue_choice("Recruit")))
+                        break
+            except Exception:
+                pass
         # Travel via link if present
         if getattr(t, 'link_to_map', None):
             dest = t.link_to_map
@@ -1480,7 +1718,7 @@ def draw_panel(surf, game):
         add("Inventory", lambda: setattr(game, 'mode', 'inventory'))
         add("Equipment", lambda: setattr(game, 'mode', 'equip'))
         add("Database", lambda: setattr(game, 'mode', 'database'))
-        add("Battlefield", lambda: (_ensure_battlefield_demo(game), setattr(game, 'mode', 'battlefield')))
+        # Removed standalone Battlefield menu entry; battlefield appears only during combat
         add("Save Game", lambda: setattr(game, 'mode', 'save'))
         add("Load Game", lambda: setattr(game, 'mode', 'load'))
 
@@ -1588,10 +1826,68 @@ def draw_combat_overlay(surf, game):
     # Content layout: sidebars (allies/enemies) and big center battlefield with action bar
     pad = 12
     content = modal.inflate(-2*pad, -2*pad)
-    side_w = max(180, int(content.w * 0.22))
-    left = pg.Rect(content.x, content.y + 36, side_w, content.h - 36)
-    right = pg.Rect(content.right - side_w, content.y + 36, side_w, content.h - 36)
-    center = pg.Rect(left.right + 8, content.y + 36, right.left - (left.right + 8), content.h - 36)
+    # Turn order bar at the top of the battle scene
+    try:
+        if getattr(game, 'mode', '') == 'combat':
+            order = list(getattr(game, 'turn_order', []) or [])
+            if order:
+                # Place under the title area
+                order_area = pg.Rect(content.x, content.y + 36, content.w, 26)
+                # Background strip
+                pg.draw.rect(surf, (30,32,42), order_area, border_radius=8)
+                pg.draw.rect(surf, (70,74,92), order_area, 1, border_radius=8)
+                n = len(order)
+                gap = 6
+                chip_h = 20
+                # Compute chip width to fit all within area
+                chip_w = max(60, min(160, int((order_area.w - gap*(n-1) - 10) / max(1, n))))
+                x = order_area.x + 5
+                y = order_area.y + (order_area.h - chip_h)//2
+                cur_idx = int(getattr(game, 'turn_index', 0) or 0)
+                def _chip_color(t):
+                    if t == 'enemy': return (220,70,70)
+                    if t == 'ally': return (80,200,120)
+                    if t == 'player': return (80,150,240)
+                    return (96,102,124)
+                label_font = pg.font.Font(None, 18)
+                for i, ent in enumerate(order):
+                    t = str(ent.get('type',''))
+                    nm = str(ent.get('name') or t.title())
+                    # Trim overly long names
+                    max_chars = max(6, int(chip_w/9))
+                    if len(nm) > max_chars:
+                        nm = nm[:max_chars-1] + '…'
+                    r = pg.Rect(x, y, chip_w, chip_h)
+                    col = _chip_color(t)
+                    # Current actor emphasis
+                    is_cur = (i == cur_idx)
+                    bg = col if is_cur else (max(col[0]-30,24), max(col[1]-30,24), max(col[2]-30,24))
+                    pg.draw.rect(surf, bg, r, border_radius=7)
+                    pg.draw.rect(surf, (240,240,248) if is_cur else (200,205,220), r, 2 if is_cur else 1, border_radius=7)
+                    # Small type dot
+                    dot_r = 5
+                    try:
+                        pg.draw.circle(surf, (245,245,250), (r.x+10, r.centery), dot_r)
+                        pg.draw.circle(surf, col, (r.x+10, r.centery), dot_r-2)
+                    except Exception:
+                        pass
+                    # Label
+                    try:
+                        txt = label_font.render(nm, True, (245,245,250))
+                        surf.blit(txt, (r.x + 20, r.y + (r.h - txt.get_height())//2))
+                    except Exception:
+                        pass
+                    x += chip_w + gap
+    except Exception:
+        # Never break combat UI on draw errors
+        pass
+    # Make side info panels slightly narrower to widen the battlefield
+    side_w = max(200, int(content.w * 0.21))
+    # Leave room for the title + turn-order bar
+    top_offset = 68
+    left = pg.Rect(content.x, content.y + top_offset, side_w, content.h - top_offset)
+    right = pg.Rect(content.right - side_w, content.y + top_offset, side_w, content.h - top_offset)
+    center = pg.Rect(left.right + 8, content.y + top_offset, right.left - (left.right + 8), content.h - top_offset)
     # Split center into battlefield (top) + actions (bottom)
     act_h = max(96, int(center.h * 0.22))
     bf_area = pg.Rect(center.x, center.y, center.w, center.h - act_h - 8)
@@ -1634,7 +1930,14 @@ def draw_combat_overlay(surf, game):
         except Exception:
             ehp_cur = int(enemy.get('hp', 12) if isinstance(enemy, dict) else 12); ehp_max = ehp_cur
         ename = str(enemy.get('name', 'Enemy'))
-        surf.blit(stat_name_font.render(ename, True, (230,230,245)), (ex, ey)); ey += 14
+        # Ensure long enemy names wrap within the stat box
+        ey += draw_text(surf, ename, (ex, ey), font=stat_name_font, max_w=right.w - 24)
+        # Subtle divider under name
+        try:
+            pg.draw.line(surf, (70,74,92), (right.x + 12, ey + 4), (right.right - 12, ey + 4), 1)
+        except Exception:
+            pass
+        ey += 8
         # Enemy race (if available)
         try:
             erace = str(enemy.get('race') or enemy.get('Race') or '')
@@ -1657,7 +1960,7 @@ def draw_combat_overlay(surf, game):
             except Exception:
                 pass
         if erace:
-            surf.blit(stat_label_font.render(f"Race: {erace}", True, (200,205,220)), (ex, ey)); ey += 14
+            ey += draw_text(surf, f"Race: {erace}", (ex, ey), font=stat_label_font, max_w=right.w - 24)
         # HP bar (compact)
         bar_w, bar_h = right.w - 24, 12
         rect = pg.Rect(ex, ey, bar_w, bar_h)
@@ -1669,71 +1972,101 @@ def draw_combat_overlay(surf, game):
         pg.draw.rect(surf, (96,102,124), rect, 1, border_radius=6)
         # HP label (compact) + race inline
         hp_txt = f"HP: {ehp_cur}/{ehp_max}"
-        try:
-            if erace:
-                hp_txt += f"    Race: {erace}"
-        except Exception:
-            pass
-        surf.blit(stat_label_font.render(hp_txt, True, (235,235,245)), (ex, ey + bar_h + 6)); ey += bar_h + 22
+        # Wrap HP label text to keep within borders
+        _label_y = ey + bar_h + 6
+        _label_h = draw_text(surf, hp_txt, (ex, _label_y), font=stat_label_font, max_w=right.w - 24)
+        ey = _label_y + _label_h + 4
         # Status
         try:
             est = [str(s) for s in (enemy.get('status') or [])]
         except Exception:
             est = []
         if est:
-            draw_text(surf, "Status: " + ", ".join(est), (ex, ey), max_w=right.w - 24); ey += 18
+            ey += draw_text(surf, "Status: " + ", ".join(est), (ex, ey), font=stat_label_font, max_w=right.w - 24) + 2
         # Flavor/desc if present
         desc = str(enemy.get('desc') or enemy.get('description') or '')
         if desc:
-            draw_text(surf, desc, (ex, ey), max_w=right.w - 24)
+            ey += draw_text(surf, desc, (ex, ey), font=stat_label_font, max_w=right.w - 24) + 2
         # Draw enclosing outline box for this enemy's stats (inner padding)
         card_pad_x, card_pad_y = 10, 8
         card_x = right.x + card_pad_x
         card_w = right.w - 2*card_pad_x
         card_h = (ey - card_y0) + 2*card_pad_y
         card_r = pg.Rect(card_x, max(right.y + CARD_OUTER_GAP, card_y0 - card_pad_y), card_w, max(24, card_h))
+        # Draw refined border with inner accent
         pg.draw.rect(surf, (70,74,92), card_r, 1, border_radius=6)
+        try:
+            pg.draw.rect(surf, (56,60,76), card_r.inflate(-4, -4), 1, border_radius=5)
+        except Exception:
+            pass
         # Spacing between enemies
         ey = card_r.bottom + CARD_OUTER_GAP
     if not enemies_list:
-        draw_text(surf, "No target.", (ex, ey))
+        draw_text(surf, "No target.", (ex, ey), font=stat_label_font, max_w=right.w - 24)
 
-    # Allies (left sidebar): player stats
+    # Allies (left sidebar): player + party stats
     rx, ry = left.x + 12, left.y + 12
-    p_card_y0 = ry
-    pname = f"{game.player.name}"
-    surf.blit(stat_name_font.render(pname, True, (230,230,245)), (rx, ry)); ry += 14
-    # Player race
-    try:
-        prace = str(game.player.race)
-    except Exception:
-        prace = ''
-    if prace:
-        surf.blit(stat_label_font.render(f"Race: {prace}", True, (200,205,220)), (rx, ry)); ry += 14
-    # Player HP bar
-    php_cur = int(game.player.hp); php_max = int(game.player.max_hp or max(1, game.player.hp))
-    pbar = pg.Rect(rx, ry, left.w - 24, 12)
-    pg.draw.rect(surf, (40,42,56), pbar, border_radius=6)
-    pfill = pbar.inflate(-4, -4)
-    pfill.w = int((pbar.w - 4) * max(0.0, min(1.0, php_cur / float(max(1, php_max)))))
-    pg.draw.rect(surf, (120,200,120), pfill, border_radius=5)
-    pg.draw.rect(surf, (96,102,124), pbar, 1, border_radius=6)
-    surf.blit(stat_label_font.render(f"HP: {php_cur}/{php_max}", True, (235,235,245)), (rx, ry + 14)); ry += 28
-    # Equipped summary
-    wep = item_name(game.player.equipped_weapon) if game.player.equipped_weapon else "Unarmed"
-    foc = item_name(game.player.equipped_focus) if game.player.equipped_focus else "None"
-    draw_text(surf, f"Weapon: {wep}", (rx, ry)); ry += 14
-    draw_text(surf, f"Focus : {foc}", (rx, ry)); ry += 18
-    # Draw enclosing outline box for player's stats (inner padding)
-    p_pad_x, p_pad_y = 10, 8
-    p_card_x = left.x + p_pad_x
-    p_card_w = left.w - 2*p_pad_x
-    p_card_h = (ry - p_card_y0) + 2*p_pad_y
-    p_card_r = pg.Rect(p_card_x, max(left.y + CARD_OUTER_GAP, p_card_y0 - p_pad_y), p_card_w, max(24, p_card_h))
-    pg.draw.rect(surf, (70,74,92), p_card_r, 1, border_radius=6)
+    def draw_actor_card(actor):
+        nonlocal rx, ry
+        card_y0 = ry
+        pname = f"{getattr(actor,'name','')}"
+        ry += draw_text(surf, pname, (rx, ry), font=stat_name_font, max_w=left.w - 24)
+        # Subtle divider under name
+        try:
+            pg.draw.line(surf, (70,74,92), (left.x + 12, ry + 4), (left.right - 12, ry + 4), 1)
+        except Exception:
+            pass
+        ry += 8
+        # Race
+        try:
+            prace = str(getattr(actor, 'race', '') or '')
+        except Exception:
+            prace = ''
+        if prace:
+            ry += draw_text(surf, f"Race: {prace}", (rx, ry), font=stat_label_font, max_w=left.w - 24)
+        # HP bar
+        php_cur = int(getattr(actor, 'hp', 0)); php_max = int(getattr(actor, 'max_hp', max(1, php_cur)))
+        pbar = pg.Rect(rx, ry, left.w - 24, 12)
+        pg.draw.rect(surf, (40,42,56), pbar, border_radius=6)
+        pfill = pbar.inflate(-4, -4)
+        pfill.w = int((pbar.w - 4) * max(0.0, min(1.0, php_cur / float(max(1, php_max)))))
+        pg.draw.rect(surf, (120,200,120), pfill, border_radius=5)
+        pg.draw.rect(surf, (96,102,124), pbar, 1, border_radius=6)
+        ry += 14 + draw_text(surf, f"HP: {php_cur}/{php_max}", (rx, ry + 14), font=stat_label_font, max_w=left.w - 24) + 10
+        # Equipped summary
+        wep = item_name(getattr(actor, 'equipped_weapon', None)) if getattr(actor, 'equipped_weapon', None) else "Unarmed"
+        foc = item_name(getattr(actor, 'equipped_focus', None)) if getattr(actor, 'equipped_focus', None) else "None"
+        ry += draw_text(surf, f"Weapon: {wep}", (rx, ry), font=stat_label_font, max_w=left.w - 24)
+        ry += draw_text(surf, f"Focus : {foc}", (rx, ry), font=stat_label_font, max_w=left.w - 24) + 4
+        # Enclosing card
+        p_pad_x, p_pad_y = 10, 8
+        p_card_x = left.x + p_pad_x
+        p_card_w = left.w - 2*p_pad_x
+        p_card_h = (ry - card_y0) + 2*p_pad_y
+        p_card_r = pg.Rect(p_card_x, max(left.y + CARD_OUTER_GAP, card_y0 - p_pad_y), p_card_w, max(24, p_card_h))
+        pg.draw.rect(surf, (70,74,92), p_card_r, 1, border_radius=6)
+        try:
+            pg.draw.rect(surf, (56,60,76), p_card_r.inflate(-4, -4), 1, border_radius=5)
+        except Exception:
+            pass
+        ry = p_card_r.bottom + 10
+
+    # Player card
+    draw_actor_card(game.player)
+    # Party members cards
+    for ally in (getattr(game, 'party', []) or []):
+        draw_actor_card(ally)
 
     # Action buttons grid (2 columns) centered in action area
     bx, by = act_area.x + 12, act_area.y + 12
+    # Actions header
+    try:
+        _act_fnt = pg.font.Font(None, 20)
+        surf.blit(_act_fnt.render("Actions", True, (220,225,240)), (bx, by))
+        pg.draw.line(surf, (70,74,92), (act_area.x + 10, by + 18), (act_area.right - 10, by + 18), 1)
+        by += 24
+    except Exception:
+        pass
     bw = (act_area.w - 24 - 8) // 2
     bh = 36
     gap = 8
@@ -1751,7 +2084,7 @@ def draw_combat_overlay(surf, game):
     add_btn(bx, by, "Flee", game.flee)
     add_btn(bx + bw + gap, by, "Inventory", lambda: setattr(game, 'mode', 'inventory')); by += bh + gap
     add_btn(bx, by, "Equipment", lambda: setattr(game, 'mode', 'equip'))
-    add_btn(bx + bw + gap, by, "Database", lambda: setattr(game, 'mode', 'database'))
+    # Removed Database option from battle scene
 
     return buttons
 
@@ -1850,6 +2183,17 @@ def draw_inventory_overlay(surf, game):
     # Draw icons grid
     x = grid_area.x + gap
     y = grid_area.y + gap
+    # Helper to check if an item is currently equipped by the player
+    def _is_equipped_by_player(it: dict) -> bool:
+        try:
+            p = game.player
+            if getattr(p, 'equipped_weapon', None) is it: return True
+            if getattr(p, 'equipped_focus', None) is it: return True
+            for v in (getattr(p, 'equipped_gear', {}) or {}).values():
+                if v is it: return True
+        except Exception:
+            pass
+        return False
     for i in range(start, end):
         it = items[i]
         col = (i - start) % cols
@@ -1866,16 +2210,36 @@ def draw_inventory_overlay(surf, game):
         else:
             pg.draw.rect(surf, (48,52,68) if hov else base, r, border_radius=6)
             pg.draw.rect(surf, border, r, 1, border_radius=6)
-        # Colored inner tag stripe
+        # Colored inner tag stripe (rarity color when available)
         tag = r.inflate(-10, -10)
         tag.h = max(8, icon // 6)
-        pg.draw.rect(surf, type_color(it), (tag.x, tag.y, tag.w, tag.h), border_radius=4)
+        _rar = str((it.get('rarity') or '')).lower()
+        _rc = RARITY_COLORS.get(_rar)
+        pg.draw.rect(surf, _rc if _rc else type_color(it), (tag.x, tag.y, tag.w, tag.h), border_radius=4)
         # Icon glyph (first letter of type)
         glyph = (str(item_type(it)) or '?')[:1].upper()
         gfont = pg.font.Font(None, max(18, icon // 2))
         gs = gfont.render(glyph, True, (235,235,245))
         surf.blit(gs, (r.centerx - gs.get_width()//2, r.centery - gs.get_height()//2))
-        # Label (name) under icon — multi-line (up to 2)
+        # Equipped marker (top-right corner)
+        try:
+            if _is_equipped_by_player(it):
+                # Small gold dot with a checkmark
+                mr = max(6, icon // 8)
+                cx, cy = r.right - mr - 4, r.y + mr + 4
+                pg.draw.circle(surf, (12,14,18), (cx, cy), mr + 2)              # dark outline
+                pg.draw.circle(surf, RARITY_COLORS.get('mythic', (245,210,80)), (cx, cy), mr)
+                # Tiny check
+                try:
+                    chk = pg.font.Font(None, max(14, icon // 5)).render('✓', True, (18,18,22))
+                    surf.blit(chk, (cx - chk.get_width()//2, cy - chk.get_height()//2 - 1))
+                except Exception:
+                    # Fallback: draw a simple tick with lines
+                    pg.draw.line(surf, (18,18,22), (cx - mr//2, cy), (cx - mr//6, cy + mr//3), 2)
+                    pg.draw.line(surf, (18,18,22), (cx - mr//6, cy + mr//3), (cx + mr//2, cy - mr//3), 2)
+        except Exception:
+            pass
+        # Label (name) under icon - multi-line (up to 2), colored by rarity
         name = item_name(it)
         lab_y = r.bottom + 4
         max_w = icon
@@ -1910,8 +2274,9 @@ def draw_inventory_overlay(surf, game):
         if cur and len(lines) < lab_lines:
             lines.append(cur)
         # Render lines centered under icon
+        name_col = _rc if _rc else (220,220,230)
         for li, text in enumerate(lines[:lab_lines]):
-            ts = lab_font.render(text, True, (220,220,230))
+            ts = lab_font.render(text, True, name_col)
             surf.blit(ts, (r.centerx - ts.get_width()//2, lab_y + li*lab_h))
         # Clickable button area: include icon + label block
         click_rect = pg.Rect(r.x, r.y, r.w, r.h + lab_lines*lab_h + 6)
@@ -1928,7 +2293,8 @@ def draw_inventory_overlay(surf, game):
     if game.inv_sel is not None and 0 <= game.inv_sel < total:
         it = items[game.inv_sel]
         name_font = pg.font.Font(None, 28)
-        draw_text(surf, item_name(it), (det_area.x + 12, det_area.y + 10), font=name_font)
+        _rar = str((it.get('rarity') or '')).lower(); _rc = RARITY_COLORS.get(_rar)
+        draw_text(surf, item_name(it), (det_area.x + 12, det_area.y + 10), color=_rc or (235,235,245), font=name_font)
         y2 = det_area.y + 48
         typ = item_type(it); sub = item_subtype(it)
         wt = item_weight(it); val = item_value(it)
@@ -1936,7 +2302,56 @@ def draw_inventory_overlay(surf, game):
         draw_text(surf, f"Weight: {wt}", (det_area.x + 12, y2)); y2 += 22
         draw_text(surf, f"Value: {val}", (det_area.x + 12, y2)); y2 += 26
         desc = item_desc(it) or ""
-        draw_text(surf, desc, (det_area.x + 12, y2), max_w=det_area.w - 24); y2 += 90
+        # Detailed stats
+        try:
+            rarity = str(it.get('rarity') or '').title()
+            if rarity:
+                y2 += draw_text(surf, f"Rarity: {rarity}", (det_area.x + 12, y2))
+        except Exception:
+            pass
+        # Show combat-relevant stats
+        mtyp = item_major_type(it)
+        if mtyp == 'weapon':
+            mn, mx, _, _ = _weapon_stats(it)
+            y2 += draw_text(surf, f"Damage: {mn}-{mx}", (det_area.x + 12, y2))
+            dmg_map = it.get('damage_type') or {}
+            if isinstance(dmg_map, dict) and dmg_map:
+                parts = []
+                for k, v in dmg_map.items():
+                    try: parts.append(f"{k}+{int(v)}")
+                    except Exception: pass
+                if parts:
+                    y2 += draw_text(surf, "Types: " + ", ".join(parts), (det_area.x + 12, y2))
+            tr = str(it.get('weapon_trait') or it.get('trait') or '')
+            if tr:
+                y2 += draw_text(surf, f"Trait: {tr}", (det_area.x + 12, y2))
+        elif mtyp in ('armour','armor','clothing','accessory','accessories'):
+            def_map = it.get('defense_type') or {}
+            if isinstance(def_map, dict) and def_map:
+                # Show up to 5 defenses per line
+                parts = []
+                for k, v in def_map.items():
+                    try: parts.append(f"{k}+{int(v)}")
+                    except Exception: pass
+                if parts:
+                    y2 += draw_text(surf, "Defense: " + ", ".join(parts), (det_area.x + 12, y2))
+            tr = str(it.get('armour_trait') or it.get('armor_trait') or it.get('trait') or '')
+            if tr:
+                y2 += draw_text(surf, f"Trait: {tr}", (det_area.x + 12, y2))
+            # Show bonuses
+            b = it.get('bonus') or {}
+            if isinstance(b, dict) and b:
+                parts = []
+                for k, v in b.items():
+                    try: parts.append(f"{k}+{int(v)}")
+                    except Exception: pass
+                if parts:
+                    y2 += draw_text(surf, "Bonus: " + ", ".join(parts), (det_area.x + 12, y2))
+        # Description at the end
+        desc = item_desc(it) or ""
+        if desc:
+            y2 += 6
+            draw_text(surf, desc, (det_area.x + 12, y2), max_w=det_area.w - 24); y2 += 90
 
         # Action buttons along bottom of details
         bx = det_area.x + 12; by = det_area.bottom - 34
@@ -1944,9 +2359,9 @@ def draw_inventory_overlay(surf, game):
         sub_l = str(sub).lower()
         if mtyp == 'weapon':
             if sub_l in ('wand','staff'):
-                buttons.append(Button((bx, by, 160, 28), "Equip as Focus", lambda it=it: game.equip_focus(it))); bx += 170
+                buttons.append(Button((bx, by, 160, 28), "Equip as Focus", lambda it=it: game.equip_item(it))); bx += 170
             else:
-                buttons.append(Button((bx, by, 160, 28), "Equip Weapon", lambda it=it: game.equip_weapon(it))); bx += 170
+                buttons.append(Button((bx, by, 160, 28), "Equip Weapon", lambda it=it: game.equip_item(it))); bx += 170
         elif mtyp in ('armour','armor','clothing','accessory','accessories'):
             buttons.append(Button((bx, by, 160, 28), "Equip", lambda it=it: game.equip_item(it))); bx += 170
         if item_is_consumable(it):
@@ -1957,6 +2372,70 @@ def draw_inventory_overlay(surf, game):
     # Back button moved to header above
 
     # Tooltips removed per request
+
+    return buttons
+
+def draw_death_overlay(surf, game):
+    """Centered death modal with choices: Main Menu or Load Last Save.
+
+    Returns list of Button objects for click handling.
+    """
+    buttons: List[Button] = []
+    win_w, win_h = surf.get_size()
+    panel_w = int(PANEL_W_FIXED)
+
+    # Map view area (between left and right panels)
+    view_w = max(100, win_w - 2*panel_w)
+    view_h = win_h
+    view_rect = pg.Rect(panel_w, 0, view_w, view_h)
+
+    # Dim background only over the map area
+    dim = pg.Surface((view_rect.w, view_rect.h), pg.SRCALPHA)
+    dim.fill((10, 10, 14, 190))
+    surf.blit(dim, (view_rect.x, view_rect.y))
+
+    # Modal panel
+    modal_w = max(520, int(view_w * 0.6))
+    modal_h = max(240, int(view_h * 0.36))
+    modal_x = view_rect.x + (view_w - modal_w)//2
+    modal_y = view_rect.y + (view_h - modal_h)//2
+    modal = pg.Rect(modal_x, modal_y, modal_w, modal_h)
+
+    pg.draw.rect(surf, (24,26,34), modal, border_radius=10)
+    pg.draw.rect(surf, (150,64,64), modal, 2, border_radius=10)
+    pg.draw.rect(surf, (56,60,76), modal.inflate(-8, -8), 1, border_radius=8)
+
+    # Title and message
+    title_font = pg.font.Font(None, 34)
+    msg_font = pg.font.Font(None, 22)
+    surf.blit(title_font.render("You Have Fallen", True, (240,220,220)), (modal.x + 16, modal.y + 14))
+    info = "Choose an option: return to main menu or load your most recent save."
+    draw_text(surf, info, (modal.x + 16, modal.y + 54), font=msg_font, max_w=modal.w - 32)
+
+    # Buttons
+    bw = 180; bh = 40; gap = 16
+    by = modal.bottom - bh - 24
+    total_w = bw*2 + gap
+    bx = modal.x + (modal.w - total_w)//2
+
+    def _to_menu():
+        # Signal the game loop to return to main menu
+        setattr(game, '_req_main_menu', True)
+
+    def _load_last():
+        try:
+            slot = _latest_save_slot()
+        except Exception:
+            slot = None
+        if slot is None:
+            game.say("No saves available to load.")
+            return
+        ok = game.load_from_slot(int(slot))
+        if not ok:
+            game.say("Failed to load the last save.")
+
+    buttons.append(Button((bx, by, bw, bh), "Main Menu", _to_menu))
+    buttons.append(Button((bx + bw + gap, by, bw, bh), "Load Last Save", _load_last))
 
     return buttons
 
@@ -2052,12 +2531,28 @@ def _draw_battlefield_canvas(surf, game, bf: 'Rect', hover_side: Optional[str] =
                 return str(p)
         return fallback
 
-    # Ally: player portrait/sprite
+    # Ally: player portrait/sprite + party allies
     try:
         pcands = _player_portrait_candidates(game.player)
     except Exception:
         pcands = []
     allies.append(_pick_key(pcands + ['images/player/player.png'], 'images/player/player.png'))
+    # Add party ally portraits
+    try:
+        for a in (getattr(game, 'party', []) or [])[:5]:
+            acands: List[str] = []
+            img = getattr(a, 'portrait', None)
+            if img: acands.append(str(img))
+            # Heuristic fallback by name/slug under images/allies
+            try:
+                slug = _slugify_name(getattr(a,'name','ally'))
+                for sub in ('images/allies','images/npcs','images'):
+                    acands.append(f"{sub}/{slug}.png"); acands.append(f"{sub}/{slug}.jpg")
+            except Exception:
+                pass
+            allies.append(_pick_key(acands + ['images/allies/fighter.png'], 'images/allies/fighter.png'))
+    except Exception:
+        pass
 
     # Enemies: support multiple current enemies; else single fallback
     cur_list = list(getattr(game, 'current_enemies', []) or [])
@@ -2087,8 +2582,8 @@ def _draw_battlefield_canvas(surf, game, bf: 'Rect', hover_side: Optional[str] =
 
     # Draw team helper
     def draw_team(area: 'Rect', items: List[str], flip=False, side_name: str = ''):
-        # Make sprites larger for classic RPG look (increase scale)
-        SCALE = 1.9
+        # Slightly increase sprite zoom for better character focus
+        SCALE = 2.1
         max_w = int((area.w / cols) * SCALE) - 8
         max_h = int((area.h / rows) * SCALE) - 6
         for idx, key in enumerate(items[:cols*rows]):
@@ -2266,9 +2761,24 @@ def draw_equip_overlay(surf, game):
     pg.draw.rect(surf, (96,102,124), modal, 2, border_radius=10)
     pg.draw.rect(surf, (56,60,76), modal.inflate(-8, -8), 1, border_radius=8)
 
-    # Header
+    # Header + target selector
     title_font = pg.font.Font(None, 30)
-    surf.blit(title_font.render("Equipment", True, (235,235,245)), (modal.x + 16, modal.y + 12))
+    try:
+        total_targets = 1 + len(getattr(game, 'party', []) or [])
+        if not hasattr(game, 'equip_target_idx'):
+            game.equip_target_idx = 0
+        game.equip_target_idx = max(0, min(game.equip_target_idx, total_targets-1))
+    except Exception:
+        total_targets = 1; game.equip_target_idx = 0
+    def _equip_target():
+        return game.player if game.equip_target_idx == 0 else (game.party[game.equip_target_idx-1])
+    target = _equip_target()
+    title = f"Equipment — {getattr(target, 'name', 'Unknown')}"
+    surf.blit(title_font.render(title, True, (235,235,245)), (modal.x + 16, modal.y + 12))
+    def _prev(): setattr(game, 'equip_target_idx', (game.equip_target_idx - 1) % total_targets)
+    def _next(): setattr(game, 'equip_target_idx', (game.equip_target_idx + 1) % total_targets)
+    buttons.append(Button((modal.x + 360, modal.y + 10, 28, 28), "<", lambda: _prev()))
+    buttons.append(Button((modal.x + 392, modal.y + 10, 28, 28), ">", lambda: _next()))
     buttons.append(Button((modal.right - 230, modal.y + 10, 110, 28), "Inventory", lambda: setattr(game,'mode','inventory')))
     buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode', 'combat' if getattr(game,'current_enemy', None) else 'explore')))
 
@@ -2281,10 +2791,16 @@ def draw_equip_overlay(surf, game):
         pg.draw.rect(surf, (30,32,42), r, border_radius=8)
         pg.draw.rect(surf, (70,74,92), r, 1, border_radius=8)
 
-    # Try to draw the actual player sprite; fall back to silhouette image/shapes
+    # Try to draw the actual sprite; fall back to silhouette image/shapes
     sil_img = None
     try:
-        candidates = [
+        candidates = []
+        try:
+            if getattr(target, 'portrait', None):
+                candidates.append(os.path.join(ROOT, 'assets', str(getattr(target, 'portrait'))))
+        except Exception:
+            pass
+        candidates += [
             os.path.join(ROOT, 'assets', 'images', 'player', 'player.png'),
             os.path.join(ROOT, 'assets', 'images', 'ui', 'silhouette.png'),
         ]
@@ -2391,21 +2907,27 @@ def draw_equip_overlay(surf, game):
     sel_slot = getattr(game, 'equip_sel_slot', None)
     for key, (nx, ny) in SLOT_POS.items():
         r = at(nx, ny)
-        eq = game.player.equipped_gear.get(key)
+        eq = getattr(target, 'equipped_gear', {}).get(key)
         hov = r.collidepoint(mx, my)
-        base = (44,48,62) if hov or key == sel_slot else (38,40,52)
+        _rar = str(((eq or {}).get('rarity') or '')).lower() if eq else ''
+        _rc = RARITY_COLORS.get(_rar)
+        base = (44,48,62) if (hov or key == sel_slot) else (38,40,52)
         pg.draw.rect(surf, base, r, border_radius=8)
-        pg.draw.rect(surf, (96,102,124) if hov or key == sel_slot else (70,74,92), r, 2, border_radius=8)
+        border_col = _rc if _rc else ((96,102,124) if (hov or key == sel_slot) else (70,74,92))
+        pg.draw.rect(surf, border_col, r, 2, border_radius=8)
         # Slot label
         lab = SLOT_LABELS.get(key, key.title())
         f = pg.font.Font(None, 18)
-        ls = f.render(lab, True, (210,210,220))
+        ls_col = _rc if _rc else (210,210,220)
+        ls = f.render(lab, True, ls_col)
         surf.blit(ls, (r.centerx - ls.get_width()//2, r.bottom + 4))
         # If equipped, draw small icon glyph
         if eq:
             tag = r.inflate(-10, -10)
             tag.h = max(8, slot_sz // 6)
-            pg.draw.rect(surf, type_color(eq), (tag.x, tag.y, tag.w, tag.h), border_radius=4)
+            _rar = str((eq.get('rarity') or '')).lower()
+            _rc = RARITY_COLORS.get(_rar)
+            pg.draw.rect(surf, _rc if _rc else type_color(eq), (tag.x, tag.y, tag.w, tag.h), border_radius=4)
             glyph = (str(item_type(eq)) or '?')[:1].upper()
             gfont = pg.font.Font(None, max(18, slot_sz // 2))
             gs = gfont.render(glyph, True, (235,235,245))
@@ -2417,8 +2939,11 @@ def draw_equip_overlay(surf, game):
 
     # Right list: items that can go to selected slot
     fnt = pg.font.Font(None, 22)
-    header = f"Select for: {SLOT_LABELS.get(sel_slot, '—')}" if sel_slot else "Select a slot"
-    draw_text(surf, header, (list_area.x + 12, list_area.y - 26), font=fnt)
+    # Stats header for target
+    stats_font = pg.font.Font(None, 20)
+    draw_text(surf, f"HP: {getattr(target,'hp',0)}/{getattr(target,'max_hp',0)}   ATK: {getattr(target,'atk',(0,0))[0]}-{getattr(target,'atk',(0,0))[1]}", (list_area.x + 12, list_area.y - 26), font=stats_font)
+    header = f"Select for: {SLOT_LABELS.get(sel_slot, '-')}" if sel_slot else "Select a slot"
+    draw_text(surf, header, (list_area.x + 12, list_area.y - 4), font=fnt)
 
     if sel_slot:
         # Filter items
@@ -2439,7 +2964,16 @@ def draw_equip_overlay(surf, game):
             pg.draw.rect(surf, (34,36,46), r, border_radius=6)
             pg.draw.rect(surf, (90,94,112), r, 1, border_radius=6)
             label = f"{item_name(it)}  [{item_type(it)}/{item_subtype(it)}]"
-            draw_text(surf, label, (r.x+8, r.y+6))
+            _rar = str((it.get('rarity') or '')).lower()
+            _rc = RARITY_COLORS.get(_rar)
+            # optional left rarity stripe for clarity
+            try:
+                stripe = r.inflate(0, -8)
+                stripe.w = 4
+                pg.draw.rect(surf, _rc if _rc else (90,94,112), stripe, border_radius=3)
+            except Exception:
+                pass
+            draw_text(surf, label, (r.x+12, r.y+6), color=_rc or (220,220,230))
             def make_equip(it=it, slot=sel_slot):
                 return lambda it=it, slot=slot: game.equip_item_to_slot(slot, it)
             buttons.append(Button(r, "", make_equip(), draw_bg=False))
@@ -2449,7 +2983,7 @@ def draw_equip_overlay(surf, game):
         buttons.append(Button((list_area.x + 8, pager_y, 110, 26), "Prev Page", lambda: setattr(game,'equip_page', max(0, game.equip_page-1))))
         buttons.append(Button((list_area.x + 8 + 120, pager_y, 110, 26), "Next Page", lambda: setattr(game,'equip_page', min(pages-1, game.equip_page+1))))
         # Unequip if there is an item in slot
-        if game.player.equipped_gear.get(sel_slot):
+        if getattr(target, 'equipped_gear', {}).get(sel_slot):
             buttons.append(Button((list_area.right - 130, pager_y, 110, 26), "Unequip", lambda slot=sel_slot: game.unequip_slot(slot)))
 
     return buttons
@@ -3416,8 +3950,13 @@ def draw_database_overlay(surf, game):
 
 # ======================== Game class + loop ========================
 class Game:
-    def __init__(self, start_map: Optional[str]=None, start_entry: Optional[str]=None, start_pos: Optional[Tuple[int,int]]=None):
+    def __init__(self, start_map: Optional[str]=None, start_entry: Optional[str]=None, start_pos: Optional[Tuple[int,int]]=None, char_config: Optional[Dict[str, Any]] = None):
         random.seed()
+        # Stable world seed (persisted in saves)
+        try:
+            self.world_seed = int(random.getrandbits(32))
+        except Exception:
+            self.world_seed = int(random.randint(0, 2**31-1))
         self.items   = gather_items()
         self.npcs    = gather_npcs()
         self.traits  = load_traits()
@@ -3447,6 +3986,32 @@ class Game:
         # Track a stable ID separate from display name to match links reliably
         self.current_map_id = sel_map_id
         self.player  = Player()
+        # Apply character creation config if provided
+        if isinstance(char_config, dict):
+            try:
+                nm = char_config.get('name');  self.player.name = nm or self.player.name
+                rc = char_config.get('race');  self.player.race = rc or self.player.race
+                rl = char_config.get('role');  self.player.role = rl or self.player.role
+                ap = char_config.get('appearance') or {}
+                setattr(self.player, 'appearance', dict(ap))
+                setattr(self.player, 'backstory', str(char_config.get('backstory') or ''))
+            except Exception:
+                pass
+        # Level/class setup
+        if not getattr(self.player, 'level', None):
+            self.player.level = 1
+        if not getattr(self.player, 'xp', None):
+            self.player.xp = 0
+        # If role is placeholder and classes are available, pick the first class by default
+        try:
+            if (str(getattr(self.player, 'role', '')).strip().lower() in ('', 'wanderer')) and self.classes:
+                self.player.role = str(self.classes[0].get('name') or 'Adventurer')
+        except Exception:
+            pass
+        # Party system
+        self.party: List[Ally] = []  # allies that can join
+        # Equipment target index for overlay: 0=player, 1..N=ally index+1
+        self.equip_target_idx: int = 0
         # Position player: entry takes precedence, else pos, else (0,0)
         if entry_name:
             px, py = find_entry_coords(scene, entry_name)
@@ -3478,24 +4043,45 @@ class Game:
         # Playtime tracker (milliseconds)
         self.playtime_ms = 0
 
+        # Do not auto-equip placeholders; player equips via Inventory/Equipment
         weps  = [it for it in self.items if str(item_type(it)).lower() == 'weapon']
-        melee = [w for w in weps if str(item_subtype(w)).lower() not in ('wand','staff')]
-        focus = [w for w in weps if str(item_subtype(w)).lower() in ('wand','staff')]
-        self.player.equipped_weapon = melee[0] if melee else (weps[0] if weps else None)
-        self.player.equipped_focus  = focus[0] if focus else None
-
-        if self.player.equipped_weapon:
-            self.say(f"Equipped weapon: {item_name(self.player.equipped_weapon)}")
-        if self.player.equipped_focus:
-            self.say(f"Equipped focus: {item_name(self.player.equipped_focus)}")
-
         if not self.player.inventory and weps:
+            # Seed a couple items into inventory only (no auto-equip)
             self.player.inventory.append(weps[0])
             if len(weps) > 1:
                 self.player.inventory.append(weps[1])
 
+        # Apply class base + level growth to player
+        try:
+            self._apply_class_and_level_to_player(initial=True)
+        except Exception:
+            pass
+
     # ---------- Save/Load ----------
     def _save_meta(self) -> Dict[str, Any]:
+        def _ser_char(obj) -> Dict[str, Any]:
+            return {
+                'id': getattr(obj, 'id', ''),
+                'name': obj.name,
+                'race': obj.race,
+                'role': getattr(obj, 'role', ''),
+                'level': int(getattr(obj, 'level', 1)),
+                'hp': int(getattr(obj, 'hp', 0)),
+                'max_hp': int(getattr(obj, 'max_hp', 0)),
+                'atk': list(getattr(obj, 'atk', (2,4))),
+                'phy': int(getattr(obj, 'phy', 5)),
+                'dex': int(getattr(obj, 'dex', 5)),
+                'vit': int(getattr(obj, 'vit', 5)),
+                'arc': int(getattr(obj, 'arc', 5)),
+                'kno': int(getattr(obj, 'kno', 5)),
+                'ins': int(getattr(obj, 'ins', 5)),
+                'soc': int(getattr(obj, 'soc', 5)),
+                'fth': int(getattr(obj, 'fth', 5)),
+                'equipped_weapon': getattr(obj, 'equipped_weapon', None),
+                'equipped_focus': getattr(obj, 'equipped_focus', None),
+                'equipped_gear': dict(getattr(obj, 'equipped_gear', {}) or {}),
+                'portrait': getattr(obj, 'portrait', None),
+            }
         return {
             'schema': 'rpgen.save@1',
             'version': 1,
@@ -3508,6 +4094,7 @@ class Game:
                 'race': self.player.race,
                 'role': self.player.role,
                 'level': int(getattr(self.player, 'level', 1)),
+                'xp': int(getattr(self.player, 'xp', 0)),
                 'hp': self.player.hp,
                 'max_hp': self.player.max_hp,
                 'atk': list(self.player.atk),
@@ -3527,7 +4114,9 @@ class Game:
                 'equipped_focus': self.player.equipped_focus,
                 'equipped_gear': dict(self.player.equipped_gear),
             },
+            'party': [ _ser_char(a) for a in getattr(self, 'party', []) ],
             'playtime_s': int(getattr(self, 'playtime_ms', 0) // 1000),
+            'world_seed': int(getattr(self, 'world_seed', 0)),
         }
 
     def save_to_slot(self, slot: int) -> bool:
@@ -3565,6 +4154,10 @@ class Game:
         except Exception:
             pass
         try:
+            self.player.xp = int(p.get('xp', getattr(self.player, 'xp', 0)))
+        except Exception:
+            pass
+        try:
             self.player.hp = int(p.get('hp', self.player.hp))
             self.player.max_hp = int(p.get('max_hp', self.player.max_hp))
         except Exception:
@@ -3596,6 +4189,39 @@ class Game:
         self.player.equipped_focus  = p.get('equipped_focus')
         self.player.equipped_gear   = dict(p.get('equipped_gear', self.player.equipped_gear))
 
+        # Restore party
+        self.party = []
+        try:
+            for a in (data.get('party') or []):
+                try:
+                    ally = Ally(
+                        id=str(a.get('id') or a.get('name') or f"AL{len(self.party)+1:03d}"),
+                        name=str(a.get('name') or 'Ally'),
+                        race=str(a.get('race') or 'Human'),
+                        role=str(a.get('role') or 'Ally'),
+                        level=int(a.get('level', 1) or 1),
+                        hp=int(a.get('hp', 10) or 10),
+                        max_hp=int(a.get('max_hp', a.get('hp', 10)) or a.get('hp', 10)),
+                        atk=tuple(a.get('atk') or (2,4)),
+                        phy=int(a.get('phy', 5) or 5),
+                        dex=int(a.get('dex', 5) or 5),
+                        vit=int(a.get('vit', 5) or 5),
+                        arc=int(a.get('arc', 5) or 5),
+                        kno=int(a.get('kno', 5) or 5),
+                        ins=int(a.get('ins', 5) or 5),
+                        soc=int(a.get('soc', 5) or 5),
+                        fth=int(a.get('fth', 5) or 5),
+                        equipped_weapon=a.get('equipped_weapon'),
+                        equipped_focus=a.get('equipped_focus'),
+                        equipped_gear=dict(a.get('equipped_gear', {})),
+                        portrait=a.get('portrait')
+                    )
+                    self.party.append(ally)
+                except Exception:
+                    pass
+        except Exception:
+            self.party = []
+
         # Position
         pos = data.get('pos') or [0,0]
         self.player.x = max(0, min(self.W-1, int(pos[0] if len(pos)>0 else 0)))
@@ -3604,11 +4230,21 @@ class Game:
             self.grid[self.player.y][self.player.x].discovered = True
         except Exception:
             pass
+        # Reapply class effects to ensure atk/hp reflect class+level
+        try:
+            self._apply_class_and_level_to_player(initial=False, preserve_hp=True)
+        except Exception:
+            pass
         self.mode = 'explore'
         try:
             self.playtime_ms = int((data.get('playtime_s') or 0) * 1000)
         except Exception:
             self.playtime_ms = getattr(self, 'playtime_ms', 0)
+        try:
+            ws = int(data.get('world_seed', getattr(self, 'world_seed', 0)))
+            self.world_seed = ws
+        except Exception:
+            pass
         return True
 
     def load_from_slot(self, slot: int) -> bool:
@@ -3646,16 +4282,68 @@ class Game:
             self.log = self.log[-8:]
 
     # ---------- Equipment actions ----------
+    def _equip_target(self):
+        try:
+            idx = int(getattr(self, 'equip_target_idx', 0))
+        except Exception:
+            idx = 0
+        if idx <= 0:
+            return self.player
+        party = getattr(self, 'party', []) or []
+        return party[idx-1] if 0 <= (idx-1) < len(party) else self.player
+
+    def _equipped_slot_of(self, actor, it: Dict) -> Optional[str]:
+        try:
+            if getattr(actor, 'equipped_weapon', None) is it:
+                return 'weapon_main'
+            if getattr(actor, 'equipped_focus', None) is it:
+                return 'weapon_off'
+            gear = getattr(actor, 'equipped_gear', {}) or {}
+            for k, v in gear.items():
+                if v is it:
+                    return str(k)
+        except Exception:
+            pass
+        return None
+
     def equip_weapon(self, it: Dict):
+        target = self._equip_target()
         if item_type(it).lower() == "weapon" and item_subtype(it).lower() not in ("wand","staff"):
-            self.player.equipped_weapon = it
-            self.say(f"Equipped weapon: {item_name(it)}")
+            # Block if already equipped elsewhere
+            where = self._equipped_slot_of(target, it)
+            if where and where != 'weapon_main':
+                self.say(f"Already equipped in {SLOT_LABELS.get(where, where)}. Unequip first.")
+                return
+            target.equipped_weapon = it
+            # Keep equipped_gear in sync for equipment UI
+            try:
+                if not hasattr(target, 'equipped_gear') or not isinstance(getattr(target, 'equipped_gear'), dict):
+                    target.equipped_gear = {}
+                target.equipped_gear['weapon_main'] = it
+            except Exception:
+                pass
+            self.say(f"Equipped weapon on {getattr(target,'name','ally')}: {item_name(it)}")
         else:
             self.say("That cannot be equipped as a weapon.")
     def equip_focus(self, it: Dict):
+        target = self._equip_target()
         if item_type(it).lower() == "weapon" and item_subtype(it).lower() in ("wand","staff"):
-            self.player.equipped_focus = it
-            self.say(f"Equipped focus: {item_name(it)}")
+            # Block if already equipped elsewhere
+            where = self._equipped_slot_of(target, it)
+            # Focus typically sits in off-hand; if already anywhere else, block
+            if where and where != 'weapon_off':
+                self.say(f"Already equipped in {SLOT_LABELS.get(where, where)}. Unequip first.")
+                return
+            target.equipped_focus = it
+            # Keep equipped_gear in sync; use off-hand if a main weapon exists
+            try:
+                if not hasattr(target, 'equipped_gear') or not isinstance(getattr(target, 'equipped_gear'), dict):
+                    target.equipped_gear = {}
+                slot = 'weapon_off' if getattr(target, 'equipped_weapon', None) else 'weapon_main'
+                target.equipped_gear[slot] = it
+            except Exception:
+                pass
+            self.say(f"Equipped focus on {getattr(target,'name','ally')}: {item_name(it)}")
         else:
             self.say("You need a wand or staff as a focus.")
     def drop_item(self, idx: int):
@@ -3688,34 +4376,43 @@ class Game:
     
     def equip_item_to_slot(self, slot: str, it: Dict):
         slot = normalize_slot(slot)
+        target = self._equip_target()
+        # Prevent equipping the same item in multiple slots for the same target
+        try:
+            where = self._equipped_slot_of(target, it)
+            if where and where != slot:
+                self.say(f"Already equipped in {SLOT_LABELS.get(where, where)}. Unequip first.")
+                return
+        except Exception:
+            pass
         if not slot_accepts(slot, it) and slot not in ('weapon_main','weapon_off'):
             self.say(f"{item_name(it)} cannot be equipped to {SLOT_LABELS.get(slot, slot)}.")
             return
-        # Move previously equipped item (if any) back to inventory
-        # Do not mutate inventory; just replace mapping
-        self.player.equipped_gear[slot] = it
+        # Replace mapping on the target
+        target.equipped_gear[slot] = it
         # Also sync legacy fields for combat
         if slot == 'weapon_main':
             if str(item_subtype(it)).lower() in ('wand','staff'):
-                self.player.equipped_focus = it
+                target.equipped_focus = it
             else:
-                self.player.equipped_weapon = it
+                target.equipped_weapon = it
         elif slot == 'weapon_off':
             # Only set focus if it's a wand/staff and no main focus is set
-            if str(item_subtype(it)).lower() in ('wand','staff') and not self.player.equipped_focus:
-                self.player.equipped_focus = it
-        self.say(f"Equipped {item_name(it)} -> {SLOT_LABELS.get(slot, slot)}")
+            if str(item_subtype(it)).lower() in ('wand','staff') and not getattr(target, 'equipped_focus', None):
+                target.equipped_focus = it
+        self.say(f"Equipped {item_name(it)} -> {SLOT_LABELS.get(slot, slot)} on {getattr(target,'name','ally')}")
 
     def unequip_slot(self, slot: str):
         slot = normalize_slot(slot)
-        it = self.player.equipped_gear.pop(slot, None)
+        target = self._equip_target()
+        it = getattr(target, 'equipped_gear', {}).pop(slot, None)
         if it:
             # Clear legacy fields if they pointed to this item
-            if slot == 'weapon_main' and self.player.equipped_weapon is it:
-                self.player.equipped_weapon = None
-            if slot in ('weapon_main','weapon_off') and self.player.equipped_focus is it:
-                self.player.equipped_focus = None
-            self.say(f"Unequipped {item_name(it)} from {SLOT_LABELS.get(slot, slot)}")
+            if slot == 'weapon_main' and getattr(target, 'equipped_weapon', None) is it:
+                target.equipped_weapon = None
+            if slot in ('weapon_main','weapon_off') and getattr(target, 'equipped_focus', None) is it:
+                target.equipped_focus = None
+            self.say(f"Unequipped {item_name(it)} from {SLOT_LABELS.get(slot, slot)} on {getattr(target,'name','ally')}")
     def consume_item(self, idx: int):
         if 0 <= idx < len(self.player.inventory):
             it = self.player.inventory[idx]
@@ -3830,17 +4527,42 @@ class Game:
                         self.start_combat(t.encounter.enemy); self.say(f"{t.encounter.enemy.get('name','A foe')} spots you!", tag)
                     else:
                         self.say("An enemy lurks here... maybe you could sneak by.", tag)
-                elif t.encounter.npc:
-                    # Friendly presence does not block or force dialogue; allow passing by
-                    sub = str((t.encounter.npc or {}).get('subcategory') or '').lower()
-                    tag = 'ally' if sub == 'allies' else ('citizen' if sub == 'citizens' else ('animal' if sub == 'animals' else None))
-                    self.say(f"You see {t.encounter.npc.get('name','someone')} here.", tag)
-                elif t.encounter.event:
-                    self.mode = "event"; self.say(f"You encounter {t.encounter.event}.", 'event')
+        elif t.encounter.npc:
+            # Friendly presence does not block or force dialogue; allow passing by
+            # If multiple friendlies, list them
+            try:
+                def _is_enemy_e(e: Dict) -> bool:
+                    sub = (e.get('subcategory') or '').lower()
+                    return sub in ('enemies','monsters','villains','vilains') or bool(e.get('hostile'))
+                friendlies = [e for e in (t.encounter.npcs or []) if isinstance(e, dict) and not _is_enemy_e(e)]
+            except Exception:
+                friendlies = []
+            names = [str(e.get('name') or 'someone') for e in friendlies] if friendlies else [str(t.encounter.npc.get('name') or 'someone')]
+            # Build a concise list string
+            if len(names) == 1:
+                msg = f"You see {names[0]} here."
+            elif len(names) == 2:
+                msg = f"You see {names[0]} and {names[1]} here."
             else:
-                self.mode = "explore"
+                msg = f"You see {', '.join(names[:-1])}, and {names[-1]} here."
+            # Tag based on first friendly type
+            try:
+                first = friendlies[0] if friendlies else t.encounter.npc
+                sub = str((first or {}).get('subcategory') or '').lower()
+                tag = 'ally' if sub == 'allies' else ('citizen' if sub == 'citizens' else ('animal' if sub == 'animals' else None))
+            except Exception:
+                tag = None
+            self.say(msg, tag)
+                
+            
+        elif t.encounter.event:
+            self.mode = "event"; self.say(f"You encounter {t.encounter.event}.", 'event')
+        else:
+            self.mode = "explore"
 
-    def start_dialogue(self, npc): self.current_npc = npc
+    def start_dialogue(self, npc):
+        self.current_npc = npc
+        self.mode = "dialogue"
 
     def handle_dialogue_choice(self, choice: str):
         npc = self.current_npc;  nid = npc.get("id","?") if npc else "?"
@@ -3849,6 +4571,20 @@ class Game:
             self.player.affinity[nid] = self.player.affinity.get(nid,0) + 1
             # Log a simple, neutral interaction message
             self.say(f"You spoke to {npc.get('name','them')}.")
+        elif choice == "Recruit":
+            # Allow recruiting allies from allies.json (subcategory == 'allies')
+            sub = str((npc or {}).get('subcategory') or '').lower()
+            if sub == 'allies':
+                self._recruit_npc_as_ally(npc)
+            else:
+                self.say("They are not interested in joining right now.")
+        elif choice == "Insult":
+            # Decrease affinity; risk souring relations
+            cur = int(self.player.affinity.get(nid, 0))
+            self.player.affinity[nid] = cur - 1
+            self.say(f"You insult {npc.get('name','them')}.")
+            # Small chance to flip to hostile in future; here we just log a warning
+            self.say("They glare at you.")
         elif choice == "Flirt":
             if npc.get("romanceable"):
                 chance = 0.5 + 0.05 * self.player.affinity.get(nid,0)
@@ -3866,6 +4602,44 @@ class Game:
         else:
             self.say("You share a few words.")
 
+    def _recruit_npc_as_ally(self, npc: Dict):
+        try:
+            aid = str(npc.get('id') or npc.get('name') or f"AL{len(self.party)+1:03d}")
+            if any(getattr(a, 'id', None) == aid for a in self.party):
+                self.say(f"{npc.get('name','They')} is already in your party.")
+                return
+            hp = int(npc.get('hp', 12))
+            ally = Ally(
+                id=aid,
+                name=str(npc.get('name') or 'Ally'),
+                race=str(npc.get('race') or 'Human'),
+                role=str(npc.get('role') or 'Ally'),
+                level=int(npc.get('level', 1) or 1),
+                hp=hp,
+                max_hp=int(npc.get('max_hp', hp)),
+                atk=(2,4),
+                dex=int(npc.get('dex', 5) or 5),
+                phy=int(npc.get('phy', 5) or 5),
+                vit=int(npc.get('vit', 5) or 5),
+                arc=int(npc.get('arc', 5) or 5),
+                kno=int(npc.get('kno', 5) or 5),
+                ins=int(npc.get('ins', 5) or 5),
+                soc=int(npc.get('soc', 5) or 5),
+                fth=int(npc.get('fth', 5) or 5),
+                portrait=(npc.get('portrait') or npc.get('image') or npc.get('img') or npc.get('sprite') or None)
+            )
+            self.party.append(ally)
+            self.say(f"{ally.name} joins your party!", 'ally')
+            # Remove NPC from the tile
+            try:
+                t = self.tile(); t.encounter.npc = None; t.encounter.must_resolve = False
+            except Exception:
+                pass
+            self.current_npc = None
+            self.mode = 'explore'
+        except Exception:
+            self.say("Recruitment failed.")
+
     def start_combat(self, enemy):
         # Backward-compatible single-target combat
         self.current_enemies = [enemy]
@@ -3877,6 +4651,10 @@ class Game:
         self.current_enemy.setdefault('greed', 4)
         self.can_bribe = False
         self.mode = "combat"
+        # Build initiative turn order
+        self._setup_initiative_order()
+        # If it's not the player's turn, auto-resolve until it is (or combat ends)
+        self._advance_turn(auto_only=True)
 
     def start_combat_group(self, enemies: List[Dict]):
         # Initialize group combat with multiple enemies
@@ -3900,6 +4678,202 @@ class Game:
         self.current_enemy_hp = self.current_enemies_hp[0]
         self.can_bribe = False
         self.mode = "combat"
+        # Build initiative turn order
+        self._setup_initiative_order()
+        self._advance_turn(auto_only=True)
+
+    # ---------- Initiative / Turn System ----------
+    def _actor_name(self, actor):
+        try:
+            if isinstance(actor, dict):
+                return str(actor.get('name') or actor.get('id') or 'Enemy')
+            return str(getattr(actor, 'name', '')) or 'Ally'
+        except Exception:
+            return 'Actor'
+
+    def _actor_stat(self, actor, key: str, default: int = 5) -> int:
+        try:
+            if isinstance(actor, dict):
+                return int(actor.get(key, default) or default)
+            return int(getattr(actor, key, default))
+        except Exception:
+            return default
+
+    def _setup_initiative_order(self):
+        import random as _r
+        order = []
+        # Player
+        ini = self._actor_stat(self.player, 'dex', 5) + self._actor_stat(self.player, 'ins', 5) + _r.randint(0, 2)
+        order.append({'type': 'player', 'ref': self.player, 'name': self._actor_name(self.player), 'ini': int(ini)})
+        # Allies
+        for ally in (getattr(self, 'party', []) or []):
+            if getattr(ally, 'hp', 1) <= 0:
+                continue
+            ini = self._actor_stat(ally, 'dex', 5) + self._actor_stat(ally, 'ins', 5) + _r.randint(0, 2)
+            order.append({'type': 'ally', 'ref': ally, 'name': self._actor_name(ally), 'ini': int(ini)})
+        # Enemies
+        for enemy in (self.current_enemies or []):
+            ini = self._actor_stat(enemy, 'dex', 4) + self._actor_stat(enemy, 'ins', 4) + _r.randint(0, 2)
+            order.append({'type': 'enemy', 'ref': enemy, 'name': self._actor_name(enemy), 'ini': int(ini)})
+        # Sort high to low initiative
+        try:
+            order.sort(key=lambda x: x.get('ini', 0), reverse=True)
+        except Exception:
+            pass
+        self.turn_order = order
+        self.turn_index = 0
+
+    def _prune_turn_order(self):
+        # Remove dead or missing actors; keep index within bounds
+        alive = []
+        for ent in getattr(self, 'turn_order', []) or []:
+            t = ent.get('type')
+            ref = ent.get('ref')
+            ok = True
+            if t == 'ally':
+                ok = bool(ref) and getattr(ref, 'hp', 0) > 0
+            elif t == 'player':
+                ok = getattr(self.player, 'hp', 0) > 0
+            elif t == 'enemy':
+                # Enemy remains alive if it's in current_enemies list and hp>0
+                idx = self._enemy_index_by_ref(ref)
+                ok = (idx != -1 and int(self.current_enemies_hp[idx]) > 0)
+            if ok:
+                alive.append(ent)
+        if not alive:
+            self.turn_order = []
+            self.turn_index = 0
+        else:
+            # Adjust index to same actor if possible
+            cur = self._current_actor()
+            self.turn_order = alive
+            if cur in alive:
+                self.turn_index = alive.index(cur)
+            else:
+                self.turn_index = min(self.turn_index, len(alive)-1)
+
+    def _current_actor(self):
+        try:
+            if getattr(self, 'turn_order', None) and 0 <= self.turn_index < len(self.turn_order):
+                return self.turn_order[self.turn_index]
+        except Exception:
+            pass
+        return None
+
+    def _enemy_index_by_ref(self, enemy_ref) -> int:
+        try:
+            for i, e in enumerate(self.current_enemies or []):
+                if e is enemy_ref:
+                    return i
+        except Exception:
+            return -1
+        return -1
+
+    def _advance_turn(self, auto_only: bool=False):
+        """Advance to next turn, auto-playing non-player turns.
+
+        If auto_only=True, runs until it's the player's turn or combat ends without consuming a player's turn.
+        """
+        # End if no enemies remain
+        if not getattr(self, 'current_enemies', None):
+            return
+        # Ensure order is clean
+        self._prune_turn_order()
+        if not self.turn_order:
+            return
+        # If called after a player's action, move to next actor
+        if not auto_only:
+            self.turn_index = (self.turn_index + 1) % len(self.turn_order)
+        # Auto-play loop
+        guard = 0
+        while guard < 64:
+            guard += 1
+            self._prune_turn_order()
+            if not self.turn_order:
+                break
+            actor = self._current_actor()
+            if actor is None:
+                break
+            if actor.get('type') == 'player':
+                # Wait for user input
+                break
+            # Perform AI action
+            self._perform_actor_action(actor)
+            # Check if combat ended
+            if not getattr(self, 'current_enemies', None) or self.mode != 'combat' or self.current_enemy is None:
+                break
+            # Next actor
+            self.turn_index = (self.turn_index + 1) % len(self.turn_order)
+
+    def _perform_actor_action(self, actor):
+        t = actor.get('type')
+        ref = actor.get('ref')
+        try:
+            if t == 'ally':
+                # Ally AI: attack current enemy
+                if not self.current_enemy and getattr(self, 'current_enemies', None):
+                    self.current_enemy = self.current_enemies[0]
+                    self.current_enemy_hp = int(self.current_enemies_hp[0]) if self.current_enemies_hp else 0
+                if not self.current_enemy:
+                    return
+                base_min, base_max = getattr(ref, 'atk', (2,4))
+                wep = getattr(ref, 'equipped_weapon', None) or {}
+                wmin, wmax, _, _ = _weapon_stats(wep)
+                dmg = random.randint(int(base_min) + int(wmin), int(base_max) + max(int(wmax),0))
+                dmg = max(1, int(dmg))
+                self.current_enemy_hp -= dmg
+                self.say(f"{self._actor_name(ref)} hits for {dmg}!")
+                if self.current_enemy_hp <= 0:
+                    # Remove defeated enemy
+                    try: self._on_enemy_defeated(self.current_enemy)
+                    except Exception: pass
+                    try:
+                        idx = self.current_enemies.index(self.current_enemy) if hasattr(self, 'current_enemies') else 0
+                    except Exception:
+                        idx = 0
+                    try:
+                        if hasattr(self, 'current_enemies'):
+                            self.current_enemies.pop(idx)
+                        if hasattr(self, 'current_enemies_hp') and len(self.current_enemies_hp) > idx:
+                            self.current_enemies_hp.pop(idx)
+                    except Exception:
+                        pass
+                    if getattr(self, 'current_enemies', []) and len(self.current_enemies) > 0:
+                        self.current_enemy = self.current_enemies[0]
+                        self.current_enemy_hp = int(self.current_enemies_hp[0] if self.current_enemies_hp else int(self.current_enemy.get('hp',12)))
+                    else:
+                        t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
+                        self.current_enemy = None; self.mode = "explore"
+            elif t == 'enemy':
+                # Enemy AI: pick a random living target among player + allies
+                targets = [('player', self.player)] + [(f"ally_{i}", a) for i, a in enumerate(getattr(self, 'party', [])) if getattr(a,'hp',0) > 0]
+                tag, tgt = random.choice(targets)
+                dmg = random.randint(2,5)
+                if tag == 'player':
+                    dmg = self._mitigate_incoming_damage(self.player, dmg, 'physical')
+                    self.player.hp -= dmg; self.say(f"The enemy hits you for {dmg}.")
+                    if self.player.hp <= 0:
+                        # Enter death screen: let the player choose what to do next
+                        try:
+                            self.say("You fall...")
+                        except Exception:
+                            pass
+                        # Clear immediate combat focus; show death overlay
+                        try:
+                            self.current_enemy = None
+                        except Exception:
+                            pass
+                        self.mode = "death"
+                else:
+                    dmg = self._mitigate_incoming_damage(tgt, dmg, 'physical')
+                    tgt.hp = max(0, int(getattr(tgt,'hp',0)) - dmg)
+                    self.say(f"The enemy hits {getattr(tgt,'name','an ally')} for {dmg}.")
+                    if tgt.hp <= 0:
+                        self.say(f"{getattr(tgt,'name','An ally')} falls.")
+            else:
+                pass
+        except Exception:
+            pass
 
     def _maybe_apply_status(self, source: str, target: Dict, weapon_or_spell: Optional[Dict]=None):
         chance = 0.15
@@ -3919,6 +4893,318 @@ class Game:
                 target['status'].append(aff)
                 self.say(f"Status applied: {aff}.")
 
+    # ---------- Defense (gear) helpers ----------
+    def _item_defense(self, it: Optional[Dict]) -> Dict[str,int]:
+        out: Dict[str,int] = {}
+        if not isinstance(it, dict):
+            return out
+        try:
+            for k, v in (it.get('defense_type') or {}).items():
+                try:
+                    out[str(k)] = out.get(str(k), 0) + int(v)
+                except Exception:
+                    pass
+            # Generic defense bonus maps to physical
+            b = it.get('bonus') or {}
+            try:
+                if 'defense' in b:
+                    out['physical'] = out.get('physical', 0) + int(b.get('defense') or 0)
+            except Exception:
+                pass
+            # Penalties (negative)
+            p = it.get('penalties') or {}
+            try:
+                if 'defense' in p:
+                    out['physical'] = out.get('physical', 0) + int(p.get('defense') or 0)
+            except Exception:
+                pass
+        except Exception:
+            pass
+        return out
+
+    def _total_defense_map(self, actor) -> Dict[str,int]:
+        total: Dict[str,int] = {}
+        try:
+            gear = dict(getattr(actor, 'equipped_gear', {}) or {})
+            # Include legacy weapon/focus in case they carry defense
+            if getattr(actor, 'equipped_weapon', None):
+                gear.setdefault('weapon_main', getattr(actor, 'equipped_weapon'))
+            if getattr(actor, 'equipped_focus', None):
+                gear.setdefault('weapon_off', getattr(actor, 'equipped_focus'))
+            for it in gear.values():
+                d = self._item_defense(it)
+                for k, v in d.items():
+                    total[k] = total.get(k, 0) + int(v)
+        except Exception:
+            pass
+        return total
+
+    def _mitigate_incoming_damage(self, actor, raw: int, dmg_type: str = 'physical') -> int:
+        """Reduce incoming damage by actor's gear defenses.
+
+        Simple model: reduce by floor(defense/8) for matching type + half that for generic physical.
+        Always leave at least 1 damage.
+        """
+        try:
+            dm = self._total_defense_map(actor)
+            d_main = int(dm.get(str(dmg_type), 0))
+            if dmg_type != 'physical':
+                d_phys = int(dm.get('physical', 0))
+            else:
+                d_phys = 0
+            red = (d_main // 8) + max(0, d_phys // 16)
+            return max(1, int(raw) - int(red))
+        except Exception:
+            return max(1, int(raw))
+
+    # ---------- Class + Level system ----------
+    def _apply_class_and_level_to_player(self, initial: bool=False, preserve_hp: bool=False):
+        """Set player's base stats and growth from classes.json and current level.
+
+        classes.json entries support keys:
+        - name: class name matching player.role
+        - base_stats: dict of core attributes
+        - base_hp: int
+        - base_atk: [min,max]
+        - per_level: { hp:int, atk_min:int, atk_max:int, phy:int, dex:int, ... }
+        """
+        c = _class_by_name(getattr(self, 'classes', []), getattr(self.player, 'role', 'Wanderer'))
+        if not c:
+            return
+        lvl = max(1, int(getattr(self.player, 'level', 1)))
+        delta = max(0, lvl - 1)
+        per = c.get('per_level') or {}
+        base_stats = c.get('base_stats') or {}
+        # Preserve hp ratio if requested
+        hp_ratio = 1.0
+        try:
+            if preserve_hp and int(getattr(self.player, 'max_hp', 0)) > 0:
+                hp_ratio = float(getattr(self.player, 'hp', 0)) / float(max(1, getattr(self.player, 'max_hp', 1)))
+        except Exception:
+            hp_ratio = 1.0
+        # Core attributes
+        for key in ('phy','dex','vit','arc','kno','ins','soc','fth'):
+            try:
+                base = int(base_stats.get(key, getattr(self.player, key, 5)))
+                inc = int(per.get(key, 0)) * delta
+                setattr(self.player, key, max(1, base + inc))
+            except Exception:
+                pass
+        # HP from Vitality: max_hp = VIT * 5
+        new_max_hp = max(1, int(getattr(self.player, 'vit', 5)) * 5)
+        self.player.max_hp = new_max_hp
+        if preserve_hp:
+            self.player.hp = max(1, int(round(new_max_hp * hp_ratio)))
+        else:
+            self.player.hp = new_max_hp
+        # Attack
+        try:
+            bmin, bmax = c.get('base_atk') or (self.player.atk[0], self.player.atk[1])
+        except Exception:
+            bmin, bmax = self.player.atk
+        bmin = int(bmin) + int(per.get('atk_min', 0)) * delta
+        bmax = int(bmax) + int(per.get('atk_max', 0)) * delta
+        self.player.atk = (max(1, bmin), max(max(1, bmin)+1, bmax))
+
+    def _xp_needed(self, level: int) -> int:
+        return max(50, 100 * int(level))
+
+    def gain_xp(self, amount: int):
+        try:
+            self.player.xp = int(getattr(self.player, 'xp', 0)) + int(amount)
+            # Level-up loop
+            leveled = False
+            while self.player.xp >= self._xp_needed(self.player.level):
+                self.player.xp -= self._xp_needed(self.player.level)
+                self.player.level += 1
+                leveled = True
+            if leveled:
+                lvl = int(self.player.level)
+                self.say(f"You reached level {lvl}!")
+                self._apply_class_and_level_to_player(initial=False, preserve_hp=False)
+        except Exception:
+            pass
+
+    def _on_enemy_defeated(self, enemy: Optional[Dict]):
+        try:
+            xp = int((enemy or {}).get('xp', 25))
+        except Exception:
+            xp = 25
+        self.gain_xp(xp)
+
+    # ---------- Weapon randomizer ----------
+    def _rarity_rank(self, r: str) -> int:
+        order = ["common","uncommon","rare","exotic","legendary","mythic"]
+        r = str(r).lower()
+        return order.index(r) if r in order else 0
+
+    def _roll_weapon_item(self, base: Dict[str, Any], drop_context: str) -> Dict[str, Any]:
+        """Return a randomized weapon derived from base, deterministically seeded by drop_context.
+
+        Keeps schema compatibility with item helpers and combat damage via min/max fields.
+        """
+        try:
+            seed_s = f"{int(getattr(self,'world_seed',0))}:{str(drop_context)}"
+        except Exception:
+            seed_s = str(drop_context)
+        rng = random.Random(_stable_int_hash(seed_s))
+
+        lvl = int(getattr(self.player, 'level', 1))
+        rarity = _weighted_choice(RARITY_WEIGHTS, rng)
+        base_scale = 1.0 + 0.06 * max(0, lvl)
+        r_mult = float(RARITY_DMG_MULT.get(rarity, 1.0))
+        style = _style_for_weapon(base)
+        base_type = str(base.get('type') or item_subtype(base) or 'weapon')
+        base_dmg = dict(base.get('damage_type') or {})
+        if not base_dmg:
+            # Fallback from min/max if present
+            try:
+                mn, mx, *_ = _weapon_stats(base)
+                avg = max(1, int((int(mn) + int(mx)) // 2))
+            except Exception:
+                avg = 10
+            base_dmg = {"physical": int(avg)}
+        # Scale base damage
+        dmg = _scale_damage_map(base_dmg, base_scale * r_mult)
+        bonus: Dict[str,int] = dict(base.get('bonus') or {})
+        traits: List[str] = []
+
+        # Affix selection
+        n_aff = _affix_budget_for_rarity(rarity, rng)
+        pre_pool = [a for a in PREFIX_POOL if style in (a.get('styles') or [style]) and (not a.get('min_rarity') or self._rarity_rank(rarity) >= self._rarity_rank(a.get('min_rarity')))]
+        suf_pool = [a for a in SUFFIX_POOL if style in (a.get('styles') or [style]) and (not a.get('types') or base_type in a.get('types'))]
+        prefixes: List[Dict[str,Any]] = []
+        suffixes: List[Dict[str,Any]] = []
+        # Split roughly half/half
+        n_pre = rng.randrange(0, n_aff+1)
+        n_suf = max(0, n_aff - n_pre)
+        rng.shuffle(pre_pool); rng.shuffle(suf_pool)
+        prefixes = pre_pool[:n_pre]
+        suffixes = suf_pool[:n_suf]
+
+        dmg, bonus, traits = _apply_affixes(dmg, bonus, traits, lvl, prefixes + suffixes, rng)
+        # Build combat min/max from total dmg budget
+        total = max(1, int(sum(int(v) for v in dmg.values())))
+        wmin = max(1, int(round(total * 0.55)))
+        wmax = max(wmin+1, int(round(total * 0.95)))
+        # Status hint
+        statuses = []
+        if 'fire' in dmg: statuses.append('burn')
+        if 'ice' in dmg: statuses.append('freeze')
+        if 'lightning' in dmg: statuses.append('shock')
+        if 'bleed' in dmg: statuses.append('bleed')
+        if 'poison' in dmg: statuses.append('poison')
+
+        # Value/weight/trait
+        val_base = int(sum(dmg.values()) * 10 + int(bonus.get('attack', 0)) * 25)
+        val_mult = {"common":1.00, "uncommon":1.10, "rare":1.25, "exotic":1.50, "legendary":1.90, "mythic":2.40}.get(rarity, 1.0)
+        value = int(round(val_base * float(val_mult)))
+        weight = _jitter(int(item_weight(base) or base.get('base_weight') or 1000), 0.10, rng)
+        trait = 'none'
+        for t in traits:
+            if t in ('echo_strike','lifedrink','knockback'):
+                trait = t; break
+
+        name = _build_name(base_type, [p['name'] for p in prefixes], [s['name'] for s in suffixes])
+        desc_r = rarity.title()
+        rolled = {
+            'category': 'weapon',
+            'name': name,
+            'style': style,
+            'type': base_type,
+            'rarity': rarity,
+            'value': value,
+            'weight': int(weight),
+            'description': f"A {rarity} {base_type} forged to our current spec.",
+            'components': [],
+            'damage_type': dmg,
+            'bonus': bonus,
+            'weapon_trait': trait,
+            'id': f"IT{rng.randrange(0, 10**8):08d}",
+            'desc': f"A {rarity} {base_type} forged to our current spec.",
+            # Combat fields used by _weapon_stats
+            'min': int(wmin),
+            'max': int(wmax),
+            'status_chance': 0.15 if statuses else 0.0,
+            'status': statuses,
+            # Debug/marker
+            '_rolled': True,
+            '_base_id': base.get('id'),
+            '_ctx': drop_context,
+        }
+        return rolled
+
+    def _roll_gear_item(self, base: Dict[str, Any], drop_context: str) -> Dict[str, Any]:
+        """Randomize non-weapon equipables (armour/clothing/accessories).
+
+        Scales defense and adds small bonuses via affixes. Deterministic per context.
+        """
+        try:
+            seed_s = f"{int(getattr(self,'world_seed',0))}:{str(drop_context)}"
+        except Exception:
+            seed_s = str(drop_context)
+        rng = random.Random(_stable_int_hash(seed_s))
+
+        lvl = int(getattr(self.player, 'level', 1))
+        rarity = _weighted_choice(RARITY_WEIGHTS, rng)
+        base_scale = 1.0 + 0.05 * max(0, lvl)
+        r_mult = float(RARITY_DMG_MULT.get(rarity, 1.0))
+
+        style = _style_for_weapon(base)
+        base_type = str(item_subtype(base) or base.get('type') or base.get('slot') or 'gear')
+        base_name = item_name(base) or base_type.title()
+        # Defense map fallback
+        base_def = dict(base.get('defense_type') or {})
+        if not base_def:
+            # Default tiny physical defense so items have some scale
+            base_def = {"physical": 2}
+        defense = _scale_damage_map(base_def, base_scale * r_mult)
+        bonus: Dict[str,int] = dict(base.get('bonus') or {})
+
+        # Affixes
+        n_aff = _affix_budget_for_rarity(rarity, rng)
+        pre_pool = list(GEAR_PREFIX_POOL)
+        suf_pool = list(GEAR_SUFFIX_POOL)
+        rng.shuffle(pre_pool); rng.shuffle(suf_pool)
+        n_pre = rng.randrange(0, n_aff+1); n_suf = max(0, n_aff - n_pre)
+        prefixes = pre_pool[:n_pre]
+        suffixes = suf_pool[:n_suf]
+
+        # Apply affixes to defense/bonus
+        def _apply_def(def_map: Dict[str,int], adds_def: Dict[str,Tuple[float,float]]):
+            for k, spec in (adds_def or {}).items():
+                base, per_lvl = spec
+                add = int(round(float(base) + float(per_lvl) * max(0, lvl)))
+                def_map[k] = int(def_map.get(k, 0)) + max(0, add)
+
+        for af in prefixes + suffixes:
+            _apply_def(defense, af.get('adds_def') or {})
+            for b, val in (af.get('bonus') or {}).items():
+                bonus[b] = int(bonus.get(b, 0)) + int(val)
+
+        # Value/weight
+        val_base = int(sum(defense.values()) * 8 + sum(max(0, int(v)) for v in bonus.values()) * 20)
+        val_mult = {"common":1.00, "uncommon":1.10, "rare":1.25, "exotic":1.50, "legendary":1.90, "mythic":2.40}.get(rarity, 1.0)
+        value = int(round(val_base * float(val_mult)))
+        weight = _jitter(int(item_weight(base) or base.get('base_weight') or 400), 0.10, rng)
+
+        name = _build_name(base_name, [p['name'] for p in prefixes], [s['name'] for s in suffixes])
+
+        rolled = dict(base)
+        rolled.update({
+            'name': name,
+            'rarity': rarity,
+            'value': value,
+            'weight': int(weight),
+            'defense_type': defense,
+            'bonus': bonus,
+            'id': f"IT{rng.randrange(0, 10**8):08d}",
+            '_rolled': True,
+            '_base_id': base.get('id'),
+            '_ctx': drop_context,
+        })
+        return rolled
+
     def attack(self):
         if not self.current_enemy: return
         base_min, base_max = self.player.atk
@@ -3931,6 +5217,8 @@ class Game:
         self._maybe_apply_status('melee', self.current_enemy, wep)
         if self.current_enemy_hp <= 0:
             self.say("Enemy defeated!")
+            try: self._on_enemy_defeated(self.current_enemy)
+            except Exception: pass
             try:
                 idx = self.current_enemies.index(self.current_enemy) if hasattr(self, 'current_enemies') else 0
             except Exception:
@@ -3950,8 +5238,9 @@ class Game:
             else:
                 t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
                 self.current_enemy = None; self.mode = "explore"
-        else:
-            self.enemy_turn()
+        # After player's action, advance initiative order (auto-play non-player turns)
+        if self.mode == 'combat' and getattr(self, 'current_enemies', None):
+            self._advance_turn(auto_only=False)
 
     def cast_spell(self):
         if not self.current_enemy:
@@ -3966,6 +5255,8 @@ class Game:
         self._maybe_apply_status('spell', self.current_enemy, self.player.equipped_focus)
         if self.current_enemy_hp <= 0:
             self.say("Enemy crumples.")
+            try: self._on_enemy_defeated(self.current_enemy)
+            except Exception: pass
             try:
                 idx = self.current_enemies.index(self.current_enemy) if hasattr(self, 'current_enemies') else 0
             except Exception:
@@ -3983,8 +5274,51 @@ class Game:
             else:
                 t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
                 self.current_enemy = None; self.mode = "explore"
-        else:
-            self.enemy_turn()
+        # After player's action, advance initiative order (auto-play non-player turns)
+        if self.mode == 'combat' and getattr(self, 'current_enemies', None):
+            self._advance_turn(auto_only=False)
+
+    def party_attack_round(self):
+        """Each ally attacks the current enemy once, in order."""
+        if not getattr(self, 'party', None):
+            return
+        if not self.current_enemy:
+            return
+        for ally in list(self.party):
+            try:
+                if getattr(ally, 'hp', 0) <= 0:
+                    continue
+                base_min, base_max = getattr(ally, 'atk', (2,4))
+                wep = getattr(ally, 'equipped_weapon', None) or {}
+                wmin, wmax, _, _ = _weapon_stats(wep)
+                dmg = random.randint(int(base_min) + int(wmin), int(base_max) + max(int(wmax),0))
+                dmg = max(1, int(dmg))
+                self.current_enemy_hp -= dmg
+                self.say(f"{getattr(ally,'name','Ally')} hits for {dmg}!")
+                if self.current_enemy_hp <= 0:
+                    # Reuse player defeat handling path
+                    try: self._on_enemy_defeated(self.current_enemy)
+                    except Exception: pass
+                    try:
+                        idx = self.current_enemies.index(self.current_enemy) if hasattr(self, 'current_enemies') else 0
+                    except Exception:
+                        idx = 0
+                    try:
+                        if hasattr(self, 'current_enemies'):
+                            self.current_enemies.pop(idx)
+                        if hasattr(self, 'current_enemies_hp') and len(self.current_enemies_hp) > idx:
+                            self.current_enemies_hp.pop(idx)
+                    except Exception:
+                        pass
+                    if getattr(self, 'current_enemies', []) and len(self.current_enemies) > 0:
+                        self.current_enemy = self.current_enemies[0]
+                        self.current_enemy_hp = int(self.current_enemies_hp[0] if self.current_enemies_hp else int(self.current_enemy.get('hp',12)))
+                    else:
+                        t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
+                        self.current_enemy = None; self.mode = "explore"
+                    break
+            except Exception:
+                pass
 
     def try_sneak(self):
         t = self.tile()
@@ -4038,6 +5372,9 @@ class Game:
         else:
             self.say("They waver... maybe a bribe would help.")
             self.can_bribe = True
+            # Advance turn if still in combat
+            if self.mode == 'combat' and getattr(self, 'current_enemies', None):
+                self._advance_turn(auto_only=False)
 
     def offer_bribe(self):
         if not self.current_enemy:
@@ -4060,6 +5397,9 @@ class Game:
         else:
             self.say("No deal. They remain hostile.")
             self.can_bribe = False
+            # Advance turn if still in combat
+            if self.mode == 'combat' and getattr(self, 'current_enemies', None):
+                self._advance_turn(auto_only=False)
 
     def flee(self):
         if not self.current_enemy: return
@@ -4071,14 +5411,36 @@ class Game:
             if self.player.y+1 < getattr(self, 'H', 8): self.player.y += 1
         else:
             self.say("You fail to escape!")
-            self.enemy_turn()
+            # Failed flee consumes the player's turn
+            if self.mode == 'combat' and getattr(self, 'current_enemies', None):
+                self._advance_turn(auto_only=False)
 
     def enemy_turn(self):
         if not self.current_enemy: return
-        dmg = random.randint(2,5); self.player.hp -= dmg; self.say(f"The enemy hits you for {dmg}.")
-        if self.player.hp <= 0:
-            self.say("You fall... but awaken at the trailhead, aching.")
-            self.player.hp = self.player.max_hp; self.player.x = 0; self.player.y = 0; self.mode = "explore"
+        # Pick a random target among player + alive allies
+        targets = [('player', self.player)] + [(f"ally_{i}", a) for i, a in enumerate(getattr(self, 'party', [])) if getattr(a,'hp',0) > 0]
+        tag, tgt = random.choice(targets)
+        dmg = random.randint(2,5)
+        if tag == 'player':
+            dmg = self._mitigate_incoming_damage(self.player, dmg, 'physical')
+            self.player.hp -= dmg; self.say(f"The enemy hits you for {dmg}.")
+            if self.player.hp <= 0:
+                # Enter death screen: let the player choose what to do next
+                try:
+                    self.say("You fall...")
+                except Exception:
+                    pass
+                try:
+                    self.current_enemy = None
+                except Exception:
+                    pass
+                self.mode = "death"
+        else:
+            dmg = self._mitigate_incoming_damage(tgt, dmg, 'physical')
+            tgt.hp = max(0, int(getattr(tgt,'hp',0)) - dmg)
+            self.say(f"The enemy hits {getattr(tgt,'name','an ally')} for {dmg}.")
+            if tgt.hp <= 0:
+                self.say(f"{getattr(tgt,'name','An ally')} falls.")
 
     def search_tile(self):
         t = self.tile()
@@ -4090,6 +5452,17 @@ class Game:
             self.say("You search thoroughly, but find nothing."); return
         # Loot one item per search
         item = items.pop(0)
+        # Randomize equipables at pickup (deterministic by context)
+        try:
+            major = str(item_type(item)).lower()
+            if not item.get('_rolled'):
+                ctx = f"{getattr(self,'world_seed',0)}:{getattr(self,'current_map_id','')}:{int(t.x)},{int(t.y)}:{str(item.get('id') or item.get('name') or '?')}:{len(self.player.inventory)}"
+                if major == 'weapon':
+                    item = self._roll_weapon_item(item, ctx)
+                elif major in ('armour','armor','clothing','accessory','accessories'):
+                    item = self._roll_gear_item(item, ctx)
+        except Exception:
+            pass
         t.encounter.items = items
         self.player.inventory.append(item)
         # Tag quests for orange recent text
@@ -4099,7 +5472,7 @@ class Game:
             t.encounter.item_searched = True
 
 # ======================== Start game (UI) ========================
-def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, start_pos: Optional[Tuple[int,int]]=None, load_slot: Optional[int]=None):
+def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, start_pos: Optional[Tuple[int,int]]=None, load_slot: Optional[int]=None, char_config: Optional[Dict[str, Any]] = None):
     global pg
     if pg is None:
         try:
@@ -4126,13 +5499,14 @@ def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, s
             pass
     clock = pg.time.Clock()
 
-    game = Game(start_map=start_map, start_entry=start_entry, start_pos=start_pos)
+    game = Game(start_map=start_map, start_entry=start_entry, start_pos=start_pos, char_config=char_config)
     if load_slot is not None:
         try:
             game.load_from_slot(int(load_slot))
         except Exception:
             pass
     running = True
+    _next_action = None  # None | 'menu'
     while running:
         dt = clock.tick(60)
         # accumulate playtime
@@ -4140,6 +5514,15 @@ def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, s
             game.playtime_ms = int(getattr(game, 'playtime_ms', 0)) + int(dt)
         except Exception:
             pass
+        # Check for programmatic requests (e.g., death screen -> main menu)
+        if getattr(game, '_req_main_menu', False):
+            try:
+                game._req_main_menu = False
+            except Exception:
+                pass
+            _next_action = 'menu'
+            running = False
+            break
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
@@ -4207,6 +5590,17 @@ def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, s
         draw_panel(screen, game)
         pg.display.flip()
     pg.quit()
+    # Handle post-loop action (e.g., return to main menu)
+    if _next_action == 'menu':
+        sel, data = start_menu()
+        if sel == 'new':
+            if isinstance(data, dict):
+                start_game(start_map=start_map, start_entry=start_entry, start_pos=start_pos, char_config=data)
+            else:
+                start_game(start_map=start_map, start_entry=start_entry, start_pos=start_pos)
+        elif sel == 'load' and data is not None:
+            start_game(load_slot=int(data))
+        return
 
 
 def _list_all_save_slots_sorted() -> List[Tuple[int, Optional[Dict[str, Any]]]]:
@@ -4280,7 +5674,7 @@ def start_menu():
     except Exception:
         logo = None
 
-    mm_mode = 'menu'  # menu | load | options | info | credits | database
+    mm_mode = 'menu'  # menu | load | options | info | credits | database | char_create
     # Load options
     def _opts_path():
         return UI_DIR / 'options.json'
@@ -4402,6 +5796,451 @@ def start_menu():
             next_r = pg.Rect(win_w//2 + 30,  by, 140, 32)
             buttons.append(Button(prev_r, "Prev Page", lambda: (_page.set(load_page-1))))
             buttons.append(Button(next_r, "Next Page", lambda: (_page.set(load_page+1))))
+        elif mm_mode == 'char_create':
+            # Character creation simple form
+            if not hasattr(start_menu, '_cc_state'):
+                races_doc = load_races_list() or []
+                classes = load_classes_list() or []
+                # Keep race objects and group them by main race (race_group)
+                race_objs: List[Dict] = [r for r in races_doc if isinstance(r, dict)]
+                group_map: Dict[str, List[Dict]] = {}
+                for r in race_objs:
+                    grp = str(r.get('race_group') or r.get('group') or '').strip()
+                    if not grp:
+                        grp = str(r.get('name') or r.get('id') or 'Other')
+                    group_map.setdefault(grp, []).append(r)
+                race_groups: List[str] = list(group_map.keys()) or ['Race']
+                # Build initial subrace names for the first group
+                init_group = race_groups[0]
+                init_subs = group_map.get(init_group, [])
+                init_sub_names: List[str] = [ (s.get('name') or s.get('id') or init_group) for s in init_subs ]
+                start_menu._cc_state = {
+                    'name': '',
+                    'hair_style': '', 'backstory': '',
+                    'race_groups': race_groups,
+                    'race_group_idx': 0,
+                    'race_group_map': group_map,
+                    'subrace_names': init_sub_names,
+                    'subrace_idx': 0,
+                    'race_objs': race_objs,
+                    'classes':[ (c.get('name') or c.get('id') or 'Wanderer') for c in classes ] or ['Wanderer'],
+                    'race_idx': 0, 'class_idx': 0,
+                    # Appearance option lists and selections
+                    'hair_colors': [], 'skin_tones': [], 'eye_colors': [],
+                    'hair_idx': 0, 'skin_idx': 0, 'eye_idx': 0,
+                    'open_dd': None,
+                    'focus': 'name',
+                }
+            st = start_menu._cc_state
+            # Reset per-frame dropdown helpers
+            st['_dd_buttons'] = []
+            st['_dd_mask'] = None
+            st['_dd_geom'] = None
+            # Ensure classes list stays in sync with data/classes.json
+            def _refresh_classes_if_needed():
+                try:
+                    docs = load_classes_list() or []
+                    new_names = [ (c.get('name') or c.get('id') or 'Wanderer') for c in docs if isinstance(c, dict) ]
+                    cur = list(st.get('classes') or [])
+                    # Always keep class_objs in sync
+                    st['class_objs'] = [c for c in docs if isinstance(c, dict)]
+                    if not cur and new_names:
+                        st['classes'] = new_names
+                    elif new_names and new_names != cur:
+                        st['classes'] = new_names
+                    if new_names:
+                        st['class_idx'] = 0 if not isinstance(st.get('class_idx'), int) else max(0, min(st['class_idx'], len(new_names)-1))
+                except Exception:
+                    pass
+            _refresh_classes_if_needed()
+            # Modal
+            # Larger, responsive modal: ~94% x 92% of window, clamped inside with margins
+            modal_w = min(int(win_w * 0.94), max(200, win_w - 40)); modal_h = min(int(win_h * 0.92), max(200, win_h - 40))
+            modal = pg.Rect((win_w-modal_w)//2, (win_h-modal_h)//2, modal_w, modal_h)
+            dim = pg.Surface((win_w, win_h), pg.SRCALPHA); dim.fill((10,10,14,160)); screen.blit(dim, (0,0))
+            pg.draw.rect(screen, (24,26,34), modal, border_radius=10)
+            pg.draw.rect(screen, (96,102,124), modal, 2, border_radius=10)
+            title = pg.font.Font(None, 30).render('Character Creation', True, (235,235,245))
+            screen.blit(title, (modal.x + 16, modal.y + 12))
+            content = modal.inflate(-40, -60)
+            x0, y0 = content.x + 12, content.y + 12
+            labf = pg.font.Font(None, 22); valf = pg.font.Font(None, 24)
+            # Helpers to parse appearance options from race objects
+            def _to_str_list(v) -> List[str]:
+                try:
+                    if isinstance(v, list):
+                        out = []
+                        for it in v:
+                            if isinstance(it, str):
+                                out.append(it)
+                            elif isinstance(it, dict):
+                                nm = it.get('name') or it.get('id') or it.get('label')
+                                if isinstance(nm, str): out.append(nm)
+                        return [s for s in out if isinstance(s, str) and s.strip()]
+                    if isinstance(v, dict):
+                        for k in ('colors','options','list','values'):
+                            if k in v:
+                                return _to_str_list(v.get(k))
+                except Exception:
+                    pass
+                return []
+            def _find_list(obj: Dict, keys: List[str]) -> List[str]:
+                if not isinstance(obj, dict):
+                    return []
+                # direct
+                for k in keys:
+                    v = obj.get(k)
+                    lst = _to_str_list(v)
+                    if lst: return lst
+                # nested 'appearance'
+                ap = obj.get('appearance')
+                if isinstance(ap, dict):
+                    for k in keys:
+                        lst = _to_str_list(ap.get(k))
+                        if lst: return lst
+                return []
+            def _rebuild_opts():
+                # Update subrace list for current group and appearance options from selected subrace
+                grp_names = list(st.get('race_groups') or [])
+                grp_idx = max(0, min(int(st.get('race_group_idx',0)), max(0, len(grp_names)-1)))
+                grp = grp_names[grp_idx] if grp_names else ''
+                gmap: Dict[str, List[Dict]] = st.get('race_group_map') or {}
+                subs: List[Dict] = gmap.get(grp, [])
+                sub_names: List[str] = [ (s.get('name') or s.get('id') or grp) for s in subs ]
+                st['subrace_names'] = sub_names
+                st['subrace_idx'] = max(0, min(int(st.get('subrace_idx',0)), max(0, len(sub_names)-1)))
+                # Selected subrace object
+                race_obj = subs[st['subrace_idx']] if subs else None
+                hair = _find_list(race_obj or {}, ['hair_colour','hair_color','hair_colors','hair_colours','hairColor','hair-colors','hair','hair_options'])
+                skin = _find_list(race_obj or {}, ['skin_tone','skin_tones','skin_color','skin_colors','skin_colours','skin','complexion','skinOptions','skinTone'])
+                eyes = _find_list(race_obj or {}, ['eye_color','eye_colors','eye_colour','eye_colours','eyes','eye','eye_options','eyeColors','eyeColor'])
+                st['hair_colors'] = hair
+                st['skin_tones'] = skin
+                st['eye_colors'] = eyes
+                st['hair_idx'] = 0 if not isinstance(st.get('hair_idx'), int) else max(0, min(st['hair_idx'], max(0, len(hair)-1)))
+                st['skin_idx'] = 0 if not isinstance(st.get('skin_idx'), int) else max(0, min(st['skin_idx'], max(0, len(skin)-1)))
+                st['eye_idx']  = 0 if not isinstance(st.get('eye_idx'),  int) else max(0, min(st['eye_idx'],  max(0, len(eyes)-1)))
+            # Ensure appearance options reflect the current race
+            if not getattr(start_menu, '_cc_opts_built', False):
+                _rebuild_opts(); start_menu._cc_opts_built = True
+            def field(label, key, w=360):
+                nonlocal y0
+                screen.blit(labf.render(label, True, (220,220,230)), (x0, y0))
+                box = pg.Rect(x0+180, y0-2, w, 28)
+                pg.draw.rect(screen, (36,38,48), box, border_radius=6)
+                pg.draw.rect(screen, (96,102,124) if st['focus']==key else (70,74,92), box, 1, border_radius=6)
+                txt = valf.render(str(st.get(key,'')[:64]), True, (230,230,240))
+                screen.blit(txt, (box.x+8, box.y+4))
+                buttons.append(Button(box, '', lambda k=key: (st.__setitem__('focus', k)), draw_bg=False))
+                y0 += 36
+            # Helper: class color by highest default stat
+            # Removed class colorization per user request
+
+            # Simple dropdown widget for selection lists
+            def dropdown(label, items: List[str], idx_key: str, close_key: Optional[str]=None, w=280):
+                nonlocal y0
+                screen.blit(labf.render(label, True, (220,220,230)), (x0, y0))
+                box = pg.Rect(x0+180, y0-2, w, 28)
+                pg.draw.rect(screen, (36,38,48), box, border_radius=6)
+                # Dim other dropdowns if some dropdown is open (disabled state)
+                disabled = bool(st.get('open_dd')) and st.get('open_dd') != idx_key
+                pg.draw.rect(screen, (60,62,72) if disabled else (70,74,92), box, 1, border_radius=6)
+                cur_idx = max(0, min(int(st.get(idx_key,0)), max(0, len(items)-1))) if items else 0
+                cur = items[cur_idx] if items else ''
+                label_surf = valf.render(str(cur), True, (230,230,240))
+                screen.blit(label_surf, (box.x+8, box.y+4))
+                # Dropdown indicator
+                tri = valf.render('v', True, (200,200,210))
+                screen.blit(tri, (box.right - 22, box.y + 2))
+                def _toggle():
+                    # Only open if there are items to show
+                    if st.get('open_dd') == idx_key:
+                        st['open_dd'] = None
+                    else:
+                        # Block opening another dropdown while one is open
+                        if not bool(st.get('open_dd')) and items:
+                            st['open_dd'] = idx_key
+                            st['dd_scroll'] = 0
+                buttons.append(Button(box, '', _toggle, draw_bg=False))
+                open_now = (st.get('open_dd') == idx_key)
+                # Defer drawing and event binding for the open dropdown to the end,
+                # so it appears on top and captures clicks exclusively.
+                if open_now and items:
+                    max_show = 8
+                    item_h = 24
+                    vis = min(max_show, len(items))
+                    total_h = vis*item_h + 8
+                    dd_w = w
+                    top = box.bottom + 4
+                    if top + total_h > content.bottom - 6:
+                        top = box.top - 4 - total_h
+                    dd_rect = pg.Rect(box.x, top, dd_w, total_h)
+                    # Save geom to be drawn after all other widgets
+                    st['_dd_geom'] = {'dd_rect': dd_rect, 'items': list(items), 'cur_idx': int(cur_idx), 'idx_key': str(idx_key), 'item_h': int(item_h), 'vis': int(vis)}
+                    # Build choice buttons and a mask to close when clicking outside
+                    dd_buttons: List[Button] = []
+                    start = max(0, min(int(st.get('dd_scroll', 0)), max(0, len(items) - vis)))
+                    yy = dd_rect.y + 4
+                    for i_rel in range(vis):
+                        i = start + i_rel
+                        if i >= len(items): break
+                        it = items[i]
+                        r = pg.Rect(dd_rect.x + 4, yy, dd_w - 8, item_h)
+                        def _set(i=i):
+                            st[idx_key] = i
+                            if isinstance(close_key, str):
+                                st[close_key] = items[i]
+                            # If main race changed, refresh subrace + appearance
+                            if idx_key in ('race_group_idx', 'subrace_idx'):
+                                _rebuild_opts()
+                            st['open_dd'] = None
+                        dd_buttons.append(Button(r, '', _set, draw_bg=False))
+                        yy += item_h
+                    # Full-screen invisible mask to block clicks behind dropdown
+                    def _mask_close():
+                        try:
+                            mx, my = pg.mouse.get_pos()
+                        except Exception:
+                            mx, my = 0, 0
+                        if not dd_rect.collidepoint(mx, my) and not box.collidepoint(mx, my):
+                            st['open_dd'] = None
+                    st['_dd_buttons'] = dd_buttons
+                    st['_dd_mask'] = Button(pg.Rect(0, 0, win_w, win_h), '', _mask_close, draw_bg=False)
+                    # Provide an anchor button to allow closing by clicking the box itself
+                    st['_dd_anchor'] = Button(box, '', _toggle, draw_bg=False)
+                y0 += 36
+            # Race first, as requested
+            def chooser(label, items, idx_key):
+                nonlocal y0
+                screen.blit(labf.render(label, True, (220,220,230)), (x0, y0))
+                box = pg.Rect(x0+180, y0-2, 280, 28)
+                pg.draw.rect(screen, (36,38,48), box, border_radius=6)
+                pg.draw.rect(screen, (70,74,92), box, 1, border_radius=6)
+                cur = items[max(0, min(st[idx_key], len(items)-1))] if items else ''
+                screen.blit(valf.render(str(cur), True, (230,230,240)), (box.x+8, box.y+4))
+                prev_r = pg.Rect(box.right + 8, box.y, 28, 28)
+                next_r = pg.Rect(box.right + 44, box.y, 28, 28)
+                def prev():
+                    st[idx_key] = max(0, st[idx_key]-1)
+                    if idx_key == 'race_idx':
+                        _rebuild_opts()
+                def next():
+                    st[idx_key] = min(len(items)-1, st[idx_key]+1)
+                    if idx_key == 'race_idx':
+                        _rebuild_opts()
+                buttons.append(Button(prev_r, '<', prev))
+                buttons.append(Button(next_r, '>', next))
+                y0 += 36
+            # Main Race + Subrace dropdowns
+            dropdown('Main Race', st.get('race_groups', []), 'race_group_idx')
+            dropdown('Subrace',   st.get('subrace_names', []), 'subrace_idx')
+            # Appearance dropdowns (values depend on race)
+            dropdown('Hair Colour', st.get('hair_colors', []), 'hair_idx', close_key='hair_color')
+            dropdown('Skin Colour', st.get('skin_tones', []), 'skin_idx', close_key='skin_tone')
+            dropdown('Eye Colour',  st.get('eye_colors',  []), 'eye_idx',  close_key='eye_color')
+            # Then name, class, style, backstory
+            field('Name', 'name')
+            dropdown('Class', st.get('classes', []), 'class_idx')
+            field('Hair Style', 'hair_style')
+            # Selected class default stats panel (right side)
+            try:
+                objs = st.get('class_objs') or []
+                cidx = max(0, min(int(st.get('class_idx',0)), max(0, len(objs)-1)))
+                co = objs[cidx] if objs else None
+                if isinstance(co, dict):
+                    # Normalize stats
+                    def norm(sd: Dict[str, Any]) -> Dict[str,int]:
+                        out: Dict[str,int] = {}
+                        for k,v in (sd or {}).items():
+                            try:
+                                kk = str(k).strip().lower()
+                                if kk in ('tec','tech','technique'): kk = 'dex'
+                                if kk.startswith('str'): kk = 'phy'
+                                if kk.startswith('int'): kk = 'kno'
+                                if kk.startswith('wis'): kk = 'ins'
+                                out[kk] = int(v)
+                            except Exception:
+                                continue
+                        return out
+                    base = co.get('base_stats') if isinstance(co.get('base_stats'), dict) else co.get('stat_block') if isinstance(co.get('stat_block'), dict) else {}
+                    ns = norm(base or {})
+                    # Compute max to outline top stat(s)
+                    max_val = max((int(v) for v in ns.values()), default=None) if ns else None
+                    # Stat color mapping
+                    COLS = {
+                        'phy': (220,90,90),   # red
+                        'dex': (90,200,140),  # green
+                        'vit': (210,160,90),  # ochre
+                        'arc': (160,110,230), # violet
+                        'kno': (90,160,240),  # blue
+                        'ins': (240,180,90),  # amber
+                        'soc': (220,140,200), # magenta
+                        'fth': (230,190,120), # gold
+                    }
+                    # Layout
+                    panel_w = 240
+                    info_x = content.right - panel_w
+                    info_y = content.y + 10
+                    info_h = 220
+                    info = pg.Rect(info_x, info_y, panel_w-8, info_h)
+                    pg.draw.rect(screen, (28,30,40), info, border_radius=8)
+                    pg.draw.rect(screen, (72,78,96), info, 1, border_radius=8)
+                    titlef = pg.font.Font(None, 22)
+                    labf_s = pg.font.Font(None, 20)
+                    screen.blit(titlef.render('Class Stats', True, (230,230,240)), (info.x + 8, info.y + 6))
+                    rows = [('PHY','phy'),('DEX','dex'),('VIT','vit'),('ARC','arc'),('KNO','kno'),('INS','ins'),('SOC','soc'),('FTH','fth')]
+                    # Draw rows with color coding and outline for the highest stat(s)
+                    yy2 = info.y + 32
+                    for lab,key in rows:
+                        val = ns.get(key)
+                        col = COLS.get(key, (225,225,235))
+                        is_top = (max_val is not None and isinstance(val, int) and int(val) == int(max_val))
+                        row_rect = pg.Rect(info.x + 6, yy2 - 2, panel_w - 20, 20)
+                        if is_top:
+                            pg.draw.rect(screen, (96,102,124), row_rect, 1, border_radius=6)
+                        # Left colored swatch
+                        sw = pg.Rect(info.x + 10, yy2 + 2, 10, 10)
+                        pg.draw.rect(screen, col, sw, border_radius=2)
+                        # Stat text
+                        shown = '-' if not isinstance(val, int) else str(int(val))
+                        label_txt = f"{lab}: {shown}"
+                        screen.blit(labf_s.render(label_txt, True, (225,225,235)), (sw.right + 8, yy2 - 2))
+                        # Proportional bar (stays within panel bounds)
+                        try:
+                            if isinstance(val, int) and max_val not in (None, 0):
+                                pct = max(0.0, min(1.0, float(val) / float(max_val)))
+                                bar_left = info.x + 110
+                                bar_right = info.right - 12
+                                avail = max(0, bar_right - bar_left)
+                                bw = int(avail * pct)
+                                if bw > 0:
+                                    br = pg.Rect(bar_left, yy2 + 2, bw, 8)
+                                    pg.draw.rect(screen, col, br, border_radius=4)
+                        except Exception:
+                            pass
+                        yy2 += 22
+            except Exception:
+                pass            # Backstory (brief)
+            screen.blit(labf.render('Backstory', True, (220,220,230)), (x0, y0))
+            box = pg.Rect(x0+180, y0-2, content.w - 220, 80)
+            pg.draw.rect(screen, (36,38,48), box, border_radius=6)
+            pg.draw.rect(screen, (96,102,124) if st['focus']=='backstory' else (70,74,92), box, 1, border_radius=6)
+            bs_lines = []
+            line=""
+            for ch in str(st.get('backstory','')):
+                if ch=='\n' or len(line)>=52:
+                    bs_lines.append(line); line='';
+                    if ch=='\n': continue
+                line += ch
+            if line: bs_lines.append(line)
+            yy = box.y + 4
+            for ln in bs_lines[:3]:
+                screen.blit(valf.render(ln, True, (230,230,240)), (box.x+8, yy)); yy += 26
+            buttons.append(Button(box, '', lambda: (st.__setitem__('focus','backstory')), draw_bg=False))
+            # Descriptions for selected Race and Class at the bottom
+            try:
+                desc_pad = 8
+                desc_h = max(80, min(160, int(content.h * 0.26)))
+                by = content.bottom - 40 - (desc_h + desc_pad)
+                # Panel rect
+                drect = pg.Rect(content.x, by + 40 + desc_pad, content.w, desc_h)
+                pg.draw.rect(screen, (28,30,40), drect, border_radius=8)
+                pg.draw.rect(screen, (72,78,96), drect, 1, border_radius=8)
+                # Columns
+                col_gap = 12
+                col_w = (drect.w - col_gap) // 2
+                race_rect = pg.Rect(drect.x + 8, drect.y + 6, col_w - 16, drect.h - 12)
+                class_rect= pg.Rect(race_rect.right + col_gap, drect.y + 6, col_w - 16, drect.h - 12)
+                headf = pg.font.Font(None, 20)
+                bodyf = pg.font.Font(None, 18)
+                # Selected race object
+                grp_names = list(st.get('race_groups') or [])
+                grp_idx = max(0, min(int(st.get('race_group_idx',0)), max(0, len(grp_names)-1)))
+                grp = grp_names[grp_idx] if grp_names else ''
+                subs_objs = (st.get('race_group_map') or {}).get(grp, [])
+                sub_idx = max(0, min(int(st.get('subrace_idx',0)), max(0, len(subs_objs)-1)))
+                r_obj = subs_objs[sub_idx] if subs_objs else None
+                # Build race text
+                r_name = ''
+                r_txts = []
+                if isinstance(r_obj, dict):
+                    try:
+                        r_name = str(r_obj.get('name') or r_obj.get('id') or grp)
+                    except Exception:
+                        r_name = grp
+                    for k in ('appearance','nature_and_culture','combat','spice','description','desc'):
+                        v = r_obj.get(k)
+                        if isinstance(v, str) and v.strip():
+                            r_txts.append(v.strip())
+                # Draw race column
+                screen.blit(headf.render((r_name or 'Race'), True, (230,230,240)), (race_rect.x, race_rect.y))
+                if r_txts:
+                    draw_text(screen, "\n\n".join(r_txts), (race_rect.x, race_rect.y + 20), max_w=race_rect.w, font=bodyf, color=(220,220,230))
+                # Selected class object
+                c_objs = st.get('class_objs') or []
+                cidx = max(0, min(int(st.get('class_idx',0)), max(0, len(c_objs)-1)))
+                c_obj = c_objs[cidx] if c_objs else None
+                c_name = ''
+                c_txts = []
+                if isinstance(c_obj, dict):
+                    try:
+                        c_name = str(c_obj.get('name') or c_obj.get('id') or 'Class')
+                    except Exception:
+                        c_name = 'Class'
+                    for k in ('summary','description','desc','notes'):
+                        v = c_obj.get(k)
+                        if isinstance(v, str) and v.strip():
+                            c_txts.append(v.strip())
+                    # Append primary stats and proficiencies terse line if present
+                    try:
+                        prim = c_obj.get('primary_stats')
+                        if isinstance(prim, list) and prim:
+                            c_txts.append("Primary: " + ", ".join([str(x) for x in prim]))
+                    except Exception:
+                        pass
+                    try:
+                        prof = c_obj.get('proficiencies')
+                        if isinstance(prof, list) and prof:
+                            c_txts.append("Proficiencies: " + ", ".join([str(x) for x in prof][:6]))
+                    except Exception:
+                        pass
+                screen.blit(headf.render((c_name or 'Class'), True, (230,230,240)), (class_rect.x, class_rect.y))
+                if c_txts:
+                    draw_text(screen, "\n\n".join(c_txts), (class_rect.x, class_rect.y + 20), max_w=class_rect.w, font=bodyf, color=(220,220,230))
+            except Exception:
+                # If anything goes wrong, fall back to original button position
+                by = content.bottom - 40
+                pass
+            # Action buttons
+            def _begin():
+                classes = st['classes']
+                # Resolve race string from subrace (or main race when no subraces)
+                grp_names = list(st.get('race_groups') or [])
+                grp_idx = max(0, min(int(st.get('race_group_idx',0)), max(0, len(grp_names)-1)))
+                grp = grp_names[grp_idx] if grp_names else 'Human'
+                subs = list(st.get('subrace_names') or [])
+                race = (subs[max(0, min(int(st.get('subrace_idx',0)), max(0, len(subs)-1)))]) if subs else grp
+                role = classes[st['class_idx']] if classes else 'Wanderer'
+                # Resolve appearance values from selections
+                hair = (st.get('hair_colors') or [''])[max(0, min(int(st.get('hair_idx',0)), max(0, len(st.get('hair_colors',[]))-1)))] if st.get('hair_colors') else ''
+                skin = (st.get('skin_tones') or [''])[max(0, min(int(st.get('skin_idx',0)), max(0, len(st.get('skin_tones',[]))-1)))] if st.get('skin_tones') else ''
+                eyes = (st.get('eye_colors')  or [''])[max(0, min(int(st.get('eye_idx',0)),  max(0, len(st.get('eye_colors',[]))-1)))] if st.get('eye_colors') else ''
+                cfg = {
+                    'name': (st['name'].strip() or 'Adventurer'),
+                    'race': race,
+                    'role': role,
+                    'appearance': {
+                        'hair_color': hair,
+                        'skin_tone': skin,
+                        'eye_color': eyes,
+                        'hair_style': st['hair_style'],
+                    },
+                    'backstory': st['backstory'],
+                }
+                _start.set(('new', cfg))
+            buttons.append(Button((x0, by, 200, 32), 'Begin Adventure', _begin))
+            buttons.append(Button((x0+210, by, 100, 32), 'Back', lambda: (_mode.set('menu'))))
+            # NOTE: visual overlay drawing moved to post-draw stage for top layering
         elif mm_mode == 'database':
             # Ensure a minimal data context exists for the database browser
             if db_state is None:
@@ -4438,6 +6277,56 @@ def start_menu():
 
         # Draw buttons
         for b in buttons: b.draw(screen)
+        # Draw dropdown overlay on top if character creation has an open dropdown
+        if mm_mode == 'char_create' and hasattr(start_menu, '_cc_state'):
+            st = start_menu._cc_state
+            dd = st.get('_dd_geom') if bool(st.get('open_dd')) else None
+            if isinstance(dd, dict):
+                dd_rect = dd.get('dd_rect')
+                items = dd.get('items') or []
+                cur_idx = int(dd.get('cur_idx') or 0)
+                item_h = int(dd.get('item_h') or 24)
+                vis = int(dd.get('vis') or min(8, len(items)))
+                start = max(0, min(int(st.get('dd_scroll', 0)), max(0, len(items) - vis)))
+                if isinstance(dd_rect, pg.Rect) and items:
+                    pg.draw.rect(screen, (32,34,44), dd_rect, border_radius=6)
+                    pg.draw.rect(screen, (96,102,124), dd_rect, 1, border_radius=6)
+                    # Draw scrollbar track + thumb if available
+                    track_rect = dd.get('track_rect')
+                    thumb_rect = dd.get('thumb_rect')
+                    track_w = 0
+                    if isinstance(track_rect, pg.Rect):
+                        track_w = track_rect.w
+                        pg.draw.rect(screen, (40,42,56), track_rect, border_radius=4)
+                        pg.draw.rect(screen, (96,102,124), track_rect, 1, border_radius=4)
+                        if isinstance(thumb_rect, pg.Rect):
+                            pg.draw.rect(screen, (78,84,106), thumb_rect, border_radius=4)
+                            pg.draw.rect(screen, (120,128,150), thumb_rect, 1, border_radius=4)
+                    labf2 = pg.font.Font(None, 22)
+                    # Hover highlight
+                    try:
+                        mx, my = pg.mouse.get_pos()
+                    except Exception:
+                        mx, my = 0, 0
+                    hover_rel = -1
+                    if dd_rect.collidepoint(mx, my):
+                        try:
+                            hover_rel = int((my - (dd_rect.y + 4)) // item_h)
+                        except Exception:
+                            hover_rel = -1
+                    yy = dd_rect.y + 4
+                    for i_rel in range(vis):
+                        i = start + i_rel
+                        if i >= len(items): break
+                        it = items[i]
+                        r = pg.Rect(dd_rect.x + 4, yy, dd_rect.w - 8 - track_w, item_h)
+                        if i == cur_idx:
+                            pg.draw.rect(screen, (56,60,76), r, border_radius=4)
+                        elif i_rel == hover_rel:
+                            pg.draw.rect(screen, (46,50,66), r, border_radius=4)
+                        txt = labf2.render(str(it), True, (230,230,240))
+                        screen.blit(txt, (r.x + 6, r.y + 3))
+                        yy += item_h
         pg.display.flip()
         # Handle events (after buttons exist)
         for event in pg.event.get():
@@ -4451,6 +6340,24 @@ def start_menu():
                         running = False
                     else:
                         mm_mode = 'menu'
+                # Text input for char create
+                if mm_mode == 'char_create' and hasattr(start_menu, '_cc_state'):
+                    st = start_menu._cc_state
+                    if event.key == pg.K_BACKSPACE:
+                        k = st['focus']; st[k] = st.get(k,'')[:-1]
+                    elif event.key == pg.K_RETURN:
+                        order = ['name','hair_style','backstory']
+                        try:
+                            i = order.index(st['focus']); st['focus'] = order[(i+1)%len(order)]
+                        except Exception:
+                            st['focus'] = 'name'
+                    else:
+                        ch = getattr(event, 'unicode', '')
+                        if ch and ch.isprintable():
+                            k = st['focus'];
+                            lim = 200 if k=='backstory' else 48
+                            if len(st.get(k,'')) < lim:
+                                st[k] = st.get(k,'') + ch
                         # Clear database text focus when leaving
                         if db_state is not None:
                             try: db_state.db_filter_focus = False
@@ -4472,8 +6379,40 @@ def start_menu():
                                     db_state.db_query = (getattr(db_state,'db_query','') + ch)
                         except Exception:
                             pass
+            elif event.type == pg.MOUSEWHEEL:
+                # Scroll open dropdown lists in character creation
+                if mm_mode == 'char_create' and hasattr(start_menu, '_cc_state'):
+                    st = start_menu._cc_state
+                    if bool(st.get('open_dd')) and isinstance(st.get('_dd_geom'), dict):
+                        dd = st['_dd_geom']
+                        dd_rect = dd.get('dd_rect')
+                        items = dd.get('items') or []
+                        vis = int(dd.get('vis') or min(8, len(items)))
+                        try:
+                            mx, my = pg.mouse.get_pos()
+                        except Exception:
+                            mx, my = 0, 0
+                        if isinstance(dd_rect, pg.Rect) and dd_rect.collidepoint(mx, my):
+                            ofs = int(st.get('dd_scroll', 0))
+                            max_ofs = max(0, len(items) - vis)
+                            ofs = max(0, min(max_ofs, ofs - int(getattr(event, 'y', 0))))
+                            st['dd_scroll'] = ofs
             elif event.type == pg.MOUSEBUTTONDOWN:
-                for b in buttons: b.handle(event)
+                # If a dropdown is open in character creation, capture clicks exclusively
+                if mm_mode == 'char_create' and hasattr(start_menu, '_cc_state'):
+                    st = start_menu._cc_state
+                    if bool(st.get('open_dd')):
+                        dd_btns = list(st.get('_dd_buttons') or [])
+                        mask_btn = st.get('_dd_mask')
+                        anchor_btn = st.get('_dd_anchor')
+                        active = ([mask_btn] if mask_btn is not None else []) + ([anchor_btn] if anchor_btn is not None else []) + dd_btns
+                        if active:
+                            for b in reversed(active):
+                                b.handle(event)
+                            # Swallow click to prevent interacting with elements behind dropdown
+                            continue
+                # Handle most recently added buttons first (overlays on top)
+                for b in reversed(buttons): b.handle(event)
 
         # Apply requested state changes
         if _mode.v is not None:
@@ -4503,8 +6442,10 @@ def start_menu():
             load_page = max(0, int(_page.v)); _page.v = None
         if _start.v is not None:
             sel = _start.v
+            if isinstance(sel, tuple) and sel[0] == 'new':
+                return ('new', sel[1])
             if sel == 'new':
-                return ('new', None)
+                mm_mode = 'char_create'; _start.v = None; continue
             if isinstance(sel, tuple) and sel[0] == 'load':
                 slot = int(sel[1]); return ('load', slot)
             _start.v = None
@@ -4539,7 +6480,10 @@ def main(argv=None):
     print("\n[OK] Validation passed. Launching main menu...")
     sel, data = start_menu()
     if sel == 'new':
-        start_game(start_map=args.start_map, start_entry=args.start_entry, start_pos=tuple(args.start_pos) if args.start_pos else None)
+        if isinstance(data, dict):
+            start_game(start_map=args.start_map, start_entry=args.start_entry, start_pos=tuple(args.start_pos) if args.start_pos else None, char_config=data)
+        else:
+            start_game(start_map=args.start_map, start_entry=args.start_entry, start_pos=tuple(args.start_pos) if args.start_pos else None)
     elif sel == 'load' and data is not None:
         start_game(load_slot=int(data))
     else:
@@ -4547,6 +6491,15 @@ def main(argv=None):
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
 
 
 

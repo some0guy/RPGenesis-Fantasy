@@ -678,6 +678,10 @@ class EditorScreen:
         # Map description at bottom
         self.desc_area = TextArea((900, 662, 380, 48), self.map.description)
 
+        # Game start placement (world start)
+        self.btn_set_start = Button((920, 414, 200, 28), "Set Game Start Here", self.set_game_start_here)
+        self._world_start_info = None
+
         # Default regions (updated each frame for responsive layout)
         self.canvas_rect = pygame.Rect(0, 50, 900, 670)
         self.sidebar_rect = pygame.Rect(900, 50, 380, 670)
@@ -894,6 +898,22 @@ class EditorScreen:
             t.links.clear()
             t.links.extend(old_links)
         self.history.push(do, undo, "set_link")
+
+    def set_game_start_here(self):
+        if not self.selected:
+            return
+        x, y = self.selected
+        if not (0 <= x < self.map.width and 0 <= y < self.map.height):
+            return
+        wm_path = os.path.join(DATA_DIR, "world_map.json")
+        wm = read_json_any(wm_path, {"schema":"rpgen.world@1","version":"0.2","layout": {}, "start": {"map":"","entry": None, "pos": [0,0]}})
+        start = wm.get("start", {}) if isinstance(wm, dict) else {}
+        smap = start.get("map") or ""
+        # Only one start globally; prevent setting if another map already has it
+        if smap and smap != self.map.name:
+            return
+        wm["start"] = {"map": self.map.name, "entry": None, "pos": [int(x), int(y)]}
+        write_json(wm_path, wm)
 
     def save(self):
         # Persist current UI values before writing
@@ -1409,6 +1429,28 @@ class EditorScreen:
                         pygame.draw.circle(surf, (10,10,12), (int(cx_d), int(cy_d)), radius, 1)
 
         # Selection highlight on top in Top view (clear and obvious)
+        # Highlight Game Start tile (blue outline)
+        try:
+            wm_path = os.path.join(DATA_DIR, "world_map.json")
+            wm = read_json_any(wm_path, {"start": {"map":"","entry": None, "pos": [0,0]}})
+            start = wm.get("start", {}) if isinstance(wm, dict) else {}
+            smap = start.get("map") or ""
+            spos = start.get("pos") or [0,0]
+            if smap == self.map.name and isinstance(spos, (list, tuple)) and len(spos) >= 2:
+                sx, sy = int(spos[0]), int(spos[1])
+                if 0 <= sx < self.map.width and 0 <= sy < self.map.height:
+                    exx, exy, eyx, eyy = self._basis()
+                    cx, cy = self._iso_center(sx, sy)
+                    p0 = (cx - 0.5*exx - 0.5*eyx, cy - 0.5*exy - 0.5*eyy)
+                    p1 = (cx + 0.5*exx - 0.5*eyx, cy + 0.5*exy - 0.5*eyy)
+                    p2 = (cx + 0.5*exx + 0.5*eyx, cy + 0.5*exy + 0.5*eyy)
+                    p3 = (cx - 0.5*exx + 0.5*eyx, cy - 0.5*exy + 0.5*eyy)
+                    poly = [(int(p0[0]), int(p0[1])), (int(p1[0]), int(p1[1])), (int(p2[0]), int(p2[1])), (int(p3[0]), int(p3[1]))]
+                    BLUE = (80, 150, 240)
+                    pygame.draw.polygon(surf, BLUE, poly, 3)
+        except Exception:
+            pass
+
         if (not is_iso) and self.selected and (0 <= self.selected[0] < self.map.width) and (0 <= self.selected[1] < self.map.height):
             rx, ry = self.selected
             r = self.tile_rect(rx, ry)
@@ -1503,6 +1545,28 @@ class EditorScreen:
 
         # Note button
         self.btn_edit_note.draw(surf)
+
+        # Game start UI (info + button) anchored in sidebar above Tile Info
+        wm_path = os.path.join(DATA_DIR, "world_map.json")
+        wm = read_json_any(wm_path, {"start": {"map":"","entry": None, "pos": [0,0]}})
+        start = wm.get("start", {}) if isinstance(wm, dict) else {}
+        smap = start.get("map") or ""
+        spos = start.get("pos") or [0,0]
+        label_x = self.sidebar_rect.x + 20
+        label_y = max(self.sidebar_rect.y + 360, self.inspector_header_rect.y - 60)
+        draw_text(surf, "Game Start", (label_x, label_y), TEXT_DIM)
+        status = f"Placed on: {smap} at ({int(spos[0])},{int(spos[1])})" if smap else "Not set"
+        draw_text(surf, status, (label_x + 120, label_y), TEXT_MAIN)
+        # Position the button relative to sidebar so it never appears over canvas
+        self.btn_set_start.rect.topleft = (label_x, label_y + 20)
+        can_set = bool(self.selected) and (not smap or smap == self.map.name)
+        if can_set:
+            self.btn_set_start.draw(surf)
+        else:
+            r = self.btn_set_start.rect
+            pygame.draw.rect(surf, (38,40,52), r, border_radius=6)
+            pygame.draw.rect(surf, GRID_LINE, r, 1, border_radius=6)
+            draw_text(surf, "Set Game Start Here", (r.x+10, r.y+6), TEXT_DIM)
 
         # description (placed at bottom; no overlaps)
         draw_text(surf, "Map Description", (self.desc_area.rect.x, self.desc_area.rect.y - 18), TEXT_DIM)
@@ -1603,6 +1667,11 @@ class EditorScreen:
             self.btn_mark_safe.handle(event)
             self.btn_mark_danger.handle(event)
             self.btn_clear_marker.handle(event)
+            # Keep the Game Start button anchored each frame before handling
+            label_x = self.sidebar_rect.x + 20
+            label_y = max(self.sidebar_rect.y + 360, self.inspector_header_rect.y - 60)
+            self.btn_set_start.rect.topleft = (label_x, label_y + 20)
+            self.btn_set_start.handle(event)
 
         # description
         if not dropdown_open:
