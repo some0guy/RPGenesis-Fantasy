@@ -8,13 +8,17 @@
     "weight": 40,
     "description": "A common ring crafted with care.",
     "components": [],
-    "bonus": {
-      "attack": 1
-    },
+    "bonus": {},
     "resist": {},
     "accessory_trait": "none",
     "id": "IT00005001",
-    "desc": "A common ring to our current spec."
+    "desc": "A common ring to our current spec.",
+    "bonus_template": {
+      "attack": [
+        1,
+        2
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -25,15 +29,25 @@
     "weight": 35,
     "description": "A uncommon ring crafted with care.",
     "components": [],
-    "bonus": {
-      "arc": 1,
-      "kno": 1,
-      "crit_chance": 1
-    },
+    "bonus": {},
     "resist": {},
     "accessory_trait": "none",
     "id": "IT00005002",
-    "desc": "A uncommon ring to our current spec."
+    "desc": "A uncommon ring to our current spec.",
+    "bonus_template": {
+      "arc": [
+        1,
+        2
+      ],
+      "kno": [
+        1,
+        2
+      ],
+      "crit_chance": [
+        1,
+        2
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -44,16 +58,23 @@
     "weight": 30,
     "description": "A rare ring crafted with care.",
     "components": [],
-    "bonus": {
-      "tec": 2,
-      "attack": 1
-    },
+    "bonus": {},
     "resist": {
       "shocked": 10
     },
     "accessory_trait": "none",
     "id": "IT00005003",
-    "desc": "A rare ring to our current spec."
+    "desc": "A rare ring to our current spec.",
+    "bonus_template": {
+      "tec": [
+        1,
+        3
+      ],
+      "attack": [
+        1,
+        2
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -64,14 +85,21 @@
     "weight": 26,
     "description": "A legendary ring crafted with care.",
     "components": [],
-    "bonus": {
-      "attack": 3,
-      "phy": 2
-    },
+    "bonus": {},
     "resist": {},
     "accessory_trait": "echo_strike",
     "id": "IT00005004",
-    "desc": "A legendary ring to our current spec."
+    "desc": "A legendary ring to our current spec.",
+    "bonus_template": {
+      "attack": [
+        3,
+        5
+      ],
+      "phy": [
+        2,
+        3
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -82,17 +110,27 @@
     "weight": 24,
     "description": "A mythic ring crafted with care.",
     "components": [],
-    "bonus": {
-      "ins": 3,
-      "soc": 2,
-      "crit_chance": 2
-    },
+    "bonus": {},
     "resist": {
       "charmed": 15
     },
     "accessory_trait": "soulbound",
     "id": "IT00005005",
-    "desc": "A mythic ring to our current spec."
+    "desc": "A mythic ring to our current spec.",
+    "bonus_template": {
+      "ins": [
+        3,
+        5
+      ],
+      "soc": [
+        2,
+        4
+      ],
+      "crit_chance": [
+        2,
+        4
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -103,13 +141,17 @@
     "weight": 40,
     "description": "A common necklace crafted with care.",
     "components": [],
-    "bonus": {
-      "vit": 1
-    },
+    "bonus": {},
     "resist": {},
     "accessory_trait": "none",
     "id": "IT00005006",
-    "desc": "A common necklace to our current spec."
+    "desc": "A common necklace to our current spec.",
+    "bonus_template": {
+      "vit": [
+        1,
+        2
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -120,16 +162,23 @@
     "weight": 35,
     "description": "A uncommon necklace crafted with care.",
     "components": [],
-    "bonus": {
-      "ins": 1,
-      "fth": 1
-    },
+    "bonus": {},
     "resist": {
       "slowed": 8
     },
     "accessory_trait": "none",
     "id": "IT00005007",
-    "desc": "A uncommon necklace to our current spec."
+    "desc": "A uncommon necklace to our current spec.",
+    "bonus_template": {
+      "ins": [
+        1,
+        2
+      ],
+      "fth": [
+        1,
+        2
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -140,16 +189,23 @@
     "weight": 30,
     "description": "A rare necklace crafted with care.",
     "components": [],
-    "bonus": {
-      "attack": 1,
-      "arc": 1
-    },
+    "bonus": {},
     "resist": {
       "burnt": 12
     },
     "accessory_trait": "none",
     "id": "IT00005008",
-    "desc": "A rare necklace to our current spec."
+    "desc": "A rare necklace to our current spec.",
+    "bonus_template": {
+      "attack": [
+        1,
+        2
+      ],
+      "arc": [
+        1,
+        2
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -160,15 +216,25 @@
     "weight": 26,
     "description": "A legendary necklace crafted with care.",
     "components": [],
-    "bonus": {
-      "vit": 2,
-      "defense": 2,
-      "fth": 1
-    },
+    "bonus": {},
     "resist": {},
     "accessory_trait": "aura_guard",
     "id": "IT00005009",
-    "desc": "A legendary necklace to our current spec."
+    "desc": "A legendary necklace to our current spec.",
+    "bonus_template": {
+      "vit": [
+        2,
+        3
+      ],
+      "defense": [
+        2,
+        3
+      ],
+      "fth": [
+        1,
+        2
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -179,16 +245,23 @@
     "weight": 24,
     "description": "A mythic necklace crafted with care.",
     "components": [],
-    "bonus": {
-      "kno": 3,
-      "arc": 2
-    },
+    "bonus": {},
     "resist": {
       "distracted": 15
     },
     "accessory_trait": "timebend",
     "id": "IT00005010",
-    "desc": "A mythic necklace to our current spec."
+    "desc": "A mythic necklace to our current spec.",
+    "bonus_template": {
+      "kno": [
+        3,
+        5
+      ],
+      "arc": [
+        2,
+        4
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -199,13 +272,17 @@
     "weight": 40,
     "description": "A common bracelet crafted with care.",
     "components": [],
-    "bonus": {
-      "tec": 1
-    },
+    "bonus": {},
     "resist": {},
     "accessory_trait": "none",
     "id": "IT00005011",
-    "desc": "A common bracelet to our current spec."
+    "desc": "A common bracelet to our current spec.",
+    "bonus_template": {
+      "tec": [
+        1,
+        2
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -216,14 +293,21 @@
     "weight": 35,
     "description": "A uncommon bracelet crafted with care.",
     "components": [],
-    "bonus": {
-      "arc": 1,
-      "defense": 1
-    },
+    "bonus": {},
     "resist": {},
     "accessory_trait": "none",
     "id": "IT00005012",
-    "desc": "A uncommon bracelet to our current spec."
+    "desc": "A uncommon bracelet to our current spec.",
+    "bonus_template": {
+      "arc": [
+        1,
+        2
+      ],
+      "defense": [
+        1,
+        2
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -234,15 +318,19 @@
     "weight": 30,
     "description": "A rare bracelet crafted with care.",
     "components": [],
-    "bonus": {
-      "attack": 2
-    },
+    "bonus": {},
     "resist": {
       "bleeding": 12
     },
     "accessory_trait": "lifedrink",
     "id": "IT00005013",
-    "desc": "A rare bracelet to our current spec."
+    "desc": "A rare bracelet to our current spec.",
+    "bonus_template": {
+      "attack": [
+        1,
+        3
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -253,16 +341,23 @@
     "weight": 26,
     "description": "A legendary bracelet crafted with care.",
     "components": [],
-    "bonus": {
-      "attack": 2,
-      "phy": 2
-    },
+    "bonus": {},
     "resist": {
       "burnt": 15
     },
     "accessory_trait": "none",
     "id": "IT00005014",
-    "desc": "A legendary bracelet to our current spec."
+    "desc": "A legendary bracelet to our current spec.",
+    "bonus_template": {
+      "attack": [
+        2,
+        3
+      ],
+      "phy": [
+        2,
+        3
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -273,16 +368,23 @@
     "weight": 24,
     "description": "A mythic bracelet crafted with care.",
     "components": [],
-    "bonus": {
-      "vit": 3,
-      "defense": 3
-    },
+    "bonus": {},
     "resist": {
       "tormented": 10
     },
     "accessory_trait": "warding",
     "id": "IT00005015",
-    "desc": "A mythic bracelet to our current spec."
+    "desc": "A mythic bracelet to our current spec.",
+    "bonus_template": {
+      "vit": [
+        3,
+        5
+      ],
+      "defense": [
+        3,
+        5
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -293,13 +395,17 @@
     "weight": 40,
     "description": "A common charm crafted with care.",
     "components": [],
-    "bonus": {
-      "fth": 1
-    },
+    "bonus": {},
     "resist": {},
     "accessory_trait": "none",
     "id": "IT00005016",
-    "desc": "A common charm to our current spec."
+    "desc": "A common charm to our current spec.",
+    "bonus_template": {
+      "fth": [
+        1,
+        2
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -310,16 +416,23 @@
     "weight": 35,
     "description": "A uncommon charm crafted with care.",
     "components": [],
-    "bonus": {
-      "soc": 1,
-      "fth": 1
-    },
+    "bonus": {},
     "resist": {
       "marked": 10
     },
     "accessory_trait": "none",
     "id": "IT00005017",
-    "desc": "A uncommon charm to our current spec."
+    "desc": "A uncommon charm to our current spec.",
+    "bonus_template": {
+      "soc": [
+        1,
+        2
+      ],
+      "fth": [
+        1,
+        2
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -330,15 +443,19 @@
     "weight": 30,
     "description": "A rare charm crafted with care.",
     "components": [],
-    "bonus": {
-      "ins": 2
-    },
+    "bonus": {},
     "resist": {
       "distracted": 10
     },
     "accessory_trait": "none",
     "id": "IT00005018",
-    "desc": "A rare charm to our current spec."
+    "desc": "A rare charm to our current spec.",
+    "bonus_template": {
+      "ins": [
+        1,
+        3
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -349,16 +466,23 @@
     "weight": 26,
     "description": "A legendary charm crafted with care.",
     "components": [],
-    "bonus": {
-      "arc": 2,
-      "kno": 2
-    },
+    "bonus": {},
     "resist": {
       "stunned": 15
     },
     "accessory_trait": "none",
     "id": "IT00005019",
-    "desc": "A legendary charm to our current spec."
+    "desc": "A legendary charm to our current spec.",
+    "bonus_template": {
+      "arc": [
+        2,
+        3
+      ],
+      "kno": [
+        2,
+        3
+      ]
+    }
   },
   {
     "category": "accessory",
@@ -369,16 +493,23 @@
     "weight": 24,
     "description": "A mythic charm crafted with care.",
     "components": [],
-    "bonus": {
-      "kno": 3,
-      "arc": 3
-    },
+    "bonus": {},
     "resist": {
       "exhausted": 15,
       "bleeding": 10
     },
     "accessory_trait": "soul_anchor",
     "id": "IT00005020",
-    "desc": "A mythic charm to our current spec."
+    "desc": "A mythic charm to our current spec.",
+    "bonus_template": {
+      "kno": [
+        3,
+        5
+      ],
+      "arc": [
+        3,
+        5
+      ]
+    }
   }
 ]

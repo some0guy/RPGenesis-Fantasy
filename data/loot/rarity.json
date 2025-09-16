@@ -1,0 +1,8 @@
+{
+  "common":    { "weight": 40, "affixes": [0,0], "budget": 1.00 },
+  "uncommon":  { "weight": 28, "affixes": [1,1], "budget": 1.05 },
+  "rare":      { "weight": 18, "affixes": [1,2], "budget": 1.12 },
+  "exotic":    { "weight":  9, "affixes": [2,3], "budget": 1.20 },
+  "legendary": { "weight":  4, "affixes": [3,3], "budget": 1.30, "special": 0.15 },
+  "mythic":    { "weight":  1, "affixes": [3,4], "budget": 1.45, "special": 0.30 }
+}

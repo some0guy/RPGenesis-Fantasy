@@ -2,23 +2,13 @@
 from __future__ import annotations
 import os, sys, json, re, argparse, random, math, hashlib
 from typing import Dict, Any, List, Tuple, Optional, Set, TYPE_CHECKING
-try:
-    # Python 3.10+
-    from typing import TypeAlias  # type: ignore
-except Exception:  # pragma: no cover
-    # Fallback for older runtimes without TypeAlias
-    try:
-        from typing_extensions import TypeAlias  # type: ignore
-    except Exception:  # Last resort: keep static checkers happy
-        TypeAlias = Any  # type: ignore
-
 # Lightweight alias for pygame.Rect used only for type checking.
 # Avoids Pylance "Variable not allowed in type expression" when pygame stubs are missing.
 if TYPE_CHECKING:
     import pygame as _pg
-    Rect: TypeAlias = _pg.Rect
-else:
-    Rect: TypeAlias = Any
+    Rect = _pg.Rect
+else:  # pragma: no cover - runtime fallback when pygame is unavailable
+    Rect = Any  # type: ignore[assignment]
 from datetime import datetime
 from collections import deque
 from dataclasses import dataclass, field
@@ -55,11 +45,11 @@ def get_version() -> str:
 EXPECTED = {
     "root_files": [
         "data/appearance.json",
-        "data/enchants.json",
-        "data/traits.json",
-        "data/encounters.json",
-        "data/loot_tables.json",
-        "data/magic.json",
+        "data/mechanics/enchants.json",
+        "data/mechanics/traits.json",
+        "data/mechanics/encounters.json",
+        "data/mechanics/loot_tables.json",
+        "data/mechanics/magic.json",
         "data/status.json",
     ],
     "item_files": [
@@ -204,10 +194,10 @@ def validate_project(root: str, strict: bool=False):
                 errs.append(f"[ERR] {rel} id '{_id}' must match {kind.upper()}########")
 
     for rel, key, kind in [
-        ("data/enchants.json", "enchants", "enchant"),
-        ("data/traits.json",   "traits",   "trait"),
-        ("data/magic.json",    "spells",   "magic"),
-        ("data/status.json",   "status",   "status"),
+        ("data/mechanics/enchants.json", "enchants", "enchant"),
+        ("data/mechanics/traits.json",   "traits",   "trait"),
+        ("data/mechanics/magic.json",    "spells",   "magic"),
+        ("data/status.json",              "status",   "status"),
     ]:
         try:
             doc = load_json(abspath(rel), {key: []})
@@ -217,9 +207,9 @@ def validate_project(root: str, strict: bool=False):
             errs.append(f"[ERR] Failed to load {rel}: {e}")
 
     try:
-        loot = load_json(abspath("data/loot_tables.json"), {"tables": {}, "aliases": {}})
+        loot = load_json(abspath("data/mechanics/loot_tables.json"), {"tables": {}, "aliases": {}})
     except Exception as e:
-        errs.append(f"[ERR] Failed to load data/loot_tables.json: {e}")
+        errs.append(f"[ERR] Failed to load data/mechanics/loot_tables.json: {e}")
         loot = {"tables": {}, "aliases": {}}
     if isinstance(loot, dict):
         tables = loot.get("tables") or {}
@@ -260,12 +250,34 @@ def validate_project(root: str, strict: bool=False):
 
 # ======================== Game data API ========================
 def safe_load_doc(rel: str, array_key: str) -> List[dict]:
-    doc = load_json(os.path.join(DATA_DIR, rel), {array_key: []})
+    """Load a top-level data document that may live in data/ or data/mechanics/.
+
+    Resolution order:
+    1) If `data/<rel>` exists and is non-empty, load and parse it.
+    2) Else if `data/mechanics/<basename(rel)>` exists, load and parse it.
+    3) Else return an empty list.
+
+    Accepts either a top-level list or a dict containing an array at `array_key`.
+    """
     try:
-        if isinstance(doc, list):
-            return [x for x in doc if isinstance(x, dict)]
-        if isinstance(doc, dict):
-            return [x for x in doc.get(array_key, []) if isinstance(x, dict)]
+        # Prefer legacy path if it actually exists
+        legacy_path = os.path.join(DATA_DIR, rel)
+        if os.path.exists(legacy_path) and os.path.getsize(legacy_path) > 0:
+            doc = load_json(legacy_path, {array_key: []})
+            if isinstance(doc, list):
+                return [x for x in doc if isinstance(x, dict)]
+            if isinstance(doc, dict):
+                return [x for x in doc.get(array_key, []) if isinstance(x, dict)]
+
+        # Try mechanics path next
+        base = os.path.basename(rel)
+        mpath = os.path.join(DATA_DIR, "mechanics", base)
+        if os.path.exists(mpath) and os.path.getsize(mpath) > 0:
+            doc2 = load_json(mpath, {array_key: []})
+            if isinstance(doc2, list):
+                return [x for x in doc2 if isinstance(x, dict)]
+            if isinstance(doc2, dict):
+                return [x for x in doc2.get(array_key, []) if isinstance(x, dict)]
     except Exception:
         pass
     return []
@@ -541,6 +553,73 @@ def _jitter(val: int, pct: float, rng: random.Random) -> int:
     span = max(1, int(abs(val) * pct))
     return max(0, int(val + rng.randint(-span, span)))
 
+# --------- Template helpers -------------------------------------------------
+def _sample_range(spec: Any, rng: random.Random) -> Optional[int]:
+    try:
+        if isinstance(spec, (list, tuple)) and spec:
+            lo = int(spec[0])
+            hi = int(spec[-1]) if len(spec) > 1 else lo
+        elif isinstance(spec, dict):
+            lo = int(spec.get('min', spec.get('low', spec.get('base', 0))))
+            hi = int(spec.get('max', spec.get('high', spec.get('max', lo))))
+        else:
+            lo = hi = int(spec)
+        if hi < lo:
+            lo, hi = hi, lo
+        return int(rng.randint(lo, hi))
+    except Exception:
+        return None
+
+def _template_map(template: Dict[str, Any], rng: random.Random) -> Dict[str, int]:
+    out: Dict[str,int] = {}
+    for key, spec in (template or {}).items():
+        val = _sample_range(spec, rng)
+        if val is not None:
+            out[str(key)] = int(val)
+    return out
+
+# --------- Enchant helpers (optional integration with mechanics/enchants.json) ---------
+def _normalize_damage_key(k: str) -> str:
+    kk = str(k or '').lower()
+    return {
+        'phys': 'physical',
+        'physical': 'physical',
+        'fire': 'fire',
+        'ice': 'ice',
+        'frost': 'ice',
+        'shock': 'lightning',
+        'lightning': 'lightning',
+        'poison': 'poison',
+        'bleed': 'bleed',
+        'arcane': 'arcane',
+    }.get(kk, kk)
+
+def _apply_weapon_enchant_effects(dmg: Dict[str,int], bonus: Dict[str,int], statuses: List[str], effect: Dict[str,Any]):
+    for k, v in (effect or {}).items():
+        nk = _normalize_damage_key(k)
+        try:
+            iv = int(v)
+        except Exception:
+            iv = 0
+        if nk in ('physical','fire','ice','lightning','poison','bleed','arcane'):
+            dmg[nk] = int(dmg.get(nk, 0)) + max(0, iv)
+        elif nk in ('attack','atk'):
+            bonus['attack'] = int(bonus.get('attack', 0)) + max(0, iv)
+
+def _apply_gear_enchant_effects(defense: Dict[str,int], bonus: Dict[str,int], effect: Dict[str,Any]):
+    for k, v in (effect or {}).items():
+        kk = str(k or '').lower()
+        try:
+            iv = int(v)
+        except Exception:
+            iv = 0
+        if kk.startswith('resist_'):
+            # Map resist_<type> to defense map
+            typ = kk.replace('resist_', '')
+            defense[_normalize_damage_key(typ)] = int(defense.get(_normalize_damage_key(typ), 0)) + max(0, iv)
+        elif kk in ('defense_bonus','defense'):
+            bonus['defense'] = int(bonus.get('defense', 0)) + max(0, iv)
+
 
 def gather_items() -> List[Dict]:
     items: List[Dict] = []
@@ -585,12 +664,12 @@ def load_magic() -> List[Dict]:    return safe_load_doc("magic.json", "spells")
 def load_status() -> List[Dict]:   return safe_load_doc("status.json", "status")
 
 def load_curses() -> List[Dict]:
-    """Load curses from abilities/curses.json with tolerant schema.
+    """Load curses from mechanics/curses.json with tolerant schema.
 
     Supports either a top-level list or a dict containing a list under
     common keys like 'curses', 'entries', or 'list'.
     """
-    path = DATA_DIR / "abilities" / "curses.json"
+    path = DATA_DIR / "mechanics" / "curses.json"
     try:
         doc = load_json(str(path), [])
         if isinstance(doc, list):
@@ -621,15 +700,15 @@ def load_classes_list() -> List[Dict]:
     """Load Classes from the project data with tolerant schema.
 
     Priority:
-    1) data/abilities/classes.json
-    2) data/abilities/class.json
+    1) data/mechanics/classes.json
+    2) data/mechanics/class.json
     3) data/classes.json
 
     Supports top-level list, or dict with a 'classes' list.
     """
     candidates = [
-        DATA_DIR / "abilities" / "classes.json",
-        DATA_DIR / "abilities" / "class.json",
+        DATA_DIR / "mechanics" / "classes.json",
+        DATA_DIR / "mechanics" / "class.json",
         DATA_DIR / "classes.json",
     ]
     for path in candidates:
@@ -1350,6 +1429,8 @@ def draw_grid(surf, game):
                 draw_edge(e_right, has_right)
                 draw_edge(e_bottom, has_bottom)
                 draw_edge(e_left, has_left)
+
+                # (Puzzle piece connectors removed per request)
             # Overlay markers (centered dots)
             dot_colors = []
             if tile.encounter:
@@ -1721,6 +1802,27 @@ def draw_panel(surf, game):
         # Removed standalone Battlefield menu entry; battlefield appears only during combat
         add("Save Game", lambda: setattr(game, 'mode', 'save'))
         add("Load Game", lambda: setattr(game, 'mode', 'load'))
+
+    # Keep side action buttons within window bounds by shifting them up if needed
+    try:
+        side_btns = [b for b in buttons if isinstance(getattr(b, 'rect', None), pg.Rect) and b.rect.x == x0+16 and b.rect.w == (panel_w-32)]
+        if side_btns:
+            step = 38
+            needed = len(side_btns) * step
+            # Place as low as possible but fully visible; never above the header
+            base_y = max(44, min(win_h - 210, win_h - needed - 12))
+            # expose for scroll-area calculations
+            try: game._buttons_top = int(base_y)
+            except Exception: pass
+            ycur = int(base_y)
+            for b in side_btns:
+                b.rect.y = ycur
+                b.rect.h = 34
+                b.rect.x = x0 + 16
+                b.rect.w = panel_w - 32
+                ycur += step
+    except Exception:
+        pass
 
     for b in buttons: b.draw(surf)
     return buttons
@@ -2482,7 +2584,7 @@ def _load_sprite_cached(game, key: str, max_size: Tuple[int,int]):
     except Exception:
         return None
 
-def _draw_battlefield_canvas(surf, game, bf: 'Rect', hover_side: Optional[str] = None, hover_index: int = -1):
+def _draw_battlefield_canvas(surf, game, bf: Rect, hover_side: Optional[str] = None, hover_index: int = -1):
     """Draw the battlefield scene (sky, ground, and unit sprites) into bf rect."""
     # Sky gradient
     sky = pg.Surface((bf.w, bf.h), pg.SRCALPHA)
@@ -2511,7 +2613,7 @@ def _draw_battlefield_canvas(surf, game, bf: 'Rect', hover_side: Optional[str] =
     slot_w = int(bf.w * 0.36)
     left_area = pg.Rect(bf.x + 20, ground.y - int(ground_h*0.65), slot_w, int(ground_h*0.65))
     right_area= pg.Rect(bf.right - 20 - slot_w, left_area.y, slot_w, left_area.h)
-    def slot_center(area: 'Rect', c: int, r: int) -> Tuple[int,int]:
+    def slot_center(area: Rect, c: int, r: int) -> Tuple[int,int]:
         cx = area.x + int((c + 0.5) * (area.w / cols))
         cy = area.y + int((r + 0.6) * (area.h / rows))
         return cx, cy
@@ -2581,7 +2683,7 @@ def _draw_battlefield_canvas(surf, game, bf: 'Rect', hover_side: Optional[str] =
         enemies = list(getattr(game, 'bf_enemies', []) or [])
 
     # Draw team helper
-    def draw_team(area: 'Rect', items: List[str], flip=False, side_name: str = ''):
+    def draw_team(area: Rect, items: List[str], flip=False, side_name: str = ''):
         # Slightly increase sprite zoom for better character focus
         SCALE = 2.1
         max_w = int((area.w / cols) * SCALE) - 8
@@ -2684,7 +2786,7 @@ def draw_battlefield_overlay(surf, game):
     slot_w = int(bf.w * 0.36)
     left_area = pg.Rect(bf.x + 20, ground.y - int(ground_h*0.65), slot_w, int(ground_h*0.65))
     right_area= pg.Rect(bf.right - 20 - slot_w, left_area.y, slot_w, left_area.h)
-    def slot_center(area: 'Rect', c: int, r: int) -> Tuple[int,int]:
+    def slot_center(area: Rect, c: int, r: int) -> Tuple[int,int]:
         cx = area.x + int((c + 0.5) * (area.w / cols))
         cy = area.y + int((r + 0.6) * (area.h / rows))
         return cx, cy
@@ -2695,7 +2797,7 @@ def draw_battlefield_overlay(surf, game):
     enemies = list(getattr(game, 'bf_enemies', []) or [])
 
     # Draw shadows and sprites
-    def draw_team(area: 'Rect', items: List[str], flip=False):
+    def draw_team(area: Rect, items: List[str], flip=False):
         SCALE = 1.9
         max_w = int((area.w / cols) * SCALE) - 8
         max_h = int((area.h / rows) * SCALE) - 6
@@ -4047,9 +4149,20 @@ class Game:
         weps  = [it for it in self.items if str(item_type(it)).lower() == 'weapon']
         if not self.player.inventory and weps:
             # Seed a couple items into inventory only (no auto-equip)
-            self.player.inventory.append(weps[0])
+            # Randomize the starting items using a stable context so they carry combat stats
+            try:
+                ctx0 = f"start:{getattr(self,'world_seed',0)}:inv:0"
+                it0 = self._roll_weapon_item(weps[0], ctx0) if not weps[0].get('_rolled') else weps[0]
+            except Exception:
+                it0 = weps[0]
+            self.player.inventory.append(it0)
             if len(weps) > 1:
-                self.player.inventory.append(weps[1])
+                try:
+                    ctx1 = f"start:{getattr(self,'world_seed',0)}:inv:1"
+                    it1 = self._roll_weapon_item(weps[1], ctx1) if not weps[1].get('_rolled') else weps[1]
+                except Exception:
+                    it1 = weps[1]
+                self.player.inventory.append(it1)
 
         # Apply class base + level growth to player
         try:
@@ -5057,6 +5170,14 @@ class Game:
         base_type = str(base.get('type') or item_subtype(base) or 'weapon')
         base_dmg = dict(base.get('damage_type') or {})
         if not base_dmg:
+            # Template-driven damage definitions (e.g., {"physical": [4,8]})
+            base_dmg = {}
+        template_dmg = base.get('damage_template') or base.get('damage_ranges')
+        if template_dmg:
+            templated = _template_map(template_dmg, rng)
+            for k, v in templated.items():
+                base_dmg[k] = int(base_dmg.get(k, 0)) + int(v)
+        if not base_dmg:
             # Fallback from min/max if present
             try:
                 mn, mx, *_ = _weapon_stats(base)
@@ -5067,6 +5188,11 @@ class Game:
         # Scale base damage
         dmg = _scale_damage_map(base_dmg, base_scale * r_mult)
         bonus: Dict[str,int] = dict(base.get('bonus') or {})
+        template_bonus = base.get('bonus_template')
+        if template_bonus:
+            templated_bonus = _template_map(template_bonus, rng)
+            for k, v in templated_bonus.items():
+                bonus[k] = int(bonus.get(k, 0)) + int(v)
         traits: List[str] = []
 
         # Affix selection
@@ -5083,6 +5209,21 @@ class Game:
         suffixes = suf_pool[:n_suf]
 
         dmg, bonus, traits = _apply_affixes(dmg, bonus, traits, lvl, prefixes + suffixes, rng)
+
+        # Optional enchants from mechanics/enchants.json
+        enchants_src = list(getattr(self, 'enchants', []) or [])
+        # Filter to those that apply to weapons
+        ench_pool = [e for e in enchants_src if str(e.get('applies_to','')).lower() in ('weapon','weapons')]
+        rng.shuffle(ench_pool)
+        # Rarity-based count
+        e_counts = {
+            'common': 0, 'uncommon': rng.choice([0,1]), 'rare': 1,
+            'exotic': rng.choice([1,2]), 'legendary': 2, 'mythic': 2
+        }
+        n_en = int(e_counts.get(rarity, 0))
+        sel_en = ench_pool[:max(0, n_en)] if ench_pool else []
+        for en in sel_en:
+            _apply_weapon_enchant_effects(dmg, bonus, traits, en.get('effect'))
         # Build combat min/max from total dmg budget
         total = max(1, int(sum(int(v) for v in dmg.values())))
         wmin = max(1, int(round(total * 0.55)))
@@ -5127,6 +5268,7 @@ class Game:
             'max': int(wmax),
             'status_chance': 0.15 if statuses else 0.0,
             'status': statuses,
+            'enchants': [ {'id': e.get('id'), 'name': e.get('name')} for e in sel_en ] if sel_en else [],
             # Debug/marker
             '_rolled': True,
             '_base_id': base.get('id'),
@@ -5156,10 +5298,22 @@ class Game:
         # Defense map fallback
         base_def = dict(base.get('defense_type') or {})
         if not base_def:
+            base_def = {}
+        template_def = base.get('defense_template') or base.get('defense_ranges')
+        if template_def:
+            templated = _template_map(template_def, rng)
+            for k, v in templated.items():
+                base_def[k] = int(base_def.get(k, 0)) + int(v)
+        if not base_def:
             # Default tiny physical defense so items have some scale
             base_def = {"physical": 2}
         defense = _scale_damage_map(base_def, base_scale * r_mult)
         bonus: Dict[str,int] = dict(base.get('bonus') or {})
+        template_bonus = base.get('bonus_template')
+        if template_bonus:
+            templated_bonus = _template_map(template_bonus, rng)
+            for k, v in templated_bonus.items():
+                bonus[k] = int(bonus.get(k, 0)) + int(v)
 
         # Affixes
         n_aff = _affix_budget_for_rarity(rarity, rng)
@@ -5182,6 +5336,22 @@ class Game:
             for b, val in (af.get('bonus') or {}).items():
                 bonus[b] = int(bonus.get(b, 0)) + int(val)
 
+        # Optional enchants for gear (armour/clothing/accessories)
+        enchants_src = list(getattr(self, 'enchants', []) or [])
+        applies = 'armour' if any(w in base_type.lower() for w in ('armour','armor','helm','chest','legs','boots')) else (
+                  'accessory' if any(w in base_type.lower() for w in ('ring','amulet','neck','bracelet','charm')) else (
+                  'clothing'))
+        ench_pool = [e for e in enchants_src if str(e.get('applies_to','')).lower() in (applies, 'gear')]
+        rng.shuffle(ench_pool)
+        e_counts = {
+            'common': 0, 'uncommon': rng.choice([0,1]), 'rare': 1,
+            'exotic': rng.choice([1,2]), 'legendary': 2, 'mythic': 2
+        }
+        n_en = int(e_counts.get(rarity, 0))
+        sel_en = ench_pool[:max(0, n_en)] if ench_pool else []
+        for en in sel_en:
+            _apply_gear_enchant_effects(defense, bonus, en.get('effect'))
+
         # Value/weight
         val_base = int(sum(defense.values()) * 8 + sum(max(0, int(v)) for v in bonus.values()) * 20)
         val_mult = {"common":1.00, "uncommon":1.10, "rare":1.25, "exotic":1.50, "legendary":1.90, "mythic":2.40}.get(rarity, 1.0)
@@ -5198,6 +5368,7 @@ class Game:
             'weight': int(weight),
             'defense_type': defense,
             'bonus': bonus,
+            'enchants': [ {'id': e.get('id'), 'name': e.get('name')} for e in sel_en ] if sel_en else [],
             'id': f"IT{rng.randrange(0, 10**8):08d}",
             '_rolled': True,
             '_base_id': base.get('id'),
@@ -5542,7 +5713,8 @@ def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, s
                 panel_w = int(PANEL_W_FIXED)
                 x0 = max(0, win_w - panel_w)
                 content_top = 44
-                buttons_top = win_h - 210
+                # Use dynamic top boundary if available so scroll area matches visible content
+                buttons_top = int(getattr(game, '_buttons_top', win_h - 210))
                 view_h = max(0, buttons_top - content_top)
                 mx, my = pg.mouse.get_pos()
                 if x0 <= mx <= win_w and content_top <= my < buttons_top:
@@ -5836,7 +6008,7 @@ def start_menu():
             st['_dd_buttons'] = []
             st['_dd_mask'] = None
             st['_dd_geom'] = None
-            # Ensure classes list stays in sync with data/classes.json
+            # Ensure classes list stays in sync with data/mechanics/classes.json
             def _refresh_classes_if_needed():
                 try:
                     docs = load_classes_list() or []
@@ -6275,6 +6447,19 @@ def start_menu():
             def set(self, v): self.v = v
         _start = _Sig(); _mode = _Sig(); _page = _Sig()
 
+        # Keep stacked menu buttons within the window height (simple upward shift)
+        try:
+            if mm_mode in ('menu','options'):
+                stack = [b for b in buttons if isinstance(getattr(b, 'rect', None), pg.Rect) and b.rect.w == 360 and abs((b.rect.x + b.rect.w//2) - (win_w//2)) <= 2]
+                if stack:
+                    max_bottom = max(b.rect.bottom for b in stack)
+                    overflow = max(0, max_bottom + 16 - win_h)
+                    if overflow > 0:
+                        for b in stack:
+                            b.rect.y -= overflow
+        except Exception:
+            pass
+
         # Draw buttons
         for b in buttons: b.draw(screen)
         # Draw dropdown overlay on top if character creation has an open dropdown
@@ -6491,21 +6676,6 @@ def main(argv=None):
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

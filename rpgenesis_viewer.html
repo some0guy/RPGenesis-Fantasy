@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RPGenesis Data Viewer</title>
+<style>
+  :root {
+    --bg:#0f1115; --panel:#151925; --muted:#a7b0c0; --text:#e8ecf3; --accent:#7aa2f7; --accent2:#9ece6a; --danger:#f7768e;
+    --shadow: 0 10px 25px rgba(0,0,0,0.3);
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html, body { height:100%; }
+  body {
+    margin:0; background:linear-gradient(180deg,#0c0f14,#0e1220);
+    color:var(--text); font:14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Inter, Inter, "Helvetica Neue", Arial, Noto Sans, "Apple Color Emoji","Segoe UI Emoji";
+  }
+  header {
+    position:sticky; top:0; z-index:5; backdrop-filter: blur(6px);
+    background:rgba(10,12,20,0.8); border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .wrap { max-width:1200px; margin:0 auto; padding:18px 16px; }
+  h1 { margin:0 0 8px 0; font-size:22px; letter-spacing:0.3px; }
+  .sub { color:var(--muted); font-size:12px; margin-bottom:14px; }
+  .controls {
+    display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+  }
+  .controls > * { background:var(--panel); border:1px solid rgba(255,255,255,0.08); color:var(--text);
+    padding:10px 12px; border-radius:12px; box-shadow:var(--shadow);
+  }
+  input[type="text"], input[type="search"], select {
+    outline:none; min-width:220px;
+  }
+  button {
+    cursor:pointer; border:none; transition:all .15s ease; font-weight:600;
+  }
+  button.primary { background:linear-gradient(180deg,#2a63ff,#214ad8); }
+  button.ghost { background:transparent; border:1px dashed rgba(255,255,255,0.2); box-shadow:none; color:var(--muted); }
+  button:hover { transform:translateY(-1px); box-shadow:0 12px 30px rgba(0,0,0,0.35); }
+  .main { max-width:1200px; margin:18px auto; padding:0 16px 60px; display:grid; grid-template-columns: 280px 1fr; gap:16px; }
+  .panel {
+    background:var(--panel); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:14px;
+  }
+  .panel h3 { margin:0 0 10px 0; font-size:14px; color:#c7d2e9; }
+  .sources { display:flex; flex-direction:column; gap:10px; }
+  .src { display:flex; flex-direction:column; gap:6px; padding:10px; border-radius:12px; background:#111522; border:1px solid rgba(255,255,255,0.06); }
+  .src .row { display:flex; gap:8px; align-items:center; }
+  .src code { color:var(--muted); font-size:12px; }
+  .src small { color:var(--muted); }
+  .dropzone {
+    border:2px dashed rgba(255,255,255,0.18); border-radius:12px; padding:16px; text-align:center; color:var(--muted);
+  }
+  .grid-head {
+    display:flex; gap:8px; align-items:center; justify-content:space-between; margin-bottom:10px;
+  }
+  .grid-head .meta { color:var(--muted); font-size:12px; }
+  table { width:100%; border-collapse:separate; border-spacing:0 8px; }
+  thead th { text-align:left; color:#a7b0c0; font-weight:600; font-size:12px; padding:6px 10px; }
+  tbody td { background:#111522; border:1px solid rgba(255,255,255,0.06); padding:10px; }
+  tbody tr td:first-child { border-radius:12px 0 0 12px; }
+  tbody tr td:last-child { border-radius:0 12px 12px 0; }
+  .pill { display:inline-flex; align-items:center; gap:6px; padding:3px 8px; border-radius:999px; font-size:12px; border:1px solid rgba(255,255,255,0.12); background:#0e1320; color:#cfe1ff; }
+  .pill.rare { color:#c9f; }
+  .pill.legendary { color:#ffcc66; }
+  .pill.mythic { color:#ff7aa2; }
+  .muted { color:var(--muted); }
+  .json { white-space:pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; background:#0b0f18; border:1px solid rgba(255,255,255,0.08); padding:10px; border-radius:10px; }
+  details { margin-top:6px; }
+  footer { text-align:center; color:var(--muted); padding:20px; }
+  .hidden { display:none; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>RPGenesis Data Viewer</h1>
+    <div class="sub">Browse items and NPCs without opening JSONs. Load files via fetch (served) or drag &amp; drop.</div>
+    <div class="controls">
+      <button id="loadDefaults" class="primary">Load defaults (relative paths)</button>
+      <input id="newName" type="text" placeholder="Label e.g. weapons" />
+      <input id="newPath" type="text" placeholder="Path e.g. data/items/weapons.json" />
+      <button id="addSource">Add source</button>
+      <input id="fileInput" type="file" multiple />
+      <input id="q" type="search" placeholder="Search name/id/desc…" />
+      <select id="filterCategory">
+        <option value="">All categories</option>
+        <option>weapon</option>
+        <option>armour</option>
+        <option>clothing</option>
+        <option>accessory</option>
+        <option>consumable</option>
+        <option>npc</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+  <section class="panel">
+    <h3>Sources</h3>
+    <div id="sources" class="sources"></div>
+    <div class="dropzone" id="dropzone">Drop JSON files here</div>
+    <details class="muted"><summary>Tips</summary>
+      <ul>
+        <li>When opening this file via <code>file://</code>, use drag &amp; drop or the file picker (fetch is blocked).</li>
+        <li>When served via a dev server (<code>http://localhost</code>), you can use “Load defaults”.</li>
+      </ul>
+    </details>
+  </section>
+
+  <section class="panel">
+    <div class="grid-head">
+      <div class="meta"><span id="count">0</span> records</div>
+      <div class="meta" id="activeSources"></div>
+    </div>
+    <div id="tableContainer"></div>
+  </section>
+</main>
+
+<footer>
+  RPGenesis Viewer — zero-deps, single file.
+</footer>
+
+<script>
+(() => {
+  const DEFAULTS = [
+    { name:"weapons",    path:"weapons.json" },
+    { name:"armour",     path:"armour.json" },
+    { name:"clothing",   path:"clothing.json" },
+    { name:"accessories",path:"accessories.json" },
+    { name:"consumables",path:"consumables.json" },
+    { name:"npcs",       path:"npcs.json" } // optional
+  ];
+
+  const state = {
+    sources: [], // {name, path, items}
+    rows: [],    // flattened display rows
+    query: "",
+    category: ""
+  };
+
+  // Utilities
+  const $ = (sel) => document.querySelector(sel);
+  const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+  function normalizeItems(obj, sourceName) {
+    // Accept arrays or {items:[...]}
+    const arr = Array.isArray(obj) ? obj : (Array.isArray(obj.items) ? obj.items : []);
+    return arr.map((it) => {
+      const rec = { ...it };
+      // Common fallbacks
+      rec.category = rec.category || guessCategory(sourceName, rec);
+      rec.type = rec.type || rec.slot || rec.category || "item";
+      rec.name = rec.name || "(unnamed)";
+      rec.id = rec.id || "";
+      rec.rarity = rec.rarity || "common";
+      rec.value = rec.value ?? 0;
+      rec.weight = rec.weight ?? 0;
+      rec.description = rec.description || rec.desc || "";
+      // derive display columns
+      return rec;
+    });
+  }
+
+  function guessCategory(sourceName, rec) {
+    if (rec.category) return rec.category;
+    const n = (sourceName||"").toLowerCase();
+    if (n.includes("weapon")) return "weapon";
+    if (n.includes("armour") || n.includes("armor")) return "armour";
+    if (n.includes("clothing")) return "clothing";
+    if (n.includes("access")) return "accessory";
+    if (n.includes("consum")) return "consumable";
+    if (n.includes("npc")) return "npc";
+    return "item";
+    }
+
+  async function fetchJSON(path) {
+    const res = await fetch(path);
+    if (!res.ok) throw new Error("Fetch failed: " + res.status + " " + path);
+    return res.json();
+  }
+
+  function renderSources() {
+    const holder = $("#sources");
+    holder.innerHTML = "";
+    state.sources.forEach((s, idx) => {
+      const div = document.createElement("div");
+      div.className = "src";
+      div.innerHTML = `
+        <div class="row"><strong>${s.name}</strong></div>
+        <code>${s.path || "(local file)"}</code>
+        <div class="row">
+          <small>${(s.items||[]).length} records</small>
+          <span style="flex:1"></span>
+          <button data-idx="${idx}" class="ghost remove">Remove</button>
+        </div>
+      `;
+      holder.appendChild(div);
+    });
+    holder.querySelectorAll("button.remove").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const idx = +e.currentTarget.dataset.idx;
+        state.sources.splice(idx,1);
+        recompute();
+      });
+    });
+    $("#activeSources").textContent = state.sources.map(s => s.name).join(", ");
+  }
+
+  function recompute() {
+    // Flatten all items
+    const rows = [];
+    state.sources.forEach(s => {
+      (s.items||[]).forEach(it => rows.push({ ...it, __source: s.name }));
+    });
+
+    // Filter
+    const q = state.query.toLowerCase().trim();
+    const cat = state.category;
+    const filtered = rows.filter(r => {
+      if (cat && (r.category||"") !== cat) return false;
+      if (!q) return true;
+      const hay = [r.name, r.id, r.description, r.type, r.rarity, r.__source].join(" ").toLowerCase();
+      return hay.includes(q);
+    });
+
+    state.rows = filtered;
+    $("#count").textContent = filtered.length.toString();
+    renderTable();
+    renderSources();
+  }
+
+  function renderTable() {
+    const mount = $("#tableContainer");
+    const rows = state.rows;
+    if (!rows.length) {
+      mount.innerHTML = `<div class="muted">No records loaded. Use “Load defaults”, add paths, or drop JSON files.</div>`;
+      return;
+    }
+    const cols = ["id","name","category","type","rarity","value","weight","__source"];
+    const ths = cols.map(c => `<th>${c}</th>`).join("");
+    const trs = rows.map(r => {
+      const rarityClass = ["legendary","mythic","rare"].includes(r.rarity) ? r.rarity : "";
+      const rarePill = `<span class="pill ${rarityClass}">${r.rarity}</span>`;
+      const id = escapeHTML(r.id||"");
+      const name = escapeHTML(r.name||"");
+      const cat = escapeHTML(r.category||"");
+      const type = escapeHTML(r.type||"");
+      const src = escapeHTML(r.__source||"");
+      const val = Number.isFinite(r.value) ? r.value : "";
+      const wgt = Number.isFinite(r.weight) ? r.weight : "";
+      const rest = {...r}; cols.concat(["description"]).forEach(k=>delete rest[k]); // leave description for details
+      const restJSON = escapeHTML(JSON.stringify(rest, null, 2));
+      const desc = escapeHTML(r.description||"");
+      return `<tr>
+        <td>${id}</td>
+        <td>${name}</td>
+        <td>${cat}</td>
+        <td>${type}</td>
+        <td>${rarePill}</td>
+        <td>${val}</td>
+        <td>${wgt}</td>
+        <td class="muted">${src}</td>
+      </tr>
+      <tr>
+        <td colspan="8">
+          <details>
+            <summary>Details & description</summary>
+            <div class="muted" style="margin:6px 0 8px">${desc}</div>
+            <div class="json">${restJSON}</div>
+          </details>
+        </td>
+      </tr>`;
+    }).join("");
+
+    mount.innerHTML = `<table>
+      <thead><tr>${ths}</tr></thead>
+      <tbody>${trs}</tbody>
+    </table>`;
+  }
+
+  function escapeHTML(str) {
+    return String(str).replace(/[&<>"'`]/g, s => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",""":"&quot;","'":"&#39;","`":"&#96;"
+    }[s]));
+  }
+
+  // Event wiring
+  $("#loadDefaults").addEventListener("click", async () => {
+    state.sources = [];
+    for (const s of DEFAULTS) {
+      try {
+        const data = await fetchJSON(s.path);
+        state.sources.push({ name:s.name, path:s.path, items: normalizeItems(data, s.name) });
+      } catch (err) {
+        console.warn("Failed to load", s.path, err);
+      }
+    }
+    recompute();
+  });
+
+  $("#addSource").addEventListener("click", async () => {
+    const name = $("#newName").value.trim() || "source";
+    const path = $("#newPath").value.trim();
+    if (!path) return;
+    try {
+      const data = await fetchJSON(path);
+      state.sources.push({ name, path, items: normalizeItems(data, name) });
+      $("#newName").value = ""; $("#newPath").value = "";
+      recompute();
+    } catch (err) {
+      alert("Failed to fetch " + path + "\n" + err.message);
+    }
+  });
+
+  $("#q").addEventListener("input", (e) => { state.query = e.target.value; recompute(); });
+  $("#filterCategory").addEventListener("change", (e) => { state.category = e.target.value; recompute(); });
+
+  // Drag & drop / file input
+  const dz = $("#dropzone");
+  ;["dragenter","dragover"].forEach(ev=>dz.addEventListener(ev, e => { e.preventDefault(); dz.style.borderColor="var(--accent)"; }));
+  ;["dragleave","drop"].forEach(ev=>dz.addEventListener(ev, e => { e.preventDefault(); dz.style.borderColor="rgba(255,255,255,0.18)"; }));
+  dz.addEventListener("drop", async (e) => {
+    const files = Array.from(e.dataTransfer.files || []);
+    await loadLocalFiles(files);
+  });
+  $("#fileInput").addEventListener("change", async (e) => {
+    const files = Array.from(e.target.files || []);
+    await loadLocalFiles(files);
+    e.target.value = "";
+  });
+
+  async function loadLocalFiles(files) {
+    for (const f of files) {
+      try {
+        const text = await f.text();
+        const json = JSON.parse(text);
+        const name = f.name.replace(/\.json$/i,"");
+        state.sources.push({ name, path:null, items: normalizeItems(json, name) });
+      } catch (err) {
+        alert("Failed to parse " + f.name + ": " + err.message);
+      }
+    }
+    recompute();
+  }
+
+  // Initial render
+  renderSources();
+  renderTable();
+})();
+</script>
+</body>
+</html>

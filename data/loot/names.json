@@ -1,0 +1,7 @@
+{
+  "weapon": {
+    "pattern": "{prefix} {base} {suffix}",
+    "fallbacks": ["{prefix} {base}", "{base} {suffix}", "{base}"],
+    "base_from_type": true
+  }
+}

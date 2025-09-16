@@ -1,0 +1,19 @@
+[
+  {
+    "id": "runed", "name": "Runed",
+    "allow": { "category": ["weapon"], "types": ["longsword","halberd","staff","wand"] },
+    "mods": [
+      { "path": "damage_type.arcane", "add_per_level": 0.8, "flat_min": 3, "flat_max": 6 }
+    ],
+    "weight": 12
+  },
+  {
+    "id": "stormkissed", "name": "Stormkissed",
+    "allow": { "category": ["weapon"], "tags_any": ["Pierce","Impale"] },
+    "mods": [
+      { "path": "damage_type.lightning", "add_per_level": 0.9, "flat_min": 2, "flat_max": 5 },
+      { "path": "bonus.attack", "flat_min": 1, "flat_max": 2 }
+    ],
+    "weight": 9
+  }
+]

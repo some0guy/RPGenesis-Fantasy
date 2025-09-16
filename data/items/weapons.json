@@ -17,13 +17,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 14
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000001",
-      "desc": "A common dagger forged to our current spec."
+      "desc": "A common dagger forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          10,
+          15
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -44,13 +48,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 27
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000002",
-      "desc": "A uncommon dagger forged to our current spec."
+      "desc": "A uncommon dagger forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          22,
+          32
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -75,16 +83,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "bleed": 25,
-        "mana": 22
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000003",
-      "desc": "A rare dagger forged to our current spec."
+      "desc": "A rare dagger forged to our current spec.",
+      "damage_template": {
+        "bleed": [
+          23,
+          32
+        ],
+        "mana": [
+          20,
+          28
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          5,
+          8
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -109,16 +128,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 37,
-        "bleed": 30
-      },
-      "bonus": {
-        "attack": 4
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000004",
-      "desc": "A exotic dagger forged to our current spec."
+      "desc": "A exotic dagger forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          38,
+          50
+        ],
+        "bleed": [
+          31,
+          41
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          4,
+          6
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -130,17 +160,31 @@
       "weight": 1232,
       "description": "A legendary dagger forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "arcane": 30,
-        "fire": 30,
-        "mana": 26
-      },
-      "bonus": {
-        "attack": 5
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000005",
-      "desc": "A legendary dagger forged to our current spec."
+      "desc": "A legendary dagger forged to our current spec.",
+      "damage_template": {
+        "arcane": [
+          34,
+          45
+        ],
+        "fire": [
+          34,
+          45
+        ],
+        "mana": [
+          29,
+          39
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          5,
+          8
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -152,18 +196,35 @@
       "weight": 1152,
       "description": "A mythic dagger forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "ice": 20,
-        "fire": 24,
-        "mana": 23,
-        "physical": 32
-      },
-      "bonus": {
-        "attack": 8
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "chronal_burst",
       "id": "IT00000006",
-      "desc": "A mythic dagger forged to our current spec."
+      "desc": "A mythic dagger forged to our current spec.",
+      "damage_template": {
+        "ice": [
+          25,
+          33
+        ],
+        "fire": [
+          30,
+          40
+        ],
+        "mana": [
+          28,
+          38
+        ],
+        "physical": [
+          40,
+          53
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          10,
+          14
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -180,13 +241,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 11
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000007",
-      "desc": "A common shortsword forged to our current spec."
+      "desc": "A common shortsword forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          8,
+          12
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -207,13 +272,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 41
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000008",
-      "desc": "A uncommon shortsword forged to our current spec."
+      "desc": "A uncommon shortsword forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          34,
+          48
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -238,16 +307,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 31,
-        "bleed": 22
-      },
-      "bonus": {
-        "attack": 2
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000009",
-      "desc": "A rare shortsword forged to our current spec."
+      "desc": "A rare shortsword forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          29,
+          39
+        ],
+        "bleed": [
+          20,
+          28
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          1,
+          3
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -272,16 +352,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "fire": 33,
-        "ice": 35
-      },
-      "bonus": {
-        "attack": 1
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000010",
-      "desc": "A exotic shortsword forged to our current spec."
+      "desc": "A exotic shortsword forged to our current spec.",
+      "damage_template": {
+        "fire": [
+          34,
+          45
+        ],
+        "ice": [
+          36,
+          48
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          1,
+          2
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -293,17 +384,31 @@
       "weight": 957,
       "description": "A legendary shortsword forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "bleed": 29,
-        "arcane": 23,
-        "fire": 28
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000011",
-      "desc": "A legendary shortsword forged to our current spec."
+      "desc": "A legendary shortsword forged to our current spec.",
+      "damage_template": {
+        "bleed": [
+          33,
+          44
+        ],
+        "arcane": [
+          26,
+          35
+        ],
+        "fire": [
+          32,
+          42
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          6,
+          9
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -315,18 +420,35 @@
       "weight": 990,
       "description": "A mythic shortsword forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "ice": 22,
-        "fire": 23,
-        "bleed": 21,
-        "arcane": 17
-      },
-      "bonus": {
-        "attack": 8
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "lifedrink",
       "id": "IT00000012",
-      "desc": "A mythic shortsword forged to our current spec."
+      "desc": "A mythic shortsword forged to our current spec.",
+      "damage_template": {
+        "ice": [
+          27,
+          37
+        ],
+        "fire": [
+          28,
+          38
+        ],
+        "bleed": [
+          26,
+          35
+        ],
+        "arcane": [
+          21,
+          29
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          10,
+          14
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -343,13 +465,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 22
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000013",
-      "desc": "A common longsword forged to our current spec."
+      "desc": "A common longsword forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          16,
+          24
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -370,13 +496,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 34
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000014",
-      "desc": "A uncommon longsword forged to our current spec."
+      "desc": "A uncommon longsword forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          28,
+          40
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -401,16 +531,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 26,
-        "stagger": 19
-      },
-      "bonus": {
-        "attack": 5
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000015",
-      "desc": "A rare longsword forged to our current spec."
+      "desc": "A rare longsword forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          24,
+          33
+        ],
+        "stagger": [
+          18,
+          24
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          4,
+          7
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -435,16 +576,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 37,
-        "fire": 20
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000016",
-      "desc": "A exotic longsword forged to our current spec."
+      "desc": "A exotic longsword forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          38,
+          50
+        ],
+        "fire": [
+          21,
+          27
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          6,
+          9
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -456,17 +608,31 @@
       "weight": 1904,
       "description": "A legendary longsword forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "physical": 38,
-        "mana": 25,
-        "lightning": 25
-      },
-      "bonus": {
-        "attack": 8
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000017",
-      "desc": "A legendary longsword forged to our current spec."
+      "desc": "A legendary longsword forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          43,
+          57
+        ],
+        "mana": [
+          28,
+          38
+        ],
+        "lightning": [
+          28,
+          38
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          9,
+          12
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -478,18 +644,35 @@
       "weight": 1879,
       "description": "A mythic longsword forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "bleed": 24,
-        "lightning": 25,
-        "arcane": 24,
-        "stagger": 18
-      },
-      "bonus": {
-        "attack": 5
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "soulbound",
       "id": "IT00000018",
-      "desc": "A mythic longsword forged to our current spec."
+      "desc": "A mythic longsword forged to our current spec.",
+      "damage_template": {
+        "bleed": [
+          30,
+          40
+        ],
+        "lightning": [
+          31,
+          42
+        ],
+        "arcane": [
+          30,
+          40
+        ],
+        "stagger": [
+          22,
+          30
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          6,
+          9
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -506,13 +689,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 23
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000019",
-      "desc": "A common claymore forged to our current spec."
+      "desc": "A common claymore forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          17,
+          25
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -533,13 +720,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 30
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000020",
-      "desc": "A uncommon claymore forged to our current spec."
+      "desc": "A uncommon claymore forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          25,
+          35
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -564,16 +755,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 27,
-        "lightning": 16
-      },
-      "bonus": {
-        "attack": 3
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000021",
-      "desc": "A rare claymore forged to our current spec."
+      "desc": "A rare claymore forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          25,
+          34
+        ],
+        "lightning": [
+          15,
+          20
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          2,
+          4
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -598,16 +800,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "stagger": 36,
-        "fire": 35
-      },
-      "bonus": {
-        "attack": 4
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000022",
-      "desc": "A exotic claymore forged to our current spec."
+      "desc": "A exotic claymore forged to our current spec.",
+      "damage_template": {
+        "stagger": [
+          37,
+          49
+        ],
+        "fire": [
+          36,
+          48
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          4,
+          6
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -619,17 +832,31 @@
       "weight": 2160,
       "description": "A legendary claymore forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "mana": 27,
-        "fire": 25,
-        "bleed": 23
-      },
-      "bonus": {
-        "attack": 7
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000023",
-      "desc": "A legendary claymore forged to our current spec."
+      "desc": "A legendary claymore forged to our current spec.",
+      "damage_template": {
+        "mana": [
+          31,
+          41
+        ],
+        "fire": [
+          28,
+          38
+        ],
+        "bleed": [
+          26,
+          35
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          8,
+          11
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -641,18 +868,35 @@
       "weight": 2245,
       "description": "A mythic claymore forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "mana": 19,
-        "bleed": 21,
-        "lightning": 20,
-        "ice": 20
-      },
-      "bonus": {
-        "attack": 7
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "lifedrink",
       "id": "IT00000024",
-      "desc": "A mythic claymore forged to our current spec."
+      "desc": "A mythic claymore forged to our current spec.",
+      "damage_template": {
+        "mana": [
+          23,
+          32
+        ],
+        "bleed": [
+          26,
+          35
+        ],
+        "lightning": [
+          25,
+          33
+        ],
+        "ice": [
+          25,
+          33
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          8,
+          12
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -669,13 +913,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 14
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000025",
-      "desc": "A common scimitar forged to our current spec."
+      "desc": "A common scimitar forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          10,
+          15
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -696,13 +944,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 26
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000026",
-      "desc": "A uncommon scimitar forged to our current spec."
+      "desc": "A uncommon scimitar forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          22,
+          30
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -727,16 +979,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 25,
-        "stagger": 16
-      },
-      "bonus": {
-        "attack": 1
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000027",
-      "desc": "A rare scimitar forged to our current spec."
+      "desc": "A rare scimitar forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          23,
+          32
+        ],
+        "stagger": [
+          15,
+          20
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          1,
+          2
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -761,16 +1024,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "lightning": 32,
-        "mana": 33
-      },
-      "bonus": {
-        "attack": 1
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000028",
-      "desc": "A exotic scimitar forged to our current spec."
+      "desc": "A exotic scimitar forged to our current spec.",
+      "damage_template": {
+        "lightning": [
+          33,
+          44
+        ],
+        "mana": [
+          34,
+          45
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          1,
+          2
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -782,17 +1056,31 @@
       "weight": 1990,
       "description": "A legendary scimitar forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "lightning": 26,
-        "fire": 27,
-        "ice": 30
-      },
-      "bonus": {
-        "attack": 5
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000029",
-      "desc": "A legendary scimitar forged to our current spec."
+      "desc": "A legendary scimitar forged to our current spec.",
+      "damage_template": {
+        "lightning": [
+          29,
+          39
+        ],
+        "fire": [
+          31,
+          41
+        ],
+        "ice": [
+          34,
+          45
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          5,
+          8
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -804,18 +1092,35 @@
       "weight": 1868,
       "description": "A mythic scimitar forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "fire": 25,
-        "stagger": 19,
-        "bleed": 21,
-        "ice": 22
-      },
-      "bonus": {
-        "attack": 7
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "lifedrink",
       "id": "IT00000030",
-      "desc": "A mythic scimitar forged to our current spec."
+      "desc": "A mythic scimitar forged to our current spec.",
+      "damage_template": {
+        "fire": [
+          31,
+          42
+        ],
+        "stagger": [
+          23,
+          32
+        ],
+        "bleed": [
+          26,
+          35
+        ],
+        "ice": [
+          27,
+          37
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          8,
+          12
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -832,13 +1137,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 11
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000031",
-      "desc": "A common cutlass forged to our current spec."
+      "desc": "A common cutlass forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          8,
+          12
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -859,13 +1168,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 29
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000032",
-      "desc": "A uncommon cutlass forged to our current spec."
+      "desc": "A uncommon cutlass forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          24,
+          34
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -890,16 +1203,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 30,
-        "stagger": 17
-      },
-      "bonus": {
-        "attack": 2
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000033",
-      "desc": "A rare cutlass forged to our current spec."
+      "desc": "A rare cutlass forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          28,
+          38
+        ],
+        "stagger": [
+          16,
+          22
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          1,
+          3
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -924,16 +1248,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 44,
-        "ice": 28
-      },
-      "bonus": {
-        "attack": 5
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000034",
-      "desc": "A exotic cutlass forged to our current spec."
+      "desc": "A exotic cutlass forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          46,
+          60
+        ],
+        "ice": [
+          29,
+          38
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          5,
+          7
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -945,17 +1280,31 @@
       "weight": 2318,
       "description": "A legendary cutlass forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "arcane": 22,
-        "lightning": 25,
-        "stagger": 28
-      },
-      "bonus": {
-        "attack": 8
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000035",
-      "desc": "A legendary cutlass forged to our current spec."
+      "desc": "A legendary cutlass forged to our current spec.",
+      "damage_template": {
+        "arcane": [
+          25,
+          33
+        ],
+        "lightning": [
+          28,
+          38
+        ],
+        "stagger": [
+          32,
+          42
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          9,
+          12
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -967,18 +1316,35 @@
       "weight": 1545,
       "description": "A mythic cutlass forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "fire": 18,
-        "stagger": 21,
-        "arcane": 24,
-        "bleed": 19
-      },
-      "bonus": {
-        "attack": 9
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "chronal_burst",
       "id": "IT00000036",
-      "desc": "A mythic cutlass forged to our current spec."
+      "desc": "A mythic cutlass forged to our current spec.",
+      "damage_template": {
+        "fire": [
+          22,
+          30
+        ],
+        "stagger": [
+          26,
+          35
+        ],
+        "arcane": [
+          30,
+          40
+        ],
+        "bleed": [
+          23,
+          32
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          11,
+          15
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -995,13 +1361,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 24
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000037",
-      "desc": "A common axe forged to our current spec."
+      "desc": "A common axe forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          18,
+          26
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1022,13 +1392,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 37
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000038",
-      "desc": "A uncommon axe forged to our current spec."
+      "desc": "A uncommon axe forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          31,
+          43
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1053,16 +1427,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "mana": 21,
-        "lightning": 21
-      },
-      "bonus": {
-        "attack": 1
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000039",
-      "desc": "A rare axe forged to our current spec."
+      "desc": "A rare axe forged to our current spec.",
+      "damage_template": {
+        "mana": [
+          19,
+          27
+        ],
+        "lightning": [
+          19,
+          27
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          1,
+          2
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1087,16 +1472,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "fire": 39,
-        "ice": 33
-      },
-      "bonus": {
-        "attack": 4
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000040",
-      "desc": "A exotic axe forged to our current spec."
+      "desc": "A exotic axe forged to our current spec.",
+      "damage_template": {
+        "fire": [
+          40,
+          53
+        ],
+        "ice": [
+          34,
+          45
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          4,
+          6
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1108,17 +1504,31 @@
       "weight": 1987,
       "description": "A legendary axe forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "mana": 27,
-        "stagger": 29,
-        "fire": 25
-      },
-      "bonus": {
-        "attack": 8
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000041",
-      "desc": "A legendary axe forged to our current spec."
+      "desc": "A legendary axe forged to our current spec.",
+      "damage_template": {
+        "mana": [
+          31,
+          41
+        ],
+        "stagger": [
+          33,
+          44
+        ],
+        "fire": [
+          28,
+          38
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          9,
+          12
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1130,18 +1540,35 @@
       "weight": 1536,
       "description": "A mythic axe forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "physical": 24,
-        "ice": 16,
-        "lightning": 19,
-        "stagger": 18
-      },
-      "bonus": {
-        "attack": 10
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "lifedrink",
       "id": "IT00000042",
-      "desc": "A mythic axe forged to our current spec."
+      "desc": "A mythic axe forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          30,
+          40
+        ],
+        "ice": [
+          20,
+          27
+        ],
+        "lightning": [
+          23,
+          32
+        ],
+        "stagger": [
+          22,
+          30
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          12,
+          17
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1158,13 +1585,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 20
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000043",
-      "desc": "A common greataxe forged to our current spec."
+      "desc": "A common greataxe forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          15,
+          21
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1185,13 +1616,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 32
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000044",
-      "desc": "A uncommon greataxe forged to our current spec."
+      "desc": "A uncommon greataxe forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          27,
+          37
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1216,16 +1651,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 34,
-        "bleed": 21
-      },
-      "bonus": {
-        "attack": 3
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000045",
-      "desc": "A rare greataxe forged to our current spec."
+      "desc": "A rare greataxe forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          32,
+          43
+        ],
+        "bleed": [
+          19,
+          27
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          2,
+          4
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1250,16 +1696,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "lightning": 29,
-        "bleed": 31
-      },
-      "bonus": {
-        "attack": 3
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000046",
-      "desc": "A exotic greataxe forged to our current spec."
+      "desc": "A exotic greataxe forged to our current spec.",
+      "damage_template": {
+        "lightning": [
+          30,
+          40
+        ],
+        "bleed": [
+          32,
+          42
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          3,
+          5
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1271,17 +1728,31 @@
       "weight": 2147,
       "description": "A legendary greataxe forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "physical": 31,
-        "bleed": 26,
-        "lightning": 25
-      },
-      "bonus": {
-        "attack": 9
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000047",
-      "desc": "A legendary greataxe forged to our current spec."
+      "desc": "A legendary greataxe forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          35,
+          47
+        ],
+        "bleed": [
+          29,
+          39
+        ],
+        "lightning": [
+          28,
+          38
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          10,
+          14
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1293,18 +1764,35 @@
       "weight": 1967,
       "description": "A mythic greataxe forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "fire": 23,
-        "ice": 22,
-        "mana": 22,
-        "lightning": 24
-      },
-      "bonus": {
-        "attack": 10
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "spell_syphon",
       "id": "IT00000048",
-      "desc": "A mythic greataxe forged to our current spec."
+      "desc": "A mythic greataxe forged to our current spec.",
+      "damage_template": {
+        "fire": [
+          28,
+          38
+        ],
+        "ice": [
+          27,
+          37
+        ],
+        "mana": [
+          27,
+          37
+        ],
+        "lightning": [
+          30,
+          40
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          12,
+          17
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1321,13 +1809,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 11
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000049",
-      "desc": "A common mace forged to our current spec."
+      "desc": "A common mace forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          8,
+          12
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1348,13 +1840,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 40
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000050",
-      "desc": "A uncommon mace forged to our current spec."
+      "desc": "A uncommon mace forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          34,
+          46
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1379,16 +1875,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 32,
-        "bleed": 21
-      },
-      "bonus": {
-        "attack": 3
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000051",
-      "desc": "A rare mace forged to our current spec."
+      "desc": "A rare mace forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          30,
+          40
+        ],
+        "bleed": [
+          19,
+          27
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          2,
+          4
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1413,16 +1920,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "fire": 34,
-        "bleed": 34
-      },
-      "bonus": {
-        "attack": 4
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000052",
-      "desc": "A exotic mace forged to our current spec."
+      "desc": "A exotic mace forged to our current spec.",
+      "damage_template": {
+        "fire": [
+          35,
+          46
+        ],
+        "bleed": [
+          35,
+          46
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          4,
+          6
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1434,17 +1952,31 @@
       "weight": 2233,
       "description": "A legendary mace forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "physical": 29,
-        "arcane": 23,
-        "lightning": 24
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000053",
-      "desc": "A legendary mace forged to our current spec."
+      "desc": "A legendary mace forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          33,
+          44
+        ],
+        "arcane": [
+          26,
+          35
+        ],
+        "lightning": [
+          27,
+          36
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          6,
+          9
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1456,18 +1988,35 @@
       "weight": 1678,
       "description": "A mythic mace forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "ice": 21,
-        "arcane": 23,
-        "mana": 20,
-        "lightning": 18
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "spell_syphon",
       "id": "IT00000054",
-      "desc": "A mythic mace forged to our current spec."
+      "desc": "A mythic mace forged to our current spec.",
+      "damage_template": {
+        "ice": [
+          26,
+          35
+        ],
+        "arcane": [
+          28,
+          38
+        ],
+        "mana": [
+          25,
+          33
+        ],
+        "lightning": [
+          22,
+          30
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          7,
+          10
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1484,13 +2033,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 24
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000055",
-      "desc": "A common hammer forged to our current spec."
+      "desc": "A common hammer forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          18,
+          26
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1511,13 +2064,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 34
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000056",
-      "desc": "A uncommon hammer forged to our current spec."
+      "desc": "A uncommon hammer forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          28,
+          40
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1542,16 +2099,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 32,
-        "fire": 17
-      },
-      "bonus": {
-        "attack": 1
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000057",
-      "desc": "A rare hammer forged to our current spec."
+      "desc": "A rare hammer forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          30,
+          40
+        ],
+        "fire": [
+          16,
+          22
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          1,
+          2
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1576,16 +2144,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 44,
-        "arcane": 25
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000058",
-      "desc": "A exotic hammer forged to our current spec."
+      "desc": "A exotic hammer forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          46,
+          60
+        ],
+        "arcane": [
+          26,
+          34
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          6,
+          9
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1597,17 +2176,31 @@
       "weight": 1571,
       "description": "A legendary hammer forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "mana": 21,
-        "lightning": 27,
-        "bleed": 26
-      },
-      "bonus": {
-        "attack": 8
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000059",
-      "desc": "A legendary hammer forged to our current spec."
+      "desc": "A legendary hammer forged to our current spec.",
+      "damage_template": {
+        "mana": [
+          24,
+          32
+        ],
+        "lightning": [
+          31,
+          41
+        ],
+        "bleed": [
+          29,
+          39
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          9,
+          12
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1619,18 +2212,35 @@
       "weight": 1780,
       "description": "A mythic hammer forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "fire": 19,
-        "mana": 18,
-        "lightning": 18,
-        "physical": 24
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "soulbound",
       "id": "IT00000060",
-      "desc": "A mythic hammer forged to our current spec."
+      "desc": "A mythic hammer forged to our current spec.",
+      "damage_template": {
+        "fire": [
+          23,
+          32
+        ],
+        "mana": [
+          22,
+          30
+        ],
+        "lightning": [
+          22,
+          30
+        ],
+        "physical": [
+          30,
+          40
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          7,
+          10
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1647,13 +2257,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 20
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000061",
-      "desc": "A common warhammer forged to our current spec."
+      "desc": "A common warhammer forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          15,
+          21
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1674,13 +2288,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 32
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000062",
-      "desc": "A uncommon warhammer forged to our current spec."
+      "desc": "A uncommon warhammer forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          27,
+          37
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1705,16 +2323,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "bleed": 20,
-        "mana": 21
-      },
-      "bonus": {
-        "attack": 1
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000063",
-      "desc": "A rare warhammer forged to our current spec."
+      "desc": "A rare warhammer forged to our current spec.",
+      "damage_template": {
+        "bleed": [
+          19,
+          25
+        ],
+        "mana": [
+          19,
+          27
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          1,
+          2
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1739,16 +2368,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "mana": 37,
-        "stagger": 35
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000064",
-      "desc": "A exotic warhammer forged to our current spec."
+      "desc": "A exotic warhammer forged to our current spec.",
+      "damage_template": {
+        "mana": [
+          38,
+          50
+        ],
+        "stagger": [
+          36,
+          48
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          6,
+          9
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1760,17 +2400,31 @@
       "weight": 1534,
       "description": "A legendary warhammer forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "arcane": 26,
-        "bleed": 30,
-        "fire": 30
-      },
-      "bonus": {
-        "attack": 10
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000065",
-      "desc": "A legendary warhammer forged to our current spec."
+      "desc": "A legendary warhammer forged to our current spec.",
+      "damage_template": {
+        "arcane": [
+          29,
+          39
+        ],
+        "bleed": [
+          34,
+          45
+        ],
+        "fire": [
+          34,
+          45
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          11,
+          15
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1782,18 +2436,35 @@
       "weight": 2127,
       "description": "A mythic warhammer forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "stagger": 18,
-        "fire": 16,
-        "physical": 27,
-        "ice": 14
-      },
-      "bonus": {
-        "attack": 8
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "chronal_burst",
       "id": "IT00000066",
-      "desc": "A mythic warhammer forged to our current spec."
+      "desc": "A mythic warhammer forged to our current spec.",
+      "damage_template": {
+        "stagger": [
+          22,
+          30
+        ],
+        "fire": [
+          20,
+          27
+        ],
+        "physical": [
+          33,
+          45
+        ],
+        "ice": [
+          17,
+          24
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          10,
+          14
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1810,13 +2481,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 18
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000067",
-      "desc": "A common flail forged to our current spec."
+      "desc": "A common flail forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          13,
+          19
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1837,13 +2512,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 39
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000068",
-      "desc": "A uncommon flail forged to our current spec."
+      "desc": "A uncommon flail forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          33,
+          45
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1868,16 +2547,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 34,
-        "arcane": 22
-      },
-      "bonus": {
-        "attack": 3
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000069",
-      "desc": "A rare flail forged to our current spec."
+      "desc": "A rare flail forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          32,
+          43
+        ],
+        "arcane": [
+          20,
+          28
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          2,
+          4
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1902,16 +2592,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 42,
-        "stagger": 29
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000070",
-      "desc": "A exotic flail forged to our current spec."
+      "desc": "A exotic flail forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          44,
+          57
+        ],
+        "stagger": [
+          30,
+          40
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          6,
+          9
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1923,17 +2624,31 @@
       "weight": 1723,
       "description": "A legendary flail forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "stagger": 22,
-        "fire": 22,
-        "physical": 29
-      },
-      "bonus": {
-        "attack": 9
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000071",
-      "desc": "A legendary flail forged to our current spec."
+      "desc": "A legendary flail forged to our current spec.",
+      "damage_template": {
+        "stagger": [
+          25,
+          33
+        ],
+        "fire": [
+          25,
+          33
+        ],
+        "physical": [
+          33,
+          44
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          10,
+          14
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1945,18 +2660,35 @@
       "weight": 2200,
       "description": "A mythic flail forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "ice": 20,
-        "mana": 24,
-        "stagger": 19,
-        "physical": 34
-      },
-      "bonus": {
-        "attack": 5
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "echo_strike",
       "id": "IT00000072",
-      "desc": "A mythic flail forged to our current spec."
+      "desc": "A mythic flail forged to our current spec.",
+      "damage_template": {
+        "ice": [
+          25,
+          33
+        ],
+        "mana": [
+          30,
+          40
+        ],
+        "stagger": [
+          23,
+          32
+        ],
+        "physical": [
+          42,
+          57
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          6,
+          9
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -1973,13 +2705,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 15
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000073",
-      "desc": "A common spear forged to our current spec."
+      "desc": "A common spear forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          11,
+          16
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2000,13 +2736,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 31
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000074",
-      "desc": "A uncommon spear forged to our current spec."
+      "desc": "A uncommon spear forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          26,
+          36
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2031,16 +2771,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 27,
-        "arcane": 18
-      },
-      "bonus": {
-        "attack": 4
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000075",
-      "desc": "A rare spear forged to our current spec."
+      "desc": "A rare spear forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          25,
+          34
+        ],
+        "arcane": [
+          17,
+          23
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          3,
+          5
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2065,16 +2816,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "arcane": 32,
-        "fire": 38
-      },
-      "bonus": {
-        "attack": 2
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000076",
-      "desc": "A exotic spear forged to our current spec."
+      "desc": "A exotic spear forged to our current spec.",
+      "damage_template": {
+        "arcane": [
+          33,
+          44
+        ],
+        "fire": [
+          39,
+          52
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          2,
+          3
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2086,17 +2848,31 @@
       "weight": 2312,
       "description": "A legendary spear forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "mana": 30,
-        "bleed": 28,
-        "ice": 24
-      },
-      "bonus": {
-        "attack": 5
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000077",
-      "desc": "A legendary spear forged to our current spec."
+      "desc": "A legendary spear forged to our current spec.",
+      "damage_template": {
+        "mana": [
+          34,
+          45
+        ],
+        "bleed": [
+          32,
+          42
+        ],
+        "ice": [
+          27,
+          36
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          5,
+          8
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2108,18 +2884,35 @@
       "weight": 1847,
       "description": "A mythic spear forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "stagger": 15,
-        "fire": 18,
-        "arcane": 18,
-        "physical": 23
-      },
-      "bonus": {
-        "attack": 9
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "lifedrink",
       "id": "IT00000078",
-      "desc": "A mythic spear forged to our current spec."
+      "desc": "A mythic spear forged to our current spec.",
+      "damage_template": {
+        "stagger": [
+          18,
+          25
+        ],
+        "fire": [
+          22,
+          30
+        ],
+        "arcane": [
+          22,
+          30
+        ],
+        "physical": [
+          28,
+          38
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          11,
+          15
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2136,13 +2929,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 21
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000079",
-      "desc": "A common halberd forged to our current spec."
+      "desc": "A common halberd forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          15,
+          23
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2163,13 +2960,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 28
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000080",
-      "desc": "A uncommon halberd forged to our current spec."
+      "desc": "A uncommon halberd forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          23,
+          33
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2194,16 +2995,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 27,
-        "arcane": 16
-      },
-      "bonus": {
-        "attack": 2
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000081",
-      "desc": "A rare halberd forged to our current spec."
+      "desc": "A rare halberd forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          25,
+          34
+        ],
+        "arcane": [
+          15,
+          20
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          1,
+          3
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2228,16 +3040,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 37,
-        "ice": 20
-      },
-      "bonus": {
-        "attack": 3
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000082",
-      "desc": "A exotic halberd forged to our current spec."
+      "desc": "A exotic halberd forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          38,
+          50
+        ],
+        "ice": [
+          21,
+          27
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          3,
+          5
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2249,17 +3072,31 @@
       "weight": 2019,
       "description": "A legendary halberd forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "ice": 21,
-        "mana": 21,
-        "physical": 34
-      },
-      "bonus": {
-        "attack": 9
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000083",
-      "desc": "A legendary halberd forged to our current spec."
+      "desc": "A legendary halberd forged to our current spec.",
+      "damage_template": {
+        "ice": [
+          24,
+          32
+        ],
+        "mana": [
+          24,
+          32
+        ],
+        "physical": [
+          39,
+          51
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          10,
+          14
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2271,18 +3108,35 @@
       "weight": 1610,
       "description": "A mythic halberd forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "mana": 18,
-        "bleed": 22,
-        "fire": 20,
-        "stagger": 17
-      },
-      "bonus": {
-        "attack": 5
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "echo_strike",
       "id": "IT00000084",
-      "desc": "A mythic halberd forged to our current spec."
+      "desc": "A mythic halberd forged to our current spec.",
+      "damage_template": {
+        "mana": [
+          22,
+          30
+        ],
+        "bleed": [
+          27,
+          37
+        ],
+        "fire": [
+          25,
+          33
+        ],
+        "stagger": [
+          21,
+          29
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          6,
+          9
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2299,13 +3153,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 13
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000085",
-      "desc": "A common club forged to our current spec."
+      "desc": "A common club forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          9,
+          14
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2326,13 +3184,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 36
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000086",
-      "desc": "A uncommon club forged to our current spec."
+      "desc": "A uncommon club forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          30,
+          42
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2357,16 +3219,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 36,
-        "mana": 19
-      },
-      "bonus": {
-        "attack": 1
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000087",
-      "desc": "A rare club forged to our current spec."
+      "desc": "A rare club forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          34,
+          45
+        ],
+        "mana": [
+          18,
+          24
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          1,
+          2
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2391,16 +3264,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 44,
-        "arcane": 29
-      },
-      "bonus": {
-        "attack": 1
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000088",
-      "desc": "A exotic club forged to our current spec."
+      "desc": "A exotic club forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          46,
+          60
+        ],
+        "arcane": [
+          30,
+          40
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          1,
+          2
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2412,17 +3296,31 @@
       "weight": 1081,
       "description": "A legendary club forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "fire": 24,
-        "stagger": 27,
-        "lightning": 23
-      },
-      "bonus": {
-        "attack": 8
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000089",
-      "desc": "A legendary club forged to our current spec."
+      "desc": "A legendary club forged to our current spec.",
+      "damage_template": {
+        "fire": [
+          27,
+          36
+        ],
+        "stagger": [
+          31,
+          41
+        ],
+        "lightning": [
+          26,
+          35
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          9,
+          12
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2434,18 +3332,35 @@
       "weight": 833,
       "description": "A mythic club forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "mana": 20,
-        "lightning": 25,
-        "stagger": 21,
-        "ice": 25
-      },
-      "bonus": {
-        "attack": 8
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "spell_syphon",
       "id": "IT00000090",
-      "desc": "A mythic club forged to our current spec."
+      "desc": "A mythic club forged to our current spec.",
+      "damage_template": {
+        "mana": [
+          25,
+          33
+        ],
+        "lightning": [
+          31,
+          42
+        ],
+        "stagger": [
+          26,
+          35
+        ],
+        "ice": [
+          31,
+          42
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          10,
+          14
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2462,13 +3377,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 24
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000091",
-      "desc": "A common great_club forged to our current spec."
+      "desc": "A common great_club forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          18,
+          26
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2489,13 +3408,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 29
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000092",
-      "desc": "A uncommon great_club forged to our current spec."
+      "desc": "A uncommon great_club forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          24,
+          34
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2520,16 +3443,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "bleed": 26,
-        "lightning": 21
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000093",
-      "desc": "A rare great_club forged to our current spec."
+      "desc": "A rare great_club forged to our current spec.",
+      "damage_template": {
+        "bleed": [
+          24,
+          33
+        ],
+        "lightning": [
+          19,
+          27
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          5,
+          8
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2554,16 +3488,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 40,
-        "mana": 25
-      },
-      "bonus": {
-        "attack": 4
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000094",
-      "desc": "A exotic great_club forged to our current spec."
+      "desc": "A exotic great_club forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          42,
+          54
+        ],
+        "mana": [
+          26,
+          34
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          4,
+          6
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2575,17 +3520,31 @@
       "weight": 1772,
       "description": "A legendary great_club forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "arcane": 29,
-        "mana": 24,
-        "fire": 26
-      },
-      "bonus": {
-        "attack": 8
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000095",
-      "desc": "A legendary great_club forged to our current spec."
+      "desc": "A legendary great_club forged to our current spec.",
+      "damage_template": {
+        "arcane": [
+          33,
+          44
+        ],
+        "mana": [
+          27,
+          36
+        ],
+        "fire": [
+          29,
+          39
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          9,
+          12
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2597,18 +3556,35 @@
       "weight": 2304,
       "description": "A mythic great_club forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "fire": 19,
-        "stagger": 19,
-        "ice": 17,
-        "lightning": 19
-      },
-      "bonus": {
-        "attack": 8
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "soulbound",
       "id": "IT00000096",
-      "desc": "A mythic great_club forged to our current spec."
+      "desc": "A mythic great_club forged to our current spec.",
+      "damage_template": {
+        "fire": [
+          23,
+          32
+        ],
+        "stagger": [
+          23,
+          32
+        ],
+        "ice": [
+          21,
+          29
+        ],
+        "lightning": [
+          23,
+          32
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          10,
+          14
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2625,13 +3601,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 25
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000097",
-      "desc": "A common stick forged to our current spec."
+      "desc": "A common stick forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          18,
+          27
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2652,13 +3632,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 34
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000098",
-      "desc": "A uncommon stick forged to our current spec."
+      "desc": "A uncommon stick forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          28,
+          40
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2683,16 +3667,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "lightning": 20,
-        "physical": 31
-      },
-      "bonus": {
-        "attack": 3
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000099",
-      "desc": "A rare stick forged to our current spec."
+      "desc": "A rare stick forged to our current spec.",
+      "damage_template": {
+        "lightning": [
+          19,
+          25
+        ],
+        "physical": [
+          29,
+          39
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          2,
+          4
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2717,16 +3712,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "fire": 26,
-        "physical": 34
-      },
-      "bonus": {
-        "attack": 4
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000100",
-      "desc": "A exotic stick forged to our current spec."
+      "desc": "A exotic stick forged to our current spec.",
+      "damage_template": {
+        "fire": [
+          27,
+          36
+        ],
+        "physical": [
+          35,
+          46
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          4,
+          6
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2738,17 +3744,31 @@
       "weight": 967,
       "description": "A legendary stick forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "bleed": 24,
-        "physical": 31,
-        "fire": 23
-      },
-      "bonus": {
-        "attack": 7
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000101",
-      "desc": "A legendary stick forged to our current spec."
+      "desc": "A legendary stick forged to our current spec.",
+      "damage_template": {
+        "bleed": [
+          27,
+          36
+        ],
+        "physical": [
+          35,
+          47
+        ],
+        "fire": [
+          26,
+          35
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          8,
+          11
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2760,18 +3780,35 @@
       "weight": 1292,
       "description": "A mythic stick forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "ice": 15,
-        "arcane": 15,
-        "physical": 27,
-        "stagger": 17
-      },
-      "bonus": {
-        "attack": 8
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "echo_strike",
       "id": "IT00000102",
-      "desc": "A mythic stick forged to our current spec."
+      "desc": "A mythic stick forged to our current spec.",
+      "damage_template": {
+        "ice": [
+          18,
+          25
+        ],
+        "arcane": [
+          18,
+          25
+        ],
+        "physical": [
+          33,
+          45
+        ],
+        "stagger": [
+          21,
+          29
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          10,
+          14
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2788,13 +3825,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 18
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000103",
-      "desc": "A common big_stick forged to our current spec."
+      "desc": "A common big_stick forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          13,
+          19
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2815,13 +3856,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 36
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000104",
-      "desc": "A uncommon big_stick forged to our current spec."
+      "desc": "A uncommon big_stick forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          30,
+          42
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2846,16 +3891,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 24,
-        "fire": 17
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000105",
-      "desc": "A rare big_stick forged to our current spec."
+      "desc": "A rare big_stick forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          22,
+          30
+        ],
+        "fire": [
+          16,
+          22
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          5,
+          8
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2880,16 +3936,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 38,
-        "ice": 31
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000106",
-      "desc": "A exotic big_stick forged to our current spec."
+      "desc": "A exotic big_stick forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          39,
+          52
+        ],
+        "ice": [
+          32,
+          42
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          6,
+          9
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2901,17 +3968,31 @@
       "weight": 1871,
       "description": "A legendary big_stick forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "bleed": 23,
-        "physical": 34,
-        "arcane": 26
-      },
-      "bonus": {
-        "attack": 8
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000107",
-      "desc": "A legendary big_stick forged to our current spec."
+      "desc": "A legendary big_stick forged to our current spec.",
+      "damage_template": {
+        "bleed": [
+          26,
+          35
+        ],
+        "physical": [
+          39,
+          51
+        ],
+        "arcane": [
+          29,
+          39
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          9,
+          12
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2923,18 +4004,35 @@
       "weight": 2173,
       "description": "A mythic big_stick forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "lightning": 19,
-        "bleed": 19,
-        "stagger": 20,
-        "mana": 16
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "echo_strike",
       "id": "IT00000108",
-      "desc": "A mythic big_stick forged to our current spec."
+      "desc": "A mythic big_stick forged to our current spec.",
+      "damage_template": {
+        "lightning": [
+          23,
+          32
+        ],
+        "bleed": [
+          23,
+          32
+        ],
+        "stagger": [
+          25,
+          33
+        ],
+        "mana": [
+          20,
+          27
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          7,
+          10
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2951,13 +4049,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 10
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000109",
-      "desc": "A common throwing_knife forged to our current spec."
+      "desc": "A common throwing_knife forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          7,
+          11
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -2978,13 +4080,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 31
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000110",
-      "desc": "A uncommon throwing_knife forged to our current spec."
+      "desc": "A uncommon throwing_knife forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          26,
+          36
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3009,16 +4115,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 30,
-        "lightning": 21
-      },
-      "bonus": {
-        "attack": 4
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000111",
-      "desc": "A rare throwing_knife forged to our current spec."
+      "desc": "A rare throwing_knife forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          28,
+          38
+        ],
+        "lightning": [
+          19,
+          27
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          3,
+          5
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3043,16 +4160,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "mana": 31,
-        "arcane": 34
-      },
-      "bonus": {
-        "attack": 3
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000112",
-      "desc": "A exotic throwing_knife forged to our current spec."
+      "desc": "A exotic throwing_knife forged to our current spec.",
+      "damage_template": {
+        "mana": [
+          32,
+          42
+        ],
+        "arcane": [
+          35,
+          46
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          3,
+          5
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3064,17 +4192,31 @@
       "weight": 1273,
       "description": "A legendary throwing_knife forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "stagger": 28,
-        "lightning": 24,
-        "ice": 31
-      },
-      "bonus": {
-        "attack": 7
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000113",
-      "desc": "A legendary throwing_knife forged to our current spec."
+      "desc": "A legendary throwing_knife forged to our current spec.",
+      "damage_template": {
+        "stagger": [
+          32,
+          42
+        ],
+        "lightning": [
+          27,
+          36
+        ],
+        "ice": [
+          35,
+          47
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          8,
+          11
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3086,18 +4228,35 @@
       "weight": 1053,
       "description": "A mythic throwing_knife forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "physical": 23,
-        "stagger": 17,
-        "fire": 18,
-        "arcane": 16
-      },
-      "bonus": {
-        "attack": 10
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "soulbound",
       "id": "IT00000114",
-      "desc": "A mythic throwing_knife forged to our current spec."
+      "desc": "A mythic throwing_knife forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          28,
+          38
+        ],
+        "stagger": [
+          21,
+          29
+        ],
+        "fire": [
+          22,
+          30
+        ],
+        "arcane": [
+          20,
+          27
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          12,
+          17
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3114,13 +4273,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 14
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000115",
-      "desc": "A common maul forged to our current spec."
+      "desc": "A common maul forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          10,
+          15
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3141,13 +4304,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 27
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000116",
-      "desc": "A uncommon maul forged to our current spec."
+      "desc": "A uncommon maul forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          22,
+          32
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3172,16 +4339,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 29,
-        "arcane": 15
-      },
-      "bonus": {
-        "attack": 3
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000117",
-      "desc": "A rare maul forged to our current spec."
+      "desc": "A rare maul forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          27,
+          37
+        ],
+        "arcane": [
+          14,
+          19
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          2,
+          4
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3206,16 +4384,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 40,
-        "bleed": 23
-      },
-      "bonus": {
-        "attack": 2
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000118",
-      "desc": "A exotic maul forged to our current spec."
+      "desc": "A exotic maul forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          42,
+          54
+        ],
+        "bleed": [
+          24,
+          32
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          2,
+          3
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3227,17 +4416,31 @@
       "weight": 2152,
       "description": "A legendary maul forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "stagger": 22,
-        "mana": 24,
-        "physical": 30
-      },
-      "bonus": {
-        "attack": 7
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000119",
-      "desc": "A legendary maul forged to our current spec."
+      "desc": "A legendary maul forged to our current spec.",
+      "damage_template": {
+        "stagger": [
+          25,
+          33
+        ],
+        "mana": [
+          27,
+          36
+        ],
+        "physical": [
+          34,
+          45
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          8,
+          11
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3249,18 +4452,35 @@
       "weight": 1949,
       "description": "A mythic maul forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "physical": 23,
-        "lightning": 15,
-        "mana": 18,
-        "arcane": 18
-      },
-      "bonus": {
-        "attack": 5
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "lifedrink",
       "id": "IT00000120",
-      "desc": "A mythic maul forged to our current spec."
+      "desc": "A mythic maul forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          28,
+          38
+        ],
+        "lightning": [
+          18,
+          25
+        ],
+        "mana": [
+          22,
+          30
+        ],
+        "arcane": [
+          22,
+          30
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          6,
+          9
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3277,13 +4497,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 25
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000121",
-      "desc": "A common shortbow forged to our current spec."
+      "desc": "A common shortbow forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          18,
+          27
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3304,13 +4528,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 29
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000122",
-      "desc": "A uncommon shortbow forged to our current spec."
+      "desc": "A uncommon shortbow forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          24,
+          34
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3335,16 +4563,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "arcane": 28,
-        "fire": 26
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000123",
-      "desc": "A rare shortbow forged to our current spec."
+      "desc": "A rare shortbow forged to our current spec.",
+      "damage_template": {
+        "arcane": [
+          26,
+          35
+        ],
+        "fire": [
+          24,
+          33
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          5,
+          8
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3369,16 +4608,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 41,
-        "fire": 29
-      },
-      "bonus": {
-        "attack": 5
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000124",
-      "desc": "A exotic shortbow forged to our current spec."
+      "desc": "A exotic shortbow forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          43,
+          56
+        ],
+        "fire": [
+          30,
+          40
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          5,
+          7
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3390,17 +4640,31 @@
       "weight": 1451,
       "description": "A legendary shortbow forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "ice": 23,
-        "physical": 36,
-        "stagger": 23
-      },
-      "bonus": {
-        "attack": 7
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000125",
-      "desc": "A legendary shortbow forged to our current spec."
+      "desc": "A legendary shortbow forged to our current spec.",
+      "damage_template": {
+        "ice": [
+          26,
+          35
+        ],
+        "physical": [
+          41,
+          54
+        ],
+        "stagger": [
+          26,
+          35
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          8,
+          11
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3412,18 +4676,35 @@
       "weight": 1460,
       "description": "A mythic shortbow forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "ice": 18,
-        "physical": 32,
-        "fire": 17,
-        "bleed": 21
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "chronal_burst",
       "id": "IT00000126",
-      "desc": "A mythic shortbow forged to our current spec."
+      "desc": "A mythic shortbow forged to our current spec.",
+      "damage_template": {
+        "ice": [
+          22,
+          30
+        ],
+        "physical": [
+          40,
+          53
+        ],
+        "fire": [
+          21,
+          29
+        ],
+        "bleed": [
+          26,
+          35
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          7,
+          10
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3440,13 +4721,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 21
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000127",
-      "desc": "A common longbow forged to our current spec."
+      "desc": "A common longbow forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          15,
+          23
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3467,13 +4752,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 36
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000128",
-      "desc": "A uncommon longbow forged to our current spec."
+      "desc": "A uncommon longbow forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          30,
+          42
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3498,16 +4787,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 29,
-        "fire": 21
-      },
-      "bonus": {
-        "attack": 2
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000129",
-      "desc": "A rare longbow forged to our current spec."
+      "desc": "A rare longbow forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          27,
+          37
+        ],
+        "fire": [
+          19,
+          27
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          1,
+          3
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3532,16 +4832,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "lightning": 33,
-        "fire": 29
-      },
-      "bonus": {
-        "attack": 3
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000130",
-      "desc": "A exotic longbow forged to our current spec."
+      "desc": "A exotic longbow forged to our current spec.",
+      "damage_template": {
+        "lightning": [
+          34,
+          45
+        ],
+        "fire": [
+          30,
+          40
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          3,
+          5
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3553,17 +4864,31 @@
       "weight": 1313,
       "description": "A legendary longbow forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "physical": 32,
-        "bleed": 22,
-        "mana": 22
-      },
-      "bonus": {
-        "attack": 7
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000131",
-      "desc": "A legendary longbow forged to our current spec."
+      "desc": "A legendary longbow forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          36,
+          48
+        ],
+        "bleed": [
+          25,
+          33
+        ],
+        "mana": [
+          25,
+          33
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          8,
+          11
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3575,18 +4900,35 @@
       "weight": 1209,
       "description": "A mythic longbow forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "bleed": 19,
-        "stagger": 21,
-        "fire": 19,
-        "arcane": 18
-      },
-      "bonus": {
-        "attack": 5
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "echo_strike",
       "id": "IT00000132",
-      "desc": "A mythic longbow forged to our current spec."
+      "desc": "A mythic longbow forged to our current spec.",
+      "damage_template": {
+        "bleed": [
+          23,
+          32
+        ],
+        "stagger": [
+          26,
+          35
+        ],
+        "fire": [
+          23,
+          32
+        ],
+        "arcane": [
+          22,
+          30
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          6,
+          9
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3603,13 +4945,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 22
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000133",
-      "desc": "A common light_crossbow forged to our current spec."
+      "desc": "A common light_crossbow forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          16,
+          24
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3630,13 +4976,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 30
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000134",
-      "desc": "A uncommon light_crossbow forged to our current spec."
+      "desc": "A uncommon light_crossbow forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          25,
+          35
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3661,16 +5011,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "bleed": 21,
-        "mana": 20
-      },
-      "bonus": {
-        "attack": 3
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000135",
-      "desc": "A rare light_crossbow forged to our current spec."
+      "desc": "A rare light_crossbow forged to our current spec.",
+      "damage_template": {
+        "bleed": [
+          19,
+          27
+        ],
+        "mana": [
+          19,
+          25
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          2,
+          4
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3695,16 +5056,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 38,
-        "lightning": 24
-      },
-      "bonus": {
-        "attack": 3
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000136",
-      "desc": "A exotic light_crossbow forged to our current spec."
+      "desc": "A exotic light_crossbow forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          39,
+          52
+        ],
+        "lightning": [
+          25,
+          33
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          3,
+          5
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3716,17 +5088,31 @@
       "weight": 1071,
       "description": "A legendary light_crossbow forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "lightning": 22,
-        "arcane": 21,
-        "physical": 31
-      },
-      "bonus": {
-        "attack": 5
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000137",
-      "desc": "A legendary light_crossbow forged to our current spec."
+      "desc": "A legendary light_crossbow forged to our current spec.",
+      "damage_template": {
+        "lightning": [
+          25,
+          33
+        ],
+        "arcane": [
+          24,
+          32
+        ],
+        "physical": [
+          35,
+          47
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          5,
+          8
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3738,18 +5124,35 @@
       "weight": 1272,
       "description": "A mythic light_crossbow forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "ice": 24,
-        "lightning": 21,
-        "fire": 28,
-        "arcane": 25
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "lifedrink",
       "id": "IT00000138",
-      "desc": "A mythic light_crossbow forged to our current spec."
+      "desc": "A mythic light_crossbow forged to our current spec.",
+      "damage_template": {
+        "ice": [
+          30,
+          40
+        ],
+        "lightning": [
+          26,
+          35
+        ],
+        "fire": [
+          35,
+          47
+        ],
+        "arcane": [
+          31,
+          42
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          7,
+          10
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3766,13 +5169,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 15
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000139",
-      "desc": "A common heavy_crossbow forged to our current spec."
+      "desc": "A common heavy_crossbow forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          11,
+          16
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3793,13 +5200,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 26
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000140",
-      "desc": "A uncommon heavy_crossbow forged to our current spec."
+      "desc": "A uncommon heavy_crossbow forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          22,
+          30
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3824,16 +5235,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "ice": 22,
-        "fire": 21
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000141",
-      "desc": "A rare heavy_crossbow forged to our current spec."
+      "desc": "A rare heavy_crossbow forged to our current spec.",
+      "damage_template": {
+        "ice": [
+          20,
+          28
+        ],
+        "fire": [
+          19,
+          27
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          5,
+          8
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3858,16 +5280,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "physical": 42,
-        "bleed": 27
-      },
-      "bonus": {
-        "attack": 3
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000142",
-      "desc": "A exotic heavy_crossbow forged to our current spec."
+      "desc": "A exotic heavy_crossbow forged to our current spec.",
+      "damage_template": {
+        "physical": [
+          44,
+          57
+        ],
+        "bleed": [
+          28,
+          37
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          3,
+          5
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3879,17 +5312,31 @@
       "weight": 1725,
       "description": "A legendary heavy_crossbow forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "arcane": 20,
-        "physical": 32,
-        "stagger": 21
-      },
-      "bonus": {
-        "attack": 9
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000143",
-      "desc": "A legendary heavy_crossbow forged to our current spec."
+      "desc": "A legendary heavy_crossbow forged to our current spec.",
+      "damage_template": {
+        "arcane": [
+          23,
+          30
+        ],
+        "physical": [
+          36,
+          48
+        ],
+        "stagger": [
+          24,
+          32
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          10,
+          14
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3901,18 +5348,35 @@
       "weight": 1895,
       "description": "A mythic heavy_crossbow forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "fire": 17,
-        "stagger": 21,
-        "mana": 22,
-        "bleed": 18
-      },
-      "bonus": {
-        "attack": 7
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "echo_strike",
       "id": "IT00000144",
-      "desc": "A mythic heavy_crossbow forged to our current spec."
+      "desc": "A mythic heavy_crossbow forged to our current spec.",
+      "damage_template": {
+        "fire": [
+          21,
+          29
+        ],
+        "stagger": [
+          26,
+          35
+        ],
+        "mana": [
+          27,
+          37
+        ],
+        "bleed": [
+          22,
+          30
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          8,
+          12
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3933,13 +5397,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "arcane": 18
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000145",
-      "desc": "A common staff forged to our current spec."
+      "desc": "A common staff forged to our current spec.",
+      "damage_template": {
+        "arcane": [
+          13,
+          19
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3960,13 +5428,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "lightning": 38
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000146",
-      "desc": "A uncommon staff forged to our current spec."
+      "desc": "A uncommon staff forged to our current spec.",
+      "damage_template": {
+        "lightning": [
+          32,
+          44
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -3991,16 +5463,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "arcane": 27,
-        "mana": 28
-      },
-      "bonus": {
-        "attack": 2
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000147",
-      "desc": "A rare staff forged to our current spec."
+      "desc": "A rare staff forged to our current spec.",
+      "damage_template": {
+        "arcane": [
+          25,
+          34
+        ],
+        "mana": [
+          26,
+          35
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          1,
+          3
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -4025,16 +5508,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "ice": 29,
-        "mana": 32
-      },
-      "bonus": {
-        "attack": 1
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000148",
-      "desc": "A exotic staff forged to our current spec."
+      "desc": "A exotic staff forged to our current spec.",
+      "damage_template": {
+        "ice": [
+          30,
+          40
+        ],
+        "mana": [
+          33,
+          44
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          1,
+          2
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -4046,17 +5540,31 @@
       "weight": 929,
       "description": "A legendary staff forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "fire": 26,
-        "lightning": 22,
-        "arcane": 26
-      },
-      "bonus": {
-        "attack": 5
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000149",
-      "desc": "A legendary staff forged to our current spec."
+      "desc": "A legendary staff forged to our current spec.",
+      "damage_template": {
+        "fire": [
+          29,
+          39
+        ],
+        "lightning": [
+          25,
+          33
+        ],
+        "arcane": [
+          29,
+          39
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          5,
+          8
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -4068,18 +5576,35 @@
       "weight": 1156,
       "description": "A mythic staff forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "mana": 18,
-        "lightning": 20,
-        "fire": 18,
-        "arcane": 21
-      },
-      "bonus": {
-        "attack": 7
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "chronal_burst",
       "id": "IT00000150",
-      "desc": "A mythic staff forged to our current spec."
+      "desc": "A mythic staff forged to our current spec.",
+      "damage_template": {
+        "mana": [
+          22,
+          30
+        ],
+        "lightning": [
+          25,
+          33
+        ],
+        "fire": [
+          22,
+          30
+        ],
+        "arcane": [
+          26,
+          35
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          8,
+          12
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -4100,13 +5625,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "fire": 14
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000151",
-      "desc": "A common wand forged to our current spec."
+      "desc": "A common wand forged to our current spec.",
+      "damage_template": {
+        "fire": [
+          10,
+          15
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -4127,13 +5656,17 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "lightning": 34
-      },
+      "damage_type": {},
       "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000152",
-      "desc": "A uncommon wand forged to our current spec."
+      "desc": "A uncommon wand forged to our current spec.",
+      "damage_template": {
+        "lightning": [
+          28,
+          40
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -4158,16 +5691,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "fire": 28,
-        "lightning": 28
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000153",
-      "desc": "A rare wand forged to our current spec."
+      "desc": "A rare wand forged to our current spec.",
+      "damage_template": {
+        "fire": [
+          26,
+          35
+        ],
+        "lightning": [
+          26,
+          35
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          5,
+          8
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -4192,16 +5736,27 @@
           "quantity": 1
         }
       ],
-      "damage_type": {
-        "arcane": 35,
-        "mana": 31
-      },
-      "bonus": {
-        "attack": 6
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000154",
-      "desc": "A exotic wand forged to our current spec."
+      "desc": "A exotic wand forged to our current spec.",
+      "damage_template": {
+        "arcane": [
+          36,
+          48
+        ],
+        "mana": [
+          32,
+          42
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          6,
+          9
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -4213,17 +5768,31 @@
       "weight": 1047,
       "description": "A legendary wand forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "lightning": 28,
-        "arcane": 24,
-        "fire": 25
-      },
-      "bonus": {
-        "attack": 9
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "none",
       "id": "IT00000155",
-      "desc": "A legendary wand forged to our current spec."
+      "desc": "A legendary wand forged to our current spec.",
+      "damage_template": {
+        "lightning": [
+          32,
+          42
+        ],
+        "arcane": [
+          27,
+          36
+        ],
+        "fire": [
+          28,
+          38
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          10,
+          14
+        ]
+      }
     },
     {
       "category": "weapon",
@@ -4235,18 +5804,35 @@
       "weight": 785,
       "description": "A mythic wand forged to our current spec.",
       "components": [],
-      "damage_type": {
-        "lightning": 18,
-        "arcane": 19,
-        "mana": 18,
-        "ice": 20
-      },
-      "bonus": {
-        "attack": 9
-      },
+      "damage_type": {},
+      "bonus": {},
       "weapon_trait": "chronal_burst",
       "id": "IT00000156",
-      "desc": "A mythic wand forged to our current spec."
+      "desc": "A mythic wand forged to our current spec.",
+      "damage_template": {
+        "lightning": [
+          22,
+          30
+        ],
+        "arcane": [
+          23,
+          32
+        ],
+        "mana": [
+          22,
+          30
+        ],
+        "ice": [
+          25,
+          33
+        ]
+      },
+      "bonus_template": {
+        "attack": [
+          11,
+          15
+        ]
+      }
     }
   ]
 }

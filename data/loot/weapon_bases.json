@@ -1,0 +1,29 @@
+[
+  {
+    "type": "longsword",
+    "category": "weapon",
+    "tags": ["Slash","Pierce","Impale"],
+    "base_damage": { "physical": { "min": 22, "max": 32 } },
+    "speed": "medium",
+    "allowed_elements": ["fire","ice","lightning","arcane","bleed","poison","holy"],
+    "allowed_traits": ["echo_strike","lifedrink","armor_shred","none"]
+  },
+  {
+    "type": "handcannon",
+    "category": "weapon",
+    "tags": ["Pierce","Crush"],
+    "base_damage": { "physical": { "min": 38, "max": 54 } },
+    "speed": "slow",
+    "allowed_elements": ["fire","lightning","explosive"],
+    "allowed_traits": ["recoil_blast","stagger","none"]
+  },
+  {
+    "type": "projectile",
+    "category": "weapon",
+    "tags": ["Bash"],
+    "base_damage": { "physical": { "min": 8, "max": 14 } },
+    "speed": "fast",
+    "allowed_elements": ["fire","poison","acid","explosive"],
+    "allowed_traits": ["frag_shards","smoke_cloud","none"]
+  }
+]
