@@ -553,6 +553,174 @@ def _jitter(val: int, pct: float, rng: random.Random) -> int:
     span = max(1, int(abs(val) * pct))
     return max(0, int(val + rng.randint(-span, span)))
 
+
+_LOOT_CACHE: Optional[Dict[str, Any]] = None
+
+
+def _load_loot_config() -> Dict[str, Any]:
+    global _LOOT_CACHE
+    if _LOOT_CACHE is not None:
+        return _LOOT_CACHE
+    cfg: Dict[str, Any] = {
+        'enabled': False,
+        'rarity': {},
+        'weapon_bases': {},
+        'affix_prefix': [],
+        'affix_suffix': [],
+        'names': {},
+        'drop_tables': {},
+    }
+    try:
+        loot_dir = DATA_DIR / "loot"
+        if not loot_dir.exists():
+            _LOOT_CACHE = cfg
+            return cfg
+
+        def _read_json(path: Path) -> Any:
+            if path.exists():
+                with path.open('r', encoding='utf-8') as fh:
+                    return json.load(fh)
+            return None
+
+        rarity = _read_json(loot_dir / 'rarity.json') or {}
+        names = _read_json(loot_dir / 'names.json') or {}
+        weapon_bases_raw = _read_json(loot_dir / 'weapon_bases.json') or []
+        affix_prefix = _read_json(loot_dir / 'affixes_prefix.json') or []
+        affix_suffix = _read_json(loot_dir / 'affixes_suffix.json') or []
+
+        base_map: Dict[str, Dict[str, Any]] = {}
+        if isinstance(weapon_bases_raw, list):
+            for entry in weapon_bases_raw:
+                try:
+                    btype = str(entry.get('type') or '')
+                    if btype:
+                        base_map[btype] = entry
+                except Exception:
+                    continue
+
+        drop_tables: Dict[str, Any] = {}
+        tables_dir = loot_dir / 'drop_tables'
+        if tables_dir.exists() and tables_dir.is_dir():
+            for fp in tables_dir.glob('*.json'):
+                try:
+                    with fp.open('r', encoding='utf-8') as fh:
+                        drop_tables[fp.stem] = json.load(fh)
+                except Exception:
+                    continue
+
+        cfg.update({
+            'enabled': bool(base_map or rarity),
+            'rarity': rarity if isinstance(rarity, dict) else {},
+            'weapon_bases': base_map,
+            'affix_prefix': affix_prefix if isinstance(affix_prefix, list) else [],
+            'affix_suffix': affix_suffix if isinstance(affix_suffix, list) else [],
+            'names': names if isinstance(names, dict) else {},
+            'drop_tables': drop_tables,
+        })
+    except Exception:
+        cfg['enabled'] = False
+    _LOOT_CACHE = cfg
+    return cfg
+
+
+def _loot_get_in(d: Dict[str, Any], path: str, default=None):
+    cur: Any = d
+    for part in path.split('.'):
+        if not isinstance(cur, dict) or part not in cur:
+            return default
+        cur = cur[part]
+    return cur
+
+
+def _loot_set_in(d: Dict[str, Any], path: str, value: Any) -> None:
+    cur = d
+    parts = path.split('.')
+    for part in parts[:-1]:
+        nxt = cur.get(part)
+        if not isinstance(nxt, dict):
+            nxt = {}
+            cur[part] = nxt
+        cur = nxt
+    cur[parts[-1]] = value
+
+
+def _loot_add_in(d: Dict[str, Any], path: str, value: float) -> None:
+    cur = _loot_get_in(d, path, 0)
+    if cur is None:
+        cur = 0
+    try:
+        cur_val = float(cur)
+    except Exception:
+        cur_val = 0.0
+    _loot_set_in(d, path, cur_val + value)
+
+
+def _loot_allowed_for_item(rule: Dict[str, Any], base: Dict[str, Any]) -> bool:
+    allow = rule.get('allow', {}) or {}
+    if not allow:
+        return True
+    base_cat = str(base.get('category') or 'weapon')
+    if allow.get('category') and base_cat not in allow['category']:
+        return False
+    base_type = str(base.get('type') or '')
+    if allow.get('types') and base_type not in allow['types']:
+        return False
+    if allow.get('types_any') and base_type not in allow['types_any']:
+        return False
+    tags_any = allow.get('tags_any')
+    if tags_any:
+        tags = set(base.get('tags', []) or [])
+        if not any(t in tags for t in tags_any):
+            return False
+    return True
+
+
+def _loot_roll_affixes(n: int, pool: List[Dict[str, Any]], base: Dict[str, Any], rng: random.Random) -> List[Dict[str, Any]]:
+    valid = [a for a in (pool or []) if _loot_allowed_for_item(a, base)]
+    chosen: List[Dict[str, Any]] = []
+    for _ in range(max(0, n)):
+        if not valid:
+            break
+        weights = [max(0, int(a.get('weight', 1))) or 1 for a in valid]
+        total = sum(weights)
+        r = rng.uniform(0, total)
+        upto = 0.0
+        pick = valid[-1]
+        for a, w in zip(valid, weights):
+            upto += w
+            if r <= upto:
+                pick = a
+                break
+        chosen.append(pick)
+        valid.remove(pick)
+    return chosen
+
+
+def _loot_apply_affix_mods(affix: Dict[str, Any], level: int, out: Dict[str, Any], rng: random.Random) -> None:
+    for mod in affix.get('mods', []) or []:
+        path = mod.get('path')
+        if not path:
+            continue
+        flat_lo = mod.get('flat_min', mod.get('set', 0))
+        flat_hi = mod.get('flat_max', flat_lo)
+        try:
+            lo = float(flat_lo)
+            hi = float(flat_hi)
+        except Exception:
+            lo = hi = 0.0
+        if hi < lo:
+            lo, hi = hi, lo
+        if hi > lo:
+            flat = rng.uniform(lo, hi)
+        else:
+            flat = lo
+        per_level = float(mod.get('add_per_level', 0.0) or 0.0)
+        add_val = flat + per_level * max(0, level)
+        if 'set' in mod:
+            _loot_set_in(out, path, mod['set'])
+        else:
+            _loot_add_in(out, path, add_val)
+
 # --------- Template helpers -------------------------------------------------
 def _sample_range(spec: Any, rng: random.Random) -> Optional[int]:
     try:
@@ -2012,6 +2180,10 @@ def draw_combat_overlay(surf, game):
         enemy = getattr(game, 'current_enemy', None) or (getattr(game.tile().encounter, 'enemy', None) if game.tile().encounter else None)
         if enemy:
             enemies_list = [enemy]
+    current_target = getattr(game, 'current_enemy', None)
+    def _make_target_cb(idx: int):
+        return lambda idx=idx: game.select_enemy_target(idx)
+
     ex = right.x + 12; ey = right.y + 12
     for idx_e, enemy in enumerate(enemies_list):
         # Start of this enemy's stat card block (for enclosing box)
@@ -2023,7 +2195,10 @@ def draw_combat_overlay(surf, game):
                 # derive hp from parallel list when available
                 if idx_e < len(game.current_enemies_hp):
                     ehp_cur = int(game.current_enemies_hp[idx_e])
-                    ehp_max = int(enemy.get('hp', ehp_cur) or ehp_cur)
+                    if hasattr(game, 'current_enemies_max_hp') and idx_e < len(game.current_enemies_max_hp):
+                        ehp_max = int(game.current_enemies_max_hp[idx_e])
+                    else:
+                        ehp_max = int(enemy.get('hp', ehp_cur) or ehp_cur)
                 else:
                     ehp_cur = int(enemy.get('hp', 12)); ehp_max = ehp_cur
             else:
@@ -2096,11 +2271,16 @@ def draw_combat_overlay(surf, game):
         card_h = (ey - card_y0) + 2*card_pad_y
         card_r = pg.Rect(card_x, max(right.y + CARD_OUTER_GAP, card_y0 - card_pad_y), card_w, max(24, card_h))
         # Draw refined border with inner accent
-        pg.draw.rect(surf, (70,74,92), card_r, 1, border_radius=6)
+        is_selected = (enemy is current_target)
+        border_col = (122,162,247) if is_selected else (70,74,92)
+        border_w = 2 if is_selected else 1
+        pg.draw.rect(surf, border_col, card_r, border_w, border_radius=6)
         try:
-            pg.draw.rect(surf, (56,60,76), card_r.inflate(-4, -4), 1, border_radius=5)
+            inner_col = (96,102,140) if is_selected else (56,60,76)
+            pg.draw.rect(surf, inner_col, card_r.inflate(-4, -4), 1, border_radius=5)
         except Exception:
             pass
+        buttons.append(Button(card_r, '', _make_target_cb(idx_e), draw_bg=False))
         # Spacing between enemies
         ey = card_r.bottom + CARD_OUTER_GAP
     if not enemies_list:
@@ -4757,6 +4937,7 @@ class Game:
         # Backward-compatible single-target combat
         self.current_enemies = [enemy]
         self.current_enemies_hp = [int(enemy.get("hp", 12))]
+        self.current_enemies_max_hp = [int(enemy.get("hp", 12))]
         self.current_enemy = enemy; self.current_enemy_hp = int(enemy.get("hp", 12))
         self.current_enemy.setdefault('status', [])
         self.current_enemy.setdefault('dex', 4)
@@ -4773,6 +4954,7 @@ class Game:
         # Initialize group combat with multiple enemies
         self.current_enemies = []
         self.current_enemies_hp = []
+        self.current_enemies_max_hp = []
         for e in (enemies or []):
             if not isinstance(e, dict):
                 continue
@@ -4782,9 +4964,11 @@ class Game:
             e.setdefault('greed', 4)
             self.current_enemies.append(e)
             try:
-                self.current_enemies_hp.append(int(e.get('hp', 12)))
+                hp_val = int(e.get('hp', 12))
             except Exception:
-                self.current_enemies_hp.append(12)
+                hp_val = 12
+            self.current_enemies_hp.append(hp_val)
+            self.current_enemies_max_hp.append(hp_val)
         if not self.current_enemies:
             return
         self.current_enemy = self.current_enemies[0]
@@ -4882,6 +5066,80 @@ class Game:
             return -1
         return -1
 
+    def _sync_enemy_hp_tracking(self, idx: Optional[int] = None) -> int:
+        """Ensure current_enemies_hp reflects the tracked enemy's HP."""
+        if idx is None:
+            idx = self._enemy_index_by_ref(self.current_enemy)
+        try:
+            if idx is not None and idx >= 0:
+                if not hasattr(self, 'current_enemies_hp'):
+                    self.current_enemies_hp = []
+                while len(self.current_enemies_hp) <= idx:
+                    self.current_enemies_hp.append(int(max(0, self.current_enemy_hp)))
+                self.current_enemies_hp[idx] = int(max(0, self.current_enemy_hp))
+        except Exception:
+            pass
+        return idx if idx is not None else -1
+
+    def _enemy_max_hp_value(self, idx: Optional[int], enemy: Optional[Dict] = None) -> int:
+        enemy = enemy or self.current_enemy
+        if enemy is None:
+            return 0
+        try:
+            if idx is not None and idx >= 0 and hasattr(self, 'current_enemies_max_hp'):
+                if idx < len(self.current_enemies_max_hp):
+                    return int(self.current_enemies_max_hp[idx])
+            return int(enemy.get('hp', self.current_enemy_hp or 0) or max(1, int(self.current_enemy_hp or 0)))
+        except Exception:
+            try:
+                return int(self.current_enemy_hp or 0)
+            except Exception:
+                return 0
+
+    def _log_enemy_hp_status(self, enemy: Optional[Dict], idx: Optional[int] = None):
+        if enemy is None:
+            return
+        idx = self._sync_enemy_hp_tracking(idx)
+        try:
+            if enemy is self.current_enemy:
+                cur = int(max(0, self.current_enemy_hp))
+            elif hasattr(self, 'current_enemies_hp') and idx is not None and 0 <= idx < len(self.current_enemies_hp):
+                cur = int(max(0, self.current_enemies_hp[idx]))
+            else:
+                cur = int(max(0, enemy.get('hp', 0)))
+        except Exception:
+            cur = int(max(0, getattr(self, 'current_enemy_hp', 0)))
+        max_hp = max(cur, self._enemy_max_hp_value(idx, enemy))
+        try:
+            name = self._actor_name(enemy)
+        except Exception:
+            name = 'Enemy'
+        self.say(f"{name} HP: {cur}/{max_hp}")
+
+    def select_enemy_target(self, index: int):
+        """Manually choose which enemy to focus attacks on."""
+        try:
+            idx = int(index)
+        except Exception:
+            return
+        if not getattr(self, 'current_enemies', None):
+            return
+        if idx < 0 or idx >= len(self.current_enemies):
+            return
+        target = self.current_enemies[idx]
+        if target is self.current_enemy:
+            return
+        self.current_enemy = target
+        try:
+            if hasattr(self, 'current_enemies_hp') and idx < len(self.current_enemies_hp):
+                self.current_enemy_hp = int(self.current_enemies_hp[idx])
+            else:
+                self.current_enemy_hp = int(target.get('hp', 0))
+        except Exception:
+            self.current_enemy_hp = int(target.get('hp', 0) or 0)
+        self.say(f"Targeting {self._actor_name(target)}.")
+        self._log_enemy_hp_status(target, idx)
+
     def _advance_turn(self, auto_only: bool=False):
         """Advance to next turn, auto-playing non-player turns.
 
@@ -4935,7 +5193,13 @@ class Game:
                 dmg = random.randint(int(base_min) + int(wmin), int(base_max) + max(int(wmax),0))
                 dmg = max(1, int(dmg))
                 self.current_enemy_hp -= dmg
+                if self.current_enemy_hp < 0:
+                    self.current_enemy_hp = 0
+                idx = self._sync_enemy_hp_tracking()
+                enemy_ref = self.current_enemy
                 self.say(f"{self._actor_name(ref)} hits for {dmg}!")
+                if enemy_ref:
+                    self._log_enemy_hp_status(enemy_ref, idx)
                 if self.current_enemy_hp <= 0:
                     # Remove defeated enemy
                     try: self._on_enemy_defeated(self.current_enemy)
@@ -4949,6 +5213,8 @@ class Game:
                             self.current_enemies.pop(idx)
                         if hasattr(self, 'current_enemies_hp') and len(self.current_enemies_hp) > idx:
                             self.current_enemies_hp.pop(idx)
+                        if hasattr(self, 'current_enemies_max_hp') and len(self.current_enemies_max_hp) > idx:
+                            self.current_enemies_max_hp.pop(idx)
                     except Exception:
                         pass
                     if getattr(self, 'current_enemies', []) and len(self.current_enemies) > 0:
@@ -5163,29 +5429,61 @@ class Game:
         rng = random.Random(_stable_int_hash(seed_s))
 
         lvl = int(getattr(self.player, 'level', 1))
-        rarity = _weighted_choice(RARITY_WEIGHTS, rng)
+        loot_cfg = _load_loot_config()
+
+        rarity_rules = loot_cfg.get('rarity') if loot_cfg.get('enabled') else {}
+        if rarity_rules:
+            table_key = str(base.get('loot_table') or base.get('drop_table') or '')
+            bias_map = {}
+            if table_key:
+                bias_map = (loot_cfg.get('drop_tables', {}).get(table_key, {}) or {}).get('rarity_bias', {}) or {}
+            weights = []
+            for k, entry in rarity_rules.items():
+                w = int(entry.get('weight', 0))
+                if bias_map and k in bias_map:
+                    w += int(bias_map[k])
+                weights.append((k, max(0, w)))
+            rarity = _weighted_choice(weights, rng)
+            rarity_entry = rarity_rules.get(rarity, {})
+            r_mult = float(rarity_entry.get('budget', RARITY_DMG_MULT.get(rarity, 1.0)))
+            aff_lo, aff_hi = rarity_entry.get('affixes', [0, 0]) if isinstance(rarity_entry, dict) else (0, 0)
+        else:
+            rarity = _weighted_choice(RARITY_WEIGHTS, rng)
+            r_mult = float(RARITY_DMG_MULT.get(rarity, 1.0))
+            aff_lo, aff_hi = (_affix_budget_for_rarity(rarity, rng),) * 2
         base_scale = 1.0 + 0.06 * max(0, lvl)
-        r_mult = float(RARITY_DMG_MULT.get(rarity, 1.0))
         style = _style_for_weapon(base)
         base_type = str(base.get('type') or item_subtype(base) or 'weapon')
-        base_dmg = dict(base.get('damage_type') or {})
-        if not base_dmg:
-            # Template-driven damage definitions (e.g., {"physical": [4,8]})
-            base_dmg = {}
+
+        base_dmg: Dict[str, int] = {}
+        # Template-driven damage definitions (e.g., {"physical": [4,8]})
         template_dmg = base.get('damage_template') or base.get('damage_ranges')
         if template_dmg:
             templated = _template_map(template_dmg, rng)
             for k, v in templated.items():
                 base_dmg[k] = int(base_dmg.get(k, 0)) + int(v)
+
+        weapon_bases = loot_cfg.get('weapon_bases') or {}
+        if not base_dmg and base_type in weapon_bases:
+            wb = weapon_bases[base_type]
+            for dmg_type, env in (wb.get('base_damage') or {}).items():
+                try:
+                    lo = int(env.get('min', 0))
+                    hi = int(env.get('max', lo))
+                except Exception:
+                    lo = hi = 0
+                if hi < lo:
+                    lo, hi = hi, lo
+                base_dmg[dmg_type] = rng.randint(lo, hi) if hi > lo else int(lo)
+
         if not base_dmg:
-            # Fallback from min/max if present
             try:
                 mn, mx, *_ = _weapon_stats(base)
                 avg = max(1, int((int(mn) + int(mx)) // 2))
             except Exception:
                 avg = 10
             base_dmg = {"physical": int(avg)}
-        # Scale base damage
+
         dmg = _scale_damage_map(base_dmg, base_scale * r_mult)
         bonus: Dict[str,int] = dict(base.get('bonus') or {})
         template_bonus = base.get('bonus_template')
@@ -5195,20 +5493,35 @@ class Game:
                 bonus[k] = int(bonus.get(k, 0)) + int(v)
         traits: List[str] = []
 
-        # Affix selection
-        n_aff = _affix_budget_for_rarity(rarity, rng)
-        pre_pool = [a for a in PREFIX_POOL if style in (a.get('styles') or [style]) and (not a.get('min_rarity') or self._rarity_rank(rarity) >= self._rarity_rank(a.get('min_rarity')))]
-        suf_pool = [a for a in SUFFIX_POOL if style in (a.get('styles') or [style]) and (not a.get('types') or base_type in a.get('types'))]
-        prefixes: List[Dict[str,Any]] = []
-        suffixes: List[Dict[str,Any]] = []
-        # Split roughly half/half
-        n_pre = rng.randrange(0, n_aff+1)
-        n_suf = max(0, n_aff - n_pre)
-        rng.shuffle(pre_pool); rng.shuffle(suf_pool)
-        prefixes = pre_pool[:n_pre]
-        suffixes = suf_pool[:n_suf]
-
-        dmg, bonus, traits = _apply_affixes(dmg, bonus, traits, lvl, prefixes + suffixes, rng)
+        # Affix selection from loot config (fallback to built-ins)
+        prefixes: List[Dict[str, Any]] = []
+        suffixes: List[Dict[str, Any]] = []
+        if loot_cfg.get('enabled') and (loot_cfg.get('affix_prefix') or loot_cfg.get('affix_suffix')):
+            n_aff = rng.randint(int(aff_lo), int(aff_hi)) if isinstance(aff_lo, (int, float)) else 0
+            n_pre = n_aff // 2 + (n_aff % 2)
+            n_suf = n_aff // 2
+            prefixes = _loot_roll_affixes(n_pre, loot_cfg.get('affix_prefix') or [], {'category': 'weapon', 'type': base_type, 'tags': base.get('tags', [])}, rng)
+            suffixes = _loot_roll_affixes(n_suf, loot_cfg.get('affix_suffix') or [], {'category': 'weapon', 'type': base_type, 'tags': base.get('tags', [])}, rng)
+            out_payload = {'damage_type': dict(dmg), 'bonus': dict(bonus), 'weapon_trait': 'none'}
+            for af in prefixes + suffixes:
+                _loot_apply_affix_mods(af, lvl, out_payload, rng)
+            # Weapon trait set by affix overrides base trait if provided
+            traits = list(traits)
+            dmg = {k: int(round(v)) for k, v in (out_payload.get('damage_type') or {}).items()}
+            bonus = {k: int(round(v)) for k, v in (out_payload.get('bonus') or {}).items()}
+            trait_override = out_payload.get('weapon_trait')
+            if isinstance(trait_override, str) and trait_override:
+                traits.append(trait_override)
+        else:
+            n_aff = _affix_budget_for_rarity(rarity, rng)
+            pre_pool = [a for a in PREFIX_POOL if style in (a.get('styles') or [style]) and (not a.get('min_rarity') or self._rarity_rank(rarity) >= self._rarity_rank(a.get('min_rarity')))]
+            suf_pool = [a for a in SUFFIX_POOL if style in (a.get('styles') or [style]) and (not a.get('types') or base_type in a.get('types'))]
+            n_pre = rng.randrange(0, n_aff+1)
+            n_suf = max(0, n_aff - n_pre)
+            rng.shuffle(pre_pool); rng.shuffle(suf_pool)
+            prefixes = pre_pool[:n_pre]
+            suffixes = suf_pool[:n_suf]
+            dmg, bonus, traits = _apply_affixes(dmg, bonus, traits, lvl, prefixes + suffixes, rng)
 
         # Optional enchants from mechanics/enchants.json
         enchants_src = list(getattr(self, 'enchants', []) or [])
@@ -5246,7 +5559,7 @@ class Game:
             if t in ('echo_strike','lifedrink','knockback'):
                 trait = t; break
 
-        name = _build_name(base_type, [p['name'] for p in prefixes], [s['name'] for s in suffixes])
+        name = _build_name(base_type, [p.get('name') for p in prefixes], [s.get('name') for s in suffixes])
         desc_r = rarity.title()
         rolled = {
             'category': 'weapon',
@@ -5269,6 +5582,7 @@ class Game:
             'status_chance': 0.15 if statuses else 0.0,
             'status': statuses,
             'enchants': [ {'id': e.get('id'), 'name': e.get('name')} for e in sel_en ] if sel_en else [],
+            'affixes': [a.get('id') for a in (prefixes + suffixes) if isinstance(a, dict) and a.get('id')],
             # Debug/marker
             '_rolled': True,
             '_base_id': base.get('id'),
@@ -5384,7 +5698,13 @@ class Game:
         dmg = random.randint(base_min + wmin, base_max + max(wmax,0))
         dmg = max(1, dmg)
         self.current_enemy_hp -= dmg
+        if self.current_enemy_hp < 0:
+            self.current_enemy_hp = 0
+        idx = self._sync_enemy_hp_tracking()
+        enemy_ref = self.current_enemy
         self.say(f"You strike with {item_name(wep) if wep else 'your weapon'} for {dmg}.")
+        if enemy_ref:
+            self._log_enemy_hp_status(enemy_ref, idx)
         self._maybe_apply_status('melee', self.current_enemy, wep)
         if self.current_enemy_hp <= 0:
             self.say("Enemy defeated!")
@@ -5400,6 +5720,8 @@ class Game:
                     self.current_enemies.pop(idx)
                 if hasattr(self, 'current_enemies_hp') and len(self.current_enemies_hp) > idx:
                     self.current_enemies_hp.pop(idx)
+                if hasattr(self, 'current_enemies_max_hp') and len(self.current_enemies_max_hp) > idx:
+                    self.current_enemies_max_hp.pop(idx)
             except Exception:
                 pass
             if getattr(self, 'current_enemies', []) and len(self.current_enemies) > 0:
@@ -5422,7 +5744,14 @@ class Game:
             self.say("You don't recall any spells."); return
         spell = random.choice(self.magic)
         dmg = random.randint(4,8)
-        self.current_enemy_hp -= dmg; self.say(f"You cast {spell.get('name','a spell')} through {item_name(self.player.equipped_focus)} for {dmg}!")
+        self.current_enemy_hp -= dmg
+        if self.current_enemy_hp < 0:
+            self.current_enemy_hp = 0
+        idx = self._sync_enemy_hp_tracking()
+        enemy_ref = self.current_enemy
+        self.say(f"You cast {spell.get('name','a spell')} through {item_name(self.player.equipped_focus)} for {dmg}!")
+        if enemy_ref:
+            self._log_enemy_hp_status(enemy_ref, idx)
         self._maybe_apply_status('spell', self.current_enemy, self.player.equipped_focus)
         if self.current_enemy_hp <= 0:
             self.say("Enemy crumples.")
@@ -5437,6 +5766,8 @@ class Game:
                     self.current_enemies.pop(idx)
                 if hasattr(self, 'current_enemies_hp') and len(self.current_enemies_hp) > idx:
                     self.current_enemies_hp.pop(idx)
+                if hasattr(self, 'current_enemies_max_hp') and len(self.current_enemies_max_hp) > idx:
+                    self.current_enemies_max_hp.pop(idx)
             except Exception:
                 pass
             if getattr(self, 'current_enemies', []) and len(self.current_enemies) > 0:
@@ -5465,7 +5796,13 @@ class Game:
                 dmg = random.randint(int(base_min) + int(wmin), int(base_max) + max(int(wmax),0))
                 dmg = max(1, int(dmg))
                 self.current_enemy_hp -= dmg
+                if self.current_enemy_hp < 0:
+                    self.current_enemy_hp = 0
+                idx = self._sync_enemy_hp_tracking()
+                enemy_ref = self.current_enemy
                 self.say(f"{getattr(ally,'name','Ally')} hits for {dmg}!")
+                if enemy_ref:
+                    self._log_enemy_hp_status(enemy_ref, idx)
                 if self.current_enemy_hp <= 0:
                     # Reuse player defeat handling path
                     try: self._on_enemy_defeated(self.current_enemy)
@@ -5479,6 +5816,8 @@ class Game:
                             self.current_enemies.pop(idx)
                         if hasattr(self, 'current_enemies_hp') and len(self.current_enemies_hp) > idx:
                             self.current_enemies_hp.pop(idx)
+                        if hasattr(self, 'current_enemies_max_hp') and len(self.current_enemies_max_hp) > idx:
+                            self.current_enemies_max_hp.pop(idx)
                     except Exception:
                         pass
                     if getattr(self, 'current_enemies', []) and len(self.current_enemies) > 0:
@@ -6676,9 +7015,3 @@ def main(argv=None):
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-

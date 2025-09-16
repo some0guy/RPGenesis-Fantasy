@@ -1,0 +1,11 @@
+{
+  "weapons": {
+    "dagger": 10,
+    "shortsword": 8,
+    "longsword": 6
+  },
+  "rarity_bias": {
+    "uncommon": 3,
+    "rare": 1
+  }
+}

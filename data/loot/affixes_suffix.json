@@ -1,0 +1,19 @@
+[
+  {
+    "id": "of_the_vanguard",
+    "name": "of the Vanguard",
+    "allow": {
+      "category": [
+        "weapon"
+      ]
+    },
+    "mods": [
+      {
+        "path": "bonus.attack",
+        "flat_min": 1,
+        "flat_max": 3
+      }
+    ],
+    "weight": 14
+  }
+]
