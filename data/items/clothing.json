@@ -6,217 +6,403 @@
       "id": "IT00000004",
       "name": "Verdant Cloak",
       "type": "clothing",
-      "rarity": "common"
+      "rarity": "common",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000005",
       "name": "Iron Helm",
       "type": "clothing",
       "slot": "helmet",
-      "rarity": "common"
+      "rarity": "common",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000006",
       "name": "Runed Circlet",
       "type": "clothing",
       "slot": "helmet",
-      "rarity": "uncommon"
+      "rarity": "uncommon",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000007",
       "name": "Crown of Ashes",
       "type": "clothing",
       "slot": "helmet",
-      "rarity": "rare"
+      "rarity": "rare",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000008",
       "name": "Helm of the Eternal Watch",
       "type": "clothing",
       "slot": "helmet",
-      "rarity": "legendary"
+      "rarity": "legendary",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000009",
       "name": "Mask of the Forgotten God",
       "type": "clothing",
       "slot": "helmet",
-      "rarity": "mythic"
+      "rarity": "mythic",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000010",
       "name": "Traveler's Cape",
       "type": "clothing",
       "slot": "back",
-      "rarity": "common"
+      "rarity": "common",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000011",
       "name": "Embroidered Shawl",
       "type": "clothing",
       "slot": "back",
-      "rarity": "uncommon"
+      "rarity": "uncommon",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000012",
       "name": "Cloak of Whispers",
       "type": "clothing",
       "slot": "back",
-      "rarity": "rare"
+      "rarity": "rare",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000013",
       "name": "Dragonscale Mantle",
       "type": "clothing",
       "slot": "back",
-      "rarity": "legendary"
+      "rarity": "legendary",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000014",
       "name": "Wings of the Fallen Seraph",
       "type": "clothing",
       "slot": "back",
-      "rarity": "mythic"
+      "rarity": "mythic",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000015",
       "name": "Leather Jerkin",
       "type": "clothing",
       "slot": "chest",
-      "rarity": "common"
+      "rarity": "common",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000016",
       "name": "Chainmail Vest",
       "type": "clothing",
       "slot": "chest",
-      "rarity": "uncommon"
+      "rarity": "uncommon",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000017",
       "name": "Breastplate of Dawn",
       "type": "clothing",
       "slot": "chest",
-      "rarity": "rare"
+      "rarity": "rare",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000018",
       "name": "Drakebone Cuirass",
       "type": "clothing",
       "slot": "chest",
-      "rarity": "legendary"
+      "rarity": "legendary",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000019",
       "name": "Aegis of Eternity",
       "type": "clothing",
       "slot": "chest",
-      "rarity": "mythic"
+      "rarity": "mythic",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000020",
       "name": "Traveler's Trousers",
       "type": "clothing",
       "slot": "legs",
-      "rarity": "common"
+      "rarity": "common",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000021",
       "name": "Steel Greaves",
       "type": "clothing",
       "slot": "legs",
-      "rarity": "uncommon"
+      "rarity": "uncommon",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000022",
       "name": "Shadowstep Leggings",
       "type": "clothing",
       "slot": "legs",
-      "rarity": "rare"
+      "rarity": "rare",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000023",
       "name": "Drakescale Cuisses",
       "type": "clothing",
       "slot": "legs",
-      "rarity": "legendary"
+      "rarity": "legendary",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000024",
       "name": "Pants of the Endless Hunt",
       "type": "clothing",
       "slot": "legs",
-      "rarity": "mythic"
+      "rarity": "mythic",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000025",
       "name": "Leather Boots",
       "type": "clothing",
       "slot": "boots",
-      "rarity": "common"
+      "rarity": "common",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000026",
       "name": "Swiftstride Boots",
       "type": "clothing",
       "slot": "boots",
-      "rarity": "uncommon"
+      "rarity": "uncommon",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000027",
       "name": "Stormwalkers",
       "type": "clothing",
       "slot": "boots",
-      "rarity": "rare"
+      "rarity": "rare",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000028",
       "name": "Titanstomp Greaves",
       "type": "clothing",
       "slot": "boots",
-      "rarity": "legendary"
+      "rarity": "legendary",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000029",
       "name": "Boots of Ascension",
       "type": "clothing",
       "slot": "boots",
-      "rarity": "mythic"
+      "rarity": "mythic",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000030",
       "name": "Woolen Mitts",
       "type": "clothing",
       "slot": "gloves",
-      "rarity": "common"
+      "rarity": "common",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000031",
       "name": "Runic Grips",
       "type": "clothing",
       "slot": "gloves",
-      "rarity": "uncommon"
+      "rarity": "uncommon",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000032",
       "name": "Bloodwoven Gauntlets",
       "type": "clothing",
       "slot": "gloves",
-      "rarity": "rare"
+      "rarity": "rare",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000033",
       "name": "Gauntlets of the Colossus",
       "type": "clothing",
       "slot": "gloves",
-      "rarity": "legendary"
+      "rarity": "legendary",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     },
     {
       "id": "IT00000034",
       "name": "Hands of the Archmage",
       "type": "clothing",
       "slot": "gloves",
-      "rarity": "mythic"
+      "rarity": "mythic",
+      "roll_config": {
+        "randomize_on_pickup": false,
+        "level_bind": "pickup",
+        "scale_with_level": true,
+        "seed_source": "drop_context"
+      }
     }
   ]
 }

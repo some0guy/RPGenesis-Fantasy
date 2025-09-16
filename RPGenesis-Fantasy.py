@@ -10,7 +10,8 @@ if TYPE_CHECKING:
 else:  # pragma: no cover - runtime fallback when pygame is unavailable
     Rect = Any  # type: ignore[assignment]
 from datetime import datetime
-from collections import deque
+from collections import deque, defaultdict
+import copy
 from dataclasses import dataclass, field
 
 from pathlib import Path
@@ -394,28 +395,31 @@ def slot_accepts(slot: str, it: dict) -> bool:
     m = item_major_type(it)
     sub = str(item_subtype(it)).lower()
     typ = str(item_type(it)).lower()
+    slot_hint = str(it.get('slot') or '').lower()
+    equip_hints = [str(s).lower() for s in (it.get('equip_slots') or [])]
+    candidates = {v for v in ([sub, slot_hint] + equip_hints) if v}
     if slot in ('weapon_main','weapon_off'):
         return typ == 'weapon'
     if slot == 'head':
-        return m in ('armour','armor','clothing') and sub in ('head','helm','helmet','hat')
+        return m in ('armour','armor','clothing') and bool(candidates & {'head','helm','helmet','hat'})
     if slot == 'chest':
-        return m in ('armour','armor','clothing') and sub in ('chest','torso','body','armor','armour','breastplate','chestplate')
+        return m in ('armour','armor','clothing') and bool(candidates & {'chest','torso','body','armor','armour','breastplate','chestplate'})
     if slot == 'legs':
-        return m in ('armour','armor','clothing') and sub in ('legs','pants','trousers')
+        return m in ('armour','armor','clothing') and bool(candidates & {'legs','pants','trousers'})
     if slot == 'boots':
-        return m in ('armour','armor','clothing') and sub in ('boots','shoes','feet','foot','greaves')
+        return m in ('armour','armor','clothing') and bool(candidates & {'boots','shoes','feet','foot','greaves'})
     if slot == 'gloves':
-        return m in ('armour','armor','clothing') and sub in ('hands','hand','gloves','gauntlets')
+        return m in ('armour','armor','clothing') and bool(candidates & {'hands','hand','gloves','gauntlets'})
     if slot == 'ring':
-        return m in ('accessory','accessories','trinket','trinkets') and sub in ('ring',)
+        return m in ('accessory','accessories','trinket','trinkets') and bool(candidates & {'ring'})
     if slot == 'bracelet':
-        return m in ('accessory','accessories','trinket','trinkets') and sub in ('bracelet','bracer','bracers','wrist')
+        return m in ('accessory','accessories','trinket','trinkets') and bool(candidates & {'bracelet','bracer','bracers','wrist'})
     if slot == 'charm':
-        return m in ('accessory','accessories','trinket','trinkets') and sub in ('charm','token','trinket')
+        return m in ('accessory','accessories','trinket','trinkets') and bool(candidates & {'charm','token','trinket'})
     if slot == 'neck':
-        return m in ('accessory','accessories','trinket','trinkets') and sub in ('neck','amulet','necklace','torc')
+        return m in ('accessory','accessories','trinket','trinkets') and bool(candidates & {'neck','amulet','necklace','torc'})
     if slot == 'back':
-        return (m in ('armour','armor','clothing','accessory','accessories') and sub in ('back','cloak','cape','backpack'))
+        return (m in ('armour','armor','clothing','accessory','accessories') and bool(candidates & {'back','cloak','cape','backpack'}))
     return False
 
 def _weapon_stats(it: Dict) -> Tuple[int,int,float,List[str]]:
@@ -555,6 +559,7 @@ def _jitter(val: int, pct: float, rng: random.Random) -> int:
 
 
 _LOOT_CACHE: Optional[Dict[str, Any]] = None
+_MECH_LOOT_CACHE: Optional[Dict[str, Any]] = None
 
 
 def _load_loot_config() -> Dict[str, Any]:
@@ -720,6 +725,25 @@ def _loot_apply_affix_mods(affix: Dict[str, Any], level: int, out: Dict[str, Any
             _loot_set_in(out, path, mod['set'])
         else:
             _loot_add_in(out, path, add_val)
+
+
+def _load_mechanics_loot() -> Dict[str, Any]:
+    global _MECH_LOOT_CACHE
+    if _MECH_LOOT_CACHE is not None:
+        return _MECH_LOOT_CACHE
+    data = {'tables': {}, 'aliases': {}}
+    try:
+        path = DATA_DIR / 'mechanics' / 'loot_tables.json'
+        if path.exists():
+            data = load_json(str(path), {'tables': {}, 'aliases': {}})
+    except Exception:
+        data = {'tables': {}, 'aliases': {}}
+    if not isinstance(data, dict):
+        data = {'tables': {}, 'aliases': {}}
+    data.setdefault('tables', {})
+    data.setdefault('aliases', {})
+    _MECH_LOOT_CACHE = data
+    return data
 
 # --------- Template helpers -------------------------------------------------
 def _sample_range(spec: Any, rng: random.Random) -> Optional[int]:
@@ -1200,7 +1224,7 @@ def draw_text(surface, text, pos, color=(230,230,230), font=None, max_w=None):
             prefix = ''
             if text.startswith("\u0007 "):
                 prefix, body = text[:2], text[2:]
-            elif text.startswith("• "):
+            elif text.startswith("â€¢ "):
                 prefix, body = text[:2], text[2:]
             else:
                 body = text
@@ -1377,7 +1401,7 @@ class Button:
 
 PANEL_W_FIXED = 380  # Fixed width for left/right sidebars
 
-# Angle of diamond side relative to horizontal (deg). 26.565 ≈ classic 2:1.
+# Angle of diamond side relative to horizontal (deg). 26.565 â‰ˆ classic 2:1.
 ISO_ANGLE_DEG = 35
 ISO_ROT_DEG = -25.0
 
@@ -1858,7 +1882,7 @@ def draw_panel(surf, game):
     draw_text(surf, f"Inventory: {len(game.player.inventory)}", (x0+16, y)); y += 24
     draw_text(surf, "Recent:", (x0+16, y)); y += 16
     for line in game.log:
-        block_h = draw_text(surf, f"• {line}", (x0+20, y), max_w=panel_w-36)
+        block_h = draw_text(surf, f"â€¢ {line}", (x0+20, y), max_w=panel_w-36)
         # Add slight spacing between wrapped entries
         y += int(block_h) + 4
 
@@ -2126,7 +2150,7 @@ def draw_combat_overlay(surf, game):
                     # Trim overly long names
                     max_chars = max(6, int(chip_w/9))
                     if len(nm) > max_chars:
-                        nm = nm[:max_chars-1] + '…'
+                        nm = nm[:max_chars-1] + 'â€¦'
                     r = pg.Rect(x, y, chip_w, chip_h)
                     col = _chip_color(t)
                     # Current actor emphasis
@@ -2513,7 +2537,7 @@ def draw_inventory_overlay(surf, game):
                 pg.draw.circle(surf, RARITY_COLORS.get('mythic', (245,210,80)), (cx, cy), mr)
                 # Tiny check
                 try:
-                    chk = pg.font.Font(None, max(14, icon // 5)).render('✓', True, (18,18,22))
+                    chk = pg.font.Font(None, max(14, icon // 5)).render('âœ“', True, (18,18,22))
                     surf.blit(chk, (cx - chk.get_width()//2, cy - chk.get_height()//2 - 1))
                 except Exception:
                     # Fallback: draw a simple tick with lines
@@ -2539,18 +2563,18 @@ def draw_inventory_overlay(surf, game):
                 else:
                     # Single long word: truncate with ellipsis
                     t = w
-                    while len(t) > 1 and lab_font.size(t + '…')[0] > max_w:
+                    while len(t) > 1 and lab_font.size(t + 'â€¦')[0] > max_w:
                         t = t[:-1]
-                    lines.append(t + '…')
+                    lines.append(t + 'â€¦')
                     cur = ""
                     break
                 cur = w
                 if len(lines) >= lab_lines - 1:
                     # finalize last line with ellipsis
                     t = cur
-                    while len(t) > 1 and lab_font.size(t + '…')[0] > max_w:
+                    while len(t) > 1 and lab_font.size(t + 'â€¦')[0] > max_w:
                         t = t[:-1]
-                    lines.append((t + '…') if t else '')
+                    lines.append((t + 'â€¦') if t else '')
                     cur = ""
                     break
         if cur and len(lines) < lab_lines:
@@ -2936,7 +2960,7 @@ def draw_battlefield_overlay(surf, game):
     dim.fill((10, 10, 14, 160))
     surf.blit(dim, (view_rect.x, view_rect.y))
 
-    # Battlefield rect inside view — widen nearly to sidebars
+    # Battlefield rect inside view â€” widen nearly to sidebars
     margin = 10
     bf = pg.Rect(view_rect.x + margin, view_rect.y + margin, view_rect.w - 2*margin, view_rect.h - 2*margin)
     # Sky gradient
@@ -3055,7 +3079,7 @@ def draw_equip_overlay(surf, game):
     def _equip_target():
         return game.player if game.equip_target_idx == 0 else (game.party[game.equip_target_idx-1])
     target = _equip_target()
-    title = f"Equipment — {getattr(target, 'name', 'Unknown')}"
+    title = f"Equipment â€” {getattr(target, 'name', 'Unknown')}"
     surf.blit(title_font.render(title, True, (235,235,245)), (modal.x + 16, modal.y + 12))
     def _prev(): setattr(game, 'equip_target_idx', (game.equip_target_idx - 1) % total_targets)
     def _next(): setattr(game, 'equip_target_idx', (game.equip_target_idx + 1) % total_targets)
@@ -3469,7 +3493,7 @@ def draw_database_overlay(surf, game):
     if not hasattr(game, 'db_sel'): game.db_sel = None
     # Sorting state for database view
     if not hasattr(game, 'db_sort_key'): game.db_sort_key = 'Name'
-    if not hasattr(game, 'db_sort_desc'): game.db_sort_desc = False  # False=A–Z, True=Z–A
+    if not hasattr(game, 'db_sort_desc'): game.db_sort_desc = False  # False=Aâ€“Z, True=Zâ€“A
     if not hasattr(game, 'db_sort_open'): game.db_sort_open = False
     if not hasattr(game, 'db_cache'):
         # Build cache of datasets
@@ -3853,7 +3877,7 @@ def draw_database_overlay(surf, game):
     is_open = bool(getattr(game, 'db_filters_open', False))
     pg.draw.rect(surf, (36,38,48), dd_rect, border_radius=8)
     pg.draw.rect(surf, (96,102,124), dd_rect, 2, border_radius=8)
-    dd_label = ('Fields ▾' if not is_open else 'Fields ▴')
+    dd_label = ('Fields â–¾' if not is_open else 'Fields â–´')
     ds = q_font.render(dd_label, True, (230,230,240))
     surf.blit(ds, (dd_rect.x + (dd_rect.w - ds.get_width())//2, dd_rect.y + (dd_rect.h - ds.get_height())//2))
     def _toggle_fields():
@@ -3887,7 +3911,7 @@ def draw_database_overlay(surf, game):
             game.db_filters_open = False
     buttons.append(Button(sort_rect, "", _toggle_sort_dd, draw_bg=False))
 
-    # Direction toggle (A–Z / Z–A)
+    # Direction toggle (Aâ€“Z / Zâ€“A)
     ord_w = 70
     ord_rect = pg.Rect(sort_rect.right + 10, inp_rect.y, ord_w, sort_h)
     ord_desc = bool(getattr(game,'db_sort_desc', False))
@@ -4217,7 +4241,7 @@ def draw_database_overlay(surf, game):
                         if isinstance(v, dict):
                             line(f"- {k}:")
                             for k2,v2 in v.items():
-                                line(f"   • {k2}: {v2}")
+                                line(f"   â€¢ {k2}: {v2}")
                         else:
                             line(f"- {k}: {v}")
             elif cat == 'Classes':
@@ -4240,6 +4264,17 @@ class Game:
         except Exception:
             self.world_seed = int(random.randint(0, 2**31-1))
         self.items   = gather_items()
+        self.item_catalog: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+        self.items_by_rarity: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+        for base in (self.items or []):
+            if not isinstance(base, dict):
+                continue
+            clone = copy.deepcopy(base)
+            item_id = str(clone.get('id') or '').strip()
+            if item_id:
+                self.item_catalog[item_id].append(clone)
+            rarity = str(clone.get('rarity') or 'common').lower()
+            self.items_by_rarity[rarity].append(clone)
         self.npcs    = gather_npcs()
         self.traits  = load_traits()
         self.enchants= load_enchants()
@@ -4651,7 +4686,12 @@ class Game:
         m = item_major_type(it)
         if m in ('armour','armor','clothing','accessory','accessories'):
             slots = it.get('equip_slots') or []
-            raw = str(slots[0]).lower() if slots else str(item_subtype(it)).lower() or 'body'
+            if slots:
+                raw = str(slots[0]).lower()
+            else:
+                raw = str(it.get('slot') or item_subtype(it) or '').lower()
+            if raw in ('', '-', 'none', 'null'):
+                raw = 'body'
             slot = normalize_slot(raw)
             if slot in ('weapon','weapon_main','weapon_off'):
                 # Redirect weapons to equip_weapon/focus
@@ -4681,6 +4721,8 @@ class Game:
         if not slot_accepts(slot, it) and slot not in ('weapon_main','weapon_off'):
             self.say(f"{item_name(it)} cannot be equipped to {SLOT_LABELS.get(slot, slot)}.")
             return
+        if not hasattr(target, 'equipped_gear') or not isinstance(getattr(target, 'equipped_gear'), dict):
+            target.equipped_gear = {}
         # Replace mapping on the target
         target.equipped_gear[slot] = it
         # Also sync legacy fields for combat
@@ -5056,6 +5098,210 @@ class Game:
         except Exception:
             pass
         return None
+
+    def _clone_item_by_id(self, item_id: str, hint: Optional[str] = None) -> Optional[Dict]:
+        if not item_id:
+            return None
+        entries = []
+        catalog = getattr(self, 'item_catalog', {}) or {}
+        records = catalog.get(str(item_id))
+        if records:
+            entries.extend(records)
+        if not entries and getattr(self, 'items', None):
+            for base in self.items:
+                if isinstance(base, dict) and str(base.get('id') or '').strip() == str(item_id):
+                    entries.append(base)
+        if not entries:
+            return None
+        if hint:
+            hint_l = str(hint).lower()
+            def _score(entry: Dict[str, Any]) -> int:
+                score = 0
+                major = item_major_type(entry).lower()
+                subtype = str(item_subtype(entry)).lower()
+                slot = str(entry.get('slot') or '').lower()
+                eq = [str(s).lower() for s in entry.get('equip_slots') or []]
+                category = str(entry.get('category') or '').lower()
+                if hint_l == major:
+                    score += 4
+                if hint_l == category:
+                    score += 3
+                if hint_l == subtype:
+                    score += 3
+                if hint_l == slot:
+                    score += 2
+                if hint_l in eq:
+                    score += 2
+                return score
+            entries.sort(key=_score, reverse=True)
+            best = entries[0]
+            if _score(best) <= 0 and len(entries) > 1:
+                return copy.deepcopy(entries[0])
+            return copy.deepcopy(entries[0])
+        return copy.deepcopy(entries[0])
+
+    def _random_base_item(self, rng: random.Random, rarity: Optional[str] = None, category: Optional[str] = None) -> Optional[Dict]:
+        rarity_key = str(rarity or '').lower().strip() or None
+        category_key = str(category or '').lower().strip() or None
+        pool: List[Dict] = []
+        for base in getattr(self, 'items', []) or []:
+            if not isinstance(base, dict):
+                continue
+            if rarity_key and str(base.get('rarity') or '').lower() != rarity_key:
+                continue
+            if category_key:
+                major = item_major_type(base).lower()
+                btype = str(base.get('type') or '').lower()
+                if category_key not in (major, btype):
+                    continue
+            pool.append(base)
+        if rarity_key and not pool:
+            pool = [base for base in (getattr(self, 'items', []) or [])
+                    if isinstance(base, dict) and str(base.get('rarity') or '').lower() == rarity_key]
+        if not pool:
+            return None
+        return copy.deepcopy(rng.choice(pool))
+
+    def _roll_weapon_from_table(self, table_name: str, ctx_seed: str, rng: random.Random) -> Optional[Dict]:
+        loot_cfg = _load_loot_config()
+        table = (loot_cfg.get('drop_tables') or {}).get(table_name)
+        if not table:
+            return None
+        weapons = table.get('weapons') or {}
+        if not weapons:
+            return None
+        wtype = _weighted_choice([(k, v) for k, v in weapons.items()], rng)
+        base_cfg = (loot_cfg.get('weapon_bases') or {}).get(wtype)
+        if base_cfg:
+            base = copy.deepcopy(base_cfg)
+        else:
+            base = self._random_base_item(rng, category='weapon') or {'category': 'weapon', 'type': wtype}
+        base.setdefault('category', 'weapon')
+        base.setdefault('type', wtype)
+        base.setdefault('tags', base.get('tags', []))
+        base['loot_table'] = table_name
+        base.setdefault('name', wtype.replace('_', ' ').title())
+        return self._roll_weapon_item(base, f"{ctx_seed}|table:{table_name}")
+
+    def _generate_alias_item(self, alias_entry: Dict[str, Any], ctx_seed: str, rng: random.Random) -> Optional[Dict]:
+        if not isinstance(alias_entry, dict):
+            return None
+        table_name = str(alias_entry.get('table') or '').strip()
+        if table_name:
+            rolled = self._roll_weapon_from_table(table_name, ctx_seed, rng)
+            if rolled:
+                return rolled
+        rarity = alias_entry.get('rarity')
+        category = alias_entry.get('category') or alias_entry.get('type')
+        base = self._random_base_item(rng, rarity=rarity, category=category)
+        if base is None and alias_entry.get('id'):
+            hint = alias_entry.get('category') or alias_entry.get('type')
+            base = self._clone_item_by_id(alias_entry.get('id'), hint)
+        if base is None:
+            return None
+        for k, v in alias_entry.items():
+            if k in ('rarity', 'category', 'type', 'table', 'id'):
+                continue
+            base[k] = copy.deepcopy(v)
+        return base
+
+    def _roll_from_mech_table(self, table_name: str, ctx_seed: str, rng: random.Random) -> Optional[Dict]:
+        data = _load_mechanics_loot()
+        entries = (data.get('tables') or {}).get(table_name)
+        if not entries:
+            return None
+        picks: List[Any] = []
+        weights: List[int] = []
+        for entry in entries:
+            if not isinstance(entry, dict):
+                continue
+            pick = entry.get('pick')
+            if pick is None:
+                continue
+            picks.append(pick)
+            weights.append(int(entry.get('weight', 1) or 1))
+        if not picks:
+            return None
+        choice = _weighted_choice(list(zip(picks, weights)), rng)
+        return self._resolve_loot_reference(choice, f"{ctx_seed}|pick:{table_name}")
+
+    def _resolve_loot_reference(self, ref: Any, ctx_seed: str) -> Optional[Dict]:
+        rng = random.Random(_stable_int_hash(f"{ctx_seed}|base"))
+        if isinstance(ref, dict):
+            if ref.get('_rolled'):
+                return copy.deepcopy(ref)
+            table_name = str(ref.get('table') or '').strip()
+            if table_name:
+                rolled = self._roll_from_mech_table(table_name, ctx_seed, rng)
+                if rolled:
+                    return rolled
+            alias_name = str(ref.get('alias') or '').strip()
+            if alias_name:
+                alias_entry = (_load_mechanics_loot().get('aliases') or {}).get(alias_name)
+                base = self._generate_alias_item(alias_entry or {}, ctx_seed, rng)
+                if base:
+                    for k, v in ref.items():
+                        if k not in ('alias', 'table'):
+                            base[k] = copy.deepcopy(v)
+                    return base
+            base = None
+            ref_id = ref.get('id')
+            if ref_id:
+                hint = ref.get('subcategory') or ref.get('category') or ref.get('type') or ref.get('slot')
+                base = self._clone_item_by_id(ref_id, hint)
+            if base is None:
+                base = copy.deepcopy(ref)
+            else:
+                for k, v in ref.items():
+                    if k == 'id':
+                        continue
+                    base[k] = copy.deepcopy(v)
+            return base
+        if isinstance(ref, str):
+            catalog = getattr(self, 'item_catalog', {}) or {}
+            if ref in catalog:
+                entries = catalog[ref]
+                if isinstance(entries, list) and entries:
+                    return copy.deepcopy(entries[0])
+                if isinstance(entries, dict):
+                    return copy.deepcopy(entries)
+            loot_cfg = _load_loot_config()
+            if ref in (loot_cfg.get('drop_tables') or {}):
+                return self._roll_weapon_from_table(ref, ctx_seed, rng)
+            mech_loot = _load_mechanics_loot()
+            alias_entry = (mech_loot.get('aliases') or {}).get(ref)
+            if alias_entry:
+                return self._generate_alias_item(alias_entry, ctx_seed, rng)
+            if ref in (mech_loot.get('tables') or {}):
+                return self._roll_from_mech_table(ref, ctx_seed, rng)
+            return None
+        return None
+
+    def _finalize_loot_item(self, item: Optional[Dict], ctx_seed: str) -> Optional[Dict]:
+        if not isinstance(item, dict):
+            return None
+        if item.get('_rolled'):
+            return copy.deepcopy(item)
+        try:
+            major = str(item_major_type(item)).lower()
+        except Exception:
+            major = ''
+        if major == 'weapon':
+            return self._roll_weapon_item(copy.deepcopy(item), ctx_seed)
+        if major in ('armour', 'armor', 'clothing', 'accessory', 'accessories'):
+            return self._roll_gear_item(copy.deepcopy(item), ctx_seed)
+        return copy.deepcopy(item)
+
+    def _prepare_loot_item(self, ref: Any, tile, inv_index: int) -> Optional[Dict]:
+        if isinstance(ref, dict):
+            ref_sig = str(ref.get('id') or ref.get('name') or ref.get('alias') or ref.get('table') or 'dict')
+        else:
+            ref_sig = str(ref)
+        ctx_seed = f"{getattr(self,'world_seed',0)}:{getattr(self,'current_map_id','')}:{int(getattr(tile,'x',0))},{int(getattr(tile,'y',0))}:{inv_index}:{ref_sig}"
+        base = self._resolve_loot_reference(ref, ctx_seed)
+        if base is None:
+            return None
+        return self._finalize_loot_item(base, ctx_seed)
 
     def _enemy_index_by_ref(self, enemy_ref) -> int:
         try:
@@ -5961,18 +6207,14 @@ class Game:
             t.encounter.item_searched = True
             self.say("You search thoroughly, but find nothing."); return
         # Loot one item per search
-        item = items.pop(0)
-        # Randomize equipables at pickup (deterministic by context)
-        try:
-            major = str(item_type(item)).lower()
-            if not item.get('_rolled'):
-                ctx = f"{getattr(self,'world_seed',0)}:{getattr(self,'current_map_id','')}:{int(t.x)},{int(t.y)}:{str(item.get('id') or item.get('name') or '?')}:{len(self.player.inventory)}"
-                if major == 'weapon':
-                    item = self._roll_weapon_item(item, ctx)
-                elif major in ('armour','armor','clothing','accessory','accessories'):
-                    item = self._roll_gear_item(item, ctx)
-        except Exception:
-            pass
+        raw_item = items.pop(0)
+        item = self._prepare_loot_item(raw_item, t, len(self.player.inventory))
+        if item is None:
+            self.say("The loot crumbles to dust.")
+            t.encounter.items = items
+            if not t.encounter.items:
+                t.encounter.item_searched = True
+            return
         t.encounter.items = items
         self.player.inventory.append(item)
         # Tag quests for orange recent text
@@ -6978,7 +7220,7 @@ def start_menu():
 
 # ======================== CLI entry ========================
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="RPGenesis-Fantasy – validate then launch game UI")
+    ap = argparse.ArgumentParser(description="RPGenesis-Fantasy â€“ validate then launch game UI")
     ap.add_argument("--root", default=".", help="Project root")
     ap.add_argument("--validate-only", action="store_true", help="Run validation only, do not start UI")
     ap.add_argument("--strict", action="store_true", help="Treat warnings as fatal")
