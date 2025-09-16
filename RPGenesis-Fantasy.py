@@ -1017,6 +1017,9 @@ class Ally:
     equipped_focus: Optional[Dict] = None
     equipped_gear: Dict[str, Dict] = field(default_factory=dict)
     portrait: Optional[str] = None
+    home_map: Optional[str] = None
+    home_pos: Optional[Tuple[int, int]] = None
+    home_payload: Optional[Dict[str, Any]] = None
 
 def pick_enemy(npcs: List[Dict]) -> Optional[Dict]:
     hostile = [n for n in npcs if n.get("hostile")]
@@ -1224,7 +1227,7 @@ def draw_text(surface, text, pos, color=(230,230,230), font=None, max_w=None):
             prefix = ''
             if text.startswith("\u0007 "):
                 prefix, body = text[:2], text[2:]
-            elif text.startswith("â€¢ "):
+            elif text.startswith("* "):
                 prefix, body = text[:2], text[2:]
             else:
                 body = text
@@ -1401,7 +1404,7 @@ class Button:
 
 PANEL_W_FIXED = 380  # Fixed width for left/right sidebars
 
-# Angle of diamond side relative to horizontal (deg). 26.565 â‰ˆ classic 2:1.
+# Angle of diamond side relative to horizontal (deg). 26.565 ~ classic 2:1.
 ISO_ANGLE_DEG = 35
 ISO_ROT_DEG = -25.0
 
@@ -1882,7 +1885,7 @@ def draw_panel(surf, game):
     draw_text(surf, f"Inventory: {len(game.player.inventory)}", (x0+16, y)); y += 24
     draw_text(surf, "Recent:", (x0+16, y)); y += 16
     for line in game.log:
-        block_h = draw_text(surf, f"â€¢ {line}", (x0+20, y), max_w=panel_w-36)
+        block_h = draw_text(surf, f"- {line}", (x0+20, y), max_w=panel_w-36)
         # Add slight spacing between wrapped entries
         y += int(block_h) + 4
 
@@ -2150,7 +2153,7 @@ def draw_combat_overlay(surf, game):
                     # Trim overly long names
                     max_chars = max(6, int(chip_w/9))
                     if len(nm) > max_chars:
-                        nm = nm[:max_chars-1] + 'â€¦'
+                        nm = nm[:max_chars-1] + '...'
                     r = pg.Rect(x, y, chip_w, chip_h)
                     col = _chip_color(t)
                     # Current actor emphasis
@@ -2537,7 +2540,7 @@ def draw_inventory_overlay(surf, game):
                 pg.draw.circle(surf, RARITY_COLORS.get('mythic', (245,210,80)), (cx, cy), mr)
                 # Tiny check
                 try:
-                    chk = pg.font.Font(None, max(14, icon // 5)).render('âœ“', True, (18,18,22))
+                    chk = pg.font.Font(None, max(14, icon // 5)).render('[OK]', True, (18,18,22))
                     surf.blit(chk, (cx - chk.get_width()//2, cy - chk.get_height()//2 - 1))
                 except Exception:
                     # Fallback: draw a simple tick with lines
@@ -2563,18 +2566,18 @@ def draw_inventory_overlay(surf, game):
                 else:
                     # Single long word: truncate with ellipsis
                     t = w
-                    while len(t) > 1 and lab_font.size(t + 'â€¦')[0] > max_w:
+                    while len(t) > 1 and lab_font.size(t + '...')[0] > max_w:
                         t = t[:-1]
-                    lines.append(t + 'â€¦')
+                    lines.append(t + '...')
                     cur = ""
                     break
                 cur = w
                 if len(lines) >= lab_lines - 1:
                     # finalize last line with ellipsis
                     t = cur
-                    while len(t) > 1 and lab_font.size(t + 'â€¦')[0] > max_w:
+                    while len(t) > 1 and lab_font.size(t + '...')[0] > max_w:
                         t = t[:-1]
-                    lines.append((t + 'â€¦') if t else '')
+                    lines.append((t + '...') if t else '')
                     cur = ""
                     break
         if cur and len(lines) < lab_lines:
@@ -2960,7 +2963,7 @@ def draw_battlefield_overlay(surf, game):
     dim.fill((10, 10, 14, 160))
     surf.blit(dim, (view_rect.x, view_rect.y))
 
-    # Battlefield rect inside view â€” widen nearly to sidebars
+    # Battlefield rect inside view - widen nearly to sidebars
     margin = 10
     bf = pg.Rect(view_rect.x + margin, view_rect.y + margin, view_rect.w - 2*margin, view_rect.h - 2*margin)
     # Sky gradient
@@ -3079,7 +3082,7 @@ def draw_equip_overlay(surf, game):
     def _equip_target():
         return game.player if game.equip_target_idx == 0 else (game.party[game.equip_target_idx-1])
     target = _equip_target()
-    title = f"Equipment â€” {getattr(target, 'name', 'Unknown')}"
+    title = f"Equipment - {getattr(target, 'name', 'Unknown')}"
     surf.blit(title_font.render(title, True, (235,235,245)), (modal.x + 16, modal.y + 12))
     def _prev(): setattr(game, 'equip_target_idx', (game.equip_target_idx - 1) % total_targets)
     def _next(): setattr(game, 'equip_target_idx', (game.equip_target_idx + 1) % total_targets)
@@ -3251,6 +3254,7 @@ def draw_equip_overlay(surf, game):
     header = f"Select for: {SLOT_LABELS.get(sel_slot, '-')}" if sel_slot else "Select a slot"
     draw_text(surf, header, (list_area.x + 12, list_area.y - 4), font=fnt)
 
+    pager_y = list_area.bottom - 34
     if sel_slot:
         # Filter items
         pool = [it for it in game.player.inventory if (slot_accepts(sel_slot, it) or (normalize_slot(sel_slot) in ('weapon_main','weapon_off') and item_type(it).lower() == 'weapon'))]
@@ -3285,12 +3289,14 @@ def draw_equip_overlay(surf, game):
             buttons.append(Button(r, "", make_equip(), draw_bg=False))
 
         # Pager and Unequip
-        pager_y = list_area.bottom - 34
         buttons.append(Button((list_area.x + 8, pager_y, 110, 26), "Prev Page", lambda: setattr(game,'equip_page', max(0, game.equip_page-1))))
         buttons.append(Button((list_area.x + 8 + 120, pager_y, 110, 26), "Next Page", lambda: setattr(game,'equip_page', min(pages-1, game.equip_page+1))))
         # Unequip if there is an item in slot
         if getattr(target, 'equipped_gear', {}).get(sel_slot):
             buttons.append(Button((list_area.right - 130, pager_y, 110, 26), "Unequip", lambda slot=sel_slot: game.unequip_slot(slot)))
+
+    if getattr(game, 'equip_target_idx', 0) > 0 and isinstance(target, Ally):
+        buttons.append(Button((list_area.right - 250, pager_y, 110, 26), "Dismiss", lambda: game.dismiss_selected_ally()))
 
     return buttons
 
@@ -3493,7 +3499,7 @@ def draw_database_overlay(surf, game):
     if not hasattr(game, 'db_sel'): game.db_sel = None
     # Sorting state for database view
     if not hasattr(game, 'db_sort_key'): game.db_sort_key = 'Name'
-    if not hasattr(game, 'db_sort_desc'): game.db_sort_desc = False  # False=Aâ€“Z, True=Zâ€“A
+    if not hasattr(game, 'db_sort_desc'): game.db_sort_desc = False  # False=A-Z, True=Z-A
     if not hasattr(game, 'db_sort_open'): game.db_sort_open = False
     if not hasattr(game, 'db_cache'):
         # Build cache of datasets
@@ -3877,7 +3883,7 @@ def draw_database_overlay(surf, game):
     is_open = bool(getattr(game, 'db_filters_open', False))
     pg.draw.rect(surf, (36,38,48), dd_rect, border_radius=8)
     pg.draw.rect(surf, (96,102,124), dd_rect, 2, border_radius=8)
-    dd_label = ('Fields â–¾' if not is_open else 'Fields â–´')
+    dd_label = ('Fields v' if not is_open else 'Fields ^')
     ds = q_font.render(dd_label, True, (230,230,240))
     surf.blit(ds, (dd_rect.x + (dd_rect.w - ds.get_width())//2, dd_rect.y + (dd_rect.h - ds.get_height())//2))
     def _toggle_fields():
@@ -3911,7 +3917,7 @@ def draw_database_overlay(surf, game):
             game.db_filters_open = False
     buttons.append(Button(sort_rect, "", _toggle_sort_dd, draw_bg=False))
 
-    # Direction toggle (Aâ€“Z / Zâ€“A)
+    # Direction toggle (A-Z / Z-A)
     ord_w = 70
     ord_rect = pg.Rect(sort_rect.right + 10, inp_rect.y, ord_w, sort_h)
     ord_desc = bool(getattr(game,'db_sort_desc', False))
@@ -4241,7 +4247,7 @@ def draw_database_overlay(surf, game):
                         if isinstance(v, dict):
                             line(f"- {k}:")
                             for k2,v2 in v.items():
-                                line(f"   â€¢ {k2}: {v2}")
+                                line(f"   * {k2}: {v2}")
                         else:
                             line(f"- {k}: {v}")
             elif cat == 'Classes':
@@ -4302,6 +4308,7 @@ class Game:
         self.current_map_name = runtime.get('name', sel_map)
         # Track a stable ID separate from display name to match links reliably
         self.current_map_id = sel_map_id
+        self._restore_returning_allies_for_map(self.current_map_id)
         self.player  = Player()
         # Apply character creation config if provided
         if isinstance(char_config, dict):
@@ -4327,6 +4334,7 @@ class Game:
             pass
         # Party system
         self.party: List[Ally] = []  # allies that can join
+        self.returning_allies: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
         # Equipment target index for overlay: 0=player, 1..N=ally index+1
         self.equip_target_idx: int = 0
         # Position player: entry takes precedence, else pos, else (0,0)
@@ -4409,6 +4417,9 @@ class Game:
                 'equipped_focus': getattr(obj, 'equipped_focus', None),
                 'equipped_gear': dict(getattr(obj, 'equipped_gear', {}) or {}),
                 'portrait': getattr(obj, 'portrait', None),
+                'home_map': getattr(obj, 'home_map', None),
+                'home_pos': list(getattr(obj, 'home_pos', []) or []) if getattr(obj, 'home_pos', None) is not None else None,
+                'home_payload': copy.deepcopy(getattr(obj, 'home_payload', None)),
             }
         return {
             'schema': 'rpgen.save@1',
@@ -4445,6 +4456,16 @@ class Game:
             'party': [ _ser_char(a) for a in getattr(self, 'party', []) ],
             'playtime_s': int(getattr(self, 'playtime_ms', 0) // 1000),
             'world_seed': int(getattr(self, 'world_seed', 0)),
+            'returning_allies': {
+                str(map_id): [
+                    {
+                        'npc': copy.deepcopy(entry.get('npc')),
+                        'pos': list(entry.get('pos') or []),
+                    }
+                    for entry in entries if isinstance(entry, dict)
+                ]
+                for map_id, entries in (getattr(self, 'returning_allies', {}) or {}).items()
+            },
         }
 
     def save_to_slot(self, slot: int) -> bool:
@@ -4542,13 +4563,34 @@ class Game:
                         equipped_weapon=a.get('equipped_weapon'),
                         equipped_focus=a.get('equipped_focus'),
                         equipped_gear=dict(a.get('equipped_gear', {})),
-                        portrait=a.get('portrait')
+                        portrait=a.get('portrait'),
+                        home_map=a.get('home_map'),
+                        home_pos=tuple(a.get('home_pos')) if isinstance(a.get('home_pos'), (list, tuple)) else None,
+                        home_payload=copy.deepcopy(a.get('home_payload'))
                     )
                     self.party.append(ally)
                 except Exception:
                     pass
         except Exception:
             self.party = []
+
+        self.returning_allies = defaultdict(list)
+        for map_id, entries in (data.get('returning_allies') or {}).items():
+            if not isinstance(entries, list):
+                continue
+            bucket = self.returning_allies[str(map_id)]
+            for entry in entries:
+                if not isinstance(entry, dict):
+                    continue
+                npc_payload = entry.get('npc')
+                pos = entry.get('pos')
+                if npc_payload is None or pos is None:
+                    continue
+                try:
+                    pos_tuple = (int(pos[0]), int(pos[1]))
+                except Exception:
+                    continue
+                bucket.append({'npc': npc_payload, 'pos': pos_tuple})
 
         # Position
         pos = data.get('pos') or [0,0]
@@ -4563,6 +4605,7 @@ class Game:
             self._apply_class_and_level_to_player(initial=False, preserve_hp=True)
         except Exception:
             pass
+        self._restore_returning_allies_for_map(self.current_map_id)
         self.mode = 'explore'
         try:
             self.playtime_ms = int((data.get('playtime_s') or 0) * 1000)
@@ -4807,6 +4850,7 @@ class Game:
         self.current_map_name = runtime.get('name', dest_map)
         # Update stable map ID to the destination base name
         self.current_map_id = dest_map
+        self._restore_returning_allies_for_map(self.current_map_id)
         self.player.x = max(0, min(self.W-1, int(px)))
         self.player.y = max(0, min(self.H-1, int(py)))
         try:
@@ -4944,6 +4988,11 @@ class Game:
                 self.say(f"{npc.get('name','They')} is already in your party.")
                 return
             hp = int(npc.get('hp', 12))
+            tile = None
+            try:
+                tile = self.tile()
+            except Exception:
+                tile = None
             ally = Ally(
                 id=aid,
                 name=str(npc.get('name') or 'Ally'),
@@ -4963,11 +5012,19 @@ class Game:
                 fth=int(npc.get('fth', 5) or 5),
                 portrait=(npc.get('portrait') or npc.get('image') or npc.get('img') or npc.get('sprite') or None)
             )
+            ally.home_map = str(getattr(self, 'current_map_id', None) or '') or None
+            try:
+                ally.home_pos = (int(getattr(tile, 'x', 0)), int(getattr(tile, 'y', 0))) if tile else None
+            except Exception:
+                ally.home_pos = None
+            ally.home_payload = copy.deepcopy(npc)
             self.party.append(ally)
             self.say(f"{ally.name} joins your party!", 'ally')
             # Remove NPC from the tile
             try:
-                t = self.tile(); t.encounter.npc = None; t.encounter.must_resolve = False
+                self._remove_npc_from_tile(tile, npc)
+                if tile and tile.encounter:
+                    tile.encounter.must_resolve = False
             except Exception:
                 pass
             self.current_npc = None
@@ -5098,6 +5155,84 @@ class Game:
         except Exception:
             pass
         return None
+
+    @staticmethod
+    def _npc_matches(a: Optional[Dict[str, Any]], b: Optional[Dict[str, Any]]) -> bool:
+        if a is b:
+            return True
+        try:
+            ida = str((a or {}).get('id') or '').strip()
+            idb = str((b or {}).get('id') or '').strip()
+            if ida and idb:
+                return ida == idb
+        except Exception:
+            pass
+        return False
+
+    def _remove_npc_from_tile(self, tile: Optional[Tile], npc: Optional[Dict[str, Any]]) -> None:
+        if tile is None or npc is None:
+            return
+        enc = getattr(tile, 'encounter', None)
+        if not enc:
+            return
+        try:
+            enc.npcs = [e for e in (enc.npcs or []) if not self._npc_matches(e, npc)]
+        except Exception:
+            enc.npcs = list(enc.npcs or [])
+        if enc.npc and self._npc_matches(enc.npc, npc):
+            enc.npc = enc.npcs[0] if enc.npcs else None
+        if enc.enemy and self._npc_matches(enc.enemy, npc):
+            enc.enemy = None
+        if not (enc.npcs or enc.items or enc.enemy or enc.event):
+            tile.encounter = None
+
+    def _place_npc_on_current_map(self, npc_payload: Optional[Dict[str, Any]], position: Optional[Tuple[int, int]]) -> bool:
+        if npc_payload is None or position is None:
+            return False
+        try:
+            x, y = int(position[0]), int(position[1])
+        except Exception:
+            return False
+        if not (0 <= y < getattr(self, 'H', 0) and 0 <= x < getattr(self, 'W', 0)):
+            return False
+        try:
+            tile = self.grid[y][x]
+        except Exception:
+            return False
+        if tile.encounter is None:
+            tile.encounter = Encounter()
+        enc = tile.encounter
+        if enc.npcs is None:
+            enc.npcs = []
+        else:
+            enc.npcs = [e for e in enc.npcs if not self._npc_matches(e, npc_payload)]
+        enc.npcs.append(copy.deepcopy(npc_payload))
+        if not enc.npc:
+            enc.npc = enc.npcs[0]
+        return True
+
+    def _restore_returning_allies_for_map(self, map_id: Optional[str]) -> None:
+        if not map_id:
+            return
+        if not hasattr(self, 'returning_allies') or not isinstance(self.returning_allies, dict):
+            self.returning_allies = defaultdict(list)
+        key = str(map_id)
+        pending = list(self.returning_allies.get(key, []))
+        if not pending:
+            return
+        remaining: List[Dict[str, Any]] = []
+        for entry in pending:
+            npc_payload = entry.get('npc')
+            pos = entry.get('pos')
+            if npc_payload is None or pos is None:
+                continue
+            placed = self._place_npc_on_current_map(copy.deepcopy(npc_payload), pos)
+            if not placed:
+                remaining.append(entry)
+        if remaining:
+            self.returning_allies[key] = remaining
+        else:
+            self.returning_allies.pop(key, None)
 
     def _clone_item_by_id(self, item_id: str, hint: Optional[str] = None) -> Optional[Dict]:
         if not item_id:
@@ -5302,6 +5437,57 @@ class Game:
         if base is None:
             return None
         return self._finalize_loot_item(base, ctx_seed)
+
+    def _dismiss_ally_object(self, ally: Ally) -> bool:
+        party = getattr(self, 'party', []) or []
+        if ally not in party:
+            self.say("That ally is not in your party.")
+            return False
+        try:
+            self.party.remove(ally)
+        except ValueError:
+            return False
+        home_map = getattr(ally, 'home_map', None)
+        home_pos = getattr(ally, 'home_pos', None)
+        home_payload = copy.deepcopy(getattr(ally, 'home_payload', None))
+        placed = False
+        if home_map and home_pos and home_payload:
+            key = str(home_map)
+            if key == str(getattr(self, 'current_map_id', None)):
+                placed = self._place_npc_on_current_map(copy.deepcopy(home_payload), home_pos)
+            if not placed:
+                entry = {'npc': copy.deepcopy(home_payload), 'pos': tuple(home_pos)}
+                if not hasattr(self, 'returning_allies') or not isinstance(self.returning_allies, dict):
+                    self.returning_allies = defaultdict(list)
+                bucket = [e for e in self.returning_allies[key]
+                          if not self._npc_matches(e.get('npc'), home_payload) or tuple(e.get('pos') or ()) != tuple(home_pos)]
+                bucket.append(entry)
+                self.returning_allies[key] = bucket
+        self.say(f"{getattr(ally,'name','An ally')} returns to their post.", 'ally')
+        return True
+
+    def dismiss_ally_by_index(self, idx: int) -> None:
+        try:
+            index = int(idx)
+        except Exception:
+            self.say("Invalid follower index.")
+            return
+        party = getattr(self, 'party', []) or []
+        if index < 0 or index >= len(party):
+            self.say("No follower at that slot.")
+            return
+        ally = party[index]
+        if self._dismiss_ally_object(ally):
+            if getattr(self, 'equip_target_idx', 0) > len(self.party):
+                self.equip_target_idx = max(0, len(self.party))
+            self.equip_sel_slot = None
+
+    def dismiss_selected_ally(self) -> None:
+        idx = int(getattr(self, 'equip_target_idx', 0) or 0)
+        if idx <= 0:
+            self.say("Select a follower first.")
+            return
+        self.dismiss_ally_by_index(idx - 1)
 
     def _enemy_index_by_ref(self, enemy_ref) -> int:
         try:
@@ -7161,7 +7347,7 @@ def start_menu():
 
 # ======================== CLI entry ========================
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="RPGenesis-Fantasy â€“ validate then launch game UI")
+    ap = argparse.ArgumentParser(description="RPGenesis-Fantasy - validate then launch game UI")
     ap.add_argument("--root", default=".", help="Project root")
     ap.add_argument("--validate-only", action="store_true", help="Run validation only, do not start UI")
     ap.add_argument("--strict", action="store_true", help="Treat warnings as fatal")
