@@ -5677,26 +5677,10 @@ class Game:
         lvl = int(getattr(self.player, 'level', 1))
         loot_cfg = _load_loot_config()
 
+        rarity = str(base.get('rarity') or 'common').lower()
         rarity_rules = loot_cfg.get('rarity') if loot_cfg.get('enabled') else {}
-        if rarity_rules:
-            table_key = str(base.get('loot_table') or base.get('drop_table') or '')
-            bias_map = {}
-            if table_key:
-                bias_map = (loot_cfg.get('drop_tables', {}).get(table_key, {}) or {}).get('rarity_bias', {}) or {}
-            weights = []
-            for k, entry in rarity_rules.items():
-                w = int(entry.get('weight', 0))
-                if bias_map and k in bias_map:
-                    w += int(bias_map[k])
-                weights.append((k, max(0, w)))
-            rarity = _weighted_choice(weights, rng)
-            rarity_entry = rarity_rules.get(rarity, {})
-            r_mult = float(rarity_entry.get('budget', RARITY_DMG_MULT.get(rarity, 1.0)))
-            aff_lo, aff_hi = rarity_entry.get('affixes', [0, 0]) if isinstance(rarity_entry, dict) else (0, 0)
-        else:
-            rarity = _weighted_choice(RARITY_WEIGHTS, rng)
-            r_mult = float(RARITY_DMG_MULT.get(rarity, 1.0))
-            aff_lo, aff_hi = (_affix_budget_for_rarity(rarity, rng),) * 2
+        rarity_entry = rarity_rules.get(rarity, {}) if isinstance(rarity_rules, dict) else {}
+        r_mult = float(rarity_entry.get('budget', RARITY_DMG_MULT.get(rarity, 1.0)))
         base_scale = 1.0 + 0.06 * max(0, lvl)
         style = _style_for_weapon(base)
         base_type = str(base.get('type') or item_subtype(base) or 'weapon')
@@ -5739,35 +5723,9 @@ class Game:
                 bonus[k] = int(bonus.get(k, 0)) + int(v)
         traits: List[str] = []
 
-        # Affix selection from loot config (fallback to built-ins)
+        # Affixes removed per request; only base stats + enchant effects apply
         prefixes: List[Dict[str, Any]] = []
         suffixes: List[Dict[str, Any]] = []
-        if loot_cfg.get('enabled') and (loot_cfg.get('affix_prefix') or loot_cfg.get('affix_suffix')):
-            n_aff = rng.randint(int(aff_lo), int(aff_hi)) if isinstance(aff_lo, (int, float)) else 0
-            n_pre = n_aff // 2 + (n_aff % 2)
-            n_suf = n_aff // 2
-            prefixes = _loot_roll_affixes(n_pre, loot_cfg.get('affix_prefix') or [], {'category': 'weapon', 'type': base_type, 'tags': base.get('tags', [])}, rng)
-            suffixes = _loot_roll_affixes(n_suf, loot_cfg.get('affix_suffix') or [], {'category': 'weapon', 'type': base_type, 'tags': base.get('tags', [])}, rng)
-            out_payload = {'damage_type': dict(dmg), 'bonus': dict(bonus), 'weapon_trait': 'none'}
-            for af in prefixes + suffixes:
-                _loot_apply_affix_mods(af, lvl, out_payload, rng)
-            # Weapon trait set by affix overrides base trait if provided
-            traits = list(traits)
-            dmg = {k: int(round(v)) for k, v in (out_payload.get('damage_type') or {}).items()}
-            bonus = {k: int(round(v)) for k, v in (out_payload.get('bonus') or {}).items()}
-            trait_override = out_payload.get('weapon_trait')
-            if isinstance(trait_override, str) and trait_override:
-                traits.append(trait_override)
-        else:
-            n_aff = _affix_budget_for_rarity(rarity, rng)
-            pre_pool = [a for a in PREFIX_POOL if style in (a.get('styles') or [style]) and (not a.get('min_rarity') or self._rarity_rank(rarity) >= self._rarity_rank(a.get('min_rarity')))]
-            suf_pool = [a for a in SUFFIX_POOL if style in (a.get('styles') or [style]) and (not a.get('types') or base_type in a.get('types'))]
-            n_pre = rng.randrange(0, n_aff+1)
-            n_suf = max(0, n_aff - n_pre)
-            rng.shuffle(pre_pool); rng.shuffle(suf_pool)
-            prefixes = pre_pool[:n_pre]
-            suffixes = suf_pool[:n_suf]
-            dmg, bonus, traits = _apply_affixes(dmg, bonus, traits, lvl, prefixes + suffixes, rng)
 
         # Optional enchants from mechanics/enchants.json
         enchants_src = list(getattr(self, 'enchants', []) or [])
@@ -5805,7 +5763,7 @@ class Game:
             if t in ('echo_strike','lifedrink','knockback'):
                 trait = t; break
 
-        name = _build_name(base_type, [p.get('name') for p in prefixes], [s.get('name') for s in suffixes])
+        name = str(base.get('name') or _build_name(base_type, [], []))
         desc_r = rarity.title()
         rolled = {
             'category': 'weapon',
@@ -5828,7 +5786,6 @@ class Game:
             'status_chance': 0.15 if statuses else 0.0,
             'status': statuses,
             'enchants': [ {'id': e.get('id'), 'name': e.get('name')} for e in sel_en ] if sel_en else [],
-            'affixes': [a.get('id') for a in (prefixes + suffixes) if isinstance(a, dict) and a.get('id')],
             # Debug/marker
             '_rolled': True,
             '_base_id': base.get('id'),
@@ -5848,9 +5805,12 @@ class Game:
         rng = random.Random(_stable_int_hash(seed_s))
 
         lvl = int(getattr(self.player, 'level', 1))
-        rarity = _weighted_choice(RARITY_WEIGHTS, rng)
+        loot_cfg = _load_loot_config()
+        rarity = str(base.get('rarity') or 'common').lower()
+        rarity_rules = loot_cfg.get('rarity') if loot_cfg.get('enabled') else {}
+        rarity_entry = rarity_rules.get(rarity, {}) if isinstance(rarity_rules, dict) else {}
         base_scale = 1.0 + 0.05 * max(0, lvl)
-        r_mult = float(RARITY_DMG_MULT.get(rarity, 1.0))
+        r_mult = float(rarity_entry.get('budget', RARITY_DMG_MULT.get(rarity, 1.0)))
 
         style = _style_for_weapon(base)
         base_type = str(item_subtype(base) or base.get('type') or base.get('slot') or 'gear')
@@ -5875,26 +5835,7 @@ class Game:
             for k, v in templated_bonus.items():
                 bonus[k] = int(bonus.get(k, 0)) + int(v)
 
-        # Affixes
-        n_aff = _affix_budget_for_rarity(rarity, rng)
-        pre_pool = list(GEAR_PREFIX_POOL)
-        suf_pool = list(GEAR_SUFFIX_POOL)
-        rng.shuffle(pre_pool); rng.shuffle(suf_pool)
-        n_pre = rng.randrange(0, n_aff+1); n_suf = max(0, n_aff - n_pre)
-        prefixes = pre_pool[:n_pre]
-        suffixes = suf_pool[:n_suf]
-
-        # Apply affixes to defense/bonus
-        def _apply_def(def_map: Dict[str,int], adds_def: Dict[str,Tuple[float,float]]):
-            for k, spec in (adds_def or {}).items():
-                base, per_lvl = spec
-                add = int(round(float(base) + float(per_lvl) * max(0, lvl)))
-                def_map[k] = int(def_map.get(k, 0)) + max(0, add)
-
-        for af in prefixes + suffixes:
-            _apply_def(defense, af.get('adds_def') or {})
-            for b, val in (af.get('bonus') or {}).items():
-                bonus[b] = int(bonus.get(b, 0)) + int(val)
+        # Affixes removed per request
 
         # Optional enchants for gear (armour/clothing/accessories)
         enchants_src = list(getattr(self, 'enchants', []) or [])
@@ -5918,7 +5859,7 @@ class Game:
         value = int(round(val_base * float(val_mult)))
         weight = _jitter(int(item_weight(base) or base.get('base_weight') or 400), 0.10, rng)
 
-        name = _build_name(base_name, [p['name'] for p in prefixes], [s['name'] for s in suffixes])
+        name = str(base.get('name') or base_name)
 
         rolled = dict(base)
         rolled.update({
