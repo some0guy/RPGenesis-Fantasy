@@ -28,7 +28,8 @@
       "Exhausted": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Titans are juggernauts of muscle and might, towering over battlefields with unstoppable momentum. Their raw physical power allows them to crush through lines, break siege engines, and shatter walls. Where they walk, the ground trembles; where they strike, armies falter.\n\nTheir role is domination through force, absorbing punishment and returning it tenfold. To fight a Titan is to fight inevitability — a living storm of flesh and iron that cannot be halted, only endured."
   },
   {
     "id": "CL00000002",
@@ -59,7 +60,8 @@
       "Slowed": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Marksmen live by distance, patience, and the perfect shot. They breathe with the wind, read the tremor of a bowstring, and loose at the exact heartbeat when armor parts or a helm lifts. Whether with longbow, crossbow, or handcannon, they turn open ground into a killing field and high ground into a throne.\n\nBeyond battle, a Marksman is a tracker and scout—measuring ranges by instinct, mapping routes with a glance, and spotting danger long before it finds the party. When others see a skirmish, the Marksman sees trajectories, timing, and outcomes—and chooses the one where their friends survive."
   },
   {
     "id": "CL00000003",
@@ -90,7 +92,8 @@
       "Suppressed": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Spellswords braid steel and sorcery into a single, fluid discipline. Runes flash along the edge as they cut, wards bloom with each parry, and a whispered cantrip turns a simple thrust into an arcane detonation. They are at their deadliest in motion—stepping through fire and finishing the fight with a blade still humming with power.\n\nTheir magic is practical rather than academic: shield when pressed, strike when opened, bind when retreating. A Spellsword moves with the certainty that the right spell augments the right cut—and that a clever blend of both beats brute force or pure theory every time."
   },
   {
     "id": "CL00000004",
@@ -121,7 +124,8 @@
       "Distracted": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Sentinels embody patience, resilience, and mastery of defense. They are immovable in battle, interposing themselves between allies and danger, their technical training allowing them to block, deflect, and endure what others cannot. Their role is not to overwhelm but to deny, ensuring that no blow reaches those under their protection.\n\nWhether standing guard at castle gates or holding the line in desperate skirmishes, Sentinels are trusted above all to never falter. Their allies take courage in their presence, knowing that behind a Sentinel’s wall of defense, survival is assured."
   },
   {
     "id": "CL00000005",
@@ -152,7 +156,8 @@
       "Deafened": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Wayfarers survive where maps give up. They walk game trails and forgotten roads, bargaining with hermits, outpacing storms, and reading omens in the lay of the land. Versatile to a fault, they fight with whatever the journey provides—staff, sling, knife, or a well-timed shove into a ravine.\n\nIn a party, the Wayfarer is glue and compass: they keep people fed, tempers cool, and boots moving in the right direction. When trouble comes, they don’t panic—they adapt, turning rough terrain into an ally and misfortune into a path forward."
   },
   {
     "id": "CL00000006",
@@ -183,7 +188,8 @@
       "Charmed": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Champions are the living embodiment of valor and charisma. With unmatched physical strength honed through brutal campaigns, they stride into battle as beacons of courage. Their booming voices rally comrades, their sheer presence shatters morale among foes, and every swing of their weapon carries the weight of conviction.\n\nOutside the battlefield, Champions inspire loyalty and admiration, drawing allies to their cause through sheer force of personality. To follow a Champion is to march with unshakable confidence, for they do not merely fight wars — they shape legends."
   },
   {
     "id": "CL00000007",
@@ -214,7 +220,8 @@
       "Exhausted": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Rogues turn absence into advantage: the absence of sound, light, certainty. Locks are invitations, traps are puzzles, and pockets are opportunities. They fight only when the fight is already won—by poison in the cup, a shadow behind the sentry, or a blade where no armor sits.\n\nYet a Rogue is more than a knife in the dark. They are a social chameleon, a master of escape routes, and the party’s quiet problem-solver. They don’t promise fairness—only results—and results are what keep everyone breathing."
   },
   {
     "id": "CL00000008",
@@ -245,7 +252,8 @@
       "Suppressed": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Engineers make battle obey the blueprint. They bolt together fieldworks, prime bombs, jury‑rig turrets, and turn scrap into solutions. Where others see ruin, Engineers see materials; where others see a siege, Engineers see a timing diagram and a pressure limit that is about to be exceeded.\n\nTheir genius is reliability under chaos. A hinge that never fails, a charge that detonates exactly once, a grapnel that lands when it must—these are the miracles of the Engineer. Give them a minute and a toolkit, and they’ll give you a path through the impossible."
   },
   {
     "id": "CL00000009",
@@ -276,7 +284,8 @@
       "Distracted": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Archivists wage war with memory. They catalog curses, cross‑reference monsters, and annotate margins with warnings that save lives years later. On the field they recite sigils and precedents, using the weight of recorded truth to counter sorcery, unmask relics, and bind what should have stayed buried.\n\nWhen others argue belief, the Archivist produces evidence. They are the party’s living index—pulling the right ritual at the right moment, naming a thing’s true nature, and ensuring that hard‑won knowledge is never lost to blood and fire again."
   },
   {
     "id": "CL00000010",
@@ -307,7 +316,8 @@
       "Deafened": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Rangers are treaties with the wild made flesh. They move like deer through bracken and strike like hawks on the wind, their bond with beasts and terrain turning skirmishes into ambushes and open battle into a hunt. A Ranger rarely misses—but when they do, it’s because the miss will drive prey exactly where they planned.\n\nAs guides and guardians, Rangers keep civilization honest with the forest and the forest patient with civilization. Tracks tell them stories. Weather tells them secrets. And when the land itself grows angry, a Ranger knows how to listen—and how to answer."
   },
   {
     "id": "CL00000011",
@@ -338,7 +348,8 @@
       "Charmed": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Bards alter the temperature of a room without lifting a blade. A verse tightens ranks, a refrain loosens shields, and a cutting couplet turns a tyrant’s speech sour in their own mouth. On the field, rhythm becomes strategy—alliances hold because the Bard keeps the beat.\n\nTheir art is a toolkit: lullabies for nightmares, anthems for sieges, lampoons for demagogues. A Bard never fights alone; even silence becomes an instrument if they need it to. Where others bring steel, the Bard brings momentum—and momentum wins wars."
   },
   {
     "id": "CL00000012",
@@ -369,7 +380,8 @@
       "Suppressed": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Healers refuse to accept the battlefield’s terms. They close wounds that should have ended careers, pull poison back through the skin, and intercept death with a steady hand and a whispered rite. A good Healer is triage, logistics, and morale in one—worth a dozen swords when the line begins to fray.\n\nThey are not defenseless. Wards, purges, and protective sigils make a Healer surprisingly hard to kill, and their judgment about when to stand and when to drag you out of the fire is unerring. You won’t always like their orders. You will be alive to argue about them later."
   },
   {
     "id": "CL00000013",
@@ -400,7 +412,8 @@
       "Distracted": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Druids are covenants with living things. They call rain to smother flame, roots to break stone, and thorns to rewrite a charge into a retreat. Their magic carries the slow, irresistible logic of seasons—today’s sapling becomes tomorrow’s siege engine if you give it time.\n\nIn peace, Druids are gardeners of balance; in war, they are its correction. They abhor waste and hubris, and they take personally any harm done to the wild. March an army through sacred ground, and a Druid will teach it how small an army can feel."
   },
   {
     "id": "CL00000014",
@@ -431,7 +444,8 @@
       "Deafened": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Oracles live one breath ahead of everyone else. They feel the hinge of choices as they happen, nudging chance with a word or a glance. On the field, that means stepping where the arrow will not be, calling a retreat a heartbeat before the trap springs, or pointing to the weak link no one else can see.\n\nProphecy has a price—headaches, rituals, rules—but an Oracle pays it gladly. They don’t claim to know everything; they simply know enough to change the ending."
   },
   {
     "id": "CL00000015",
@@ -462,7 +476,8 @@
       "Charmed": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Guardians are patient defenders who turn technique into fortification. They master the art of protection, wielding shields and blades with discipline to intercept attacks and hold ground no matter the odds. They are the backbone of any defense, standing resolute when all else collapses.\n\nGuardians rarely seek glory; their satisfaction lies in duty fulfilled. To those under their protection, they are immovable walls of steel. To their foes, they are obstacles that cannot be bypassed without a grievous toll."
   },
   {
     "id": "CL00000016",
@@ -493,7 +508,8 @@
       "Distracted": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Wizards are the patient architects of impossible things. They diagram power, annotate paradox, and apply discipline until the universe admits it can be improved. In battle, their spellbooks become artillery: barriers slot into place, formulae combust with exacting fury, and the plan proceeds in tidy steps.\n\nA Wizard’s weakness is impulse; their strength is preparation. When they walk onto a field they designed in their head the night before, victory feels less like luck and more like proof."
   },
   {
     "id": "CL00000017",
@@ -524,7 +540,8 @@
       "Deafened": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Sorcerers don’t learn power—they survive it. Magic chose them like a storm chooses a hill, and it has been breaking over them ever since. Their casting is instinctive and volatile, frightening in its immediacy: a shout like thunder, a gesture like lightning, a heartbeat and someone is ash.\n\nThey are not careless, just honest about the tide they ride. Give a Sorcerer a reason, and the world will hear it. Give them a moment to feel, and the world will see it burn or bloom."
   },
   {
     "id": "CL00000018",
@@ -555,7 +572,8 @@
       "Charmed": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Magicians weaponize attention. They make you look left while the danger blooms right; they make a coin dance while a door unlocks; they make a crowd believe an exit exists where none does. In combat, their misdirection turns blades aside and opens throats that thought they were safe.\n\nUnlike Illusionists, Magicians favor craft over glamour—props, patter, angles. They carry pockets full of answers no one else thought to pack, and the nerve to use them in front of an audience that wants them dead."
   },
   {
     "id": "CL00000019",
@@ -586,7 +604,8 @@
       "Deafened": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Sages do not rush. They weigh, consider, and answer with precision. Their magic is conservative and correct; their counsel, maddeningly calm. When a Sage speaks—whether to ward a city or to end a duel—it happens exactly as foretold because they would not have spoken otherwise.\n\nPeople mistook them for cowards until they saw the results. Sages are not timid—they are certain. In a world that mistakes noise for strength, certainty is terrifying."
   },
   {
     "id": "CL00000020",
@@ -617,7 +636,8 @@
       "Charmed": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Envoys travel light and speak heavy. They cross borders others cannot, bearing words that open gates—or close them forever. On the field, an Envoy is signals, treaties, bribes, threats, and when necessary, the knife offered with a smile.\n\nThey win the fight you never had to have and salvage the one you shouldn’t have started. Where others see factions, the Envoy sees leverage—and knows exactly how much to apply."
   },
   {
     "id": "CL00000021",
@@ -648,7 +668,8 @@
       "Charmed": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Mystics listen to the quiet inside the noise. They anchor themselves in breath and mantra until the world’s claws slip off their skin. Their miracles are subtle but stubborn: veils against fear, threads that stitch minds back together, steps that land exactly where fate needs them.\n\nIn crisis, a Mystic is the calm at the center—the hand on your shoulder that steadies the aim, the word in your ear that makes the charge possible. They don’t shout for attention. They align it."
   },
   {
     "id": "CL00000022",
@@ -679,7 +700,8 @@
       "Marked": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Crusaders are sanctified warriors who turn raw strength into divine wrath. Every strike they make carries the authority of their faith, every shield raised an oath to protect the innocent. They smite heretics with merciless fury while standing resolute against the darkest evils.\n\nTo enemies, Crusaders are relentless executioners of holy justice; to allies, they are stalwart protectors whose unwavering conviction shields the fragile. On the battlefield, they are the anvil of faith upon which victory is forged."
   },
   {
     "id": "CL00000023",
@@ -710,7 +732,8 @@
       "Marked": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Paragons are exemplars of discipline, blending flawless martial technique with divine guidance. Their strikes are exact, their defenses perfect, every motion executed with practiced devotion. They embody the ideal of unity between skill and faith, serving as the standard against which all warriors are judged.\n\nRespected as both duelists and paragons of morality, they stand at the center of battle not merely to fight but to inspire. For allies, a Paragon is living proof that perfection can be reached through discipline; for enemies, their presence is a reminder that error brings swift ruin."
   },
   {
     "id": "CL00000024",
@@ -741,7 +764,8 @@
       "Marked": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Anointed are mystics touched by the divine, chosen to wield both arcane power and holy blessings. Their bodies are often marked with radiant sigils, glowing faintly as they channel sanctified magic that can heal, destroy, or purify. They are conduits of celestial will, half-mortal and half-divine in presence.\n\nAnointed are as feared as they are revered. To their allies, they are miracle-workers who can restore life and hope with a gesture. To their enemies, they are walking cataclysms whose spells burn with divine judgment. Wherever they walk, the air feels charged with unearthly power."
   },
   {
     "id": "CL00000025",
@@ -772,7 +796,8 @@
       "Marked": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Martyrs embody sacrifice, channeling their immense vitality into shields for others. They willingly draw attacks upon themselves, their faith and endurance allowing them to stand where others would fall. The closer they come to death, the stronger their divine gifts burn, as though suffering itself empowers them.\n\nTo follow a Martyr is to fight under a living bulwark, one who will endure torment for the sake of others. Though their path is agony, their devotion makes them unbreakable. In their pain, there is salvation — and in their survival, there is hope."
   },
   {
     "id": "CL00000026",
@@ -803,7 +828,8 @@
       "Marked": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Theologians are scholars of the divine, blending study with devotion. They pore over sacred texts and ancient relics, drawing out truths that fuel their miracles. Unlike simple priests, they question as much as they pray, wielding both knowledge and faith as weapons against ignorance.\n\nOn the battlefield, Theologians call down sacred powers with precision, their words and writings shaping miracles of protection, healing, or punishment. They are living bridges between the mortal and the divine, wielding both scripture and sorcery in service of their cause."
   },
   {
     "id": "CL00000027",
@@ -834,7 +860,8 @@
       "Marked": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Prophets are visionaries who glimpse the future in flashes of clarity. Their insight allows them to predict enemy strikes, unveil hidden truths, and guide allies with uncanny foresight. They are conduits of destiny, their words weighted with inevitability.\n\nFor allies, Prophets are guiding lights, steering them away from disaster and toward victory. For enemies, they are terrifying opponents, for how do you strike one who already knows your every move?"
   },
   {
     "id": "CL00000028",
@@ -865,6 +892,7 @@
       "Marked": "+10%"
     },
     "notes": "",
-    "version": 1
+    "version": 1,
+    "description": "Evangelists are fiery orators who spread faith like wildfire. Their charisma inspires devotion, turning wavering allies into zealots and undermining the resolve of foes. In combat, they empower their comrades with fervent blessings, their voices rising above the clash of steel like sermons in battle.\n\nThey are both preachers and warriors, spreading the influence of their beliefs through passion and force. Where Evangelists walk, crowds gather, armies rise, and faith itself becomes a weapon."
   }
 ]

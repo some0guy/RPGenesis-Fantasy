@@ -67,7 +67,7 @@ EXPECTED = {
         "data/npcs/animals.json",
         "data/npcs/citizens.json",
         "data/npcs/enemies.json",
-        "data/npcs/monsters.json",
+        "data/npcs/calamities.json",
     ],
     "dialogues_dir": "data/dialogues",
 }
@@ -389,28 +389,28 @@ def item_is_quest(it: dict) -> bool:
 
 # ---- Equipment slot helpers ----
 SLOT_LABELS = {
-    'head': 'Helmet',
+    'head': 'Head',
     'neck': 'Necklace',
-    'chest': 'Chestplate',
+    'torso': 'Torso',
     'legs': 'Legs',
-    'boots': 'Boots',
-    'gloves': 'Gloves',
+    'feet': 'Feet',
+    'hands': 'Hands',
     'ring': 'Ring',
     'bracelet': 'Bracelet',
     'charm': 'Charm',
     'back': 'Cape/Backpack',
-    'weapon_main': 'Weapon 1',
-    'weapon_off': 'Weapon 2',
+    'weapon_main': 'Right Hand',
+    'weapon_off': 'Left Hand',
 }
 
 def normalize_slot(name: str) -> str:
     n = (name or '').strip().lower()
     if n in ('head','helm','helmet','hat'): return 'head'
     if n in ('neck','amulet','necklace','torc'): return 'neck'
-    if n in ('chest','torso','body','armor','armour','breastplate','chestplate'): return 'chest'
+    if n in ('chest','torso','body','armor','armour','breastplate','chestplate'): return 'torso'
     if n in ('legs','pants','trousers'): return 'legs'
-    if n in ('boots','shoes','feet','foot','greaves'): return 'boots'
-    if n in ('hands','hand','gloves','gauntlets'): return 'gloves'
+    if n in ('boots','shoes','feet','foot','greaves'): return 'feet'
+    if n in ('hands','hand','gloves','gauntlets'): return 'hands'
     if n in ('wrist','bracelet','bracer','bracers'): return 'bracelet'
     if n in ('charm','token','fetish'): return 'charm'
     if n in ('ring','finger'): return 'ring'
@@ -431,13 +431,13 @@ def slot_accepts(slot: str, it: dict) -> bool:
         return typ == 'weapon'
     if slot == 'head':
         return m in ('armour','armor','clothing') and bool(candidates & {'head','helm','helmet','hat'})
-    if slot == 'chest':
-        return m in ('armour','armor','clothing') and bool(candidates & {'chest','torso','body','armor','armour','breastplate','chestplate'})
+    if slot == 'torso':
+        return m in ('armour','armor','clothing') and bool(candidates & {'torso','chest','body','armor','armour','breastplate','chestplate'})
     if slot == 'legs':
         return m in ('armour','armor','clothing') and bool(candidates & {'legs','pants','trousers'})
-    if slot == 'boots':
-        return m in ('armour','armor','clothing') and bool(candidates & {'boots','shoes','feet','foot','greaves'})
-    if slot == 'gloves':
+    if slot == 'feet':
+        return m in ('armour','armor','clothing') and bool(candidates & {'feet','foot','boots','shoes','greaves'})
+    if slot == 'hands':
         return m in ('armour','armor','clothing') and bool(candidates & {'hands','hand','gloves','gauntlets'})
     if slot == 'ring':
         return m in ('accessory','accessories','trinket','trinkets') and bool(candidates & {'ring'})
@@ -450,6 +450,21 @@ def slot_accepts(slot: str, it: dict) -> bool:
     if slot == 'back':
         return (m in ('armour','armor','clothing','accessory','accessories') and bool(candidates & {'back','cloak','cape','backpack'}))
     return False
+
+# Migrate legacy equipped_gear slot keys to new canonical names
+def migrate_gear_keys(gear: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+    try:
+        g = dict(gear or {})
+    except Exception:
+        g = {}
+    mapping = {'chest': 'torso', 'boots': 'feet', 'gloves': 'hands'}
+    for old, new in mapping.items():
+        try:
+            if old in g and new not in g:
+                g[new] = g.pop(old)
+        except Exception:
+            pass
+    return g
 
 def _weapon_stats(it: Dict) -> Tuple[int,int,float,List[str]]:
     """Returns (min_bonus, max_bonus, status_chance, statuses) reading multiple possible keys safely."""
@@ -885,11 +900,139 @@ def gather_items() -> List[Dict]:
                 items.append(it)
     return items
 
+def gather_armour_sets() -> List[Dict]:
+    """Group armour pieces into sets by their set_name and aggregate metadata.
+
+    Each returned set dict contains:
+      - name: display name of the set
+      - id: a stable identifier derived from the name
+      - pieces: list of {id, name, slot}
+      - piece_names: flattened list of piece names (for searching)
+      - slots: list of normalized equip slots present in the set
+      - slot_names: duplicate of slots (for searching)
+      - set_bonus: merged mapping of thresholds -> effect dict
+      - count: number of pieces
+    """
+    try:
+        armour_items = [it for it in safe_load_doc(os.path.join("items", "armour.json"), "items") if isinstance(it, dict)]
+    except Exception:
+        armour_items = []
+
+    def _slugify(s: str) -> str:
+        s = str(s or '').strip().lower()
+        out = []
+        for ch in s:
+            if ch.isalnum(): out.append(ch)
+            elif ch in (' ', '-', '_'):
+                out.append('-')
+        # collapse dashes
+        slug = ''.join(out)
+        while '--' in slug:
+            slug = slug.replace('--', '-')
+        return slug.strip('-') or 'set'
+
+    sets: Dict[str, Dict[str, Any]] = {}
+    rarity_order = {
+        'common': 0,
+        'uncommon': 1,
+        'rare': 2,
+        'exotic': 3,
+        'legendary': 4,
+        'mythic': 5,
+    }
+    for it in armour_items:
+        set_name = it.get('set_name') or it.get('set')
+        if not set_name:
+            continue
+        sid = _slugify(set_name)
+        cur = sets.get(set_name)
+        if cur is None:
+            cur = {
+                'name': set_name,
+                'id': f'SET:{sid}',
+                'pieces': [],
+                'piece_names': [],
+                'slots': [],
+                'slot_names': [],
+                'set_bonus': {},
+                'count': 0,
+                'rarity': 'common',
+                '_rarity_rank': -1,
+            }
+            sets[set_name] = cur
+        # determine slot
+        slot = None
+        try:
+            eq = it.get('equip_slots') or []
+            if isinstance(eq, list) and eq:
+                slot = normalize_slot(str(eq[0]))
+        except Exception:
+            slot = None
+        if not slot:
+            try:
+                slot = normalize_slot(str(it.get('type') or item_subtype(it) or ''))
+            except Exception:
+                slot = '-'
+        piece_entry = {
+            'id': it.get('id'),
+            'name': item_name(it),
+            'slot': slot or '-',
+        }
+        cur['pieces'].append(piece_entry)
+        try:
+            nm = piece_entry.get('name')
+            if isinstance(nm, str):
+                cur['piece_names'].append(nm)
+        except Exception:
+            pass
+        if slot and slot not in cur['slots']:
+            cur['slots'].append(slot)
+            cur['slot_names'].append(slot)
+        # merge set_bonus thresholds (union of keys)
+        try:
+            sb = it.get('set_bonus') or {}
+            if isinstance(sb, dict):
+                for thresh, eff in sb.items():
+                    if thresh not in cur['set_bonus']:
+                        cur['set_bonus'][thresh] = dict(eff) if isinstance(eff, dict) else eff
+                    else:
+                        # union missing effect keys (do not sum to avoid duplicating)
+                        ex = cur['set_bonus'][thresh]
+                        if isinstance(ex, dict) and isinstance(eff, dict):
+                            for k, v in eff.items():
+                                if k not in ex:
+                                    ex[k] = v
+        except Exception:
+            pass
+        cur['count'] = len(cur['pieces'])
+        # track representative rarity as the highest among pieces
+        try:
+            r = str((it.get('rarity') or '')).lower()
+            rr = rarity_order.get(r, -1)
+            if rr > int(cur.get('_rarity_rank', -1)):
+                cur['_rarity_rank'] = rr
+                if r:
+                    cur['rarity'] = r
+        except Exception:
+            pass
+
+    # stable ordering by name; UI will re-sort
+    # drop private temp rank field
+    out = []
+    for s in sets.values():
+        if '_rarity_rank' in s:
+            try:
+                del s['_rarity_rank']
+            except Exception:
+                pass
+        out.append(s)
+    return out
+
 def gather_npcs() -> List[Dict]:
     npcs: List[Dict] = []
     npcs_dir = os.path.join(DATA_DIR, "npcs")
     if os.path.isdir(npcs_dir):
-        for name in ["allies.json","animals.json","citizens.json","enemies.json","monsters.json","villains.json"]:
+        for name in ["allies.json","animals.json","citizens.json","enemies.json","calamities.json","villains.json"]:
             for n in safe_load_doc(os.path.join("npcs", name), "npcs"):
                 npcs.append(n)
         # Also support directory-based categories like data/npcs/vilains/*.json or data/npcs/villains/*.json
@@ -940,15 +1083,31 @@ def load_curses() -> List[Dict]:
 
 # Tolerant loaders for top-level array documents (e.g., races, classes)
 def load_races_list() -> List[Dict]:
-    path = DATA_DIR / "races.json"
-    try:
-        doc = load_json(str(path), [])
-        if isinstance(doc, list):
-            return list(doc)
-        if isinstance(doc, dict) and isinstance(doc.get("races"), list):
-            return list(doc.get("races"))
-    except Exception:
-        pass
+    """Load Races with tolerant schema and flexible locations.
+
+    Priority:
+    1) data/npcs/races.json (current)
+    2) data/races.json (legacy)
+    3) data/npcs/races_index.json (minimal entries; fallback)
+
+    Supports either a top-level list, or a dict with a 'races' list.
+    """
+    candidates = [
+        DATA_DIR / "npcs" / "races.json",
+        DATA_DIR / "races.json",
+        DATA_DIR / "npcs" / "races_index.json",
+    ]
+    for path in candidates:
+        try:
+            if not path.exists() or path.stat().st_size == 0:
+                continue
+            doc = load_json(str(path), [])
+            if isinstance(doc, list):
+                return [x for x in doc if isinstance(x, dict)]
+            if isinstance(doc, dict) and isinstance(doc.get("races"), list):
+                return [x for x in doc.get("races") if isinstance(x, dict)]
+        except Exception:
+            continue
     return []
 
 def load_classes_list() -> List[Dict]:
@@ -1719,12 +1878,14 @@ def draw_grid(surf, game):
                 # Events
                 if enc.event:
                     has.add('event')
-                order = ['enemy','villain','ally','citizen','monster','animal','quest_item','item','event']
+                order = ['enemy','villain','ally','citizen','aberration','calamity','monster','animal','quest_item','item','event']
                 color_map = {
                     'enemy': COL_ENEMY,
                     'villain': COL_VILLAIN,
                     'ally': COL_ALLY,
                     'citizen': COL_CITIZEN,
+                    'aberration': COL_MONSTER,
+                    'calamity': COL_MONSTER,
                     'monster': COL_MONSTER,
                     'animal': COL_ANIMAL,
                     'quest_item': COL_QITEM,
@@ -2008,7 +2169,7 @@ def draw_panel(surf, game):
                 try:
                     def _is_enemy(e: Dict) -> bool:
                         sub = (e.get('subcategory') or '').lower()
-                        return sub in ('enemies','monsters','villains','vilains') or bool(e.get('hostile'))
+                        return sub in ('enemies','monsters','aberrations','calamities','villains','vilains') or bool(e.get('hostile'))
                     for e in (t.encounter.npcs or []):
                         if isinstance(e, dict) and _is_enemy(e):
                             hostiles.append(e)
@@ -2027,7 +2188,7 @@ def draw_panel(surf, game):
             try:
                 def _is_enemy_e(e: Dict) -> bool:
                     sub = (e.get('subcategory') or '').lower()
-                    return sub in ('enemies','monsters','villains','vilains') or bool(e.get('hostile'))
+                    return sub in ('enemies','monsters','aberrations','calamities','villains','vilains') or bool(e.get('hostile'))
                 friendlies = [e for e in (t.encounter.npcs or []) if isinstance(e, dict) and not _is_enemy_e(e)]
                 if not friendlies and t.encounter.npc:
                     friendlies = [t.encounter.npc]
@@ -2500,7 +2661,19 @@ def draw_inventory_overlay(surf, game):
     # Header buttons: Equipment and Back
     def _to_equip(): setattr(game, 'mode', 'equip')
     buttons.append(Button((modal.right - 230, modal.y + 10, 110, 28), "Equipment", _to_equip))
-    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: game.close_overlay()))
+    def _db_back():
+        try:
+            if hasattr(game, 'close_overlay') and callable(getattr(game, 'close_overlay')):
+                game.close_overlay()
+            else:
+                # Main menu database context: signal exit via mode='explore'
+                setattr(game, 'mode', 'explore')
+        except Exception:
+            try:
+                setattr(game, 'mode', 'explore')
+            except Exception:
+                pass
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", _db_back))
 
     # Layout inside modal: icons grid left, details right
     pad = 16
@@ -3224,16 +3397,16 @@ def draw_equip_overlay(surf, game):
         # Necklace aligned to the gap between left and center columns
         'neck':         (0.34, 0.30),
         'back':         (0.60, 0.30),
-        'chest':        (0.50, 0.42),
-        # Move gloves down to ring row; move bracelet to former gloves position; add charm at former bracelet position
-        'gloves':       (0.82, 0.54),
+        'torso':        (0.50, 0.42),
+        # Move hands down to ring row; move bracelet to former gloves position; add charm at former bracelet position
+        'hands':        (0.82, 0.54),
         'ring':         (0.18, 0.54),
         # Bracelet aligned to the gap between center and right columns
         'bracelet':     (0.66, 0.42),
         'charm':        (0.18, 0.42),
-        # Legs moved up slightly; boots added below
+        # Legs moved up slightly; feet added below
         'legs':         (0.50, 0.60),
-        'boots':        (0.50, 0.72),
+        'feet':         (0.50, 0.72),
         # Move both weapon slots up slightly
         'weapon_main':  (0.18, 0.76),
         'weapon_off':   (0.82, 0.76),
@@ -3550,7 +3723,19 @@ def draw_database_overlay(surf, game):
     if not hasattr(game, '_db_font_20'): game._db_font_20 = pg.font.Font(None, 20)
     title_font = game._db_font_30
     surf.blit(title_font.render("Database", True, (235,235,245)), (modal.x + 16, modal.y + 12))
-    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: game.close_overlay()))
+    def _db_back():
+        try:
+            if hasattr(game, 'close_overlay') and callable(getattr(game, 'close_overlay')):
+                game.close_overlay()
+            else:
+                # In main menu database view, signal exit via mode='explore'
+                setattr(game, 'mode', 'explore')
+        except Exception:
+            try:
+                setattr(game, 'mode', 'explore')
+            except Exception:
+                pass
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", _db_back))
 
     # Initialize state on first open
     if not hasattr(game, 'db_cat'): game.db_cat = 'Items'
@@ -3597,16 +3782,17 @@ def draw_database_overlay(surf, game):
         except Exception:
             pass
         npcs = {
-            'All':      npcs_all,
-            'Allies':   _safe(os.path.join('npcs','allies.json'), 'npcs'),
-            'Animals':  _safe(os.path.join('npcs','animals.json'), 'npcs'),
-            'Citizens': _safe(os.path.join('npcs','citizens.json'), 'npcs'),
-            'Enemies':  _safe(os.path.join('npcs','enemies.json'), 'npcs'),
-            'Monsters': _safe(os.path.join('npcs','monsters.json'), 'npcs'),
-            'Villains': villains_list,
+            'All':         npcs_all,
+            'Allies':      _safe(os.path.join('npcs','allies.json'), 'npcs'),
+            'Animals':     _safe(os.path.join('npcs','animals.json'), 'npcs'),
+            'Citizens':    _safe(os.path.join('npcs','citizens.json'), 'npcs'),
+            'Enemies':     _safe(os.path.join('npcs','enemies.json'), 'npcs'),
+            'Aberrations': _safe(os.path.join('npcs','calamities.json'), 'npcs'),
+            'Villains':    villains_list,
         }
         game.db_cache = {
             'Items': items,
+            'Armour Sets': gather_armour_sets(),
             'NPCs': npcs,
             'Races': list(getattr(game, 'races', []) or []),
             'Traits': list(getattr(game, 'traits', []) or []),
@@ -3623,7 +3809,7 @@ def draw_database_overlay(surf, game):
     tab_x = modal.x + 16
     tab_h = 28
     tab_pad = 10
-    tabs = ['Items','NPCs','Races','Traits','Enchants','Magic','Status','Classes','Curses']
+    tabs = ['Items','Armour Sets','NPCs','Races','Traits','Enchants','Magic','Status','Classes','Curses']
     for name in tabs:
         tw = max(90, tab_font.size(name)[0] + 20)
         r = pg.Rect(tab_x, tab_y, tw, tab_h)
@@ -3632,7 +3818,37 @@ def draw_database_overlay(surf, game):
         pg.draw.rect(surf, (110,110,130), r, 2, border_radius=8)
         surf.blit(tab_font.render(name, True, (235,235,245)), (r.x + 10, r.y + 5))
         def make_tab(n=name):
-            return lambda n=n: (setattr(game,'db_cat', n), setattr(game,'db_page', 0), setattr(game,'db_sel', None))
+            def _cb(n=n):
+                setattr(game,'db_cat', n)
+                setattr(game,'db_page', 0)
+                setattr(game,'db_sel', None)
+                # Reset filters to defaults when switching tabs
+                try:
+                    setattr(game,'db_sub', 'All')
+                except Exception:
+                    pass
+                try:
+                    setattr(game,'db_query', '')
+                    setattr(game,'db_name_only', False)
+                    setattr(game,'db_starts_with', False)
+                    setattr(game,'db_filter_focus', False)
+                    setattr(game,'db_filters_open', False)
+                    setattr(game,'db_sort_open', False)
+                except Exception:
+                    pass
+                try:
+                    # Default sort by Name ascending
+                    setattr(game,'db_sort_key', 'Name')
+                    setattr(game,'db_sort_desc', False)
+                except Exception:
+                    pass
+                try:
+                    # Clear field selection for the new category
+                    if isinstance(getattr(game, 'db_fields_sel', {}), dict):
+                        game.db_fields_sel[n] = []
+                except Exception:
+                    pass
+            return _cb
         buttons.append(Button(r, "", make_tab(name), draw_bg=False))
         tab_x += tw + tab_pad
 
@@ -3656,7 +3872,7 @@ def draw_database_overlay(surf, game):
     if game.db_cat == 'Items':
         chips = ['All','Weapons','Armour','Accessories','Clothing','Consumables','Materials','Quest Items','Trinkets']
     elif game.db_cat == 'NPCs':
-        chips = ['All','Allies','Animals','Citizens','Enemies','Monsters','Villains']
+        chips = ['All','Allies','Animals','Citizens','Enemies','Aberrations','Villains']
     if chips:
         for ch in chips:
             cw = max(80, chip_font.size(ch)[0] + 18)
@@ -3704,7 +3920,25 @@ def draw_database_overlay(surf, game):
 
     def _sort_val_items(obj: Dict) -> tuple:
         if sort_key == 'Type':
-            return (_safe_str(item_type(obj)).lower(), _safe_str(item_name(obj)).lower())
+            slot_key = ''
+            try:
+                eq = obj.get('equip_slots') or []
+                if isinstance(eq, list) and eq:
+                    slot_key = normalize_slot(str(eq[0]))
+                else:
+                    slot_key = normalize_slot(str(obj.get('slot') or item_subtype(obj) or ''))
+                if str(item_major_type(obj)).lower() == 'weapon':
+                    slot_key = 'weapon'
+            except Exception:
+                slot_key = ''
+            return (_safe_str(slot_key).lower(), _safe_str(item_name(obj)).lower())
+        if sort_key == 'Rarity':
+            rr = {'common':0,'uncommon':1,'rare':2,'exotic':3,'legendary':4,'mythic':5}
+            try:
+                r = rr.get(_safe_str(obj.get('rarity')).lower(), -1)
+            except Exception:
+                r = -1
+            return (r, _safe_str(item_name(obj)).lower())
         # default Name
         return (_safe_str(item_name(obj)).lower(), _safe_str(obj.get('id')).lower())
 
@@ -3724,11 +3958,36 @@ def draw_database_overlay(surf, game):
         s = _safe_str(obj).lower()
         return (s, s)
 
+    def _sort_val_sets(obj: Dict) -> tuple:
+        if sort_key == 'Pieces':
+            try:
+                cnt = int(obj.get('count') or len(obj.get('pieces') or []))
+            except Exception:
+                cnt = 0
+            return (cnt, _safe_str(obj.get('name') or obj.get('id')).lower())
+        if sort_key == 'Type':
+            try:
+                slots = sorted([_safe_str(s).lower() for s in (obj.get('slots') or [])])
+                slot0 = slots[0] if slots else ''
+            except Exception:
+                slot0 = ''
+            return (slot0, _safe_str(obj.get('name') or obj.get('id')).lower())
+        if sort_key == 'Rarity':
+            rr = {'common':0,'uncommon':1,'rare':2,'exotic':3,'legendary':4,'mythic':5}
+            try:
+                r = rr.get(_safe_str((obj.get('rarity') or '')).lower(), -1)
+            except Exception:
+                r = -1
+            return (r, _safe_str(obj.get('name') or obj.get('id')).lower())
+        return (_safe_str(obj.get('name') or obj.get('id')).lower(), _safe_str(obj.get('id')).lower())
+
     try:
         if cat == 'Items':
             entries = sorted(base, key=_sort_val_items, reverse=desc)
         elif cat == 'NPCs':
             entries = sorted(base, key=_sort_val_npcs, reverse=desc)
+        elif cat == 'Armour Sets':
+            entries = sorted(base, key=_sort_val_sets, reverse=desc)
         else:
             entries = sorted(base, key=_sort_val_other, reverse=desc)
     except Exception:
@@ -3812,6 +4071,12 @@ def draw_database_overlay(surf, game):
                         ('Name', ('name','id')),
                         ('Type', ('category','slot','item_type','Type','type','subtype','SubType')),
                         ('Description', ('desc','description','flavor')),
+                    ]
+                if cat == 'Armour Sets':
+                    return [
+                        ('Name', ('name','id')),
+                        ('Pieces', ('piece_names','slot_names')),
+                        ('Bonuses', ('set_bonus',)),
                     ]
                 if cat == 'Races':
                     return [
@@ -3955,9 +4220,11 @@ def draw_database_overlay(surf, game):
     # Sort controls: dropdown for field + order toggle
     def _sort_options_for(cat: str) -> List[str]:
         if cat == 'Items':
-            return ['Name','Type']
+            return ['Rarity','Type','Name']
         if cat == 'NPCs':
             return ['Name','Race','Sex','Type']
+        if cat == 'Armour Sets':
+            return ['Rarity','Type','Pieces']
         return ['Name']
 
     sort_opts = _sort_options_for(cat)
@@ -4007,6 +4274,13 @@ def draw_database_overlay(surf, game):
                 ('Type', ('category','slot','item_type','Type','type','subtype','SubType')),
                 ('Description', ('desc','description','flavor')),
             ]
+        if cat == 'Armour Sets':
+            # Use flattened helper fields gathered in gather_armour_sets
+            return [
+                ('Name', ('name','id')),
+                ('Pieces', ('piece_names','slot_names')),
+                ('Bonuses', ('set_bonus',)),
+            ]
         if cat == 'Races':
             return [
                 ('Name', ('name','id')),
@@ -4046,7 +4320,7 @@ def draw_database_overlay(surf, game):
             'animals': COL_ANIMAL,
             'citizens': COL_CITIZEN,
             'enemies': COL_ENEMY,
-            'monsters': COL_MONSTER,
+            'aberrations': COL_MONSTER,
             'villains': COL_VILLAIN,
         }
         if subcat in mapping:
@@ -4057,7 +4331,7 @@ def draw_database_overlay(surf, game):
         except Exception:
             t = ''
         if 'villain' in t: return COL_VILLAIN
-        if 'monster' in t: return COL_MONSTER
+        if ('monster' in t) or ('aberration' in t) or ('calam' in t): return COL_MONSTER
         if 'animal' in t: return COL_ANIMAL
         if 'citizen' in t: return COL_CITIZEN
         try:
@@ -4067,11 +4341,7 @@ def draw_database_overlay(surf, game):
         return COL_ALLY
 
     def _entry_dot_color(obj: Any) -> Optional[Tuple[int,int,int]]:
-        if cat == 'Items' and isinstance(obj, dict):
-            try:
-                return COL_QITEM if item_is_quest(obj) else COL_ITEM
-            except Exception:
-                return COL_ITEM
+        # Keep colored dots for NPCs only
         if cat == 'NPCs' and isinstance(obj, dict):
             return _npc_color(obj)
         return None
@@ -4092,6 +4362,12 @@ def draw_database_overlay(surf, game):
         try:
             if cat == 'Items':
                 label = f"{item_name(it)}"
+            elif cat == 'Armour Sets':
+                try:
+                    cnt = int(it.get('count') or len(it.get('pieces') or []))
+                except Exception:
+                    cnt = len(it.get('pieces') or []) if isinstance(it, dict) else 0
+                label = f"{str(it.get('name') or it.get('id') or '?')} ({cnt} pcs)"
             elif cat == 'NPCs':
                 label = str(it.get('name') or it.get('id') or '?')
             elif cat == 'Races':
@@ -4100,10 +4376,24 @@ def draw_database_overlay(surf, game):
                 label = str(it.get('name') or it.get('id') or '?')
         except Exception:
             label = str(it)
-        cache_key = (label, int(name_font.get_height()))
+        # Compute label color (rarity for Items and Armour Sets; default otherwise)
+        lab_color = (230,230,240)
+        if cat == 'Items' and isinstance(it, dict):
+            try:
+                _rar = str((it.get('rarity') or '')).lower()
+                lab_color = RARITY_COLORS.get(_rar, lab_color)
+            except Exception:
+                pass
+        elif cat == 'Armour Sets' and isinstance(it, dict):
+            try:
+                _rar = str((it.get('rarity') or '')).lower()
+                lab_color = RARITY_COLORS.get(_rar, lab_color)
+            except Exception:
+                pass
+        cache_key = (label, int(name_font.get_height()), lab_color)
         lab_surf = game._db_label_cache.get(cache_key)
         if lab_surf is None:
-            lab_surf = name_font.render(label, True, (230,230,240))
+            lab_surf = name_font.render(label, True, lab_color)
             game._db_label_cache[cache_key] = lab_surf
         ty = r.y + max(4, (r.h - lab_surf.get_height())//2)
         # Draw dot (if applicable) and adjust text x
@@ -4184,6 +4474,7 @@ def draw_database_overlay(surf, game):
             surf.blit(ts, (r.x + 8, r.y + (r.h - ts.get_height())//2))
             def _make_set_sort(label=opt):
                 def _cb(label=label):
+                    # Set sort key; keep current direction toggle
                     game.db_sort_key = label
                     game.db_sort_open = False
                 return _cb
@@ -4217,6 +4508,45 @@ def draw_database_overlay(surf, game):
                 desc = item_desc(it) or '-'
                 yy += 4; line("Description:")
                 line(desc)
+            elif cat == 'Armour Sets':
+                try:
+                    cnt = int(it.get('count') or len(it.get('pieces') or []))
+                except Exception:
+                    cnt = len(it.get('pieces') or []) if isinstance(it, dict) else 0
+                slots = it.get('slots') or []
+                line(f"ID: {it.get('id','-')}")
+                line(f"Pieces: {cnt}")
+                if slots:
+                    line("Slots: " + ", ".join([str(s) for s in slots]))
+                # Set bonuses by threshold
+                sb = it.get('set_bonus') or {}
+                if isinstance(sb, dict) and sb:
+                    try:
+                        # sort thresholds numerically if possible
+                        def _th_key(x):
+                            try: return int(str(x))
+                            except Exception: return 0
+                        yy += 4; line("Set Bonuses:")
+                        for th in sorted(sb.keys(), key=_th_key):
+                            eff = sb.get(th) or {}
+                            if isinstance(eff, dict):
+                                kv = ", ".join([f"{k}+{v}" for k,v in eff.items()]) if eff else "-"
+                                line(f"- {th} pieces: {kv}")
+                            else:
+                                line(f"- {th} pieces: {eff}")
+                    except Exception:
+                        pass
+                # Pieces list
+                pcs = it.get('pieces') or []
+                if isinstance(pcs, list) and pcs:
+                    yy += 4; line("Pieces:")
+                    for p in pcs:
+                        try:
+                            pn = p.get('name') or p.get('id') or '?'
+                            ps = p.get('slot') or '-'
+                            line(f"- {pn} [{ps}]")
+                        except Exception:
+                            line(f"- {p}")
             elif cat == 'NPCs':
                 line(f"ID: {it.get('id','-')}")
                 line(f"Race: {it.get('race') or '-'}")
@@ -4605,7 +4935,7 @@ class Game:
             _ensure_weapon_combat_stats_inplace(self.player.equipped_weapon)
         except Exception:
             pass
-        self.player.equipped_gear   = dict(p.get('equipped_gear', self.player.equipped_gear))
+        self.player.equipped_gear   = migrate_gear_keys(p.get('equipped_gear', self.player.equipped_gear))
         # Migration: hydrate equipped_weapon from equipped_gear['weapon_main'] if missing
         try:
             if not self.player.equipped_weapon and isinstance(self.player.equipped_gear, dict):
@@ -4638,7 +4968,7 @@ class Game:
                         soc=int(a.get('soc', 5) or 5),
                         fth=int(a.get('fth', 5) or 5),
                         equipped_weapon=(a.get('equipped_weapon') or (a.get('equipped_gear') or {}).get('weapon_main')),
-                        equipped_gear=dict(a.get('equipped_gear', {})),
+                        equipped_gear=migrate_gear_keys(a.get('equipped_gear', {})),
                         portrait=a.get('portrait'),
                         home_map=a.get('home_map'),
                         home_pos=tuple(a.get('home_pos')) if isinstance(a.get('home_pos'), (list, tuple)) else None,
@@ -4979,7 +5309,7 @@ class Game:
                     self.mode = "combat" if t.encounter.spotted else "explore"
                     # Determine enemy type for coloring
                     sub = str((t.encounter.enemy or {}).get('subcategory') or '').lower()
-                    tag = 'monster' if sub == 'monsters' else 'enemy'
+                    tag = 'monster' if sub in ('monsters','aberrations','calamities') else 'enemy'
                     if t.encounter.spotted:
                         self.start_combat(t.encounter.enemy); self.say(f"{t.encounter.enemy.get('name','A foe')} spots you!", tag)
                     else:
@@ -4990,7 +5320,7 @@ class Game:
                     try:
                         def _is_enemy_e(e: Dict) -> bool:
                             sub = (e.get('subcategory') or '').lower()
-                            return sub in ('enemies','monsters','villains','vilains') or bool(e.get('hostile'))
+                            return sub in ('enemies','monsters','aberrations','calamities','villains','vilains') or bool(e.get('hostile'))
                         friendlies = [e for e in (t.encounter.npcs or []) if isinstance(e, dict) and not _is_enemy_e(e)]
                     except Exception:
                         friendlies = []
@@ -5917,7 +6247,54 @@ class Game:
             xp = int((enemy or {}).get('xp', 25))
         except Exception:
             xp = 25
+        # Award XP
         self.gain_xp(xp)
+        # Remove defeated enemy from the current tile so it disappears from the map
+        try:
+            t = self.tile()
+            enc = getattr(t, 'encounter', None)
+            if enc is not None:
+                # Clear direct single-enemy field when it matches
+                try:
+                    if getattr(enc, 'enemy', None) is enemy:
+                        enc.enemy = None
+                except Exception:
+                    pass
+                # Remove from NPC list (group encounters) by identity or ID match
+                try:
+                    npcs = list(getattr(enc, 'npcs', []) or [])
+                    def _same_enemy(a, b) -> bool:
+                        if a is b: return True
+                        try:
+                            return (a.get('id') and a.get('id') == (b or {}).get('id'))
+                        except Exception:
+                            return False
+                    npcs = [n for n in npcs if not _same_enemy(n, enemy)]
+                    enc.npcs = npcs
+                except Exception:
+                    pass
+                # If no hostiles remain, allow passage
+                try:
+                    def _is_hostile(e):
+                        try:
+                            sub = str((e or {}).get('subcategory') or '').lower()
+                            return sub in ('enemies','monsters','aberrations','calamities','villains','vilains') or bool((e or {}).get('hostile'))
+                        except Exception:
+                            return False
+                    any_hostiles_left = bool(getattr(enc, 'enemy', None)) or any(_is_hostile(e) for e in (getattr(enc, 'npcs', []) or []))
+                    if not any_hostiles_left:
+                        enc.must_resolve = False
+                        enc.spotted = False
+                except Exception:
+                    pass
+                # If encounter has no content at all, drop it
+                try:
+                    if not (getattr(enc, 'enemy', None) or getattr(enc, 'npcs', None) or getattr(enc, 'npc', None) or getattr(enc, 'items', None) or getattr(enc, 'event', None)):
+                        t.encounter = None
+                except Exception:
+                    pass
+        except Exception:
+            pass
 
     # ---------- Weapon randomizer ----------
     def _rarity_rank(self, r: str) -> int:
@@ -6101,7 +6478,7 @@ class Game:
 
         # Optional enchants for gear (armour/clothing/accessories)
         enchants_src = list(getattr(self, 'enchants', []) or [])
-        applies = 'armour' if any(w in base_type.lower() for w in ('armour','armor','helm','chest','legs','boots')) else (
+        applies = 'armour' if any(w in base_type.lower() for w in ('armour','armor','helm','head','chest','torso','legs','boots','feet','gloves','hands')) else (
                   'accessory' if any(w in base_type.lower() for w in ('ring','amulet','neck','bracelet','charm')) else (
                   'clothing'))
         ench_pool = [e for e in enchants_src if str(e.get('applies_to','')).lower() in (applies, 'gear')]
@@ -6188,8 +6565,17 @@ class Game:
                 self.current_enemy = self.current_enemies[0]
                 self.current_enemy_hp = int(self.current_enemies_hp[0] if self.current_enemies_hp else int(self.current_enemy.get('hp',12)))
             else:
-                t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
-                self.current_enemy = None; self.mode = "explore"
+                # No more enemies: clear any lingering encounter safely and return to explore
+                try:
+                    t = self.tile()
+                    enc = getattr(t, 'encounter', None)
+                    if enc is not None:
+                        enc.enemy = None
+                        enc.must_resolve = False
+                except Exception:
+                    pass
+                self.current_enemy = None
+                self.mode = "explore"
         # After player's action, advance initiative order (auto-play non-player turns)
         if self.mode == 'combat' and getattr(self, 'current_enemies', None):
             self._advance_turn(auto_only=False)
