@@ -373,12 +373,12 @@
         "texture": ""
       },
       {
-        "walkable": true,
+        "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
         "note": "",
-        "encounter": "danger",
+        "encounter": "",
         "texture": ""
       }
     ],

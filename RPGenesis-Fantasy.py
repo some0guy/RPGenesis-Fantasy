@@ -29,7 +29,7 @@ ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
 UI_DIR = DATA_DIR / "ui"
 SAVE_DIR = DATA_DIR / "saves"
-WORLD_MAP_PATH = DATA_DIR / "world_map.json"
+WORLD_MAP_PATH = DATA_DIR / "maps" / "world_map.json"
 ASSETS_DIR = ROOT / "assets"
 
 # -------------------- Project paths / version --------------------
@@ -295,6 +295,35 @@ def item_name(it: dict) -> str:
     return (it.get('name') or it.get('Name') or it.get('display_name') or
             it.get('title') or it.get('label') or it.get('id') or '?')
 
+def _is_placeholder_item(it: Optional[Dict[str, Any]]) -> bool:
+    """Heuristically detect starter/placeholder items that shouldn't be named in UI.
+
+    We treat items with names like 'Rough Dagger' or 'Plain Staff' as placeholders.
+    """
+    if not isinstance(it, dict):
+        return False
+    try:
+        nm = str((it.get('name') or it.get('title') or '')).strip().lower()
+        if nm in { 'rough dagger', 'plain staff' }:
+            return True
+    except Exception:
+        pass
+    return False
+
+def _combat_item_label(it: Optional[Dict[str, Any]], fallback: str) -> str:
+    """Return a user-facing label for an equipped item in combat.
+
+    Hides placeholder starter gear by returning the fallback label instead.
+    """
+    if not it:
+        return fallback
+    if _is_placeholder_item(it):
+        return fallback
+    try:
+        return item_name(it)
+    except Exception:
+        return fallback
+
 def item_type(it: dict) -> str:
     """Return a major type for the item (weapon/armour/accessory/clothing/consumable/material/trinket/quest_item).
 
@@ -431,6 +460,40 @@ def _weapon_stats(it: Dict) -> Tuple[int,int,float,List[str]]:
     if isinstance(statuses, str): statuses = [statuses]
     st_ch = max(0.0, min(1.0, st_ch))
     return min_b, max_b, st_ch, list(statuses)
+
+# Ensure a weapon dict has combat damage fields (min/max) based on its damage map
+def _ensure_weapon_combat_stats_inplace(it: Optional[Dict]) -> None:
+    if not isinstance(it, dict):
+        return
+    try:
+        if str(item_major_type(it)).lower() != 'weapon':
+            return
+    except Exception:
+        return
+    # If already present and > 0, keep
+    try:
+        cur_min = int(it.get('min') or it.get('min_damage') or it.get('damage_min') or it.get('atk_min') or 0)
+        cur_max = int(it.get('max') or it.get('max_damage') or it.get('damage_max') or it.get('atk_max') or 0)
+    except Exception:
+        cur_min = cur_max = 0
+    if cur_min > 0 and cur_max > 0 and cur_max >= cur_min:
+        return
+    dmg_map = it.get('damage_type') or {}
+    total = 0
+    if isinstance(dmg_map, dict):
+        for v in dmg_map.values():
+            try:
+                total += int(v)
+            except Exception:
+                pass
+    # If no per-type damage provided, leave defaults (0) — attack will still use base atk
+    if total <= 0:
+        return
+    # Derive a sensible combat range from total damage budget
+    wmin = max(1, int(round(total * 0.55)))
+    wmax = max(wmin + 1, int(round(total * 0.95)))
+    it['min'] = int(wmin)
+    it['max'] = int(wmax)
 
 # ======================== Loot rolling (weapons) ========================
 
@@ -960,7 +1023,6 @@ class Tile:
     has_link: bool = False
     link_to_map: Optional[str] = None
     link_to_entry: Optional[str] = None
-    has_link: bool = False   # link marker for UI
 
 @dataclass
 class Player:
@@ -986,7 +1048,6 @@ class Player:
     romance_flags: Dict[str,bool] = field(default_factory=dict)
     inventory: List[Dict] = field(default_factory=list)
     equipped_weapon: Optional[Dict] = None
-    equipped_focus: Optional[Dict] = None
     # Generic equipment slots for armour/clothing/accessory
     equipped_gear: Dict[str, Dict] = field(default_factory=dict)
     # Optional portrait reference (relative to project or assets/)
@@ -1014,7 +1075,6 @@ class Ally:
     fth: int = 5
     inventory: List[Dict] = field(default_factory=list)
     equipped_weapon: Optional[Dict] = None
-    equipped_focus: Optional[Dict] = None
     equipped_gear: Dict[str, Dict] = field(default_factory=dict)
     portrait: Optional[str] = None
     home_map: Optional[str] = None
@@ -1917,8 +1977,8 @@ def draw_panel(surf, game):
         except Exception:
             pass
         add("Leave", lambda: game.handle_dialogue_choice("Leave"))
-        add("Inventory", lambda: setattr(game, 'mode', 'inventory'))
-        add("Equipment", lambda: setattr(game, 'mode', 'equip'))
+        add("Inventory", lambda: game.open_overlay('inventory'))
+        add("Equipment", lambda: game.open_overlay('equip'))
     elif game.mode == "inventory":
         # Draw a full overlay inventory covering the center and right side
         buttons += draw_inventory_overlay(surf, game)
@@ -1991,12 +2051,12 @@ def draw_panel(surf, game):
             dest = t.link_to_map
             add(f"Travel to {dest}", game.travel_link)
             add("Leave NPC", lambda: game.handle_dialogue_choice("Leave"))
-        add("Inventory", lambda: setattr(game, 'mode', 'inventory'))
-        add("Equipment", lambda: setattr(game, 'mode', 'equip'))
-        add("Database", lambda: setattr(game, 'mode', 'database'))
+        add("Inventory", lambda: game.open_overlay('inventory'))
+        add("Equipment", lambda: game.open_overlay('equip'))
+        add("Database", lambda: game.open_overlay('database'))
         # Removed standalone Battlefield menu entry; battlefield appears only during combat
-        add("Save Game", lambda: setattr(game, 'mode', 'save'))
-        add("Load Game", lambda: setattr(game, 'mode', 'load'))
+        add("Save Game", lambda: game.open_overlay('save'))
+        add("Load Game", lambda: game.open_overlay('load'))
 
     # Keep side action buttons within window bounds by shifting them up if needed
     try:
@@ -2063,21 +2123,17 @@ def draw_inventory_panel(surf, game, x0, panel_w):
         subtype = str(item_subtype(it)).lower()
         typ = str(item_type(it)).lower()
         if typ == "weapon":
-            if subtype in ("wand","staff"):
-                buttons.append(Button((x0+16, y, 160, 30), "Equip as Focus", lambda: game.equip_focus(it)))
-                y += 34
-            else:
-                buttons.append(Button((x0+16, y, 160, 30), "Equip Weapon", lambda: game.equip_weapon(it)))
-                y += 34
+            buttons.append(Button((x0+16, y, 160, 30), "Equip Weapon", lambda: game.equip_weapon(it)))
+            y += 34
         # Drop button
         buttons.append(Button((x0+16, y, 160, 30), "Drop", lambda: game.drop_item(game.inv_sel)))
         # Close
-        buttons.append(Button((x0+16+170, y, 160, 30), "Close", lambda: setattr(game,'mode','explore')))
+        buttons.append(Button((x0+16+170, y, 160, 30), "Close", lambda: game.close_overlay()))
     else:
         # Pager + Close when nothing selected
         buttons.append(Button((x0+16, y, 110, 28), "Prev Page", lambda: setattr(game,'inv_page', max(0, game.inv_page-1))))
         buttons.append(Button((x0+16+120, y, 110, 28), "Next Page", lambda: setattr(game,'inv_page', min(pages-1, game.inv_page+1))))
-        buttons.append(Button((x0+16+240, y, 90, 28), "Close", lambda: setattr(game,'mode','explore')))
+        buttons.append(Button((x0+16+240, y, 90, 28), "Close", lambda: game.close_overlay()))
 
     return buttons
 
@@ -2343,10 +2399,17 @@ def draw_combat_overlay(surf, game):
         pg.draw.rect(surf, (96,102,124), pbar, 1, border_radius=6)
         ry += 14 + draw_text(surf, f"HP: {php_cur}/{php_max}", (rx, ry + 14), font=stat_label_font, max_w=left.w - 24) + 10
         # Equipped summary
-        wep = item_name(getattr(actor, 'equipped_weapon', None)) if getattr(actor, 'equipped_weapon', None) else "Unarmed"
-        foc = item_name(getattr(actor, 'equipped_focus', None)) if getattr(actor, 'equipped_focus', None) else "None"
+        try:
+            weapon_obj = getattr(actor, 'equipped_weapon', None)
+            if not weapon_obj:
+                gear_map = getattr(actor, 'equipped_gear', {}) or {}
+                if isinstance(gear_map, dict):
+                    weapon_obj = gear_map.get('weapon_main')
+        except Exception:
+            weapon_obj = getattr(actor, 'equipped_weapon', None)
+        wep = _combat_item_label(weapon_obj, "Unarmed")
         ry += draw_text(surf, f"Weapon: {wep}", (rx, ry), font=stat_label_font, max_w=left.w - 24)
-        ry += draw_text(surf, f"Focus : {foc}", (rx, ry), font=stat_label_font, max_w=left.w - 24) + 4
+        ry += 4
         # Enclosing card
         p_pad_x, p_pad_y = 10, 8
         p_card_x = left.x + p_pad_x
@@ -2391,8 +2454,8 @@ def draw_combat_overlay(surf, game):
         pass
     by += bh + gap
     add_btn(bx, by, "Flee", game.flee)
-    add_btn(bx + bw + gap, by, "Inventory", lambda: setattr(game, 'mode', 'inventory')); by += bh + gap
-    add_btn(bx, by, "Equipment", lambda: setattr(game, 'mode', 'equip'))
+    add_btn(bx + bw + gap, by, "Inventory", lambda: game.open_overlay('inventory')); by += bh + gap
+    add_btn(bx, by, "Equipment", lambda: game.open_overlay('equip'))
     # Removed Database option from battle scene
 
     return buttons
@@ -2437,7 +2500,7 @@ def draw_inventory_overlay(surf, game):
     # Header buttons: Equipment and Back
     def _to_equip(): setattr(game, 'mode', 'equip')
     buttons.append(Button((modal.right - 230, modal.y + 10, 110, 28), "Equipment", _to_equip))
-    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode', 'combat' if getattr(game,'current_enemy', None) else 'explore')))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: game.close_overlay()))
 
     # Layout inside modal: icons grid left, details right
     pad = 16
@@ -2497,7 +2560,7 @@ def draw_inventory_overlay(surf, game):
         try:
             p = game.player
             if getattr(p, 'equipped_weapon', None) is it: return True
-            if getattr(p, 'equipped_focus', None) is it: return True
+            # legacy focus slot removed
             for v in (getattr(p, 'equipped_gear', {}) or {}).values():
                 if v is it: return True
         except Exception:
@@ -2667,10 +2730,7 @@ def draw_inventory_overlay(surf, game):
         mtyp = item_major_type(it)
         sub_l = str(sub).lower()
         if mtyp == 'weapon':
-            if sub_l in ('wand','staff'):
-                buttons.append(Button((bx, by, 160, 28), "Equip as Focus", lambda it=it: game.equip_item(it))); bx += 170
-            else:
-                buttons.append(Button((bx, by, 160, 28), "Equip Weapon", lambda it=it: game.equip_item(it))); bx += 170
+            buttons.append(Button((bx, by, 160, 28), "Equip Weapon", lambda it=it: game.equip_item(it))); bx += 170
         elif mtyp in ('armour','armor','clothing','accessory','accessories'):
             buttons.append(Button((bx, by, 160, 28), "Equip", lambda it=it: game.equip_item(it))); bx += 170
         if item_is_consumable(it):
@@ -3089,7 +3149,7 @@ def draw_equip_overlay(surf, game):
     buttons.append(Button((modal.x + 360, modal.y + 10, 28, 28), "<", lambda: _prev()))
     buttons.append(Button((modal.x + 392, modal.y + 10, 28, 28), ">", lambda: _next()))
     buttons.append(Button((modal.right - 230, modal.y + 10, 110, 28), "Inventory", lambda: setattr(game,'mode','inventory')))
-    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode', 'combat' if getattr(game,'current_enemy', None) else 'explore')))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: game.close_overlay()))
 
     # Layout left silhouette, right list
     pad = 16
@@ -3389,7 +3449,7 @@ def draw_save_overlay(surf, game):
     pg.draw.rect(surf, (96,102,124), modal, 2, border_radius=10)
     title_font = pg.font.Font(None, 30)
     surf.blit(title_font.render("Save Game", True, (235,235,245)), (modal.x + 16, modal.y + 12))
-    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode','explore')))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: game.close_overlay()))
 
     # Slots grid 2x3
     pad = 16
@@ -3430,7 +3490,7 @@ def draw_load_overlay(surf, game):
     pg.draw.rect(surf, (96,102,124), modal, 2, border_radius=10)
     title_font = pg.font.Font(None, 30)
     surf.blit(title_font.render("Load Game", True, (235,235,245)), (modal.x + 16, modal.y + 12))
-    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode','explore')))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: game.close_overlay()))
 
     # Slots grid 2x3
     pad = 16
@@ -3490,7 +3550,7 @@ def draw_database_overlay(surf, game):
     if not hasattr(game, '_db_font_20'): game._db_font_20 = pg.font.Font(None, 20)
     title_font = game._db_font_30
     surf.blit(title_font.render("Database", True, (235,235,245)), (modal.x + 16, modal.y + 12))
-    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: setattr(game,'mode','explore')))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: game.close_overlay()))
 
     # Initialize state on first open
     if not hasattr(game, 'db_cat'): game.db_cat = 'Items'
@@ -4414,7 +4474,7 @@ class Game:
                 'soc': int(getattr(obj, 'soc', 5)),
                 'fth': int(getattr(obj, 'fth', 5)),
                 'equipped_weapon': getattr(obj, 'equipped_weapon', None),
-                'equipped_focus': getattr(obj, 'equipped_focus', None),
+                # focus removed from serialization; kept for backward loads only
                 'equipped_gear': dict(getattr(obj, 'equipped_gear', {}) or {}),
                 'portrait': getattr(obj, 'portrait', None),
                 'home_map': getattr(obj, 'home_map', None),
@@ -4450,7 +4510,7 @@ class Game:
                 'romance_flags': dict(self.player.romance_flags),
                 'inventory': list(self.player.inventory),
                 'equipped_weapon': self.player.equipped_weapon,
-                'equipped_focus': self.player.equipped_focus,
+                # focus removed from serialization
                 'equipped_gear': dict(self.player.equipped_gear),
             },
             'party': [ _ser_char(a) for a in getattr(self, 'party', []) ],
@@ -4534,9 +4594,26 @@ class Game:
         self.player.affinity = dict(p.get('affinity', self.player.affinity))
         self.player.romance_flags = dict(p.get('romance_flags', self.player.romance_flags))
         self.player.inventory = list(p.get('inventory', self.player.inventory))
+        # Normalize weapon stats for any unrolled weapons in inventory
+        try:
+            for it in self.player.inventory:
+                _ensure_weapon_combat_stats_inplace(it)
+        except Exception:
+            pass
         self.player.equipped_weapon = p.get('equipped_weapon')
-        self.player.equipped_focus  = p.get('equipped_focus')
+        try:
+            _ensure_weapon_combat_stats_inplace(self.player.equipped_weapon)
+        except Exception:
+            pass
         self.player.equipped_gear   = dict(p.get('equipped_gear', self.player.equipped_gear))
+        # Migration: hydrate equipped_weapon from equipped_gear['weapon_main'] if missing
+        try:
+            if not self.player.equipped_weapon and isinstance(self.player.equipped_gear, dict):
+                w_main = self.player.equipped_gear.get('weapon_main')
+                if w_main:
+                    self.player.equipped_weapon = w_main
+        except Exception:
+            pass
 
         # Restore party
         self.party = []
@@ -4560,14 +4637,22 @@ class Game:
                         ins=int(a.get('ins', 5) or 5),
                         soc=int(a.get('soc', 5) or 5),
                         fth=int(a.get('fth', 5) or 5),
-                        equipped_weapon=a.get('equipped_weapon'),
-                        equipped_focus=a.get('equipped_focus'),
+                        equipped_weapon=(a.get('equipped_weapon') or (a.get('equipped_gear') or {}).get('weapon_main')),
                         equipped_gear=dict(a.get('equipped_gear', {})),
                         portrait=a.get('portrait'),
                         home_map=a.get('home_map'),
                         home_pos=tuple(a.get('home_pos')) if isinstance(a.get('home_pos'), (list, tuple)) else None,
                         home_payload=copy.deepcopy(a.get('home_payload'))
                     )
+                    # Post-fix ally equipped weapon from gear map if still missing
+                    try:
+                        if not getattr(ally, 'equipped_weapon', None) and isinstance(ally.equipped_gear, dict):
+                            w_main = ally.equipped_gear.get('weapon_main')
+                            if w_main:
+                                ally.equipped_weapon = w_main
+                        _ensure_weapon_combat_stats_inplace(ally.equipped_weapon)
+                    except Exception:
+                        pass
                     self.party.append(ally)
                 except Exception:
                     pass
@@ -4652,6 +4737,23 @@ class Game:
         if len(self.log) > 8:
             self.log = self.log[-8:]
 
+    # ---------- Overlay navigation helpers ----------
+    def open_overlay(self, mode_name: str) -> None:
+        try:
+            self.ui_return_mode = getattr(self, 'mode', 'explore')
+        except Exception:
+            self.ui_return_mode = 'explore'
+        self.mode = mode_name
+
+    def close_overlay(self) -> None:
+        prev = getattr(self, 'ui_return_mode', None)
+        # Only return to a safe known mode; default to explore
+        self.mode = prev if prev in ('explore', 'combat', 'dialogue', 'event') else 'explore'
+        try:
+            self.ui_return_mode = None
+        except Exception:
+            pass
+
     # ---------- Equipment actions ----------
     def _equip_target(self):
         try:
@@ -4667,8 +4769,7 @@ class Game:
         try:
             if getattr(actor, 'equipped_weapon', None) is it:
                 return 'weapon_main'
-            if getattr(actor, 'equipped_focus', None) is it:
-                return 'weapon_off'
+            # legacy focus slot removed
             gear = getattr(actor, 'equipped_gear', {}) or {}
             for k, v in gear.items():
                 if v is it:
@@ -4685,6 +4786,11 @@ class Game:
             if where and where != 'weapon_main':
                 self.say(f"Already equipped in {SLOT_LABELS.get(where, where)}. Unequip first.")
                 return
+            # Ensure combat stats exist on this weapon
+            try:
+                _ensure_weapon_combat_stats_inplace(it)
+            except Exception:
+                pass
             target.equipped_weapon = it
             # Keep equipped_gear in sync for equipment UI
             try:
@@ -4696,27 +4802,6 @@ class Game:
             self.say(f"Equipped weapon on {getattr(target,'name','ally')}: {item_name(it)}")
         else:
             self.say("That cannot be equipped as a weapon.")
-    def equip_focus(self, it: Dict):
-        target = self._equip_target()
-        if item_type(it).lower() == "weapon" and item_subtype(it).lower() in ("wand","staff"):
-            # Block if already equipped elsewhere
-            where = self._equipped_slot_of(target, it)
-            # Focus typically sits in off-hand; if already anywhere else, block
-            if where and where != 'weapon_off':
-                self.say(f"Already equipped in {SLOT_LABELS.get(where, where)}. Unequip first.")
-                return
-            target.equipped_focus = it
-            # Keep equipped_gear in sync; use off-hand if a main weapon exists
-            try:
-                if not hasattr(target, 'equipped_gear') or not isinstance(getattr(target, 'equipped_gear'), dict):
-                    target.equipped_gear = {}
-                slot = 'weapon_off' if getattr(target, 'equipped_weapon', None) else 'weapon_main'
-                target.equipped_gear[slot] = it
-            except Exception:
-                pass
-            self.say(f"Equipped focus on {getattr(target,'name','ally')}: {item_name(it)}")
-        else:
-            self.say("You need a wand or staff as a focus.")
     def drop_item(self, idx: int):
         if 0 <= idx < len(self.player.inventory):
             it = self.player.inventory[idx]
@@ -4742,11 +4827,8 @@ class Game:
             else:
                 self.equip_item_to_slot(slot, it)
         elif m == 'weapon':
-            sub = item_subtype(it).lower()
-            if sub in ('wand','staff'):
-                self.equip_focus(it)
-            else:
-                self.equip_weapon(it)
+            # Treat all weapons uniformly; wands/staves equip as weapons
+            self.equip_weapon(it)
         else:
             self.say("That item cannot be equipped.")
     
@@ -4770,14 +4852,11 @@ class Game:
         target.equipped_gear[slot] = it
         # Also sync legacy fields for combat
         if slot == 'weapon_main':
-            if str(item_subtype(it)).lower() in ('wand','staff'):
-                target.equipped_focus = it
-            else:
-                target.equipped_weapon = it
-        elif slot == 'weapon_off':
-            # Only set focus if it's a wand/staff and no main focus is set
-            if str(item_subtype(it)).lower() in ('wand','staff') and not getattr(target, 'equipped_focus', None):
-                target.equipped_focus = it
+            try:
+                _ensure_weapon_combat_stats_inplace(it)
+            except Exception:
+                pass
+            target.equipped_weapon = it
         self.say(f"Equipped {item_name(it)} -> {SLOT_LABELS.get(slot, slot)} on {getattr(target,'name','ally')}")
 
     def unequip_slot(self, slot: str):
@@ -4788,8 +4867,7 @@ class Game:
             # Clear legacy fields if they pointed to this item
             if slot == 'weapon_main' and getattr(target, 'equipped_weapon', None) is it:
                 target.equipped_weapon = None
-            if slot in ('weapon_main','weapon_off') and getattr(target, 'equipped_focus', None) is it:
-                target.equipped_focus = None
+            # focus slot removed
             self.say(f"Unequipped {item_name(it)} from {SLOT_LABELS.get(slot, slot)} on {getattr(target,'name','ally')}")
     def consume_item(self, idx: int):
         if 0 <= idx < len(self.player.inventory):
@@ -4906,38 +4984,38 @@ class Game:
                         self.start_combat(t.encounter.enemy); self.say(f"{t.encounter.enemy.get('name','A foe')} spots you!", tag)
                     else:
                         self.say("An enemy lurks here... maybe you could sneak by.", tag)
-        elif t.encounter.npc:
-            # Friendly presence does not block or force dialogue; allow passing by
-            # If multiple friendlies, list them
-            try:
-                def _is_enemy_e(e: Dict) -> bool:
-                    sub = (e.get('subcategory') or '').lower()
-                    return sub in ('enemies','monsters','villains','vilains') or bool(e.get('hostile'))
-                friendlies = [e for e in (t.encounter.npcs or []) if isinstance(e, dict) and not _is_enemy_e(e)]
-            except Exception:
-                friendlies = []
-            names = [str(e.get('name') or 'someone') for e in friendlies] if friendlies else [str(t.encounter.npc.get('name') or 'someone')]
-            # Build a concise list string
-            if len(names) == 1:
-                msg = f"You see {names[0]} here."
-            elif len(names) == 2:
-                msg = f"You see {names[0]} and {names[1]} here."
+                elif t.encounter.npc:
+                    # Friendly presence does not block or force dialogue; allow passing by
+                    # If multiple friendlies, list them
+                    try:
+                        def _is_enemy_e(e: Dict) -> bool:
+                            sub = (e.get('subcategory') or '').lower()
+                            return sub in ('enemies','monsters','villains','vilains') or bool(e.get('hostile'))
+                        friendlies = [e for e in (t.encounter.npcs or []) if isinstance(e, dict) and not _is_enemy_e(e)]
+                    except Exception:
+                        friendlies = []
+                    names = [str(e.get('name') or 'someone') for e in friendlies] if friendlies else [str(t.encounter.npc.get('name') or 'someone')]
+                    # Build a concise list string
+                    if len(names) == 1:
+                        msg = f"You see {names[0]} here."
+                    elif len(names) == 2:
+                        msg = f"You see {names[0]} and {names[1]} here."
+                    else:
+                        msg = f"You see {', '.join(names[:-1])}, and {names[-1]} here."
+                    # Tag based on first friendly type
+                    try:
+                        first = friendlies[0] if friendlies else t.encounter.npc
+                        sub = str((first or {}).get('subcategory') or '').lower()
+                        tag = 'ally' if sub == 'allies' else ('citizen' if sub == 'citizens' else ('animal' if sub == 'animals' else None))
+                    except Exception:
+                        tag = None
+                    self.say(msg, tag)
+                elif t.encounter.event:
+                    self.mode = "event"; self.say(f"You encounter {t.encounter.event}.", 'event')
+                else:
+                    self.mode = "explore"
             else:
-                msg = f"You see {', '.join(names[:-1])}, and {names[-1]} here."
-            # Tag based on first friendly type
-            try:
-                first = friendlies[0] if friendlies else t.encounter.npc
-                sub = str((first or {}).get('subcategory') or '').lower()
-                tag = 'ally' if sub == 'allies' else ('citizen' if sub == 'citizens' else ('animal' if sub == 'animals' else None))
-            except Exception:
-                tag = None
-            self.say(msg, tag)
-                
-            
-        elif t.encounter.event:
-            self.mode = "event"; self.say(f"You encounter {t.encounter.event}.", 'event')
-        else:
-            self.mode = "explore"
+                self.mode = "explore"
 
     def start_dialogue(self, npc):
         self.current_npc = npc
@@ -5737,11 +5815,9 @@ class Game:
         total: Dict[str,int] = {}
         try:
             gear = dict(getattr(actor, 'equipped_gear', {}) or {})
-            # Include legacy weapon/focus in case they carry defense
+            # Include legacy weapon in case it carries defense
             if getattr(actor, 'equipped_weapon', None):
                 gear.setdefault('weapon_main', getattr(actor, 'equipped_weapon'))
-            if getattr(actor, 'equipped_focus', None):
-                gear.setdefault('weapon_off', getattr(actor, 'equipped_focus'))
             for it in gear.values():
                 d = self._item_defense(it)
                 for k, v in d.items():
@@ -6066,7 +6142,15 @@ class Game:
     def attack(self):
         if not self.current_enemy: return
         base_min, base_max = self.player.atk
-        wep = self.player.equipped_weapon or {}
+        wep = self.player.equipped_weapon
+        if not wep:
+            try:
+                gm = getattr(self, 'player').equipped_gear or {}
+                if isinstance(gm, dict):
+                    wep = gm.get('weapon_main')
+            except Exception:
+                wep = None
+        wep = wep or {}
         wmin, wmax, _, _ = _weapon_stats(wep)
         dmg = random.randint(base_min + wmin, base_max + max(wmax,0))
         dmg = max(1, dmg)
@@ -6075,7 +6159,9 @@ class Game:
             self.current_enemy_hp = 0
         idx = self._sync_enemy_hp_tracking()
         enemy_ref = self.current_enemy
-        self.say(f"You strike with {item_name(wep) if wep else 'your weapon'} for {dmg}.")
+        # Hide placeholder starter gear names in combat log
+        label = 'your weapon' if _is_placeholder_item(wep) or not wep else item_name(wep)
+        self.say(f"You strike with {label} for {dmg}.")
         if enemy_ref:
             self._log_enemy_hp_status(enemy_ref, idx)
         self._maybe_apply_status('melee', self.current_enemy, wep)
@@ -6111,8 +6197,6 @@ class Game:
     def cast_spell(self):
         if not self.current_enemy:
             self.say("No target."); return
-        if not self.player.equipped_focus:
-            self.say("You need a wand or staff to focus your magic."); return
         if not self.magic:
             self.say("You don't recall any spells."); return
         spell = random.choice(self.magic)
@@ -6122,10 +6206,12 @@ class Game:
             self.current_enemy_hp = 0
         idx = self._sync_enemy_hp_tracking()
         enemy_ref = self.current_enemy
-        self.say(f"You cast {spell.get('name','a spell')} through {item_name(self.player.equipped_focus)} for {dmg}!")
+        # Spell cast message without focus reference
+        self.say(f"You cast {spell.get('name','a spell')} for {dmg}!")
         if enemy_ref:
             self._log_enemy_hp_status(enemy_ref, idx)
-        self._maybe_apply_status('spell', self.current_enemy, self.player.equipped_focus)
+        # Apply status based on current weapon if any
+        self._maybe_apply_status('spell', self.current_enemy, self.player.equipped_weapon)
         if self.current_enemy_hp <= 0:
             self.say("Enemy crumples.")
             try: self._on_enemy_defeated(self.current_enemy)
@@ -6249,9 +6335,19 @@ class Game:
         will = int(self.current_enemy.get('will', 4))
         chance = max(0.1, min(0.8, 0.5 - 0.05*(will-4) + 0.05*len(self.player.romance_flags)))
         if random.random() < chance:
-            self.say("You talk them down. The hostility fades.")
-            t = self.tile(); t.encounter.enemy = None; t.encounter.must_resolve = False
-            self.current_enemy = None; self.mode = "explore"
+            self.say("You talk them down. The hostility fades (for now).")
+            # Keep encounter on tile, but clear forced blocking and awareness
+            t = self.tile()
+            try:
+                if t.encounter:
+                    t.encounter.must_resolve = False
+                    t.encounter.spotted = False
+            except Exception:
+                pass
+            # Exit combat to exploration; do not delete the enemy
+            self.current_enemy = None
+            self.mode = "explore"
+            self.can_bribe = False
         else:
             self.say("They waver... maybe a bribe would help.")
             self.can_bribe = True
@@ -6290,7 +6386,17 @@ class Game:
         chance = max(0.1, min(0.95, 0.35 + 0.08*(pDex - eDex)))
         if random.random() < chance:
             self.say("You slip away into the brush.")
+            # Leave encounter intact but no longer blocking or alerted
+            try:
+                t = self.tile()
+                if t.encounter:
+                    t.encounter.must_resolve = False
+                    t.encounter.spotted = False
+            except Exception:
+                pass
+            self.current_enemy = None
             self.mode = "explore"
+            # Small move away to adjacent tile if possible
             if self.player.y+1 < getattr(self, 'H', 8): self.player.y += 1
         else:
             self.say("You fail to escape!")
@@ -6461,7 +6567,11 @@ def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, s
                 elif event.key in (pg.K_s, pg.K_DOWN):  game.move(0,1)
                 elif event.key in (pg.K_a, pg.K_LEFT):  game.move(-1,0)
                 elif event.key in (pg.K_d, pg.K_RIGHT): game.move(1,0)
-                elif event.key == pg.K_i: game.mode = "inventory" if game.mode != "inventory" else "explore"
+                elif event.key == pg.K_i:
+                    if game.mode != "inventory":
+                        game.open_overlay('inventory')
+                    else:
+                        game.close_overlay()
             elif event.type == pg.MOUSEBUTTONDOWN:
                 for b in draw_panel(screen, game):
                     b.handle(event)

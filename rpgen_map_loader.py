@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parent
 DATA = ROOT / 'data'
 MAPS = DATA / 'maps'
 DUNGEONS = DATA / 'dungeons'
-WORLD_MAP = DATA / 'world_map.json'
+WORLD_MAP = DATA / 'maps' / 'world_map.json'
 
 # ---------- JSON helpers ----------
 def _jload(path: Path, default):

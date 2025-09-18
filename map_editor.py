@@ -13,7 +13,7 @@ DATA_DIR = os.path.join(ROOT_DIR, "data")
 MAP_DIR  = os.path.join(DATA_DIR, "maps")
 NPC_DIR  = os.path.join(DATA_DIR, "npcs")
 ITEM_DIR = os.path.join(DATA_DIR, "items")
-MANIFEST = os.path.join(DATA_DIR, "maps.json")
+MANIFEST = os.path.join(MAP_DIR, "maps.json")
 TILE_IMG_DIR = os.path.join(ROOT_DIR, "assets", "images", "map_tiles")
 
 os.makedirs(MAP_DIR, exist_ok=True)
@@ -905,7 +905,7 @@ class EditorScreen:
         x, y = self.selected
         if not (0 <= x < self.map.width and 0 <= y < self.map.height):
             return
-        wm_path = os.path.join(DATA_DIR, "world_map.json")
+        wm_path = os.path.join(MAP_DIR, "world_map.json")
         wm = read_json_any(wm_path, {"schema":"rpgen.world@1","version":"0.2","layout": {}, "start": {"map":"","entry": None, "pos": [0,0]}})
         start = wm.get("start", {}) if isinstance(wm, dict) else {}
         smap = start.get("map") or ""
@@ -1431,7 +1431,7 @@ class EditorScreen:
         # Selection highlight on top in Top view (clear and obvious)
         # Highlight Game Start tile (blue outline)
         try:
-            wm_path = os.path.join(DATA_DIR, "world_map.json")
+            wm_path = os.path.join(MAP_DIR, "world_map.json")
             wm = read_json_any(wm_path, {"start": {"map":"","entry": None, "pos": [0,0]}})
             start = wm.get("start", {}) if isinstance(wm, dict) else {}
             smap = start.get("map") or ""
@@ -1547,7 +1547,7 @@ class EditorScreen:
         self.btn_edit_note.draw(surf)
 
         # Game start UI (info + button) anchored in sidebar above Tile Info
-        wm_path = os.path.join(DATA_DIR, "world_map.json")
+        wm_path = os.path.join(MAP_DIR, "world_map.json")
         wm = read_json_any(wm_path, {"start": {"map":"","entry": None, "pos": [0,0]}})
         start = wm.get("start", {}) if isinstance(wm, dict) else {}
         smap = start.get("map") or ""
@@ -1856,7 +1856,7 @@ class WorldScreen:
             self.maps = []
 
         # Load world layout
-        self.world_path = os.path.join(DATA_DIR, "world_map.json")
+        self.world_path = os.path.join(MAP_DIR, "world_map.json")
         wm = read_json_any(self.world_path, {"layout": {}, "start": {"map":"","entry": None, "pos": [0,0]}})
         layout = wm.get("layout", {})
         # Build layout dict of map -> (x,y)
