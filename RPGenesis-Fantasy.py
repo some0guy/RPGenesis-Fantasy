@@ -7191,8 +7191,9 @@ def start_menu():
                 init_subs = group_map.get(init_group, [])
                 init_sub_names: List[str] = [ (s.get('name') or s.get('id') or init_group) for s in init_subs ]
                 start_menu._cc_state = {
-                    'name': '',
-                    'hair_style': '', 'backstory': '',
+                    'first_name': '',
+                    'last_name': '',
+                    'backstory': '',
                     'race_groups': race_groups,
                     'race_group_idx': 0,
                     'race_group_map': group_map,
@@ -7204,8 +7205,48 @@ def start_menu():
                     # Appearance option lists and selections
                     'hair_colors': [], 'skin_tones': [], 'eye_colors': [],
                     'hair_idx': 0, 'skin_idx': 0, 'eye_idx': 0,
+                    # New: hair style and length options
+                    'hair_lengths': [
+                        'Bald', 'Very Short', 'Short', 'Medium', 'Long', 'Very Long', 'Knee Length'
+                    ],
+                    'hair_style_map': {
+                        'Bald': ['None'],
+                        'Very Short': [
+                            'Buzz Cut', 'Crew Cut', 'Caesar', 'Crop', 'Very Short Curls', 'Faux Hawk',
+                            'Ivy League', 'High and Tight'
+                        ],
+                        'Short': [
+                            'Pixie', 'Short Bob', 'Side Part', 'Undercut', 'Quiff', 'Short Curls',
+                            'Pompadour', 'Finger Waves'
+                        ],
+                        'Medium': [
+                            'Loose', 'Wavy', 'Curly', 'Ponytail', 'Half-Up', 'Low Bun', 'Braided Crown',
+                            'Mohawk', 'Undercut', 'Bob', 'Layered', 'French Twist', 'Space Buns', 'Shag'
+                        ],
+                        'Long': [
+                            'Loose', 'Wavy', 'Curly', 'Ponytail', 'Braided', 'French Braid', 'Fishtail Braid',
+                            'Low Bun', 'High Bun', 'Top Knot', 'Half-Up', 'Dreadlocks',
+                            'Side Braid', 'Dutch Braid', 'Braided Ponytail', 'Braided Bun'
+                        ],
+                        'Very Long': [
+                            'Loose', 'Wavy', 'Curly', 'Ponytail', 'Braided', 'French Braid', 'Fishtail Braid',
+                            'Twin Braids', 'Low Bun', 'High Bun', 'Top Knot', 'Half-Up', 'Dreadlocks',
+                            'Waterfall Braid', 'Rope Braid', 'Gibson Tuck', 'Side Ponytail'
+                        ],
+                        'Knee Length': [
+                            'Loose', 'Braided', 'Fishtail Braid', 'Twin Braids', 'Low Bun', 'Half-Up', 'Dreadlocks',
+                            'Giant Braid', 'Coiled Bun', 'Rope Braid'
+                        ]
+                    },
+                    'hair_style_idx': 0,
+                    # Fallback style list if mapping not found (should rarely be used)
+                    'hair_styles': [
+                        'Loose', 'Braided', 'Ponytail', 'Bun', 'Curly', 'Wavy', 'Straight', 'Top Knot',
+                        'Side Braid', 'Dutch Braid', 'Space Buns', 'French Twist', 'Layered', 'Shag'
+                    ],
+                    'hair_length_idx': 0,
                     'open_dd': None,
-                    'focus': 'name',
+                    'focus': 'first_name',
                 }
             st = start_menu._cc_state
             # Reset per-frame dropdown helpers
@@ -7411,13 +7452,35 @@ def start_menu():
             dropdown('Main Race', st.get('race_groups', []), 'race_group_idx')
             dropdown('Subrace',   st.get('subrace_names', []), 'subrace_idx')
             # Appearance dropdowns (values depend on race)
-            dropdown('Hair Colour', st.get('hair_colors', []), 'hair_idx', close_key='hair_color')
-            dropdown('Skin Colour', st.get('skin_tones', []), 'skin_idx', close_key='skin_tone')
-            dropdown('Eye Colour',  st.get('eye_colors',  []), 'eye_idx',  close_key='eye_color')
-            # Then name, class, style, backstory
-            field('Name', 'name')
+            def _cap_list(v):
+                try:
+                    return [str(x).strip().title() for x in (v or [])]
+                except Exception:
+                    return v or []
+            dropdown('Hair Colour', _cap_list(st.get('hair_colors', [])), 'hair_idx', close_key='hair_color')
+            dropdown('Skin Colour', _cap_list(st.get('skin_tones', [])), 'skin_idx', close_key='skin_tone')
+            dropdown('Eye Colour',  _cap_list(st.get('eye_colors',  [])), 'eye_idx',  close_key='eye_color')
+            # Choose hair length first
+            dropdown('Hair Length',  st.get('hair_lengths',  []), 'hair_length_idx',  close_key='hair_length')
+            # Hair style options depend on selected length
+            try:
+                lens = st.get('hair_lengths') or []
+                li = max(0, min(int(st.get('hair_length_idx',0)), max(0, len(lens)-1))) if lens else 0
+                lname = lens[li] if lens else ''
+                style_map = st.get('hair_style_map') or {}
+                cur_styles = style_map.get(lname, st.get('hair_styles') or [])
+                # Clamp idx if it exceeds available styles for this length
+                if cur_styles:
+                    st['hair_style_idx'] = max(0, min(int(st.get('hair_style_idx',0)), len(cur_styles)-1))
+                else:
+                    st['hair_style_idx'] = 0
+            except Exception:
+                cur_styles = st.get('hair_styles') or []
+            dropdown('Hair Style',   cur_styles, 'hair_style_idx',   close_key='hair_style')
+            # Then names and class
+            field('First Name', 'first_name')
+            field('Last Name',  'last_name')
             dropdown('Class', st.get('classes', []), 'class_idx')
-            field('Hair Style', 'hair_style')
             # Selected class default stats panel (right side)
             try:
                 objs = st.get('class_objs') or []
@@ -7601,15 +7664,27 @@ def start_menu():
                 hair = (st.get('hair_colors') or [''])[max(0, min(int(st.get('hair_idx',0)), max(0, len(st.get('hair_colors',[]))-1)))] if st.get('hair_colors') else ''
                 skin = (st.get('skin_tones') or [''])[max(0, min(int(st.get('skin_idx',0)), max(0, len(st.get('skin_tones',[]))-1)))] if st.get('skin_tones') else ''
                 eyes = (st.get('eye_colors')  or [''])[max(0, min(int(st.get('eye_idx',0)),  max(0, len(st.get('eye_colors',[]))-1)))] if st.get('eye_colors') else ''
+                # Build full name from first/last
+                first = str(st.get('first_name','')).strip()
+                last  = str(st.get('last_name','')).strip()
+                full_name = (f"{first} {last}".strip() if (first or last) else 'Adventurer')
+                # Resolve hair length and style strings from selections (style depends on length)
+                lens = st.get('hair_lengths') or []
+                li = max(0, min(int(st.get('hair_length_idx',0)), max(0, len(lens)-1))) if lens else 0
+                length = lens[li] if lens else ''
+                style_options = (st.get('hair_style_map') or {}).get(length, st.get('hair_styles') or [])
+                si = max(0, min(int(st.get('hair_style_idx',0)), max(0, len(style_options)-1))) if style_options else 0
+                style = style_options[si] if style_options else ''
                 cfg = {
-                    'name': (st['name'].strip() or 'Adventurer'),
+                    'name': full_name,
                     'race': race,
                     'role': role,
                     'appearance': {
                         'hair_color': hair,
                         'skin_tone': skin,
                         'eye_color': eyes,
-                        'hair_style': st['hair_style'],
+                        'hair_style': style,
+                        'hair_length': length,
                     },
                     'backstory': st['backstory'],
                 }
@@ -7735,11 +7810,11 @@ def start_menu():
                     if event.key == pg.K_BACKSPACE:
                         k = st['focus']; st[k] = st.get(k,'')[:-1]
                     elif event.key == pg.K_RETURN:
-                        order = ['name','hair_style','backstory']
+                        order = ['first_name','last_name','backstory']
                         try:
                             i = order.index(st['focus']); st['focus'] = order[(i+1)%len(order)]
                         except Exception:
-                            st['focus'] = 'name'
+                            st['focus'] = 'first_name'
                     else:
                         ch = getattr(event, 'unicode', '')
                         if ch and ch.isprintable():
