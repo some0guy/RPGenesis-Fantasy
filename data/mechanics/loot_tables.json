@@ -15,6 +15,39 @@
         "pick": "IT00000007",
         "weight": 1
       }
+    ],
+    "chest_pool_common": [
+      { "pick": "any_common", "weight": 1 }
+    ],
+    "chest_pool_uncommon": [
+      { "pick": "any_uncommon", "weight": 2 },
+      { "pick": "any_common",   "weight": 3 }
+    ],
+    "chest_pool_rare": [
+      { "pick": "any_rare",     "weight": 2 },
+      { "pick": "any_uncommon", "weight": 4 },
+      { "pick": "any_common",   "weight": 5 }
+    ],
+    "chest_pool_exotic": [
+      { "pick": "any_exotic",   "weight": 2 },
+      { "pick": "any_rare",     "weight": 3 },
+      { "pick": "any_uncommon", "weight": 4 },
+      { "pick": "any_common",   "weight": 5 }
+    ],
+    "chest_pool_legendary": [
+      { "pick": "any_legendary", "weight": 1 },
+      { "pick": "any_exotic",    "weight": 3 },
+      { "pick": "any_rare",      "weight": 4 },
+      { "pick": "any_uncommon",  "weight": 5 },
+      { "pick": "any_common",    "weight": 6 }
+    ],
+    "chest_pool_mythic": [
+      { "pick": "any_mythic",   "weight": 1 },
+      { "pick": "any_legendary","weight": 2 },
+      { "pick": "any_exotic",   "weight": 3 },
+      { "pick": "any_rare",     "weight": 4 },
+      { "pick": "any_uncommon", "weight": 5 },
+      { "pick": "any_common",   "weight": 6 }
     ]
   },
   "aliases": {
@@ -23,6 +56,18 @@
     },
     "any_uncommon": {
       "rarity": "uncommon"
+    },
+    "any_rare": {
+      "rarity": "rare"
+    },
+    "any_exotic": {
+      "rarity": "exotic"
+    },
+    "any_legendary": {
+      "rarity": "legendary"
+    },
+    "any_mythic": {
+      "rarity": "mythic"
     }
   }
 }

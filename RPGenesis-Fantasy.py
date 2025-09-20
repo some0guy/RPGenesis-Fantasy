@@ -295,29 +295,10 @@ def item_name(it: dict) -> str:
     return (it.get('name') or it.get('Name') or it.get('display_name') or
             it.get('title') or it.get('label') or it.get('id') or '?')
 
-def _is_placeholder_item(it: Optional[Dict[str, Any]]) -> bool:
-    """Heuristically detect starter/placeholder items that shouldn't be named in UI.
-
-    We treat items with names like 'Rough Dagger' or 'Plain Staff' as placeholders.
-    """
-    if not isinstance(it, dict):
-        return False
-    try:
-        nm = str((it.get('name') or it.get('title') or '')).strip().lower()
-        if nm in { 'rough dagger', 'plain staff' }:
-            return True
-    except Exception:
-        pass
-    return False
-
 def _combat_item_label(it: Optional[Dict[str, Any]], fallback: str) -> str:
     """Return a user-facing label for an equipped item in combat.
-
-    Hides placeholder starter gear by returning the fallback label instead.
     """
     if not it:
-        return fallback
-    if _is_placeholder_item(it):
         return fallback
     try:
         return item_name(it)
@@ -1158,6 +1139,7 @@ class Encounter:
     # Full lists as placed by the map editor
     npcs: List[Dict] = field(default_factory=list)
     items: List[Dict] = field(default_factory=list)
+    chests: List[Dict] = field(default_factory=list)
     # Other encounter aspects
     event: Optional[str] = None
     must_resolve: bool = False
@@ -1206,7 +1188,6 @@ class Player:
     affinity: Dict[str,int] = field(default_factory=dict)
     romance_flags: Dict[str,bool] = field(default_factory=dict)
     inventory: List[Dict] = field(default_factory=list)
-    equipped_weapon: Optional[Dict] = None
     # Generic equipment slots for armour/clothing/accessory
     equipped_gear: Dict[str, Dict] = field(default_factory=dict)
     # Optional portrait reference (relative to project or assets/)
@@ -1233,7 +1214,6 @@ class Ally:
     soc: int = 5
     fth: int = 5
     inventory: List[Dict] = field(default_factory=list)
-    equipped_weapon: Optional[Dict] = None
     equipped_gear: Dict[str, Dict] = field(default_factory=dict)
     portrait: Optional[str] = None
     home_map: Optional[str] = None
@@ -1300,6 +1280,10 @@ def grid_from_runtime(runtime: Dict[str, Any], items: List[Dict], npcs: List[Dic
                 # Populate lists if provided by runtime
                 enc.npcs = list(cell.get('npcs') or [])
                 enc.items = list(cell.get('items') or [])
+                try:
+                    enc.chests = list(cell.get('chests') or [])
+                except Exception:
+                    enc.chests = []
                 # Backwards compatible single fields
                 if cell.get('npc') and not enc.npcs:
                     enc.npcs = [cell.get('npc')]
@@ -1317,7 +1301,9 @@ def grid_from_runtime(runtime: Dict[str, Any], items: List[Dict], npcs: List[Dic
                     if not _is_enemy(e):
                         enc.npc = e
                         break
-                t.encounter = enc if (enc.npcs or enc.items or enc.event) else None
+                # Register an encounter if any interactive content exists on the tile
+                # Include chests so chest-only tiles create an encounter
+                t.encounter = enc if (enc.npcs or enc.items or enc.event or enc.chests) else None
 
     # Mark link tiles for UI from runtime['links']
     for link in (runtime.get('links') or []):
@@ -1983,6 +1969,27 @@ def draw_grid(surf, game):
                         draw_flat_dot(cx + dcx, cy + dcy, dot_colors[idx])
                         idx += 1
 
+            # Chests: draw a small white diamond marker at tile center
+            try:
+                chest_count = len(getattr(getattr(tile, 'encounter', None), 'chests', []) or [])
+            except Exception:
+                chest_count = 0
+            if is_revealed and chest_count:
+                ex_norm = math.hypot(exx, exy)
+                ey_norm = math.hypot(eyx, eyy)
+                s = max(6.0, min(ex_norm, ey_norm) * 0.14)
+                dx = (exx / max(ex_norm, 1e-6)) * s * 0.5
+                dy = (exy / max(ex_norm, 1e-6)) * s * 0.5
+                ex_dx = (eyx / max(ey_norm, 1e-6)) * s * 0.5
+                ex_dy = (eyy / max(ey_norm, 1e-6)) * s * 0.5
+                p0c = (int(cx - dx - ex_dx), int(cy - dy - ex_dy))
+                p1c = (int(cx + dx - ex_dx), int(cy + dy - ex_dy))
+                p2c = (int(cx + dx + ex_dx), int(cy + dy + ex_dy))
+                p3c = (int(cx - dx + ex_dx), int(cy - dy + ex_dy))
+                poly = [p0c, p1c, p2c, p3c]
+                pg.draw.polygon(surf, (240,240,240), poly)
+                pg.draw.polygon(surf, (10,10,12), poly, 1)
+
             # (Removed) Per-tile fog overlay; global overlay now handles fog for unrevealed tiles and outside area uniformly
 
     # Fog outside the map area: overlay after tiles so only outside-of-grid remains dark
@@ -2140,20 +2147,33 @@ def draw_panel(surf, game):
         add("Leave", lambda: game.handle_dialogue_choice("Leave"))
         add("Inventory", lambda: game.open_overlay('inventory'))
         add("Equipment", lambda: game.open_overlay('equip'))
+        add("Stats", lambda: game.open_overlay('stats'))
     elif game.mode == "inventory":
         # Draw a full overlay inventory covering the center and right side
         buttons += draw_inventory_overlay(surf, game)
     elif getattr(game, 'mode', '') == "equip":
         # Draw equipment screen over map area, keep sidebars
         buttons += draw_equip_overlay(surf, game)
+    elif getattr(game, 'mode', '') == "stats":
+        # Character stats overlay
+        buttons += draw_stats_overlay(surf, game)
     elif getattr(game, 'mode', '') == "save":
         buttons += draw_save_overlay(surf, game)
     elif getattr(game, 'mode', '') == "load":
         buttons += draw_load_overlay(surf, game)
+    elif getattr(game, 'mode', '') == "exit_confirm":
+        buttons += draw_exit_overlay(surf, game)
     elif getattr(game, 'mode', '') == "database":
         buttons += draw_database_overlay(surf, game)
     # Removed standalone 'battlefield' mode; battlefield now only appears within combat overlay
     else:
+        # Chest interaction comes before generic search
+        try:
+            if t.encounter and getattr(t.encounter, 'chests', None):
+                if len(t.encounter.chests) > 0:
+                    add("Open Chest", game.open_chest)
+        except Exception:
+            pass
         add("Search Area", game.search_tile)
         # Enemy present: allow direct attack always
         if t.encounter and t.encounter.enemy:
@@ -2214,10 +2234,12 @@ def draw_panel(surf, game):
             add("Leave NPC", lambda: game.handle_dialogue_choice("Leave"))
         add("Inventory", lambda: game.open_overlay('inventory'))
         add("Equipment", lambda: game.open_overlay('equip'))
+        add("Stats", lambda: game.open_overlay('stats'))
         add("Database", lambda: game.open_overlay('database'))
         # Removed standalone Battlefield menu entry; battlefield appears only during combat
         add("Save Game", lambda: game.open_overlay('save'))
         add("Load Game", lambda: game.open_overlay('load'))
+        add("Back to Main Menu", lambda: game.open_overlay('exit_confirm'))
 
     # Keep side action buttons within window bounds by shifting them up if needed
     try:
@@ -2283,8 +2305,12 @@ def draw_inventory_panel(surf, game, x0, panel_w):
         draw_text(surf, (item_desc(it) or "-"), (x0+16, y), max_w=panel_w-32); y += 36
         subtype = str(item_subtype(it)).lower()
         typ = str(item_type(it)).lower()
+        major = item_major_type(it)
         if typ == "weapon":
             buttons.append(Button((x0+16, y, 160, 30), "Equip Weapon", lambda: game.equip_weapon(it)))
+            y += 34
+        elif major in ('armour','armor','clothing','accessory','accessories'):
+            buttons.append(Button((x0+16, y, 160, 30), "Equip", lambda: game.equip_item(it)))
             y += 34
         # Drop button
         buttons.append(Button((x0+16, y, 160, 30), "Drop", lambda: game.drop_item(game.inv_sel)))
@@ -2561,13 +2587,10 @@ def draw_combat_overlay(surf, game):
         ry += 14 + draw_text(surf, f"HP: {php_cur}/{php_max}", (rx, ry + 14), font=stat_label_font, max_w=left.w - 24) + 10
         # Equipped summary
         try:
-            weapon_obj = getattr(actor, 'equipped_weapon', None)
-            if not weapon_obj:
-                gear_map = getattr(actor, 'equipped_gear', {}) or {}
-                if isinstance(gear_map, dict):
-                    weapon_obj = gear_map.get('weapon_main')
+            gear_map = getattr(actor, 'equipped_gear', {}) or {}
+            weapon_obj = gear_map.get('weapon_main') if isinstance(gear_map, dict) else None
         except Exception:
-            weapon_obj = getattr(actor, 'equipped_weapon', None)
+            weapon_obj = None
         wep = _combat_item_label(weapon_obj, "Unarmed")
         ry += draw_text(surf, f"Weapon: {wep}", (rx, ry), font=stat_label_font, max_w=left.w - 24)
         ry += 4
@@ -2617,6 +2640,7 @@ def draw_combat_overlay(surf, game):
     add_btn(bx, by, "Flee", game.flee)
     add_btn(bx + bw + gap, by, "Inventory", lambda: game.open_overlay('inventory')); by += bh + gap
     add_btn(bx, by, "Equipment", lambda: game.open_overlay('equip'))
+    add_btn(bx + bw + gap, by, "Stats", lambda: game.open_overlay('stats'))
     # Removed Database option from battle scene
 
     return buttons
@@ -2732,8 +2756,7 @@ def draw_inventory_overlay(surf, game):
     def _is_equipped_by_player(it: dict) -> bool:
         try:
             p = game.player
-            if getattr(p, 'equipped_weapon', None) is it: return True
-            # legacy focus slot removed
+            # Check only standardized equipped_gear slots
             for v in (getattr(p, 'equipped_gear', {}) or {}).values():
                 if v is it: return True
         except Exception:
@@ -3322,7 +3345,7 @@ def draw_equip_overlay(surf, game):
     buttons.append(Button((modal.x + 360, modal.y + 10, 28, 28), "<", lambda: _prev()))
     buttons.append(Button((modal.x + 392, modal.y + 10, 28, 28), ">", lambda: _next()))
     buttons.append(Button((modal.right - 230, modal.y + 10, 110, 28), "Inventory", lambda: setattr(game,'mode','inventory')))
-    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: game.close_overlay()))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: (_reset_load_overlay_state(game), game.close_overlay())))
 
     # Layout left silhouette, right list
     pad = 16
@@ -3418,15 +3441,21 @@ def draw_equip_overlay(surf, game):
         cfg = load_json(str(cfg_path), {}) if cfg_path.exists() else {}
         overrides = cfg.get('slot_positions') if isinstance(cfg, dict) else None
         if isinstance(overrides, dict):
+            # Normalize override keys so synonyms like 'chest'/'boots' map to canonical slots
+            normalized: Dict[str, Tuple[float, float]] = {}
             for k, v in overrides.items():
                 try:
                     nx, ny = float(v[0]), float(v[1])
-                    # clamp to [0,1]
-                    nx = 0.0 if nx < 0 else (1.0 if nx > 1 else nx)
-                    ny = 0.0 if ny < 0 else (1.0 if ny > 1 else ny)
-                    SLOT_POS[k] = (nx, ny)
                 except Exception:
-                    pass
+                    continue
+                # clamp to [0,1]
+                nx = 0.0 if nx < 0 else (1.0 if nx > 1 else nx)
+                ny = 0.0 if ny < 0 else (1.0 if ny > 1 else ny)
+                nk = normalize_slot(str(k))
+                normalized[nk] = (nx, ny)
+            # Apply normalized overrides onto default layout
+            for nk, pos in normalized.items():
+                SLOT_POS[nk] = pos
     except Exception:
         pass
 
@@ -3449,16 +3478,17 @@ def draw_equip_overlay(surf, game):
     sel_slot = getattr(game, 'equip_sel_slot', None)
     for key, (nx, ny) in SLOT_POS.items():
         r = at(nx, ny)
-        eq = getattr(target, 'equipped_gear', {}).get(key)
+        k_norm = normalize_slot(key)
+        eq = getattr(target, 'equipped_gear', {}).get(k_norm)
         hov = r.collidepoint(mx, my)
         _rar = str(((eq or {}).get('rarity') or '')).lower() if eq else ''
         _rc = RARITY_COLORS.get(_rar)
-        base = (44,48,62) if (hov or key == sel_slot) else (38,40,52)
+        base = (44,48,62) if (hov or k_norm == sel_slot) else (38,40,52)
         pg.draw.rect(surf, base, r, border_radius=8)
-        border_col = _rc if _rc else ((96,102,124) if (hov or key == sel_slot) else (70,74,92))
+        border_col = _rc if _rc else ((96,102,124) if (hov or k_norm == sel_slot) else (70,74,92))
         pg.draw.rect(surf, border_col, r, 2, border_radius=8)
         # Slot label
-        lab = SLOT_LABELS.get(key, key.title())
+        lab = SLOT_LABELS.get(k_norm, k_norm.title())
         f = pg.font.Font(None, 18)
         ls_col = _rc if _rc else (210,210,220)
         ls = f.render(lab, True, ls_col)
@@ -3475,9 +3505,9 @@ def draw_equip_overlay(surf, game):
             gs = gfont.render(glyph, True, (235,235,245))
             surf.blit(gs, (r.centerx - gs.get_width()//2, r.centery - gs.get_height()//2))
         # Click handler for selecting slot
-        def make_sel(k=key):
+        def make_sel(k=k_norm):
             return lambda k=k: setattr(game, 'equip_sel_slot', k)
-        buttons.append(Button(r, "", make_sel(key), draw_bg=False))
+        buttons.append(Button(r, "", make_sel(k_norm), draw_bg=False))
 
     # Right list: items that can go to selected slot
     fnt = pg.font.Font(None, 22)
@@ -3533,6 +3563,212 @@ def draw_equip_overlay(surf, game):
 
     return buttons
 
+def draw_stats_overlay(surf, game):
+    """Centered character stats screen. Shows derived damage, HP, defenses, and gear bonuses.
+
+    Mirrors the equip overlay layout for consistency and supports party member cycling.
+    """
+    buttons: List[Button] = []
+    win_w, win_h = surf.get_size()
+    panel_w = int(PANEL_W_FIXED)
+
+    # Map view area
+    view_w = max(100, win_w - 2*panel_w)
+    view_h = win_h
+    view_rect = pg.Rect(panel_w, 0, view_w, view_h)
+
+    # Modal
+    modal_w = max(540, int(view_w * 0.86))
+    modal_h = max(380, int(view_h * 0.86))
+    modal_x = view_rect.x + (view_w - modal_w)//2
+    modal_y = view_rect.y + (view_h - modal_h)//2
+    modal = pg.Rect(modal_x, modal_y, modal_w, modal_h)
+
+    # Dim background
+    dim = pg.Surface((view_rect.w, view_rect.h), pg.SRCALPHA)
+    dim.fill((10, 10, 14, 140))
+    surf.blit(dim, (view_rect.x, view_rect.y))
+
+    # Panel
+    pg.draw.rect(surf, (24,26,34), modal, border_radius=10)
+    pg.draw.rect(surf, (96,102,124), modal, 2, border_radius=10)
+    pg.draw.rect(surf, (56,60,76), modal.inflate(-8, -8), 1, border_radius=8)
+
+    # Header + target selector
+    title_font = pg.font.Font(None, 30)
+    try:
+        total_targets = 1 + len(getattr(game, 'party', []) or [])
+        if not hasattr(game, 'equip_target_idx'):
+            game.equip_target_idx = 0
+        game.equip_target_idx = max(0, min(game.equip_target_idx, total_targets-1))
+    except Exception:
+        total_targets = 1; game.equip_target_idx = 0
+    def _equip_target():
+        return game.player if game.equip_target_idx == 0 else (game.party[game.equip_target_idx-1])
+    target = _equip_target()
+    title = f"Character - {getattr(target, 'name', 'Unknown')}"
+    surf.blit(title_font.render(title, True, (235,235,245)), (modal.x + 16, modal.y + 12))
+    def _prev(): setattr(game, 'equip_target_idx', (game.equip_target_idx - 1) % total_targets)
+    def _next(): setattr(game, 'equip_target_idx', (game.equip_target_idx + 1) % total_targets)
+    buttons.append(Button((modal.x + 360, modal.y + 10, 28, 28), "<", lambda: _prev()))
+    buttons.append(Button((modal.x + 392, modal.y + 10, 28, 28), ">", lambda: _next()))
+    buttons.append(Button((modal.right - 230, modal.y + 10, 110, 28), "Inventory", lambda: setattr(game,'mode','inventory')))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: (_reset_load_overlay_state(game), game.close_overlay())))
+
+    # Content areas
+    pad = 16
+    content = modal.inflate(-2*pad, -2*pad)
+    left_area  = pg.Rect(content.x, content.y + 36, int(content.w * 0.52), content.h - 52)
+    right_area = pg.Rect(content.x + left_area.w + 12, content.y + 36, content.w - left_area.w - 12, content.h - 52)
+    for r in (left_area, right_area):
+        pg.draw.rect(surf, (30,32,42), r, border_radius=8)
+        pg.draw.rect(surf, (70,74,92), r, 1, border_radius=8)
+
+    # Helpers to aggregate gear effects
+    def _gear_items(obj) -> List[Dict]:
+        g = dict(getattr(obj, 'equipped_gear', {}) or {})
+        return [it for it in g.values() if isinstance(it, dict)]
+
+    def _gear_bonus_totals(obj) -> Dict[str, int]:
+        agg: Dict[str,int] = {}
+        for it in _gear_items(obj):
+            b = it.get('bonus') or {}
+            if isinstance(b, dict):
+                for k, v in b.items():
+                    try:
+                        agg[str(k)] = int(agg.get(str(k), 0)) + int(v)
+                    except Exception:
+                        pass
+        return agg
+
+    # Compute damage parts
+    base_min, base_max = getattr(target, 'atk', (2,4))
+    gm = getattr(target, 'equipped_gear', {}) or {}
+    wep = gm.get('weapon_main') if isinstance(gm, dict) else None
+    wmin, wmax, _, _ = _weapon_stats(wep or {})
+    bonus = _gear_bonus_totals(target)
+    atk_bonus = int(bonus.get('attack', 0))
+    # Extended offensive bonuses
+    crit_chance = int(bonus.get('crit_chance', bonus.get('crit', 0) or 0))  # percent points
+    crit_damage = int(bonus.get('crit_damage', bonus.get('crit_dmg', 0) or 0))  # percent points
+    # Armour penetration synonyms
+    armor_pen = int(
+        bonus.get('armor_pen', bonus.get('armour_pen', bonus.get('armor_pierce', bonus.get('armour_pierce', 0)))) or 0
+    )
+    dmg_min_actual = int(base_min) + int(wmin)
+    dmg_max_actual = int(base_max) + int(max(wmax, 0))
+    dmg_min_total = dmg_min_actual + atk_bonus
+    dmg_max_total = dmg_max_actual + atk_bonus
+
+    # Effective HP considering simple gear bonuses
+    base_hp = int(getattr(target, 'max_hp', 0))
+    gear_hp = int(bonus.get('hp', 0)) + int(bonus.get('max_hp', 0))
+    vit_bonus = int(bonus.get('vitality', 0) or bonus.get('vit', 0) or 0)
+    eff_hp = base_hp + gear_hp + (5 * max(0, vit_bonus))
+
+    # Defense / Resistances
+    def_map = game._total_defense_map(target)
+    # Quick mitigation hint: reduction against 10 physical damage
+    d_phys = int(def_map.get('physical', 0))
+    red_example = (d_phys // 8)
+    mit_line = f"Mitigation vs 10 physical: -{red_example} (to {max(1,10-red_example)})"
+
+    # Left: main numbers
+    x, y = left_area.x + 12, left_area.y + 10
+    f_big = pg.font.Font(None, 24)
+    f = pg.font.Font(None, 20)
+    draw_text(surf, "Offense", (x, y), font=f_big); y += 26
+    draw_text(surf, f"Base ATK: {base_min}-{base_max}", (x, y), font=f); y += 20
+    draw_text(surf, f"Weapon:   +{wmin}/+{max(wmax,0)}", (x, y), font=f); y += 20
+    draw_text(surf, f"Gear Attack Bonus: +{atk_bonus}", (x, y), font=f); y += 20
+    draw_text(surf, f"Damage (actual): {dmg_min_actual}-{dmg_max_actual}", (x, y), font=f); y += 20
+    draw_text(surf, f"Damage (with bonus): {dmg_min_total}-{dmg_max_total}", (x, y), font=f); y += 20
+    # Extended stats
+    if crit_chance or crit_damage or armor_pen:
+        draw_text(surf, f"Crit Chance: +{crit_chance}%   Crit Damage: +{crit_damage}%", (x, y), font=f); y += 20
+        draw_text(surf, f"Armor Penetration: +{armor_pen}", (x, y), font=f); y += 8
+    y += 8
+
+    # Attributes with gear modifiers
+    draw_text(surf, "Attributes", (x, y), font=f_big); y += 26
+    attrs = [
+        ('PHY','phy'), ('TEC','dex'), ('VIT','vit'), ('ARC','arc'),
+        ('KNO','kno'), ('INS','ins'), ('SOC','soc'), ('FTH','fth')
+    ]
+    for lab, key in attrs:
+        base_val = int(getattr(target, key, 0))
+        gear_mod = int(bonus.get(key, 0))
+        total = base_val + gear_mod
+        # Display as BASE (+mod) => total; hide +0 for cleanliness
+        if gear_mod:
+            sign = '+' if gear_mod > 0 else ''
+            mod_txt = f" ({sign}{gear_mod})"
+        else:
+            mod_txt = ""
+        draw_text(surf, f"{lab}: {base_val}{mod_txt}  =  {total}", (x, y), font=f); y += 18
+    y += 10
+
+    draw_text(surf, "Survivability", (x, y), font=f_big); y += 26
+    draw_text(surf, f"Max HP: {base_hp}", (x, y), font=f); y += 20
+    draw_text(surf, f"Gear HP Bonus: +{gear_hp} (+{vit_bonus} VIT -> +{vit_bonus*5} HP)", (x, y), font=f); y += 20
+    # Simple "Armor" readout based on physical defense
+    armor_val = int(def_map.get('physical', 0))
+    draw_text(surf, f"Effective Max HP: {eff_hp}    Armor: {armor_val}", (x, y), font=f); y += 28
+
+    draw_text(surf, "Resistances / Defense", (x, y), font=f_big); y += 26
+    # Show a few key types consistently
+    order = ['physical','fire','ice','lightning','poison','bleed','arcane','holy']
+    for k in order:
+        v = int(def_map.get(k, 0))
+        draw_text(surf, f"{k.title():<10}: {v}", (x, y), font=f); y += 18
+    y += 6
+    draw_text(surf, mit_line, (x, y), font=f); y += 22
+
+    # Right: list equipped items with their contributions
+    rx, ry = right_area.x + 12, right_area.y + 10
+    draw_text(surf, "Equipped", (rx, ry), font=f_big); ry += 26
+    items = _gear_items(target)
+    row_h = 22
+    for it in items:
+        r = pg.Rect(rx, ry, right_area.w - 24, row_h)
+        pg.draw.rect(surf, (34,36,46), r, border_radius=6)
+        pg.draw.rect(surf, (90,94,112), r, 1, border_radius=6)
+        name = item_name(it)
+        b = it.get('bonus') or {}
+        d = it.get('defense_type') or {}
+        parts = []
+        try:
+            if int(b.get('attack', 0)):
+                parts.append(f"ATK+{int(b.get('attack'))}")
+        except Exception:
+            pass
+        try:
+            hp_b = int(b.get('hp', 0)) + int(b.get('max_hp', 0))
+            if hp_b:
+                parts.append(f"HP+{hp_b}")
+        except Exception:
+            pass
+        try:
+            vit_b = int(b.get('vitality', 0) or b.get('vit', 0) or 0)
+            if vit_b:
+                parts.append(f"VIT+{vit_b}")
+        except Exception:
+            pass
+        # summarize top 2 defenses
+        try:
+            if isinstance(d, dict) and d:
+                top = sorted(((k,int(v)) for k,v in d.items()), key=lambda kv: kv[1], reverse=True)[:2]
+                for k, v in top:
+                    if v:
+                        parts.append(f"{str(k)[:3].title()}+{v}")
+        except Exception:
+            pass
+        label = name if not parts else f"{name}  ({', '.join(parts)})"
+        draw_text(surf, label, (r.x+8, r.y+4))
+        ry += row_h + 4
+
+    return buttons
+
 def _list_save_slots() -> List[Tuple[int, Optional[Dict[str, Any]]]]:
     SAVE_DIR.mkdir(parents=True, exist_ok=True)
     slots: List[Tuple[int, Optional[Dict[str, Any]]]] = []
@@ -3547,6 +3783,16 @@ def _list_save_slots() -> List[Tuple[int, Optional[Dict[str, Any]]]]:
         else:
             slots.append((i, None))
     return slots
+
+def delete_save_file(slot: int) -> bool:
+    try:
+        path = SAVE_DIR / f"slot{int(slot)}.json"
+        if path.exists():
+            path.unlink()
+            return True
+    except Exception:
+        pass
+    return False
 
 def _render_slot_card(surf, r, slot_idx: int, data: Optional[Dict[str, Any]]):
     pg.draw.rect(surf, (34,36,46), r, border_radius=8)
@@ -3602,6 +3848,51 @@ def _render_slot_card(surf, r, slot_idx: int, data: Optional[Dict[str, Any]]):
     else:
         draw_text(surf, "Empty", (r.x+10, r.y+34), font=f_body)
 
+def _ensure_load_overlay_state(owner) -> Dict[str, Optional[int]]:
+    state = getattr(owner, '_load_overlay_state', None)
+    if not isinstance(state, dict):
+        state = {'selected': None, 'confirm': None}
+        setattr(owner, '_load_overlay_state', state)
+    else:
+        state.setdefault('selected', None)
+        state.setdefault('confirm', None)
+    return state
+
+def _reset_load_overlay_state(owner) -> None:
+    state = _ensure_load_overlay_state(owner)
+    state['selected'] = None
+    state['confirm'] = None
+
+def _confirm_game_load(game, state: Dict[str, Optional[int]], slot: int) -> None:
+    ok = bool(game.load_from_slot(slot))
+    state['selected'] = None
+    state['confirm'] = None
+    if ok:
+        try:
+            game.close_overlay()
+        except Exception:
+            pass
+
+def _confirm_game_delete(game, state: Dict[str, Optional[int]], slot: int) -> None:
+    game.delete_slot(slot)
+    state['selected'] = None
+    state['confirm'] = None
+
+def _ensure_save_overlay_state(owner) -> Dict[str, Optional[int]]:
+    st = getattr(owner, '_save_overlay_state', None)
+    if not isinstance(st, dict):
+        st = {'selected': None, 'confirm': None}
+        setattr(owner, '_save_overlay_state', st)
+    else:
+        st.setdefault('selected', None)
+        st.setdefault('confirm', None)
+    return st
+
+def _reset_save_overlay_state(owner) -> None:
+    st = _ensure_save_overlay_state(owner)
+    st['selected'] = None
+    st['confirm'] = None
+
 def draw_save_overlay(surf, game):
     buttons: List[Button] = []
     win_w, win_h = surf.get_size()
@@ -3622,7 +3913,7 @@ def draw_save_overlay(surf, game):
     pg.draw.rect(surf, (96,102,124), modal, 2, border_radius=10)
     title_font = pg.font.Font(None, 30)
     surf.blit(title_font.render("Save Game", True, (235,235,245)), (modal.x + 16, modal.y + 12))
-    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: game.close_overlay()))
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: (_reset_save_overlay_state(game), game.close_overlay())))
 
     # Slots grid 2x3
     pad = 16
@@ -3631,6 +3922,7 @@ def draw_save_overlay(surf, game):
     cell_w = (content.w - (cols + 1) * pad) // cols
     cell_h = (content.h - (rows + 1) * pad) // rows
     slots = _list_save_slots()
+    state = _ensure_save_overlay_state(game)
     idx = 0
     for r_i in range(rows):
         for c_i in range(cols):
@@ -3640,7 +3932,34 @@ def draw_save_overlay(surf, game):
             rect = pg.Rect(x, y, cell_w, cell_h)
             data = slots[idx-1][1]
             _render_slot_card(surf, rect, idx, data)
-            buttons.append(Button(rect, "", lambda slot=idx: game.save_to_slot(slot), draw_bg=False))
+            # Select slot -> prompt for confirmation (new vs overwrite)
+            def _select(slot=idx, has_data=(data is not None)):
+                state['selected'] = slot
+                state['confirm'] = 'overwrite' if has_data else 'new'
+            buttons.append(Button(rect, "", _select, draw_bg=False))
+            if state['selected'] == idx:
+                try:
+                    pg.draw.rect(surf, (122,162,247), rect, 2, border_radius=8)
+                except Exception:
+                    pass
+                # Confirmation row inside card
+                prompt = "Overwrite this save?" if (data is not None) else "Save in this slot?"
+                draw_text(surf, prompt, (rect.x + 12, rect.bottom - 34))
+                ok_r = pg.Rect(rect.right - 188, rect.bottom - 36, 80, 28)
+                cancel_r = pg.Rect(rect.right - 100, rect.bottom - 36, 90, 28)
+                # Confirm button -> perform save
+                def _do_save(slot=idx):
+                    _reset_save_overlay_state(game)
+                    game.save_to_slot(slot)
+                pg.draw.rect(surf, (50,100,60), ok_r, border_radius=6)
+                pg.draw.rect(surf, (100,160,110), ok_r, 1, border_radius=6)
+                draw_text(surf, "Confirm", (ok_r.x + 12, ok_r.y + 6))
+                buttons.append(Button(ok_r, "Confirm", _do_save, draw_bg=False))
+                # Cancel button -> clear selection
+                pg.draw.rect(surf, (70,70,70), cancel_r, border_radius=6)
+                pg.draw.rect(surf, (110,110,130), cancel_r, 1, border_radius=6)
+                draw_text(surf, "Cancel", (cancel_r.x + 14, cancel_r.y + 6))
+                buttons.append(Button(cancel_r, "Cancel", lambda: _reset_save_overlay_state(game), draw_bg=False))
     return buttons
 
 def draw_load_overlay(surf, game):
@@ -3663,7 +3982,12 @@ def draw_load_overlay(surf, game):
     pg.draw.rect(surf, (96,102,124), modal, 2, border_radius=10)
     title_font = pg.font.Font(None, 30)
     surf.blit(title_font.render("Load Game", True, (235,235,245)), (modal.x + 16, modal.y + 12))
-    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", lambda: game.close_overlay()))
+
+    def _close():
+        _reset_load_overlay_state(game)
+        game.close_overlay()
+
+    buttons.append(Button((modal.right - 112, modal.y + 10, 100, 28), "Back", _close))
 
     # Slots grid 2x3
     pad = 16
@@ -3672,6 +3996,15 @@ def draw_load_overlay(surf, game):
     cell_w = (content.w - (cols + 1) * pad) // cols
     cell_h = (content.h - (rows + 1) * pad) // rows
     slots = _list_save_slots()
+    state = _ensure_load_overlay_state(game)
+
+    def _select_slot(sel: Optional[int]):
+        state['selected'] = sel
+        state['confirm'] = None
+
+    def _set_confirm(mode: Optional[str]):
+        state['confirm'] = mode
+
     idx = 0
     for r_i in range(rows):
         for c_i in range(cols):
@@ -3681,8 +4014,99 @@ def draw_load_overlay(surf, game):
             rect = pg.Rect(x, y, cell_w, cell_h)
             data = slots[idx-1][1]
             _render_slot_card(surf, rect, idx, data)
-            buttons.append(Button(rect, "", lambda slot=idx: game.load_from_slot(slot), draw_bg=False))
+
+            if state['selected'] == idx and data is None:
+                _select_slot(None)
+
+            def _on_select(slot=idx, has_data=(data is not None)):
+                _select_slot(slot if has_data else None)
+
+            buttons.append(Button(rect, "", _on_select, draw_bg=False))
+
+            if state['selected'] == idx and data is not None:
+                try:
+                    pg.draw.rect(surf, (122,162,247), rect, 2, border_radius=8)
+                except Exception:
+                    pass
+
+                load_btn = pg.Rect(rect.right - 200, rect.bottom - 36, 92, 28)
+                del_btn = pg.Rect(rect.right - 104, rect.bottom - 36, 92, 28)
+                confirm_mode = state['confirm']
+                prompt_pos = (rect.x + 12, rect.bottom - 38)
+
+                if confirm_mode == 'load':
+                    draw_text(surf, "Load this save?", prompt_pos)
+
+                    buttons.append(Button(load_btn, "Confirm", lambda slot=idx: _confirm_game_load(game, state, slot)))
+                    buttons.append(Button(del_btn, "Cancel", lambda: _set_confirm(None)))
+                elif confirm_mode == 'delete':
+                    draw_text(surf, "Delete this save?", prompt_pos)
+
+                    buttons.append(Button(load_btn, "Delete", lambda slot=idx: _confirm_game_delete(game, state, slot)))
+                    buttons.append(Button(del_btn, "Cancel", lambda: _set_confirm(None)))
+                else:
+                    buttons.append(Button(load_btn, "Load", lambda: _set_confirm('load')))
+                    buttons.append(Button(del_btn, "Delete", lambda: _set_confirm('delete')))
     return buttons
+
+
+def draw_exit_overlay(surf, game):
+    """Prompt the player to save before returning to the main menu."""
+    buttons: List[Button] = []
+    win_w, win_h = surf.get_size()
+    panel_w = int(PANEL_W_FIXED)
+
+    setattr(game, '_exit_after_save', False)
+
+    view_w = max(100, win_w - 2*panel_w)
+    view_h = win_h
+    view_rect = pg.Rect(panel_w, 0, view_w, view_h)
+
+    dim = pg.Surface((view_rect.w, view_rect.h), pg.SRCALPHA)
+    dim.fill((10,10,14,150))
+    surf.blit(dim, (view_rect.x, view_rect.y))
+
+    modal_w = max(520, int(view_w * 0.6))
+    modal_h = max(240, int(view_h * 0.36))
+    modal_x = view_rect.x + (view_w - modal_w)//2
+    modal_y = view_rect.y + (view_h - modal_h)//2
+    modal = pg.Rect(modal_x, modal_y, modal_w, modal_h)
+
+    pg.draw.rect(surf, (24,26,34), modal, border_radius=10)
+    pg.draw.rect(surf, (96,102,124), modal, 2, border_radius=10)
+    pg.draw.rect(surf, (56,60,76), modal.inflate(-6, -6), 1, border_radius=8)
+
+    title_font = pg.font.Font(None, 32)
+    msg_font = pg.font.Font(None, 22)
+    surf.blit(title_font.render("Return to Main Menu", True, (235,235,245)), (modal.x + 18, modal.y + 16))
+    prompt = "Do you want to save your progress before returning to the main menu?"
+    draw_text(surf, prompt, (modal.x + 18, modal.y + 62), font=msg_font, max_w=modal.w - 36)
+
+    bw = 180; bh = 40; gap = 18
+    by = modal.bottom - bh - 32
+    total_w = bw * 3 + gap * 2
+    bx = modal.x + (modal.w - total_w)//2
+
+    def _save_and_exit():
+        setattr(game, '_exit_after_save', True)
+        game.open_overlay('save')
+
+    def _exit_no_save():
+        setattr(game, '_exit_after_save', False)
+        game.close_overlay()
+        game.mode = 'explore'
+        setattr(game, '_req_main_menu', True)
+
+    def _cancel():
+        setattr(game, '_exit_after_save', False)
+        game.close_overlay()
+
+    buttons.append(Button((bx, by, bw, bh), "Save & Exit", _save_and_exit))
+    buttons.append(Button((bx + bw + gap, by, bw, bh), "Exit Without Saving", _exit_no_save))
+    buttons.append(Button((bx + 2*(bw + gap), by, bw, bh), "Cancel", _cancel))
+
+    return buttons
+
 
 def draw_database_overlay(surf, game):
     """Database browser: view Items, NPCs, Races, Traits, Enchants, Magic, Status, Classes.
@@ -4758,7 +5182,7 @@ class Game:
         # Playtime tracker (milliseconds)
         self.playtime_ms = 0
 
-        # Do not auto-equip placeholders; player equips via Inventory/Equipment
+        # Start unarmed by default: seed starter weapons into inventory only (no auto-equip)
         weps  = [it for it in self.items if str(item_type(it)).lower() == 'weapon']
         if not self.player.inventory and weps:
             # Seed a couple items into inventory only (no auto-equip)
@@ -4776,6 +5200,12 @@ class Game:
                 except Exception:
                     it1 = weps[1]
                 self.player.inventory.append(it1)
+        # Ensure no weapon is equipped by default (unarmed start)
+        try:
+            if isinstance(getattr(self.player, 'equipped_gear', None), dict):
+                self.player.equipped_gear.pop('weapon_main', None)
+        except Exception:
+            pass
 
         # Apply class base + level growth to player
         try:
@@ -4803,7 +5233,6 @@ class Game:
                 'ins': int(getattr(obj, 'ins', 5)),
                 'soc': int(getattr(obj, 'soc', 5)),
                 'fth': int(getattr(obj, 'fth', 5)),
-                'equipped_weapon': getattr(obj, 'equipped_weapon', None),
                 # focus removed from serialization; kept for backward loads only
                 'equipped_gear': dict(getattr(obj, 'equipped_gear', {}) or {}),
                 'portrait': getattr(obj, 'portrait', None),
@@ -4839,7 +5268,6 @@ class Game:
                 'affinity': dict(self.player.affinity),
                 'romance_flags': dict(self.player.romance_flags),
                 'inventory': list(self.player.inventory),
-                'equipped_weapon': self.player.equipped_weapon,
                 # focus removed from serialization
                 'equipped_gear': dict(self.player.equipped_gear),
             },
@@ -4865,9 +5293,32 @@ class Game:
             with open(path, 'w', encoding='utf-8') as f:
                 json.dump(self._save_meta(), f, ensure_ascii=False, indent=2)
             self.say(f"Game saved to slot {slot}.")
+            try:
+                self.close_overlay()
+            except Exception:
+                pass
+            if getattr(self, '_exit_after_save', False):
+                try:
+                    self._exit_after_save = False
+                except Exception:
+                    pass
+                self.mode = 'explore'
+                setattr(self, '_req_main_menu', True)
             return True
         except Exception as e:
             self.say(f"Failed to save: {e}")
+            return False
+
+    def delete_slot(self, slot: int) -> bool:
+        try:
+            removed = delete_save_file(slot)
+            if removed:
+                self.say(f"Deleted save in slot {slot}.")
+                return True
+            self.say("No save in that slot.")
+            return False
+        except Exception as e:
+            self.say(f"Failed to delete: {e}")
             return False
 
     def _apply_loaded_state(self, data: Dict[str, Any]):
@@ -4930,20 +5381,7 @@ class Game:
                 _ensure_weapon_combat_stats_inplace(it)
         except Exception:
             pass
-        self.player.equipped_weapon = p.get('equipped_weapon')
-        try:
-            _ensure_weapon_combat_stats_inplace(self.player.equipped_weapon)
-        except Exception:
-            pass
         self.player.equipped_gear   = migrate_gear_keys(p.get('equipped_gear', self.player.equipped_gear))
-        # Migration: hydrate equipped_weapon from equipped_gear['weapon_main'] if missing
-        try:
-            if not self.player.equipped_weapon and isinstance(self.player.equipped_gear, dict):
-                w_main = self.player.equipped_gear.get('weapon_main')
-                if w_main:
-                    self.player.equipped_weapon = w_main
-        except Exception:
-            pass
 
         # Restore party
         self.party = []
@@ -4967,22 +5405,12 @@ class Game:
                         ins=int(a.get('ins', 5) or 5),
                         soc=int(a.get('soc', 5) or 5),
                         fth=int(a.get('fth', 5) or 5),
-                        equipped_weapon=(a.get('equipped_weapon') or (a.get('equipped_gear') or {}).get('weapon_main')),
                         equipped_gear=migrate_gear_keys(a.get('equipped_gear', {})),
                         portrait=a.get('portrait'),
                         home_map=a.get('home_map'),
                         home_pos=tuple(a.get('home_pos')) if isinstance(a.get('home_pos'), (list, tuple)) else None,
                         home_payload=copy.deepcopy(a.get('home_payload'))
                     )
-                    # Post-fix ally equipped weapon from gear map if still missing
-                    try:
-                        if not getattr(ally, 'equipped_weapon', None) and isinstance(ally.equipped_gear, dict):
-                            w_main = ally.equipped_gear.get('weapon_main')
-                            if w_main:
-                                ally.equipped_weapon = w_main
-                        _ensure_weapon_combat_stats_inplace(ally.equipped_weapon)
-                    except Exception:
-                        pass
                     self.party.append(ally)
                 except Exception:
                     pass
@@ -5097,9 +5525,7 @@ class Game:
 
     def _equipped_slot_of(self, actor, it: Dict) -> Optional[str]:
         try:
-            if getattr(actor, 'equipped_weapon', None) is it:
-                return 'weapon_main'
-            # legacy focus slot removed
+            # Check standardized equipped_gear slots only
             gear = getattr(actor, 'equipped_gear', {}) or {}
             for k, v in gear.items():
                 if v is it:
@@ -5121,7 +5547,6 @@ class Game:
                 _ensure_weapon_combat_stats_inplace(it)
             except Exception:
                 pass
-            target.equipped_weapon = it
             # Keep equipped_gear in sync for equipment UI
             try:
                 if not hasattr(target, 'equipped_gear') or not isinstance(getattr(target, 'equipped_gear'), dict):
@@ -5180,13 +5605,11 @@ class Game:
             target.equipped_gear = {}
         # Replace mapping on the target
         target.equipped_gear[slot] = it
-        # Also sync legacy fields for combat
         if slot == 'weapon_main':
             try:
                 _ensure_weapon_combat_stats_inplace(it)
             except Exception:
                 pass
-            target.equipped_weapon = it
         self.say(f"Equipped {item_name(it)} -> {SLOT_LABELS.get(slot, slot)} on {getattr(target,'name','ally')}")
 
     def unequip_slot(self, slot: str):
@@ -5194,9 +5617,6 @@ class Game:
         target = self._equip_target()
         it = getattr(target, 'equipped_gear', {}).pop(slot, None)
         if it:
-            # Clear legacy fields if they pointed to this item
-            if slot == 'weapon_main' and getattr(target, 'equipped_weapon', None) is it:
-                target.equipped_weapon = None
             # focus slot removed
             self.say(f"Unequipped {item_name(it)} from {SLOT_LABELS.get(slot, slot)} on {getattr(target,'name','ally')}")
     def consume_item(self, idx: int):
@@ -6028,7 +6448,11 @@ class Game:
                 if not self.current_enemy:
                     return
                 base_min, base_max = getattr(ref, 'atk', (2,4))
-                wep = getattr(ref, 'equipped_weapon', None) or {}
+                try:
+                    gm = getattr(ref, 'equipped_gear', {}) or {}
+                    wep = (gm.get('weapon_main') if isinstance(gm, dict) else None) or {}
+                except Exception:
+                    wep = {}
                 wmin, wmax, _, _ = _weapon_stats(wep)
                 dmg = random.randint(int(base_min) + int(wmin), int(base_max) + max(int(wmax),0))
                 dmg = max(1, int(dmg))
@@ -6145,9 +6569,6 @@ class Game:
         total: Dict[str,int] = {}
         try:
             gear = dict(getattr(actor, 'equipped_gear', {}) or {})
-            # Include legacy weapon in case it carries defense
-            if getattr(actor, 'equipped_weapon', None):
-                gear.setdefault('weapon_main', getattr(actor, 'equipped_weapon'))
             for it in gear.values():
                 d = self._item_defense(it)
                 for k, v in d.items():
@@ -6190,8 +6611,28 @@ class Game:
             return
         lvl = max(1, int(getattr(self.player, 'level', 1)))
         delta = max(0, lvl - 1)
-        per = c.get('per_level') or {}
-        base_stats = c.get('base_stats') or {}
+        # Normalize attribute keys (accept common aliases from data)
+        def _norm_attr_key(k: str) -> str:
+            kk = str(k or '').strip().lower()
+            if kk in ('tec','tech','technique'): return 'dex'
+            if kk.startswith('str'): return 'phy'
+            if kk.startswith('int'): return 'kno'
+            if kk.startswith('wis'): return 'ins'
+            if kk in ('cha','charisma'): return 'soc'
+            if kk in ('faith',): return 'fth'
+            return kk
+        # Pull base stats from multiple possible keys and normalize
+        base_src = c.get('base_stats') or c.get('stat_block') or c.get('base') or {}
+        try:
+            base_stats = { _norm_attr_key(k): int(v) for k, v in (base_src or {}).items() if _norm_attr_key(k) in ('phy','dex','vit','arc','kno','ins','soc','fth') }
+        except Exception:
+            base_stats = {}
+        # Per-level growth supports aliases
+        per_src = c.get('per_level') or c.get('perLevel') or c.get('growth') or c.get('level_up') or {}
+        try:
+            per = { _norm_attr_key(k): int(v) for k, v in (per_src or {}).items() }
+        except Exception:
+            per = {}
         # Preserve hp ratio if requested
         hp_ratio = 1.0
         try:
@@ -6207,18 +6648,35 @@ class Game:
                 setattr(self.player, key, max(1, base + inc))
             except Exception:
                 pass
-        # HP from Vitality: max_hp = VIT * 5
-        new_max_hp = max(1, int(getattr(self.player, 'vit', 5)) * 5)
+        # HP: prefer explicit base_hp (with per-level hp growth), fallback to VIT * 5
+        try:
+            base_hp = int(c.get('base_hp'))
+        except Exception:
+            base_hp = 0
+        vit_based = int(getattr(self.player, 'vit', 5)) * 5
+        new_max_hp = max(1, (base_hp if base_hp > 0 else vit_based) + int(per.get('hp', 0)) * delta)
         self.player.max_hp = new_max_hp
         if preserve_hp:
             self.player.hp = max(1, int(round(new_max_hp * hp_ratio)))
         else:
             self.player.hp = new_max_hp
         # Attack
-        try:
-            bmin, bmax = c.get('base_atk') or (self.player.atk[0], self.player.atk[1])
-        except Exception:
-            bmin, bmax = self.player.atk
+        def _pair_from(src: any) -> Optional[Tuple[int,int]]:
+            try:
+                if isinstance(src, (list, tuple)) and len(src) >= 2:
+                    return int(src[0]), int(src[1])
+                if isinstance(src, dict):
+                    mn = int(src.get('min', src.get('low', src.get('atk_min', 0))))
+                    mx = int(src.get('max', src.get('high', src.get('atk_max', 0))))
+                    return mn, mx
+            except Exception:
+                return None
+            return None
+        atk_src = c.get('base_atk') or c.get('base_attack') or c.get('attack') or c.get('atk')
+        pair = _pair_from(atk_src)
+        if not pair:
+            pair = (self.player.atk[0], self.player.atk[1])
+        bmin, bmax = pair
         bmin = int(bmin) + int(per.get('atk_min', 0)) * delta
         bmax = int(bmax) + int(per.get('atk_max', 0)) * delta
         self.player.atk = (max(1, bmin), max(max(1, bmin)+1, bmax))
@@ -6519,15 +6977,11 @@ class Game:
     def attack(self):
         if not self.current_enemy: return
         base_min, base_max = self.player.atk
-        wep = self.player.equipped_weapon
-        if not wep:
-            try:
-                gm = getattr(self, 'player').equipped_gear or {}
-                if isinstance(gm, dict):
-                    wep = gm.get('weapon_main')
-            except Exception:
-                wep = None
-        wep = wep or {}
+        try:
+            gm = getattr(self, 'player').equipped_gear or {}
+            wep = (gm.get('weapon_main') if isinstance(gm, dict) else None) or {}
+        except Exception:
+            wep = {}
         wmin, wmax, _, _ = _weapon_stats(wep)
         dmg = random.randint(base_min + wmin, base_max + max(wmax,0))
         dmg = max(1, dmg)
@@ -6537,7 +6991,7 @@ class Game:
         idx = self._sync_enemy_hp_tracking()
         enemy_ref = self.current_enemy
         # Hide placeholder starter gear names in combat log
-        label = 'your weapon' if _is_placeholder_item(wep) or not wep else item_name(wep)
+        label = 'your weapon' if not wep else item_name(wep)
         self.say(f"You strike with {label} for {dmg}.")
         if enemy_ref:
             self._log_enemy_hp_status(enemy_ref, idx)
@@ -6596,8 +7050,13 @@ class Game:
         self.say(f"You cast {spell.get('name','a spell')} for {dmg}!")
         if enemy_ref:
             self._log_enemy_hp_status(enemy_ref, idx)
-        # Apply status based on current weapon if any
-        self._maybe_apply_status('spell', self.current_enemy, self.player.equipped_weapon)
+        # Apply status based on current weapon in gear if any
+        try:
+            gm = getattr(self.player, 'equipped_gear', {}) or {}
+            w_for_status = gm.get('weapon_main') if isinstance(gm, dict) else None
+        except Exception:
+            w_for_status = None
+        self._maybe_apply_status('spell', self.current_enemy, w_for_status)
         if self.current_enemy_hp <= 0:
             self.say("Enemy crumples.")
             try: self._on_enemy_defeated(self.current_enemy)
@@ -6636,7 +7095,11 @@ class Game:
                 if getattr(ally, 'hp', 0) <= 0:
                     continue
                 base_min, base_max = getattr(ally, 'atk', (2,4))
-                wep = getattr(ally, 'equipped_weapon', None) or {}
+                try:
+                    gm = getattr(ally, 'equipped_gear', {}) or {}
+                    wep = (gm.get('weapon_main') if isinstance(gm, dict) else None) or {}
+                except Exception:
+                    wep = {}
                 wmin, wmax, _, _ = _weapon_stats(wep)
                 dmg = random.randint(int(base_min) + int(wmin), int(base_max) + max(int(wmax),0))
                 dmg = max(1, int(dmg))
@@ -6841,6 +7304,79 @@ class Game:
         self.say(f"You found: {item_name(item)}!", tag)
         if not t.encounter.items:
             t.encounter.item_searched = True
+
+    def open_chest(self):
+        t = self.tile()
+        try:
+            chests = list(getattr(t.encounter, 'chests', []) or []) if t.encounter else []
+        except Exception:
+            chests = []
+        if not chests:
+            self.say("There is no chest here."); return
+        # Pop the first chest
+        chest = chests.pop(0)
+        rarity = str((chest.get('rarity') or 'common')).lower()
+        try:
+            t.encounter.chests = chests
+        except Exception:
+            pass
+        # Chest loot generation via mechanics loot tables with guaranteed rarity floor
+        # Rules:
+        # - Allowed picks are <= chest rarity
+        # - Guarantee at least one item at the chest's own rarity
+        # - Use mechanics loot tables if present; otherwise fall back to items pool
+        cnt = 1
+        if rarity in ('rare','exotic','legendary','mythic'):
+            cnt = 2
+        rng = random.Random()
+        ctx = f"chest:{self.current_map_id}:{t.x},{t.y}:{len(self.player.inventory)}"
+        self.say(f"You opened a {rarity.capitalize()} chest.")
+
+        order = ['common','uncommon','rare','exotic','legendary','mythic']
+        try:
+            r_index = order.index(rarity)
+        except ValueError:
+            r_index = 0
+        allowed_set = set(order[:r_index+1])
+
+        def _fallback_pick(_rarity: str) -> Optional[Dict]:
+            pool = [it for it in (getattr(self, 'items', []) or []) if isinstance(it, dict) and str(it.get('rarity') or '').lower() in allowed_set]
+            if not pool:
+                return None
+            base = copy.deepcopy(rng.choice(pool))
+            return base
+
+        gained = 0
+
+        # First item: guarantee chest rarity using alias any_<rarity> if available
+        first_ref = f"any_{rarity}"
+        base_first = self._resolve_loot_reference(first_ref, f"{ctx}|g1") or _fallback_pick(rarity)
+        if base_first:
+            item0 = self._finalize_loot_item(base_first, f"{ctx}|0")
+            if item0:
+                self.player.inventory.append(item0)
+                tag0 = 'quest_item' if item_is_quest(item0) else 'item'
+                self.say(f"You found: {item_name(item0)}!", tag0)
+                gained += 1
+
+        # Remaining items: roll from chest pool table for this rarity, falling back as needed
+        table_name = f"chest_pool_{rarity}"
+        for i in range(1, cnt):
+            base = self._roll_from_mech_table(table_name, f"{ctx}|pool", rng)
+            if base is None:
+                base = _fallback_pick(rarity)
+            if not base:
+                continue
+            item = self._finalize_loot_item(base, f"{ctx}|{i}")
+            if not item:
+                continue
+            self.player.inventory.append(item)
+            tag = 'quest_item' if item_is_quest(item) else 'item'
+            self.say(f"You found: {item_name(item)}!", tag)
+            gained += 1
+
+        if gained <= 0:
+            self.say("The chest was empty.")
 
 # ======================== Start game (UI) ========================
 def start_game(start_map: Optional[str]=None, start_entry: Optional[str]=None, start_pos: Optional[Tuple[int,int]]=None, load_slot: Optional[int]=None, char_config: Optional[Dict[str, Any]] = None):
@@ -7075,6 +7611,20 @@ def start_menu():
         pass
     db_state: Optional[_DBState] = None
     load_page = 0
+
+    def _load_state() -> Dict[str, Optional[int]]:
+        st = getattr(start_menu, '_load_state', None)
+        if not isinstance(st, dict):
+            st = {'selected': None, 'confirm': None}
+            setattr(start_menu, '_load_state', st)
+        st.setdefault('selected', None)
+        st.setdefault('confirm', None)
+        return st
+
+    def _reset_load_state():
+        st = _load_state()
+        st['selected'] = None
+        st['confirm'] = None
     running = True
     while running:
         dt = clock.tick(60)
@@ -7159,13 +7709,71 @@ def start_menu():
             cell_h = 120
             left_x = (win_w - grid_w)//2
             y0 = top_y
+
+            load_state = _load_state()
+            if load_state['selected'] not in {slot for slot, data in saves if data}:
+                _reset_load_state()
+
+            def _select_slot(slot: Optional[int]):
+                load_state['selected'] = slot
+                load_state['confirm'] = None
+
+            def _set_confirm(mode: Optional[str]):
+                load_state['confirm'] = mode
+
             for i, (slot, data) in enumerate(page_saves):
                 c = i % 2; r = i // 2
                 x = left_x + pad + c*(cell_w + pad)
                 y = y0 + pad + r*(cell_h + pad)
                 rect = pg.Rect(x, y, cell_w, cell_h)
                 _render_slot_card(screen, rect, slot, data)
-                buttons.append(Button(rect, "", lambda s=slot: (_start.set(('load', s))), draw_bg=False))
+
+                has_data = bool(data)
+
+                def _on_select(s=slot, hd=has_data):
+                    if hd:
+                        if load_state['selected'] == s:
+                            if load_state['confirm'] is None:
+                                _select_slot(None)
+                            # Ignore clicks on the card if a confirmation is active
+                            return
+                        _select_slot(s)
+                    else:
+                        if load_state['selected'] == s:
+                            _select_slot(None)
+
+                buttons.append(Button(rect, "", _on_select, draw_bg=False))
+
+                if load_state['selected'] == slot and has_data:
+                    try:
+                        pg.draw.rect(screen, (122,162,247), rect, 2, border_radius=8)
+                    except Exception:
+                        pass
+
+                    load_btn = pg.Rect(rect.right - 200, rect.bottom - 36, 92, 28)
+                    delete_btn = pg.Rect(rect.right - 104, rect.bottom - 36, 92, 28)
+
+                    if load_state['confirm'] == 'load':
+                        draw_text(screen, "Load this save?", (rect.x + 12, rect.bottom - 38))
+
+                        def _confirm_load(s=slot):
+                            _select_slot(None)
+                            _start.set(('load', s))
+
+                        buttons.append(Button(load_btn, "Confirm", _confirm_load))
+                        buttons.append(Button(delete_btn, "Cancel", lambda: _set_confirm(None)))
+                    elif load_state['confirm'] == 'delete':
+                        draw_text(screen, "Delete this save?", (rect.x + 12, rect.bottom - 38))
+
+                        def _confirm_delete(s=slot):
+                            delete_save_file(s)
+                            _select_slot(None)
+
+                        buttons.append(Button(load_btn, "Delete", _confirm_delete))
+                        buttons.append(Button(delete_btn, "Cancel", lambda: _set_confirm(None)))
+                    else:
+                        buttons.append(Button(load_btn, "Load", lambda: _set_confirm('load')))
+                        buttons.append(Button(delete_btn, "Delete", lambda: _set_confirm('delete')))
             # Pager
             by = y0 + pad + 3*(cell_h + pad)
             prev_r = pg.Rect(win_w//2 - 170, by, 140, 32)
@@ -7804,6 +8412,7 @@ def start_menu():
                         running = False
                     else:
                         mm_mode = 'menu'
+                        _reset_load_state()
                 # Text input for char create
                 if mm_mode == 'char_create' and hasattr(start_menu, '_cc_state'):
                     st = start_menu._cc_state
@@ -7893,6 +8502,7 @@ def start_menu():
                 opts[key] = max(0, min(100, int(opts.get(key, 100)) + delta))
                 _save_opts(opts)
             else:
+                _reset_load_state()
                 mm_mode = val
         # Handle Back button inside database overlay (sets mode='explore')
         if mm_mode == 'database' and db_state is not None and getattr(db_state, 'mode', None) == 'explore':
@@ -7904,6 +8514,8 @@ def start_menu():
                 pass
         if _page.v is not None:
             load_page = max(0, int(_page.v)); _page.v = None
+            if mm_mode == 'load':
+                _reset_load_state()
         if _start.v is not None:
             sel = _start.v
             if isinstance(sel, tuple) and sel[0] == 'new':
@@ -7911,6 +8523,7 @@ def start_menu():
             if sel == 'new':
                 mm_mode = 'char_create'; _start.v = None; continue
             if isinstance(sel, tuple) and sel[0] == 'load':
+                _reset_load_state()
                 slot = int(sel[1]); return ('load', slot)
             _start.v = None
 

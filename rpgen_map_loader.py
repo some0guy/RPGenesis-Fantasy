@@ -116,6 +116,7 @@ def scene_to_runtime(scene: Dict[str, Any]) -> Dict[str, Any]:
                 cell = (row[x] or {})
                 npcs = list(cell.get('npcs') or [])
                 items = list(cell.get('items') or [])
+                chests = list(cell.get('chests') or [])
                 # Derive primary npc/enemy for simple game flows
                 def _is_enemy(e: dict) -> bool:
                     sub = str((e.get('subcategory') or '')).lower()
@@ -134,6 +135,7 @@ def scene_to_runtime(scene: Dict[str, Any]) -> Dict[str, Any]:
                     'item': (items[0] if items else None),
                     'npcs': npcs,
                     'items': items,
+                    'chests': chests,
                     # Carry through the editor's per-tile safety marker ('safe'|'danger'|'')
                     'encounter': (cell.get('encounter') or ''),
                 }

@@ -7,6 +7,13 @@ from typing import Any, Dict, List, Optional, Tuple, Callable
 
 import pygame
 
+# Safe mouse position helper for wheel/hover hit-testing across modules
+def get_mouse_pos() -> Tuple[int, int]:
+    try:
+        return pygame.mouse.get_pos()
+    except Exception:
+        return (0, 0)
+
 # -------------------- Paths & constants --------------------
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(ROOT_DIR, "data")
@@ -73,6 +80,17 @@ TYPE_DOT_COLORS = {
     "link": COL_PINK,
 }
 
+# Rarity colors (match in-game RARITY_COLORS)
+RARITY_COLORS = {
+    'common':    (200, 200, 210),
+    'uncommon':  (80, 200, 120),
+    'rare':      (80, 150, 240),
+    'exotic':    (170, 110, 240),
+    'legendary': (255, 160, 70),
+    'mythic':    (245, 210, 80),
+}
+CHEST_RARITIES = ["common","uncommon","rare","exotic","legendary","mythic"]
+
 # Tooltip colors
 TOOLTIP_BG_RGBA = (20, 22, 26, 220)  # dark with alpha
 TOOLTIP_BORDER  = GRID_LINE
@@ -131,6 +149,7 @@ class TileData:
     npcs: List[Dict[str, Any]] = field(default_factory=list)
     items: List[Dict[str, Any]] = field(default_factory=list)
     links: List[Dict[str, Any]] = field(default_factory=list)  # max 1 enforced in UI
+    chests: List[Dict[str, Any]] = field(default_factory=list)  # list of {'rarity': str}
     note: str = ""  # per-tile note/description
     encounter: str = ""  # "safe" | "danger" | "" (none)
     texture: str = ""  # filename from assets/images/map_tiles
@@ -161,6 +180,7 @@ class MapData:
                 "npcs": t.npcs,
                 "items": t.items,
                 "links": t.links,
+                "chests": t.chests,
                 "note": t.note,
                 "encounter": t.encounter,
                 "texture": t.texture,
@@ -185,6 +205,7 @@ class MapData:
                     npcs=list(cell.get("npcs", [])),
                     items=list(cell.get("items", [])),
                     links=list(cell.get("links", [])),
+                    chests=list(cell.get("chests", [])),
                     note=str(cell.get("note", "")),
                     encounter=str(cell.get("encounter", "")),
                     texture=str(cell.get("texture", "")),
@@ -404,6 +425,12 @@ class Dropdown:
         self.hover = False
         self.popup_rects: List[pygame.Rect] = []
         self.popup_upwards = False
+        self.scroll_index = 0
+        self.max_visible = 6
+        self.popup_indices: List[int] = []
+        self._popup_area: Optional[pygame.Rect] = None
+        self._popup_has_scroll: bool = False
+        self._scrollbar_w: int = 8
         # Optional callable: (opt: str, size_px: int) -> pygame.Surface | None
         self.get_icon = get_icon
     def is_open(self):
@@ -415,15 +442,28 @@ class Dropdown:
             self.hover = self.rect.collidepoint(event.pos)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if self.rect.collidepoint(event.pos):
+                if not self.opened:
+                    self.scroll_index = 0
                 self.opened = not self.opened
             elif self.opened:
-                for i, r in enumerate(self.popup_rects):
+                for idx, r in zip(self.popup_indices, self.popup_rects):
                     if r.collidepoint(event.pos):
-                        self.value = self.options[i]
+                        self.value = self.options[idx]
                         if self.on_change:
                             self.on_change(self.value)
                         break
                 self.opened = False
+        elif event.type == pygame.MOUSEWHEEL and self.opened:
+            try:
+                mx, my = get_mouse_pos()
+            except Exception:
+                mx, my = pygame.mouse.get_pos()
+            if self._popup_area and self._popup_area.collidepoint((mx, my)):
+                if event.y > 0:
+                    self.scroll_index = max(0, self.scroll_index - 1)
+                elif event.y < 0:
+                    max_start = max(0, len(self.options) - max(1, self.max_visible))
+                    self.scroll_index = min(max_start, self.scroll_index + 1)
     def draw_base(self, surf):
         pygame.draw.rect(surf, BTN_HOVER if self.hover else BTN_BG, self.rect, border_radius=6)
         pygame.draw.rect(surf, GRID_LINE, self.rect, 1, border_radius=6)
@@ -441,15 +481,54 @@ class Dropdown:
                 pass
         draw_text(surf, self.value, (x_text, self.rect.y+6))
         self.popup_rects.clear()
+        self.popup_indices.clear()
+        self._popup_area = None
+        self._popup_has_scroll = False
         if not self.opened: return
+# fmt: off
         screen_h = surf.get_height()
         needed_h = self.rect.h * len(self.options)
         below_space = screen_h - self.rect.bottom
         self.popup_upwards = below_space < needed_h
-        y = self.rect.top - self.rect.h if self.popup_upwards else self.rect.bottom
-        for _ in self.options:
-            self.popup_rects.append(pygame.Rect(self.rect.x, y, self.rect.w, self.rect.h))
-            y += -self.rect.h if self.popup_upwards else self.rect.h
+        visible_max = max(1, self.max_visible)
+        available_h = below_space if not self.popup_upwards else self.rect.top
+        if available_h <= 0:
+            available_h = self.rect.h * visible_max
+        max_rows_fit = max(1, min(visible_max, available_h // max(1, self.rect.h)))
+        visible_count = min(len(self.options), max_rows_fit)
+        max_start = max(0, len(self.options) - visible_count)
+        self.scroll_index = max(0, min(self.scroll_index, max_start))
+        start_idx = self.scroll_index
+        end_idx = min(len(self.options), start_idx + visible_count)
+        indices = list(range(start_idx, end_idx))
+
+        needs_scroll = len(self.options) > visible_count
+        self._popup_has_scroll = needs_scroll
+        row_width = self.rect.w - (self._scrollbar_w if needs_scroll else 0)
+
+        rect_pairs: List[Tuple[int, pygame.Rect]] = []
+        if self.popup_upwards:
+            y = self.rect.top - self.rect.h
+            for idx in reversed(indices):
+                rect_pairs.append((idx, pygame.Rect(self.rect.x, y, row_width, self.rect.h)))
+                y -= self.rect.h
+            rect_pairs.reverse()
+        else:
+            y = self.rect.bottom
+            for idx in indices:
+                rect_pairs.append((idx, pygame.Rect(self.rect.x, y, row_width, self.rect.h)))
+                y += self.rect.h
+
+        for idx, rect in rect_pairs:
+            self.popup_indices.append(idx)
+            self.popup_rects.append(rect)
+
+        if self.popup_rects:
+            top_y = min(r.top for r in self.popup_rects)
+            bottom_y = max(r.bottom for r in self.popup_rects)
+            area_width = row_width + (self._scrollbar_w if needs_scroll else 0)
+            self._popup_area = pygame.Rect(self.rect.x, top_y, area_width, bottom_y - top_y)
+# fmt: on
     def draw_popup(self, surf):
         if not self.opened: return
         # Compute hover based on current mouse position for immediate feedback
@@ -457,7 +536,7 @@ class Dropdown:
             mx, my = get_mouse_pos()
         except Exception:
             mx, my = pygame.mouse.get_pos()
-        for r, opt in zip(self.popup_rects, self.options):
+        for r, idx in zip(self.popup_rects, self.popup_indices):
             hovered = r.collidepoint((mx, my))
             pygame.draw.rect(surf, BTN_HOVER if hovered else PANEL_BG, r)
             pygame.draw.rect(surf, GRID_LINE, r, 1)
@@ -465,26 +544,53 @@ class Dropdown:
             if self.get_icon:
                 try:
                     size = max(12, r.h - 8)
-                    ico = self.get_icon(opt, size)
+                    ico = self.get_icon(self.options[idx], size)
                     if ico is not None:
                         y = r.y + (r.h - ico.get_height()) // 2
                         surf.blit(ico, (x, y))
                         x += ico.get_width() + 6
                 except Exception:
                     pass
-            draw_text(surf, opt, (x, r.y+6))
+            draw_text(surf, self.options[idx], (x, r.y+6))
+
+        if self._popup_has_scroll and self._popup_area:
+            area = self._popup_area
+            bar_rect = pygame.Rect(area.right - self._scrollbar_w + 1, area.top, self._scrollbar_w - 2, area.height)
+            pygame.draw.rect(surf, PANEL_BG, bar_rect)
+            pygame.draw.rect(surf, GRID_LINE, bar_rect.inflate(2, 0), 1)
+            track_height = max(4, bar_rect.height - 4)
+            total = max(1, len(self.options))
+            visible = max(1, len(self.popup_indices))
+            thumb_height = max(8, int(track_height * (visible / total)))
+            max_start = max(1, total - visible)
+            offset = 0 if max_start == 0 else int((track_height - thumb_height) * (self.scroll_index / max_start))
+            thumb = pygame.Rect(bar_rect.x, bar_rect.y + 2 + offset, bar_rect.width, thumb_height)
+            pygame.draw.rect(surf, BTN_BG, bar_rect)
+            pygame.draw.rect(surf, ACCENT, thumb, border_radius=2)
 
 class ScrollListWithButtons:
     """Scrollable list that renders labels with Remove buttons; provides wheel scrolling.
        Also exposes index_at_pos() to support right-click context menus."""
     def __init__(self, rect: pygame.Rect):
         self.rect = pygame.Rect(rect)
-        self.items: List[Tuple[str, Callable[[], None]]] = []  # (label, on_remove)
+        # Each entry: (label, on_remove, color_opt)
+        self.items: List[Tuple[str, Callable[[], None], Optional[Tuple[int,int,int]]]] = []
         self.scroll = 0
         self.item_h = 24
         self.spacing = 6
-    def set_items(self, items: List[Tuple[str, Callable[[], None]]]):
-        self.items = items
+    def set_items(self, items):
+        # Normalize items to (label, on_remove, color)
+        norm: List[Tuple[str, Callable[[], None], Optional[Tuple[int,int,int]]]] = []
+        for it in (items or []):
+            if not isinstance(it, (list, tuple)):
+                continue
+            if len(it) == 2:
+                label, on_remove = it
+                color = None
+            else:
+                label, on_remove, color = it[0], it[1], it[2] if len(it) >= 3 else None
+            norm.append((str(label), on_remove, color if (isinstance(color, (list, tuple)) and len(color)>=3) else None))
+        self.items = norm
         self.scroll = 0
     def index_at_pos(self, pos: Tuple[int,int]) -> Optional[int]:
         x,y = pos
@@ -506,7 +612,7 @@ class ScrollListWithButtons:
             if not self.rect.collidepoint((x, y)):
                 return
             y_start = self.rect.y - self.scroll
-            for i, (label, on_remove) in enumerate(self.items):
+            for i, (label, on_remove, _color) in enumerate(self.items):
                 row_y = y_start + i * (self.item_h + self.spacing)
                 row_rect = pygame.Rect(self.rect.x+6, row_y, self.rect.w-12, self.item_h)
                 btn_rect = pygame.Rect(row_rect.right-70, row_rect.y, 64, self.item_h)
@@ -523,12 +629,12 @@ class ScrollListWithButtons:
             mx, my = get_mouse_pos()
         except Exception:
             mx, my = pygame.mouse.get_pos()
-        for i, (label, _) in enumerate(self.items):
+        for i, (label, _, color) in enumerate(self.items):
             row_y = y_start + i * (self.item_h + self.spacing)
             row_rect = pygame.Rect(self.rect.x+6, row_y, self.rect.w-12, self.item_h)
             hovered = row_rect.collidepoint((mx, my))
             pygame.draw.rect(surf, BTN_HOVER if hovered else PANEL_BG, row_rect, border_radius=6)
-            draw_text(surf, label[:60], (row_rect.x+8, row_rect.y+4))
+            draw_text(surf, label[:60], (row_rect.x+8, row_rect.y+4), color=color or TEXT_MAIN)
             btn_rect = pygame.Rect(row_rect.right-70, row_rect.y, 64, self.item_h)
             pygame.draw.rect(surf, DANGER, btn_rect, border_radius=6)
             draw_text(surf, "Remove", (btn_rect.x+6, btn_rect.y+4))
@@ -558,10 +664,48 @@ class StartScreen:
         self.btn_create.rect.topleft  = (left, 410)
         self.btn_world.rect.topleft   = (left + 190, 410)
     def refresh(self):
-        obj = read_json_any(MANIFEST, {"maps": []})
-        self.maps = obj.get("maps", [])
-        items = [f"{m.get('name','(unnamed)')} - {m.get('file','?')}" for m in self.maps]
-        self.maps_list.set_items(items)
+        def _scan_maps_dir() -> List[Dict[str, Any]]:
+            out: List[Dict[str, Any]] = []
+            try:
+                if not os.path.isdir(MAP_DIR):
+                    return out
+                for fn in sorted(os.listdir(MAP_DIR)):
+                    if not fn.lower().endswith('.json'):
+                        continue
+                    if fn.lower() == 'world_map.json':
+                        # Do not include the world map in the selectable list
+                        continue
+                    path = os.path.join(MAP_DIR, fn)
+                    doc = read_json_any(path, None)
+                    if not isinstance(doc, dict):
+                        continue
+                    # Heuristic to detect a map document
+                    is_world = bool(doc.get('layout')) and 'start' in doc
+                    has_grid = isinstance(doc.get('tiles'), list) and isinstance(doc.get('width'), int) and isinstance(doc.get('height'), int)
+                    if is_world or not has_grid:
+                        # skip non-map or malformed documents
+                        if is_world:
+                            continue
+                    entry = {
+                        'file': fn,
+                        'name': str(doc.get('name') or os.path.splitext(fn)[0] or 'Untitled'),
+                        'description': str(doc.get('description') or ''),
+                        'width': int(doc.get('width') or 0),
+                        'height': int(doc.get('height') or 0),
+                    }
+                    out.append(entry)
+            except Exception:
+                pass
+            return out
+
+        # Prefer manifest when available, but fall back to directory scan
+        manifest = read_json_any(MANIFEST, {"maps": []})
+        maps = manifest.get("maps") if isinstance(manifest, dict) else []
+        if not isinstance(maps, list) or not maps:
+            maps = _scan_maps_dir()
+        self.maps = maps or []
+        labels = [f"{m.get('name','(unnamed)')} - {m.get('file','?')}" for m in self.maps]
+        self.maps_list.set_items(labels)
     def draw(self, surf):
         surf.fill(PAPER_BG)
         self._apply_layout(surf)
@@ -641,17 +785,25 @@ class EditorScreen:
         self.left_click_mode = "select"
         self.btn_cycle_left_mode = Button((1010, 12, 180, 28), "Mode: Select", self.cycle_left_mode)
 
+        # Top bar label positions (computed during layout)
+        self._label_name_pos: Tuple[int, int] = (14, 18)
+        self._label_size_pos: Tuple[int, int] = (520, 18)
+
         # right panel categories (adders)
         self.category = "NPCs"
         self.btn_cat_npcs  = Button((920, 60, 140, 30), "NPCs",  lambda: self._switch_category("NPCs"))
         self.btn_cat_items = Button((920, 95, 140, 30), "Items", lambda: self._switch_category("Items"))
-        self.btn_cat_links = Button((920, 130, 140, 30), "Links", lambda: self._switch_category("Links"))
+        self.btn_cat_chests= Button((920, 130, 140, 30), "Chests", lambda: self._switch_category("Chests"))
+        self.btn_cat_links = Button((920, 165, 140, 30), "Links", lambda: self._switch_category("Links"))
 
         # NPCs / Items lists
-        self.dd_npc_sub  = Dropdown((920, 180, 140, 26), NPC_SUBCATS,  value=NPC_SUBCATS[0], on_change=lambda v: self._reload_npcs())
-        self.dd_item_sub = Dropdown((920, 180, 140, 26), ITEM_SUBCATS, value=ITEM_SUBCATS[0], on_change=lambda v: self._reload_items())
-        self.list_box = ListBox((920, 214, 340, 160))
-        self.btn_add_to_tile      = Button((920, 380, 160, 28), "Add to Selected", self.add_selected_to_tile)
+        self.dd_npc_sub  = Dropdown((920, 215, 140, 26), NPC_SUBCATS,  value=NPC_SUBCATS[0], on_change=lambda v: self._reload_npcs())
+        self.dd_item_sub = Dropdown((920, 215, 140, 26), ITEM_SUBCATS, value=ITEM_SUBCATS[0], on_change=lambda v: self._reload_items())
+        # Chests controls: rarity dropdown + add button
+        self.dd_chest_rarity = Dropdown((920, 215, 160, 26), CHEST_RARITIES, value=CHEST_RARITIES[0], on_change=None)
+        self.btn_add_chest   = Button((920, 250, 160, 28), "Add Chest to Selected", self.add_chest_to_selected)
+        self.list_box = ListBox((920, 248, 340, 160))
+        self.btn_add_to_tile      = Button((920, 414, 160, 28), "Add to Selected", self.add_selected_to_tile)
 
         # Initialize entry caches to avoid AttributeError before first reload
         self.npc_entries: List[Dict[str, Any]] = []
@@ -660,9 +812,9 @@ class EditorScreen:
         # Links (no arming; add directly to selected tile) — enforce max 1
         self.maps_available = [f for f in os.listdir(MAP_DIR) if f.lower().endswith(".json")]
         link_default = self.maps_available[0] if self.maps_available else ""
-        self.dd_link_map = Dropdown((920, 180, 220, 26), self.maps_available, value=link_default, on_change=None)
-        self.link_entry_inp = TextInput((1150, 180, 110, 26), "")
-        self.btn_add_link   = Button((920, 214, 180, 28), "Add Link to Tile", self.add_link_to_selected)
+        self.dd_link_map = Dropdown((920, 215, 220, 26), self.maps_available, value=link_default, on_change=None)
+        self.link_entry_inp = TextInput((1150, 215, 110, 26), "")
+        self.btn_add_link   = Button((920, 248, 180, 28), "Add Link to Tile", self.add_link_to_selected)
 
         # no diamond masks needed in simplified Top view
 
@@ -679,8 +831,23 @@ class EditorScreen:
         self.desc_area = TextArea((900, 662, 380, 48), self.map.description)
 
         # Game start placement (world start)
-        self.btn_set_start = Button((920, 414, 200, 28), "Set Game Start Here", self.set_game_start_here)
+        self.btn_set_start = Button((920, 448, 200, 28), "Set Game Start Here", self.set_game_start_here)
         self._world_start_info = None
+
+        # Sidebar layout caches
+        self._sidebar_inner_left: int = 0
+        self._sidebar_inner_width: int = 0
+        self._section_rect_npc = pygame.Rect(0,0,0,0)
+        self._section_rect_items = pygame.Rect(0,0,0,0)
+        self._section_rect_chests = pygame.Rect(0,0,0,0)
+        self._section_rect_links = pygame.Rect(0,0,0,0)
+        self._label_pos_npc: Tuple[int,int] = (0,0)
+        self._label_pos_items: Tuple[int,int] = (0,0)
+        self._label_pos_chests: Tuple[int,int] = (0,0)
+        self._label_pos_links: Tuple[int,int] = (0,0)
+        self._label_pos_link_entry: Tuple[int,int] = (0,0)
+        self._game_start_label_pos: Tuple[int,int] = (0,0)
+        self._game_start_status_pos: Tuple[int,int] = (0,0)
 
         # Default regions (updated each frame for responsive layout)
         self.canvas_rect = pygame.Rect(0, 50, 900, 670)
@@ -722,46 +889,214 @@ class EditorScreen:
         self.sidebar_rect = pygame.Rect(max(0, w - sb_w), top_h, sb_w, max(0, h - top_h))
         self.canvas_rect = pygame.Rect(0, top_h, max(0, w - sb_w), max(0, h - top_h))
 
-        # Top bar controls anchored to window edges (fixed sizes)
-        self.name_inp.rect.topleft = (80, 12)
-        self.btn_save.rect.topleft = (340, 12)
-        self.btn_back.rect.topleft = (450, 12)
-        self.btn_undo.rect.topleft = (580, 12)
-        self.btn_redo.rect.topleft = (665, 12)
-        self.resize_w_inp.rect.topleft = (760, 12)
-        self.resize_h_inp.rect.topleft = (825, 12)
-        self.btn_resize.rect.topleft   = (890, 12)
-        self.btn_cycle_left_mode.rect.x = max(0, w - self.btn_cycle_left_mode.rect.w - 16)
-        self.btn_cycle_left_mode.rect.y = 12
+        # Top bar controls laid out sequentially from left to right
+        top_y = 12
+        btn_spacing = 10
 
-        # Sidebar widgets
-        sx = self.sidebar_rect.x + 20
-        sy = self.sidebar_rect.y
-        self.btn_cat_npcs.rect.topleft  = (sx, sy + 10)
-        self.btn_cat_items.rect.topleft = (sx, sy + 45)
-        self.btn_cat_links.rect.topleft = (sx, sy + 80)
-        self.dd_npc_sub.rect.topleft  = (sx, sy + 130)
-        self.dd_item_sub.rect.topleft = (sx, sy + 130)
-        self.list_box.rect.topleft = (sx, sy + 164)
-        self.list_box.rect.size = (self.sidebar_rect.w - 40, self.list_box.rect.h)
-        self.btn_add_to_tile.rect.topleft = (sx, sy + 330)
-        # Links
-        self.dd_link_map.rect.topleft = (sx, sy + 130)
-        self.link_entry_inp.rect.topleft = (self.sidebar_rect.right - self.link_entry_inp.rect.w - 20, sy + 130)
-        self.btn_add_link.rect.topleft = (sx, sy + 164)
-        # Inspector + encounter row
-        self.inspector_header_rect = pygame.Rect(self.sidebar_rect.x, sy + 400, self.sidebar_rect.w, 32)
-        self.btn_mark_safe.rect.topleft    = (self.sidebar_rect.x + 0,   sy + 404)
-        self.btn_mark_danger.rect.topleft  = (self.sidebar_rect.x + 116, sy + 404)
-        self.btn_clear_marker.rect.topleft = (self.sidebar_rect.x + 252, sy + 404)
-        self.scroll_list.rect = pygame.Rect(self.sidebar_rect.x, sy + 434, self.sidebar_rect.w, 140)
-        # Note + description
-        self.btn_edit_note.rect.topleft = (self.sidebar_rect.x + 0, sy + 580)
-        self.desc_area.rect = pygame.Rect(self.sidebar_rect.x, sy + 612, self.sidebar_rect.w, 48)
+        self.btn_cycle_left_mode.rect.topleft = (max(0, w - self.btn_cycle_left_mode.rect.w - 16), top_y)
+        mode_left_edge = self.btn_cycle_left_mode.rect.x - 12
+
+        label_name = "Name:"
+        label_size = "Size W x H:"
+        label_name_w = FONT.size(label_name)[0]
+        label_size_w = FONT.size(label_size)[0]
+
+        name_input_height = self.name_inp.rect.height
+        label_name_x = 14
+        label_name_y = top_y + max(0, (name_input_height - FONT.get_height()) // 2)
+        self._label_name_pos = (label_name_x, label_name_y)
+
+        button_sequence = (self.btn_save, self.btn_back, self.btn_undo, self.btn_redo)
+        total_button_width = sum(btn.rect.width for btn in button_sequence)
+        total_button_spacing = btn_spacing * len(button_sequence)
+        total_size_controls = label_size_w + 8 + self.resize_w_inp.rect.width + 6 + self.resize_h_inp.rect.width + 10 + self.btn_resize.rect.width
+        name_input_min = 140
+        required_after_name = total_button_width + total_button_spacing + total_size_controls + btn_spacing
+        max_name_width = mode_left_edge - (label_name_x + label_name_w + 8 + required_after_name)
+        if max_name_width < name_input_min:
+            max_name_width = name_input_min
+        name_input_width = max(name_input_min, min(self.name_inp.rect.width, max_name_width))
+        self.name_inp.rect.size = (name_input_width, name_input_height)
+        self.name_inp.rect.topleft = (label_name_x + label_name_w + 8, top_y)
+
+        x_cursor = self.name_inp.rect.right + btn_spacing
+        for btn in button_sequence:
+            if x_cursor + btn.rect.width > mode_left_edge:
+                x_cursor = mode_left_edge - btn.rect.width
+            btn.rect.topleft = (x_cursor, top_y)
+            x_cursor = btn.rect.right + btn_spacing
+
+        label_size_x = max(self.btn_redo.rect.right + btn_spacing, mode_left_edge - total_size_controls)
+        if label_size_x < self.btn_redo.rect.right + btn_spacing:
+            label_size_x = self.btn_redo.rect.right + btn_spacing
+        label_size_y = top_y + max(0, (self.resize_w_inp.rect.height - FONT.get_height()) // 2)
+        self._label_size_pos = (label_size_x, label_size_y)
+
+        self.resize_w_inp.rect.topleft = (label_size_x + label_size_w + 8, top_y)
+        self.resize_h_inp.rect.topleft = (self.resize_w_inp.rect.right + 6, top_y)
+        self.btn_resize.rect.topleft = (self.resize_h_inp.rect.right + 10, top_y)
+
+        apply_right = self.btn_resize.rect.right
+        if apply_right > mode_left_edge:
+            shift = apply_right - mode_left_edge
+            self.resize_w_inp.rect.x -= shift
+            self.resize_h_inp.rect.x -= shift
+            self.btn_resize.rect.x -= shift
+            label_size_x -= shift
+            self._label_size_pos = (label_size_x, label_size_y)
+
+        # Sidebar widgets (responsive vertical layout)
+        inner_margin = 10
+        inner_left = self.sidebar_rect.x + inner_margin
+        inner_width = max(60, self.sidebar_rect.w - inner_margin * 2)
+        self._sidebar_inner_left = inner_left
+        self._sidebar_inner_width = inner_width
+        y = self.sidebar_rect.y + 12
+
+        cat_height = 30
+        cat_spacing = 6
+        for btn in (self.btn_cat_npcs, self.btn_cat_items, self.btn_cat_chests, self.btn_cat_links):
+            btn.rect.topleft = (inner_left, y)
+            btn.rect.size = (inner_width, cat_height)
+            y += cat_height + cat_spacing
+        y += 6
+        categories_bottom = y
+
+        dropdown_h = 26
+        button_h = 28
+        label_h = FONT_BOLD.get_linesize()
+
+        # Category controls (all positioned; only the active category is drawn)
+        panel_top = categories_bottom + 10
+
+        dropdown_y = panel_top + label_h + 6
+        self.dd_npc_sub.rect.topleft = (inner_left, dropdown_y)
+        self.dd_npc_sub.rect.size = (inner_width, dropdown_h)
+
+        self.dd_item_sub.rect.topleft = (inner_left, dropdown_y)
+        self.dd_item_sub.rect.size = (inner_width, dropdown_h)
+
+        self.dd_chest_rarity.rect.topleft = (inner_left, dropdown_y)
+        self.dd_chest_rarity.rect.size = (inner_width, dropdown_h)
+        self.btn_add_chest.rect.topleft = (inner_left, self.dd_chest_rarity.rect.bottom + 12)
+        self.btn_add_chest.rect.size = (inner_width, button_h)
+
+        self.dd_link_map.rect.topleft = (inner_left, dropdown_y)
+        self.dd_link_map.rect.size = (inner_width, dropdown_h)
+        link_entry_label_y = self.dd_link_map.rect.bottom + 10
+        self.link_entry_inp.rect.topleft = (inner_left, link_entry_label_y + label_h + 4)
+        self.link_entry_inp.rect.size = (inner_width, self.link_entry_inp.rect.height)
+        self.btn_add_link.rect.topleft = (inner_left, self.link_entry_inp.rect.bottom + 10)
+        self.btn_add_link.rect.size = (inner_width, button_h)
+
+        # List section (NPCs/Items)
+        list_top = self.dd_npc_sub.rect.bottom + 12
+        self.list_box.rect.topleft = (inner_left, list_top)
+        self.list_box.rect.size = (inner_width, 160)
+        self.btn_add_to_tile.rect.size = (inner_width, button_h)
+
+        # Bottom-aligned sections
+        bottom_y = self.sidebar_rect.bottom - 16
+        desc_height = max(60, min(140, int(self.sidebar_rect.height * 0.22)))
+        self.desc_area.rect = pygame.Rect(inner_left, bottom_y - desc_height, inner_width, desc_height)
+        bottom_y = self.desc_area.rect.top - 12
+
+        note_h = self.btn_edit_note.rect.height
+        self.btn_edit_note.rect.size = (inner_width, note_h)
+        self.btn_edit_note.rect.topleft = (inner_left, bottom_y - note_h)
+        bottom_y = self.btn_edit_note.rect.top - 16
+
+        # Game start block
+        game_start_height = self.btn_set_start.rect.height + 48
+        game_start_top = bottom_y - game_start_height
+        self._game_start_label_pos = (inner_left, game_start_top)
+        self._game_start_status_pos = (inner_left, game_start_top + 18)
+        self.btn_set_start.rect.size = (inner_width, self.btn_set_start.rect.height)
+        self.btn_set_start.rect.topleft = (inner_left, game_start_top + 36)
+        bottom_y = game_start_top - 16
+
+        # Tile info block calculations
+        tileinfo_bottom = bottom_y
+        btn_row_h = self.btn_mark_safe.rect.height
+        header_h = 32
+        scroll_min = 60
+        tileinfo_min_height = header_h + 6 + btn_row_h + 8 + scroll_min
+        tileinfo_top = max(self.sidebar_rect.y + 140, tileinfo_bottom - tileinfo_min_height)
+
+        list_max_height = max(100, int(self.sidebar_rect.height * 0.25))
+        available_before_tileinfo = max(0, tileinfo_top - list_top)
+        add_btn_h = self.btn_add_to_tile.rect.height
+        list_height = max(0, available_before_tileinfo - (add_btn_h + 8))
+        list_height = min(list_height, list_max_height)
+        self.list_box.rect.size = (inner_width, list_height)
+        add_btn_y = list_top + list_height + 8
+        max_add_y = tileinfo_top - add_btn_h - 6
+        if add_btn_y > max_add_y:
+            add_btn_y = max(list_top, max_add_y)
+            list_height = max(0, add_btn_y - list_top - 8)
+            self.list_box.rect.height = list_height
+        self.btn_add_to_tile.rect.topleft = (inner_left, add_btn_y)
+        self.btn_add_to_tile.rect.size = (inner_width, add_btn_h)
+
+        control_bottom = max(
+            self.btn_add_to_tile.rect.bottom,
+            self.btn_add_chest.rect.bottom,
+            self.btn_add_link.rect.bottom,
+            self.list_box.rect.bottom,
+            self.link_entry_inp.rect.bottom,
+        )
+        tileinfo_top = max(tileinfo_top, control_bottom + 16)
+        tileinfo_min_height = max(220, int(self.sidebar_rect.height * 0.36))
+        tileinfo_top = min(tileinfo_top, tileinfo_bottom - tileinfo_min_height)
+        tileinfo_height = max(tileinfo_min_height, tileinfo_bottom - tileinfo_top)
+
+        self.inspector_header_rect = pygame.Rect(inner_left, tileinfo_top, inner_width, header_h)
+        btn_row_y = self.inspector_header_rect.bottom + 6
+        row_width = inner_width
+        btn_spacing = 6
+        btn_w = max(60, (row_width - 2 * btn_spacing) // 3)
+        last_w = max(60, row_width - (btn_w * 2 + btn_spacing * 2))
+
+        self.btn_mark_safe.rect.update(inner_left, btn_row_y, btn_w, btn_row_h)
+        self.btn_mark_danger.rect.update(inner_left + btn_w + btn_spacing, btn_row_y, btn_w, btn_row_h)
+        self.btn_clear_marker.rect.update(inner_left + (btn_w + btn_spacing) * 2, btn_row_y, last_w, btn_row_h)
+
+        scroll_top = self.btn_mark_safe.rect.bottom + 8
+        scroll_height = max(80, tileinfo_min_height - (header_h + 6 + btn_row_h + 8), tileinfo_bottom - scroll_top)
+        self.scroll_list.rect = pygame.Rect(inner_left, scroll_top, inner_width, scroll_height)
+
+        # Store label positions for each category section
+        label_offset = 18
+        self._label_pos_npc = (inner_left, panel_top)
+        self._label_pos_items = (inner_left, panel_top)
+        self._label_pos_chests = (inner_left, panel_top)
+        self._label_pos_links = (inner_left, panel_top)
+        self._label_pos_link_entry = (inner_left, link_entry_label_y)
+
+        # Section rectangles for category panels
+        section_pad = 8
+        npc_top = min(panel_top, self.dd_npc_sub.rect.y - 12)
+        npc_bottom = max(self.btn_add_to_tile.rect.bottom, self.list_box.rect.bottom) + 8
+        height_npc = max(40, npc_bottom - npc_top)
+        self._section_rect_npc = pygame.Rect(inner_left - section_pad//2, npc_top - section_pad//2,
+                                             inner_width + section_pad, height_npc + section_pad)
+        self._section_rect_items = self._section_rect_npc.copy()
+
+        chest_top = min(panel_top, self.dd_chest_rarity.rect.y - 12)
+        chest_bottom = self.btn_add_chest.rect.bottom + 8
+        height_chest = max(36, chest_bottom - chest_top)
+        self._section_rect_chests = pygame.Rect(inner_left - section_pad//2, chest_top - section_pad//2,
+                                                inner_width + section_pad, height_chest + section_pad)
+
+        link_top = min(panel_top, self.dd_link_map.rect.y - 12)
+        link_bottom = self.btn_add_link.rect.bottom + 8
+        height_link = max(36, link_bottom - link_top)
+        self._section_rect_links = pygame.Rect(inner_left - section_pad//2, link_top - section_pad//2,
+                                               inner_width + section_pad, height_link + section_pad)
 
     def any_dropdown_open(self) -> bool:
         return (
-            self.dd_npc_sub.is_open() or self.dd_item_sub.is_open() or self.dd_link_map.is_open()
+            self.dd_npc_sub.is_open() or self.dd_item_sub.is_open() or self.dd_link_map.is_open() or self.dd_chest_rarity.is_open()
         )
 
     def cycle_left_mode(self):
@@ -783,6 +1118,8 @@ class EditorScreen:
         elif label == "Items":
             self._reload_items()
             self.list_box.set_items([self._display_label(e) for e in self.item_entries])
+        elif label == "Chests":
+            self.list_box.set_items([])
         else:
             self.list_box.set_items([])
 
@@ -878,6 +1215,24 @@ class EditorScreen:
                 "description": e.get("description","")
             }
             self._record_add_list_entry(t.items, entry, "add_item")
+
+    def add_chest_to_selected(self):
+        # Ensure we have a target tile: prefer selected; else try hovered
+        if not self.selected:
+            tpos = self._hovered_tile()
+            if tpos:
+                self.selected = tpos
+        if not self.selected:
+            return
+        x, y = self.selected
+        if not (0 <= x < self.map.width and 0 <= y < self.map.height):
+            return
+        t = self.map.tiles[y][x]
+        rarity = str(self.dd_chest_rarity.value or 'common').lower()
+        entry = {"rarity": rarity}
+        self._record_add_list_entry(t.chests, entry, "add_chest")
+        # refresh sidebar list immediately
+        self._rebuild_scroll_items()
 
     def add_link_to_selected(self):
         if not self.selected: return
@@ -1007,7 +1362,7 @@ class EditorScreen:
         self.history.push(do, undo, label="set_encounter")
 
     def _rebuild_scroll_items(self):
-        items: List[Tuple[str, Callable[[], None]]] = []
+        items: List[Tuple[str, Callable[[], None], Optional[Tuple[int,int,int]]]] = []
         if not self.selected:
             self.scroll_list.set_items([]); return
         x,y = self.selected
@@ -1017,15 +1372,24 @@ class EditorScreen:
         # NPCs
         for i, e in enumerate(t.npcs):
             label = f"{e.get('name','(unnamed)')} [{e.get('id','')}] <{e.get('subcategory','')}>"
-            items.append((label, lambda i=i: self._record_remove_list_entry(t.npcs, i, 'rem_npc')))
+            items.append((label, lambda i=i: self._record_remove_list_entry(t.npcs, i, 'rem_npc'), None))
         # Items
         for i, e in enumerate(t.items):
             label = f"{e.get('name','(unnamed)')} [{e.get('id','')}] <{e.get('subcategory','')}>"
-            items.append((label, lambda i=i: self._record_remove_list_entry(t.items, i, 'rem_item')))
+            items.append((label, lambda i=i: self._record_remove_list_entry(t.items, i, 'rem_item'), None))
+        # Chests
+        try:
+            for i, c in enumerate(getattr(t, 'chests', []) or []):
+                rar = str((c.get('rarity') or 'common')).lower()
+                clabel = f"Chest - {rar.capitalize()}"
+                color = RARITY_COLORS.get(rar, TEXT_MAIN)
+                items.append((clabel, lambda i=i: self._record_remove_list_entry(t.chests, i, 'rem_chest'), color))
+        except Exception:
+            pass
         # Link (max 1)
         for i, e in enumerate(t.links):
             label = f"Link → {e.get('target_map','?')} #{e.get('target_entry','')}"
-            items.append((label, lambda i=i: self._record_remove_list_entry(t.links, i, 'rem_link')))
+            items.append((label, lambda i=i: self._record_remove_list_entry(t.links, i, 'rem_link'), None))
         self.scroll_list.set_items(items)
 
     # ---------- canvas geometry (isometric + rotation) ----------
@@ -1404,12 +1768,22 @@ class EditorScreen:
                     has.add("link")
 
                 order = ["enemy","villain","ally","citizen","monster","animal","quest_item","item","link"]
-                dots = [TYPE_DOT_COLORS[k] for k in order if k in has]
+                # Build marker list with shapes so chest can integrate into grid
+                markers: List[Tuple[str, Tuple[int,int,int]]] = []  # (shape, color)
+                for k in order:
+                    if k in has:
+                        markers.append(("circle", TYPE_DOT_COLORS[k]))
+                # Include one square marker if any chest present on tile
+                try:
+                    if len(getattr(t, 'chests', []) or []) > 0:
+                        markers.append(("square", COL_WHITE))
+                except Exception:
+                    pass
 
-                if dots:
-                    # Simple circle dots in rows inside the tile rect
+                if markers:
+                    # Simple markers in rows inside the tile rect
                     pad = max(2, self.tile_size // 16)
-                    n = len(dots)
+                    n = len(markers)
                     max_cols = 3
                     cols = min(max_cols, n)
                     rows = int(math.ceil(n / cols))
@@ -1420,13 +1794,21 @@ class EditorScreen:
                     gap_y = max(2, int((avail_h - rows * 2 * radius) / max(1, rows - 1))) if rows > 1 else 0
                     start_x = r.x + (r.w - (cols * (2 * radius) + (cols - 1) * gap_x)) // 2 + radius
                     start_y = r.y + (r.h - (rows * (2 * radius) + (rows - 1) * gap_y)) // 2 + radius
-                    for i, colr in enumerate(dots):
+                    for i, mk in enumerate(markers):
                         row_i = i // cols
                         col_i = i % cols
                         cx_d = start_x + col_i * (2 * radius + gap_x)
                         cy_d = start_y + row_i * (2 * radius + gap_y)
-                        pygame.draw.circle(surf, colr, (int(cx_d), int(cy_d)), radius)
-                        pygame.draw.circle(surf, (10,10,12), (int(cx_d), int(cy_d)), radius, 1)
+                        shape, colr = mk
+                        if shape == "square":
+                            side = max(4, 2 * radius - 2)
+                            rx = int(cx_d - side // 2)
+                            ry = int(cy_d - side // 2)
+                            pygame.draw.rect(surf, colr, (rx, ry, side, side))
+                            pygame.draw.rect(surf, (10,10,12), (rx, ry, side, side), 1)
+                        else:
+                            pygame.draw.circle(surf, colr, (int(cx_d), int(cy_d)), radius)
+                            pygame.draw.circle(surf, (10,10,12), (int(cx_d), int(cy_d)), radius, 1)
 
         # Selection highlight on top in Top view (clear and obvious)
         # Highlight Game Start tile (blue outline)
@@ -1464,8 +1846,8 @@ class EditorScreen:
     def draw_top_bar(self, surf):
         w, _h = surf.get_size()
         pygame.draw.rect(surf, PANEL_BG, (0,0,w,50))
-        draw_text(surf, "Name:", (14, 18), TEXT_DIM)
-        draw_text(surf, "Size W×H:", (520, 18), TEXT_DIM)
+        draw_text(surf, "Name:", self._label_name_pos, TEXT_DIM)
+        draw_text(surf, "Size W x H:", self._label_size_pos, TEXT_DIM)
         self.name_inp.draw(surf)
         self.btn_save.draw(surf); self.btn_back.draw(surf)
         self.btn_undo.draw(surf); self.btn_redo.draw(surf)
@@ -1479,25 +1861,36 @@ class EditorScreen:
         pygame.draw.rect(surf, PANEL_BG, sidebar); pygame.draw.rect(surf, GRID_LINE, sidebar, 1)
 
         # categories area (adders)
-        self.btn_cat_npcs.draw(surf); self.btn_cat_items.draw(surf); self.btn_cat_links.draw(surf)
-        label_x = self.sidebar_rect.x + 20
-        label_y = self.sidebar_rect.y + 110
+        self.btn_cat_npcs.draw(surf); self.btn_cat_items.draw(surf); self.btn_cat_chests.draw(surf); self.btn_cat_links.draw(surf)
+        inner_left = self._sidebar_inner_left
         if self.category == "NPCs":
-            draw_text(surf, "Subcategory", (label_x, label_y), TEXT_DIM)
+            pygame.draw.rect(surf, PANEL_BG_DARK, self._section_rect_npc, border_radius=8)
+            pygame.draw.rect(surf, GRID_LINE, self._section_rect_npc, 1, border_radius=8)
             self.dd_npc_sub.draw_base(surf)
             self.list_box.draw(surf)
             self.btn_add_to_tile.draw(surf)
+            draw_text(surf, "NPC Subcategory", self._label_pos_npc, TEXT_DIM, FONT_BOLD)
         elif self.category == "Items":
-            draw_text(surf, "Subcategory", (label_x, label_y), TEXT_DIM)
+            pygame.draw.rect(surf, PANEL_BG_DARK, self._section_rect_items, border_radius=8)
+            pygame.draw.rect(surf, GRID_LINE, self._section_rect_items, 1, border_radius=8)
             self.dd_item_sub.draw_base(surf)
             self.list_box.draw(surf)
             self.btn_add_to_tile.draw(surf)
+            draw_text(surf, "Item Subcategory", self._label_pos_items, TEXT_DIM, FONT_BOLD)
+        elif self.category == "Chests":
+            pygame.draw.rect(surf, PANEL_BG_DARK, self._section_rect_chests, border_radius=8)
+            pygame.draw.rect(surf, GRID_LINE, self._section_rect_chests, 1, border_radius=8)
+            self.dd_chest_rarity.draw_base(surf)
+            self.btn_add_chest.draw(surf)
+            draw_text(surf, "Chest Rarity", self._label_pos_chests, TEXT_DIM, FONT_BOLD)
         else:
-            draw_text(surf, "Target Map", (label_x, label_y), TEXT_DIM)
+            pygame.draw.rect(surf, PANEL_BG_DARK, self._section_rect_links, border_radius=8)
+            pygame.draw.rect(surf, GRID_LINE, self._section_rect_links, 1, border_radius=8)
             self.dd_link_map.draw_base(surf)
-            draw_text(surf, "Target Entry (opt)", (self.link_entry_inp.rect.x, label_y), TEXT_DIM)
             self.link_entry_inp.draw(surf)
             self.btn_add_link.draw(surf)
+            draw_text(surf, "Target Map", self._label_pos_links, TEXT_DIM, FONT_BOLD)
+            draw_text(surf, "Target Entry (optional)", self._label_pos_link_entry, TEXT_DIM)
 
         # texture selector removed in simplified Top view
 
@@ -1552,13 +1945,11 @@ class EditorScreen:
         start = wm.get("start", {}) if isinstance(wm, dict) else {}
         smap = start.get("map") or ""
         spos = start.get("pos") or [0,0]
-        label_x = self.sidebar_rect.x + 20
-        label_y = max(self.sidebar_rect.y + 360, self.inspector_header_rect.y - 60)
-        draw_text(surf, "Game Start", (label_x, label_y), TEXT_DIM)
+        gs_label_x, gs_label_y = self._game_start_label_pos
+        draw_text(surf, "Game Start", (gs_label_x, gs_label_y), TEXT_DIM, FONT_BOLD)
         status = f"Placed on: {smap} at ({int(spos[0])},{int(spos[1])})" if smap else "Not set"
-        draw_text(surf, status, (label_x + 120, label_y), TEXT_MAIN)
-        # Position the button relative to sidebar so it never appears over canvas
-        self.btn_set_start.rect.topleft = (label_x, label_y + 20)
+        status_x, status_y = self._game_start_status_pos
+        draw_text(surf, status, (status_x, status_y), TEXT_MAIN)
         can_set = bool(self.selected) and (not smap or smap == self.map.name)
         if can_set:
             self.btn_set_start.draw(surf)
@@ -1577,6 +1968,8 @@ class EditorScreen:
             self.dd_npc_sub.draw_popup(surf)
         elif self.category == "Items":
             self.dd_item_sub.draw_popup(surf)
+        elif self.category == "Chests":
+            self.dd_chest_rarity.draw_popup(surf)
         else:
             self.dd_link_map.draw_popup(surf)
         # no texture dropdown popup in simplified view
@@ -1640,13 +2033,15 @@ class EditorScreen:
         self.btn_cycle_left_mode.handle(event)
 
         # right panel (adders)
-        self.btn_cat_npcs.handle(event); self.btn_cat_items.handle(event); self.btn_cat_links.handle(event)
+        self.btn_cat_npcs.handle(event); self.btn_cat_items.handle(event); self.btn_cat_chests.handle(event); self.btn_cat_links.handle(event)
 
         # dropdowns first; when any is open, swallow other clicks under them
         if self.category == "NPCs":
             self.dd_npc_sub.handle(event)
         elif self.category == "Items":
             self.dd_item_sub.handle(event)
+        elif self.category == "Chests":
+            self.dd_chest_rarity.handle(event)
         else:
             self.dd_link_map.handle(event)
         # no texture dropdown input in simplified view
@@ -1657,6 +2052,8 @@ class EditorScreen:
         if not dropdown_open:
             if self.category in ("NPCs","Items"):
                 self.list_box.handle(event); self.btn_add_to_tile.handle(event)
+            elif self.category == "Chests":
+                self.btn_add_chest.handle(event)
             else:
                 self.link_entry_inp.handle(event); self.btn_add_link.handle(event)
 
@@ -1667,10 +2064,6 @@ class EditorScreen:
             self.btn_mark_safe.handle(event)
             self.btn_mark_danger.handle(event)
             self.btn_clear_marker.handle(event)
-            # Keep the Game Start button anchored each frame before handling
-            label_x = self.sidebar_rect.x + 20
-            label_y = max(self.sidebar_rect.y + 360, self.inspector_header_rect.y - 60)
-            self.btn_set_start.rect.topleft = (label_x, label_y + 20)
             self.btn_set_start.handle(event)
 
         # description

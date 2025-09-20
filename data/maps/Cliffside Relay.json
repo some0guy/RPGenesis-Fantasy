@@ -1,9 +1,9 @@
 {
-  "name": "Jungle of Hills",
-  "description": "",
-  "width": 20,
-  "height": 10,
-  "tile_size": 62,
+  "name": "Cliffside Relay",
+  "description": "Clifftop pass between sea and highlands; smugglers, shrines, and a humming waygate.",
+  "width": 16,
+  "height": 16,
+  "tile_size": 41,
   "tiles": [
     [
       {
@@ -11,82 +11,210 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
       },
       {
         "walkable": true,
-        "npcs": [
-          {
-            "subcategory": "citizens",
-            "id": "NP00000053",
-            "name": "Selune Wyrmfall",
-            "description": ""
-          },
-          {
-            "subcategory": "citizens",
-            "id": "NP00000057",
-            "name": "Gryff Rivenspire",
-            "description": ""
-          }
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "Landing circle (from Jungle of Hills).",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [
+          "shrine_bowl"
         ],
-        "items": [],
         "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "safe",
+        "note": "Tidewatch Shrine: offer shells to receive a short blessing.",
+        "encounter": "",
         "texture": ""
       },
       {
@@ -94,7 +222,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -104,7 +231,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -114,7 +240,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -124,7 +249,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -134,7 +258,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -144,7 +267,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -154,7 +276,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -164,7 +285,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -174,47 +294,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -226,57 +305,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -286,57 +314,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -346,9 +323,8 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
-        "encounter": "danger",
+        "encounter": "",
         "texture": ""
       },
       {
@@ -356,59 +332,8 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
+        "encounter": "",
         "texture": ""
       },
       {
@@ -416,7 +341,105 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "Broken Aqueduct: high sightline; ranged advantage.",
+        "encounter": "beach_wolves_low",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -428,7 +451,33 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -438,7 +487,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -448,7 +496,1688 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "Sunken Bazaar: collapsed stalls; hidden stash under loose boards.",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "smugglers_low",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [
+          "lockbox_rusted"
+        ],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "Leaning arch; lookout",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "Rope Bridge over chasm; gusts make it sway.",
+        "encounter": "bridge_qte",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [
+          "chest_salt_wet"
+        ],
+        "links": [],
+        "note": "Hidden Grotto: damp crawlspace; slimes nest here.",
+        "encounter": "slimes_low",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "Abandoned Firepit: warm ash; boot prints lead north.",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -459,22 +2188,11 @@
         "items": [],
         "links": [
           {
-            "target_map": "Margrove Town.json",
+            "target_map": "Jungle of Hills.json",
             "target_entry": ""
           }
         ],
-        "chests": [],
-        "note": "",
-        "encounter": "safe",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
+        "note": "Waygate to Jungle of Hills (blue sigils hum).",
         "encounter": "",
         "texture": ""
       },
@@ -483,147 +2201,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -635,7 +2212,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -645,7 +2221,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -655,1362 +2230,15 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
       },
       {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [
-          {
-            "subcategory": "animals",
-            "id": "NP00000034",
-            "name": "Dorian Vaeloria",
-            "description": ""
-          }
-        ],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "safe",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [
-          {
-            "subcategory": "materials",
-            "id": "IT00000005",
-            "name": "Moon-ore Shard",
-            "description": ""
-          }
-        ],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "safe",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [
-          {
-            "subcategory": "villains",
-            "id": "NP00001004",
-            "name": "Varenia Blackgilt",
-            "description": ""
-          },
-          {
-            "subcategory": "villains",
-            "id": "NP00001003",
-            "name": "Kaelira Voidpetal",
-            "description": ""
-          }
-        ],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "safe",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [
-          {
-            "subcategory": "enemies",
-            "id": "NP00000069",
-            "name": "Isolde Goldbranch",
-            "description": ""
-          }
-        ],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "safe",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [
-          {
-            "subcategory": "allies",
-            "id": "NP00000001",
-            "name": "Selune Vaeloria",
-            "description": ""
-          },
-          {
-            "subcategory": "allies",
-            "id": "NP00000022",
-            "name": "Vel Sablevine",
-            "description": ""
-          }
-        ],
-        "items": [
-          {
-            "subcategory": "armour",
-            "id": "IT00000001",
-            "name": "Wanderer's Wraps Bandana",
-            "description": "Wanderer's Wraps: thin straps in salt-bleached white, dusty umber; ties at the nape. It breathes easy; smells of road and sunlight."
-          },
-          {
-            "subcategory": "armour",
-            "id": "IT00000002",
-            "name": "Wanderer's Wraps Wrap",
-            "description": "Wanderer's Wraps: travel-stained cloth in salt-bleached white, sun-browned linen; reinforced at the ribs. It breathes easy; smells of road and sunlight."
-          },
-          {
-            "subcategory": "armour",
-            "id": "IT00000003",
-            "name": "Wanderer's Wraps Legwraps",
-            "description": "Wanderer's Wraps: thin straps in sage hem, sun-browned linen; panelled at the knees. It breathes easy; smells of road and sunlight."
-          },
-          {
-            "subcategory": "armour",
-            "id": "IT00000004",
-            "name": "Wanderer's Wraps Barefoot Straps",
-            "description": "Wanderer's Wraps: loose weave in salt-bleached white, sun-browned linen; thin soles for ground feel. It breathes easy; smells of road and sunlight."
-          },
-          {
-            "subcategory": "armour",
-            "id": "IT00000005",
-            "name": "Wanderer's Wraps Gloves",
-            "description": "Wanderer's Wraps: frayed hems in dusty umber, sun-browned linen; binds tight without biting. It breathes easy; smells of road and sunlight."
-          },
-          {
-            "subcategory": "quest_items",
-            "id": "IT00000006",
-            "name": "Moon-signet",
-            "description": "A silver ring etched with a crescent."
-          }
-        ],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "safe",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [
-          {
-            "rarity": "exotic"
-          }
-        ],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [
-          {
-            "target_map": "Grange of the Fenn.json",
-            "target_entry": ""
-          }
-        ],
-        "chests": [],
-        "note": "",
-        "encounter": "safe",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
         "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -2020,7 +2248,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -2030,7 +2257,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -2040,7 +2266,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -2050,7 +2275,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -2060,7 +2284,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -2070,7 +2293,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -2080,7 +2302,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -2090,7 +2311,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -2100,7 +2320,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -2110,7 +2329,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -2120,7 +2338,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
@@ -2130,7 +2347,6 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
         "note": "",
         "encounter": "",
         "texture": ""
