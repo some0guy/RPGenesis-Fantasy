@@ -162,6 +162,13 @@ def scene_to_runtime(scene: Dict[str, Any]) -> Dict[str, Any]:
                         to = to[:-5]
                     links.append(((x, y), to, 'map', L.get('target_entry')))
 
+    # Map-level enemy pool (optional, provided by editor)
+    try:
+        raw_pool = scene.get('enemy_pool') or []
+        enemy_pool = [e for e in raw_pool if isinstance(e, dict)]
+    except Exception:
+        enemy_pool = []
+
     return {
         'name': scene.get('name', 'noname'),
         'kind': scene.get('kind', 'map'),
@@ -173,6 +180,7 @@ def scene_to_runtime(scene: Dict[str, Any]) -> Dict[str, Any]:
         'entries': entries,
         'links': links,
         'tiles': tiles,
+        'enemy_pool': enemy_pool,
     }
 
 def get_game_start() -> Tuple[str, str|None, Tuple[int,int]]:

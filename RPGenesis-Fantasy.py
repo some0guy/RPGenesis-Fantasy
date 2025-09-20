@@ -5122,6 +5122,11 @@ class Game:
         self.current_map_name = runtime.get('name', sel_map)
         # Track a stable ID separate from display name to match links reliably
         self.current_map_id = sel_map_id
+        # Map-level enemy pool for danger tiles
+        try:
+            self.current_enemy_pool = [copy.deepcopy(e) for e in (runtime.get('enemy_pool') or []) if isinstance(e, dict)]
+        except Exception:
+            self.current_enemy_pool = []
         self._restore_returning_allies_for_map(self.current_map_id)
         self.player  = Player()
         # Apply character creation config if provided
@@ -5678,6 +5683,11 @@ class Game:
         self.current_map_name = runtime.get('name', dest_map)
         # Update stable map ID to the destination base name
         self.current_map_id = dest_map
+        # Update map-level enemy pool for danger tiles
+        try:
+            self.current_enemy_pool = [copy.deepcopy(e) for e in (runtime.get('enemy_pool') or []) if isinstance(e, dict)]
+        except Exception:
+            self.current_enemy_pool = []
         self._restore_returning_allies_for_map(self.current_map_id)
         self.player.x = max(0, min(self.W-1, int(px)))
         self.player.y = max(0, min(self.H-1, int(py)))
@@ -5721,6 +5731,17 @@ class Game:
                     return
             self.player.x, self.player.y = nx, ny
             t = self.tile(); t.discovered = True; t.visited += 1
+            # Danger tile random ambush (20% chance) using map's enemy pool; no dots/encounter markers
+            try:
+                if str(getattr(t, 'safety', '')).lower() == 'danger':
+                    pool = list(getattr(self, 'current_enemy_pool', []) or [])
+                    if pool and not (t.encounter and t.encounter.enemy) and random.random() < 0.20:
+                        foe = copy.deepcopy(random.choice(pool))
+                        self.start_combat(foe)
+                        self.say(f"An enemy ambushes you!", 'enemy')
+                        return
+            except Exception:
+                pass
             if t.encounter:
                 if t.encounter.enemy:
                     # Mark that this tile must be resolved before passing through

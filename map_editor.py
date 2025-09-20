@@ -2,6 +2,7 @@
 import os
 import json
 import math
+import copy
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Tuple, Callable
 
@@ -25,7 +26,7 @@ TILE_IMG_DIR = os.path.join(ROOT_DIR, "assets", "images", "map_tiles")
 
 os.makedirs(MAP_DIR, exist_ok=True)
 
-NPC_SUBCATS   = ["allies", "enemies", "monsters", "animals", "citizens", "villains"]
+NPC_SUBCATS   = ["allies", "monsters", "animals", "citizens", "villains"]
 ITEM_SUBCATS  = ["accessories", "armour", "clothing", "materials", "quest_items", "trinkets", "weapons"]
 
 TILE_SIZE_DEFAULT = 32
@@ -46,6 +47,8 @@ DARK_WALKABLE  = (42,47,59)
 IMPASSABLE     = (74,79,89)
 BTN_BG         = (47,52,66)
 BTN_HOVER      = (73,80,99)
+BTN_ACTIVE     = (68,86,122)
+TAB_BORDER     = (76,92,128)
 INPUT_BG       = (18,19,23)
 DANGER         = (220, 66, 66)
 
@@ -162,6 +165,7 @@ class MapData:
     height: int = GRID_H_DEFAULT
     tile_size: int = TILE_SIZE_DEFAULT
     tiles: List[List[TileData]] = field(default_factory=list)
+    enemy_pool: List[Dict[str, Any]] = field(default_factory=list)
 
     @staticmethod
     def new(name: str, description: str, w: int, h: int) -> "MapData":
@@ -185,6 +189,7 @@ class MapData:
                 "encounter": t.encounter,
                 "texture": t.texture,
             } for t in row] for row in self.tiles],
+            "enemy_pool": [copy.deepcopy(e) for e in (self.enemy_pool or []) if isinstance(e, dict)],
         }
 
     @staticmethod
@@ -211,7 +216,12 @@ class MapData:
                     texture=str(cell.get("texture", "")),
                 ))
             tiles.append(row)
-        return MapData(name=name, description=desc, width=w, height=h, tile_size=ts, tiles=tiles)
+        raw_pool = obj.get("enemy_pool") or []
+        enemy_pool: List[Dict[str, Any]] = []
+        for entry in raw_pool:
+            if isinstance(entry, dict):
+                enemy_pool.append(copy.deepcopy(entry))
+        return MapData(name=name, description=desc, width=w, height=h, tile_size=ts, tiles=tiles, enemy_pool=enemy_pool)
 
 # -------------------- History (Undo/Redo) --------------------
 class History:
@@ -303,6 +313,7 @@ class Button:
         self.on_click = on_click
         self.hover = False
         self.danger = danger
+        self.selected = False
     def handle(self, event):
         if event.type == pygame.MOUSEMOTION:
             self.hover = self.rect.collidepoint(event.pos)
@@ -310,8 +321,13 @@ class Button:
             if self.rect.collidepoint(event.pos):
                 self.on_click()
     def draw(self, surf):
-        base = DANGER if self.danger else BTN_BG
-        pygame.draw.rect(surf, BTN_HOVER if self.hover else base, self.rect, border_radius=8)
+        if self.danger:
+            base = DANGER
+        elif self.selected:
+            base = BTN_ACTIVE
+        else:
+            base = BTN_BG
+        pygame.draw.rect(surf, BTN_HOVER if self.hover and not self.selected else base, self.rect, border_radius=8)
         pygame.draw.rect(surf, GRID_LINE, self.rect, 1, border_radius=8)
         txt = FONT.render(self.text, True, TEXT_MAIN)
         surf.blit(txt, txt.get_rect(center=self.rect.center))
@@ -791,10 +807,11 @@ class EditorScreen:
 
         # right panel categories (adders)
         self.category = "NPCs"
-        self.btn_cat_npcs  = Button((920, 60, 140, 30), "NPCs",  lambda: self._switch_category("NPCs"))
-        self.btn_cat_items = Button((920, 95, 140, 30), "Items", lambda: self._switch_category("Items"))
-        self.btn_cat_chests= Button((920, 130, 140, 30), "Chests", lambda: self._switch_category("Chests"))
-        self.btn_cat_links = Button((920, 165, 140, 30), "Links", lambda: self._switch_category("Links"))
+        self.btn_cat_npcs   = Button((920, 60, 140, 30), "NPCs",         lambda: self._switch_category("NPCs"))
+        self.btn_cat_items  = Button((920, 95, 140, 30), "Items",        lambda: self._switch_category("Items"))
+        self.btn_cat_chests = Button((920, 130, 140, 30), "Chests",      lambda: self._switch_category("Chests"))
+        self.btn_cat_links  = Button((920, 165, 140, 30), "Links",       lambda: self._switch_category("Links"))
+        self.btn_cat_enemy  = Button((920, 200, 140, 30), "Enemy Pool",  lambda: self._switch_category("EnemyPool"))
 
         # NPCs / Items lists
         self.dd_npc_sub  = Dropdown((920, 215, 140, 26), NPC_SUBCATS,  value=NPC_SUBCATS[0], on_change=lambda v: self._reload_npcs())
@@ -808,6 +825,17 @@ class EditorScreen:
         # Initialize entry caches to avoid AttributeError before first reload
         self.npc_entries: List[Dict[str, Any]] = []
         self.item_entries: List[Dict[str, Any]] = []
+
+        # Map-level enemy pool (danger encounters)
+        if not isinstance(getattr(self.map, 'enemy_pool', None), list):
+            self.map.enemy_pool = []
+        self.enemy_catalog_entries: List[Dict[str, Any]] = self._load_enemy_catalog()
+        self.enemy_catalog_box = ListBox((920, 248, 160, 160))
+        self.enemy_pool_list = ScrollListWithButtons(pygame.Rect(920, 248, 160, 160))
+        self.btn_enemy_add = Button((920, 412, 160, 28), "Add Enemy", self.add_enemy_to_pool)
+        self.btn_enemy_clear = Button((1090, 412, 160, 28), "Clear Pool", self.clear_enemy_pool)
+        self._refresh_enemy_catalog_box()
+        self._rebuild_enemy_pool_list()
 
         # Links (no arming; add directly to selected tile) — enforce max 1
         self.maps_available = [f for f in os.listdir(MAP_DIR) if f.lower().endswith(".json")]
@@ -826,6 +854,10 @@ class EditorScreen:
         self.btn_mark_safe    = Button((900, 454, 110, 26), "Mark Safe", lambda: self.set_encounter('safe'))
         self.btn_mark_danger  = Button((1016, 454, 130, 26), "Mark Danger", lambda: self.set_encounter('danger'))
         self.btn_clear_marker = Button((1152, 454, 128, 26), "Clear", lambda: self.set_encounter(''))
+        # Inspector tabs
+        self.inspector_tab = 'tile'
+        self.btn_tab_tile  = Button((900, 450, 120, 26), "Tile Info", lambda: setattr(self, 'inspector_tab', 'tile'))
+        self.btn_tab_enemy = Button((1030, 450, 120, 26), "Enemy Pool", lambda: setattr(self, 'inspector_tab', 'enemy'))
 
         # Map description at bottom
         self.desc_area = TextArea((900, 662, 380, 48), self.map.description)
@@ -841,11 +873,15 @@ class EditorScreen:
         self._section_rect_items = pygame.Rect(0,0,0,0)
         self._section_rect_chests = pygame.Rect(0,0,0,0)
         self._section_rect_links = pygame.Rect(0,0,0,0)
+        self._section_rect_enemy = pygame.Rect(0,0,0,0)
         self._label_pos_npc: Tuple[int,int] = (0,0)
         self._label_pos_items: Tuple[int,int] = (0,0)
         self._label_pos_chests: Tuple[int,int] = (0,0)
         self._label_pos_links: Tuple[int,int] = (0,0)
         self._label_pos_link_entry: Tuple[int,int] = (0,0)
+        self._label_pos_enemy_catalog: Tuple[int,int] = (0,0)
+        self._label_pos_enemy_pool: Tuple[int,int] = (0,0)
+        self._inspector_content_rect = pygame.Rect(0,0,0,0)
         self._game_start_label_pos: Tuple[int,int] = (0,0)
         self._game_start_status_pos: Tuple[int,int] = (0,0)
 
@@ -955,7 +991,7 @@ class EditorScreen:
 
         cat_height = 30
         cat_spacing = 6
-        for btn in (self.btn_cat_npcs, self.btn_cat_items, self.btn_cat_chests, self.btn_cat_links):
+        for btn in (self.btn_cat_npcs, self.btn_cat_items, self.btn_cat_chests, self.btn_cat_links, self.btn_cat_enemy):
             btn.rect.topleft = (inner_left, y)
             btn.rect.size = (inner_width, cat_height)
             y += cat_height + cat_spacing
@@ -988,6 +1024,22 @@ class EditorScreen:
         self.link_entry_inp.rect.size = (inner_width, self.link_entry_inp.rect.height)
         self.btn_add_link.rect.topleft = (inner_left, self.link_entry_inp.rect.bottom + 10)
         self.btn_add_link.rect.size = (inner_width, button_h)
+
+        # Enemy pool controls (available + map pool)
+        enemy_catalog_label_y = panel_top
+        catalog_top = enemy_catalog_label_y + label_h + 6
+        catalog_height = max(100, int(self.sidebar_rect.height * 0.18))
+        self.enemy_catalog_box.rect.topleft = (inner_left, catalog_top)
+        self.enemy_catalog_box.rect.size = (inner_width, catalog_height)
+        self.btn_enemy_add.rect.topleft = (inner_left, self.enemy_catalog_box.rect.bottom + 8)
+        self.btn_enemy_add.rect.size = (inner_width, button_h)
+
+        pool_label_y = self.btn_enemy_add.rect.bottom + 12
+        pool_top = pool_label_y + label_h + 6
+        pool_height = max(100, int(self.sidebar_rect.height * 0.18))
+        self.enemy_pool_list.rect = pygame.Rect(inner_left, pool_top, inner_width, pool_height)
+        self.btn_enemy_clear.rect.topleft = (inner_left, self.enemy_pool_list.rect.bottom + 8)
+        self.btn_enemy_clear.rect.size = (inner_width, button_h)
 
         # List section (NPCs/Items)
         list_top = self.dd_npc_sub.rect.bottom + 12
@@ -1045,13 +1097,30 @@ class EditorScreen:
             self.list_box.rect.bottom,
             self.link_entry_inp.rect.bottom,
         )
-        tileinfo_top = max(tileinfo_top, control_bottom + 16)
-        tileinfo_min_height = max(220, int(self.sidebar_rect.height * 0.36))
-        tileinfo_top = min(tileinfo_top, tileinfo_bottom - tileinfo_min_height)
-        tileinfo_height = max(tileinfo_min_height, tileinfo_bottom - tileinfo_top)
+        active_bottom = {
+            "NPCs": self.btn_add_to_tile.rect.bottom,
+            "Items": self.btn_add_to_tile.rect.bottom,
+            "Chests": self.btn_add_chest.rect.bottom,
+            "Links": max(self.link_entry_inp.rect.bottom, self.btn_add_link.rect.bottom),
+            "EnemyPool": self.btn_enemy_clear.rect.bottom,
+        }.get(self.category, control_bottom)
+        control_bottom = max(control_bottom, active_bottom)
 
+        tileinfo_top = max(tileinfo_top, control_bottom + 20)
+        base_required_height = header_h + 6 + btn_row_h + 8 + 60
+        tileinfo_height = max(0, tileinfo_bottom - tileinfo_top)
+        if tileinfo_height < base_required_height:
+            tileinfo_top = max(self.sidebar_rect.y + 120, tileinfo_bottom - base_required_height)
+            tileinfo_height = max(0, tileinfo_bottom - tileinfo_top)
+
+        # Header + tabs for inspector area
         self.inspector_header_rect = pygame.Rect(inner_left, tileinfo_top, inner_width, header_h)
-        btn_row_y = self.inspector_header_rect.bottom + 6
+        tab_h = min(btn_row_h, 26)
+        tab_w = max(80, (inner_width - 8) // 2)
+        self.btn_tab_tile.rect.update(inner_left + 6, tileinfo_top + 4, tab_w - 10, tab_h)
+        self.btn_tab_enemy.rect.update(inner_left + 6 + tab_w, tileinfo_top + 4, tab_w - 10, tab_h)
+
+        btn_row_y = self.inspector_header_rect.bottom + 18
         row_width = inner_width
         btn_spacing = 6
         btn_w = max(60, (row_width - 2 * btn_spacing) // 3)
@@ -1061,9 +1130,18 @@ class EditorScreen:
         self.btn_mark_danger.rect.update(inner_left + btn_w + btn_spacing, btn_row_y, btn_w, btn_row_h)
         self.btn_clear_marker.rect.update(inner_left + (btn_w + btn_spacing) * 2, btn_row_y, last_w, btn_row_h)
 
-        scroll_top = self.btn_mark_safe.rect.bottom + 8
-        scroll_height = max(80, tileinfo_min_height - (header_h + 6 + btn_row_h + 8), tileinfo_bottom - scroll_top)
-        self.scroll_list.rect = pygame.Rect(inner_left, scroll_top, inner_width, scroll_height)
+        if self.inspector_tab == "tile":
+            scroll_top = self.btn_mark_safe.rect.bottom + 8
+            available_scroll = max(0, tileinfo_bottom - scroll_top)
+            self.scroll_list.rect = pygame.Rect(inner_left, scroll_top, inner_width, available_scroll)
+            self._inspector_content_rect = self.scroll_list.rect.copy()
+        else:
+            scroll_top = self.inspector_header_rect.bottom + 8
+            available_scroll = max(0, tileinfo_bottom - scroll_top)
+            self.scroll_list.rect = pygame.Rect(inner_left, scroll_top, inner_width, 0)
+            self._inspector_content_rect = pygame.Rect(inner_left, scroll_top, inner_width, available_scroll)
+
+        # Enemy Pool remains in the upper category panel; inspector tab renders a summary view.
 
         # Store label positions for each category section
         label_offset = 18
@@ -1072,6 +1150,8 @@ class EditorScreen:
         self._label_pos_chests = (inner_left, panel_top)
         self._label_pos_links = (inner_left, panel_top)
         self._label_pos_link_entry = (inner_left, link_entry_label_y)
+        self._label_pos_enemy_catalog = (inner_left, enemy_catalog_label_y)
+        self._label_pos_enemy_pool = (inner_left, pool_label_y)
 
         # Section rectangles for category panels
         section_pad = 8
@@ -1093,6 +1173,12 @@ class EditorScreen:
         height_link = max(36, link_bottom - link_top)
         self._section_rect_links = pygame.Rect(inner_left - section_pad//2, link_top - section_pad//2,
                                                inner_width + section_pad, height_link + section_pad)
+
+        enemy_top = min(panel_top, self.enemy_catalog_box.rect.y - 12)
+        enemy_bottom = self.btn_enemy_clear.rect.bottom + 8
+        height_enemy = max(36, enemy_bottom - enemy_top)
+        self._section_rect_enemy = pygame.Rect(inner_left - section_pad//2, enemy_top - section_pad//2,
+                                               inner_width + section_pad, height_enemy + section_pad)
 
     def any_dropdown_open(self) -> bool:
         return (
@@ -1120,6 +1206,11 @@ class EditorScreen:
             self.list_box.set_items([self._display_label(e) for e in self.item_entries])
         elif label == "Chests":
             self.list_box.set_items([])
+        elif label == "Links":
+            self.list_box.set_items([])
+        elif label == "EnemyPool":
+            self._refresh_enemy_catalog_box()
+            self._rebuild_enemy_pool_list()
         else:
             self.list_box.set_items([])
 
@@ -1141,6 +1232,109 @@ class EditorScreen:
         name = e.get("name") or e.get("title") or "(unnamed)"
         ident = e.get("id") or e.get("code") or e.get("uid") or ""
         return f"{name} [{ident}]" if ident else name
+
+    def _load_enemy_catalog(self) -> List[Dict[str, Any]]:
+        path = os.path.join(NPC_DIR, "enemies.json")
+        entries = read_json_list(path)
+        return [copy.deepcopy(e) for e in entries if isinstance(e, dict)]
+
+    def _refresh_enemy_catalog_box(self):
+        labels = [self._display_label(e) for e in (self.enemy_catalog_entries or [])]
+        self.enemy_catalog_box.set_items(labels)
+
+    def _rebuild_enemy_pool_list(self):
+        entries = []
+        for idx, enemy in enumerate(self.map.enemy_pool or []):
+            if not isinstance(enemy, dict):
+                continue
+            label = self._display_label(enemy)
+            color = TYPE_DOT_COLORS.get('enemy', COL_RED)
+            entries.append((label, lambda i=idx: self._remove_enemy_from_pool(i), color))
+        self.enemy_pool_list.set_items(entries)
+
+    def _draw_inspector_enemy_summary(self, surf):
+        rect = self._inspector_content_rect
+        if rect.height <= 0 or rect.width <= 0:
+            return
+
+        pygame.draw.rect(surf, PANEL_BG_DARK, rect, border_radius=8)
+        pygame.draw.rect(surf, GRID_LINE, rect, 1, border_radius=8)
+
+        clip = surf.get_clip()
+        content_rect = rect.inflate(-6, -6)
+        if content_rect.width <= 0 or content_rect.height <= 0:
+            content_rect = rect
+        surf.set_clip(content_rect)
+
+        x = rect.x + 12
+        y = rect.y + 12
+        line_h = FONT.get_linesize()
+        enemies = [e for e in (self.map.enemy_pool or []) if isinstance(e, dict)]
+
+        if not enemies:
+            draw_text(surf, "Enemy pool is empty.", (x, y), TEXT_DIM)
+        else:
+            for idx, enemy in enumerate(enemies):
+                label = self._display_label(enemy)
+                draw_text(surf, f"{idx+1}. {label}", (x, y), TEXT_MAIN)
+                y += line_h + 4
+                if y > rect.bottom - line_h - 10:
+                    draw_text(surf, "...", (x, rect.bottom - line_h - 6), TEXT_DIM)
+                    break
+
+        footer_y = rect.bottom - line_h - 6
+        if footer_y > rect.y + 8:
+            draw_text(surf, "Use Enemy Pool category above to edit.", (x, footer_y), TEXT_DIM)
+
+        surf.set_clip(clip)
+
+    def add_enemy_to_pool(self):
+        idx = getattr(self.enemy_catalog_box, 'selected', -1)
+        if idx is None or idx < 0 or idx >= len(self.enemy_catalog_entries):
+            return
+        entry = copy.deepcopy(self.enemy_catalog_entries[idx])
+
+        def do():
+            self.map.enemy_pool.append(copy.deepcopy(entry))
+            self._rebuild_enemy_pool_list()
+
+        def undo():
+            if self.map.enemy_pool:
+                self.map.enemy_pool.pop()
+            self._rebuild_enemy_pool_list()
+
+        self.history.push(do, undo, "add_enemy_pool")
+
+    def _remove_enemy_from_pool(self, idx: int):
+        if not (0 <= idx < len(self.map.enemy_pool)):
+            return
+        entry = copy.deepcopy(self.map.enemy_pool[idx])
+
+        def do():
+            if 0 <= idx < len(self.map.enemy_pool):
+                self.map.enemy_pool.pop(idx)
+            self._rebuild_enemy_pool_list()
+
+        def undo():
+            self.map.enemy_pool.insert(min(idx, len(self.map.enemy_pool)), copy.deepcopy(entry))
+            self._rebuild_enemy_pool_list()
+
+        self.history.push(do, undo, "rem_enemy_pool")
+
+    def clear_enemy_pool(self):
+        if not self.map.enemy_pool:
+            return
+        snapshot = [copy.deepcopy(e) for e in self.map.enemy_pool if isinstance(e, dict)]
+
+        def do():
+            self.map.enemy_pool.clear()
+            self._rebuild_enemy_pool_list()
+
+        def undo():
+            self.map.enemy_pool[:] = [copy.deepcopy(e) for e in snapshot]
+            self._rebuild_enemy_pool_list()
+
+        self.history.push(do, undo, "clear_enemy_pool")
 
     # ---------- history helpers ----------
     def _record_tile_walkable(self, x:int, y:int, new_val: bool, *, batch=False, label="paint"):
@@ -1370,12 +1564,18 @@ class EditorScreen:
             self.scroll_list.set_items([]); return
         t = self.map.tiles[y][x]
         # NPCs
-        for i, e in enumerate(t.npcs):
-            label = f"{e.get('name','(unnamed)')} [{e.get('id','')}] <{e.get('subcategory','')}>"
+        for i, e in enumerate(t.npcs or []):
+            if isinstance(e, dict):
+                label = f"{e.get('name','(unnamed)')} [{e.get('id','')}] <{e.get('subcategory','')}>"
+            else:
+                label = str(e)
             items.append((label, lambda i=i: self._record_remove_list_entry(t.npcs, i, 'rem_npc'), None))
         # Items
-        for i, e in enumerate(t.items):
-            label = f"{e.get('name','(unnamed)')} [{e.get('id','')}] <{e.get('subcategory','')}>"
+        for i, e in enumerate(t.items or []):
+            if isinstance(e, dict):
+                label = f"{e.get('name','(unnamed)')} [{e.get('id','')}] <{e.get('subcategory','')}>"
+            else:
+                label = str(e)
             items.append((label, lambda i=i: self._record_remove_list_entry(t.items, i, 'rem_item'), None))
         # Chests
         try:
@@ -1387,9 +1587,13 @@ class EditorScreen:
         except Exception:
             pass
         # Link (max 1)
-        for i, e in enumerate(t.links):
-            label = f"Link → {e.get('target_map','?')} #{e.get('target_entry','')}"
+        for i, e in enumerate(t.links or []):
+            if isinstance(e, dict):
+                label = f"Link -> {e.get('target_map','?')} #{e.get('target_entry','')}"
+            else:
+                label = f"Link -> {str(e)}"
             items.append((label, lambda i=i: self._record_remove_list_entry(t.links, i, 'rem_link'), None))
+
         self.scroll_list.set_items(items)
 
     # ---------- canvas geometry (isometric + rotation) ----------
@@ -1760,9 +1964,10 @@ class EditorScreen:
                     elif sub == "citizens":  has.add("citizen")
                     elif sub == "monsters":  has.add("monster")
                     elif sub == "animals":   has.add("animal")
-                if any((it.get("subcategory","").lower()=="quest_items") for it in t.items):
+                if any((isinstance(it, dict) and str(it.get("subcategory","")) .lower()=="quest_items") for it in (t.items or [])):
                     has.add("quest_item")
-                if any((it.get("subcategory","").lower()!="quest_items") for it in t.items):
+                # Any non-quest item or non-dict entry counts as a generic item
+                if any(((isinstance(it, dict) and str(it.get("subcategory","")) .lower()!="quest_items") or (not isinstance(it, dict))) for it in (t.items or [])):
                     has.add("item")
                 if t.links:
                     has.add("link")
@@ -1861,7 +2066,16 @@ class EditorScreen:
         pygame.draw.rect(surf, PANEL_BG, sidebar); pygame.draw.rect(surf, GRID_LINE, sidebar, 1)
 
         # categories area (adders)
-        self.btn_cat_npcs.draw(surf); self.btn_cat_items.draw(surf); self.btn_cat_chests.draw(surf); self.btn_cat_links.draw(surf)
+        categories = (
+            (self.btn_cat_npcs, "NPCs"),
+            (self.btn_cat_items, "Items"),
+            (self.btn_cat_chests, "Chests"),
+            (self.btn_cat_links, "Links"),
+            (self.btn_cat_enemy, "EnemyPool"),
+        )
+        for btn, key in categories:
+            btn.selected = (self.category == key)
+            btn.draw(surf)
         inner_left = self._sidebar_inner_left
         if self.category == "NPCs":
             pygame.draw.rect(surf, PANEL_BG_DARK, self._section_rect_npc, border_radius=8)
@@ -1883,7 +2097,7 @@ class EditorScreen:
             self.dd_chest_rarity.draw_base(surf)
             self.btn_add_chest.draw(surf)
             draw_text(surf, "Chest Rarity", self._label_pos_chests, TEXT_DIM, FONT_BOLD)
-        else:
+        elif self.category == "Links":
             pygame.draw.rect(surf, PANEL_BG_DARK, self._section_rect_links, border_radius=8)
             pygame.draw.rect(surf, GRID_LINE, self._section_rect_links, 1, border_radius=8)
             self.dd_link_map.draw_base(surf)
@@ -1891,28 +2105,55 @@ class EditorScreen:
             self.btn_add_link.draw(surf)
             draw_text(surf, "Target Map", self._label_pos_links, TEXT_DIM, FONT_BOLD)
             draw_text(surf, "Target Entry (optional)", self._label_pos_link_entry, TEXT_DIM)
+        else:  # Enemy pool
+            pygame.draw.rect(surf, PANEL_BG_DARK, self._section_rect_enemy, border_radius=8)
+            pygame.draw.rect(surf, GRID_LINE, self._section_rect_enemy, 1, border_radius=8)
+            draw_text(surf, "Available Enemies", self._label_pos_enemy_catalog, TEXT_DIM, FONT_BOLD)
+            self.enemy_catalog_box.draw(surf)
+            self.btn_enemy_add.draw(surf)
+            draw_text(surf, "Map Enemy Pool", self._label_pos_enemy_pool, TEXT_DIM, FONT_BOLD)
+            self._rebuild_enemy_pool_list()
+            self.enemy_pool_list.draw(surf)
+            self.btn_enemy_clear.draw(surf)
 
         # texture selector removed in simplified Top view
 
-        # inspector header & scroll list (Tile Info)
+        # inspector header & scroll list / summaries
         pygame.draw.rect(surf, PANEL_BG_DARK, self.inspector_header_rect, border_radius=8)
-        pygame.draw.rect(surf, GRID_LINE, self.inspector_header_rect, 1, border_radius=8)
-        x0 = self.inspector_header_rect.x + 8
-        y0 = self.inspector_header_rect.y + 8
-        draw_text(surf, "Tile Info", (x0, y0), TEXT_MAIN, FONT_BOLD)
-        # encounter buttons row between header and list
-        self.btn_mark_safe.draw(surf)
-        self.btn_mark_danger.draw(surf)
-        self.btn_clear_marker.draw(surf)
-        if self.selected and (0 <= self.selected[0] < self.map.width) and (0 <= self.selected[1] < self.map.height):
-            x,y = self.selected
-            t = self.map.tiles[y][x]
-            note_preview = (t.note[:24] + "…") if (t.note and len(t.note) > 24) else (t.note or "")
-            enc = (" • Safe" if t.encounter=='safe' else (" • Danger" if t.encounter=='danger' else ""))
-            draw_text(surf, f"({x},{y}) — {'Passable' if t.walkable else 'Impassable'}{enc}  {(' • ' + note_preview) if note_preview else ''}", (x0+110, y0), TEXT_DIM)
+        pygame.draw.rect(surf, TAB_BORDER, self.inspector_header_rect, 1, border_radius=8)
 
-        self._rebuild_scroll_items()
-        self.scroll_list.draw(surf)
+        self.btn_tab_tile.selected = (self.inspector_tab == "tile")
+        self.btn_tab_enemy.selected = (self.inspector_tab == "enemy")
+        self.btn_tab_tile.draw(surf)
+        self.btn_tab_enemy.draw(surf)
+
+        status_x = self.inspector_header_rect.x + 12
+        status_y = self.inspector_header_rect.bottom + 4
+
+        if self.inspector_tab == "tile":
+            if self.selected and (0 <= self.selected[0] < self.map.width) and (0 <= self.selected[1] < self.map.height):
+                x, y = self.selected
+                t = self.map.tiles[y][x]
+                note_preview = (t.note[:24] + ".") if (t.note and len(t.note) > 24) else (t.note or "")
+                enc = (" [Safe]" if t.encounter == 'safe' else (" [Danger]" if t.encounter == 'danger' else ""))
+                draw_text(
+                    surf,
+                    f"({x},{y}) - {'Passable' if t.walkable else 'Impassable'}{enc}"
+                    f"{(' - ' + note_preview) if note_preview else ''}",
+                    (status_x, status_y),
+                    TEXT_DIM,
+                )
+
+            self.btn_mark_safe.draw(surf)
+            self.btn_mark_danger.draw(surf)
+            self.btn_clear_marker.draw(surf)
+
+            self._rebuild_scroll_items()
+            if self.scroll_list.rect.h > 0:
+                self.scroll_list.draw(surf)
+        else:
+            draw_text(surf, f"{len(self.map.enemy_pool or [])} enemies in pool", (status_x, status_y), TEXT_DIM)
+            self._draw_inspector_enemy_summary(surf)
 
         # Draw outer map boundary (simplified in Top view)
         if self.map.width > 0 and self.map.height > 0:
@@ -1970,7 +2211,7 @@ class EditorScreen:
             self.dd_item_sub.draw_popup(surf)
         elif self.category == "Chests":
             self.dd_chest_rarity.draw_popup(surf)
-        else:
+        elif self.category == "Links":
             self.dd_link_map.draw_popup(surf)
         # no texture dropdown popup in simplified view
 
@@ -2033,7 +2274,7 @@ class EditorScreen:
         self.btn_cycle_left_mode.handle(event)
 
         # right panel (adders)
-        self.btn_cat_npcs.handle(event); self.btn_cat_items.handle(event); self.btn_cat_chests.handle(event); self.btn_cat_links.handle(event)
+        self.btn_cat_npcs.handle(event); self.btn_cat_items.handle(event); self.btn_cat_chests.handle(event); self.btn_cat_links.handle(event); self.btn_cat_enemy.handle(event)
 
         # dropdowns first; when any is open, swallow other clicks under them
         if self.category == "NPCs":
@@ -2042,11 +2283,15 @@ class EditorScreen:
             self.dd_item_sub.handle(event)
         elif self.category == "Chests":
             self.dd_chest_rarity.handle(event)
-        else:
+        elif self.category == "Links":
             self.dd_link_map.handle(event)
+        # EnemyPool has no dropdown
         # no texture dropdown input in simplified view
 
         dropdown_open = self.any_dropdown_open()
+
+        self.btn_tab_tile.handle(event)
+        self.btn_tab_enemy.handle(event)
 
         # If dropdown open, don't let other widgets under receive clicks
         if not dropdown_open:
@@ -2054,16 +2299,24 @@ class EditorScreen:
                 self.list_box.handle(event); self.btn_add_to_tile.handle(event)
             elif self.category == "Chests":
                 self.btn_add_chest.handle(event)
-            else:
+            elif self.category == "Links":
                 self.link_entry_inp.handle(event); self.btn_add_link.handle(event)
+            elif self.category == "EnemyPool":
+                self.enemy_catalog_box.handle(event)
+                self.enemy_pool_list.handle(event)
+                self.btn_enemy_add.handle(event)
+                self.btn_enemy_clear.handle(event)
 
         # inspector / scroll list
-        if event.type == pygame.MOUSEWHEEL or not dropdown_open:
+        allow_scroll = (event.type == pygame.MOUSEWHEEL or not dropdown_open)
+        if allow_scroll and self.inspector_tab == "tile" and self.scroll_list.rect.h > 0:
             self.scroll_list.handle(event)
+        if not dropdown_open:
             self.btn_edit_note.handle(event)
-            self.btn_mark_safe.handle(event)
-            self.btn_mark_danger.handle(event)
-            self.btn_clear_marker.handle(event)
+            if self.inspector_tab == "tile":
+                self.btn_mark_safe.handle(event)
+                self.btn_mark_danger.handle(event)
+                self.btn_clear_marker.handle(event)
             self.btn_set_start.handle(event)
 
         # description

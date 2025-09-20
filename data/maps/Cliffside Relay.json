@@ -1,6 +1,6 @@
 {
-  "name": "Cliffside Relay",
-  "description": "Clifftop pass between sea and highlands; smugglers, shrines, and a humming waygate.",
+  "name": "Cliffside Relay (Maze)",
+  "description": "A single-file maze carved into the cliffside, dotted with small offshoots and a humming waygate.",
   "width": 16,
   "height": 16,
   "tile_size": 41,
@@ -16,7 +16,7 @@
         "texture": ""
       },
       {
-        "walkable": true,
+        "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
@@ -25,7 +25,7 @@
         "texture": ""
       },
       {
-        "walkable": true,
+        "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
@@ -34,7 +34,7 @@
         "texture": ""
       },
       {
-        "walkable": true,
+        "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
@@ -164,6 +164,17 @@
       {
         "walkable": true,
         "npcs": [],
+        "items": [
+          "lockbox_rusted"
+        ],
+        "links": [],
+        "note": "Arrival circle (from Jungle of Hills).",
+        "encounter": "smugglers_low",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
         "items": [],
         "links": [],
         "note": "",
@@ -175,7 +186,97 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": "Landing circle (from Jungle of Hills).",
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
         "encounter": "",
         "texture": ""
       },
@@ -190,6 +291,190 @@
       },
       {
         "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "Broken Aqueduct: vantage point for ranged attacks.",
+        "encounter": "beach_wolves_low",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
@@ -213,12 +498,405 @@
           "shrine_bowl"
         ],
         "links": [],
-        "note": "Tidewatch Shrine: offer shells to receive a short blessing.",
+        "note": "Tidewatch Shrine: offer shells for a blessing.",
         "encounter": "",
         "texture": ""
       },
       {
         "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
@@ -273,6 +951,60 @@
       },
       {
         "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
@@ -337,125 +1069,6 @@
         "texture": ""
       },
       {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "Broken Aqueduct: high sightline; ranged advantage.",
-        "encounter": "beach_wolves_low",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
         "walkable": true,
         "npcs": [],
         "items": [],
@@ -466,437 +1079,6 @@
       },
       {
         "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "Sunken Bazaar: collapsed stalls; hidden stash under loose boards.",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "smugglers_low",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [
-          "lockbox_rusted"
-        ],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "Leaning arch; lookout",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
@@ -950,7 +1132,7 @@
         "texture": ""
       },
       {
-        "walkable": false,
+        "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
@@ -968,7 +1150,7 @@
         "texture": ""
       },
       {
-        "walkable": false,
+        "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
@@ -977,43 +1159,7 @@
         "texture": ""
       },
       {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
+        "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
@@ -1096,6 +1242,262 @@
         "texture": ""
       },
       {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
         "walkable": false,
         "npcs": [],
         "items": [],
@@ -1136,7 +1538,463 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "note": "Rope Bridge over chasm; gusts make it sway.",
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "Rope Bridge: sways over a narrow chasm.",
         "encounter": "bridge_qte",
         "texture": ""
       },
@@ -1150,7 +2008,7 @@
         "texture": ""
       },
       {
-        "walkable": false,
+        "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
@@ -1159,7 +2017,25 @@
         "texture": ""
       },
       {
-        "walkable": false,
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
         "npcs": [],
         "items": [],
         "links": [],
@@ -1224,7 +2100,7 @@
         "texture": ""
       },
       {
-        "walkable": true,
+        "walkable": false,
         "npcs": [],
         "items": [],
         "links": [],
@@ -1310,882 +2186,6 @@
         "items": [
           "chest_salt_wet"
         ],
-        "links": [],
-        "note": "Hidden Grotto: damp crawlspace; slimes nest here.",
-        "encounter": "slimes_low",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "Abandoned Firepit: warm ash; boot prints lead north.",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      }
-    ],
-    [
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
         "links": [
           {
             "target_map": "Jungle of Hills.json",
@@ -2193,7 +2193,7 @@
           }
         ],
         "note": "Waygate to Jungle of Hills (blue sigils hum).",
-        "encounter": "",
+        "encounter": "slimes_low",
         "texture": ""
       },
       {
