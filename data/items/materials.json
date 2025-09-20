@@ -1,15 +1,274 @@
 {
-  "schema": "rpgen.items.materials.v1",
-  "version": 1,
-  "items": [
+  "materials": [
     {
-      "id": "IT00000005",
-      "name": "Moon-ore Shard",
-      "type": "material",
+      "id": "IT00005001",
+      "name": "Raw Iron Ore",
+      "category": "material",
       "rarity": "common",
-      "uses": [
-        "craft"
-      ]
+      "description": "Unrefined iron ore straight from the vein.",
+      "value": 27,
+      "weight": 5
+    },
+    {
+      "id": "IT00005002",
+      "name": "Coal Chunk",
+      "category": "material",
+      "rarity": "common",
+      "description": "Fuel for smelters and forges.",
+      "value": 12,
+      "weight": 3
+    },
+    {
+      "id": "IT00005003",
+      "name": "Copper Ore",
+      "category": "material",
+      "rarity": "common",
+      "description": "Common ore used for alloys and wiring charms.",
+      "value": 21,
+      "weight": 4
+    },
+    {
+      "id": "IT00005004",
+      "name": "Tin Ore",
+      "category": "material",
+      "rarity": "common",
+      "description": "Soft ore often smelted into bronze with copper.",
+      "value": 18,
+      "weight": 4
+    },
+    {
+      "id": "IT00005005",
+      "name": "Silver Ore",
+      "category": "material",
+      "rarity": "uncommon",
+      "description": "Pale ore valued by jewelers and priests.",
+      "value": 84,
+      "weight": 4
+    },
+    {
+      "id": "IT00005006",
+      "name": "Gold Ore",
+      "category": "material",
+      "rarity": "rare",
+      "description": "Heavy, yellow-streaked ore rich in promise.",
+      "value": 405,
+      "weight": 5
+    },
+    {
+      "id": "IT00005007",
+      "name": "Quartz Crystal",
+      "category": "material",
+      "rarity": "uncommon",
+      "description": "Clear crystal used as a focus in devices and charms.",
+      "value": 63,
+      "weight": 1
+    },
+    {
+      "id": "IT00005008",
+      "name": "Raw Arcane Crystal",
+      "category": "material",
+      "rarity": "rare",
+      "description": "Untuned crystal humming with latent power.",
+      "value": 945,
+      "weight": 2
+    },
+    {
+      "id": "IT00005009",
+      "name": "Rough Obsidian",
+      "category": "material",
+      "rarity": "uncommon",
+      "description": "Volcanic glass, dangerously sharp in shards.",
+      "value": 98,
+      "weight": 2
+    },
+    {
+      "id": "IT00005010",
+      "name": "Hardwood Log",
+      "category": "material",
+      "rarity": "common",
+      "description": "Dense wood suited to shaping and tools.",
+      "value": 33,
+      "weight": 6
+    },
+    {
+      "id": "IT00005011",
+      "name": "Yew Bough",
+      "category": "material",
+      "rarity": "uncommon",
+      "description": "Flexible wood prized by bowyers.",
+      "value": 91,
+      "weight": 3
+    },
+    {
+      "id": "IT00005012",
+      "name": "Raw Hide",
+      "category": "material",
+      "rarity": "common",
+      "description": "Untreated animal hide with strong fibers.",
+      "value": 24,
+      "weight": 3
+    },
+    {
+      "id": "IT00005013",
+      "name": "Flax Bundle",
+      "category": "material",
+      "rarity": "common",
+      "description": "Plant fibers ready for spinning into linen.",
+      "value": 15,
+      "weight": 2
+    },
+    {
+      "id": "IT00005014",
+      "name": "Saltpeter",
+      "category": "material",
+      "rarity": "common",
+      "description": "Crystalline nitrate used in mixtures and curing.",
+      "value": 15,
+      "weight": 1
+    },
+    {
+      "id": "IT00005015",
+      "name": "Sulfur Nodules",
+      "category": "material",
+      "rarity": "common",
+      "description": "Pungent yellow mineral for alchemy and powders.",
+      "value": 15,
+      "weight": 1
+    },
+    {
+      "id": "IT00005016",
+      "name": "Iron Ingot",
+      "category": "material",
+      "rarity": "common",
+      "description": "Smelted iron bar for forging tools and arms.",
+      "value": 60,
+      "weight": 5
+    },
+    {
+      "id": "IT00005017",
+      "name": "Steel Ingot",
+      "category": "material",
+      "rarity": "uncommon",
+      "description": "Refined steel bar for quality gear.",
+      "value": 158,
+      "weight": 5
+    },
+    {
+      "id": "IT00005018",
+      "name": "Silver Ingot",
+      "category": "material",
+      "rarity": "uncommon",
+      "description": "Bright ingot for ritual and jewelry work.",
+      "value": 228,
+      "weight": 4
+    },
+    {
+      "id": "IT00005019",
+      "name": "Gold Ingot",
+      "category": "material",
+      "rarity": "rare",
+      "description": "Precious metal bar for luxury craft.",
+      "value": 810,
+      "weight": 4
+    },
+    {
+      "id": "IT00005020",
+      "name": "Mithril Thread",
+      "category": "material",
+      "rarity": "rare",
+      "description": "Featherlight, super-strong thread for masterwork seams.",
+      "value": 1080,
+      "weight": 1
+    },
+    {
+      "id": "IT00005021",
+      "name": "Adamant Plate",
+      "category": "material",
+      "rarity": "epic",
+      "description": "Near-unbreakable metal sheet, terribly hard to work.",
+      "value": 2860,
+      "weight": 6
+    },
+    {
+      "id": "IT00005022",
+      "name": "Cured Leather",
+      "category": "material",
+      "rarity": "common",
+      "description": "Treated hide for light armor and straps.",
+      "value": 45,
+      "weight": 2
+    },
+    {
+      "id": "IT00005023",
+      "name": "Leather Strips",
+      "category": "material",
+      "rarity": "common",
+      "description": "Cut bands of leather for bindings and fittings.",
+      "value": 24,
+      "weight": 1
+    },
+    {
+      "id": "IT00005024",
+      "name": "Linen Cloth",
+      "category": "material",
+      "rarity": "common",
+      "description": "Woven bolt of linen for garments and wraps.",
+      "value": 24,
+      "weight": 1
+    },
+    {
+      "id": "IT00005025",
+      "name": "Silk Bolt",
+      "category": "material",
+      "rarity": "uncommon",
+      "description": "Fine silk fit for noblewear and banners.",
+      "value": 192,
+      "weight": 1
+    },
+    {
+      "id": "IT00005026",
+      "name": "Stained Glass Piece",
+      "category": "material",
+      "rarity": "uncommon",
+      "description": "Colored glass for windows and ornaments.",
+      "value": 77,
+      "weight": 2
+    },
+    {
+      "id": "IT00005027",
+      "name": "Clear Glass Pane",
+      "category": "material",
+      "rarity": "common",
+      "description": "Flat glass suitable for vessels and fixtures.",
+      "value": 21,
+      "weight": 2
+    },
+    {
+      "id": "IT00005028",
+      "name": "Hardwood Plank",
+      "category": "material",
+      "rarity": "common",
+      "description": "Cut lumber piece for sturdy constructions.",
+      "value": 36,
+      "weight": 3
+    },
+    {
+      "id": "IT00005029",
+      "name": "Runic Powder",
+      "category": "material",
+      "rarity": "rare",
+      "description": "Ground glyphstone used to lay enchantments.",
+      "value": 675,
+      "weight": 1
+    },
+    {
+      "id": "IT00005030",
+      "name": "Tempered Bowstave",
+      "category": "material",
+      "rarity": "uncommon",
+      "description": "Shaped, seasoned stave ready for stringing.",
+      "value": 140,
+      "weight": 2
     }
   ]
 }

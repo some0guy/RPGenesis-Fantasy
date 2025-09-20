@@ -16,7 +16,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -38,7 +37,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000001",
     "defense_template": {
       "physical": [
@@ -55,7 +53,18 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "mana"
+    ],
+    "possible_resist": [
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -74,7 +83,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -96,7 +104,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000002",
     "defense_template": {
       "physical": [
@@ -113,7 +120,18 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "mana"
+    ],
+    "possible_resist": [
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -132,7 +150,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -153,7 +170,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000003",
     "defense_template": {
       "physical": [
@@ -170,7 +186,18 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "mana"
+    ],
+    "possible_resist": [
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -189,7 +216,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -210,7 +236,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000004",
     "defense_template": {
       "stagger": [
@@ -235,7 +260,20 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "mana"
+    ],
+    "possible_resist": [
+      "arcane",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -254,7 +292,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -276,7 +313,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000005",
     "defense_template": {
       "mana": [
@@ -297,7 +333,19 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "intelligence",
+      "strength"
+    ],
+    "possible_resist": [
+      "mana",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -320,7 +368,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -341,7 +388,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000006",
     "defense_template": {
       "physical": [
@@ -358,7 +404,18 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -381,7 +438,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -403,7 +459,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000007",
     "defense_template": {
       "bleed": [
@@ -432,7 +487,21 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -455,7 +524,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -476,7 +544,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000008",
     "defense_template": {
       "bleed": [
@@ -501,7 +568,20 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "intelligence"
+    ],
+    "possible_resist": [
+      "bleed",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -524,7 +604,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -545,7 +624,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000009",
     "defense_template": {
       "bleed": [
@@ -574,7 +652,21 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health"
+    ],
+    "possible_resist": [
+      "arcane",
+      "bleed",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -597,7 +689,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -619,7 +710,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000010",
     "defense_template": {
       "arcane": [
@@ -648,7 +738,21 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "stamina"
+    ],
+    "possible_resist": [
+      "arcane",
+      "bleed",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -671,7 +775,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -692,7 +795,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000011",
     "defense_template": {
       "physical": [
@@ -725,7 +827,22 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "intelligence",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -748,7 +865,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -770,7 +886,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000012",
     "defense_template": {
       "physical": [
@@ -799,7 +914,21 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "health",
+      "intelligence",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -822,7 +951,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -843,7 +971,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000013",
     "defense_template": {
       "physical": [
@@ -872,7 +999,21 @@
         6,
         9
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana"
+    ],
+    "possible_resist": [
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -895,7 +1036,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -917,7 +1057,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000014",
     "defense_template": {
       "ice": [
@@ -950,7 +1089,22 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "bleed",
+      "cold",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -973,7 +1127,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -995,7 +1148,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000015",
     "defense_template": {
       "physical": [
@@ -1028,7 +1180,22 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -1055,7 +1222,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -1076,7 +1242,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000016",
     "defense_template": {
       "physical": [
@@ -1105,7 +1270,21 @@
         5,
         7
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "health",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -1132,7 +1311,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -1154,7 +1332,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000017",
     "defense_template": {
       "ice": [
@@ -1183,7 +1360,21 @@
         9,
         13
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "stamina"
+    ],
+    "possible_resist": [
+      "cold",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -1210,7 +1401,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -1231,7 +1421,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000018",
     "defense_template": {
       "physical": [
@@ -1264,7 +1453,22 @@
         5,
         7
       ]
-    }
+    },
+    "possible_bonus": [
+      "health",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "mana",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -1291,7 +1495,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -1313,7 +1516,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000019",
     "defense_template": {
       "stagger": [
@@ -1350,7 +1552,23 @@
         5,
         7
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "intelligence",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "mana",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -1377,7 +1595,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -1398,7 +1615,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000020",
     "defense_template": {
       "physical": [
@@ -1435,7 +1651,23 @@
         4,
         6
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "intelligence",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "cold",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -1449,7 +1681,6 @@
     "description": "Eternal Shroud: loose weave in sage hem, salt-bleached white; ties at the nape. It breathes easy; smells of road and sunlight.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -1472,7 +1703,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "phoenix_aegis",
     "id": "IT00000021",
     "defense_template": {
       "mana": [
@@ -1505,7 +1735,24 @@
         5,
         8
       ]
-    }
+    },
+    "fixed_trait": [
+      "phoenix_aegis"
+    ],
+    "possible_bonus": [
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -1519,7 +1766,6 @@
     "description": "Eternal Shroud: frayed hems in salt-bleached white, sage hem; layers cross at the sternum. It breathes easy; smells of road and sunlight.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -1543,7 +1789,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "glacial_bulwark",
     "id": "IT00000022",
     "defense_template": {
       "mana": [
@@ -1580,7 +1825,25 @@
         10,
         14
       ]
-    }
+    },
+    "fixed_trait": [
+      "glacial_bulwark"
+    ],
+    "possible_bonus": [
+      "armor",
+      "health",
+      "intelligence",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -1594,7 +1857,6 @@
     "description": "Eternal Shroud: thin straps in dusty umber, sun-browned linen; panelled at the knees. It breathes easy; smells of road and sunlight.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -1617,7 +1879,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "sunforged_vigor",
     "id": "IT00000023",
     "defense_template": {
       "physical": [
@@ -1654,7 +1915,25 @@
         4,
         6
       ]
-    }
+    },
+    "fixed_trait": [
+      "sunforged_vigor"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "intelligence",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "bleed",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -1668,7 +1947,6 @@
     "description": "Eternal Shroud: frayed hems in sage hem, sun-browned linen; straps that rarely creak. It breathes easy; smells of road and sunlight.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -1692,7 +1970,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "glacial_bulwark",
     "id": "IT00000024",
     "defense_template": {
       "arcane": [
@@ -1733,7 +2010,26 @@
         12,
         17
       ]
-    }
+    },
+    "fixed_trait": [
+      "glacial_bulwark"
+    ],
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "intelligence",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "cold",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -1747,7 +2043,6 @@
     "description": "Eternal Shroud: frayed hems in dusty umber, salt-bleached white; binds tight without biting. It breathes easy; smells of road and sunlight.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -1771,7 +2066,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "stormwall",
     "id": "IT00000025",
     "defense_template": {
       "physical": [
@@ -1804,7 +2098,24 @@
         5,
         8
       ]
-    }
+    },
+    "fixed_trait": [
+      "stormwall"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "strength"
+    ],
+    "possible_resist": [
+      "mana",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -1818,7 +2129,6 @@
     "description": "Veil of the Forgotten: loose weave in sun-browned linen, sage hem; ties at the nape. It breathes easy; smells of road and sunlight.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -1841,7 +2151,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "null_field",
     "id": "IT00000026",
     "defense_template": {
       "stagger": [
@@ -1886,7 +2195,27 @@
         8,
         12
       ]
-    }
+    },
+    "fixed_trait": [
+      "null_field"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -1900,7 +2229,6 @@
     "description": "Veil of the Forgotten: loose weave in salt-bleached white, dusty umber; layers cross at the sternum. It breathes easy; smells of road and sunlight.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -1924,7 +2252,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "timefold_ward",
     "id": "IT00000027",
     "defense_template": {
       "physical": [
@@ -1957,7 +2284,24 @@
         8,
         12
       ]
-    }
+    },
+    "fixed_trait": [
+      "timefold_ward"
+    ],
+    "possible_bonus": [
+      "armor",
+      "health",
+      "intelligence",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -1971,7 +2315,6 @@
     "description": "Veil of the Forgotten: frayed hems in salt-bleached white, sun-browned linen; wraps avoid chafing. It breathes easy; smells of road and sunlight.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -1994,7 +2337,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "mirror_hex",
     "id": "IT00000028",
     "defense_template": {
       "ice": [
@@ -2035,7 +2377,26 @@
         10,
         14
       ]
-    }
+    },
+    "fixed_trait": [
+      "mirror_hex"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "cold",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -2049,7 +2410,6 @@
     "description": "Veil of the Forgotten: loose weave in sun-browned linen, dusty umber; straps that rarely creak. It breathes easy; smells of road and sunlight.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -2072,7 +2432,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "spectral_protection",
     "id": "IT00000029",
     "defense_template": {
       "stagger": [
@@ -2109,7 +2468,25 @@
         7,
         10
       ]
-    }
+    },
+    "fixed_trait": [
+      "spectral_protection"
+    ],
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -2123,7 +2500,6 @@
     "description": "Veil of the Forgotten: travel-stained cloth in salt-bleached white, dusty umber; palms textured for grip. It breathes easy; smells of road and sunlight.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -2146,7 +2522,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "umbral_skin",
     "id": "IT00000030",
     "defense_template": {
       "physical": [
@@ -2183,7 +2558,25 @@
         6,
         9
       ]
-    }
+    },
+    "fixed_trait": [
+      "umbral_skin"
+    ],
+    "possible_bonus": [
+      "dexterity",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "cold",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -2202,7 +2595,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -1
     },
@@ -2223,7 +2615,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000031",
     "defense_template": {
       "arcane": [
@@ -2244,7 +2635,19 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "intelligence"
+    ],
+    "possible_resist": [
+      "arcane",
+      "fire"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -2263,7 +2666,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -1,
       "defense": -1
@@ -2285,7 +2687,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000032",
     "defense_template": {
       "physical": [
@@ -2306,7 +2707,19 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "mana"
+    ],
+    "possible_resist": [
+      "fire",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -2325,7 +2738,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -2
     },
@@ -2346,7 +2758,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000033",
     "defense_template": {
       "necrotic": [
@@ -2371,7 +2782,20 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity"
+    ],
+    "possible_resist": [
+      "cold",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -2390,7 +2814,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -2,
       "defense": -1
@@ -2412,7 +2835,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000034",
     "defense_template": {
       "ice": [
@@ -2437,7 +2859,20 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity"
+    ],
+    "possible_resist": [
+      "arcane",
+      "cold",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -2456,7 +2891,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -2,
       "defense": -1
@@ -2478,7 +2912,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000035",
     "defense_template": {
       "arcane": [
@@ -2503,7 +2936,20 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "health"
+    ],
+    "possible_resist": [
+      "arcane",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -2526,7 +2972,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -1
     },
@@ -2547,7 +2992,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000036",
     "defense_template": {
       "arcane": [
@@ -2580,7 +3024,22 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -2603,7 +3062,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -3,
       "defense": -1
@@ -2625,7 +3083,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000037",
     "defense_template": {
       "arcane": [
@@ -2650,7 +3107,20 @@
         4,
         6
       ]
-    }
+    },
+    "possible_bonus": [
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "arcane",
+      "lightning",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -2673,7 +3143,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -2
     },
@@ -2694,7 +3163,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000038",
     "defense_template": {
       "arcane": [
@@ -2719,7 +3187,20 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "health",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "arcane",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -2742,7 +3223,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -1
     },
@@ -2763,7 +3243,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000039",
     "defense_template": {
       "ice": [
@@ -2792,7 +3271,21 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "arcane",
+      "cold",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -2815,7 +3308,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -1
     },
@@ -2836,7 +3328,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000040",
     "defense_template": {
       "arcane": [
@@ -2865,7 +3356,21 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "health",
+      "intelligence",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "fire"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -2892,7 +3397,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -2,
       "defense": -1
@@ -2914,7 +3418,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000041",
     "defense_template": {
       "lightning": [
@@ -2951,7 +3454,23 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "lightning",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -2978,7 +3497,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -2,
       "defense": -1
@@ -3000,7 +3518,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000042",
     "defense_template": {
       "arcane": [
@@ -3041,7 +3558,24 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "cold",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -3068,7 +3602,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -3
     },
@@ -3089,7 +3622,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000043",
     "defense_template": {
       "arcane": [
@@ -3122,7 +3654,22 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "health",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -3149,7 +3696,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -2,
       "defense": -1
@@ -3171,7 +3717,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000044",
     "defense_template": {
       "ice": [
@@ -3208,7 +3753,23 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "health",
+      "intelligence",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "lightning",
+      "necrotic"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -3235,7 +3796,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -2,
       "defense": -1
@@ -3257,7 +3817,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000045",
     "defense_template": {
       "physical": [
@@ -3290,7 +3849,22 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "stamina"
+    ],
+    "possible_resist": [
+      "lightning",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -3317,7 +3891,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -2
     },
@@ -3338,7 +3911,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000046",
     "defense_template": {
       "fire": [
@@ -3379,7 +3951,24 @@
         15,
         21
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "fire",
+      "lightning",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -3406,7 +3995,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -1
     },
@@ -3427,7 +4015,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000047",
     "defense_template": {
       "lightning": [
@@ -3456,7 +4043,21 @@
         11,
         15
       ]
-    }
+    },
+    "possible_bonus": [
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "lightning",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -3483,7 +4084,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -3
     },
@@ -3504,7 +4104,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000048",
     "defense_template": {
       "physical": [
@@ -3537,7 +4136,22 @@
         12,
         17
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "intelligence",
+      "stamina"
+    ],
+    "possible_resist": [
+      "arcane",
+      "cold",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -3564,7 +4178,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -1
     },
@@ -3585,7 +4198,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000049",
     "defense_template": {
       "lightning": [
@@ -3622,7 +4234,23 @@
         9,
         13
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "health",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "lightning",
+      "necrotic"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -3649,7 +4277,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -2,
       "defense": -1
@@ -3671,7 +4298,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000050",
     "defense_template": {
       "mana": [
@@ -3708,7 +4334,23 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana"
+    ],
+    "possible_resist": [
+      "arcane",
+      "fire",
+      "mana"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -3722,7 +4364,6 @@
     "description": "Seraphic Vestments: soft lining in violet thread, ink-dark blue; ties at the nape. It softly hums with held energies.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -2
     },
@@ -3745,7 +4386,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "ethereal_resistance",
     "id": "IT00000051",
     "defense_template": {
       "ice": [
@@ -3786,7 +4426,26 @@
         10,
         14
       ]
-    }
+    },
+    "fixed_trait": [
+      "ethereal_resistance"
+    ],
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "intelligence",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "cold",
+      "mana",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -3800,7 +4459,6 @@
     "description": "Seraphic Vestments: runic hems in pale steel, ink-dark blue; layers cross at the sternum. It softly hums with held energies.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -2
     },
@@ -3823,7 +4481,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "sunforged_vigor",
     "id": "IT00000052",
     "defense_template": {
       "physical": [
@@ -3860,7 +4517,25 @@
         6,
         9
       ]
-    }
+    },
+    "fixed_trait": [
+      "sunforged_vigor"
+    ],
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "lightning",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -3874,7 +4549,6 @@
     "description": "Seraphic Vestments: layered folds in silver glyphs, violet thread; panelled at the knees. It softly hums with held energies.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -1,
       "defense": -1
@@ -3898,7 +4572,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "sunforged_vigor",
     "id": "IT00000053",
     "defense_template": {
       "lightning": [
@@ -3943,7 +4616,27 @@
         13,
         18
       ]
-    }
+    },
+    "fixed_trait": [
+      "sunforged_vigor"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "cold",
+      "lightning",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -3957,7 +4650,6 @@
     "description": "Seraphic Vestments: runic hems in silver glyphs, violet thread; thin soles for ground feel. It softly hums with held energies.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -2,
       "defense": -1
@@ -3981,7 +4673,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "ethereal_resistance",
     "id": "IT00000054",
     "defense_template": {
       "physical": [
@@ -4022,7 +4713,26 @@
         6,
         9
       ]
-    }
+    },
+    "fixed_trait": [
+      "ethereal_resistance"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "lightning",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -4036,7 +4746,6 @@
     "description": "Seraphic Vestments: arcane stitching in glacier blue, violet thread; palms textured for grip. It softly hums with held energies.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -1
     },
@@ -4059,7 +4768,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "sunforged_vigor",
     "id": "IT00000055",
     "defense_template": {
       "necrotic": [
@@ -4100,7 +4808,26 @@
         10,
         14
       ]
-    }
+    },
+    "fixed_trait": [
+      "sunforged_vigor"
+    ],
+    "possible_bonus": [
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "lightning",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -4114,7 +4841,6 @@
     "description": "Chronoweave: soft lining in ink-dark blue, pale steel; ties at the nape. It softly hums with held energies.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -3,
       "defense": -1
@@ -4138,7 +4864,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "spectral_protection",
     "id": "IT00000056",
     "defense_template": {
       "physical": [
@@ -4183,7 +4908,27 @@
         10,
         14
       ]
-    }
+    },
+    "fixed_trait": [
+      "spectral_protection"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "fire",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -4197,7 +4942,6 @@
     "description": "Chronoweave: layered folds in pale steel, violet thread; reinforced at the ribs. It softly hums with held energies.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -3
     },
@@ -4220,7 +4964,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "umbral_skin",
     "id": "IT00000057",
     "defense_template": {
       "ice": [
@@ -4261,7 +5004,26 @@
         16,
         22
       ]
-    }
+    },
+    "fixed_trait": [
+      "umbral_skin"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "cold",
+      "fire",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -4275,7 +5037,6 @@
     "description": "Chronoweave: soft lining in violet thread, glacier blue; stitched for long strides. It softly hums with held energies.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -1
     },
@@ -4298,7 +5059,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "umbral_skin",
     "id": "IT00000058",
     "defense_template": {
       "lightning": [
@@ -4347,7 +5107,28 @@
         8,
         12
       ]
-    }
+    },
+    "fixed_trait": [
+      "umbral_skin"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "fire",
+      "lightning",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -4361,7 +5142,6 @@
     "description": "Chronoweave: arcane stitching in violet thread, silver glyphs; thin soles for ground feel. It softly hums with held energies.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -3
     },
@@ -4384,7 +5164,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "spectral_protection",
     "id": "IT00000059",
     "defense_template": {
       "fire": [
@@ -4433,7 +5212,28 @@
         16,
         22
       ]
-    }
+    },
+    "fixed_trait": [
+      "spectral_protection"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "fire",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -4447,7 +5247,6 @@
     "description": "Chronoweave: runic hems in pale steel, silver glyphs; palms textured for grip. It softly hums with held energies.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -2
     },
@@ -4470,7 +5269,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "spectral_protection",
     "id": "IT00000060",
     "defense_template": {
       "fire": [
@@ -4519,7 +5317,28 @@
         8,
         12
       ]
-    }
+    },
+    "fixed_trait": [
+      "spectral_protection"
+    ],
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "fire",
+      "lightning",
+      "mana",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -4538,7 +5357,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -2
     },
@@ -4558,7 +5376,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000061",
     "defense_template": {
       "bleed": [
@@ -4579,7 +5396,19 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "mana"
+    ],
+    "possible_resist": [
+      "bleed",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -4598,7 +5427,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -2,
       "strength": -1
@@ -4619,7 +5447,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000062",
     "defense_template": {
       "physical": [
@@ -4640,7 +5467,19 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "lightning",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -4659,7 +5498,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "legs"
@@ -4677,7 +5515,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000063",
     "defense_template": {
       "bleed": [
@@ -4702,7 +5539,20 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "mana"
+    ],
+    "possible_resist": [
+      "bleed",
+      "necrotic",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -4721,7 +5571,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -2
     },
@@ -4741,7 +5590,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000064",
     "defense_template": {
       "fire": [
@@ -4762,7 +5610,19 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "fire",
+      "lightning"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -4781,7 +5641,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -4801,7 +5660,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000065",
     "defense_template": {
       "arcane": [
@@ -4822,7 +5680,19 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -4845,7 +5715,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "head"
@@ -4863,7 +5732,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000066",
     "defense_template": {
       "physical": [
@@ -4888,7 +5756,20 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -4911,7 +5792,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -2,
       "strength": -1
@@ -4932,7 +5812,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000067",
     "defense_template": {
       "mana": [
@@ -4961,7 +5840,21 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "intelligence",
+      "stamina"
+    ],
+    "possible_resist": [
+      "fire",
+      "mana"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -4984,7 +5877,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -5004,7 +5896,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000068",
     "defense_template": {
       "lightning": [
@@ -5025,7 +5916,19 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "intelligence"
+    ],
+    "possible_resist": [
+      "cold",
+      "lightning"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -5048,7 +5951,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "feet"
@@ -5066,7 +5968,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000069",
     "defense_template": {
       "stagger": [
@@ -5095,7 +5996,21 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "intelligence",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -5118,7 +6033,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -5138,7 +6052,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000070",
     "defense_template": {
       "fire": [
@@ -5167,7 +6080,21 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "fire",
+      "necrotic"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -5190,7 +6117,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -5210,7 +6136,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000071",
     "defense_template": {
       "bleed": [
@@ -5247,7 +6172,23 @@
         5,
         8
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "stamina"
+    ],
+    "possible_resist": [
+      "bleed",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -5270,7 +6211,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "stealth": -1
@@ -5291,7 +6231,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000072",
     "defense_template": {
       "bleed": [
@@ -5328,7 +6267,23 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "fire",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -5351,7 +6306,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -5371,7 +6325,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000073",
     "defense_template": {
       "arcane": [
@@ -5408,7 +6361,23 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "intelligence",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "lightning",
+      "necrotic",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -5431,7 +6400,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "feet"
@@ -5449,7 +6417,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000074",
     "defense_template": {
       "physical": [
@@ -5486,7 +6453,23 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana"
+    ],
+    "possible_resist": [
+      "fire",
+      "lightning",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -5509,7 +6492,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -1,
       "stealth": -1
@@ -5530,7 +6512,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000075",
     "defense_template": {
       "mana": [
@@ -5563,7 +6544,22 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "intelligence",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "fire",
+      "mana",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -5586,7 +6582,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -5607,7 +6602,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000076",
     "defense_template": {
       "lightning": [
@@ -5644,7 +6638,23 @@
         5,
         7
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "intelligence",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "bleed",
+      "lightning"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -5667,7 +6677,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -5688,7 +6697,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000077",
     "defense_template": {
       "fire": [
@@ -5725,7 +6733,23 @@
         5,
         7
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "fire",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -5748,7 +6772,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -5769,7 +6792,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000078",
     "defense_template": {
       "lightning": [
@@ -5810,7 +6832,24 @@
         5,
         7
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "lightning",
+      "mana",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -5833,7 +6872,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -1
     },
@@ -5853,7 +6891,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000079",
     "defense_template": {
       "bleed": [
@@ -5890,7 +6927,23 @@
         4,
         6
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -5913,7 +6966,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "stealth": -1
@@ -5934,7 +6986,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000080",
     "defense_template": {
       "necrotic": [
@@ -5967,7 +7018,22 @@
         4,
         6
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "intelligence",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "lightning",
+      "necrotic",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -5981,7 +7047,6 @@
     "description": "Stormdancer: quiet stitching in matte charcoal, smoke-blue; ties at the nape. It muffles motion and rides close to the skin.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "head"
@@ -6001,7 +7066,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "glacial_bulwark",
     "id": "IT00000081",
     "defense_template": {
       "physical": [
@@ -6046,7 +7110,27 @@
         11,
         15
       ]
-    }
+    },
+    "fixed_trait": [
+      "glacial_bulwark"
+    ],
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "fire",
+      "lightning",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -6060,7 +7144,6 @@
     "description": "Stormdancer: quiet stitching in matte charcoal, midnight grey; layers cross at the sternum. It muffles motion and rides close to the skin.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1
     },
@@ -6082,7 +7165,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "ethereal_resistance",
     "id": "IT00000082",
     "defense_template": {
       "mana": [
@@ -6127,7 +7209,27 @@
         18,
         24
       ]
-    }
+    },
+    "fixed_trait": [
+      "ethereal_resistance"
+    ],
+    "possible_bonus": [
+      "armor",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "cold",
+      "lightning",
+      "mana",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -6141,7 +7243,6 @@
     "description": "Stormdancer: supple leather in midnight grey, forest umber; stitched for long strides. It muffles motion and rides close to the skin.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "legs"
@@ -6161,7 +7262,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "sunforged_vigor",
     "id": "IT00000083",
     "defense_template": {
       "ice": [
@@ -6206,7 +7306,27 @@
         4,
         6
       ]
-    }
+    },
+    "fixed_trait": [
+      "sunforged_vigor"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "cold",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -6220,7 +7340,6 @@
     "description": "Stormdancer: flex panels in forest umber, midnight grey; laces knot with a tug. It muffles motion and rides close to the skin.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -1,
       "strength": -1
@@ -6243,7 +7362,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "sunforged_vigor",
     "id": "IT00000084",
     "defense_template": {
       "arcane": [
@@ -6288,7 +7406,27 @@
         6,
         9
       ]
-    }
+    },
+    "fixed_trait": [
+      "sunforged_vigor"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "bleed",
+      "mana",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -6302,7 +7440,6 @@
     "description": "Stormdancer: supple leather in matte charcoal, midnight grey; binds tight without biting. It muffles motion and rides close to the skin.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "strength": -1
     },
@@ -6324,7 +7461,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "stormwall",
     "id": "IT00000085",
     "defense_template": {
       "mana": [
@@ -6373,7 +7509,28 @@
         4,
         6
       ]
-    }
+    },
+    "fixed_trait": [
+      "stormwall"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "fire",
+      "mana",
+      "necrotic",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -6387,7 +7544,6 @@
     "description": "Shadebound: hidden rivets in forest umber, matte charcoal; ties at the nape. It muffles motion and rides close to the skin.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -2
     },
@@ -6409,7 +7565,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "null_field",
     "id": "IT00000086",
     "defense_template": {
       "physical": [
@@ -6458,7 +7613,28 @@
         8,
         12
       ]
-    }
+    },
+    "fixed_trait": [
+      "null_field"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "lightning",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -6472,7 +7648,6 @@
     "description": "Shadebound: supple leather in smoke-blue, matte charcoal; layers cross at the sternum. It muffles motion and rides close to the skin.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "torso"
@@ -6492,7 +7667,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "umbral_skin",
     "id": "IT00000087",
     "defense_template": {
       "mana": [
@@ -6541,7 +7715,28 @@
         13,
         19
       ]
-    }
+    },
+    "fixed_trait": [
+      "umbral_skin"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "cold",
+      "lightning",
+      "mana"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -6555,7 +7750,6 @@
     "description": "Shadebound: hidden rivets in midnight grey, smoke-blue; wraps avoid chafing. It muffles motion and rides close to the skin.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "legs"
@@ -6575,7 +7769,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "umbral_skin",
     "id": "IT00000088",
     "defense_template": {
       "mana": [
@@ -6620,7 +7813,27 @@
         16,
         22
       ]
-    }
+    },
+    "fixed_trait": [
+      "umbral_skin"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "lightning",
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -6634,7 +7847,6 @@
     "description": "Shadebound: hidden rivets in forest umber, matte charcoal; straps that rarely creak. It muffles motion and rides close to the skin.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "defense": -2
     },
@@ -6656,7 +7868,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "umbral_skin",
     "id": "IT00000089",
     "defense_template": {
       "arcane": [
@@ -6697,7 +7908,26 @@
         27,
         37
       ]
-    }
+    },
+    "fixed_trait": [
+      "umbral_skin"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "bleed",
+      "mana",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -6711,7 +7941,6 @@
     "description": "Shadebound: hidden rivets in midnight grey, smoke-blue; binds tight without biting. It muffles motion and rides close to the skin.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -1
     },
@@ -6733,7 +7962,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "null_field",
     "id": "IT00000090",
     "defense_template": {
       "ice": [
@@ -6778,7 +8006,27 @@
         10,
         14
       ]
-    }
+    },
+    "fixed_trait": [
+      "null_field"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "mana",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -6797,7 +8045,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "head"
@@ -6815,7 +8062,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000091",
     "defense_template": {
       "stagger": [
@@ -6832,7 +8078,18 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "mana"
+    ],
+    "possible_resist": [
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -6851,7 +8108,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "torso"
@@ -6869,7 +8125,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000092",
     "defense_template": {
       "stagger": [
@@ -6890,7 +8145,19 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "mana"
+    ],
+    "possible_resist": [
+      "necrotic",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -6909,7 +8176,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "legs"
@@ -6927,7 +8193,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000093",
     "defense_template": {
       "fire": [
@@ -6948,7 +8213,19 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity"
+    ],
+    "possible_resist": [
+      "bleed",
+      "fire"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -6967,7 +8244,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "feet"
@@ -6985,7 +8261,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000094",
     "defense_template": {
       "stagger": [
@@ -7006,7 +8281,19 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "strength"
+    ],
+    "possible_resist": [
+      "lightning",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -7025,7 +8312,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "hands"
@@ -7043,7 +8329,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000095",
     "defense_template": {
       "mana": [
@@ -7064,7 +8349,19 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "health",
+      "strength"
+    ],
+    "possible_resist": [
+      "mana",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -7087,7 +8384,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "head"
@@ -7105,7 +8401,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000096",
     "defense_template": {
       "bleed": [
@@ -7134,7 +8429,21 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "health",
+      "intelligence",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -7157,7 +8466,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "torso"
@@ -7175,7 +8483,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000097",
     "defense_template": {
       "physical": [
@@ -7200,7 +8507,20 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "bleed",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -7223,7 +8543,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "legs"
@@ -7241,7 +8560,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000098",
     "defense_template": {
       "bleed": [
@@ -7266,7 +8584,20 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "health",
+      "mana"
+    ],
+    "possible_resist": [
+      "bleed",
+      "lightning"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -7289,7 +8620,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "feet"
@@ -7307,7 +8637,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000099",
     "defense_template": {
       "bleed": [
@@ -7332,7 +8661,20 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "fire"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -7355,7 +8697,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "hands"
@@ -7373,7 +8714,6 @@
         "defense": 8
       }
     },
-    "armour_trait": "none",
     "id": "IT00000100",
     "defense_template": {
       "physical": [
@@ -7394,7 +8734,19 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "health"
+    ],
+    "possible_resist": [
+      "lightning",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -7417,7 +8769,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "head"
@@ -7435,7 +8786,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000101",
     "defense_template": {
       "arcane": [
@@ -7468,7 +8818,22 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "intelligence",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -7491,7 +8856,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "torso"
@@ -7509,7 +8873,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000102",
     "defense_template": {
       "stagger": [
@@ -7542,7 +8905,22 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "intelligence",
+      "mana"
+    ],
+    "possible_resist": [
+      "bleed",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -7565,7 +8943,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "legs"
@@ -7583,7 +8960,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000103",
     "defense_template": {
       "stagger": [
@@ -7616,7 +8992,22 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "intelligence",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "mana",
+      "necrotic",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -7639,7 +9030,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "feet"
@@ -7657,7 +9047,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000104",
     "defense_template": {
       "lightning": [
@@ -7686,7 +9075,21 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "stamina"
+    ],
+    "possible_resist": [
+      "lightning",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -7709,7 +9112,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "hands"
@@ -7727,7 +9129,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000105",
     "defense_template": {
       "mana": [
@@ -7760,7 +9161,22 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "bleed",
+      "mana"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -7783,7 +9199,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "head"
@@ -7801,7 +9216,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000106",
     "defense_template": {
       "bleed": [
@@ -7834,7 +9248,22 @@
         4,
         6
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "intelligence",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "bleed",
+      "cold",
+      "mana"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -7857,7 +9286,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "torso"
@@ -7875,7 +9303,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000107",
     "defense_template": {
       "physical": [
@@ -7908,7 +9335,22 @@
         5,
         7
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "intelligence",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -7931,7 +9373,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "legs"
@@ -7949,7 +9390,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000108",
     "defense_template": {
       "ice": [
@@ -7982,7 +9422,22 @@
         5,
         7
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "cold",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -8005,7 +9460,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "feet"
@@ -8023,7 +9477,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000109",
     "defense_template": {
       "ice": [
@@ -8060,7 +9513,23 @@
         4,
         6
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "intelligence",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "cold",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -8083,7 +9552,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "hands"
@@ -8101,7 +9569,6 @@
         "defense": 12
       }
     },
-    "armour_trait": "none",
     "id": "IT00000110",
     "defense_template": {
       "stagger": [
@@ -8142,7 +9609,24 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -8156,7 +9640,6 @@
     "description": "Dragonsong Brigandine: scale overlap in river-iron, storm-grey; rests low across the brow. It settles with a protective heft.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "head"
@@ -8176,7 +9659,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "ethereal_resistance",
     "id": "IT00000111",
     "defense_template": {
       "fire": [
@@ -8225,7 +9707,28 @@
         5,
         8
       ]
-    }
+    },
+    "fixed_trait": [
+      "ethereal_resistance"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "fire",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -8239,7 +9742,6 @@
     "description": "Dragonsong Brigandine: scale overlap in oiled leather, river-iron; cut for movement. It settles with a protective heft.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "torso"
@@ -8259,7 +9761,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "stormwall",
     "id": "IT00000112",
     "defense_template": {
       "stagger": [
@@ -8296,7 +9797,25 @@
         4,
         6
       ]
-    }
+    },
+    "fixed_trait": [
+      "stormwall"
+    ],
+    "possible_bonus": [
+      "health",
+      "intelligence",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "lightning",
+      "necrotic",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -8310,7 +9829,6 @@
     "description": "Dragonsong Brigandine: strap lattice in storm-grey, river-iron; stitched for long strides. It settles with a protective heft.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "legs"
@@ -8330,7 +9848,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "phoenix_aegis",
     "id": "IT00000113",
     "defense_template": {
       "stagger": [
@@ -8379,7 +9896,28 @@
         6,
         9
       ]
-    }
+    },
+    "fixed_trait": [
+      "phoenix_aegis"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "bleed",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -8393,7 +9931,6 @@
     "description": "Dragonsong Brigandine: bone toggles in river-iron, oiled leather; straps that rarely creak. It settles with a protective heft.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "feet"
@@ -8413,7 +9950,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "ethereal_resistance",
     "id": "IT00000114",
     "defense_template": {
       "stagger": [
@@ -8458,7 +9994,27 @@
         9,
         12
       ]
-    }
+    },
+    "fixed_trait": [
+      "ethereal_resistance"
+    ],
+    "possible_bonus": [
+      "armor",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "lightning",
+      "necrotic",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -8472,7 +10028,6 @@
     "description": "Dragonsong Brigandine: scale overlap in oiled leather, bronzed scale; finger seams double-stitched. It settles with a protective heft.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "hands"
@@ -8492,7 +10047,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "glacial_bulwark",
     "id": "IT00000115",
     "defense_template": {
       "ice": [
@@ -8529,7 +10083,25 @@
         6,
         9
       ]
-    }
+    },
+    "fixed_trait": [
+      "glacial_bulwark"
+    ],
+    "possible_bonus": [
+      "health",
+      "intelligence",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "cold",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -8543,7 +10115,6 @@
     "description": "Evershift: lamellar ties in storm-grey, river-iron; rests low across the brow. It settles with a protective heft.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "head"
@@ -8563,7 +10134,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "spectral_protection",
     "id": "IT00000116",
     "defense_template": {
       "bleed": [
@@ -8608,7 +10178,27 @@
         6,
         9
       ]
-    }
+    },
+    "fixed_trait": [
+      "spectral_protection"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "bleed",
+      "mana",
+      "necrotic",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -8622,7 +10212,6 @@
     "description": "Evershift: bone toggles in oiled leather, bronzed scale; reinforced at the ribs. It settles with a protective heft.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "torso"
@@ -8642,7 +10231,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "timefold_ward",
     "id": "IT00000117",
     "defense_template": {
       "bleed": [
@@ -8679,7 +10267,25 @@
         17,
         24
       ]
-    }
+    },
+    "fixed_trait": [
+      "timefold_ward"
+    ],
+    "possible_bonus": [
+      "dexterity",
+      "health",
+      "intelligence",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "bleed",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -8693,7 +10299,6 @@
     "description": "Evershift: scale overlap in oiled leather, bronzed scale; panelled at the knees. It settles with a protective heft.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "legs"
@@ -8713,7 +10318,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "mirror_hex",
     "id": "IT00000118",
     "defense_template": {
       "bleed": [
@@ -8754,7 +10358,26 @@
         15,
         20
       ]
-    }
+    },
+    "fixed_trait": [
+      "mirror_hex"
+    ],
+    "possible_bonus": [
+      "armor",
+      "health",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "necrotic",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -8768,7 +10391,6 @@
     "description": "Evershift: scale overlap in bronzed scale, river-iron; straps that rarely creak. It settles with a protective heft.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "feet"
@@ -8788,7 +10410,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "umbral_skin",
     "id": "IT00000119",
     "defense_template": {
       "arcane": [
@@ -8829,7 +10450,26 @@
         6,
         9
       ]
-    }
+    },
+    "fixed_trait": [
+      "umbral_skin"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "bleed",
+      "fire",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -8843,7 +10483,6 @@
     "description": "Evershift: bone toggles in bronzed scale, oiled leather; binds tight without biting. It settles with a protective heft.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {},
     "equip_slots": [
       "hands"
@@ -8863,7 +10502,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "spectral_protection",
     "id": "IT00000120",
     "defense_template": {
       "physical": [
@@ -8908,7 +10546,27 @@
         10,
         14
       ]
-    }
+    },
+    "fixed_trait": [
+      "spectral_protection"
+    ],
+    "possible_bonus": [
+      "armor",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "necrotic",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -8927,7 +10585,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -7,
       "dexterity": -3
@@ -8948,7 +10605,6 @@
         "defense": 14
       }
     },
-    "armour_trait": "none",
     "id": "IT00000121",
     "defense_template": {
       "physical": [
@@ -8969,7 +10625,19 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "stamina"
+    ],
+    "possible_resist": [
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -8988,7 +10656,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -5,
       "dexterity": -5
@@ -9009,7 +10676,6 @@
         "defense": 14
       }
     },
-    "armour_trait": "none",
     "id": "IT00000122",
     "defense_template": {
       "stagger": [
@@ -9026,7 +10692,18 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "intelligence"
+    ],
+    "possible_resist": [
+      "bleed",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9045,7 +10722,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -3,
       "dexterity": -3
@@ -9066,7 +10742,6 @@
         "defense": 14
       }
     },
-    "armour_trait": "none",
     "id": "IT00000123",
     "defense_template": {
       "ice": [
@@ -9087,7 +10762,19 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9106,7 +10793,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -6,
       "dexterity": -2
@@ -9127,7 +10813,6 @@
         "defense": 14
       }
     },
-    "armour_trait": "none",
     "id": "IT00000124",
     "defense_template": {
       "fire": [
@@ -9148,7 +10833,19 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "intelligence",
+      "stamina"
+    ],
+    "possible_resist": [
+      "fire",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9167,7 +10864,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -6,
       "dexterity": -3
@@ -9188,7 +10884,6 @@
         "defense": 14
       }
     },
-    "armour_trait": "none",
     "id": "IT00000125",
     "defense_template": {
       "lightning": [
@@ -9205,7 +10900,18 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "stamina"
+    ],
+    "possible_resist": [
+      "arcane",
+      "lightning"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9224,7 +10930,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -7,
       "dexterity": -2
@@ -9245,7 +10950,6 @@
         "defense": 14
       }
     },
-    "armour_trait": "none",
     "id": "IT00000126",
     "defense_template": {
       "lightning": [
@@ -9274,7 +10978,21 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "health",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "bleed",
+      "lightning"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9293,7 +11011,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -6,
       "dexterity": -2
@@ -9314,7 +11031,6 @@
         "defense": 14
       }
     },
-    "armour_trait": "none",
     "id": "IT00000127",
     "defense_template": {
       "physical": [
@@ -9335,7 +11051,19 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity"
+    ],
+    "possible_resist": [
+      "lightning",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9354,7 +11082,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -7,
       "dexterity": -3
@@ -9375,7 +11102,6 @@
         "defense": 14
       }
     },
-    "armour_trait": "none",
     "id": "IT00000128",
     "defense_template": {
       "arcane": [
@@ -9400,7 +11126,20 @@
         1,
         2
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9419,7 +11158,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -7,
       "dexterity": -2
@@ -9440,7 +11178,6 @@
         "defense": 14
       }
     },
-    "armour_trait": "none",
     "id": "IT00000129",
     "defense_template": {
       "arcane": [
@@ -9469,7 +11206,21 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence"
+    ],
+    "possible_resist": [
+      "arcane",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9488,7 +11239,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -8,
       "dexterity": -3
@@ -9509,7 +11259,6 @@
         "defense": 14
       }
     },
-    "armour_trait": "none",
     "id": "IT00000130",
     "defense_template": {
       "physical": [
@@ -9534,7 +11283,20 @@
         2,
         4
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "intelligence",
+      "mana"
+    ],
+    "possible_resist": [
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9553,7 +11315,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -6,
       "dexterity": -2
@@ -9574,7 +11335,6 @@
         "defense": 18
       }
     },
-    "armour_trait": "none",
     "id": "IT00000131",
     "defense_template": {
       "bleed": [
@@ -9607,7 +11367,22 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "intelligence",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "fire",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9626,7 +11401,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -4,
       "dexterity": -4
@@ -9647,7 +11421,6 @@
         "defense": 18
       }
     },
-    "armour_trait": "none",
     "id": "IT00000132",
     "defense_template": {
       "mana": [
@@ -9680,7 +11453,22 @@
         7,
         10
       ]
-    }
+    },
+    "possible_bonus": [
+      "dexterity",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "lightning",
+      "mana"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9699,7 +11487,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -3,
       "dexterity": -3
@@ -9720,7 +11507,6 @@
         "defense": 18
       }
     },
-    "armour_trait": "none",
     "id": "IT00000133",
     "defense_template": {
       "arcane": [
@@ -9753,7 +11539,22 @@
         1,
         3
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "intelligence",
+      "mana"
+    ],
+    "possible_resist": [
+      "arcane",
+      "cold",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9772,7 +11573,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -6,
       "dexterity": -3
@@ -9793,7 +11593,6 @@
         "defense": 18
       }
     },
-    "armour_trait": "none",
     "id": "IT00000134",
     "defense_template": {
       "stagger": [
@@ -9822,7 +11621,21 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "health",
+      "mana"
+    ],
+    "possible_resist": [
+      "arcane",
+      "cold",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9841,7 +11654,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -3,
       "dexterity": -2
@@ -9862,7 +11674,6 @@
         "defense": 18
       }
     },
-    "armour_trait": "none",
     "id": "IT00000135",
     "defense_template": {
       "fire": [
@@ -9891,7 +11702,21 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "fire",
+      "mana"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9910,7 +11735,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -4,
       "dexterity": -2
@@ -9931,7 +11755,6 @@
         "defense": 18
       }
     },
-    "armour_trait": "none",
     "id": "IT00000136",
     "defense_template": {
       "bleed": [
@@ -9964,7 +11787,22 @@
         5,
         7
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "health",
+      "intelligence",
+      "mana"
+    ],
+    "possible_resist": [
+      "bleed",
+      "fire",
+      "necrotic"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -9983,7 +11821,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -6,
       "dexterity": -4
@@ -10004,7 +11841,6 @@
         "defense": 18
       }
     },
-    "armour_trait": "none",
     "id": "IT00000137",
     "defense_template": {
       "necrotic": [
@@ -10037,7 +11873,22 @@
         8,
         11
       ]
-    }
+    },
+    "possible_bonus": [
+      "health",
+      "intelligence",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "fire",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -10056,7 +11907,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -5,
       "dexterity": -3
@@ -10077,7 +11927,6 @@
         "defense": 18
       }
     },
-    "armour_trait": "none",
     "id": "IT00000138",
     "defense_template": {
       "bleed": [
@@ -10114,7 +11963,23 @@
         5,
         7
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "health",
+      "intelligence",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "bleed",
+      "necrotic"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -10133,7 +11998,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -4,
       "dexterity": -4
@@ -10154,7 +12018,6 @@
         "defense": 18
       }
     },
-    "armour_trait": "none",
     "id": "IT00000139",
     "defense_template": {
       "necrotic": [
@@ -10187,7 +12050,22 @@
         3,
         5
       ]
-    }
+    },
+    "possible_bonus": [
+      "health",
+      "intelligence",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "cold",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -10206,7 +12084,6 @@
       }
     ],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -7,
       "dexterity": -4
@@ -10227,7 +12104,6 @@
         "defense": 18
       }
     },
-    "armour_trait": "none",
     "id": "IT00000140",
     "defense_template": {
       "ice": [
@@ -10260,7 +12136,22 @@
         8,
         11
       ]
-    }
+    },
+    "possible_bonus": [
+      "armor",
+      "intelligence",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "cold",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -10274,7 +12165,6 @@
     "description": "Emberguard: forged seams in weathered steel, coal enamel; lined to wick sweat. It rings faintly when struck, stern and sure.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -3,
       "dexterity": -5
@@ -10297,7 +12187,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "glacial_bulwark",
     "id": "IT00000141",
     "defense_template": {
       "physical": [
@@ -10342,7 +12231,27 @@
         4,
         6
       ]
-    }
+    },
+    "fixed_trait": [
+      "glacial_bulwark"
+    ],
+    "possible_bonus": [
+      "armor",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "bleed",
+      "lightning",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -10356,7 +12265,6 @@
     "description": "Emberguard: thick bracing in coal enamel, ember red; layers cross at the sternum. It rings faintly when struck, stern and sure.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -3,
       "dexterity": -5
@@ -10379,7 +12287,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "phoenix_aegis",
     "id": "IT00000142",
     "defense_template": {
       "lightning": [
@@ -10416,7 +12323,25 @@
         23,
         30
       ]
-    }
+    },
+    "fixed_trait": [
+      "phoenix_aegis"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "intelligence",
+      "stamina"
+    ],
+    "possible_resist": [
+      "bleed",
+      "lightning",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -10430,7 +12355,6 @@
     "description": "Emberguard: forged seams in weathered steel, ember red; wraps avoid chafing. It rings faintly when struck, stern and sure.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -3,
       "dexterity": -3
@@ -10453,7 +12377,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "stormwall",
     "id": "IT00000143",
     "defense_template": {
       "stagger": [
@@ -10502,7 +12425,28 @@
         4,
         6
       ]
-    }
+    },
+    "fixed_trait": [
+      "stormwall"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "fire",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -10516,7 +12460,6 @@
     "description": "Emberguard: thick bracing in weathered steel, gilded bronze; thin soles for ground feel. It rings faintly when struck, stern and sure.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -5,
       "dexterity": -3
@@ -10539,7 +12482,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "sunforged_vigor",
     "id": "IT00000144",
     "defense_template": {
       "bleed": [
@@ -10584,7 +12526,27 @@
         5,
         8
       ]
-    }
+    },
+    "fixed_trait": [
+      "sunforged_vigor"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "cold",
+      "necrotic",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -10598,7 +12560,6 @@
     "description": "Emberguard: hammered plates in ember red, coal enamel; palms textured for grip. It rings faintly when struck, stern and sure.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -8,
       "dexterity": -2
@@ -10621,7 +12582,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "phoenix_aegis",
     "id": "IT00000145",
     "defense_template": {
       "stagger": [
@@ -10666,7 +12626,27 @@
         11,
         15
       ]
-    }
+    },
+    "fixed_trait": [
+      "phoenix_aegis"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "cold",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -10680,7 +12660,6 @@
     "description": "Eclipse Aegis: hammered plates in gilded bronze, ember red; rests low across the brow. It rings faintly when struck, stern and sure.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -4,
       "dexterity": -2
@@ -10703,7 +12682,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "mirror_hex",
     "id": "IT00000146",
     "defense_template": {
       "stagger": [
@@ -10752,7 +12730,28 @@
         8,
         12
       ]
-    }
+    },
+    "fixed_trait": [
+      "mirror_hex"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "lightning",
+      "mana",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -10766,7 +12765,6 @@
     "description": "Eclipse Aegis: etched crests in ember red, weathered steel; cut for movement. It rings faintly when struck, stern and sure.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -3,
       "dexterity": -4
@@ -10789,7 +12787,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "mirror_hex",
     "id": "IT00000147",
     "defense_template": {
       "lightning": [
@@ -10838,7 +12835,28 @@
         16,
         22
       ]
-    }
+    },
+    "fixed_trait": [
+      "mirror_hex"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "arcane",
+      "cold",
+      "lightning",
+      "physical"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -10852,7 +12870,6 @@
     "description": "Eclipse Aegis: forged seams in coal enamel, weathered steel; wraps avoid chafing. It rings faintly when struck, stern and sure.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -7,
       "dexterity": -2
@@ -10875,7 +12892,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "null_field",
     "id": "IT00000148",
     "defense_template": {
       "physical": [
@@ -10924,7 +12940,28 @@
         10,
         14
       ]
-    }
+    },
+    "fixed_trait": [
+      "null_field"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "necrotic",
+      "physical",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -10938,7 +12975,6 @@
     "description": "Eclipse Aegis: hammered plates in coal enamel, weathered steel; thin soles for ground feel. It rings faintly when struck, stern and sure.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -4,
       "dexterity": -2
@@ -10961,7 +12997,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "null_field",
     "id": "IT00000149",
     "defense_template": {
       "bleed": [
@@ -11002,7 +13037,26 @@
         7,
         10
       ]
-    }
+    },
+    "fixed_trait": [
+      "null_field"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "mana",
+      "strength"
+    ],
+    "possible_resist": [
+      "bleed",
+      "cold",
+      "mana",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "armour",
@@ -11016,7 +13070,6 @@
     "description": "Eclipse Aegis: forged seams in weathered steel, ember red; palms textured for grip. It rings faintly when struck, stern and sure.",
     "components": [],
     "defense_type": {},
-    "bonus": {},
     "penalties": {
       "stealth": -3,
       "dexterity": -4
@@ -11039,7 +13092,6 @@
         "dexterity": 8
       }
     },
-    "armour_trait": "spectral_protection",
     "id": "IT00000150",
     "defense_template": {
       "fire": [
@@ -11084,6 +13136,26 @@
         10,
         14
       ]
-    }
+    },
+    "fixed_trait": [
+      "spectral_protection"
+    ],
+    "possible_bonus": [
+      "armor",
+      "dexterity",
+      "health",
+      "intelligence",
+      "mana",
+      "stamina"
+    ],
+    "possible_resist": [
+      "cold",
+      "fire",
+      "lightning",
+      "stagger"
+    ],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   }
 ]

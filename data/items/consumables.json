@@ -1,0 +1,572 @@
+{
+  "consumables": [
+    {
+      "id": "IT00004001",
+      "name": "Minor Healing Potion",
+      "category": "consumable",
+      "rarity": "common",
+      "description": "A small vial that restores a bit of health.",
+      "fixed_bonus": [
+        "hp"
+      ],
+      "possible_bonus": [],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 15,
+      "weight": 1
+    },
+    {
+      "id": "IT00004002",
+      "name": "Lesser Healing Potion",
+      "category": "consumable",
+      "rarity": "common",
+      "description": "A modest restorative for field kits.",
+      "fixed_bonus": [
+        "hp"
+      ],
+      "possible_bonus": [
+        "vit"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 25,
+      "weight": 1
+    },
+    {
+      "id": "IT00004003",
+      "name": "Greater Healing Potion",
+      "category": "consumable",
+      "rarity": "uncommon",
+      "description": "Strong restorative brewed by skilled alchemists.",
+      "fixed_bonus": [
+        "hp"
+      ],
+      "possible_bonus": [
+        "vit"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 50,
+      "weight": 1
+    },
+    {
+      "id": "IT00004004",
+      "name": "Superior Healing Potion",
+      "category": "consumable",
+      "rarity": "rare",
+      "description": "Rapidly mends grievous wounds.",
+      "fixed_bonus": [
+        "hp"
+      ],
+      "possible_bonus": [
+        "vit"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [
+        "regeneration"
+      ],
+      "value": 120,
+      "weight": 1
+    },
+    {
+      "id": "IT00004005",
+      "name": "Minor Mana Draught",
+      "category": "consumable",
+      "rarity": "common",
+      "description": "Restores a little arcane energy.",
+      "fixed_bonus": [
+        "mp"
+      ],
+      "possible_bonus": [],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 15,
+      "weight": 1
+    },
+    {
+      "id": "IT00004006",
+      "name": "Greater Mana Draught",
+      "category": "consumable",
+      "rarity": "uncommon",
+      "description": "Potent arcane refreshment.",
+      "fixed_bonus": [
+        "mp"
+      ],
+      "possible_bonus": [
+        "arc"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 45,
+      "weight": 1
+    },
+    {
+      "id": "IT00004007",
+      "name": "Elixir of Focus",
+      "category": "consumable",
+      "rarity": "rare",
+      "description": "Heightens clarity and aim for a short time.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "tec",
+        "ins"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [
+        "charmed"
+      ],
+      "fixed_trait": [],
+      "possible_trait": [
+        "focused"
+      ],
+      "value": 110,
+      "weight": 1
+    },
+    {
+      "id": "IT00004008",
+      "name": "Ironflesh Tonic",
+      "category": "consumable",
+      "rarity": "uncommon",
+      "description": "Toughens the skin like mail.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "vit"
+      ],
+      "fixed_resist": [
+        "physical"
+      ],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 40,
+      "weight": 1
+    },
+    {
+      "id": "IT00004009",
+      "name": "Swiftstep Draft",
+      "category": "consumable",
+      "rarity": "uncommon",
+      "description": "Lightens the feet and quickens movement.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "speed"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [
+        "agile"
+      ],
+      "value": 35,
+      "weight": 1
+    },
+    {
+      "id": "IT00004010",
+      "name": "Battle Rations",
+      "category": "consumable",
+      "rarity": "common",
+      "description": "A hearty meal that steels resolve.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "phy",
+        "tec"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [
+        "energized"
+      ],
+      "value": 12,
+      "weight": 2
+    },
+    {
+      "id": "IT00004011",
+      "name": "Antidote Phial",
+      "category": "consumable",
+      "rarity": "common",
+      "description": "Neutralizes common poisons.",
+      "fixed_bonus": [],
+      "possible_bonus": [],
+      "fixed_resist": [
+        "poison"
+      ],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 18,
+      "weight": 1
+    },
+    {
+      "id": "IT00004012",
+      "name": "Fireward Salts",
+      "category": "consumable",
+      "rarity": "uncommon",
+      "description": "Reduces burn damage for a time.",
+      "fixed_bonus": [],
+      "possible_bonus": [],
+      "fixed_resist": [
+        "fire"
+      ],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 32,
+      "weight": 1
+    },
+    {
+      "id": "IT00004013",
+      "name": "Frostward Salts",
+      "category": "consumable",
+      "rarity": "uncommon",
+      "description": "Blunts the bite of cold.",
+      "fixed_bonus": [],
+      "possible_bonus": [],
+      "fixed_resist": [
+        "cold"
+      ],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 32,
+      "weight": 1
+    },
+    {
+      "id": "IT00004014",
+      "name": "Stormward Tincture",
+      "category": "consumable",
+      "rarity": "uncommon",
+      "description": "Insulates against shocks.",
+      "fixed_bonus": [],
+      "possible_bonus": [],
+      "fixed_resist": [
+        "lightning"
+      ],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 34,
+      "weight": 1
+    },
+    {
+      "id": "IT00004015",
+      "name": "Clarity Tea",
+      "category": "consumable",
+      "rarity": "common",
+      "description": "Settles the mind to resist distractions.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "ins"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [
+        "charmed",
+        "distracted"
+      ],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 10,
+      "weight": 1
+    },
+    {
+      "id": "IT00004016",
+      "name": "Adrenaline Ampoule",
+      "category": "consumable",
+      "rarity": "rare",
+      "description": "A brief, risky surge of power.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "phy",
+        "initiative"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [
+        "berserk"
+      ],
+      "value": 150,
+      "weight": 1
+    },
+    {
+      "id": "IT00004017",
+      "name": "Smoke Bomb",
+      "category": "consumable",
+      "rarity": "uncommon",
+      "description": "Obscures vision to escape or reposition.",
+      "fixed_bonus": [],
+      "possible_bonus": [],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [
+        "concealed"
+      ],
+      "value": 30,
+      "weight": 1
+    },
+    {
+      "id": "IT00004018",
+      "name": "Venom Vial",
+      "category": "consumable",
+      "rarity": "rare",
+      "description": "Applies a poisonous coating to weapons.",
+      "fixed_bonus": [],
+      "possible_bonus": [],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [
+        "poisoned"
+      ],
+      "possible_trait": [],
+      "value": 160,
+      "weight": 1
+    },
+    {
+      "id": "IT00004019",
+      "name": "Stoneskin Poultice",
+      "category": "consumable",
+      "rarity": "rare",
+      "description": "Briefly hardens the body.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "vit"
+      ],
+      "fixed_resist": [
+        "physical"
+      ],
+      "possible_resist": [
+        "bleed"
+      ],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 140,
+      "weight": 1
+    },
+    {
+      "id": "IT00004020",
+      "name": "Elixir of Charisma",
+      "category": "consumable",
+      "rarity": "rare",
+      "description": "Words flow like honey.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "soc"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [
+        "charmed"
+      ],
+      "fixed_trait": [],
+      "possible_trait": [
+        "charming"
+      ],
+      "value": 200,
+      "weight": 1
+    },
+    {
+      "id": "IT00004021",
+      "name": "Magefire Oil",
+      "category": "consumable",
+      "rarity": "uncommon",
+      "description": "Temporarily adds fire to strikes.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "attack"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [
+        "burnt"
+      ],
+      "value": 55,
+      "weight": 1
+    },
+    {
+      "id": "IT00004022",
+      "name": "Icy Edge Oil",
+      "category": "consumable",
+      "rarity": "uncommon",
+      "description": "Briefly chills weapon edges.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "attack"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [
+        "slowed"
+      ],
+      "value": 55,
+      "weight": 1
+    },
+    {
+      "id": "IT00004023",
+      "name": "Aether Tonic",
+      "category": "consumable",
+      "rarity": "epic",
+      "description": "Eases passage through matter.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "ins"
+      ],
+      "fixed_resist": [
+        "physical"
+      ],
+      "possible_resist": [
+        "all"
+      ],
+      "fixed_trait": [
+        "ethereal"
+      ],
+      "possible_trait": [],
+      "value": 520,
+      "weight": 1
+    },
+    {
+      "id": "IT00004024",
+      "name": "Guardian’s Draught",
+      "category": "consumable",
+      "rarity": "rare",
+      "description": "Bolsters defense and calm.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "defense"
+      ],
+      "fixed_resist": [
+        "stagger"
+      ],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 170,
+      "weight": 1
+    },
+    {
+      "id": "IT00004025",
+      "name": "Scout’s Ration Pack",
+      "category": "consumable",
+      "rarity": "common",
+      "description": "Light meal for long treks.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "speed",
+        "ins"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 14,
+      "weight": 1
+    },
+    {
+      "id": "IT00004026",
+      "name": "Resolute Brew",
+      "category": "consumable",
+      "rarity": "uncommon",
+      "description": "Steadies nerves before battle.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "vit"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [
+        "charmed",
+        "fear"
+      ],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 48,
+      "weight": 1
+    },
+    {
+      "id": "IT00004027",
+      "name": "Sharpsight Drops",
+      "category": "consumable",
+      "rarity": "rare",
+      "description": "Keen vision for a time.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "tec"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [
+        "accurate"
+      ],
+      "value": 180,
+      "weight": 1
+    },
+    {
+      "id": "IT00004028",
+      "name": "Tangler Bomb",
+      "category": "consumable",
+      "rarity": "uncommon",
+      "description": "Entangling burst upon impact.",
+      "fixed_bonus": [],
+      "possible_bonus": [],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [
+        "slowed"
+      ],
+      "value": 45,
+      "weight": 1
+    },
+    {
+      "id": "IT00004029",
+      "name": "Blessed Water",
+      "category": "consumable",
+      "rarity": "uncommon",
+      "description": "Hallowed liquid that wards evil.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "fth"
+      ],
+      "fixed_resist": [
+        "shadow"
+      ],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [],
+      "value": 60,
+      "weight": 1
+    },
+    {
+      "id": "IT00004030",
+      "name": "Elixir of Fortune",
+      "category": "consumable",
+      "rarity": "epic",
+      "description": "Luck smiles briefly on the user.",
+      "fixed_bonus": [],
+      "possible_bonus": [
+        "initiative"
+      ],
+      "fixed_resist": [],
+      "possible_resist": [],
+      "fixed_trait": [],
+      "possible_trait": [
+        "lucky"
+      ],
+      "value": 600,
+      "weight": 1
+    }
+  ]
+}

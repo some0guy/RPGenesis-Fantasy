@@ -1,16 +1,274 @@
 {
-  "schema": "rpgen.items.trinkets.v1",
-  "version": 1,
-  "items": [
+  "trinkets": [
     {
-      "id": "IT00000007",
-      "name": "Starglass Pendant",
-      "type": "trinket",
+      "id": "IT00006001",
+      "name": "Silver Brooch",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "Delicate filigree in bright silver; a tasteful gift.",
+      "value": 210,
+      "weight": 1
+    },
+    {
+      "id": "IT00006002",
+      "name": "Ornamental Vase",
+      "category": "trinket",
+      "rarity": "common",
+      "description": "Painted ceramic, purely decorative and fragile.",
+      "value": 75,
+      "weight": 3
+    },
+    {
+      "id": "IT00006003",
+      "name": "Emerald Gemstone (Polished)",
+      "category": "trinket",
       "rarity": "rare",
-      "effect": {
-        "kind": "mp_max",
-        "amount": 10
-      }
+      "description": "Brilliant cut emerald mounted for display.",
+      "value": 1350,
+      "weight": 1
+    },
+    {
+      "id": "IT00006004",
+      "name": "Ivory Comb",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "Polished comb from a merchant’s vanity set.",
+      "value": 280,
+      "weight": 1
+    },
+    {
+      "id": "IT00006005",
+      "name": "Wooden Tankard (Carved)",
+      "category": "trinket",
+      "rarity": "common",
+      "description": "A sturdy mug with carved knotwork; sentimental value.",
+      "value": 30,
+      "weight": 1
+    },
+    {
+      "id": "IT00006006",
+      "name": "Porcelain Figurine",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "A graceful dancer statue on a tiny plinth.",
+      "value": 245,
+      "weight": 1
+    },
+    {
+      "id": "IT00006007",
+      "name": "Brass Music Box",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "Winds up and plays a soft lullaby.",
+      "value": 332,
+      "weight": 2
+    },
+    {
+      "id": "IT00006008",
+      "name": "Jeweled Goblet",
+      "category": "trinket",
+      "rarity": "rare",
+      "description": "Gold-rimmed cup studded with small gems.",
+      "value": 1125,
+      "weight": 2
+    },
+    {
+      "id": "IT00006009",
+      "name": "Antique Map Tube",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "A well-crafted case; the map is long gone.",
+      "value": 228,
+      "weight": 1
+    },
+    {
+      "id": "IT00006010",
+      "name": "Carved Jade Pendant",
+      "category": "trinket",
+      "rarity": "rare",
+      "description": "A glyph-etched disc of deep green jade.",
+      "value": 990,
+      "weight": 1
+    },
+    {
+      "id": "IT00006011",
+      "name": "Traveler’s Charm",
+      "category": "trinket",
+      "rarity": "common",
+      "description": "A simple charm said to ward off bad luck.",
+      "value": 24,
+      "weight": 1
+    },
+    {
+      "id": "IT00006012",
+      "name": "Painted Silk Fan",
+      "category": "trinket",
+      "rarity": "common",
+      "description": "A folding fan with a pastoral scene.",
+      "value": 36,
+      "weight": 1
+    },
+    {
+      "id": "IT00006013",
+      "name": "Silvered Hand Mirror",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "A small mirror with a silvered back.",
+      "value": 192,
+      "weight": 1
+    },
+    {
+      "id": "IT00006014",
+      "name": "Engraved Locket",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "A hinged pendant with space for a tiny portrait.",
+      "value": 252,
+      "weight": 1
+    },
+    {
+      "id": "IT00006015",
+      "name": "Collector’s Stamp Sheet",
+      "category": "trinket",
+      "rarity": "rare",
+      "description": "Mint condition; niche but valuable.",
+      "value": 810,
+      "weight": 0
+    },
+    {
+      "id": "IT00006016",
+      "name": "Crystal Paperweight",
+      "category": "trinket",
+      "rarity": "common",
+      "description": "Heavy globe that refracts light nicely.",
+      "value": 42,
+      "weight": 2
+    },
+    {
+      "id": "IT00006017",
+      "name": "Ornate Candleholder",
+      "category": "trinket",
+      "rarity": "common",
+      "description": "Polished brass, slightly tarnished with age.",
+      "value": 48,
+      "weight": 1
+    },
+    {
+      "id": "IT00006018",
+      "name": "Miniature Ship in Bottle",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "Fine rigging painstakingly assembled inside glass.",
+      "value": 315,
+      "weight": 1
+    },
+    {
+      "id": "IT00006019",
+      "name": "Lapis Lazuli Bead",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "A deep blue polished bead for necklaces.",
+      "value": 122,
+      "weight": 0
+    },
+    {
+      "id": "IT00006020",
+      "name": "Gilded Letter Opener",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "Looks sharp but meant only for letters.",
+      "value": 203,
+      "weight": 1
+    },
+    {
+      "id": "IT00006021",
+      "name": "Embossed Tobacco Tin",
+      "category": "trinket",
+      "rarity": "common",
+      "description": "Empty, but very collectible.",
+      "value": 27,
+      "weight": 1
+    },
+    {
+      "id": "IT00006022",
+      "name": "Seashell Cameo",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "Hand-carved profile in shell relief.",
+      "value": 182,
+      "weight": 0
+    },
+    {
+      "id": "IT00006023",
+      "name": "Polished Coral Branch",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "A sea treasure mounted on a small stand.",
+      "value": 266,
+      "weight": 1
+    },
+    {
+      "id": "IT00006024",
+      "name": "Ceremonial Mask (Replica)",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "Decorative reproduction meant for walls.",
+      "value": 308,
+      "weight": 2
+    },
+    {
+      "id": "IT00006025",
+      "name": "Clockwork Beetle",
+      "category": "trinket",
+      "rarity": "rare",
+      "description": "Whirs to life when wound; surprisingly charming.",
+      "value": 945,
+      "weight": 1
+    },
+    {
+      "id": "IT00006026",
+      "name": "Pressed Flower Book",
+      "category": "trinket",
+      "rarity": "common",
+      "description": "A folio of preserved blooms from many regions.",
+      "value": 33,
+      "weight": 1
+    },
+    {
+      "id": "IT00006027",
+      "name": "Gnomish Kaleidoscope",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "Shifting patterns delight children and adults alike.",
+      "value": 234,
+      "weight": 1
+    },
+    {
+      "id": "IT00006028",
+      "name": "Runed Keepsake Box",
+      "category": "trinket",
+      "rarity": "rare",
+      "description": "A palm-sized box carved with looping sigils.",
+      "value": 855,
+      "weight": 2
+    },
+    {
+      "id": "IT00006029",
+      "name": "Pearl Strand",
+      "category": "trinket",
+      "rarity": "rare",
+      "description": "Subtle iridescence; a classic gift.",
+      "value": 1170,
+      "weight": 1
+    },
+    {
+      "id": "IT00006030",
+      "name": "Crystal Snow Globe",
+      "category": "trinket",
+      "rarity": "uncommon",
+      "description": "A tiny village scene with gently drifting snow.",
+      "value": 294,
+      "weight": 2
     }
   ]
 }

@@ -5,7 +5,13 @@
     "slot": "head",
     "rarity": "common",
     "set": "Hearthborn Set",
-    "description": "A midnight blue soft leather headpiece with copper stitchwork, hides a thin inner pocket for letters; saved for nights when music runs late."
+    "description": "A midnight blue soft leather headpiece with copper stitchwork, hides a thin inner pocket for letters; saved for nights when music runs late.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010001",
@@ -13,7 +19,13 @@
     "slot": "chest",
     "rarity": "common",
     "set": "Hearthborn Set",
-    "description": "A brick red raw silk garment finished with simple whipstitch. It carries old stains that never quite lift and is meant to impress without shouting."
+    "description": "A brick red raw silk garment finished with simple whipstitch. It carries old stains that never quite lift and is meant to impress without shouting.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010002",
@@ -21,7 +33,13 @@
     "slot": "boots",
     "rarity": "common",
     "set": "Hearthborn Set",
-    "description": "Footwear in moss green hand‑loomed hemp with copper stitchwork. It breathes better than it looks and is favored by caravan hands and ferry keepers."
+    "description": "Footwear in moss green hand‑loomed hemp with copper stitchwork. It breathes better than it looks and is favored by caravan hands and ferry keepers.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010003",
@@ -29,7 +47,13 @@
     "slot": "head",
     "rarity": "common",
     "set": "Fieldhand's Set",
-    "description": "A river‑blue hand‑loomed hemp headpiece with frayed tassels, breathes better than it looks; meant to impress without shouting."
+    "description": "A river‑blue hand‑loomed hemp headpiece with frayed tassels, breathes better than it looks; meant to impress without shouting.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010004",
@@ -37,7 +61,13 @@
     "slot": "chest",
     "rarity": "common",
     "set": "Fieldhand's Set",
-    "description": "A dawn‑gold hand‑loomed hemp garment finished with bone toggles. It hides a thin inner pocket for letters and is meant to impress without shouting."
+    "description": "A dawn‑gold hand‑loomed hemp garment finished with bone toggles. It hides a thin inner pocket for letters and is meant to impress without shouting.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010005",
@@ -45,7 +75,13 @@
     "slot": "boots",
     "rarity": "common",
     "set": "Fieldhand's Set",
-    "description": "Footwear in ember orange dyed linen with obsidian beads. It is surprisingly quiet when you move and is stitched to move quietly through crowded halls."
+    "description": "Footwear in ember orange dyed linen with obsidian beads. It is surprisingly quiet when you move and is stitched to move quietly through crowded halls.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010006",
@@ -53,7 +89,13 @@
     "slot": "head",
     "rarity": "common",
     "set": "Plainskeep Set",
-    "description": "A ember orange soft leather headpiece with hidden ties, takes polish badly but wears well; built to shed rain and hold its warmth."
+    "description": "A ember orange soft leather headpiece with hidden ties, takes polish badly but wears well; built to shed rain and hold its warmth.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010007",
@@ -61,7 +103,13 @@
     "slot": "chest",
     "rarity": "common",
     "set": "Plainskeep Set",
-    "description": "A river‑blue spun flax garment finished with frayed tassels. It hides a thin inner pocket for letters and is saved for nights when music runs late."
+    "description": "A river‑blue spun flax garment finished with frayed tassels. It hides a thin inner pocket for letters and is saved for nights when music runs late.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010008",
@@ -69,7 +117,13 @@
     "slot": "boots",
     "rarity": "common",
     "set": "Plainskeep Set",
-    "description": "Footwear in river‑blue oiled wool with simple whipstitch. It smells faintly of smoke and spice and is saved for nights when music runs late."
+    "description": "Footwear in river‑blue oiled wool with simple whipstitch. It smells faintly of smoke and spice and is saved for nights when music runs late.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010009",
@@ -77,7 +131,13 @@
     "slot": "head",
     "rarity": "common",
     "set": "Rivervale Set",
-    "description": "A moss green oiled wool headpiece with obsidian beads, carries old stains that never quite lift; favored by caravan hands and ferry keepers."
+    "description": "A moss green oiled wool headpiece with obsidian beads, carries old stains that never quite lift; favored by caravan hands and ferry keepers.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010010",
@@ -85,7 +145,13 @@
     "slot": "chest",
     "rarity": "common",
     "set": "Rivervale Set",
-    "description": "A ember orange brushed cotton garment finished with hidden ties. It smells faintly of smoke and spice and is meant to impress without shouting."
+    "description": "A ember orange brushed cotton garment finished with hidden ties. It smells faintly of smoke and spice and is meant to impress without shouting.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010011",
@@ -93,7 +159,13 @@
     "slot": "boots",
     "rarity": "common",
     "set": "Rivervale Set",
-    "description": "Footwear in brick red soft leather with simple whipstitch. It takes polish badly but wears well and is saved for nights when music runs late."
+    "description": "Footwear in brick red soft leather with simple whipstitch. It takes polish badly but wears well and is saved for nights when music runs late.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010012",
@@ -101,7 +173,13 @@
     "slot": "head",
     "rarity": "common",
     "set": "Wanderer's Set",
-    "description": "A smoke‑gray spun flax headpiece with frayed tassels, takes polish badly but wears well; built to shed rain and hold its warmth."
+    "description": "A smoke‑gray spun flax headpiece with frayed tassels, takes polish badly but wears well; built to shed rain and hold its warmth.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010013",
@@ -109,7 +187,13 @@
     "slot": "chest",
     "rarity": "common",
     "set": "Wanderer's Set",
-    "description": "A iron black soft leather garment finished with frayed tassels. It warms quickly once you start walking and is kept near the hearth and mended often."
+    "description": "A iron black soft leather garment finished with frayed tassels. It warms quickly once you start walking and is kept near the hearth and mended often.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010014",
@@ -117,7 +201,13 @@
     "slot": "boots",
     "rarity": "common",
     "set": "Wanderer's Set",
-    "description": "Footwear in smoke‑gray raw silk with herringbone edging. It keeps its color even after hard rain and is saved for nights when music runs late."
+    "description": "Footwear in smoke‑gray raw silk with herringbone edging. It keeps its color even after hard rain and is saved for nights when music runs late.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010015",
@@ -125,7 +215,13 @@
     "slot": "head",
     "rarity": "common",
     "set": "Dustway Set",
-    "description": "A midnight blue oiled wool headpiece with herringbone edging, is surprisingly quiet when you move; kept near the hearth and mended often."
+    "description": "A midnight blue oiled wool headpiece with herringbone edging, is surprisingly quiet when you move; kept near the hearth and mended often.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010016",
@@ -133,7 +229,13 @@
     "slot": "chest",
     "rarity": "common",
     "set": "Dustway Set",
-    "description": "A wine‑dark spun flax garment finished with tin buttons. It falls heavy and honest around the frame and is built to shed rain and hold its warmth."
+    "description": "A wine‑dark spun flax garment finished with tin buttons. It falls heavy and honest around the frame and is built to shed rain and hold its warmth.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010017",
@@ -141,7 +243,13 @@
     "slot": "boots",
     "rarity": "common",
     "set": "Dustway Set",
-    "description": "Footwear in smoke‑gray raw silk with pewter clasps. It falls heavy and honest around the frame and is meant to impress without shouting."
+    "description": "Footwear in smoke‑gray raw silk with pewter clasps. It falls heavy and honest around the frame and is meant to impress without shouting.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010018",
@@ -149,7 +257,13 @@
     "slot": "head",
     "rarity": "common",
     "set": "Wayside Set",
-    "description": "A ember orange brushed cotton headpiece with frayed tassels, smells faintly of smoke and spice; built to shed rain and hold its warmth."
+    "description": "A ember orange brushed cotton headpiece with frayed tassels, smells faintly of smoke and spice; built to shed rain and hold its warmth.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010019",
@@ -157,7 +271,13 @@
     "slot": "chest",
     "rarity": "common",
     "set": "Wayside Set",
-    "description": "A iron black spun flax garment finished with simple whipstitch. It hides a thin inner pocket for letters and is meant to impress without shouting."
+    "description": "A iron black spun flax garment finished with simple whipstitch. It hides a thin inner pocket for letters and is meant to impress without shouting.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010020",
@@ -165,7 +285,13 @@
     "slot": "boots",
     "rarity": "common",
     "set": "Wayside Set",
-    "description": "Footwear in ash‑white oiled wool with tin buttons. It smells faintly of smoke and spice and is stitched to move quietly through crowded halls."
+    "description": "Footwear in ash‑white oiled wool with tin buttons. It smells faintly of smoke and spice and is stitched to move quietly through crowded halls.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010021",
@@ -173,7 +299,13 @@
     "slot": "head",
     "rarity": "common",
     "set": "Marketday Set",
-    "description": "A brick red waxed canvas headpiece with simple whipstitch, takes polish badly but wears well; favored by caravan hands and ferry keepers."
+    "description": "A brick red waxed canvas headpiece with simple whipstitch, takes polish badly but wears well; favored by caravan hands and ferry keepers.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010022",
@@ -181,7 +313,13 @@
     "slot": "chest",
     "rarity": "common",
     "set": "Marketday Set",
-    "description": "A wine‑dark felted wool garment finished with tin buttons. It takes polish badly but wears well and is kept for fairs, vows, and funerals alike."
+    "description": "A wine‑dark felted wool garment finished with tin buttons. It takes polish badly but wears well and is kept for fairs, vows, and funerals alike.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010023",
@@ -189,7 +327,13 @@
     "slot": "boots",
     "rarity": "common",
     "set": "Marketday Set",
-    "description": "Footwear in ember orange raw silk with simple whipstitch. It breathes better than it looks and is saved for nights when music runs late."
+    "description": "Footwear in ember orange raw silk with simple whipstitch. It breathes better than it looks and is saved for nights when music runs late.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010024",
@@ -197,7 +341,13 @@
     "slot": "head",
     "rarity": "uncommon",
     "set": "Bellmarket Set",
-    "description": "A dawn‑gold spun flax headpiece with pewter clasps, is surprisingly quiet when you move; kept for fairs, vows, and funerals alike."
+    "description": "A dawn‑gold spun flax headpiece with pewter clasps, is surprisingly quiet when you move; kept for fairs, vows, and funerals alike.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010025",
@@ -205,7 +355,13 @@
     "slot": "chest",
     "rarity": "uncommon",
     "set": "Bellmarket Set",
-    "description": "A wine‑dark hand‑loomed hemp garment finished with obsidian beads. It breathes better than it looks and is saved for nights when music runs late."
+    "description": "A wine‑dark hand‑loomed hemp garment finished with obsidian beads. It breathes better than it looks and is saved for nights when music runs late.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010026",
@@ -213,7 +369,13 @@
     "slot": "boots",
     "rarity": "uncommon",
     "set": "Bellmarket Set",
-    "description": "Footwear in ember orange raw silk with hidden ties. It smells faintly of smoke and spice and is meant to impress without shouting."
+    "description": "Footwear in ember orange raw silk with hidden ties. It smells faintly of smoke and spice and is meant to impress without shouting.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010027",
@@ -221,7 +383,13 @@
     "slot": "head",
     "rarity": "uncommon",
     "set": "Trailblazer's Set",
-    "description": "A midnight blue oiled wool headpiece with hidden ties, breathes better than it looks; kept for fairs, vows, and funerals alike."
+    "description": "A midnight blue oiled wool headpiece with hidden ties, breathes better than it looks; kept for fairs, vows, and funerals alike.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010028",
@@ -229,7 +397,13 @@
     "slot": "chest",
     "rarity": "uncommon",
     "set": "Trailblazer's Set",
-    "description": "A midnight blue matte velvet garment finished with copper stitchwork. It is surprisingly quiet when you move and is for slipping through markets without drawing notice."
+    "description": "A midnight blue matte velvet garment finished with copper stitchwork. It is surprisingly quiet when you move and is for slipping through markets without drawing notice.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010029",
@@ -237,7 +411,13 @@
     "slot": "boots",
     "rarity": "uncommon",
     "set": "Trailblazer's Set",
-    "description": "Footwear in dawn‑gold brushed cotton with herringbone edging. It breathes better than it looks and is saved for nights when music runs late."
+    "description": "Footwear in dawn‑gold brushed cotton with herringbone edging. It breathes better than it looks and is saved for nights when music runs late.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010030",
@@ -245,7 +425,13 @@
     "slot": "head",
     "rarity": "uncommon",
     "set": "Oakthread Set",
-    "description": "A iron black hand‑loomed hemp headpiece with hidden ties, takes polish badly but wears well; built to shed rain and hold its warmth."
+    "description": "A iron black hand‑loomed hemp headpiece with hidden ties, takes polish badly but wears well; built to shed rain and hold its warmth.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010031",
@@ -253,7 +439,13 @@
     "slot": "chest",
     "rarity": "uncommon",
     "set": "Oakthread Set",
-    "description": "A river‑blue hand‑loomed hemp garment finished with herringbone edging. It is surprisingly quiet when you move and is cut for long roads and colder mornings."
+    "description": "A river‑blue hand‑loomed hemp garment finished with herringbone edging. It is surprisingly quiet when you move and is cut for long roads and colder mornings.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010032",
@@ -261,7 +453,13 @@
     "slot": "boots",
     "rarity": "uncommon",
     "set": "Oakthread Set",
-    "description": "Footwear in dawn‑gold dyed linen with herringbone edging. It hides a thin inner pocket for letters and is kept near the hearth and mended often."
+    "description": "Footwear in dawn‑gold dyed linen with herringbone edging. It hides a thin inner pocket for letters and is kept near the hearth and mended often.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010033",
@@ -269,7 +467,13 @@
     "slot": "head",
     "rarity": "uncommon",
     "set": "Greencloak Set",
-    "description": "A iron black hand‑loomed hemp headpiece with bone toggles, hides a thin inner pocket for letters; kept near the hearth and mended often."
+    "description": "A iron black hand‑loomed hemp headpiece with bone toggles, hides a thin inner pocket for letters; kept near the hearth and mended often.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010034",
@@ -277,7 +481,13 @@
     "slot": "chest",
     "rarity": "uncommon",
     "set": "Greencloak Set",
-    "description": "A moss green hand‑loomed hemp garment finished with herringbone edging. It takes polish badly but wears well and is favored by caravan hands and ferry keepers."
+    "description": "A moss green hand‑loomed hemp garment finished with herringbone edging. It takes polish badly but wears well and is favored by caravan hands and ferry keepers.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010035",
@@ -285,7 +495,13 @@
     "slot": "boots",
     "rarity": "uncommon",
     "set": "Greencloak Set",
-    "description": "Footwear in smoke‑gray matte velvet with herringbone edging. It is surprisingly quiet when you move and is kept for fairs, vows, and funerals alike."
+    "description": "Footwear in smoke‑gray matte velvet with herringbone edging. It is surprisingly quiet when you move and is kept for fairs, vows, and funerals alike.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010036",
@@ -293,7 +509,13 @@
     "slot": "head",
     "rarity": "uncommon",
     "set": "Saltwind Set",
-    "description": "A brick red spun flax headpiece with tin buttons, falls heavy and honest around the frame; saved for nights when music runs late."
+    "description": "A brick red spun flax headpiece with tin buttons, falls heavy and honest around the frame; saved for nights when music runs late.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010037",
@@ -301,7 +523,13 @@
     "slot": "chest",
     "rarity": "uncommon",
     "set": "Saltwind Set",
-    "description": "A midnight blue raw silk garment finished with hidden ties. It warms quickly once you start walking and is cut for long roads and colder mornings."
+    "description": "A midnight blue raw silk garment finished with hidden ties. It warms quickly once you start walking and is cut for long roads and colder mornings.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010038",
@@ -309,7 +537,13 @@
     "slot": "boots",
     "rarity": "uncommon",
     "set": "Saltwind Set",
-    "description": "Footwear in dawn‑gold waxed canvas with bone toggles. It shows careful mending at the elbow and is stitched to move quietly through crowded halls."
+    "description": "Footwear in dawn‑gold waxed canvas with bone toggles. It shows careful mending at the elbow and is stitched to move quietly through crowded halls.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010039",
@@ -317,7 +551,13 @@
     "slot": "head",
     "rarity": "uncommon",
     "set": "Redhill Set",
-    "description": "A river‑blue waxed canvas headpiece with hidden ties, keeps its color even after hard rain; worn by guides who know the byways."
+    "description": "A river‑blue waxed canvas headpiece with hidden ties, keeps its color even after hard rain; worn by guides who know the byways.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010040",
@@ -325,7 +565,13 @@
     "slot": "chest",
     "rarity": "uncommon",
     "set": "Redhill Set",
-    "description": "A iron black oiled wool garment finished with obsidian beads. It takes polish badly but wears well and is stitched to move quietly through crowded halls."
+    "description": "A iron black oiled wool garment finished with obsidian beads. It takes polish badly but wears well and is stitched to move quietly through crowded halls.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010041",
@@ -333,7 +579,13 @@
     "slot": "boots",
     "rarity": "uncommon",
     "set": "Redhill Set",
-    "description": "Footwear in smoke‑gray brushed cotton with herringbone edging. It breathes better than it looks and is worn by guides who know the byways."
+    "description": "Footwear in smoke‑gray brushed cotton with herringbone edging. It breathes better than it looks and is worn by guides who know the byways.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010042",
@@ -341,7 +593,13 @@
     "slot": "head",
     "rarity": "rare",
     "set": "Sable Crest Attire",
-    "description": "A brick red matte velvet headpiece with bone toggles, is surprisingly quiet when you move; for slipping through markets without drawing notice. Some claim it turns glances aside, but not eyes that matter."
+    "description": "A brick red matte velvet headpiece with bone toggles, is surprisingly quiet when you move; for slipping through markets without drawing notice. Some claim it turns glances aside, but not eyes that matter.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010043",
@@ -349,7 +607,13 @@
     "slot": "chest",
     "rarity": "rare",
     "set": "Sable Crest Attire",
-    "description": "A river‑blue raw silk garment finished with bone toggles. It takes polish badly but wears well and is built to shed rain and hold its warmth. A traveling priest once refused alms unless it was left at the door."
+    "description": "A river‑blue raw silk garment finished with bone toggles. It takes polish badly but wears well and is built to shed rain and hold its warmth. A traveling priest once refused alms unless it was left at the door.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010044",
@@ -357,7 +621,13 @@
     "slot": "boots",
     "rarity": "rare",
     "set": "Sable Crest Attire",
-    "description": "Footwear in river‑blue brushed cotton with braided cord. It warms quickly once you start walking and is stitched to move quietly through crowded halls. A faded stitch on the hem matches a crest no one admits using."
+    "description": "Footwear in river‑blue brushed cotton with braided cord. It warms quickly once you start walking and is stitched to move quietly through crowded halls. A faded stitch on the hem matches a crest no one admits using.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010045",
@@ -365,7 +635,13 @@
     "slot": "head",
     "rarity": "rare",
     "set": "Ashen Court Attire",
-    "description": "A wine‑dark soft leather headpiece with obsidian beads, breathes better than it looks; cut for long roads and colder mornings. It has turned up in ledgers that never list an owner."
+    "description": "A wine‑dark soft leather headpiece with obsidian beads, breathes better than it looks; cut for long roads and colder mornings. It has turned up in ledgers that never list an owner.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010046",
@@ -373,7 +649,13 @@
     "slot": "chest",
     "rarity": "rare",
     "set": "Ashen Court Attire",
-    "description": "A brick red hand‑loomed hemp garment finished with frayed tassels. It keeps its color even after hard rain and is worn by guides who know the byways. It has turned up in ledgers that never list an owner."
+    "description": "A brick red hand‑loomed hemp garment finished with frayed tassels. It keeps its color even after hard rain and is worn by guides who know the byways. It has turned up in ledgers that never list an owner.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010047",
@@ -381,7 +663,13 @@
     "slot": "boots",
     "rarity": "rare",
     "set": "Ashen Court Attire",
-    "description": "Footwear in river‑blue dyed linen with braided cord. It is surprisingly quiet when you move and is stitched to move quietly through crowded halls. Bards argue whether it was meant for mourning or marriage."
+    "description": "Footwear in river‑blue dyed linen with braided cord. It is surprisingly quiet when you move and is stitched to move quietly through crowded halls. Bards argue whether it was meant for mourning or marriage.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010048",
@@ -389,7 +677,13 @@
     "slot": "head",
     "rarity": "rare",
     "set": "Twilight Weave Attire",
-    "description": "A ash‑white soft leather headpiece with bone toggles, takes polish badly but wears well; cut for long roads and colder mornings. Old stories say a bargain was sealed while it was worn."
+    "description": "A ash‑white soft leather headpiece with bone toggles, takes polish badly but wears well; cut for long roads and colder mornings. Old stories say a bargain was sealed while it was worn.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010049",
@@ -397,7 +691,13 @@
     "slot": "chest",
     "rarity": "rare",
     "set": "Twilight Weave Attire",
-    "description": "A midnight blue spun flax garment finished with braided cord. It carries old stains that never quite lift and is for slipping through markets without drawing notice. Bards argue whether it was meant for mourning or marriage."
+    "description": "A midnight blue spun flax garment finished with braided cord. It carries old stains that never quite lift and is for slipping through markets without drawing notice. Bards argue whether it was meant for mourning or marriage.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010050",
@@ -405,7 +705,13 @@
     "slot": "boots",
     "rarity": "rare",
     "set": "Twilight Weave Attire",
-    "description": "Footwear in smoke‑gray raw silk with simple whipstitch. It keeps its color even after hard rain and is built to shed rain and hold its warmth. More than one gate guard remembers it without recalling the face beneath."
+    "description": "Footwear in smoke‑gray raw silk with simple whipstitch. It keeps its color even after hard rain and is built to shed rain and hold its warmth. More than one gate guard remembers it without recalling the face beneath.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010051",
@@ -413,7 +719,13 @@
     "slot": "head",
     "rarity": "exotic",
     "set": "Sandsong Attire",
-    "description": "A brick red oiled wool headpiece with bone toggles, smells faintly of smoke and spice; saved for nights when music runs late. Some claim it turns glances aside, but not eyes that matter."
+    "description": "A brick red oiled wool headpiece with bone toggles, smells faintly of smoke and spice; saved for nights when music runs late. Some claim it turns glances aside, but not eyes that matter.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010052",
@@ -421,7 +733,13 @@
     "slot": "chest",
     "rarity": "exotic",
     "set": "Sandsong Attire",
-    "description": "A brick red oiled wool garment finished with simple whipstitch. It breathes better than it looks and is saved for nights when music runs late. A faded stitch on the hem matches a crest no one admits using."
+    "description": "A brick red oiled wool garment finished with simple whipstitch. It breathes better than it looks and is saved for nights when music runs late. A faded stitch on the hem matches a crest no one admits using.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010053",
@@ -429,7 +747,13 @@
     "slot": "boots",
     "rarity": "exotic",
     "set": "Sandsong Attire",
-    "description": "Footwear in iron black waxed canvas with bone toggles. It shows careful mending at the elbow and is worn by guides who know the byways. It has turned up in ledgers that never list an owner."
+    "description": "Footwear in iron black waxed canvas with bone toggles. It shows careful mending at the elbow and is worn by guides who know the byways. It has turned up in ledgers that never list an owner.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010054",
@@ -437,7 +761,13 @@
     "slot": "head",
     "rarity": "exotic",
     "set": "Cinder Silk Attire",
-    "description": "A ash‑white dyed linen headpiece with obsidian beads, warms quickly once you start walking; favored by caravan hands and ferry keepers. A traveling priest once refused alms unless it was left at the door."
+    "description": "A ash‑white dyed linen headpiece with obsidian beads, warms quickly once you start walking; favored by caravan hands and ferry keepers. A traveling priest once refused alms unless it was left at the door.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010055",
@@ -445,7 +775,13 @@
     "slot": "chest",
     "rarity": "exotic",
     "set": "Cinder Silk Attire",
-    "description": "A moss green hand‑loomed hemp garment finished with hidden ties. It takes polish badly but wears well and is favored by caravan hands and ferry keepers. A traveling priest once refused alms unless it was left at the door."
+    "description": "A moss green hand‑loomed hemp garment finished with hidden ties. It takes polish badly but wears well and is favored by caravan hands and ferry keepers. A traveling priest once refused alms unless it was left at the door.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010056",
@@ -453,7 +789,13 @@
     "slot": "boots",
     "rarity": "exotic",
     "set": "Cinder Silk Attire",
-    "description": "Footwear in smoke‑gray hand‑loomed hemp with simple whipstitch. It warms quickly once you start walking and is kept near the hearth and mended often. Bards argue whether it was meant for mourning or marriage."
+    "description": "Footwear in smoke‑gray hand‑loomed hemp with simple whipstitch. It warms quickly once you start walking and is kept near the hearth and mended often. Bards argue whether it was meant for mourning or marriage.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010057",
@@ -461,7 +803,13 @@
     "slot": "head",
     "rarity": "exotic",
     "set": "Ivory Moth Attire",
-    "description": "A brick red dyed linen headpiece with tin buttons, keeps its color even after hard rain; cut for long roads and colder mornings. More than one gate guard remembers it without recalling the face beneath."
+    "description": "A brick red dyed linen headpiece with tin buttons, keeps its color even after hard rain; cut for long roads and colder mornings. More than one gate guard remembers it without recalling the face beneath.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010058",
@@ -469,7 +817,13 @@
     "slot": "chest",
     "rarity": "exotic",
     "set": "Ivory Moth Attire",
-    "description": "A smoke‑gray felted wool garment finished with copper stitchwork. It hides a thin inner pocket for letters and is saved for nights when music runs late. More than one gate guard remembers it without recalling the face beneath."
+    "description": "A smoke‑gray felted wool garment finished with copper stitchwork. It hides a thin inner pocket for letters and is saved for nights when music runs late. More than one gate guard remembers it without recalling the face beneath.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010059",
@@ -477,7 +831,13 @@
     "slot": "boots",
     "rarity": "exotic",
     "set": "Ivory Moth Attire",
-    "description": "Footwear in river‑blue brushed cotton with frayed tassels. It smells faintly of smoke and spice and is cut for long roads and colder mornings. A faded stitch on the hem matches a crest no one admits using."
+    "description": "Footwear in river‑blue brushed cotton with frayed tassels. It smells faintly of smoke and spice and is cut for long roads and colder mornings. A faded stitch on the hem matches a crest no one admits using.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010060",
@@ -485,7 +845,13 @@
     "slot": "head",
     "rarity": "legendary",
     "set": "Kingsroad Attire",
-    "description": "A ash‑white spun flax headpiece with bone toggles, smells faintly of smoke and spice; for slipping through markets without drawing notice. Old stories say a bargain was sealed while it was worn."
+    "description": "A ash‑white spun flax headpiece with bone toggles, smells faintly of smoke and spice; for slipping through markets without drawing notice. Old stories say a bargain was sealed while it was worn.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010061",
@@ -493,7 +859,13 @@
     "slot": "chest",
     "rarity": "legendary",
     "set": "Kingsroad Attire",
-    "description": "A ash‑white soft leather garment finished with herringbone edging. It is surprisingly quiet when you move and is favored by caravan hands and ferry keepers. It’s said the cloth hates silence and softens when it hears singing."
+    "description": "A ash‑white soft leather garment finished with herringbone edging. It is surprisingly quiet when you move and is favored by caravan hands and ferry keepers. It’s said the cloth hates silence and softens when it hears singing.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010062",
@@ -501,7 +873,13 @@
     "slot": "boots",
     "rarity": "legendary",
     "set": "Kingsroad Attire",
-    "description": "Footwear in midnight blue spun flax with obsidian beads. It keeps its color even after hard rain and is favored by caravan hands and ferry keepers. More than one gate guard remembers it without recalling the face beneath."
+    "description": "Footwear in midnight blue spun flax with obsidian beads. It keeps its color even after hard rain and is favored by caravan hands and ferry keepers. More than one gate guard remembers it without recalling the face beneath.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010063",
@@ -509,7 +887,13 @@
     "slot": "head",
     "rarity": "legendary",
     "set": "Lion's Gate Attire",
-    "description": "A smoke‑gray felted wool headpiece with pewter clasps, falls heavy and honest around the frame; stitched to move quietly through crowded halls. It has turned up in ledgers that never list an owner."
+    "description": "A smoke‑gray felted wool headpiece with pewter clasps, falls heavy and honest around the frame; stitched to move quietly through crowded halls. It has turned up in ledgers that never list an owner.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010064",
@@ -517,7 +901,13 @@
     "slot": "chest",
     "rarity": "legendary",
     "set": "Lion's Gate Attire",
-    "description": "A ash‑white soft leather garment finished with pewter clasps. It takes polish badly but wears well and is stitched to move quietly through crowded halls. Bards argue whether it was meant for mourning or marriage."
+    "description": "A ash‑white soft leather garment finished with pewter clasps. It takes polish badly but wears well and is stitched to move quietly through crowded halls. Bards argue whether it was meant for mourning or marriage.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010065",
@@ -525,7 +915,13 @@
     "slot": "boots",
     "rarity": "legendary",
     "set": "Lion's Gate Attire",
-    "description": "Footwear in ember orange hand‑loomed hemp with copper stitchwork. It is surprisingly quiet when you move and is favored by caravan hands and ferry keepers. It has turned up in ledgers that never list an owner."
+    "description": "Footwear in ember orange hand‑loomed hemp with copper stitchwork. It is surprisingly quiet when you move and is favored by caravan hands and ferry keepers. It has turned up in ledgers that never list an owner.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010066",
@@ -533,7 +929,13 @@
     "slot": "head",
     "rarity": "legendary",
     "set": "Moonshadow Attire",
-    "description": "A wine‑dark raw silk headpiece with herringbone edging, warms quickly once you start walking; built to shed rain and hold its warmth. Some claim it turns glances aside, but not eyes that matter."
+    "description": "A wine‑dark raw silk headpiece with herringbone edging, warms quickly once you start walking; built to shed rain and hold its warmth. Some claim it turns glances aside, but not eyes that matter.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010067",
@@ -541,7 +943,13 @@
     "slot": "chest",
     "rarity": "legendary",
     "set": "Moonshadow Attire",
-    "description": "A ember orange matte velvet garment finished with tin buttons. It falls heavy and honest around the frame and is stitched to move quietly through crowded halls. It has turned up in ledgers that never list an owner."
+    "description": "A ember orange matte velvet garment finished with tin buttons. It falls heavy and honest around the frame and is stitched to move quietly through crowded halls. It has turned up in ledgers that never list an owner.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010068",
@@ -549,7 +957,13 @@
     "slot": "boots",
     "rarity": "legendary",
     "set": "Moonshadow Attire",
-    "description": "Footwear in iron black raw silk with pewter clasps. It smells faintly of smoke and spice and is cut for long roads and colder mornings. Old stories say a bargain was sealed while it was worn."
+    "description": "Footwear in iron black raw silk with pewter clasps. It smells faintly of smoke and spice and is cut for long roads and colder mornings. Old stories say a bargain was sealed while it was worn.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010069",
@@ -557,7 +971,13 @@
     "slot": "head",
     "rarity": "mythic",
     "set": "Sun-Sunder Attire",
-    "description": "A brick red brushed cotton headpiece with braided cord, takes polish badly but wears well; built to shed rain and hold its warmth. Some claim it turns glances aside, but not eyes that matter."
+    "description": "A brick red brushed cotton headpiece with braided cord, takes polish badly but wears well; built to shed rain and hold its warmth. Some claim it turns glances aside, but not eyes that matter.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010070",
@@ -565,7 +985,13 @@
     "slot": "chest",
     "rarity": "mythic",
     "set": "Sun-Sunder Attire",
-    "description": "A ash‑white spun flax garment finished with hidden ties. It hides a thin inner pocket for letters and is kept near the hearth and mended often. A faded stitch on the hem matches a crest no one admits using."
+    "description": "A ash‑white spun flax garment finished with hidden ties. It hides a thin inner pocket for letters and is kept near the hearth and mended often. A faded stitch on the hem matches a crest no one admits using.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010071",
@@ -573,7 +999,13 @@
     "slot": "boots",
     "rarity": "mythic",
     "set": "Sun-Sunder Attire",
-    "description": "Footwear in river‑blue hand‑loomed hemp with obsidian beads. It is surprisingly quiet when you move and is stitched to move quietly through crowded halls. It has turned up in ledgers that never list an owner."
+    "description": "Footwear in river‑blue hand‑loomed hemp with obsidian beads. It is surprisingly quiet when you move and is stitched to move quietly through crowded halls. It has turned up in ledgers that never list an owner.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010072",
@@ -581,7 +1013,13 @@
     "slot": "head",
     "rarity": "mythic",
     "set": "Veilwalker Attire",
-    "description": "A smoke‑gray spun flax headpiece with obsidian beads, carries old stains that never quite lift; favored by caravan hands and ferry keepers. More than one gate guard remembers it without recalling the face beneath."
+    "description": "A smoke‑gray spun flax headpiece with obsidian beads, carries old stains that never quite lift; favored by caravan hands and ferry keepers. More than one gate guard remembers it without recalling the face beneath.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010073",
@@ -589,7 +1027,13 @@
     "slot": "chest",
     "rarity": "mythic",
     "set": "Veilwalker Attire",
-    "description": "A brick red matte velvet garment finished with tin buttons. It carries old stains that never quite lift and is cut for long roads and colder mornings. A faded stitch on the hem matches a crest no one admits using."
+    "description": "A brick red matte velvet garment finished with tin buttons. It carries old stains that never quite lift and is cut for long roads and colder mornings. A faded stitch on the hem matches a crest no one admits using.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010074",
@@ -597,7 +1041,13 @@
     "slot": "boots",
     "rarity": "mythic",
     "set": "Veilwalker Attire",
-    "description": "Footwear in brick red felted wool with braided cord. It hides a thin inner pocket for letters and is kept near the hearth and mended often. Bards argue whether it was meant for mourning or marriage."
+    "description": "Footwear in brick red felted wool with braided cord. It hides a thin inner pocket for letters and is kept near the hearth and mended often. Bards argue whether it was meant for mourning or marriage.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010075",
@@ -605,7 +1055,13 @@
     "slot": "head",
     "rarity": "mythic",
     "set": "Star-eaten Attire",
-    "description": "A dawn‑gold spun flax headpiece with bone toggles, smells faintly of smoke and spice; meant to impress without shouting. A traveling priest once refused alms unless it was left at the door."
+    "description": "A dawn‑gold spun flax headpiece with bone toggles, smells faintly of smoke and spice; meant to impress without shouting. A traveling priest once refused alms unless it was left at the door.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010076",
@@ -613,7 +1069,13 @@
     "slot": "chest",
     "rarity": "mythic",
     "set": "Star-eaten Attire",
-    "description": "A ember orange hand‑loomed hemp garment finished with herringbone edging. It is surprisingly quiet when you move and is saved for nights when music runs late. A traveling priest once refused alms unless it was left at the door."
+    "description": "A ember orange hand‑loomed hemp garment finished with herringbone edging. It is surprisingly quiet when you move and is saved for nights when music runs late. A traveling priest once refused alms unless it was left at the door.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010077",
@@ -621,7 +1083,13 @@
     "slot": "boots",
     "rarity": "mythic",
     "set": "Star-eaten Attire",
-    "description": "Footwear in ash‑white soft leather with frayed tassels. It keeps its color even after hard rain and is cut for long roads and colder mornings. Some claim it turns glances aside, but not eyes that matter."
+    "description": "Footwear in ash‑white soft leather with frayed tassels. It keeps its color even after hard rain and is cut for long roads and colder mornings. Some claim it turns glances aside, but not eyes that matter.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010078",
@@ -629,7 +1097,13 @@
     "slot": "head",
     "rarity": "relic",
     "set": "Pilgrim Queen's Attire",
-    "description": "A moss green soft leather headpiece with frayed tassels, carries old stains that never quite lift; for slipping through markets without drawing notice. It has turned up in ledgers that never list an owner."
+    "description": "A moss green soft leather headpiece with frayed tassels, carries old stains that never quite lift; for slipping through markets without drawing notice. It has turned up in ledgers that never list an owner.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010079",
@@ -637,7 +1111,13 @@
     "slot": "chest",
     "rarity": "relic",
     "set": "Pilgrim Queen's Attire",
-    "description": "A ember orange spun flax garment finished with hidden ties. It breathes better than it looks and is saved for nights when music runs late. It’s said the cloth hates silence and softens when it hears singing."
+    "description": "A ember orange spun flax garment finished with hidden ties. It breathes better than it looks and is saved for nights when music runs late. It’s said the cloth hates silence and softens when it hears singing.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010080",
@@ -645,7 +1125,13 @@
     "slot": "boots",
     "rarity": "relic",
     "set": "Pilgrim Queen's Attire",
-    "description": "Footwear in iron black soft leather with simple whipstitch. It breathes better than it looks and is for slipping through markets without drawing notice. A traveling priest once refused alms unless it was left at the door."
+    "description": "Footwear in iron black soft leather with simple whipstitch. It breathes better than it looks and is for slipping through markets without drawing notice. A traveling priest once refused alms unless it was left at the door.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010081",
@@ -653,7 +1139,13 @@
     "slot": "head",
     "rarity": "relic",
     "set": "Oracle's Silence Attire",
-    "description": "A dawn‑gold dyed linen headpiece with copper stitchwork, carries old stains that never quite lift; stitched to move quietly through crowded halls. Bards argue whether it was meant for mourning or marriage."
+    "description": "A dawn‑gold dyed linen headpiece with copper stitchwork, carries old stains that never quite lift; stitched to move quietly through crowded halls. Bards argue whether it was meant for mourning or marriage.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010082",
@@ -661,7 +1153,13 @@
     "slot": "chest",
     "rarity": "relic",
     "set": "Oracle's Silence Attire",
-    "description": "A dawn‑gold spun flax garment finished with braided cord. It hides a thin inner pocket for letters and is favored by caravan hands and ferry keepers. A traveling priest once refused alms unless it was left at the door."
+    "description": "A dawn‑gold spun flax garment finished with braided cord. It hides a thin inner pocket for letters and is favored by caravan hands and ferry keepers. A traveling priest once refused alms unless it was left at the door.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010083",
@@ -669,7 +1167,13 @@
     "slot": "boots",
     "rarity": "relic",
     "set": "Oracle's Silence Attire",
-    "description": "Footwear in brick red raw silk with simple whipstitch. It warms quickly once you start walking and is stitched to move quietly through crowded halls. Some claim it turns glances aside, but not eyes that matter."
+    "description": "Footwear in brick red raw silk with simple whipstitch. It warms quickly once you start walking and is stitched to move quietly through crowded halls. Some claim it turns glances aside, but not eyes that matter.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010084",
@@ -677,7 +1181,13 @@
     "slot": "head",
     "rarity": "relic",
     "set": "The Unmoored Attire",
-    "description": "A midnight blue raw silk headpiece with simple whipstitch, breathes better than it looks; meant to impress without shouting. Old stories say a bargain was sealed while it was worn."
+    "description": "A midnight blue raw silk headpiece with simple whipstitch, breathes better than it looks; meant to impress without shouting. Old stories say a bargain was sealed while it was worn.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010085",
@@ -685,7 +1195,13 @@
     "slot": "chest",
     "rarity": "relic",
     "set": "The Unmoored Attire",
-    "description": "A river‑blue matte velvet garment finished with simple whipstitch. It hides a thin inner pocket for letters and is for slipping through markets without drawing notice. It’s said the cloth hates silence and softens when it hears singing."
+    "description": "A river‑blue matte velvet garment finished with simple whipstitch. It hides a thin inner pocket for letters and is for slipping through markets without drawing notice. It’s said the cloth hates silence and softens when it hears singing.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010086",
@@ -693,97 +1209,181 @@
     "slot": "boots",
     "rarity": "relic",
     "set": "The Unmoored Attire",
-    "description": "Footwear in river‑blue oiled wool with bone toggles. It takes polish badly but wears well and is saved for nights when music runs late. A traveling priest once refused alms unless it was left at the door."
+    "description": "Footwear in river‑blue oiled wool with bone toggles. It takes polish badly but wears well and is saved for nights when music runs late. A traveling priest once refused alms unless it was left at the door.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010087",
     "name": "Patchwork Mantle",
     "slot": "back",
     "rarity": "uncommon",
-    "description": "A draped piece of river‑blue brushed cotton with bone toggles. It hides a thin inner pocket for letters and is cut for long roads and colder mornings."
+    "description": "A draped piece of river‑blue brushed cotton with bone toggles. It hides a thin inner pocket for letters and is cut for long roads and colder mornings.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010088",
     "name": "Traveler’s Wide-Brim Hat",
     "slot": "head",
     "rarity": "relic",
-    "description": "A wine‑dark oiled wool headpiece with frayed tassels, smells faintly of smoke and spice; saved for nights when music runs late. More than one gate guard remembers it without recalling the face beneath."
+    "description": "A wine‑dark oiled wool headpiece with frayed tassels, smells faintly of smoke and spice; saved for nights when music runs late. More than one gate guard remembers it without recalling the face beneath.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010089",
     "name": "Silk Scarf with Silver Bells",
     "slot": "back",
     "rarity": "common",
-    "description": "A draped piece of wine‑dark raw silk with copper stitchwork. It carries old stains that never quite lift and is kept for fairs, vows, and funerals alike."
+    "description": "A draped piece of wine‑dark raw silk with copper stitchwork. It carries old stains that never quite lift and is kept for fairs, vows, and funerals alike.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010090",
     "name": "Rogue’s Shadowhood",
     "slot": "head",
     "rarity": "legendary",
-    "description": "A dawn‑gold soft leather headpiece with copper stitchwork, hides a thin inner pocket for letters; built to shed rain and hold its warmth. A faded stitch on the hem matches a crest no one admits using."
+    "description": "A dawn‑gold soft leather headpiece with copper stitchwork, hides a thin inner pocket for letters; built to shed rain and hold its warmth. A faded stitch on the hem matches a crest no one admits using.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010091",
     "name": "Pilgrim’s Vest",
     "slot": "chest",
     "rarity": "common",
-    "description": "A iron black felted wool garment finished with bone toggles. It hides a thin inner pocket for letters and is kept near the hearth and mended often."
+    "description": "A iron black felted wool garment finished with bone toggles. It hides a thin inner pocket for letters and is kept near the hearth and mended often.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010092",
     "name": "Seafarer’s Sash",
     "slot": "back",
     "rarity": "common",
-    "description": "A draped piece of river‑blue hand‑loomed hemp with simple whipstitch. It breathes better than it looks and is for slipping through markets without drawing notice."
+    "description": "A draped piece of river‑blue hand‑loomed hemp with simple whipstitch. It breathes better than it looks and is for slipping through markets without drawing notice.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010093",
     "name": "Scholar’s Gown",
     "slot": "chest",
     "rarity": "common",
-    "description": "A ember orange brushed cotton garment finished with braided cord. It smells faintly of smoke and spice and is kept for fairs, vows, and funerals alike."
+    "description": "A ember orange brushed cotton garment finished with braided cord. It smells faintly of smoke and spice and is kept for fairs, vows, and funerals alike.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010094",
     "name": "Dancer’s Anklets",
     "slot": "boots",
     "rarity": "uncommon",
-    "description": "Footwear in iron black spun flax with simple whipstitch. It hides a thin inner pocket for letters and is built to shed rain and hold its warmth."
+    "description": "Footwear in iron black spun flax with simple whipstitch. It hides a thin inner pocket for letters and is built to shed rain and hold its warmth.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010095",
     "name": "Merchant’s Doublet",
     "slot": "chest",
     "rarity": "exotic",
-    "description": "A brick red soft leather garment finished with tin buttons. It shows careful mending at the elbow and is worn by guides who know the byways. Some claim it turns glances aside, but not eyes that matter."
+    "description": "A brick red soft leather garment finished with tin buttons. It shows careful mending at the elbow and is worn by guides who know the byways. Some claim it turns glances aside, but not eyes that matter.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010096",
     "name": "Hunter’s Tabard",
     "slot": "chest",
     "rarity": "common",
-    "description": "A midnight blue oiled wool garment finished with tin buttons. It keeps its color even after hard rain and is meant to impress without shouting."
+    "description": "A midnight blue oiled wool garment finished with tin buttons. It keeps its color even after hard rain and is meant to impress without shouting.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010097",
     "name": "Nomad’s Bandana",
     "slot": "head",
     "rarity": "rare",
-    "description": "A dawn‑gold oiled wool headpiece with hidden ties, warms quickly once you start walking; kept for fairs, vows, and funerals alike. It’s said the cloth hates silence and softens when it hears singing."
+    "description": "A dawn‑gold oiled wool headpiece with hidden ties, warms quickly once you start walking; kept for fairs, vows, and funerals alike. It’s said the cloth hates silence and softens when it hears singing.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010098",
     "name": "Alchemist’s Apron",
     "slot": "chest",
     "rarity": "rare",
-    "description": "A river‑blue hand‑loomed hemp garment finished with copper stitchwork. It smells faintly of smoke and spice and is cut for long roads and colder mornings. It has turned up in ledgers that never list an owner."
+    "description": "A river‑blue hand‑loomed hemp garment finished with copper stitchwork. It smells faintly of smoke and spice and is cut for long roads and colder mornings. It has turned up in ledgers that never list an owner.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "id": "IT00010099",
     "name": "Minstrel’s Shroud",
     "slot": "back",
     "rarity": "uncommon",
-    "description": "A draped piece of wine‑dark spun flax with tin buttons. It keeps its color even after hard rain and is saved for nights when music runs late."
+    "description": "A draped piece of wine‑dark spun flax with tin buttons. It keeps its color even after hard rain and is saved for nights when music runs late.",
+    "fixed_bonus": [],
+    "possible_bonus": [],
+    "fixed_resist": [],
+    "possible_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   }
 ]

@@ -8,9 +8,6 @@
     "weight": 40,
     "description": "A common ring crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {},
-    "accessory_trait": "none",
     "id": "IT00005001",
     "desc": "A common ring to our current spec.",
     "bonus_template": {
@@ -25,21 +22,28 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "possible_bonus": [
+      "attack"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
-    "category": "accessory",
-    "slot": "ring",
+    "id": "IT00005002",
     "name": "Runed Signet",
+    "type": "",
     "rarity": "uncommon",
     "value": 120,
     "weight": 35,
     "description": "A uncommon ring crafted with care.",
+    "slot": "ring",
+    "category": "accessory",
     "components": [],
-    "bonus": {},
-    "resist": {},
-    "accessory_trait": "none",
-    "id": "IT00005002",
+    "trait": [],
     "desc": "A uncommon ring to our current spec.",
     "bonus_template": {
       "arc": [
@@ -61,7 +65,19 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_bonus": [
+      "PHY"
+    ],
+    "possible_bonus": [
+      "arc",
+      "crit_chance",
+      "kno"
+    ],
+    "possible_resist": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -72,11 +88,6 @@
     "weight": 30,
     "description": "A rare ring crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {
-      "shocked": 10
-    },
-    "accessory_trait": "none",
     "id": "IT00005003",
     "desc": "A rare ring to our current spec.",
     "bonus_template": {
@@ -95,21 +106,31 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_resist": [
+      "shocked"
+    ],
+    "possible_bonus": [
+      "attack",
+      "tec"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
-    "category": "accessory",
-    "slot": "ring",
+    "id": "IT00005004",
     "name": "Kingsfall Signet",
+    "type": "",
     "rarity": "legendary",
     "value": 2100,
     "weight": 26,
     "description": "A legendary ring crafted with care.",
+    "slot": "ring",
+    "category": "accessory",
     "components": [],
-    "bonus": {},
-    "resist": {},
-    "accessory_trait": "echo_strike",
-    "id": "IT00005004",
+    "trait": [],
     "desc": "A legendary ring to our current spec.",
     "bonus_template": {
       "attack": [
@@ -127,7 +148,18 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_trait": [
+      "echo_strike"
+    ],
+    "possible_bonus": [
+      "attack",
+      "phy"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -138,11 +170,6 @@
     "weight": 24,
     "description": "A mythic ring crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {
-      "charmed": 15
-    },
-    "accessory_trait": "soulbound",
     "id": "IT00005005",
     "desc": "A mythic ring to our current spec.",
     "bonus_template": {
@@ -165,7 +192,21 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_trait": [
+      "soulbound"
+    ],
+    "fixed_resist": [
+      "charmed"
+    ],
+    "possible_bonus": [
+      "crit_chance",
+      "ins",
+      "soc"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -176,9 +217,6 @@
     "weight": 40,
     "description": "A common necklace crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {},
-    "accessory_trait": "none",
     "id": "IT00005006",
     "desc": "A common necklace to our current spec.",
     "bonus_template": {
@@ -193,7 +231,15 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "possible_bonus": [
+      "vit"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -204,11 +250,6 @@
     "weight": 35,
     "description": "A uncommon necklace crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {
-      "slowed": 8
-    },
-    "accessory_trait": "none",
     "id": "IT00005007",
     "desc": "A uncommon necklace to our current spec.",
     "bonus_template": {
@@ -227,7 +268,18 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_resist": [
+      "slowed"
+    ],
+    "possible_bonus": [
+      "fth",
+      "ins"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -238,11 +290,6 @@
     "weight": 30,
     "description": "A rare necklace crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {
-      "burnt": 12
-    },
-    "accessory_trait": "none",
     "id": "IT00005008",
     "desc": "A rare necklace to our current spec.",
     "bonus_template": {
@@ -261,7 +308,18 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_resist": [
+      "burnt"
+    ],
+    "possible_bonus": [
+      "arc",
+      "attack"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -272,9 +330,6 @@
     "weight": 26,
     "description": "A legendary necklace crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {},
-    "accessory_trait": "aura_guard",
     "id": "IT00005009",
     "desc": "A legendary necklace to our current spec.",
     "bonus_template": {
@@ -297,7 +352,19 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_trait": [
+      "aura_guard"
+    ],
+    "possible_bonus": [
+      "armor",
+      "fth",
+      "vit"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -308,11 +375,6 @@
     "weight": 24,
     "description": "A mythic necklace crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {
-      "distracted": 15
-    },
-    "accessory_trait": "timebend",
     "id": "IT00005010",
     "desc": "A mythic necklace to our current spec.",
     "bonus_template": {
@@ -331,7 +393,20 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_trait": [
+      "timebend"
+    ],
+    "fixed_resist": [
+      "distracted"
+    ],
+    "possible_bonus": [
+      "arc",
+      "kno"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -342,9 +417,6 @@
     "weight": 40,
     "description": "A common bracelet crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {},
-    "accessory_trait": "none",
     "id": "IT00005011",
     "desc": "A common bracelet to our current spec.",
     "bonus_template": {
@@ -359,7 +431,15 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "possible_bonus": [
+      "tec"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -370,9 +450,6 @@
     "weight": 35,
     "description": "A uncommon bracelet crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {},
-    "accessory_trait": "none",
     "id": "IT00005012",
     "desc": "A uncommon bracelet to our current spec.",
     "bonus_template": {
@@ -391,7 +468,16 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "possible_bonus": [
+      "arc",
+      "armor"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -402,11 +488,6 @@
     "weight": 30,
     "description": "A rare bracelet crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {
-      "bleeding": 12
-    },
-    "accessory_trait": "lifedrink",
     "id": "IT00005013",
     "desc": "A rare bracelet to our current spec.",
     "bonus_template": {
@@ -421,7 +502,19 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_trait": [
+      "lifedrink"
+    ],
+    "fixed_resist": [
+      "bleeding"
+    ],
+    "possible_bonus": [
+      "attack"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -432,11 +525,6 @@
     "weight": 26,
     "description": "A legendary bracelet crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {
-      "burnt": 15
-    },
-    "accessory_trait": "none",
     "id": "IT00005014",
     "desc": "A legendary bracelet to our current spec.",
     "bonus_template": {
@@ -455,7 +543,18 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_resist": [
+      "burnt"
+    ],
+    "possible_bonus": [
+      "attack",
+      "phy"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -466,11 +565,6 @@
     "weight": 24,
     "description": "A mythic bracelet crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {
-      "tormented": 10
-    },
-    "accessory_trait": "warding",
     "id": "IT00005015",
     "desc": "A mythic bracelet to our current spec.",
     "bonus_template": {
@@ -489,7 +583,20 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_trait": [
+      "warding"
+    ],
+    "fixed_resist": [
+      "tormented"
+    ],
+    "possible_bonus": [
+      "armor",
+      "vit"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -500,9 +607,6 @@
     "weight": 40,
     "description": "A common charm crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {},
-    "accessory_trait": "none",
     "id": "IT00005016",
     "desc": "A common charm to our current spec.",
     "bonus_template": {
@@ -517,7 +621,15 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "possible_bonus": [
+      "fth"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "fixed_resist": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -528,11 +640,6 @@
     "weight": 35,
     "description": "A uncommon charm crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {
-      "marked": 10
-    },
-    "accessory_trait": "none",
     "id": "IT00005017",
     "desc": "A uncommon charm to our current spec.",
     "bonus_template": {
@@ -551,7 +658,18 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_resist": [
+      "marked"
+    ],
+    "possible_bonus": [
+      "fth",
+      "soc"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -562,11 +680,6 @@
     "weight": 30,
     "description": "A rare charm crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {
-      "distracted": 10
-    },
-    "accessory_trait": "none",
     "id": "IT00005018",
     "desc": "A rare charm to our current spec.",
     "bonus_template": {
@@ -581,7 +694,17 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_resist": [
+      "distracted"
+    ],
+    "possible_bonus": [
+      "ins"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -592,11 +715,6 @@
     "weight": 26,
     "description": "A legendary charm crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {
-      "stunned": 15
-    },
-    "accessory_trait": "none",
     "id": "IT00005019",
     "desc": "A legendary charm to our current spec.",
     "bonus_template": {
@@ -615,7 +733,18 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_resist": [
+      "stunned"
+    ],
+    "possible_bonus": [
+      "arc",
+      "kno"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "fixed_trait": [],
+    "possible_trait": []
   },
   {
     "category": "accessory",
@@ -626,12 +755,6 @@
     "weight": 24,
     "description": "A mythic charm crafted with care.",
     "components": [],
-    "bonus": {},
-    "resist": {
-      "exhausted": 15,
-      "bleeding": 10
-    },
-    "accessory_trait": "soul_anchor",
     "id": "IT00005020",
     "desc": "A mythic charm to our current spec.",
     "bonus_template": {
@@ -650,6 +773,20 @@
       "scale_with_level": true,
       "seed_source": "drop_context"
     },
-    "resist_template": {}
+    "resist_template": {},
+    "fixed_trait": [
+      "soul_anchor"
+    ],
+    "fixed_resist": [
+      "bleeding",
+      "exhausted"
+    ],
+    "possible_bonus": [
+      "arc",
+      "kno"
+    ],
+    "possible_resist": [],
+    "fixed_bonus": [],
+    "possible_trait": []
   }
 ]
