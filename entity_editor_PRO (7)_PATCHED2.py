@@ -7,6 +7,19 @@ from typing import Any, List, Optional, Sequence, Dict, Tuple
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 
+TYPE_OPTIONS = {
+    "weapons": ["shortsword","longsword","dagger","axe","mace","spear","bow","crossbow","staff","wand","warhammer","halberd","glaive","greatsword","shield"],
+    "armour":  ["head","chest","legs","feet","hands","cloak","belt","shield"],
+    "clothing":["hat","hood","mask","robe","tunic","vest","pants","boots","gloves","cloak","belt"],
+    "accessories":["ring","amulet","necklace","bracelet","bracer","circlet"],
+    "consumables":["potion","elixir","oil","bomb","ration","phial","tincture","tea","brew"],
+    "materials":["ore","ingot","leather","cloth","hide","plank","pane","crystal","thread","powder"],
+    "trinkets":["pendant","figurine","vase","goblet","mirror","fan","brooch","box","bead","tin"],
+    "misc":["misc"]
+}
+RARITY_OPTIONS = ["common","uncommon","rare","epic","legendary","relic"]
+
+
 import tkinter.font as tkfont
 def apply_ui_styling(root: tk.Tk, scale: float = 1.15):
     try:
@@ -462,7 +475,113 @@ class ComponentsField(ttk.Frame):
         return list(self.selected)
 
 
+
+class KeyPickerField(ttk.Frame):
+    """
+    Generic single-select picker with available list on the left,
+    selected list on the right, Add/Remove buttons, and click-outside deselection.
+    """
+    def __init__(self, master, all_keys, initial=None, title_left="Available", title_right="Selected"):
+        super().__init__(master)
+        self.all_keys = list(dict.fromkeys(all_keys))
+        self.selected = []
+        if initial:
+            for k in initial:
+                if isinstance(k, str) and k not in self.selected:
+                    self.selected.append(k)
+
+        self.columnconfigure(0, weight=1); self.columnconfigure(1, weight=1)
+
+        left = ttk.Frame(self); left.grid(row=0, column=0, sticky="nsew", padx=(0,8))
+        ttk.Label(left, text=title_left).pack(anchor="w")
+        self.lb = tk.Listbox(left, selectmode="browse", height=10, exportselection=False)
+        self.lb.pack(fill="both", expand=True, pady=(4,0))
+
+        btns = ttk.Frame(left); btns.pack(fill="x", pady=(6,0))
+        ttk.Button(btns, text="Add ▶", command=self._add).pack(side="left", expand=True, fill="x", padx=3)
+        ttk.Button(btns, text="◀ Remove", command=self._remove).pack(side="left", expand=True, fill="x", padx=3)
+
+        right = ttk.Frame(self); right.grid(row=0, column=1, sticky="nsew")
+        ttk.Label(right, text=title_right).pack(anchor="w")
+        self.sel = tk.Listbox(right, selectmode="browse", height=10, exportselection=False)
+        self.sel.pack(fill="both", expand=True, pady=(4,0))
+
+        self._refill_available()
+        self._sync_selected()
+
+        # Click-outside clears selections (but not when clicking inside this widget)
+        def _is_descendant(widget, container):
+            try:
+                w = widget
+                while w is not None:
+                    if w == container:
+                        return True
+                    w = getattr(w, "master", None)
+            except Exception:
+                pass
+            return False
+
+        def _global_click_clear(event, self=self):
+            try:
+                if not _is_descendant(event.widget, self):
+                    self.lb.selection_clear(0, "end")
+                    self.sel.selection_clear(0, "end")
+            except Exception:
+                pass
+        self.winfo_toplevel().bind("<Button-1>", _global_click_clear, add="+")
+
+    def _refill_available(self):
+        self.lb.delete(0, "end")
+        for k in self.all_keys:
+            if k not in self.selected:
+                self.lb.insert("end", k)
+
+    def _sync_selected(self):
+        self.sel.delete(0, "end")
+        for k in self.selected:
+            self.sel.insert("end", k)
+
+    def _add(self):
+        if self.lb.curselection():
+            k = self.lb.get(self.lb.curselection()[0])
+            if k not in self.selected:
+                self.selected.append(k)
+                self._refill_available()
+                self._sync_selected()
+        try:
+            self.lb.selection_clear(0, "end"); self.sel.selection_clear(0, "end")
+        except Exception:
+            pass
+
+    def _remove(self):
+        pick = None
+        if self.sel.curselection():
+            pick = self.sel.get(self.sel.curselection()[0])
+        elif self.lb.curselection():
+            pick = self.lb.get(self.lb.curselection()[0])
+        if pick is not None and pick in self.selected:
+            self.selected = [x for x in self.selected if x != pick]
+            self._refill_available()
+            self._sync_selected()
+        try:
+            self.lb.selection_clear(0, "end"); self.sel.selection_clear(0, "end")
+        except Exception:
+            pass
+
+    def set(self, keys):
+        self.selected = []
+        for k in keys or []:
+            if isinstance(k, str) and k not in self.selected:
+                self.selected.append(k)
+        self._refill_available()
+        self._sync_selected()
+
+    def get(self):
+        return list(self.selected)
+
 class KeyValueForm(ttk.Frame):
+    def set_category_context(self, cat: str):
+        self.context_category = (cat or '').lower()
     def __init__(self, master, on_change=None):
         super().__init__(master)
         self.on_change = on_change
@@ -501,73 +620,50 @@ class KeyValueForm(ttk.Frame):
             self.canvas.pack(side="left", fill="both", expand=True); self.scroll.pack(side="right", fill="y")
             self.toggle_btn.config(text="Raw JSON")
 
-    def _make_widget_for(self, key: str, val: Any):
-        # Roll config toggles
-        if key in ('randomise_on_pickup','randomize_on_pickup','randomise_on_pickup_enabled'):
-            var = tk.BooleanVar(value=bool(val))
-            cb = ttk.Checkbutton(self.inner, text='Randomise on pickup', variable=var)
-            cb.var = var
-            return ('bool_toggle', cb)
-        if key in ('level_bind','bind_to_level','level_locked'):
-            var = tk.BooleanVar(value=bool(val))
-            cb = ttk.Checkbutton(self.inner, text='Bind to level on pickup', variable=var)
-            cb.var = var
-            return ('bool_toggle', cb)
-        if key in ('scale_with_level','scales_with_level'):
-            # Deprecated: hide from editor
-            return ('hidden', None)
+    
+def _make_widget_for(self, key: str, val: Any):
+    # Category comes from Items File; hide it here
+    if key == "category":
+        return ("hidden", None)
 
-        if key in ("fixed_bonus","possible_bonus"):
-            w = KeyPickerField(self.inner, BONUS_KEYS, [v for v in (val or []) if isinstance(v,str)], "Available Bonus", "Selected Bonus")
-            return (f"{key}_keys", w)
-        if key in ("fixed_resist","possible_resist"):
-            w = KeyPickerField(self.inner, RESIST_KEYS, [v for v in (val or []) if isinstance(v,str)], "Available Resist", "Selected Resist")
-            return (f"{key}_keys", w)
-        if key in ("fixed_trait","possible_trait"):
-            w = KeyPickerField(self.inner, TRAIT_OPTIONS, [v for v in (val or []) if isinstance(v,str)], "Available Trait", "Selected Trait")
-            return (f"{key}_keys", w)
-        if key == "slot":
-            var = tk.StringVar(value=str(val or ""))
-            entry = ttk.Entry(self.inner, textvariable=var, state="readonly")
-            return ("slot_readonly", (entry, var))
-        if key == "category":
-            w = ComboField(self.inner, CATEGORY_OPTIONS, str(val or "")); return ("category_combo", w)
-        if key == "type":
-            var = tk.StringVar(value=str(val or ""))
-            ent = ttk.Entry(self.inner, textvariable=var)
-            def _on_type_change(*_):
-                snap = {}
-                cat_tuple = self.inputs.get("category")
-                if cat_tuple and cat_tuple[0] == "category_combo":
-                    snap["category"] = cat_tuple[1].get()
-                snap["type"] = var.get()
-                inferred = derive_slot(snap)
-                sl_tuple = self.inputs.get("slot")
-                if sl_tuple and sl_tuple[0] == "slot_readonly":
-                    sl_tuple[1][1].set(inferred)
-            var.trace_add("write", _on_type_change)
-            return ("scalar", ent)
-        if key == "components":
-            labels = list(ALL_ITEMS_LABEL_TO_ID.keys())
-            w = ComponentsField(self.inner, labels)
-            init_labels = []
-            if isinstance(val, list):
-                for v in val:
-                    if isinstance(v, str):
-                        init_labels.append(ALL_ITEMS_ID_TO_LABEL.get(v, v))
-            w.set(init_labels)
-            return ("components_labels", w)
-        if key in ("bonus","resist","trait"):
-            text = tk.Text(self.inner, height=3, width=40)
-            text.insert("1.0", json.dumps(val, ensure_ascii=False, indent=2))
-            text.configure(state="disabled")
-            return ("legacy_json", text)
-        if isinstance(val, (dict, list)):
-            text = tk.Text(self.inner, height=4, width=40); text.insert("1.0", json.dumps(val, ensure_ascii=False, indent=2))
-            return ("json", text)
-        entry = ttk.Entry(self.inner); entry.insert(0, "" if val is None else str(val))
-        return ("scalar", entry)
+    # Rarity dropdown
+    if key == "rarity":
+        w = ComboField(self.inner, RARITY_OPTIONS, str(val or ""))
+        return ("rarity_combo", w)
 
+    # Type dropdown scoped by current file category
+    if key == "type":
+        cat = (self.context_category or "").lower()
+        options = TYPE_OPTIONS.get(cat, sorted({t for arr in TYPE_OPTIONS.values() for t in arr}))
+        w = ComboField(self.inner, options, str(val or ""))
+        return ("type_combo", w)
+
+    # Existing cases (bonus/resist/trait pickers, etc.)
+    if key in ("fixed_bonus","possible_bonus"):
+        w = KeyPickerField(self.inner, BONUS_KEYS, [v for v in (val or []) if isinstance(v,str)], "Available Bonus", "Selected Bonus")
+        return (f"{key}_keys", w)
+    if key in ("fixed_resist","possible_resist"):
+        w = KeyPickerField(self.inner, RESIST_KEYS, [v for v in (val or []) if isinstance(v,str)], "Available Resist", "Selected Resist")
+        return (f"{key}_keys", w)
+    if key in ("fixed_trait","possible_trait"):
+        w = KeyPickerField(self.inner, TRAIT_OPTIONS, [v for v in (val or []) if isinstance(v,str)], "Available Trait", "Selected Trait")
+        return (f"{key}_keys", w)
+    if key == "slot":
+        var = tk.StringVar(value=str(val or ""))
+        entry = ttk.Entry(self.inner, textvariable=var, state="readonly")
+        return ("slot_readonly", (entry, var))
+    if key in ("bonus","resist","trait"):
+        text = tk.Text(self.inner, height=3, width=40)
+        try: text.insert("1.0", json.dumps(val, ensure_ascii=False, indent=2))
+        except Exception: text.insert("1.0", str(val))
+        text.configure(state="disabled")
+        return ("legacy_json", text)
+    if isinstance(val, (dict, list)):
+        text = tk.Text(self.inner, height=4, width=40)
+        text.insert("1.0", json.dumps(val, ensure_ascii=False, indent=2))
+        return ("json", text)
+    entry = ttk.Entry(self.inner); entry.insert(0, "" if val is None else str(val))
+    return ("scalar", entry)
     def set_object(self, obj: dict):
         self.current_obj = dict(obj) if obj else {}
         # Hide deprecated key entirely
@@ -597,6 +693,8 @@ class KeyValueForm(ttk.Frame):
         keys_sorted = preferred + [k for k in keys if k not in preferred]
         row = 0
         for k in keys_sorted:
+            if k == 'category':
+                continue
             val = self.current_obj.get(k)
             ttk.Label(self.inner, text=k).grid(row=row, column=0, sticky="w", padx=6, pady=4)
             kind, widget = self._make_widget_for(k, val)
@@ -667,7 +765,9 @@ class KeyValueForm(ttk.Frame):
         try:
             out["slot"] = derive_slot(out)
         except Exception:
-            out["slot"] = out.get("slot","") or ""
+            out['slot'] = out.get('slot','') or ''
+        if self.context_category:
+            out['category'] = self.context_category
         # Remove deprecated key
         if 'scale_with_level' in out:
             out.pop('scale_with_level', None)
@@ -1121,7 +1221,7 @@ class NPCsTab(ttk.Frame):
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("RPGenesis Entity Editor")
+        self.title("RPGenesis Entity Editor — PRO(7) PATCHED2")
         self.geometry("1160x760"); self.minsize(980, 640)
 
         nb = ttk.Notebook(self); nb.pack(fill="both", expand=True)
