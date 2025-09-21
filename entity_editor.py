@@ -1,11 +1,23 @@
-
 #!/usr/bin/env python3
-# RPGenesis Entity Editor — Fixed build (has set_object, components filter, roll preview, derived slot)
-import json, os, re, sys, time, random
+# RPGenesis Entity Editor — PRO(7) PATCHED — FIXED
+# - Items & NPC editor
+# - New stat system (PHY, TEC, ARC, VIT, KNO, INS, SOC, FTH)
+# - Components picker (dual-list)
+# - Rarity/type dropdowns (scoped by category)
+# - Derived slot (readonly)
+# - Weighted roll preview (loot_rolls.json)
+# - JSON containers: bare list or {"items":[]}/{"npcs":[]}
+# - Auto IDs (IT######## / NP########)
+# - Clean Tk UI, raw JSON toggle
+
+import json, os, re, time, random, sys
 from dataclasses import dataclass
 from typing import Any, List, Optional, Sequence, Dict, Tuple
+
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
+
+# ---------- Constants ----------
 
 TYPE_OPTIONS = {
     "weapons": ["shortsword","longsword","dagger","axe","mace","spear","bow","crossbow","staff","wand","warhammer","halberd","glaive","greatsword","shield"],
@@ -17,28 +29,8 @@ TYPE_OPTIONS = {
     "trinkets":["pendant","figurine","vase","goblet","mirror","fan","brooch","box","bead","tin"],
     "misc":["misc"]
 }
+
 RARITY_OPTIONS = ["common","uncommon","rare","epic","legendary","relic"]
-
-
-import tkinter.font as tkfont
-def apply_ui_styling(root: tk.Tk, scale: float = 1.15):
-    try:
-        root.tk.call('tk', 'scaling', scale)
-    except Exception: pass
-    style = ttk.Style(root)
-    try:
-        for theme in ("vista","clam","default"):
-            if theme in style.theme_names():
-                style.theme_use(theme); break
-    except Exception: pass
-    base = tkfont.nametofont("TkDefaultFont"); base.configure(family="Segoe UI", size=10)
-    mono = tkfont.nametofont("TkFixedFont");  mono.configure(family="Consolas", size=10)
-    style.configure("TLabel", font=("Segoe UI", 10))
-    style.configure("TButton", font=("Segoe UI", 10), padding=(8,5))
-    style.configure("TEntry", padding=4)
-    style.configure("TCombobox", padding=4)
-    style.configure("TNotebook.Tab", padding=(14,10))
-
 
 BASE_DIR   = os.path.abspath(os.path.dirname(__file__))
 ITEMS_DIR  = os.path.join(BASE_DIR, "data", "items")
@@ -47,27 +39,19 @@ NPCS_DIR   = os.path.join(BASE_DIR, "data", "npcs")
 RE_ID_ITEM = re.compile(r"^IT\d{8}$")
 RE_ID_NPC  = re.compile(r"^(?:NP|NPC)\d{8}$")
 
-SLOT_OPTIONS = [
-    "head","chest","legs","feet","hands","ring","amulet","cloak","belt",
-    "weapon","offhand","two_handed","consumable","material","misc"
-]
-CATEGORY_OPTIONS = [
-    "weapons","weapon","armour","armor","clothing","accessories","accessory",
-    "consumables","materials","quest","misc"
-]
-
 BONUS_KEYS = [
-    "PHY","TEC","ARC","VIT","INS","SOC","KNO","FTH",
+    "PHY","TEC","ARC","VIT","KNO","INS","SOC","FTH",
     "hp","mp","initiative","speed",
     "crit_chance","crit_damage",
     "armor","evasion","block",
-    "attack_rating","spell_power","penetration",
-    "attack","defense","stamina","strength","intelligence","dexterity","health","mana"
+    "attack_rating","spell_power","penetration"
 ]
+
 RESIST_KEYS = [
     "physical","fire","cold","lightning","poison","holy","arcane","shadow",
     "bleed","disease","stagger","charmed","slowed","burnt","distracted"
 ]
+
 TRAIT_OPTIONS = [
     "unique","set_piece","cursed","blessed",
     "fragile","heavy","lightweight",
@@ -90,6 +74,7 @@ DEFAULT_ITEM = {
     "fixed_resist": [], "possible_resist": [],
     "fixed_trait": [], "possible_trait": []
 }
+
 DEFAULT_NPC = {
     "id": "NP00000000",
     "name": "New NPC",
@@ -104,6 +89,34 @@ DEFAULT_NPC = {
     "personality": [],
     "notes": ""
 }
+
+# ---------- UI helpers ----------
+
+def apply_ui_styling(root: tk.Tk, scale: float = 1.15):
+    try:
+        root.tk.call('tk', 'scaling', scale)
+    except Exception:
+        pass
+    style = ttk.Style(root)
+    try:
+        for theme in ("vista","clam","default"):
+            if theme in style.theme_names():
+                style.theme_use(theme); break
+    except Exception:
+        pass
+    try:
+        import tkinter.font as tkfont
+        base = tkfont.nametofont("TkDefaultFont"); base.configure(family="Segoe UI", size=10)
+        mono = tkfont.nametofont("TkFixedFont");  mono.configure(family="Consolas", size=10)
+    except Exception:
+        pass
+    style.configure("TLabel", padding=(2,2))
+    style.configure("TButton", padding=(8,5))
+    style.configure("TEntry", padding=4)
+    style.configure("TCombobox", padding=4)
+    style.configure("TNotebook.Tab", padding=(14,10))
+
+# ---------- JSON I/O ----------
 
 @dataclass
 class Dataset:
@@ -166,8 +179,10 @@ def save_json_file(path: str, root_obj: Any, list_ref: List[Any], list_key: Opti
     with open(path, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
+# ---------- IDs & categories ----------
+
 def ensure_item_id(item, existing_ids):
-    _id = item.get("id","").strip()
+    _id = (item.get("id","") or "").strip()
     if RE_ID_ITEM.match(_id) and _id not in existing_ids:
         return _id
     base = 1
@@ -229,7 +244,8 @@ def rebuild_items_index(all_item_lists: List[List[dict]]):
     ALL_ITEMS_ID_TO_LABEL = id2label
     ALL_ITEMS_LABEL_TO_ID = {label: iid for iid, label in id2label.items()}
 
-# ---- Slot inference ----
+# ---------- Slot inference ----------
+
 def derive_slot(item: dict) -> str:
     t = str(item.get("type","") or "").strip().lower()
     cat = str(item.get("category","") or "").strip().lower()
@@ -267,6 +283,8 @@ def derive_slot(item: dict) -> str:
         return "material"
     return item.get("slot","") or "misc"
 
+# ---------- Composite fields ----------
+
 class ComboField(ttk.Frame):
     def __init__(self, master, values: List[str], initial: str = "", allow_custom=True):
         super().__init__(master)
@@ -287,200 +305,8 @@ class ComboField(ttk.Frame):
     def set(self, value: str):
         self.var.set(value or "")
 
-class MultiSelectField(ttk.Frame):
-    def __init__(self, master, options: List[str], initial: List[str] = None):
-        super().__init__(master)
-        self.options = list(options)
-        self.lb = tk.Listbox(self, selectmode="multiple", height=8, exportselection=False)
-        self.lb.pack(side="left", fill="both", expand=True)
-        for opt in self.options:
-            self.lb.insert("end", opt)
-        btns = ttk.Frame(self); btns.pack(side="left", fill="y", padx=4)
-        ttk.Button(btns, text="Add…", command=self.add_custom).pack(fill="x", pady=2)
-        ttk.Button(btns, text="Remove", command=self.remove_selected).pack(fill="x", pady=2)
-        self.set(initial or [])
-    def add_custom(self):
-        s = simpledialog.askstring("Add value", "Enter value:")
-        if not s: return
-        if s not in self.options:
-            self.options.append(s); self.lb.insert("end", s)
-        idx = self.options.index(s); self.lb.selection_set(idx)
-    def remove_selected(self):
-        for i in list(self.lb.curselection()):
-            self.lb.selection_clear(i)
-    def get(self) -> List[str]:
-        return [self.options[i] for i in self.lb.curselection()]
-    def set(self, values: List[str]):
-        self.lb.selection_clear(0, "end")
-        if not values: return
-        for i, opt in enumerate(self.options):
-            if opt in values:
-                self.lb.selection_set(i)
-
-
-
-class ComponentsField(ttk.Frame):
-    """
-    Components/materials picker with:
-    - Single-select available list
-    - Single-select selected list
-    - Add ▶ / ◀ Remove buttons
-    - Move Up / Move Down / Clear
-    - Category filter + text filter
-    - Click-outside deselect (does not interfere with buttons)
-    """
-    def __init__(self, master, labels):
-        super().__init__(master)
-        self.all_labels = list(sorted(set(labels)))
-        self.selected = []
-
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=1)
-
-        # LEFT: filters + available
-        left = ttk.Frame(self); left.grid(row=0, column=0, sticky="nsew", padx=(0,8))
-        top = ttk.Frame(left); top.pack(fill="x", pady=(0,6))
-        ttk.Label(top, text="Filter").pack(side="left")
-        self.filter_var = tk.StringVar()
-        ttk.Entry(top, textvariable=self.filter_var, width=24).pack(side="left", padx=(6,6))
-
-        self.cat_var = tk.StringVar(value="materials")
-        self.cat_combo = ttk.Combobox(
-            top, textvariable=self.cat_var, state="readonly", width=18,
-            values=("materials","armour","weapons","clothing","accessories","trinkets","consumables","misc")
-        )
-        self.cat_combo.pack(side="left")
-
-        self.lb = tk.Listbox(left, selectmode="browse", height=12, exportselection=False)
-        self.lb.pack(fill="both", expand=True)
-        btns = ttk.Frame(left); btns.pack(fill="x", pady=(6,0))
-        ttk.Button(btns, text="Add ▶", command=self._add).pack(side="left", expand=True, fill="x", padx=3)
-        ttk.Button(btns, text="◀ Remove", command=self._remove).pack(side="left", expand=True, fill="x", padx=3)
-
-        # RIGHT: selected
-        right = ttk.Frame(self); right.grid(row=0, column=1, sticky="nsew")
-        ttk.Label(right, text="Currently Selected").pack(anchor="w")
-        self.sel = tk.Listbox(right, selectmode="browse", height=14, exportselection=False)
-        self.sel.pack(fill="both", expand=True, pady=(4,0))
-        rbtns = ttk.Frame(right); rbtns.pack(fill="x", pady=(6,0))
-        ttk.Button(rbtns, text="Move Up", command=self._up).pack(side="left", expand=True, fill="x", padx=3)
-        ttk.Button(rbtns, text="Move Down", command=self._down).pack(side="left", expand=True, fill="x", padx=3)
-        ttk.Button(rbtns, text="Clear", command=self._clear).pack(side="left", expand=True, fill="x", padx=3)
-
-        # Bindings
-        self.filter_var.trace_add("write", lambda *_: self._refill())
-        self.cat_combo.bind("<<ComboboxSelected>>", lambda e: self._refill())
-
-        # Click-outside clears selections (but not when clicking inside this widget)
-        def _is_descendant(widget, container):
-            try:
-                w = widget
-                while w is not None:
-                    if w == container:
-                        return True
-                    w = getattr(w, "master", None)
-            except Exception:
-                pass
-            return False
-
-        def _global_click_clear(event, self=self):
-            try:
-                if not _is_descendant(event.widget, self):
-                    self.lb.selection_clear(0, "end")
-                    self.sel.selection_clear(0, "end")
-            except Exception:
-                pass
-        self.winfo_toplevel().bind("<Button-1>", _global_click_clear, add="+")
-
-        self._refill()
-
-    def _match_cat(self, label, cat):
-        L = label.lower()
-        if cat == "materials":   return any(w in L for w in ["ingot","ore","leather","cloth","hide","wood","herb","glass","crystal","thread","plate","plank","pane","powder"])
-        if cat == "armour":      return any(w in L for w in ["helm","hood","chest","cuirass","breast","greave","legging","boot","glove","gaunt","cloak","belt","shield","armor","armour"])
-        if cat == "weapons":     return any(w in L for w in ["sword","dagger","axe","mace","hammer","spear","bow","crossbow","staff","wand","polearm","halberd","glaive"])
-        if cat == "clothing":    return any(w in L for w in ["robe","tunic","vest","pants","trouser","skirt","kilt","hat","mask","glove","boot","shoe","belt","cloak"])
-        if cat == "accessories": return any(w in L for w in ["ring","amulet","necklace","talisman","bracelet","bracer","circlet"])
-        if cat == "trinkets":    return any(w in L for w in ["vase","figurine","goblet","pendant","mirror","fan","charm","bead","box","brooch","tin","mask","snow globe","paperweight","candleholder","kaleidoscope"])
-        if cat == "consumables": return any(w in L for w in ["potion","elixir","tonic","draft","draught","oil","bomb","phial","tincture","ration","water","brew","tea"])
-        return True
-
-    def _refill(self):
-        flt = (self.filter_var.get() or "").strip().lower()
-        cat = (self.cat_var.get() or "misc").strip().lower()
-        items = [lab for lab in self.all_labels if (flt in lab.lower()) and self._match_cat(lab, cat)]
-        self.lb.delete(0, "end")
-        for lab in items:
-            self.lb.insert("end", lab)
-
-    def _sync_sel(self):
-        self.sel.delete(0, "end")
-        for lab in self.selected:
-            self.sel.insert("end", lab)
-
-    def _add(self):
-        if self.lb.curselection():
-            p = self.lb.get(self.lb.curselection()[0])
-            if p not in self.selected:
-                self.selected.append(p)
-                self._sync_sel()
-        try:
-            self.lb.selection_clear(0, "end"); self.sel.selection_clear(0, "end")
-        except Exception:
-            pass
-
-    def _remove(self):
-        pick = None
-        if self.sel.curselection():
-            pick = self.sel.get(self.sel.curselection()[0])
-        elif self.lb.curselection():
-            pick = self.lb.get(self.lb.curselection()[0])
-        if pick is not None:
-            self.selected = [s for s in self.selected if s != pick]
-            self._sync_sel()
-        try:
-            self.lb.selection_clear(0, "end"); self.sel.selection_clear(0, "end")
-        except Exception:
-            pass
-
-    def _up(self):
-        sel = list(self.sel.curselection())
-        if not sel:
-            return
-        i = sel[0]
-        if i > 0:
-            self.selected[i-1], self.selected[i] = self.selected[i], self.selected[i-1]
-            self._sync_sel()
-            self.sel.selection_set(i-1)
-
-    def _down(self):
-        sel = list(self.sel.curselection())
-        if not sel:
-            return
-        i = sel[0]
-        if i < len(self.selected)-1:
-            self.selected[i+1], self.selected[i] = self.selected[i], self.selected[i+1]
-            self._sync_sel()
-            self.sel.selection_set(i+1)
-
-    def _clear(self):
-        self.selected = []
-        self._sync_sel()
-
-    def set(self, labels):
-        self.selected = list(labels or [])
-        self._sync_sel()
-
-    def get(self):
-        return list(self.selected)
-
-
-
 class KeyPickerField(ttk.Frame):
-    """
-    Generic single-select picker with available list on the left,
-    selected list on the right, Add/Remove buttons, and click-outside deselection.
-    """
+    """Generic single-select picker with available list (left) and selected list (right)."""
     def __init__(self, master, all_keys, initial=None, title_left="Available", title_right="Selected"):
         super().__init__(master)
         self.all_keys = list(dict.fromkeys(all_keys))
@@ -509,7 +335,7 @@ class KeyPickerField(ttk.Frame):
         self._refill_available()
         self._sync_selected()
 
-        # Click-outside clears selections (but not when clicking inside this widget)
+        # Click-outside clears selections (without stealing button clicks)
         def _is_descendant(widget, container):
             try:
                 w = widget
@@ -579,15 +405,169 @@ class KeyPickerField(ttk.Frame):
     def get(self):
         return list(self.selected)
 
+class ComponentsField(ttk.Frame):
+    """
+    Components/materials picker with filters.
+    - Add/Remove buttons
+    - Text filter + category filter
+    - Single-select both sides
+    - Reorder up/down + Clear
+    """
+    def __init__(self, master, labels: List[str]):
+        super().__init__(master)
+        self.all_labels = list(sorted(set(labels)))
+        self.selected: List[str] = []
+
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+
+        # Filters
+        top = ttk.Frame(self); top.grid(row=0, column=0, columnspan=2, sticky="ew", pady=(0,6))
+        ttk.Label(top, text="Filter").pack(side="left")
+        self.filter_var = tk.StringVar()
+        ent = ttk.Entry(top, textvariable=self.filter_var, width=24); ent.pack(side="left", padx=(6,10))
+        ttk.Label(top, text="Category").pack(side="left")
+        self.cat_var = tk.StringVar(value="(all)")
+        self.cat_combo = ttk.Combobox(top, textvariable=self.cat_var, state="readonly", width=18,
+                                      values=["(all)","materials","armour","weapons","clothing","accessories","trinkets","consumables","misc"])
+        self.cat_combo.pack(side="left")
+
+        left = ttk.Frame(self); left.grid(row=1, column=0, sticky="nsew", padx=(0,8))
+        ttk.Label(left, text="Available").pack(anchor="w")
+        self.lb = tk.Listbox(left, selectmode="browse", height=10, exportselection=False)
+        self.lb.pack(fill="both", expand=True)
+
+        ctr = ttk.Frame(self); ctr.grid(row=2, column=0, columnspan=2, sticky="ew", pady=(6,0))
+        ttk.Button(ctr, text="Add ▶", command=self._add).pack(side="left", expand=True, fill="x", padx=3)
+        ttk.Button(ctr, text="◀ Remove", command=self._remove).pack(side="left", expand=True, fill="x", padx=3)
+        ttk.Button(ctr, text="↑ Up", command=self._up).pack(side="left", padx=3)
+        ttk.Button(ctr, text="↓ Down", command=self._down).pack(side="left", padx=3)
+        ttk.Button(ctr, text="Clear", command=self._clear).pack(side="left", padx=3)
+
+        right = ttk.Frame(self); right.grid(row=1, column=1, sticky="nsew")
+        ttk.Label(right, text="Selected").pack(anchor="w")
+        self.sel = tk.Listbox(right, selectmode="browse", height=10, exportselection=False)
+        self.sel.pack(fill="both", expand=True)
+
+        # Bindings
+        self.filter_var.trace_add("write", lambda *_: self._refill())
+        self.cat_combo.bind("<<ComboboxSelected>>", lambda e: self._refill())
+
+        # Click-outside selection clear
+        def _is_descendant(widget, container):
+            try:
+                w = widget
+                while w is not None:
+                    if w == container:
+                        return True
+                    w = getattr(w, "master", None)
+            except Exception:
+                pass
+            return False
+
+        def _global_click_clear(event, self=self):
+            try:
+                if not _is_descendant(event.widget, self):
+                    self.lb.selection_clear(0, "end")
+                    self.sel.selection_clear(0, "end")
+            except Exception:
+                pass
+        self.winfo_toplevel().bind("<Button-1>", _global_click_clear, add="+")
+
+        self._refill()
+
+    def _match_cat(self, label, cat):
+        L = label.lower()
+        if cat in ("(all)","",None): return True
+        if cat == "materials":   return any(w in L for w in ["ingot","ore","leather","cloth","hide","wood","herb","glass","crystal","thread","plate","plank","pane","powder"])
+        if cat == "armour":      return any(w in L for w in ["helm","hood","chest","cuirass","breast","greave","legging","boot","glove","gaunt","cloak","belt","shield","armor","armour"])
+        if cat == "weapons":     return any(w in L for w in ["sword","dagger","axe","mace","hammer","spear","bow","crossbow","staff","wand","polearm","halberd","glaive"])
+        if cat == "clothing":    return any(w in L for w in ["robe","tunic","vest","pants","trouser","skirt","kilt","hat","mask","glove","boot","shoe","belt","cloak"])
+        if cat == "accessories": return any(w in L for w in ["ring","amulet","necklace","talisman","bracelet","bracer","circlet"])
+        if cat == "trinkets":    return any(w in L for w in ["vase","figurine","goblet","pendant","mirror","fan","charm","bead","box","brooch","tin","mask"])
+        if cat == "consumables": return any(w in L for w in ["potion","elixir","tonic","draft","draught","oil","bomb","phial","tincture","ration","water","brew","tea"])
+        if cat == "misc":        return True
+        return True
+
+    def _refill(self):
+        flt = (self.filter_var.get() or "").strip().lower()
+        cat = (self.cat_var.get() or "(all)").strip().lower()
+        items = [lab for lab in self.all_labels if (flt in lab.lower()) and self._match_cat(lab, cat)]
+        self.lb.delete(0, "end")
+        for lab in items:
+            self.lb.insert("end", lab)
+
+    def _sync_sel(self):
+        self.sel.delete(0, "end")
+        for lab in self.selected:
+            self.sel.insert("end", lab)
+
+    def _add(self):
+        if self.lb.curselection():
+            p = self.lb.get(self.lb.curselection()[0])
+            if p not in self.selected:
+                self.selected.append(p)
+                self._sync_sel()
+        try:
+            self.lb.selection_clear(0, "end"); self.sel.selection_clear(0, "end")
+        except Exception:
+            pass
+
+    def _remove(self):
+        pick = None
+        if self.sel.curselection():
+            pick = self.sel.get(self.sel.curselection()[0])
+        elif self.lb.curselection():
+            pick = self.lb.get(self.lb.curselection()[0])
+        if pick is not None:
+            self.selected = [s for s in self.selected if s != pick]
+            self._sync_sel()
+        try:
+            self.lb.selection_clear(0, "end"); self.sel.selection_clear(0, "end")
+        except Exception:
+            pass
+
+    def _up(self):
+        sel = list(self.sel.curselection())
+        if not sel:
+            return
+        i = sel[0]
+        if i > 0:
+            self.selected[i-1], self.selected[i] = self.selected[i], self.selected[i-1]
+            self._sync_sel()
+            self.sel.selection_set(i-1)
+
+    def _down(self):
+        sel = list(self.sel.curselection())
+        if not sel:
+            return
+        i = sel[0]
+        if i < len(self.selected)-1:
+            self.selected[i+1], self.selected[i] = self.selected[i], self.selected[i+1]
+            self._sync_sel()
+            self.sel.selection_set(i+1)
+
+    def _clear(self):
+        self.selected = []
+        self._sync_sel()
+
+    def set(self, labels):
+        self.selected = list(labels or [])
+        self._sync_sel()
+
+    def get(self):
+        return list(self.selected)
+
+# ---------- Form ----------
+
 class KeyValueForm(ttk.Frame):
-    def set_category_context(self, cat: str):
-        self.context_category = (cat or '').lower()
     def __init__(self, master, on_change=None):
         super().__init__(master)
         self.on_change = on_change
         self.current_obj = {}
         self.inputs: Dict[str, Tuple[str, Any]] = {}
         self.raw_mode = False
+        self.context_category = ""
 
         bar = ttk.Frame(self); bar.pack(fill="x", pady=(0,4))
         self.toggle_btn = ttk.Button(bar, text="Raw JSON", command=self.toggle_raw); self.toggle_btn.pack(side="right")
@@ -600,7 +580,15 @@ class KeyValueForm(ttk.Frame):
         self.canvas.configure(yscrollcommand=self.scroll.set)
         self.canvas.pack(side="left", fill="both", expand=True); self.scroll.pack(side="right", fill="y")
 
-        self.raw_text = tk.Text(self, height=24); self.raw_text.configure(font=("Courier", 10))
+        self.raw_text = tk.Text(self, height=24)
+        try:
+            self.raw_text.configure(font=("Courier", 10))
+        except Exception:
+            pass
+
+    # Context: items tab sets this so "type" combobox scopes correctly
+    def set_category_context(self, cat: str):
+        self.context_category = (cat or '').lower()
 
     def toggle_raw(self):
         self.raw_mode = not self.raw_mode
@@ -620,56 +608,72 @@ class KeyValueForm(ttk.Frame):
             self.canvas.pack(side="left", fill="both", expand=True); self.scroll.pack(side="right", fill="y")
             self.toggle_btn.config(text="Raw JSON")
 
-    
-def _make_widget_for(self, key: str, val: Any):
-    # Category comes from Items File; hide it here
-    if key == "category":
-        return ("hidden", None)
+    def _make_widget_for(self, key: str, val: Any):
+        # Hide category (comes from file context on items)
+        if key == "category":
+            return ("hidden", None)
 
-    # Rarity dropdown
-    if key == "rarity":
-        w = ComboField(self.inner, RARITY_OPTIONS, str(val or ""))
-        return ("rarity_combo", w)
+        # Rarity dropdown
+        if key == "rarity":
+            w = ComboField(self.inner, RARITY_OPTIONS, str(val or ""))
+            return ("rarity_combo", w)
 
-    # Type dropdown scoped by current file category
-    if key == "type":
-        cat = (self.context_category or "").lower()
-        options = TYPE_OPTIONS.get(cat, sorted({t for arr in TYPE_OPTIONS.values() for t in arr}))
-        w = ComboField(self.inner, options, str(val or ""))
-        return ("type_combo", w)
+        # Type dropdown scoped by current file category
+        if key == "type":
+            cat = (self.context_category or "").lower()
+            if cat and cat in TYPE_OPTIONS:
+                options = TYPE_OPTIONS[cat]
+            else:
+                # Fallback to union of all types
+                options = sorted({t for arr in TYPE_OPTIONS.values() for t in arr})
+            w = ComboField(self.inner, options, str(val or ""))
+            return ("type_combo", w)
 
-    # Existing cases (bonus/resist/trait pickers, etc.)
-    if key in ("fixed_bonus","possible_bonus"):
-        w = KeyPickerField(self.inner, BONUS_KEYS, [v for v in (val or []) if isinstance(v,str)], "Available Bonus", "Selected Bonus")
-        return (f"{key}_keys", w)
-    if key in ("fixed_resist","possible_resist"):
-        w = KeyPickerField(self.inner, RESIST_KEYS, [v for v in (val or []) if isinstance(v,str)], "Available Resist", "Selected Resist")
-        return (f"{key}_keys", w)
-    if key in ("fixed_trait","possible_trait"):
-        w = KeyPickerField(self.inner, TRAIT_OPTIONS, [v for v in (val or []) if isinstance(v,str)], "Available Trait", "Selected Trait")
-        return (f"{key}_keys", w)
-    if key == "slot":
-        var = tk.StringVar(value=str(val or ""))
-        entry = ttk.Entry(self.inner, textvariable=var, state="readonly")
-        return ("slot_readonly", (entry, var))
-    if key in ("bonus","resist","trait"):
-        text = tk.Text(self.inner, height=3, width=40)
-        try: text.insert("1.0", json.dumps(val, ensure_ascii=False, indent=2))
-        except Exception: text.insert("1.0", str(val))
-        text.configure(state="disabled")
-        return ("legacy_json", text)
-    if isinstance(val, (dict, list)):
-        text = tk.Text(self.inner, height=4, width=40)
-        text.insert("1.0", json.dumps(val, ensure_ascii=False, indent=2))
-        return ("json", text)
-    entry = ttk.Entry(self.inner); entry.insert(0, "" if val is None else str(val))
-    return ("scalar", entry)
+        # Bonus/resist/trait pickers
+        if key in ("fixed_bonus", "possible_bonus"):
+            w = KeyPickerField(self.inner, BONUS_KEYS, [v for v in (val or []) if isinstance(v, str)], "Available Bonus", "Selected Bonus")
+            return (f"{key}_keys", w)
+        if key in ("fixed_resist", "possible_resist"):
+            w = KeyPickerField(self.inner, RESIST_KEYS, [v for v in (val or []) if isinstance(v, str)], "Available Resist", "Selected Resist")
+            return (f"{key}_keys", w)
+        if key in ("fixed_trait", "possible_trait"):
+            w = KeyPickerField(self.inner, TRAIT_OPTIONS, [v for v in (val or []) if isinstance(v, str)], "Available Trait", "Selected Trait")
+            return (f"{key}_keys", w)
+
+        # Slot is readonly (derived)
+        if key == "slot":
+            var = tk.StringVar(value=str(val or ""))
+            entry = ttk.Entry(self.inner, textvariable=var, state="readonly")
+            return ("slot_readonly", (entry, var))
+
+        # Legacy arrays shown as readonly JSON (if present)
+        if key in ("bonus", "resist", "trait"):
+            text = tk.Text(self.inner, height=3, width=40)
+            try:
+                text.insert("1.0", json.dumps(val, ensure_ascii=False, indent=2))
+            except Exception:
+                text.insert("1.0", str(val))
+            text.configure(state="disabled")
+            return ("legacy_json", text)
+
+        # Dict/list -> JSON editor
+        if isinstance(val, (dict, list)):
+            text = tk.Text(self.inner, height=4, width=40)
+            text.insert("1.0", json.dumps(val, ensure_ascii=False, indent=2))
+            return ("json", text)
+
+        # Default scalar
+        entry = ttk.Entry(self.inner); entry.insert(0, "" if val is None else str(val))
+        return ("scalar", entry)
+
     def set_object(self, obj: dict):
         self.current_obj = dict(obj) if obj else {}
-        # Hide deprecated key entirely
+
+        # Hide deprecated legacy
         if 'scale_with_level' in self.current_obj:
             self.current_obj.pop('scale_with_level', None)
 
+        # Seed possible_* from legacy shapes once
         def keys_from_legacy(v):
             if isinstance(v, list):
                 return [x for x in v if isinstance(x,str)]
@@ -691,12 +695,40 @@ def _make_widget_for(self, key: str, val: Any):
                      "fixed_bonus","possible_bonus","fixed_resist","possible_resist","fixed_trait","possible_trait"]
         keys = list(self.current_obj.keys())
         keys_sorted = preferred + [k for k in keys if k not in preferred]
+
+        # If components exist -> show as ComponentsField with labels from global index
+        labels = None
+        if "components" in self.current_obj and ALL_ITEMS_ID_TO_LABEL:
+            raw_comps = self.current_obj.get("components", [])
+            if not isinstance(raw_comps, list):
+                raw_comps = []
+            comp_ids = []
+            for c in raw_comps:
+                if isinstance(c, dict):
+                    cid = c.get("id") or c.get("component_id") or ""
+                else:
+                    cid = str(c)
+                if cid:
+                    comp_ids.append(cid)
+            labels = [ALL_ITEMS_ID_TO_LABEL.get(cid, cid) for cid in comp_ids]
+
         row = 0
         for k in keys_sorted:
             if k == 'category':
                 continue
             val = self.current_obj.get(k)
             ttk.Label(self.inner, text=k).grid(row=row, column=0, sticky="w", padx=6, pady=4)
+
+            if k == "components" and ALL_ITEMS_ID_TO_LABEL:
+                # Build a full label list for the available side
+                all_labels = list(ALL_ITEMS_ID_TO_LABEL.values())
+                widget = ComponentsField(self.inner, all_labels)
+                widget.set(labels or [])
+                self.inputs[k] = ("components_labels", widget)
+                widget.grid(row=row, column=1, sticky="we", padx=6, pady=4)
+                row += 1
+                continue
+
             kind, widget = self._make_widget_for(k, val)
             if kind == 'hidden':
                 continue
@@ -707,15 +739,17 @@ def _make_widget_for(self, key: str, val: Any):
                 widget.grid(row=row, column=1, sticky="we", padx=6, pady=4)
             row += 1
 
-        # derive slot once after layout
+        # derive slot once after layout if possible
         try:
-            snap = {}
+            snap = {
+                "type": "",
+                "category": self.context_category
+            }
             t = self.inputs.get("type")
-            if t and t[0] == "scalar":
-                snap["type"] = t[1].get()
-            c = self.inputs.get("category")
-            if c and c[0] == "category_combo":
-                snap["category"] = c[1].get()
+            if t:
+                if t[0] in ("scalar","rarity_combo","type_combo"):
+                    try: snap["type"] = t[1].get()
+                    except Exception: pass
             inferred = derive_slot(snap)
             sl = self.inputs.get("slot")
             if sl and sl[0] == "slot_readonly":
@@ -733,67 +767,72 @@ def _make_widget_for(self, key: str, val: Any):
                 return None
         out = {}
         for k, (kind, widget) in self.inputs.items():
-            if kind in ("json","legacy_json","hidden"):
+            if kind in ("legacy_json","hidden"):
                 continue
-            elif kind in ("category_combo",):
-                out[k] = widget.get()
-            elif kind == 'bool_toggle':
+            elif kind == "json":
                 try:
-                    out[k] = bool(widget.var.get())
+                    out[k] = json.loads(widget.get("1.0","end"))
                 except Exception:
-                    out[k] = bool(getattr(widget, 'get', lambda: False)())
+                    # keep as string/raw
+                    out[k] = widget.get("1.0","end")
             elif kind == "components_labels":
                 labels = widget.get()
                 ids = []
                 for lab in labels:
                     iid = ALL_ITEMS_LABEL_TO_ID.get(lab)
                     if iid: ids.append(iid)
-                out["components"] = ids
+                out[k] = ids
             elif kind.endswith("_keys"):
                 out[k] = widget.get()
             elif kind == "slot_readonly":
+                # re-derived later
                 pass
             else:
-                s = widget.get()
-                if s.strip() == "":
-                    out[k] = ""
+                # scalar or combo
+                val = ""
+                try:
+                    val = widget.get()
+                except Exception:
+                    pass
+                if isinstance(val, str) and re.match(r"^-?\d+(\.\d+)?$", val.strip()):
+                    out[k] = float(val) if "." in val else int(val)
                 else:
-                    if re.match(r"^-?\d+(\.\d+)?$", s.strip()):
-                        out[k] = float(s) if "." in s else int(s)
-                    else:
-                        out[k] = s
+                    out[k] = val
+        # derive slot
         try:
             out["slot"] = derive_slot(out)
         except Exception:
             out['slot'] = out.get('slot','') or ''
+        # category context on items tab
         if self.context_category:
             out['category'] = self.context_category
-        # Remove deprecated key
+        # purge deprecated
         if 'scale_with_level' in out:
             out.pop('scale_with_level', None)
         return out
 
-# ---- Roll preview helpers ----
+# ---------- Rolling / Weights ----------
+
 def _load_loot_config():
     cfg_path = os.path.join(BASE_DIR, "data", "meta", "loot_rolls.json")
     default = {
         "rarity_slots": {
-            "bonus":    {"common":[0,1],"uncommon":[1,1],"rare":[2,2],"epic":[3,3],"legendary":[4,4],"relic":[5,5]},
-            "resist":   {"common":[0,0],"uncommon":[0,1],"rare":[1,1],"epic":[2,2],"legendary":[2,3],"relic":[3,3]},
-            "trait":    {"common":[0,0],"uncommon":[0,1],"rare":[1,1],"epic":[1,2],"legendary":[2,2],"relic":[2,3]}
+            "bonus":  {"common": [0, 1], "uncommon": [1, 1], "rare": [2, 2], "epic": [3, 3], "legendary": [4, 4], "relic": [5, 5]},
+            "resist": {"common": [0, 0], "uncommon": [0, 1], "rare": [1, 1], "epic": [2, 2], "legendary": [2, 3], "relic": [3, 3]},
+            "trait":  {"common": [0, 0], "uncommon": [0, 1], "rare": [1, 1], "epic": [1, 2], "legendary": [2, 2], "relic": [2, 3]}
         },
-        "global_bonus_weights": {k:1 for k in BONUS_KEYS},
-        "global_resist_weights": {k:1 for k in RESIST_KEYS},
+        "global_bonus_weights": {k: 1 for k in BONUS_KEYS},
+        "global_resist_weights": {k: 1 for k in RESIST_KEYS},
         "category_bias": {}
     }
     try:
         if os.path.exists(cfg_path):
             with open(cfg_path, "r", encoding="utf-8") as f:
                 user = json.load(f)
-            def merge(a,b):
+            def merge(a, b):
                 if isinstance(a, dict) and isinstance(b, dict):
                     out = dict(a)
-                    for k,v in b.items():
+                    for k, v in b.items():
                         out[k] = merge(a.get(k), v) if k in a else v
                     return out
                 return b if b is not None else a
@@ -861,7 +900,10 @@ class RollPreviewDialog(tk.Toplevel):
 
         self.out = tk.Text(frm, height=16, width=64)
         self.out.grid(row=3, column=0, columnspan=2, sticky="nsew")
-        self.out.configure(font=("Courier", 10))
+        try:
+            self.out.configure(font=("Courier", 10))
+        except Exception:
+            pass
         frm.columnconfigure(1, weight=1)
         frm.rowconfigure(3, weight=1)
 
@@ -941,6 +983,8 @@ class RollPreviewDialog(tk.Toplevel):
         self.out.insert("1.0", "\n".join(lines))
         self.out.configure(state="disabled")
 
+# ---------- Tabs ----------
+
 class ItemsTab(ttk.Frame):
     def __init__(self, master):
         super().__init__(master)
@@ -1018,6 +1062,16 @@ class ItemsTab(ttk.Frame):
         self.cat_combo["values"] = cats; self.cat_combo.set("(all)")
         self.search_var.set("")
         self.rebuild_global_items_index()
+        # Set context category for form (for type dropdown scoping)
+        context_cat = ""
+        if self.cat_combo.get() and self.cat_combo.get() != "(all)":
+            # "category:value" shape -> take value
+            val = self.cat_combo.get()
+            if ":" in val:
+                context_cat = val.split(":",1)[0].strip()
+                if context_cat == "category":
+                    context_cat = val.split(":",1)[1].strip().lower()
+        self.form.set_category_context(context_cat)
         self.refresh_list()
 
     def refresh_list(self):
@@ -1041,12 +1095,23 @@ class ItemsTab(ttk.Frame):
         if not sel: return
         idx = self.filtered_indices[sel[0]]
         self.selected_index = idx
+        # Update form category context from selected item
+        cat = (self.active_list[idx].get("category") or "").lower()
+        self.form.set_category_context(cat)
         self.form.set_object(self.active_list[idx])
 
     def on_new(self):
         if not self.active_dataset: return
         existing_ids = {it.get("id","") for it in self.active_list}
         item = dict(DEFAULT_ITEM); item["id"] = ensure_item_id(item, existing_ids)
+        # If current filter is on a category: seed it
+        cur = self.cat_combo.get()
+        if cur and cur != "(all)":
+            # extract "category:xyz" to "xyz"
+            if ":" in cur:
+                k, v = cur.split(":",1)
+                if k == "category":
+                    item["category"] = v
         self.active_list.append(item); self.refresh_list(); self.listbox.select_set("end"); self.on_select()
 
     def on_dup(self):
@@ -1091,12 +1156,12 @@ class ItemsTab(ttk.Frame):
 class NPCsTab(ttk.Frame):
     def __init__(self, master):
         super().__init__(master)
-        self.datasets = {}
-        self.active_dataset = None
+        self.datasets: Dict[str, Dataset] = {}
+        self.active_dataset: Optional[Dataset] = None
         self.active_file = None
-        self.npcs = []
-        self.filtered_indices = []
-        self.selected_index = None
+        self.npcs: List[dict] = []
+        self.filtered_indices: List[int] = []
+        self.selected_index: Optional[int] = None
 
         left = ttk.Frame(self); left.pack(side="left", fill="y", padx=6, pady=6)
         right = ttk.Frame(self); right.pack(side="left", fill="both", expand=True, padx=6, pady=6)
@@ -1218,15 +1283,21 @@ class NPCsTab(ttk.Frame):
         save_json_file(dataset.path, dataset.root, dataset.data, dataset.list_key)
         messagebox.showinfo("Saved", f"Saved {dataset.file_name}")
 
+# ---------- App ----------
+
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("RPGenesis Entity Editor — PRO(7) PATCHED2")
+        self.title("RPGenesis Entity Editor — PRO(7) PATCHED (Fixed)")
         self.geometry("1160x760"); self.minsize(980, 640)
+        apply_ui_styling(self)
 
         nb = ttk.Notebook(self); nb.pack(fill="both", expand=True)
         self.items_tab = ItemsTab(nb); self.npcs_tab = NPCsTab(nb)
         nb.add(self.items_tab, text="Items"); nb.add(self.npcs_tab, text="NPCs")
 
 if __name__ == "__main__":
-    App().mainloop()
+    try:
+        App().mainloop()
+    except Exception as e:
+        print("Error:", e, file=sys.stderr)

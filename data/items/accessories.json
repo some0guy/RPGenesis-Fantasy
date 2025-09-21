@@ -23,9 +23,7 @@
       "seed_source": "drop_context"
     },
     "resist_template": {},
-    "possible_bonus": [
-      "attack"
-    ],
+    "possible_bonus": [],
     "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
@@ -67,13 +65,9 @@
     },
     "resist_template": {},
     "fixed_bonus": [
-      "PHY"
+      "Physique"
     ],
-    "possible_bonus": [
-      "arc",
-      "crit_chance",
-      "kno"
-    ],
+    "possible_bonus": [],
     "possible_resist": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -107,12 +101,9 @@
       "seed_source": "drop_context"
     },
     "resist_template": {},
-    "fixed_resist": [
-      "shocked"
-    ],
+    "fixed_resist": [],
     "possible_bonus": [
-      "attack",
-      "tec"
+      "Technique"
     ],
     "possible_resist": [],
     "fixed_bonus": [],
@@ -153,8 +144,7 @@
       "echo_strike"
     ],
     "possible_bonus": [
-      "attack",
-      "phy"
+      "Physique"
     ],
     "possible_resist": [],
     "fixed_bonus": [],
@@ -196,14 +186,8 @@
     "fixed_trait": [
       "soulbound"
     ],
-    "fixed_resist": [
-      "charmed"
-    ],
-    "possible_bonus": [
-      "crit_chance",
-      "ins",
-      "soc"
-    ],
+    "fixed_resist": [],
+    "possible_bonus": [],
     "possible_resist": [],
     "fixed_bonus": [],
     "possible_trait": []
@@ -233,7 +217,7 @@
     },
     "resist_template": {},
     "possible_bonus": [
-      "vit"
+      "Vitality"
     ],
     "possible_resist": [],
     "fixed_bonus": [],
@@ -269,13 +253,8 @@
       "seed_source": "drop_context"
     },
     "resist_template": {},
-    "fixed_resist": [
-      "slowed"
-    ],
-    "possible_bonus": [
-      "fth",
-      "ins"
-    ],
+    "fixed_resist": [],
+    "possible_bonus": [],
     "possible_resist": [],
     "fixed_bonus": [],
     "fixed_trait": [],
@@ -309,13 +288,8 @@
       "seed_source": "drop_context"
     },
     "resist_template": {},
-    "fixed_resist": [
-      "burnt"
-    ],
-    "possible_bonus": [
-      "arc",
-      "attack"
-    ],
+    "fixed_resist": [],
+    "possible_bonus": [],
     "possible_resist": [],
     "fixed_bonus": [],
     "fixed_trait": [],
@@ -357,9 +331,7 @@
       "aura_guard"
     ],
     "possible_bonus": [
-      "armor",
-      "fth",
-      "vit"
+      "Vitality"
     ],
     "possible_resist": [],
     "fixed_bonus": [],
@@ -397,13 +369,8 @@
     "fixed_trait": [
       "timebend"
     ],
-    "fixed_resist": [
-      "distracted"
-    ],
-    "possible_bonus": [
-      "arc",
-      "kno"
-    ],
+    "fixed_resist": [],
+    "possible_bonus": [],
     "possible_resist": [],
     "fixed_bonus": [],
     "possible_trait": []
@@ -433,7 +400,7 @@
     },
     "resist_template": {},
     "possible_bonus": [
-      "tec"
+      "Technique"
     ],
     "possible_resist": [],
     "fixed_bonus": [],
@@ -469,10 +436,7 @@
       "seed_source": "drop_context"
     },
     "resist_template": {},
-    "possible_bonus": [
-      "arc",
-      "armor"
-    ],
+    "possible_bonus": [],
     "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
@@ -506,12 +470,8 @@
     "fixed_trait": [
       "lifedrink"
     ],
-    "fixed_resist": [
-      "bleeding"
-    ],
-    "possible_bonus": [
-      "attack"
-    ],
+    "fixed_resist": [],
+    "possible_bonus": [],
     "possible_resist": [],
     "fixed_bonus": [],
     "possible_trait": []
@@ -544,12 +504,9 @@
       "seed_source": "drop_context"
     },
     "resist_template": {},
-    "fixed_resist": [
-      "burnt"
-    ],
+    "fixed_resist": [],
     "possible_bonus": [
-      "attack",
-      "phy"
+      "Physique"
     ],
     "possible_resist": [],
     "fixed_bonus": [],
@@ -587,12 +544,9 @@
     "fixed_trait": [
       "warding"
     ],
-    "fixed_resist": [
-      "tormented"
-    ],
+    "fixed_resist": [],
     "possible_bonus": [
-      "armor",
-      "vit"
+      "Vitality"
     ],
     "possible_resist": [],
     "fixed_bonus": [],
@@ -622,9 +576,7 @@
       "seed_source": "drop_context"
     },
     "resist_template": {},
-    "possible_bonus": [
-      "fth"
-    ],
+    "possible_bonus": [],
     "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
@@ -659,13 +611,8 @@
       "seed_source": "drop_context"
     },
     "resist_template": {},
-    "fixed_resist": [
-      "marked"
-    ],
-    "possible_bonus": [
-      "fth",
-      "soc"
-    ],
+    "fixed_resist": [],
+    "possible_bonus": [],
     "possible_resist": [],
     "fixed_bonus": [],
     "fixed_trait": [],
@@ -695,12 +642,8 @@
       "seed_source": "drop_context"
     },
     "resist_template": {},
-    "fixed_resist": [
-      "distracted"
-    ],
-    "possible_bonus": [
-      "ins"
-    ],
+    "fixed_resist": [],
+    "possible_bonus": [],
     "possible_resist": [],
     "fixed_bonus": [],
     "fixed_trait": [],
@@ -734,13 +677,8 @@
       "seed_source": "drop_context"
     },
     "resist_template": {},
-    "fixed_resist": [
-      "stunned"
-    ],
-    "possible_bonus": [
-      "arc",
-      "kno"
-    ],
+    "fixed_resist": [],
+    "possible_bonus": [],
     "possible_resist": [],
     "fixed_bonus": [],
     "fixed_trait": [],
@@ -777,14 +715,8 @@
     "fixed_trait": [
       "soul_anchor"
     ],
-    "fixed_resist": [
-      "bleeding",
-      "exhausted"
-    ],
-    "possible_bonus": [
-      "arc",
-      "kno"
-    ],
+    "fixed_resist": [],
+    "possible_bonus": [],
     "possible_resist": [],
     "fixed_bonus": [],
     "possible_trait": []

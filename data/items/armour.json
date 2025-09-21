@@ -54,13 +54,8 @@
         3
       ]
     },
-    "possible_bonus": [
-      "armor",
-      "mana"
-    ],
-    "possible_resist": [
-      "physical"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -121,13 +116,8 @@
         2
       ]
     },
-    "possible_bonus": [
-      "armor",
-      "mana"
-    ],
-    "possible_resist": [
-      "physical"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -188,12 +178,9 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "mana"
+      "Technique"
     ],
-    "possible_resist": [
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -261,15 +248,8 @@
         2
       ]
     },
-    "possible_bonus": [
-      "armor",
-      "mana"
-    ],
-    "possible_resist": [
-      "arcane",
-      "physical",
-      "stagger"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -335,13 +315,10 @@
       ]
     },
     "possible_bonus": [
-      "intelligence",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "mana",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -406,12 +383,9 @@
       ]
     },
     "possible_bonus": [
-      "mana",
-      "strength"
+      "Physique"
     ],
-    "possible_resist": [
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -489,15 +463,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "stamina",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -570,14 +539,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "intelligence"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "bleed",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -654,15 +619,9 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health"
+      "Technique"
     ],
-    "possible_resist": [
-      "arcane",
-      "bleed",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -740,15 +699,9 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "stamina"
+      "Technique"
     ],
-    "possible_resist": [
-      "arcane",
-      "bleed",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -829,16 +782,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "intelligence",
-      "mana",
-      "stamina"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -916,15 +863,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "health",
-      "intelligence",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -1001,15 +943,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -1091,16 +1028,9 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "mana",
-      "stamina"
+      "Technique"
     ],
-    "possible_resist": [
-      "bleed",
-      "cold",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -1182,16 +1112,9 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "mana",
-      "stamina",
-      "strength"
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -1272,15 +1195,9 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "health",
-      "mana",
-      "strength"
+      "Physique"
     ],
-    "possible_resist": [
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -1362,15 +1279,9 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "stamina"
+      "Technique"
     ],
-    "possible_resist": [
-      "cold",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -1455,16 +1366,9 @@
       ]
     },
     "possible_bonus": [
-      "health",
-      "mana",
-      "stamina",
-      "strength"
+      "Physique"
     ],
-    "possible_resist": [
-      "mana",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -1554,17 +1458,11 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "intelligence",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "mana",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -1653,17 +1551,11 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "intelligence",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "cold",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -1740,16 +1632,10 @@
       "phoenix_aegis"
     ],
     "possible_bonus": [
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -1830,17 +1716,10 @@
       "glacial_bulwark"
     ],
     "possible_bonus": [
-      "armor",
-      "health",
-      "intelligence",
-      "mana",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -1920,17 +1799,10 @@
       "sunforged_vigor"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "intelligence",
-      "mana",
-      "stamina"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "bleed",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -2015,18 +1887,11 @@
       "glacial_bulwark"
     ],
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "intelligence",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "cold",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -2103,16 +1968,10 @@
       "stormwall"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "mana",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -2200,19 +2059,11 @@
       "null_field"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -2289,16 +2140,10 @@
       "timefold_ward"
     ],
     "possible_bonus": [
-      "armor",
-      "health",
-      "intelligence",
-      "mana",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -2382,18 +2227,11 @@
       "mirror_hex"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "cold",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -2473,17 +2311,11 @@
       "spectral_protection"
     ],
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -2563,17 +2395,11 @@
       "umbral_skin"
     ],
     "possible_bonus": [
-      "dexterity",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "cold",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -2637,13 +2463,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "intelligence"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "arcane",
-      "fire"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -2708,14 +2531,8 @@
         3
       ]
     },
-    "possible_bonus": [
-      "armor",
-      "mana"
-    ],
-    "possible_resist": [
-      "fire",
-      "physical"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -2784,14 +2601,9 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity"
+      "Technique"
     ],
-    "possible_resist": [
-      "cold",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -2861,14 +2673,9 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity"
+      "Technique"
     ],
-    "possible_resist": [
-      "arcane",
-      "cold",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -2937,15 +2744,8 @@
         2
       ]
     },
-    "possible_bonus": [
-      "armor",
-      "health"
-    ],
-    "possible_resist": [
-      "arcane",
-      "mana",
-      "physical"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -3026,16 +2826,10 @@
       ]
     },
     "possible_bonus": [
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -3108,15 +2902,8 @@
         6
       ]
     },
-    "possible_bonus": [
-      "mana",
-      "stamina"
-    ],
-    "possible_resist": [
-      "arcane",
-      "lightning",
-      "physical"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -3188,15 +2975,8 @@
         5
       ]
     },
-    "possible_bonus": [
-      "health",
-      "mana",
-      "stamina"
-    ],
-    "possible_resist": [
-      "arcane",
-      "physical"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -3272,16 +3052,8 @@
         2
       ]
     },
-    "possible_bonus": [
-      "armor",
-      "mana",
-      "stamina"
-    ],
-    "possible_resist": [
-      "arcane",
-      "cold",
-      "physical"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -3358,15 +3130,10 @@
       ]
     },
     "possible_bonus": [
-      "health",
-      "intelligence",
-      "stamina",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "fire"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -3456,17 +3223,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "stamina",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "lightning",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -3560,18 +3320,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "cold",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -3656,16 +3408,9 @@
       ]
     },
     "possible_bonus": [
-      "health",
-      "mana",
-      "stamina",
-      "strength"
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -3755,17 +3500,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "health",
-      "intelligence",
-      "stamina",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "lightning",
-      "necrotic"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -3851,16 +3589,9 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "stamina"
+      "Technique"
     ],
-    "possible_resist": [
-      "lightning",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -3953,18 +3684,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "fire",
-      "lightning",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -4045,15 +3768,9 @@
       ]
     },
     "possible_bonus": [
-      "mana",
-      "stamina",
-      "strength"
+      "Physique"
     ],
-    "possible_resist": [
-      "lightning",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -4138,16 +3855,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "intelligence",
-      "stamina"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "arcane",
-      "cold",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -4236,17 +3947,9 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "health",
-      "mana",
-      "stamina",
-      "strength"
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "lightning",
-      "necrotic"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -4336,17 +4039,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "arcane",
-      "fire",
-      "mana"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -4431,18 +4127,11 @@
       "ethereal_resistance"
     ],
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "intelligence",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "cold",
-      "mana",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -4522,17 +4211,10 @@
       "sunforged_vigor"
     ],
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "mana",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "lightning",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -4621,19 +4303,10 @@
       "sunforged_vigor"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "stamina",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "cold",
-      "lightning",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -4718,18 +4391,10 @@
       "ethereal_resistance"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "lightning",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -4813,18 +4478,10 @@
       "sunforged_vigor"
     ],
     "possible_bonus": [
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "lightning",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -4913,19 +4570,11 @@
       "spectral_protection"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "fire",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -5009,18 +4658,10 @@
       "umbral_skin"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "mana",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "cold",
-      "fire",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -5112,20 +4753,11 @@
       "umbral_skin"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "fire",
-      "lightning",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -5217,20 +4849,11 @@
       "spectral_protection"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "fire",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -5322,20 +4945,11 @@
       "spectral_protection"
     ],
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "fire",
-      "lightning",
-      "mana",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -5398,13 +5012,9 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "mana"
+      "Technique"
     ],
-    "possible_resist": [
-      "bleed",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -5469,13 +5079,9 @@
       ]
     },
     "possible_bonus": [
-      "stamina",
-      "strength"
+      "Physique"
     ],
-    "possible_resist": [
-      "lightning",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -5540,15 +5146,8 @@
         2
       ]
     },
-    "possible_bonus": [
-      "armor",
-      "mana"
-    ],
-    "possible_resist": [
-      "bleed",
-      "necrotic",
-      "stagger"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -5612,13 +5211,9 @@
       ]
     },
     "possible_bonus": [
-      "mana",
-      "strength"
+      "Physique"
     ],
-    "possible_resist": [
-      "fire",
-      "lightning"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -5682,13 +5277,9 @@
       ]
     },
     "possible_bonus": [
-      "stamina",
-      "strength"
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -5758,14 +5349,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "mana",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -5842,15 +5429,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "intelligence",
-      "stamina"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "fire",
-      "mana"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -5918,13 +5500,9 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "intelligence"
+      "Knowledge"
     ],
-    "possible_resist": [
-      "cold",
-      "lightning"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -5998,15 +5576,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "intelligence",
-      "stamina",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -6082,15 +5655,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "fire",
-      "necrotic"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -6174,17 +5742,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "stamina"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "bleed",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -6269,17 +5830,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "fire",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -6363,17 +5917,11 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "intelligence",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "lightning",
-      "necrotic",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -6455,17 +6003,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "fire",
-      "lightning",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -6546,16 +6087,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "intelligence",
-      "mana",
-      "stamina"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "fire",
-      "mana",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -6640,17 +6175,11 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "intelligence",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "bleed",
-      "lightning"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -6735,17 +6264,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "fire",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -6834,18 +6356,11 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "lightning",
-      "mana",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -6929,17 +6444,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "stamina",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -7020,16 +6528,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "intelligence",
-      "mana",
-      "stamina"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "lightning",
-      "necrotic",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -7115,19 +6617,11 @@
       "glacial_bulwark"
     ],
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "fire",
-      "lightning",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -7214,19 +6708,10 @@
       "ethereal_resistance"
     ],
     "possible_bonus": [
-      "armor",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "cold",
-      "lightning",
-      "mana",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -7311,19 +6796,10 @@
       "sunforged_vigor"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "cold",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -7411,19 +6887,11 @@
       "sunforged_vigor"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "bleed",
-      "mana",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -7514,20 +6982,11 @@
       "stormwall"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "fire",
-      "mana",
-      "necrotic",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -7618,20 +7077,11 @@
       "null_field"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "lightning",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -7720,20 +7170,11 @@
       "umbral_skin"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "cold",
-      "lightning",
-      "mana"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -7818,19 +7259,11 @@
       "umbral_skin"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "lightning",
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -7913,18 +7346,10 @@
       "umbral_skin"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "stamina",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "bleed",
-      "mana",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -8011,19 +7436,11 @@
       "null_field"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "mana",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -8079,13 +7496,8 @@
         4
       ]
     },
-    "possible_bonus": [
-      "mana"
-    ],
-    "possible_resist": [
-      "physical",
-      "stagger"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -8147,13 +7559,9 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "mana"
+      "Technique"
     ],
-    "possible_resist": [
-      "necrotic",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -8215,13 +7623,9 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity"
+      "Technique"
     ],
-    "possible_resist": [
-      "bleed",
-      "fire"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -8283,13 +7687,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "lightning",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -8351,13 +7752,9 @@
       ]
     },
     "possible_bonus": [
-      "health",
-      "strength"
+      "Physique"
     ],
-    "possible_resist": [
-      "mana",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -8431,15 +7828,10 @@
       ]
     },
     "possible_bonus": [
-      "health",
-      "intelligence",
-      "mana",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -8508,15 +7900,8 @@
         4
       ]
     },
-    "possible_bonus": [
-      "armor",
-      "mana",
-      "stamina"
-    ],
-    "possible_resist": [
-      "bleed",
-      "physical"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -8585,15 +7970,8 @@
         4
       ]
     },
-    "possible_bonus": [
-      "armor",
-      "health",
-      "mana"
-    ],
-    "possible_resist": [
-      "bleed",
-      "lightning"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -8663,14 +8041,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "fire"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -8735,14 +8109,8 @@
         4
       ]
     },
-    "possible_bonus": [
-      "armor",
-      "health"
-    ],
-    "possible_resist": [
-      "lightning",
-      "physical"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -8820,16 +8188,11 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "intelligence",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -8907,16 +8270,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "intelligence",
-      "mana"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "bleed",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -8994,16 +8351,11 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "intelligence",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "mana",
-      "necrotic",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -9077,15 +8429,9 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "stamina"
+      "Technique"
     ],
-    "possible_resist": [
-      "lightning",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -9163,16 +8509,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "stamina",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "bleed",
-      "mana"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -9250,16 +8590,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "intelligence",
-      "mana",
-      "stamina"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "bleed",
-      "cold",
-      "mana"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -9337,16 +8671,11 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "intelligence",
-      "mana",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -9424,16 +8753,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "mana",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "cold",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -9515,17 +8838,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "intelligence",
-      "mana",
-      "stamina"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "cold",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -9611,18 +8927,11 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -9712,20 +9021,11 @@
       "ethereal_resistance"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "fire",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -9802,17 +9102,10 @@
       "stormwall"
     ],
     "possible_bonus": [
-      "health",
-      "intelligence",
-      "mana",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "lightning",
-      "necrotic",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -9901,20 +9194,11 @@
       "phoenix_aegis"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "bleed",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -9999,19 +9283,10 @@
       "ethereal_resistance"
     ],
     "possible_bonus": [
-      "armor",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "lightning",
-      "necrotic",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -10088,17 +9363,10 @@
       "glacial_bulwark"
     ],
     "possible_bonus": [
-      "health",
-      "intelligence",
-      "mana",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "cold",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -10183,19 +9451,10 @@
       "spectral_protection"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "bleed",
-      "mana",
-      "necrotic",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -10272,17 +9531,11 @@
       "timefold_ward"
     ],
     "possible_bonus": [
-      "dexterity",
-      "health",
-      "intelligence",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "bleed",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -10363,18 +9616,9 @@
       "mirror_hex"
     ],
     "possible_bonus": [
-      "armor",
-      "health",
-      "mana",
-      "stamina",
-      "strength"
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "necrotic",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -10455,18 +9699,10 @@
       "umbral_skin"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "stamina",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "bleed",
-      "fire",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -10551,19 +9787,10 @@
       "spectral_protection"
     ],
     "possible_bonus": [
-      "armor",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "necrotic",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -10626,14 +9853,8 @@
         3
       ]
     },
-    "possible_bonus": [
-      "armor",
-      "stamina"
-    ],
-    "possible_resist": [
-      "physical",
-      "stagger"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -10694,12 +9915,9 @@
       ]
     },
     "possible_bonus": [
-      "intelligence"
+      "Knowledge"
     ],
-    "possible_resist": [
-      "bleed",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -10764,13 +9982,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -10835,13 +10050,9 @@
       ]
     },
     "possible_bonus": [
-      "intelligence",
-      "stamina"
+      "Knowledge"
     ],
-    "possible_resist": [
-      "fire",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -10901,13 +10112,8 @@
         3
       ]
     },
-    "possible_bonus": [
-      "stamina"
-    ],
-    "possible_resist": [
-      "arcane",
-      "lightning"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -10979,16 +10185,8 @@
         4
       ]
     },
-    "possible_bonus": [
-      "armor",
-      "health",
-      "mana",
-      "stamina"
-    ],
-    "possible_resist": [
-      "bleed",
-      "lightning"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -11053,13 +10251,9 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity"
+      "Technique"
     ],
-    "possible_resist": [
-      "lightning",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -11128,14 +10322,9 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "stamina",
-      "strength"
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -11208,15 +10397,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "arcane",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -11285,14 +10469,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "intelligence",
-      "mana"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -11369,16 +10549,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "intelligence",
-      "mana",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "fire",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -11455,16 +10629,10 @@
       ]
     },
     "possible_bonus": [
-      "dexterity",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "lightning",
-      "mana"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -11541,16 +10709,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "intelligence",
-      "mana"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "arcane",
-      "cold",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -11622,16 +10784,8 @@
         5
       ]
     },
-    "possible_bonus": [
-      "armor",
-      "health",
-      "mana"
-    ],
-    "possible_resist": [
-      "arcane",
-      "cold",
-      "stagger"
-    ],
+    "possible_bonus": [],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -11704,15 +10858,9 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "mana",
-      "strength"
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "fire",
-      "mana"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -11789,16 +10937,9 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "health",
-      "intelligence",
-      "mana"
+      "Knowledge"
     ],
-    "possible_resist": [
-      "bleed",
-      "fire",
-      "necrotic"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -11875,16 +11016,9 @@
       ]
     },
     "possible_bonus": [
-      "health",
-      "intelligence",
-      "mana",
-      "stamina"
+      "Knowledge"
     ],
-    "possible_resist": [
-      "fire",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -11965,17 +11099,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "health",
-      "intelligence",
-      "stamina",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "bleed",
-      "necrotic"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -12052,16 +11179,9 @@
       ]
     },
     "possible_bonus": [
-      "health",
-      "intelligence",
-      "mana",
-      "stamina"
+      "Knowledge"
     ],
-    "possible_resist": [
-      "cold",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -12138,16 +11258,10 @@
       ]
     },
     "possible_bonus": [
-      "armor",
-      "intelligence",
-      "stamina",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "cold",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "fixed_trait": [],
@@ -12236,19 +11350,10 @@
       "glacial_bulwark"
     ],
     "possible_bonus": [
-      "armor",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "bleed",
-      "lightning",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -12328,17 +11433,10 @@
       "phoenix_aegis"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "intelligence",
-      "stamina"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "bleed",
-      "lightning",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -12430,20 +11528,11 @@
       "stormwall"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "fire",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -12531,19 +11620,11 @@
       "sunforged_vigor"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "cold",
-      "necrotic",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -12631,19 +11712,10 @@
       "phoenix_aegis"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "cold",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -12735,20 +11807,11 @@
       "mirror_hex"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "lightning",
-      "mana",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -12840,20 +11903,11 @@
       "mirror_hex"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "arcane",
-      "cold",
-      "lightning",
-      "physical"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -12945,20 +11999,11 @@
       "null_field"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina",
-      "strength"
+      "Technique",
+      "Knowledge",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "necrotic",
-      "physical",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -13042,18 +12087,10 @@
       "null_field"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "mana",
-      "strength"
+      "Technique",
+      "Physique"
     ],
-    "possible_resist": [
-      "bleed",
-      "cold",
-      "mana",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
@@ -13141,19 +12178,10 @@
       "spectral_protection"
     ],
     "possible_bonus": [
-      "armor",
-      "dexterity",
-      "health",
-      "intelligence",
-      "mana",
-      "stamina"
+      "Technique",
+      "Knowledge"
     ],
-    "possible_resist": [
-      "cold",
-      "fire",
-      "lightning",
-      "stagger"
-    ],
+    "possible_resist": [],
     "fixed_bonus": [],
     "fixed_resist": [],
     "possible_trait": []
