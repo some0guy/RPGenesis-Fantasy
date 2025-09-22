@@ -1,7 +1,7 @@
 {
   "trinkets": [
     {
-      "id": "IT00006001",
+      "id": "IT006001",
       "name": "Silver Brooch",
       "category": "trinket",
       "rarity": "uncommon",
@@ -10,7 +10,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006002",
+      "id": "IT006002",
       "name": "Ornamental Vase",
       "category": "trinket",
       "rarity": "common",
@@ -19,7 +19,7 @@
       "weight": 3
     },
     {
-      "id": "IT00006003",
+      "id": "IT006003",
       "name": "Emerald Gemstone (Polished)",
       "category": "trinket",
       "rarity": "rare",
@@ -28,7 +28,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006004",
+      "id": "IT006004",
       "name": "Ivory Comb",
       "category": "trinket",
       "rarity": "uncommon",
@@ -37,7 +37,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006005",
+      "id": "IT006005",
       "name": "Wooden Tankard (Carved)",
       "category": "trinket",
       "rarity": "common",
@@ -46,7 +46,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006006",
+      "id": "IT006006",
       "name": "Porcelain Figurine",
       "category": "trinket",
       "rarity": "uncommon",
@@ -55,7 +55,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006007",
+      "id": "IT006007",
       "name": "Brass Music Box",
       "category": "trinket",
       "rarity": "uncommon",
@@ -64,7 +64,7 @@
       "weight": 2
     },
     {
-      "id": "IT00006008",
+      "id": "IT006008",
       "name": "Jeweled Goblet",
       "category": "trinket",
       "rarity": "rare",
@@ -73,7 +73,7 @@
       "weight": 2
     },
     {
-      "id": "IT00006009",
+      "id": "IT006009",
       "name": "Antique Map Tube",
       "category": "trinket",
       "rarity": "uncommon",
@@ -82,7 +82,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006010",
+      "id": "IT006010",
       "name": "Carved Jade Pendant",
       "category": "trinket",
       "rarity": "rare",
@@ -91,7 +91,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006011",
+      "id": "IT006011",
       "name": "Traveler’s Charm",
       "category": "trinket",
       "rarity": "common",
@@ -100,7 +100,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006012",
+      "id": "IT006012",
       "name": "Painted Silk Fan",
       "category": "trinket",
       "rarity": "common",
@@ -109,7 +109,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006013",
+      "id": "IT006013",
       "name": "Silvered Hand Mirror",
       "category": "trinket",
       "rarity": "uncommon",
@@ -118,7 +118,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006014",
+      "id": "IT006014",
       "name": "Engraved Locket",
       "category": "trinket",
       "rarity": "uncommon",
@@ -127,7 +127,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006015",
+      "id": "IT006015",
       "name": "Collector’s Stamp Sheet",
       "category": "trinket",
       "rarity": "rare",
@@ -136,7 +136,7 @@
       "weight": 0
     },
     {
-      "id": "IT00006016",
+      "id": "IT006016",
       "name": "Crystal Paperweight",
       "category": "trinket",
       "rarity": "common",
@@ -145,7 +145,7 @@
       "weight": 2
     },
     {
-      "id": "IT00006017",
+      "id": "IT006017",
       "name": "Ornate Candleholder",
       "category": "trinket",
       "rarity": "common",
@@ -154,7 +154,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006018",
+      "id": "IT006018",
       "name": "Miniature Ship in Bottle",
       "category": "trinket",
       "rarity": "uncommon",
@@ -163,7 +163,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006019",
+      "id": "IT006019",
       "name": "Lapis Lazuli Bead",
       "category": "trinket",
       "rarity": "uncommon",
@@ -172,7 +172,7 @@
       "weight": 0
     },
     {
-      "id": "IT00006020",
+      "id": "IT006020",
       "name": "Gilded Letter Opener",
       "category": "trinket",
       "rarity": "uncommon",
@@ -181,7 +181,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006021",
+      "id": "IT006021",
       "name": "Embossed Tobacco Tin",
       "category": "trinket",
       "rarity": "common",
@@ -190,7 +190,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006022",
+      "id": "IT006022",
       "name": "Seashell Cameo",
       "category": "trinket",
       "rarity": "uncommon",
@@ -199,7 +199,7 @@
       "weight": 0
     },
     {
-      "id": "IT00006023",
+      "id": "IT006023",
       "name": "Polished Coral Branch",
       "category": "trinket",
       "rarity": "uncommon",
@@ -208,7 +208,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006024",
+      "id": "IT006024",
       "name": "Ceremonial Mask (Replica)",
       "category": "trinket",
       "rarity": "uncommon",
@@ -217,7 +217,7 @@
       "weight": 2
     },
     {
-      "id": "IT00006025",
+      "id": "IT006025",
       "name": "Clockwork Beetle",
       "category": "trinket",
       "rarity": "rare",
@@ -226,7 +226,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006026",
+      "id": "IT006026",
       "name": "Pressed Flower Book",
       "category": "trinket",
       "rarity": "common",
@@ -235,7 +235,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006027",
+      "id": "IT006027",
       "name": "Gnomish Kaleidoscope",
       "category": "trinket",
       "rarity": "uncommon",
@@ -244,7 +244,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006028",
+      "id": "IT006028",
       "name": "Runed Keepsake Box",
       "category": "trinket",
       "rarity": "rare",
@@ -253,7 +253,7 @@
       "weight": 2
     },
     {
-      "id": "IT00006029",
+      "id": "IT006029",
       "name": "Pearl Strand",
       "category": "trinket",
       "rarity": "rare",
@@ -262,7 +262,7 @@
       "weight": 1
     },
     {
-      "id": "IT00006030",
+      "id": "IT006030",
       "name": "Crystal Snow Globe",
       "category": "trinket",
       "rarity": "uncommon",

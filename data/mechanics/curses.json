@@ -1,6 +1,6 @@
 [
   {
-    "id": "CU00000001",
+    "id": "CU000001",
     "name": "Undead",
     "requires": "dead",
     "race_restriction": [],
@@ -106,7 +106,7 @@
     }
   },
   {
-    "id": "CU00000002",
+    "id": "CU000002",
     "name": "Ghoul",
     "requires": "dead",
     "race_restriction": [],
@@ -201,7 +201,7 @@
     }
   },
   {
-    "id": "CU00000003",
+    "id": "CU000003",
     "name": "Vampire",
     "requires": "living",
     "race_restriction": [],
@@ -313,7 +313,7 @@
     }
   },
   {
-    "id": "CU00000004",
+    "id": "CU000004",
     "name": "Lycanthrope",
     "requires": "living",
     "race_restriction": [
@@ -434,7 +434,7 @@
     }
   },
   {
-    "id": "CU00000005",
+    "id": "CU000005",
     "name": "Siren",
     "requires": "living",
     "race_restriction": [
@@ -536,7 +536,7 @@
     }
   },
   {
-    "id": "CU00000006",
+    "id": "CU000006",
     "name": "Blight",
     "requires": "living",
     "race_restriction": [
@@ -632,7 +632,7 @@
     }
   },
   {
-    "id": "CU00000007",
+    "id": "CU000007",
     "name": "Lich",
     "requires": "living",
     "race_restriction": [],
@@ -742,7 +742,7 @@
     }
   },
   {
-    "id": "CU00000008",
+    "id": "CU000008",
     "name": "Gorgon",
     "requires": "living",
     "race_restriction": [
@@ -836,7 +836,7 @@
     }
   },
   {
-    "id": "CU00000009",
+    "id": "CU000009",
     "name": "Basilisk",
     "requires": "living",
     "race_restriction": [
@@ -930,7 +930,7 @@
     }
   },
   {
-    "id": "CU00000010",
+    "id": "CU000010",
     "name": "Wraith",
     "requires": "dead",
     "race_restriction": [],
@@ -1024,7 +1024,7 @@
     }
   },
   {
-    "id": "CU00000011",
+    "id": "CU000011",
     "name": "Shade",
     "requires": "dead",
     "race_restriction": [],
@@ -1117,7 +1117,7 @@
     }
   },
   {
-    "id": "CU00000012",
+    "id": "CU000012",
     "name": "Shrieker",
     "requires": "living",
     "race_restriction": [

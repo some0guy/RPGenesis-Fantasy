@@ -1,11 +1,11 @@
 {
   "schema": "rpgen.save@1",
   "version": 1,
-  "timestamp": "2025-09-19T18:41:55",
+  "timestamp": "2025-09-22T01:00:23",
   "map_id": "Jungle of Hills",
   "map_name": "Jungle of Hills",
   "pos": [
-    1,
+    9,
     8
   ],
   "player": {
@@ -13,20 +13,20 @@
     "race": "Sableheart Tiefling",
     "role": "Champion",
     "level": 1,
-    "xp": 0,
-    "hp": 25,
+    "xp": 50,
+    "hp": 21,
     "max_hp": 25,
     "atk": [
       3,
       6
     ],
-    "phy": 5,
+    "phy": 15,
     "dex": 5,
     "vit": 5,
     "arc": 5,
     "kno": 5,
     "ins": 5,
-    "soc": 5,
+    "soc": 15,
     "fth": 5,
     "affinity": {},
     "romance_flags": {},
@@ -92,10 +92,71 @@
         "_ctx": "start:28457034:inv:1"
       }
     ],
-    "equipped_gear": {}
+    "equipped_gear": {
+      "weapon_main": {
+        "category": "weapon",
+        "name": "Rough Dagger",
+        "style": "physical",
+        "type": "dagger",
+        "rarity": "common",
+        "value": 130,
+        "weight": 794,
+        "description": "A common dagger forged to our current spec.",
+        "components": [],
+        "damage_type": {
+          "physical": 13
+        },
+        "bonus": {},
+        "weapon_trait": "none",
+        "id": "IT14025480",
+        "desc": "A common dagger forged to our current spec.",
+        "min": 7,
+        "max": 12,
+        "status_chance": 0.0,
+        "status": [],
+        "enchants": [],
+        "_rolled": true,
+        "_base_id": "IT00000001",
+        "_ctx": "start:28457034:inv:0"
+      },
+      "weapon_off": {
+        "category": "weapon",
+        "name": "Sturdy Dagger",
+        "style": "physical",
+        "type": "dagger",
+        "rarity": "uncommon",
+        "value": 418,
+        "weight": 1229,
+        "description": "A uncommon dagger forged to our current spec.",
+        "components": [],
+        "damage_type": {
+          "physical": 35,
+          "lightning": 3
+        },
+        "bonus": {},
+        "weapon_trait": "none",
+        "id": "IT06216488",
+        "desc": "A uncommon dagger forged to our current spec.",
+        "min": 21,
+        "max": 36,
+        "status_chance": 0.15,
+        "status": [
+          "shock"
+        ],
+        "enchants": [
+          {
+            "id": "EN00000002",
+            "name": "Stormbrand I"
+          }
+        ],
+        "_rolled": true,
+        "_base_id": "IT00000002",
+        "_ctx": "start:28457034:inv:1"
+      }
+    }
   },
   "party": [],
-  "playtime_s": 310,
+  "playtime_s": 345,
   "world_seed": 28457034,
   "returning_allies": {}
 }

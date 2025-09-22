@@ -1,7 +1,7 @@
 {
   "materials": [
     {
-      "id": "IT00005001",
+      "id": "IT005001",
       "name": "Raw Iron Ore",
       "category": "material",
       "rarity": "common",
@@ -10,7 +10,7 @@
       "weight": 5
     },
     {
-      "id": "IT00005002",
+      "id": "IT005002",
       "name": "Coal Chunk",
       "category": "material",
       "rarity": "common",
@@ -19,7 +19,7 @@
       "weight": 3
     },
     {
-      "id": "IT00005003",
+      "id": "IT005003",
       "name": "Copper Ore",
       "category": "material",
       "rarity": "common",
@@ -28,7 +28,7 @@
       "weight": 4
     },
     {
-      "id": "IT00005004",
+      "id": "IT005004",
       "name": "Tin Ore",
       "category": "material",
       "rarity": "common",
@@ -37,7 +37,7 @@
       "weight": 4
     },
     {
-      "id": "IT00005005",
+      "id": "IT005005",
       "name": "Silver Ore",
       "category": "material",
       "rarity": "uncommon",
@@ -46,7 +46,7 @@
       "weight": 4
     },
     {
-      "id": "IT00005006",
+      "id": "IT005006",
       "name": "Gold Ore",
       "category": "material",
       "rarity": "rare",
@@ -55,7 +55,7 @@
       "weight": 5
     },
     {
-      "id": "IT00005007",
+      "id": "IT005007",
       "name": "Quartz Crystal",
       "category": "material",
       "rarity": "uncommon",
@@ -64,7 +64,7 @@
       "weight": 1
     },
     {
-      "id": "IT00005008",
+      "id": "IT005008",
       "name": "Raw Arcane Crystal",
       "category": "material",
       "rarity": "rare",
@@ -73,7 +73,7 @@
       "weight": 2
     },
     {
-      "id": "IT00005009",
+      "id": "IT005009",
       "name": "Rough Obsidian",
       "category": "material",
       "rarity": "uncommon",
@@ -82,7 +82,7 @@
       "weight": 2
     },
     {
-      "id": "IT00005010",
+      "id": "IT005010",
       "name": "Hardwood Log",
       "category": "material",
       "rarity": "common",
@@ -91,7 +91,7 @@
       "weight": 6
     },
     {
-      "id": "IT00005011",
+      "id": "IT005011",
       "name": "Yew Bough",
       "category": "material",
       "rarity": "uncommon",
@@ -100,7 +100,7 @@
       "weight": 3
     },
     {
-      "id": "IT00005012",
+      "id": "IT005012",
       "name": "Raw Hide",
       "category": "material",
       "rarity": "common",
@@ -109,7 +109,7 @@
       "weight": 3
     },
     {
-      "id": "IT00005013",
+      "id": "IT005013",
       "name": "Flax Bundle",
       "category": "material",
       "rarity": "common",
@@ -118,7 +118,7 @@
       "weight": 2
     },
     {
-      "id": "IT00005014",
+      "id": "IT005014",
       "name": "Saltpeter",
       "category": "material",
       "rarity": "common",
@@ -127,7 +127,7 @@
       "weight": 1
     },
     {
-      "id": "IT00005015",
+      "id": "IT005015",
       "name": "Sulfur Nodules",
       "category": "material",
       "rarity": "common",
@@ -136,7 +136,7 @@
       "weight": 1
     },
     {
-      "id": "IT00005016",
+      "id": "IT005016",
       "name": "Iron Ingot",
       "category": "material",
       "rarity": "common",
@@ -145,7 +145,7 @@
       "weight": 5
     },
     {
-      "id": "IT00005017",
+      "id": "IT005017",
       "name": "Steel Ingot",
       "category": "material",
       "rarity": "uncommon",
@@ -154,7 +154,7 @@
       "weight": 5
     },
     {
-      "id": "IT00005018",
+      "id": "IT005018",
       "name": "Silver Ingot",
       "category": "material",
       "rarity": "uncommon",
@@ -163,7 +163,7 @@
       "weight": 4
     },
     {
-      "id": "IT00005019",
+      "id": "IT005019",
       "name": "Gold Ingot",
       "category": "material",
       "rarity": "rare",
@@ -172,7 +172,7 @@
       "weight": 4
     },
     {
-      "id": "IT00005020",
+      "id": "IT005020",
       "name": "Mithril Thread",
       "category": "material",
       "rarity": "rare",
@@ -181,7 +181,7 @@
       "weight": 1
     },
     {
-      "id": "IT00005021",
+      "id": "IT005021",
       "name": "Adamant Plate",
       "category": "material",
       "rarity": "epic",
@@ -190,7 +190,7 @@
       "weight": 6
     },
     {
-      "id": "IT00005022",
+      "id": "IT005022",
       "name": "Cured Leather",
       "category": "material",
       "rarity": "common",
@@ -199,7 +199,7 @@
       "weight": 2
     },
     {
-      "id": "IT00005023",
+      "id": "IT005023",
       "name": "Leather Strips",
       "category": "material",
       "rarity": "common",
@@ -208,7 +208,7 @@
       "weight": 1
     },
     {
-      "id": "IT00005024",
+      "id": "IT005024",
       "name": "Linen Cloth",
       "category": "material",
       "rarity": "common",
@@ -217,7 +217,7 @@
       "weight": 1
     },
     {
-      "id": "IT00005025",
+      "id": "IT005025",
       "name": "Silk Bolt",
       "category": "material",
       "rarity": "uncommon",
@@ -226,7 +226,7 @@
       "weight": 1
     },
     {
-      "id": "IT00005026",
+      "id": "IT005026",
       "name": "Stained Glass Piece",
       "category": "material",
       "rarity": "uncommon",
@@ -235,7 +235,7 @@
       "weight": 2
     },
     {
-      "id": "IT00005027",
+      "id": "IT005027",
       "name": "Clear Glass Pane",
       "category": "material",
       "rarity": "common",
@@ -244,7 +244,7 @@
       "weight": 2
     },
     {
-      "id": "IT00005028",
+      "id": "IT005028",
       "name": "Hardwood Plank",
       "category": "material",
       "rarity": "common",
@@ -253,7 +253,7 @@
       "weight": 3
     },
     {
-      "id": "IT00005029",
+      "id": "IT005029",
       "name": "Runic Powder",
       "category": "material",
       "rarity": "rare",
@@ -262,7 +262,7 @@
       "weight": 1
     },
     {
-      "id": "IT00005030",
+      "id": "IT005030",
       "name": "Tempered Bowstave",
       "category": "material",
       "rarity": "uncommon",

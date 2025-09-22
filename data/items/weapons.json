@@ -18,7 +18,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000001",
+      "id": "IT000001",
       "desc": "A common dagger forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -61,7 +61,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000002",
+      "id": "IT000002",
       "desc": "A uncommon dagger forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -108,7 +108,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000003",
+      "id": "IT000003",
       "desc": "A rare dagger forged to our current spec.",
       "damage_template": {
         "bleed": [
@@ -164,7 +164,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000004",
+      "id": "IT000004",
       "desc": "A exotic dagger forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -207,7 +207,7 @@
       "description": "A legendary dagger forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000005",
+      "id": "IT000005",
       "desc": "A legendary dagger forged to our current spec.",
       "damage_template": {
         "arcane": [
@@ -254,7 +254,7 @@
       "description": "A mythic dagger forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000006",
+      "id": "IT000006",
       "desc": "A mythic dagger forged to our current spec.",
       "damage_template": {
         "ice": [
@@ -312,7 +312,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000007",
+      "id": "IT000007",
       "desc": "A common shortsword forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -355,7 +355,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000008",
+      "id": "IT000008",
       "desc": "A uncommon shortsword forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -402,7 +402,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000009",
+      "id": "IT000009",
       "desc": "A rare shortsword forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -458,7 +458,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000010",
+      "id": "IT000010",
       "desc": "A exotic shortsword forged to our current spec.",
       "damage_template": {
         "fire": [
@@ -501,7 +501,7 @@
       "description": "A legendary shortsword forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000011",
+      "id": "IT000011",
       "desc": "A legendary shortsword forged to our current spec.",
       "damage_template": {
         "bleed": [
@@ -548,7 +548,7 @@
       "description": "A mythic shortsword forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000012",
+      "id": "IT000012",
       "desc": "A mythic shortsword forged to our current spec.",
       "damage_template": {
         "ice": [
@@ -606,7 +606,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000013",
+      "id": "IT000013",
       "desc": "A common longsword forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -649,7 +649,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000014",
+      "id": "IT000014",
       "desc": "A uncommon longsword forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -696,7 +696,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000015",
+      "id": "IT000015",
       "desc": "A rare longsword forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -752,7 +752,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000016",
+      "id": "IT000016",
       "desc": "A exotic longsword forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -795,7 +795,7 @@
       "description": "A legendary longsword forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000017",
+      "id": "IT000017",
       "desc": "A legendary longsword forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -842,7 +842,7 @@
       "description": "A mythic longsword forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000018",
+      "id": "IT000018",
       "desc": "A mythic longsword forged to our current spec.",
       "damage_template": {
         "bleed": [
@@ -900,7 +900,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000019",
+      "id": "IT000019",
       "desc": "A common claymore forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -943,7 +943,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000020",
+      "id": "IT000020",
       "desc": "A uncommon claymore forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -990,7 +990,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000021",
+      "id": "IT000021",
       "desc": "A rare claymore forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -1046,7 +1046,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000022",
+      "id": "IT000022",
       "desc": "A exotic claymore forged to our current spec.",
       "damage_template": {
         "stagger": [
@@ -1089,7 +1089,7 @@
       "description": "A legendary claymore forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000023",
+      "id": "IT000023",
       "desc": "A legendary claymore forged to our current spec.",
       "damage_template": {
         "mana": [
@@ -1136,7 +1136,7 @@
       "description": "A mythic claymore forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000024",
+      "id": "IT000024",
       "desc": "A mythic claymore forged to our current spec.",
       "damage_template": {
         "mana": [
@@ -1194,7 +1194,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000025",
+      "id": "IT000025",
       "desc": "A common scimitar forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -1237,7 +1237,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000026",
+      "id": "IT000026",
       "desc": "A uncommon scimitar forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -1284,7 +1284,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000027",
+      "id": "IT000027",
       "desc": "A rare scimitar forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -1340,7 +1340,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000028",
+      "id": "IT000028",
       "desc": "A exotic scimitar forged to our current spec.",
       "damage_template": {
         "lightning": [
@@ -1383,7 +1383,7 @@
       "description": "A legendary scimitar forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000029",
+      "id": "IT000029",
       "desc": "A legendary scimitar forged to our current spec.",
       "damage_template": {
         "lightning": [
@@ -1430,7 +1430,7 @@
       "description": "A mythic scimitar forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000030",
+      "id": "IT000030",
       "desc": "A mythic scimitar forged to our current spec.",
       "damage_template": {
         "fire": [
@@ -1488,7 +1488,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000031",
+      "id": "IT000031",
       "desc": "A common cutlass forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -1531,7 +1531,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000032",
+      "id": "IT000032",
       "desc": "A uncommon cutlass forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -1578,7 +1578,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000033",
+      "id": "IT000033",
       "desc": "A rare cutlass forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -1634,7 +1634,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000034",
+      "id": "IT000034",
       "desc": "A exotic cutlass forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -1677,7 +1677,7 @@
       "description": "A legendary cutlass forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000035",
+      "id": "IT000035",
       "desc": "A legendary cutlass forged to our current spec.",
       "damage_template": {
         "arcane": [
@@ -1724,7 +1724,7 @@
       "description": "A mythic cutlass forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000036",
+      "id": "IT000036",
       "desc": "A mythic cutlass forged to our current spec.",
       "damage_template": {
         "fire": [
@@ -1782,7 +1782,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000037",
+      "id": "IT000037",
       "desc": "A common axe forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -1825,7 +1825,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000038",
+      "id": "IT000038",
       "desc": "A uncommon axe forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -1872,7 +1872,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000039",
+      "id": "IT000039",
       "desc": "A rare axe forged to our current spec.",
       "damage_template": {
         "mana": [
@@ -1928,7 +1928,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000040",
+      "id": "IT000040",
       "desc": "A exotic axe forged to our current spec.",
       "damage_template": {
         "fire": [
@@ -1971,7 +1971,7 @@
       "description": "A legendary axe forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000041",
+      "id": "IT000041",
       "desc": "A legendary axe forged to our current spec.",
       "damage_template": {
         "mana": [
@@ -2018,7 +2018,7 @@
       "description": "A mythic axe forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000042",
+      "id": "IT000042",
       "desc": "A mythic axe forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -2076,7 +2076,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000043",
+      "id": "IT000043",
       "desc": "A common greataxe forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -2119,7 +2119,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000044",
+      "id": "IT000044",
       "desc": "A uncommon greataxe forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -2166,7 +2166,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000045",
+      "id": "IT000045",
       "desc": "A rare greataxe forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -2222,7 +2222,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000046",
+      "id": "IT000046",
       "desc": "A exotic greataxe forged to our current spec.",
       "damage_template": {
         "lightning": [
@@ -2265,7 +2265,7 @@
       "description": "A legendary greataxe forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000047",
+      "id": "IT000047",
       "desc": "A legendary greataxe forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -2312,7 +2312,7 @@
       "description": "A mythic greataxe forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000048",
+      "id": "IT000048",
       "desc": "A mythic greataxe forged to our current spec.",
       "damage_template": {
         "fire": [
@@ -2370,7 +2370,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000049",
+      "id": "IT000049",
       "desc": "A common mace forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -2413,7 +2413,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000050",
+      "id": "IT000050",
       "desc": "A uncommon mace forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -2460,7 +2460,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000051",
+      "id": "IT000051",
       "desc": "A rare mace forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -2516,7 +2516,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000052",
+      "id": "IT000052",
       "desc": "A exotic mace forged to our current spec.",
       "damage_template": {
         "fire": [
@@ -2559,7 +2559,7 @@
       "description": "A legendary mace forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000053",
+      "id": "IT000053",
       "desc": "A legendary mace forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -2606,7 +2606,7 @@
       "description": "A mythic mace forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000054",
+      "id": "IT000054",
       "desc": "A mythic mace forged to our current spec.",
       "damage_template": {
         "ice": [
@@ -2664,7 +2664,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000055",
+      "id": "IT000055",
       "desc": "A common hammer forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -2707,7 +2707,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000056",
+      "id": "IT000056",
       "desc": "A uncommon hammer forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -2754,7 +2754,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000057",
+      "id": "IT000057",
       "desc": "A rare hammer forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -2810,7 +2810,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000058",
+      "id": "IT000058",
       "desc": "A exotic hammer forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -2853,7 +2853,7 @@
       "description": "A legendary hammer forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000059",
+      "id": "IT000059",
       "desc": "A legendary hammer forged to our current spec.",
       "damage_template": {
         "mana": [
@@ -2900,7 +2900,7 @@
       "description": "A mythic hammer forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000060",
+      "id": "IT000060",
       "desc": "A mythic hammer forged to our current spec.",
       "damage_template": {
         "fire": [
@@ -2958,7 +2958,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000061",
+      "id": "IT000061",
       "desc": "A common warhammer forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -3001,7 +3001,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000062",
+      "id": "IT000062",
       "desc": "A uncommon warhammer forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -3048,7 +3048,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000063",
+      "id": "IT000063",
       "desc": "A rare warhammer forged to our current spec.",
       "damage_template": {
         "bleed": [
@@ -3104,7 +3104,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000064",
+      "id": "IT000064",
       "desc": "A exotic warhammer forged to our current spec.",
       "damage_template": {
         "mana": [
@@ -3147,7 +3147,7 @@
       "description": "A legendary warhammer forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000065",
+      "id": "IT000065",
       "desc": "A legendary warhammer forged to our current spec.",
       "damage_template": {
         "arcane": [
@@ -3194,7 +3194,7 @@
       "description": "A mythic warhammer forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000066",
+      "id": "IT000066",
       "desc": "A mythic warhammer forged to our current spec.",
       "damage_template": {
         "stagger": [
@@ -3252,7 +3252,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000067",
+      "id": "IT000067",
       "desc": "A common flail forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -3295,7 +3295,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000068",
+      "id": "IT000068",
       "desc": "A uncommon flail forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -3342,7 +3342,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000069",
+      "id": "IT000069",
       "desc": "A rare flail forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -3398,7 +3398,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000070",
+      "id": "IT000070",
       "desc": "A exotic flail forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -3441,7 +3441,7 @@
       "description": "A legendary flail forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000071",
+      "id": "IT000071",
       "desc": "A legendary flail forged to our current spec.",
       "damage_template": {
         "stagger": [
@@ -3488,7 +3488,7 @@
       "description": "A mythic flail forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000072",
+      "id": "IT000072",
       "desc": "A mythic flail forged to our current spec.",
       "damage_template": {
         "ice": [
@@ -3546,7 +3546,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000073",
+      "id": "IT000073",
       "desc": "A common spear forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -3589,7 +3589,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000074",
+      "id": "IT000074",
       "desc": "A uncommon spear forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -3636,7 +3636,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000075",
+      "id": "IT000075",
       "desc": "A rare spear forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -3692,7 +3692,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000076",
+      "id": "IT000076",
       "desc": "A exotic spear forged to our current spec.",
       "damage_template": {
         "arcane": [
@@ -3735,7 +3735,7 @@
       "description": "A legendary spear forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000077",
+      "id": "IT000077",
       "desc": "A legendary spear forged to our current spec.",
       "damage_template": {
         "mana": [
@@ -3782,7 +3782,7 @@
       "description": "A mythic spear forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000078",
+      "id": "IT000078",
       "desc": "A mythic spear forged to our current spec.",
       "damage_template": {
         "stagger": [
@@ -3840,7 +3840,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000079",
+      "id": "IT000079",
       "desc": "A common halberd forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -3883,7 +3883,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000080",
+      "id": "IT000080",
       "desc": "A uncommon halberd forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -3930,7 +3930,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000081",
+      "id": "IT000081",
       "desc": "A rare halberd forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -3986,7 +3986,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000082",
+      "id": "IT000082",
       "desc": "A exotic halberd forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -4029,7 +4029,7 @@
       "description": "A legendary halberd forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000083",
+      "id": "IT000083",
       "desc": "A legendary halberd forged to our current spec.",
       "damage_template": {
         "ice": [
@@ -4076,7 +4076,7 @@
       "description": "A mythic halberd forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000084",
+      "id": "IT000084",
       "desc": "A mythic halberd forged to our current spec.",
       "damage_template": {
         "mana": [
@@ -4134,7 +4134,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000085",
+      "id": "IT000085",
       "desc": "A common club forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -4177,7 +4177,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000086",
+      "id": "IT000086",
       "desc": "A uncommon club forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -4224,7 +4224,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000087",
+      "id": "IT000087",
       "desc": "A rare club forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -4280,7 +4280,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000088",
+      "id": "IT000088",
       "desc": "A exotic club forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -4323,7 +4323,7 @@
       "description": "A legendary club forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000089",
+      "id": "IT000089",
       "desc": "A legendary club forged to our current spec.",
       "damage_template": {
         "fire": [
@@ -4370,7 +4370,7 @@
       "description": "A mythic club forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000090",
+      "id": "IT000090",
       "desc": "A mythic club forged to our current spec.",
       "damage_template": {
         "mana": [
@@ -4428,7 +4428,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000091",
+      "id": "IT000091",
       "desc": "A common great_club forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -4471,7 +4471,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000092",
+      "id": "IT000092",
       "desc": "A uncommon great_club forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -4518,7 +4518,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000093",
+      "id": "IT000093",
       "desc": "A rare great_club forged to our current spec.",
       "damage_template": {
         "bleed": [
@@ -4574,7 +4574,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000094",
+      "id": "IT000094",
       "desc": "A exotic great_club forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -4617,7 +4617,7 @@
       "description": "A legendary great_club forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000095",
+      "id": "IT000095",
       "desc": "A legendary great_club forged to our current spec.",
       "damage_template": {
         "arcane": [
@@ -4664,7 +4664,7 @@
       "description": "A mythic great_club forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000096",
+      "id": "IT000096",
       "desc": "A mythic great_club forged to our current spec.",
       "damage_template": {
         "fire": [
@@ -4722,7 +4722,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000097",
+      "id": "IT000097",
       "desc": "A common stick forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -4765,7 +4765,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000098",
+      "id": "IT000098",
       "desc": "A uncommon stick forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -4812,7 +4812,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000099",
+      "id": "IT000099",
       "desc": "A rare stick forged to our current spec.",
       "damage_template": {
         "lightning": [
@@ -4868,7 +4868,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000100",
+      "id": "IT000100",
       "desc": "A exotic stick forged to our current spec.",
       "damage_template": {
         "fire": [
@@ -4911,7 +4911,7 @@
       "description": "A legendary stick forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000101",
+      "id": "IT000101",
       "desc": "A legendary stick forged to our current spec.",
       "damage_template": {
         "bleed": [
@@ -4958,7 +4958,7 @@
       "description": "A mythic stick forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000102",
+      "id": "IT000102",
       "desc": "A mythic stick forged to our current spec.",
       "damage_template": {
         "ice": [
@@ -5016,7 +5016,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000103",
+      "id": "IT000103",
       "desc": "A common big_stick forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5059,7 +5059,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000104",
+      "id": "IT000104",
       "desc": "A uncommon big_stick forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5106,7 +5106,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000105",
+      "id": "IT000105",
       "desc": "A rare big_stick forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5162,7 +5162,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000106",
+      "id": "IT000106",
       "desc": "A exotic big_stick forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5205,7 +5205,7 @@
       "description": "A legendary big_stick forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000107",
+      "id": "IT000107",
       "desc": "A legendary big_stick forged to our current spec.",
       "damage_template": {
         "bleed": [
@@ -5252,7 +5252,7 @@
       "description": "A mythic big_stick forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000108",
+      "id": "IT000108",
       "desc": "A mythic big_stick forged to our current spec.",
       "damage_template": {
         "lightning": [
@@ -5310,7 +5310,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000109",
+      "id": "IT000109",
       "desc": "A common throwing_knife forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5353,7 +5353,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000110",
+      "id": "IT000110",
       "desc": "A uncommon throwing_knife forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5400,7 +5400,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000111",
+      "id": "IT000111",
       "desc": "A rare throwing_knife forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5456,7 +5456,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000112",
+      "id": "IT000112",
       "desc": "A exotic throwing_knife forged to our current spec.",
       "damage_template": {
         "mana": [
@@ -5499,7 +5499,7 @@
       "description": "A legendary throwing_knife forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000113",
+      "id": "IT000113",
       "desc": "A legendary throwing_knife forged to our current spec.",
       "damage_template": {
         "stagger": [
@@ -5546,7 +5546,7 @@
       "description": "A mythic throwing_knife forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000114",
+      "id": "IT000114",
       "desc": "A mythic throwing_knife forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5604,7 +5604,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000115",
+      "id": "IT000115",
       "desc": "A common maul forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5647,7 +5647,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000116",
+      "id": "IT000116",
       "desc": "A uncommon maul forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5694,7 +5694,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000117",
+      "id": "IT000117",
       "desc": "A rare maul forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5750,7 +5750,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000118",
+      "id": "IT000118",
       "desc": "A exotic maul forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5793,7 +5793,7 @@
       "description": "A legendary maul forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000119",
+      "id": "IT000119",
       "desc": "A legendary maul forged to our current spec.",
       "damage_template": {
         "stagger": [
@@ -5840,7 +5840,7 @@
       "description": "A mythic maul forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000120",
+      "id": "IT000120",
       "desc": "A mythic maul forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5898,7 +5898,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000121",
+      "id": "IT000121",
       "desc": "A common shortbow forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5941,7 +5941,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000122",
+      "id": "IT000122",
       "desc": "A uncommon shortbow forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -5988,7 +5988,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000123",
+      "id": "IT000123",
       "desc": "A rare shortbow forged to our current spec.",
       "damage_template": {
         "arcane": [
@@ -6044,7 +6044,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000124",
+      "id": "IT000124",
       "desc": "A exotic shortbow forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -6087,7 +6087,7 @@
       "description": "A legendary shortbow forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000125",
+      "id": "IT000125",
       "desc": "A legendary shortbow forged to our current spec.",
       "damage_template": {
         "ice": [
@@ -6134,7 +6134,7 @@
       "description": "A mythic shortbow forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000126",
+      "id": "IT000126",
       "desc": "A mythic shortbow forged to our current spec.",
       "damage_template": {
         "ice": [
@@ -6192,7 +6192,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000127",
+      "id": "IT000127",
       "desc": "A common longbow forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -6235,7 +6235,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000128",
+      "id": "IT000128",
       "desc": "A uncommon longbow forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -6282,7 +6282,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000129",
+      "id": "IT000129",
       "desc": "A rare longbow forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -6338,7 +6338,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000130",
+      "id": "IT000130",
       "desc": "A exotic longbow forged to our current spec.",
       "damage_template": {
         "lightning": [
@@ -6381,7 +6381,7 @@
       "description": "A legendary longbow forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000131",
+      "id": "IT000131",
       "desc": "A legendary longbow forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -6428,7 +6428,7 @@
       "description": "A mythic longbow forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000132",
+      "id": "IT000132",
       "desc": "A mythic longbow forged to our current spec.",
       "damage_template": {
         "bleed": [
@@ -6486,7 +6486,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000133",
+      "id": "IT000133",
       "desc": "A common light_crossbow forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -6529,7 +6529,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000134",
+      "id": "IT000134",
       "desc": "A uncommon light_crossbow forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -6576,7 +6576,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000135",
+      "id": "IT000135",
       "desc": "A rare light_crossbow forged to our current spec.",
       "damage_template": {
         "bleed": [
@@ -6632,7 +6632,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000136",
+      "id": "IT000136",
       "desc": "A exotic light_crossbow forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -6675,7 +6675,7 @@
       "description": "A legendary light_crossbow forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000137",
+      "id": "IT000137",
       "desc": "A legendary light_crossbow forged to our current spec.",
       "damage_template": {
         "lightning": [
@@ -6722,7 +6722,7 @@
       "description": "A mythic light_crossbow forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000138",
+      "id": "IT000138",
       "desc": "A mythic light_crossbow forged to our current spec.",
       "damage_template": {
         "ice": [
@@ -6780,7 +6780,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000139",
+      "id": "IT000139",
       "desc": "A common heavy_crossbow forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -6823,7 +6823,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000140",
+      "id": "IT000140",
       "desc": "A uncommon heavy_crossbow forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -6870,7 +6870,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000141",
+      "id": "IT000141",
       "desc": "A rare heavy_crossbow forged to our current spec.",
       "damage_template": {
         "ice": [
@@ -6926,7 +6926,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000142",
+      "id": "IT000142",
       "desc": "A exotic heavy_crossbow forged to our current spec.",
       "damage_template": {
         "physical": [
@@ -6969,7 +6969,7 @@
       "description": "A legendary heavy_crossbow forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000143",
+      "id": "IT000143",
       "desc": "A legendary heavy_crossbow forged to our current spec.",
       "damage_template": {
         "arcane": [
@@ -7016,7 +7016,7 @@
       "description": "A mythic heavy_crossbow forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000144",
+      "id": "IT000144",
       "desc": "A mythic heavy_crossbow forged to our current spec.",
       "damage_template": {
         "fire": [
@@ -7078,7 +7078,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000145",
+      "id": "IT000145",
       "desc": "A common staff forged to our current spec.",
       "damage_template": {
         "arcane": [
@@ -7121,7 +7121,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000146",
+      "id": "IT000146",
       "desc": "A uncommon staff forged to our current spec.",
       "damage_template": {
         "lightning": [
@@ -7168,7 +7168,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000147",
+      "id": "IT000147",
       "desc": "A rare staff forged to our current spec.",
       "damage_template": {
         "arcane": [
@@ -7224,7 +7224,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000148",
+      "id": "IT000148",
       "desc": "A exotic staff forged to our current spec.",
       "damage_template": {
         "ice": [
@@ -7267,7 +7267,7 @@
       "description": "A legendary staff forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000149",
+      "id": "IT000149",
       "desc": "A legendary staff forged to our current spec.",
       "damage_template": {
         "fire": [
@@ -7314,7 +7314,7 @@
       "description": "A mythic staff forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000150",
+      "id": "IT000150",
       "desc": "A mythic staff forged to our current spec.",
       "damage_template": {
         "mana": [
@@ -7376,7 +7376,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000151",
+      "id": "IT000151",
       "desc": "A common wand forged to our current spec.",
       "damage_template": {
         "fire": [
@@ -7419,7 +7419,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000152",
+      "id": "IT000152",
       "desc": "A uncommon wand forged to our current spec.",
       "damage_template": {
         "lightning": [
@@ -7466,7 +7466,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000153",
+      "id": "IT000153",
       "desc": "A rare wand forged to our current spec.",
       "damage_template": {
         "fire": [
@@ -7522,7 +7522,7 @@
         }
       ],
       "damage_type": {},
-      "id": "IT00000154",
+      "id": "IT000154",
       "desc": "A exotic wand forged to our current spec.",
       "damage_template": {
         "arcane": [
@@ -7565,7 +7565,7 @@
       "description": "A legendary wand forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000155",
+      "id": "IT000155",
       "desc": "A legendary wand forged to our current spec.",
       "damage_template": {
         "lightning": [
@@ -7612,7 +7612,7 @@
       "description": "A mythic wand forged to our current spec.",
       "components": [],
       "damage_type": {},
-      "id": "IT00000156",
+      "id": "IT000156",
       "desc": "A mythic wand forged to our current spec.",
       "damage_template": {
         "lightning": [

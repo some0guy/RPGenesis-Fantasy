@@ -45,7 +45,7 @@ def get_version() -> str:
 # -------------------- Expected files + ID rules --------------------
 EXPECTED = {
     "root_files": [
-        "data/appearance.json",
+        "data/npcs/appearance.json",
         "data/mechanics/enchants.json",
         "data/mechanics/traits.json",
         "data/mechanics/encounters.json",
@@ -67,20 +67,82 @@ EXPECTED = {
         "data/npcs/animals.json",
         "data/npcs/citizens.json",
         "data/npcs/enemies.json",
-        "data/npcs/calamities.json",
+        "data/npcs/aberrations.json",
     ],
     "dialogues_dir": "data/dialogues",
 }
 
 ID_RULES = {
-    "item":    re.compile(r"^IT\d{8}$"),
-    "npc":     re.compile(r"^NP\d{8}$"),
-    "enchant": re.compile(r"^EN\d{8}$"),
-    "trait":   re.compile(r"^TR\d{8}$"),
-    "magic":   re.compile(r"^MG\d{8}$"),
-    "status":  re.compile(r"^ST\d{8}$"),
+    "item":    re.compile(r"^IT\d{6}$"),
+    "npc":     re.compile(r"^NP\d{6}$"),
+    "enchant": re.compile(r"^EN\d{6}$"),
+    "trait":   re.compile(r"^TR\d{6}$"),
+    "magic":   re.compile(r"^MG\d{6}$"),
+    "status":  re.compile(r"^ST\d{6}$"),
 }
 
+
+# -------------------- Base combat stat helpers (Eliana patch) --------------------
+def compute_item_stats(item: dict) -> dict:
+    """Return a normalized combat stat view for any item.
+    attack/defense are derived from base_* plus affix bonuses (if present).
+    """
+    it = dict(item or {})
+    base_atk = float(it.get("base_attack") or 0)
+    base_def = float(it.get("base_defense") or 0)
+
+    bonus  = it.get("fixed_bonus_values")  or it.get("bonus")  or {}
+    resist = it.get("fixed_resist_values") or it.get("resist") or {}
+
+    try:
+        atk = base_atk + float(bonus.get("ATK", 0) or 0) + float(bonus.get("attack", 0) or 0)
+    except Exception:
+        atk = base_atk
+    try:
+        df  = base_def + float(bonus.get("DEF", 0) or 0) + float(bonus.get("defense", 0) or 0)
+    except Exception:
+        df = base_def
+
+    return {
+        "attack": atk,
+        "defense": df,
+        "bonus": dict(bonus),
+        "resist": dict(resist),
+    }
+
+def get_damage_range(item: dict):
+    """Prefer explicit damage fields, else derive from base_attack (with small spread),
+    then fold ATK/attack bonuses if present.
+    Returns (min, max) or None.
+    """
+    it = dict(item or {})
+    # explicit
+    dm = it.get("damage_min") or it.get("min") or it.get("min_damage") or it.get("atk_min")
+    dM = it.get("damage_max") or it.get("max") or it.get("max_damage") or it.get("atk_max")
+    try:
+        if dm is not None and dM is not None:
+            lo = int(float(dm)); hi = int(float(dM))
+            if hi >= lo and hi > 0:
+                return (lo, hi)
+    except Exception:
+        pass
+
+    # derive from base
+    try:
+        base = float(it.get("base_attack") or 0)
+    except Exception:
+        base = 0.0
+    if base > 0:
+        lo = int(round(base * 0.7))
+        hi = max(lo+1, int(round(base * 1.2)))
+        b = it.get("fixed_bonus_values") or it.get("bonus") or {}
+        try:
+            add = int(float(b.get("ATK", 0) or 0) + float(b.get("attack", 0) or 0))
+        except Exception:
+            add = 0
+        return (max(1, lo + add), max(1, hi + add))
+
+    return None
 # -------------------- JSON I/O + validation --------------------
 def load_json(path: str, fallback=None):
     """Load JSON with tolerant behavior.
@@ -156,7 +218,7 @@ def validate_project(root: str, strict: bool=False):
                 continue
             iid = it.get("id")
             if not validate_id(iid, "item"):
-                errs.append(f"[ERR] {rel} item id '{iid}' must match IT########")
+                errs.append(f"[ERR] {rel} item id '{iid}' must match IT######")
             if iid in item_index:
                 dup_items.append(iid)
             item_index[iid] = it
@@ -181,7 +243,7 @@ def validate_project(root: str, strict: bool=False):
                 continue
             nid = npc.get("id")
             if not validate_id(nid, "npc"):
-                errs.append(f"[ERR] {rel} npc id '{nid}' must match NP########")
+                errs.append(f"[ERR] {rel} npc id '{nid}' must match NP######")
             if nid in npc_index:
                 dup_npcs.append(nid)
             npc_index[nid] = npc
@@ -192,7 +254,7 @@ def validate_project(root: str, strict: bool=False):
                 continue
             _id = entry.get("id")
             if not validate_id(_id, kind):
-                errs.append(f"[ERR] {rel} id '{_id}' must match {kind.upper()}########")
+                errs.append(f"[ERR] {rel} id '{_id}' must match {kind.upper()}######")
 
     for rel, key, kind in [
         ("data/mechanics/enchants.json", "enchants", "enchant"),
@@ -1013,7 +1075,7 @@ def gather_npcs() -> List[Dict]:
     npcs: List[Dict] = []
     npcs_dir = os.path.join(DATA_DIR, "npcs")
     if os.path.isdir(npcs_dir):
-        for name in ["allies.json","animals.json","citizens.json","enemies.json","calamities.json","villains.json"]:
+        for name in ["allies.json","animals.json","citizens.json","enemies.json","aberrations.json","villains.json"]:
             for n in safe_load_doc(os.path.join("npcs", name), "npcs"):
                 npcs.append(n)
         # Also support directory-based categories like data/npcs/vilains/*.json or data/npcs/villains/*.json
@@ -1864,14 +1926,13 @@ def draw_grid(surf, game):
                 # Events
                 if enc.event:
                     has.add('event')
-                order = ['enemy','villain','ally','citizen','aberration','calamity','monster','animal','quest_item','item','event']
+                order = ['enemy','villain','ally','citizen','aberration','monster','animal','quest_item','item','event']
                 color_map = {
                     'enemy': COL_ENEMY,
                     'villain': COL_VILLAIN,
                     'ally': COL_ALLY,
                     'citizen': COL_CITIZEN,
                     'aberration': COL_MONSTER,
-                    'calamity': COL_MONSTER,
                     'monster': COL_MONSTER,
                     'animal': COL_ANIMAL,
                     'quest_item': COL_QITEM,
@@ -2189,7 +2250,7 @@ def draw_panel(surf, game):
                 try:
                     def _is_enemy(e: Dict) -> bool:
                         sub = (e.get('subcategory') or '').lower()
-                        return sub in ('enemies','monsters','aberrations','calamities','villains','vilains') or bool(e.get('hostile'))
+                        return sub in ('enemies','monsters','aberrations','villains','vilains') or bool(e.get('hostile'))
                     for e in (t.encounter.npcs or []):
                         if isinstance(e, dict) and _is_enemy(e):
                             hostiles.append(e)
@@ -2208,7 +2269,7 @@ def draw_panel(surf, game):
             try:
                 def _is_enemy_e(e: Dict) -> bool:
                     sub = (e.get('subcategory') or '').lower()
-                    return sub in ('enemies','monsters','aberrations','calamities','villains','vilains') or bool(e.get('hostile'))
+                    return sub in ('enemies','monsters','aberrations','villains','vilains') or bool(e.get('hostile'))
                 friendlies = [e for e in (t.encounter.npcs or []) if isinstance(e, dict) and not _is_enemy_e(e)]
                 if not friendlies and t.encounter.npc:
                     friendlies = [t.encounter.npc]
@@ -2303,6 +2364,18 @@ def draw_inventory_panel(surf, game, x0, panel_w):
     if game.inv_sel is not None and 0 <= game.inv_sel < total:
         it = game.player.inventory[game.inv_sel]
         draw_text(surf, (item_desc(it) or "-"), (x0+16, y), max_w=panel_w-32); y += 36
+        # Basic facts
+        t = str(item_type(it) or '-')
+        s = str(item_subtype(it) or '-')
+        wt = item_weight(it)
+        val = item_value(it)
+        draw_text(surf, f"Type: {t} / {s}", (x0+16, y)); y += 20
+        draw_text(surf, f"Weight: {wt}", (x0+16, y)); y += 20
+        draw_text(surf, f"Value: {val}", (x0+16, y)); y += 24
+        # Damage range if applicable
+        rng = get_damage_range(it)
+        if rng:
+            draw_text(surf, f"Damage: {rng[0]}–{rng[1]}", (x0+16, y)); y += 24
         subtype = str(item_subtype(it)).lower()
         typ = str(item_type(it)).lower()
         major = item_major_type(it)
@@ -4211,7 +4284,7 @@ def draw_database_overlay(surf, game):
             'Animals':     _safe(os.path.join('npcs','animals.json'), 'npcs'),
             'Citizens':    _safe(os.path.join('npcs','citizens.json'), 'npcs'),
             'Enemies':     _safe(os.path.join('npcs','enemies.json'), 'npcs'),
-            'Aberrations': _safe(os.path.join('npcs','calamities.json'), 'npcs'),
+            'Aberrations': _safe(os.path.join('npcs','aberrations.json'), 'npcs'),
             'Villains':    villains_list,
         }
         game.db_cache = {
@@ -5750,7 +5823,7 @@ class Game:
                     self.mode = "combat" if t.encounter.spotted else "explore"
                     # Determine enemy type for coloring
                     sub = str((t.encounter.enemy or {}).get('subcategory') or '').lower()
-                    tag = 'monster' if sub in ('monsters','aberrations','calamities') else 'enemy'
+                    tag = 'monster' if sub in ('monsters','aberrations',) else 'enemy'
                     if t.encounter.spotted:
                         self.start_combat(t.encounter.enemy); self.say(f"{t.encounter.enemy.get('name','A foe')} spots you!", tag)
                     else:
@@ -5761,7 +5834,7 @@ class Game:
                     try:
                         def _is_enemy_e(e: Dict) -> bool:
                             sub = (e.get('subcategory') or '').lower()
-                            return sub in ('enemies','monsters','aberrations','calamities','villains','vilains') or bool(e.get('hostile'))
+                            return sub in ('enemies','monsters','aberrations','villains','vilains') or bool(e.get('hostile'))
                         friendlies = [e for e in (t.encounter.npcs or []) if isinstance(e, dict) and not _is_enemy_e(e)]
                     except Exception:
                         friendlies = []

@@ -1,6 +1,6 @@
 [
   {
-    "id": "RC00000001",
+    "id": "RC000001",
     "name": "Forest Elves",
     "race_group": "Elf",
     "skin_tone": [
@@ -38,7 +38,7 @@
     "spice": "Their whispers ride the wind through branches."
   },
   {
-    "id": "RC00000002",
+    "id": "RC000002",
     "name": "Dark Elves",
     "race_group": "Elf",
     "skin_tone": [
@@ -79,7 +79,7 @@
     "spice": "Their eyes glimmer in the dark like a predator's."
   },
   {
-    "id": "RC00000003",
+    "id": "RC000003",
     "name": "Snow Elves",
     "race_group": "Elf",
     "skin_tone": [
@@ -120,7 +120,7 @@
     "spice": "Breath mists in warmth; stray snowflakes follow their steps."
   },
   {
-    "id": "RC00000004",
+    "id": "RC000004",
     "name": "Great Elves",
     "race_group": "Elf",
     "skin_tone": [
@@ -160,7 +160,7 @@
     "spice": "Their lineage carries a faint celestial resonance."
   },
   {
-    "id": "RC00000005",
+    "id": "RC000005",
     "name": "Iron Dwarves",
     "race_group": "Dwarf",
     "skin_tone": [
@@ -201,7 +201,7 @@
     "spice": "In battle, their heartbeats echo like hammer blows."
   },
   {
-    "id": "RC00000006",
+    "id": "RC000006",
     "name": "Hill Dwarves",
     "race_group": "Dwarf",
     "skin_tone": [
@@ -238,7 +238,7 @@
     "spice": "Ale strong enough to floor an orc."
   },
   {
-    "id": "RC00000007",
+    "id": "RC000007",
     "name": "Ember Dwarves",
     "race_group": "Dwarf",
     "skin_tone": [
@@ -274,7 +274,7 @@
     "spice": "Skin radiates heat, scorching parchment if held too long."
   },
   {
-    "id": "RC00000008",
+    "id": "RC000008",
     "name": "Coastal Dwarves",
     "race_group": "Dwarf",
     "skin_tone": [
@@ -310,7 +310,7 @@
     "spice": "Creed: \"Stone sinks, ships sail.\""
   },
   {
-    "id": "RC00000009",
+    "id": "RC000009",
     "name": "Ashfoot Orcs",
     "race_group": "Orc",
     "skin_tone": [
@@ -349,7 +349,7 @@
     "spice": "War drums packed with volcanic stones rumble like quakes."
   },
   {
-    "id": "RC00000010",
+    "id": "RC000010",
     "name": "Storm Orcs",
     "race_group": "Orc",
     "skin_tone": [
@@ -386,7 +386,7 @@
     "spice": "Air around them smells of ozone; static crackles when enraged."
   },
   {
-    "id": "RC00000011",
+    "id": "RC000011",
     "name": "Mountain Orcs",
     "race_group": "Orc",
     "skin_tone": [
@@ -423,7 +423,7 @@
     "spice": "War-cries carry for miles, rolling like thunder."
   },
   {
-    "id": "RC00000012",
+    "id": "RC000012",
     "name": "Darkblood Tiefling",
     "race_group": "Tiefling",
     "skin_tone": [
@@ -463,7 +463,7 @@
     "spice": "Darkblood Tieflings are said to carry whispers of their infernal ancestors in their dreams, and some claim their cracked skin glows faintly in moonlight."
   },
   {
-    "id": "RC00000013",
+    "id": "RC000013",
     "name": "Hellbound Tiefling",
     "race_group": "Tiefling",
     "skin_tone": [
@@ -510,7 +510,7 @@
     "spice": "Rumored to smell faintly of brimstone when agitated, and their blood hisses when spilled on holy ground."
   },
   {
-    "id": "RC00000014",
+    "id": "RC000014",
     "name": "Voided Tiefling",
     "race_group": "Tiefling",
     "skin_tone": [
@@ -556,7 +556,7 @@
     "spice": "Their shadows sometimes move independently of their bodies."
   },
   {
-    "id": "RC00000015",
+    "id": "RC000015",
     "name": "Sableheart Tiefling",
     "race_group": "Tiefling",
     "skin_tone": [
@@ -601,7 +601,7 @@
     "spice": "Their voices carry a strange, honeyed resonance that makes even insults sound alluring."
   },
   {
-    "id": "RC00000016",
+    "id": "RC000016",
     "name": "Viridian Tiefling",
     "race_group": "Tiefling",
     "skin_tone": [
@@ -641,7 +641,7 @@
     "spice": "Viridian Tieflings often bear faintly glowing star-maps etched into their skin."
   },
   {
-    "id": "RC00000017",
+    "id": "RC000017",
     "name": "Human",
     "race_group": null,
     "skin_tone": [
@@ -690,7 +690,7 @@
     "spice": "Unrivaled at surviving the impossible through sheer audacity."
   },
   {
-    "id": "RC00000018",
+    "id": "RC000018",
     "name": "Aberration",
     "race_group": null,
     "skin_tone": [
@@ -730,7 +730,7 @@
     "spice": "Mirrors dislike them; reflections lag a heartbeat."
   },
   {
-    "id": "RC00000019",
+    "id": "RC000019",
     "name": "Umbral Nekomata",
     "race_group": "Nekomata",
     "skin_tone": [
@@ -761,7 +761,7 @@
     "spice": "The Umbral Nekomata carries the thrill of the forbidden—shadows coil at their heels, and when they smile, it’s unclear if it’s kindness, cruelty, or both. They embody the mystery of the night and the danger hidden within it."
   },
   {
-    "id": "RC00000020",
+    "id": "RC000020",
     "name": "Blossom Nekomata",
     "race_group": "Nekomata",
     "skin_tone": [
@@ -792,7 +792,7 @@
     "spice": "There is a quiet intoxication to them—warm smiles that promise comfort, petals that cling to skin and clothes, eyes that glisten with dew and dawnlight. Blossom Nekomata blur the line between temptation and tranquility."
   },
   {
-    "id": "RC00000021",
+    "id": "RC000021",
     "name": "Brimtail Nekomata",
     "race_group": "Nekomata",
     "skin_tone": [
@@ -823,7 +823,7 @@
     "spice": "The air around them crackles with heat. Their touch leaves warmth that lingers too long, their gaze sears with equal parts promise and peril. To stand near a Brimtail Nekomata is to feel both drawn to the flame and terrified of being consumed."
   },
   {
-    "id": "RC00000022",
+    "id": "RC000022",
     "name": "Lunarveil Kitsune",
     "race_group": "Kitsune",
     "skin_tone": [
@@ -854,7 +854,7 @@
     "spice": "Their very presence feels like a dream half-remembered—soft, luminous, and dangerous. To look into their eyes is to see yourself reflected, stripped of all disguises."
   },
   {
-    "id": "RC00000023",
+    "id": "RC000023",
     "name": "Infernal Kitsune",
     "race_group": "Kitsune",
     "skin_tone": [
@@ -885,7 +885,7 @@
     "spice": "There is danger in their charm, and allure in their destruction. To touch them is to feel both warmth and the threat of being consumed."
   },
   {
-    "id": "RC00000024",
+    "id": "RC000024",
     "name": "Ethereal Kitsune",
     "race_group": "Kitsune",
     "skin_tone": [
@@ -916,7 +916,7 @@
     "spice": "To be near them is to feel your soul stirred, a sensation both intoxicating and unsettling. They embody the ache of something beautiful just beyond reach."
   },
   {
-    "id": "RC00000025",
+    "id": "RC000025",
     "name": "Maple Kitsune",
     "race_group": "Kitsune",
     "skin_tone": [
@@ -947,7 +947,7 @@
     "spice": "Their presence feels like the golden twilight of autumn—warm, melancholic, and eternal. They are beautiful reminders of change, both desired and dreaded."
   },
   {
-    "id": "RC00000026",
+    "id": "RC000026",
     "name": "Arctic Kitsune",
     "race_group": "Kitsune",
     "skin_tone": [
@@ -978,7 +978,7 @@
     "spice": "Their touch is biting, their gaze piercing, yet their beauty is undeniable. They embody the cruel serenity of winter—silent, beautiful, merciless."
   },
   {
-    "id": "RC00000027",
+    "id": "RC000027",
     "name": "Coralheart Merfolk",
     "race_group": "Merfolk",
     "skin_tone": [
@@ -1009,7 +1009,7 @@
     "spice": "The Coralheart radiates warmth, community, and allure—the living embodiment of reefs that nurture life. Their touch can feel soft as sea grass or as sharp as broken coral. To stand among them is to be caught between hospitality and the unyielding resilience of the ocean."
   },
   {
-    "id": "RC00000028",
+    "id": "RC000028",
     "name": "Tideling Merfolk",
     "race_group": "Merfolk",
     "skin_tone": [
@@ -1040,7 +1040,7 @@
     "spice": "To encounter a Tideveil Merfolk is like glimpsing a figure in the fog—beautiful, distant, and never fully grasped. Their touch is cool and fleeting, like sea-mist on the skin, and their laughter carries on the wind like a haunting promise."
   },
   {
-    "id": "RC00000029",
+    "id": "RC000029",
     "name": "Moonsong Merfolk",
     "race_group": "Merfolk",
     "skin_tone": [
@@ -1071,7 +1071,7 @@
     "spice": "To hear a Moonsong is to feel the heart pulled in two directions—towards longing and towards oblivion. Their beauty is heightened in moonlight, their laughter like silver bells on the surf. Sailors whisper that those who fall in love with a Moonsong never return to shore."
   },
   {
-    "id": "RC00000030",
+    "id": "RC000030",
     "name": "Glacialis Merfolk",
     "race_group": "Merfolk",
     "skin_tone": [
@@ -1102,7 +1102,7 @@
     "spice": "The Glacialis radiates an aura of distant majesty—cold beauty, sharp as frostbite. Their words cut like ice, and their gaze freezes the heart with equal parts fear and awe."
   },
   {
-    "id": "RC00000031",
+    "id": "RC000031",
     "name": "Nethryn Merfolk",
     "race_group": "Merfolk",
     "skin_tone": [
@@ -1133,7 +1133,7 @@
     "spice": "The Nethryn embody the abyss itself—alien, unknowable, terrifyingly beautiful. To meet their gaze is to feel the crushing weight of the sea and the promise of never surfacing again."
   },
   {
-    "id": "RC00000032",
+    "id": "RC000032",
     "name": "Ambercoil Lamia",
     "race_group": "Lamia",
     "skin_tone": [
@@ -1169,7 +1169,7 @@
     "spice": "They promise mercy like cool shade—then teach you thirst. A kiss tastes of citrus and heat; a promise weighs like gold."
   },
   {
-    "id": "RC00000033",
+    "id": "RC000033",
     "name": "Verdant Lamia",
     "race_group": "Lamia",
     "skin_tone": [
@@ -1207,7 +1207,7 @@
     "spice": "Their kisses numb; their bites burn fever out. If the jungle wants you, roots will make room—if not, they’ll remember where you fell."
   },
   {
-    "id": "RC00000034",
+    "id": "RC000034",
     "name": "Lustmire Lamia",
     "race_group": "Lamia",
     "skin_tone": [
@@ -1243,7 +1243,7 @@
     "spice": "They make sin feel like absolution—until the peat takes your last breath as tithe."
   },
   {
-    "id": "RC00000035",
+    "id": "RC000035",
     "name": "Riverlit Lamia",
     "race_group": "Lamia",
     "skin_tone": [
@@ -1316,7 +1316,7 @@
     "nature_and_culture": "Aerie clans claim ledges as lineages. Trials of ascent decide leadership; treaties are carved into the stone and read by touch.",
     "combat": "Hit-and-run dives, updraft slashes, and grapple throws off ledges. Screech feints disrupt footing before the talons come in.",
     "spice": "Kisses taste of sun-warm rock and wild air; they collect promises the way cliffs collect echoes.",
-    "id": "RC00000036"
+    "id": "RC000036"
   },
   {
     "name": "Nightfall Harpy",
@@ -1356,7 +1356,7 @@
     "nature_and_culture": "Twilight courts trade news, secrets, and safe paths under star-rituals. Memory-keepers sing histories in low, owl-soft tones.",
     "combat": "Ambush from shadow, muffled wingbeats, and eye-glare dazes. They blind with dust-swirl and finish with precise talon cuts.",
     "spice": "Their breath is cool as evening; you’ll follow the hush and not notice the drop.",
-    "id": "RC00000037"
+    "id": "RC000037"
   },
   {
     "name": "Snowpeak Harpy",
@@ -1394,7 +1394,7 @@
     "nature_and_culture": "High watchkeepers mark avalanches and guide caravans by bell-call. Etiquette is spare and exact as winter.",
     "combat": "Whiteout blinds, downdraft slams, and talon locks. They tire foes in thin air, then end fights with a single drop-strike.",
     "spice": "Polite as snowfall, decisive as a cornice break.",
-    "id": "RC00000038"
+    "id": "RC000038"
   },
   {
     "name": "Bramblewing Harpy",
@@ -1434,6 +1434,6 @@
     "nature_and_culture": "They weave nests like fortresses and keep forest pacts with druid-groves. Feasts are loud, laughing, and sap-sticky.",
     "combat": "Low-flight jukes through trees, branch-feint grapples, and raking passes. They fight dirty, fast, and close.",
     "spice": "Hands smell of pine; hearts beat like drumskins. Careful—affection comes with talons.",
-    "id": "RC00000039"
+    "id": "RC000039"
   }
 ]

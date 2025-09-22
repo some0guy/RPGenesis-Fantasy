@@ -1,7 +1,7 @@
 {
   "npcs": [
     {
-      "id": "NP00003002",
+      "id": "NP003002",
       "name": "Elira Dawnmere",
       "race": "Human",
       "sex": "Female",
@@ -22,7 +22,7 @@
       "personality": "She hides tiny protective stitches in hems—quiet blessings paid forward one garment at a time. Road dust sits easy on her."
     },
     {
-      "id": "NP00003003",
+      "id": "NP003003",
       "name": "Osric Harthollow",
       "race": "Human",
       "sex": "Male",
@@ -43,7 +43,7 @@
       "personality": "She wears layered travel-wear, weathered cloak, belt pouches, sturdy boots. There’s a quickness in his gaze that finds solutions. Road dust sits easy on him."
     },
     {
-      "id": "NP00003004",
+      "id": "NP003004",
       "name": "Kaelen Veyra",
       "race": "Great Elf",
       "sex": "Male",
@@ -64,7 +64,7 @@
       "personality": "She wears high court robes with metallic trim, jeweled clasps, silk gloves, polished boots. Courts were made for him, or so he acts."
     },
     {
-      "id": "NP00003005",
+      "id": "NP003005",
       "name": "Branna Holloway",
       "race": "Human",
       "sex": "Female",
@@ -85,7 +85,7 @@
       "personality": "She laughs loud, trusts slow, and plants stubborn—each season an argument she intends to win. witty, charming, quick on the turn. There’s a quickness in her gaze that finds solutions. Road dust sits easy on her."
     },
     {
-      "id": "NP00003007",
+      "id": "NP003007",
       "name": "Torven Blacktusk",
       "race": "Ashfoot Orc",
       "sex": "Male",
@@ -106,7 +106,7 @@
       "personality": "Amber eyes warm, hands gentle on strays and careful on knives. calm, observant, quietly determined. He measures friendship in deeds."
     },
     {
-      "id": "NP00003010",
+      "id": "NP003010",
       "name": "Maera Snowtress",
       "race": "Snow Elf",
       "sex": "Female",
@@ -127,7 +127,7 @@
       "personality": "calm, observant, quietly determined. Cold clings to her like a shawl. When pressed, she keeps promises and receipts."
     },
     {
-      "id": "NP00003011",
+      "id": "NP003011",
       "name": "Keth Ironline",
       "race": "Iron Dwarf",
       "sex": "Male",
@@ -148,7 +148,7 @@
       "personality": "She wears forge leathers, iron-banded bracers, tool belt, hobnail boots. Keeps the town’s winches honest and its cranes fed. Gravel and laughter share space in his voice."
     },
     {
-      "id": "NP00003032",
+      "id": "NP003032",
       "name": "Alenna Goldbranch",
       "race": "Forest Elf",
       "sex": "Female",
@@ -169,7 +169,7 @@
       "personality": "witty, charming, quick on the turn. She wears quiet leathers, leaf-dyed cloak, soft boots, beadwork and feather charms. Quiet as leaf‑fall when she wishes."
     },
     {
-      "id": "NP00003038",
+      "id": "NP003038",
       "name": "Sivra Moonpetal",
       "race": "Great Elf",
       "sex": "Female",
@@ -190,7 +190,7 @@
       "personality": "calm, observant, quietly determined. Courts were made for her, or so they act. She stands a breath taller than most shadows."
     },
     {
-      "id": "NP00003046",
+      "id": "NP003046",
       "name": "Sable Nightglass",
       "race": "Sableheart Tiefling",
       "sex": "Female",
@@ -215,7 +215,7 @@
       "personality": "She wears a laced corset bodice and a layered skirt with a high slit, long silk gloves, a bolero jacket with long sleeves, strapped heeled boots and jewelry chains.. She bargains with smiles and silence. Charm drips like honey from her words."
     },
     {
-      "id": "NP00003047",
+      "id": "NP003047",
       "name": "Zaya Starflax",
       "race": "Sableheart Tiefling",
       "sex": "Female",
@@ -240,7 +240,7 @@
       "personality": "She wears a laced corset bodice and a layered skirt with a high slit, long silk gloves, a bolero jacket with long sleeves, strapped heeled boots and jewelry chains.. She bargains with smiles and silence. Charm drips like honey from her words."
     },
     {
-      "id": "NP00003012",
+      "id": "NP003012",
       "name": "Ysil Darkstring",
       "race": "Dark Elf",
       "sex": "Female",
@@ -261,7 +261,7 @@
       "personality": "She wears shadow-cut leathers, web-lace sleeves, soft-soled boots, poisoners' kit. Moonlit steel edges her voice."
     },
     {
-      "id": "NP00003016",
+      "id": "NP003016",
       "name": "Brother Malric",
       "race": "Human",
       "sex": "Male",
@@ -282,7 +282,7 @@
       "personality": "He lends books and collects apologies. Road dust sits easy on him."
     },
     {
-      "id": "NP00003006",
+      "id": "NP003006",
       "name": "Liora Fenvale",
       "race": "Forest Elf",
       "sex": "Female",
@@ -303,7 +303,7 @@
       "personality": "calm, observant, quietly determined. Human warmth, Forest Elf patience: she soothes with tea, warns with nettle, and writes your name on a leaf if you’ve crossed her. calm, observant, quietly determined. Her presence smells faintly of resin and rain. She moves with hush and green cunning."
     },
     {
-      "id": "NP00003009",
+      "id": "NP003009",
       "name": "Dren Stonebinder",
       "race": "Hill Dwarf",
       "sex": "Male",
@@ -324,7 +324,7 @@
       "personality": "She wears embroidered work tunic, stout belt, canvas trousers, field boots. Hill Dwarf habit: a pocket for chalk, a pocket for bread, and a pocket for promises. He carries the memory of tools in his hands. Gravel and laughter share space in his voice."
     },
     {
-      "id": "NP00003020",
+      "id": "NP003020",
       "name": "Bera Copperbloom",
       "race": "Coastal Dwarf",
       "sex": "Female",
@@ -345,7 +345,7 @@
       "personality": "Coastal Dwarf craft: tarred twine, shell charms, swearing gentle enough for children—unless the knots tangle. calm, observant, quietly determined. She carries the memory of tools in her hands. Gravel and laughter share space in her voice."
     },
     {
-      "id": "NP00003023",
+      "id": "NP003023",
       "name": "Tess Vervain",
       "race": "Sableheart Tiefling",
       "sex": "Female",
@@ -370,7 +370,7 @@
       "personality": "She wears a laced corset bodice and a layered skirt with a high slit, long silk gloves, a bolero jacket with long sleeves, strapped heeled boots and jewelry chains.. She sells a scent for bravery and a cheaper one for pretending. She bargains with smiles and silence."
     },
     {
-      "id": "NP00003028",
+      "id": "NP003028",
       "name": "Brigda Saltbrew",
       "race": "Coastal Dwarf",
       "sex": "Female",
@@ -391,7 +391,7 @@
       "personality": "She keeps shells in her braids and storms in her barrels. witty, charming, quick on the turn. Brewer with a laugh as loud as gulls; her mead tastes faintly of brine and citrus. witty, charming, quick on the turn. She carries the memory of tools in her hands. Gravel and laughter share space in her voice."
     },
     {
-      "id": "NP00003033",
+      "id": "NP003033",
       "name": "Korrin Brassbuckle",
       "race": "Hill Dwarf",
       "sex": "Male",
@@ -412,7 +412,7 @@
       "personality": "witty, charming, quick on the turn. Gravel and laughter share space in his voice. Most days, He trusts his instincts."
     },
     {
-      "id": "NP00003035",
+      "id": "NP003035",
       "name": "Bram Oakhollow",
       "race": "Human",
       "sex": "Male",
@@ -433,7 +433,7 @@
       "personality": "Woodcutter with arms like old trunks, grey hair cropped, brown eyes full of patient storms. Road dust sits easy on him."
     },
     {
-      "id": "NP00003037",
+      "id": "NP003037",
       "name": "Jorek Ironstem",
       "race": "Iron Dwarf",
       "sex": "Male",
@@ -454,7 +454,7 @@
       "personality": "She wears forge leathers, iron-banded bracers, tool belt, hobnail boots. Gravel and laughter share space in his voice."
     },
     {
-      "id": "NP00003001",
+      "id": "NP003001",
       "name": "Tharic Coalbrow",
       "race": "Ember Dwarf",
       "sex": "Male",
@@ -475,7 +475,7 @@
       "personality": "witty, charming, quick on the turn. In a crisis, He spends calm like currency. He carries the memory of tools in his hands."
     },
     {
-      "id": "NP00003013",
+      "id": "NP003013",
       "name": "Vel Thornhook",
       "race": "Voided Tiefling",
       "sex": "Male",
@@ -500,7 +500,7 @@
       "personality": "He is enigmatic — unflappable and calm. Starlight seems to bend toward him and vanish. When pressed, he keeps promises and receipts. Light slips off his edges."
     },
     {
-      "id": "NP00003015",
+      "id": "NP003015",
       "name": "Anwen Reedwhistle",
       "race": "Harpy",
       "sex": "Female",
@@ -521,7 +521,7 @@
       "personality": "She writes letters in the air with her finger to remember her later. There’s a quickness in her gaze that finds solutions. Road dust sits easy on her."
     },
     {
-      "id": "NP00003019",
+      "id": "NP003019",
       "name": "Ilwen Grayglass",
       "race": "Great Elf",
       "sex": "Female",
@@ -542,7 +542,7 @@
       "personality": "She wears high court robes with metallic trim, jeweled clasps, silk gloves, polished boots. She stands a breath taller than most shadows. Courts were made for her, or so she acts."
     },
     {
-      "id": "NP00003025",
+      "id": "NP003025",
       "name": "Grish Stormpan",
       "race": "Storm Orc",
       "sex": "Male",
@@ -563,7 +563,7 @@
       "personality": "calm, observant, quietly determined. In a crisis, He spends calm like currency. He measures friendship in deeds."
     },
     {
-      "id": "NP00003027",
+      "id": "NP003027",
       "name": "Rilven Ashmark",
       "race": "Snow Elf",
       "sex": "Male",
@@ -584,7 +584,7 @@
       "personality": "He sells light with superstition: some burn steady, others bend shadows if asked nicely. He leaves a whisper of frost in passing."
     },
     {
-      "id": "NP00003034",
+      "id": "NP003034",
       "name": "Yrris Starfall",
       "race": "Viridian Tiefling",
       "sex": "Female",
@@ -609,7 +609,7 @@
       "personality": "She whispers fortunes with ink-stained fingers. She hums old growth songs under her breath."
     },
     {
-      "id": "NP00003036",
+      "id": "NP003036",
       "name": "Nimri Featherveil",
       "race": "Harpy",
       "sex": "Female",
@@ -630,7 +630,7 @@
       "personality": "She ties blessings on threadbare wings and never lets a first cry go unanswered. There’s a quickness in her gaze that finds solutions."
     },
     {
-      "id": "NP00003040",
+      "id": "NP003040",
       "name": "Veyra Nullbrand",
       "race": "Darkblood Tiefling",
       "sex": "Female",
@@ -655,7 +655,7 @@
       "personality": "She wears attire suited to her station and embody the presence of her bloodline. She cuts with etiquette first."
     },
     {
-      "id": "NP00003041",
+      "id": "NP003041",
       "name": "Zaira Nullbrand",
       "race": "Darkblood Tiefling",
       "sex": "Female",
@@ -680,7 +680,7 @@
       "personality": "She wears attire suited to her station and embody the presence of her bloodline. In a crisis, She spends calm like currency. She cuts with etiquette first."
     },
     {
-      "id": "NP00003042",
+      "id": "NP003042",
       "name": "Mav Blackspike",
       "race": "Hellbound Tiefling",
       "sex": "Female",
@@ -705,7 +705,7 @@
       "personality": "She wears attire suited to her station and embody the presence of her bloodline. Ash-sweet and fearless, she rarely looks back. Warmth radiates like banked coals from her skin."
     },
     {
-      "id": "NP00003043",
+      "id": "NP003043",
       "name": "Nyx Voidweave",
       "race": "Hellbound Tiefling",
       "sex": "Female",
@@ -730,7 +730,7 @@
       "personality": "She wears attire suited to her station and embody the presence of her bloodline. Ash-sweet and fearless, she rarely looks back. Warmth radiates like banked coals from her skin."
     },
     {
-      "id": "NP00003044",
+      "id": "NP003044",
       "name": "Vel Coalbrand",
       "race": "Voided Tiefling",
       "sex": "Female",
@@ -755,7 +755,7 @@
       "personality": "She wears attire suited to her station and embody the presence of her bloodline. Light slips off her edges."
     },
     {
-      "id": "NP00003045",
+      "id": "NP003045",
       "name": "Selia Gloomline",
       "race": "Voided Tiefling",
       "sex": "Female",
@@ -780,7 +780,7 @@
       "personality": "She wears attire suited to her station and embody the presence of her bloodline. Starlight seems to bend toward her and vanish. Light slips off her edges."
     },
     {
-      "id": "NP00003048",
+      "id": "NP003048",
       "name": "Nyx Gloomline",
       "race": "Viridian Tiefling",
       "sex": "Female",
@@ -805,7 +805,7 @@
       "personality": "She wears attire suited to her station and embody the presence of her bloodline. She hums old growth songs under her breath. Green things like her."
     },
     {
-      "id": "NP00003049",
+      "id": "NP003049",
       "name": "Mav Ashmire",
       "race": "Viridian Tiefling",
       "sex": "Female",
@@ -830,7 +830,7 @@
       "personality": "She wears attire suited to her station and embody the presence of her bloodline. She hums old growth songs under her breath."
     },
     {
-      "id": "NP00003070",
+      "id": "NP003070",
       "name": "Ulgra Skulltide",
       "race": "Ashfoot Orc",
       "sex": "Female",
@@ -855,7 +855,7 @@
       "personality": "She carries her history in small habits—how she arranges tools, counts steps on stairs, or hums when thinking. Loyal to her own, curious in new markets, and sharper than she lets on."
     },
     {
-      "id": "NP00003071",
+      "id": "NP003071",
       "name": "Asha Ashwalker",
       "race": "Ashfoot Orc",
       "sex": "Female",
@@ -880,7 +880,7 @@
       "personality": "She carries her history in small habits—how she arranges tools, counts steps on stairs, or hums when thinking. Loyal to her own, curious in new markets, and sharper than she lets on."
     },
     {
-      "id": "NP00003072",
+      "id": "NP003072",
       "name": "Ysilra Dawnmere",
       "race": "Snow Elf",
       "sex": "Female",
@@ -904,7 +904,7 @@
       "personality": "She carries her history in small habits—how she arranges tools, counts steps on stairs, or hums when thinking. Loyal to her own, curious in new markets, and sharper than she lets on."
     },
     {
-      "id": "NP00003073",
+      "id": "NP003073",
       "name": "Hildra Orefall",
       "race": "Iron Dwarf",
       "sex": "Female",
@@ -928,7 +928,7 @@
       "personality": "She carries her history in small habits—how she arranges tools, counts steps on stairs, or hums when thinking. Loyal to her own, curious in new markets, and sharper than she lets on."
     },
     {
-      "id": "NP00003074",
+      "id": "NP003074",
       "name": "Ysil Dawnmere",
       "race": "Forest Elf",
       "sex": "Female",
@@ -952,7 +952,7 @@
       "personality": "She carries her history in small habits—how she arranges tools, counts steps on stairs, or hums when thinking. Loyal to her own, curious in new markets, and sharper than she lets on."
     },
     {
-      "id": "NP00003075",
+      "id": "NP003075",
       "name": "Yorin Starcrest",
       "race": "Forest Elf",
       "sex": "Male",
@@ -976,7 +976,7 @@
       "personality": "He carries his history in small habits—how he arranges tools, counts steps on stairs, or hums when thinking. Loyal to his own, curious in new markets, and sharper than he lets on."
     },
     {
-      "id": "NP00003076",
+      "id": "NP003076",
       "name": "Naeris Whisperwind",
       "race": "Dark Elf",
       "sex": "Female",
@@ -1001,7 +1001,7 @@
       "personality": "She carries her history in small habits—how she arranges tools, counts steps on stairs, or hums when thinking. Loyal to her own, curious in new markets, and sharper than she lets on."
     },
     {
-      "id": "NP00003077",
+      "id": "NP003077",
       "name": "Theriz Leafsong",
       "race": "Dark Elf",
       "sex": "Male",
@@ -1026,7 +1026,7 @@
       "personality": "He carries his history in small habits—how he arranges tools, counts steps on stairs, or hums when thinking. Loyal to his own, curious in new markets, and sharper than he lets on."
     },
     {
-      "id": "NP00003078",
+      "id": "NP003078",
       "name": "Vera Starcrest",
       "race": "Forest Elf",
       "sex": "Female",
@@ -1047,7 +1047,7 @@
       "personality": "She carries her history in small habits—how she arranges tools, counts steps on stairs, or hums when thinking. Loyal to her own, curious in new markets, and sharper than she lets on."
     },
     {
-      "id": "NP00003079",
+      "id": "NP003079",
       "name": "Jorin Silverbranch",
       "race": "Forest Elf",
       "sex": "Male",
@@ -1068,7 +1068,7 @@
       "personality": "He carries his history in small habits—how he arranges tools, counts steps on stairs, or hums when thinking. Loyal to his own, curious in new markets, and sharper than he lets on."
     },
     {
-      "id": "NP00003080",
+      "id": "NP003080",
       "name": "Tova Anvilward",
       "race": "Hill Dwarf",
       "sex": "Female",
@@ -1092,7 +1092,7 @@
       "personality": "She carries her history in small habits—how she arranges tools, counts steps on stairs, or hums when thinking. Loyal to her own, curious in new markets, and sharper than she lets on."
     },
     {
-      "id": "NP00003081",
+      "id": "NP003081",
       "name": "Jorik Coalhelm",
       "race": "Coastal Dwarf",
       "sex": "Male",
@@ -1115,7 +1115,7 @@
       "personality": "He carries his history in small habits—how he arranges tools, counts steps on stairs, or hums when thinking. Loyal to his own, curious in new markets, and sharper than he lets on."
     },
     {
-      "id": "NP00003082",
+      "id": "NP003082",
       "name": "Therra Anvilward",
       "race": "Ember Dwarf",
       "sex": "Female",
@@ -1139,7 +1139,7 @@
       "personality": "She carries her history in small habits—how she arranges tools, counts steps on stairs, or hums when thinking. Loyal to her own, curious in new markets, and sharper than she lets on."
     },
     {
-      "id": "NP00003083",
+      "id": "NP003083",
       "name": "Kaela Stonebrew",
       "race": "Ember Dwarf",
       "sex": "Female",
@@ -1163,7 +1163,7 @@
       "personality": "She carries her history in small habits—how she arranges tools, counts steps on stairs, or hums when thinking. Loyal to her own, curious in new markets, and sharper than she lets on."
     },
     {
-      "id": "NP00003084",
+      "id": "NP003084",
       "name": "Aerol Stormplume",
       "race": "Harpy",
       "sex": "Male",
@@ -1194,7 +1194,7 @@
       "personality": "He carries his history in small habits—how he arranges tools, counts steps on stairs, or hums when thinking. Loyal to his own, curious in new markets, and sharper than he lets on."
     },
     {
-      "id": "NP00003085",
+      "id": "NP003085",
       "name": "Galka Ashwalker",
       "race": "Storm Orc",
       "sex": "Female",
@@ -1218,7 +1218,7 @@
       "personality": "She carries her history in small habits—how she arranges tools, counts steps on stairs, or hums when thinking. Loyal to her own, curious in new markets, and sharper than she lets on."
     },
     {
-      "id": "NP00003086",
+      "id": "NP003086",
       "name": "Galka Ashwalker",
       "race": "Storm Orc",
       "sex": "Female",
@@ -1242,7 +1242,7 @@
       "personality": "She carries her history in small habits—how she arranges tools, counts steps on stairs, or hums when thinking. Loyal to her own, curious in new markets, and sharper than she lets on."
     },
     {
-      "id": "NP00003087",
+      "id": "NP003087",
       "name": "Voros Thornveil",
       "race": "Darkblood Tiefling",
       "sex": "Male",
@@ -1273,7 +1273,7 @@
       "personality": "He carries his history in small habits—how he arranges tools, counts steps on stairs, or hums when thinking. Loyal to his own, curious in new markets, and sharper than he lets on."
     },
     {
-      "id": "NP00003088",
+      "id": "NP003088",
       "name": "Brim Sablehorn",
       "race": "Hellbound Tiefling",
       "sex": "Male",
@@ -1305,7 +1305,7 @@
       "personality": "He carries his history in small habits—how he arranges tools, counts steps on stairs, or hums when thinking. Loyal to his own, curious in new markets, and sharper than he lets on."
     },
     {
-      "id": "NP00003090",
+      "id": "NP003090",
       "name": "Akari Sato",
       "race": "Kitsune",
       "sex": "Female",
@@ -1336,7 +1336,7 @@
       "personality": "She speaks softly but aims true—keen-eyed, quick to smile, and quicker to plan. She collects small rituals: her morning tea, three-breath focus before a leap, and a whispered promise to the road."
     },
     {
-      "id": "NP00003092",
+      "id": "NP003092",
       "name": "Lunessa Stardrift",
       "race": "Snow Elf",
       "sex": "Female",

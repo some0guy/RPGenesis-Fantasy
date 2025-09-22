@@ -83,6 +83,47 @@ TYPE_DOT_COLORS = {
     "link": COL_PINK,
 }
 
+
+
+# -------------------- ID + Catalog helpers (Eliana patch) --------------------
+import re as _re_idnorm
+_RE_ID8 = _re_idnorm.compile(r'^([A-Z]{2,3})(\d{8})$')
+def norm_id_6(s: str) -> str:
+    s = (s or "").strip()
+    m = _RE_ID8.match(s)
+    return f"{m.group(1)}{m.group(2)[-6:]}" if m else s
+
+def _load_subcat_json(base_dir: str, subcats: list[str]) -> list[dict]:
+    out: list[dict] = []
+    for sub in subcats:
+        path = os.path.join(base_dir, f"{sub}.json")
+        data = read_json_list(path)
+        for e in data:
+            if isinstance(e, dict):
+                e2 = dict(e)
+                eid = norm_id_6(e2.get("id") or e2.get("code") or e2.get("uid") or "")
+                if eid:
+                    e2["id"] = eid
+                    e2["subcategory"] = sub
+                out.append(e2)
+    return out
+
+def build_npc_catalog_by_id() -> dict[str, dict]:
+    entries = _load_subcat_json(NPC_DIR, NPC_SUBCATS)
+    return { e["id"]: e for e in entries if isinstance(e, dict) and e.get("id") }
+
+def build_item_catalog_by_id() -> dict[str, dict]:
+    entries = _load_subcat_json(ITEM_DIR, ITEM_SUBCATS)
+    return { e["id"]: e for e in entries if isinstance(e, dict) and e.get("id") }
+
+def lookup_name_from_catalog(cat: dict[str, dict], ident: str) -> str:
+    ident = norm_id_6(ident)
+    e = cat.get(ident)
+    if e and isinstance(e, dict):
+        nm = e.get("name") or e.get("title")
+        if nm: return str(nm)
+    return ""
+
 # Rarity colors (match in-game RARITY_COLORS)
 RARITY_COLORS = {
     'common':    (200, 200, 210),
@@ -205,15 +246,26 @@ class MapData:
             row: List[TileData] = []
             for x in range(w):
                 cell = (raw_tiles[y][x] if y < len(raw_tiles) and x < len(raw_tiles[y]) else {}) or {}
+                # ##ELIANA_TILE_NORM: coerce to ID-only refs
+                _npcs = []
+                for ent in list(cell.get('npcs', [])):
+                    if isinstance(ent, dict):
+                        eid = norm_id_6(ent.get('id') or ent.get('code') or ent.get('uid') or ent.get('name'))
+                        _npcs.append({'subcategory': ent.get('subcategory') or '', 'id': eid} if eid else dict(ent))
+                _items = []
+                for ent in list(cell.get('items', [])):
+                    if isinstance(ent, dict):
+                        eid = norm_id_6(ent.get('id') or ent.get('code') or ent.get('uid') or ent.get('name'))
+                        _items.append({'subcategory': ent.get('subcategory') or '', 'id': eid} if eid else dict(ent))
                 row.append(TileData(
-                    walkable=bool(cell.get("walkable", False)),
-                    npcs=list(cell.get("npcs", [])),
-                    items=list(cell.get("items", [])),
-                    links=list(cell.get("links", [])),
-                    chests=list(cell.get("chests", [])),
-                    note=str(cell.get("note", "")),
-                    encounter=str(cell.get("encounter", "")),
-                    texture=str(cell.get("texture", "")),
+                    walkable=bool(cell.get('walkable', False)),
+                    npcs=_npcs,
+                    items=_items,
+                    links=list(cell.get('links', [])),
+                    chests=list(cell.get('chests', [])),
+                    note=str(cell.get('note', '')),
+                    encounter=str(cell.get('encounter', '')),
+                    texture=str(cell.get('texture', '')),
                 ))
             tiles.append(row)
         raw_pool = obj.get("enemy_pool") or []
@@ -660,25 +712,28 @@ class ScrollListWithButtons:
 class StartScreen:
     def __init__(self, app):
         self.app = app
+        self.screen = app.screen
         # Initial positions; will be centered each frame
+        self.btn_cycle_left_mode = Button((0, 0, 160, 32), "Cycle Left Mode", self.on_btn_cycle_left_mode_clicked)
         self.btn_refresh = Button((60, 120, 140, 32), "Refresh", self.refresh)
         self.btn_open   = Button((210, 120, 160, 32), "Open Selected", self.open_selected)
         self.btn_create = Button((60, 410, 180, 36), "Create New Map", self.create_map)
         self.btn_world  = Button((250, 410, 180, 36), "World View", self.open_world_view)
         self.maps_list = ListBox((60, 160, 520, 230))
         self.refresh()
+    def on_btn_cycle_left_mode_clicked(self):
+        print("Cycle left mode clicked")
     def _apply_layout(self, surf):
         w, h = surf.get_size()
-        list_w = 520
-        left = max(0, (w - list_w) // 2)
-        # Center list
-        self.maps_list.rect.topleft = (left, 160)
-        # Top row buttons
-        self.btn_refresh.rect.topleft = (left, 120)
-        self.btn_open.rect.topleft    = (left + 150, 120)
-        # Bottom row buttons (center under list)
-        self.btn_create.rect.topleft  = (left, 410)
-        self.btn_world.rect.topleft   = (left + 190, 410)
+        top_y = 12
+        self.btn_cycle_left_mode.rect.topleft = (max(0, w - self.btn_cycle_left_mode.rect.w - 16), top_y)
+        content_width = 520
+        content_x = max(60, (w - content_width) // 2)
+        self.btn_refresh.rect.x = content_x
+        self.btn_open.rect.x = content_x + 150
+        self.maps_list.rect.x = content_x
+        self.btn_create.rect.x = content_x
+        self.btn_world.rect.x = content_x + 190
     def refresh(self):
         def _scan_maps_dir() -> List[Dict[str, Any]]:
             out: List[Dict[str, Any]] = []
@@ -849,17 +904,14 @@ class EditorScreen:
         # Tile Info (scrollable list)
         self.inspector_header_rect = pygame.Rect(900, 450, 380, 32)
         self.scroll_list = ScrollListWithButtons(pygame.Rect(900, 484, 380, 140))  # wheel scrollable
+        self.scroll_list.item_h = 28
+        self.scroll_list.spacing = 8
         self.btn_edit_note    = Button((900, 630, 120, 26), "Edit Note", self.open_note_modal)
         # Encounter marker controls
-        self.btn_mark_safe    = Button((900, 454, 110, 26), "Mark Safe", lambda: self.set_encounter('safe'))
-        self.btn_mark_danger  = Button((1016, 454, 130, 26), "Mark Danger", lambda: self.set_encounter('danger'))
         self.btn_clear_marker = Button((1152, 454, 128, 26), "Clear", lambda: self.set_encounter(''))
         # Inspector tabs
         self.inspector_tab = 'tile'
-        self.btn_tab_tile  = Button((900, 450, 120, 26), "Tile Info", lambda: setattr(self, 'inspector_tab', 'tile'))
-        self.btn_tab_enemy = Button((1030, 450, 120, 26), "Enemy Pool", lambda: setattr(self, 'inspector_tab', 'enemy'))
-
-        # Map description at bottom
+        self.btn_tab_tile  = Button((900, 450, 120, 26), "Tile Info", lambda: setattr(self, 'inspector_tab', 'tile'))        # Map description at bottom
         self.desc_area = TextArea((900, 662, 380, 48), self.map.description)
 
         # Game start placement (world start)
@@ -900,6 +952,10 @@ class EditorScreen:
         self.pan_start = (0,0)
         self.left_dragging = False
 
+        # Build ID catalogs for live lookup
+        self._npc_by_id = build_npc_catalog_by_id()
+        self._item_by_id = build_item_catalog_by_id()
+
         # Initial loads so attributes & list contents exist immediately
         self._reload_npcs()
         self._reload_items()
@@ -920,7 +976,7 @@ class EditorScreen:
     def _apply_layout(self, surf):
         w, h = surf.get_size()
         top_h = 50
-        sb_w = 380
+        sb_w = 760
         # Sidebar flush to right edge, canvas fills the rest from left edge
         self.sidebar_rect = pygame.Rect(max(0, w - sb_w), top_h, sb_w, max(0, h - top_h))
         self.canvas_rect = pygame.Rect(0, top_h, max(0, w - sb_w), max(0, h - top_h))
@@ -983,10 +1039,16 @@ class EditorScreen:
 
         # Sidebar widgets (responsive vertical layout)
         inner_margin = 10
-        inner_left = self.sidebar_rect.x + inner_margin
-        inner_width = max(60, self.sidebar_rect.w - inner_margin * 2)
-        self._sidebar_inner_left = inner_left
-        self._sidebar_inner_width = inner_width
+        col_gap = 10
+        sidebar_left_x  = self.sidebar_rect.x + inner_margin
+        sidebar_right_x = self.sidebar_rect.x + self.sidebar_rect.w//2 + col_gap//2
+        col_w = max(60, self.sidebar_rect.w//2 - inner_margin - col_gap//2)
+        col_top = self.sidebar_rect.y + 12
+        col_h = self.sidebar_rect.h - 24
+        inner_left = sidebar_left_x
+        inner_width = col_w
+        self._sidebar_inner_left = sidebar_left_x
+        self._sidebar_inner_width = col_w
         y = self.sidebar_rect.y + 12
 
         cat_height = 30
@@ -1069,7 +1131,7 @@ class EditorScreen:
 
         # Tile info block calculations
         tileinfo_bottom = bottom_y
-        btn_row_h = self.btn_mark_safe.rect.height
+        btn_row_h = self.btn_clear_marker.rect.height if hasattr(self, 'btn_clear_marker') else 26
         header_h = 32
         scroll_min = 60
         tileinfo_min_height = header_h + 6 + btn_row_h + 8 + scroll_min
@@ -1115,23 +1177,63 @@ class EditorScreen:
 
         # Header + tabs for inspector area
         self.inspector_header_rect = pygame.Rect(inner_left, tileinfo_top, inner_width, header_h)
+        
+        # --- Right column layout override (Eliana two-column fix INSIDE _apply_layout) ---
+        # Anchor inspector / notes / start controls to the RIGHT sidebar column
+        right_inner_left = sidebar_right_x
+        right_inner_width = col_w
+        # If header was placed on left earlier, overwrite to right
+        header_h = 32
+        tab_h = min(btn_row_h, 26) if 'btn_row_h' in locals() else 26
+        tab_w = max(80, (right_inner_width - 8) // 2)
+        # Keep same vertical as before but on the right
+        self.inspector_header_rect.update(right_inner_left, self.inspector_header_rect.y, right_inner_width, header_h)
+
+        # Tabs
+        hdr_y = self.inspector_header_rect.y
+        self.btn_tab_tile.rect.update(right_inner_left + 6, hdr_y + 4, right_inner_width - 12, tab_h)        # Marker buttons row
+        btn_spacing = 6
+        btn_row_h = self.btn_clear_marker.rect.height if hasattr(self, 'btn_clear_marker') else 26
+        btn_row_y = self.inspector_header_rect.bottom + 12
+        btn_w = max(60, (right_inner_width - 2 * btn_spacing) // 3)
+        last_w = max(60, right_inner_width - (btn_w * 2 + btn_spacing * 2))
+        self.btn_clear_marker.rect.update(right_inner_left, btn_row_y, right_inner_width, btn_row_h)
+
+        # Scrollable inspector content
+        scroll_top = self.btn_clear_marker.rect.bottom + 8
+        reserve_bottom = max(120, int(self.sidebar_rect.height * 0.22))
+        available_scroll = max(60, (self.sidebar_rect.bottom - 16) - scroll_top - reserve_bottom)
+        if getattr(self, 'inspector_tab', 'tile') == "tile":
+            self.scroll_list.rect = pygame.Rect(right_inner_left, scroll_top, right_inner_width, available_scroll)
+            self._inspector_content_rect = self.scroll_list.rect.copy()
+        else:
+            self.scroll_list.rect = pygame.Rect(right_inner_left, scroll_top, right_inner_width, 0)
+            self._inspector_content_rect = pygame.Rect(right_inner_left, scroll_top, right_inner_width, available_scroll)
+
+        # Notes + Description
+        note_btn_h = self.btn_edit_note.rect.height if hasattr(self.btn_edit_note, 'rect') else 26
+        notes_top = self._inspector_content_rect.bottom + 8
+        self.btn_edit_note.rect.update(right_inner_left, notes_top, right_inner_width, note_btn_h)
+        desc_height = max(60, min(140, int(self.sidebar_rect.height * 0.22)))
+        self.desc_area.rect = pygame.Rect(right_inner_left, self.btn_edit_note.rect.bottom + 8, right_inner_width, desc_height)
+
+        # Set Game Start Here
+        gs_top = self.desc_area.rect.bottom + 10
+        self._game_start_label_pos = (right_inner_left, gs_top)
+        self._game_start_status_pos = (right_inner_left, gs_top + 18)
+        self.btn_set_start.rect.update(right_inner_left, gs_top + 36, right_inner_width, self.btn_set_start.rect.height)
         tab_h = min(btn_row_h, 26)
         tab_w = max(80, (inner_width - 8) // 2)
-        self.btn_tab_tile.rect.update(inner_left + 6, tileinfo_top + 4, tab_w - 10, tab_h)
-        self.btn_tab_enemy.rect.update(inner_left + 6 + tab_w, tileinfo_top + 4, tab_w - 10, tab_h)
-
+        self.btn_tab_tile.rect.update(inner_left + 6, tileinfo_top + 4, inner_width - 12, tab_h)
         btn_row_y = self.inspector_header_rect.bottom + 18
         row_width = inner_width
         btn_spacing = 6
         btn_w = max(60, (row_width - 2 * btn_spacing) // 3)
         last_w = max(60, row_width - (btn_w * 2 + btn_spacing * 2))
-
-        self.btn_mark_safe.rect.update(inner_left, btn_row_y, btn_w, btn_row_h)
-        self.btn_mark_danger.rect.update(inner_left + btn_w + btn_spacing, btn_row_y, btn_w, btn_row_h)
-        self.btn_clear_marker.rect.update(inner_left + (btn_w + btn_spacing) * 2, btn_row_y, last_w, btn_row_h)
+        self.btn_clear_marker.rect.update(right_inner_left, btn_row_y, right_inner_width, btn_row_h)
 
         if self.inspector_tab == "tile":
-            scroll_top = self.btn_mark_safe.rect.bottom + 8
+            scroll_top = self.btn_clear_marker.rect.bottom + 8
             available_scroll = max(0, tileinfo_bottom - scroll_top)
             self.scroll_list.rect = pygame.Rect(inner_left, scroll_top, inner_width, available_scroll)
             self._inspector_content_rect = self.scroll_list.rect.copy()
@@ -1218,6 +1320,8 @@ class EditorScreen:
         sub = self.dd_npc_sub.value
         entries = read_json_list(os.path.join(NPC_DIR, f"{sub}.json"))
         self.npc_entries = entries
+        # Refresh global catalog (in case files changed)
+        self._npc_by_id = build_npc_catalog_by_id()
         if self.category == "NPCs":
             self.list_box.set_items([self._display_label(e) for e in entries])
 
@@ -1225,12 +1329,21 @@ class EditorScreen:
         sub = self.dd_item_sub.value
         entries = read_json_list(os.path.join(ITEM_DIR, f"{sub}.json"))
         self.item_entries = entries
+        # Refresh global catalog (in case files changed)
+        self._item_by_id = build_item_catalog_by_id()
         if self.category == "Items":
             self.list_box.set_items([self._display_label(e) for e in entries])
 
     def _display_label(self, e: Dict[str, Any]) -> str:
-        name = e.get("name") or e.get("title") or "(unnamed)"
-        ident = e.get("id") or e.get("code") or e.get("uid") or ""
+        ident = e.get('id') or e.get('code') or e.get('uid') or ''
+        ident = norm_id_6(ident)
+        name = e.get('name') or e.get('title') or ''
+        if not name and ident:
+            # Try catalogs (prefer item, then npc)
+            nm = lookup_name_from_catalog(getattr(self, '_item_by_id', {}) or {}, ident)
+            if not nm:
+                nm = lookup_name_from_catalog(getattr(self, '_npc_by_id', {}) or {}, ident)
+            name = nm or '(unnamed)'
         return f"{name} [{ident}]" if ident else name
 
     def _load_enemy_catalog(self) -> List[Dict[str, Any]]:
@@ -1393,9 +1506,7 @@ class EditorScreen:
             e = self.npc_entries[idx]
             entry = {
                 "subcategory": self.dd_npc_sub.value,
-                "id": e.get("id") or e.get("code") or e.get("uid") or e.get("name"),
-                "name": e.get("name") or e.get("title"),
-                "description": e.get("description","")
+                "id": norm_id_6(e.get('id') or e.get('code') or e.get('uid') or e.get('name')),
             }
             self._record_add_list_entry(t.npcs, entry, "add_npc")
         elif self.category == "Items":
@@ -1404,9 +1515,7 @@ class EditorScreen:
             e = self.item_entries[idx]
             entry = {
                 "subcategory": self.dd_item_sub.value,
-                "id": e.get("id") or e.get("code") or e.get("uid") or e.get("name"),
-                "name": e.get("name") or e.get("title"),
-                "description": e.get("description","")
+                "id": norm_id_6(e.get('id') or e.get('code') or e.get('uid') or e.get('name')),
             }
             self._record_add_list_entry(t.items, entry, "add_item")
 
@@ -1478,6 +1587,23 @@ class EditorScreen:
         file_name = f"{self.map.name}.json"
         path = os.path.join(MAP_DIR, file_name)
         obj = self.map.to_dict()
+        # Normalize tile entries to ID-only before saving
+        def _norm_tile_lists(o: dict):
+            tiles = (o.get('tiles') or [])
+            for row in tiles:
+                for cell in row:
+                    for key in ('npcs','items'):
+                        lst = cell.get(key) or []
+                        for ent in lst:
+                            if isinstance(ent, dict):
+                                if 'id' in ent:
+                                    ent['id'] = norm_id_6(ent.get('id') or '')
+                                # remove legacy fields
+                                ent.pop('name', None)
+                                ent.pop('title', None)
+                                ent.pop('description', None)
+        _norm_tile_lists(obj)
+        
         write_json(path, obj)
 
         # Update the manifest so the start screen lists it
@@ -2123,10 +2249,7 @@ class EditorScreen:
         pygame.draw.rect(surf, TAB_BORDER, self.inspector_header_rect, 1, border_radius=8)
 
         self.btn_tab_tile.selected = (self.inspector_tab == "tile")
-        self.btn_tab_enemy.selected = (self.inspector_tab == "enemy")
         self.btn_tab_tile.draw(surf)
-        self.btn_tab_enemy.draw(surf)
-
         status_x = self.inspector_header_rect.x + 12
         status_y = self.inspector_header_rect.bottom + 4
 
@@ -2143,11 +2266,7 @@ class EditorScreen:
                     (status_x, status_y),
                     TEXT_DIM,
                 )
-
-            self.btn_mark_safe.draw(surf)
-            self.btn_mark_danger.draw(surf)
             self.btn_clear_marker.draw(surf)
-
             self._rebuild_scroll_items()
             if self.scroll_list.rect.h > 0:
                 self.scroll_list.draw(surf)
@@ -2290,10 +2409,7 @@ class EditorScreen:
 
         dropdown_open = self.any_dropdown_open()
 
-        self.btn_tab_tile.handle(event)
-        self.btn_tab_enemy.handle(event)
-
-        # If dropdown open, don't let other widgets under receive clicks
+        self.btn_tab_tile.handle(event)# If dropdown open, don't let other widgets under receive clicks
         if not dropdown_open:
             if self.category in ("NPCs","Items"):
                 self.list_box.handle(event); self.btn_add_to_tile.handle(event)
@@ -2314,10 +2430,8 @@ class EditorScreen:
         if not dropdown_open:
             self.btn_edit_note.handle(event)
             if self.inspector_tab == "tile":
-                self.btn_mark_safe.handle(event)
-                self.btn_mark_danger.handle(event)
                 self.btn_clear_marker.handle(event)
-            self.btn_set_start.handle(event)
+                self.btn_set_start.handle(event)
 
         # description
         if not dropdown_open:

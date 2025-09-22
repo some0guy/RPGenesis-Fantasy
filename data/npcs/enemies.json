@@ -1,7 +1,7 @@
 {
   "npcs": [
     {
-      "id": "NP00000100",
+      "id": "NP000100",
       "name": "Darkwood Bandit",
       "race": "Human",
       "sex": "Male",
@@ -22,7 +22,7 @@
       "personality": []
     },
     {
-      "id": "NP00000101",
+      "id": "NP000101",
       "name": "Highroad Brigand",
       "race": "Human",
       "sex": "Female",
@@ -43,7 +43,7 @@
       "personality": []
     },
     {
-      "id": "NP00000103",
+      "id": "NP000103",
       "name": "Bloodfen Raider",
       "race": "Mountain Orc",
       "sex": "Male",
@@ -64,7 +64,7 @@
       "personality": []
     },
     {
-      "id": "NP00000104",
+      "id": "NP000104",
       "name": "Gallows Cutthroat",
       "race": "Human",
       "sex": "Male",
@@ -85,7 +85,7 @@
       "personality": []
     },
     {
-      "id": "NP00000106",
+      "id": "NP000106",
       "name": "Hollow-Eye Cultist",
       "race": "Human",
       "sex": "Female",
@@ -106,7 +106,7 @@
       "personality": []
     },
     {
-      "id": "NP00000107",
+      "id": "NP000107",
       "name": "Stonehelm Mercenary",
       "race": "Hill Dwarf",
       "sex": "Male",
@@ -127,7 +127,7 @@
       "personality": []
     },
     {
-      "id": "NP00000108",
+      "id": "NP000108",
       "name": "Pale Marsh Ghoul",
       "race": "Human",
       "sex": null,
@@ -150,7 +150,7 @@
       "personality": []
     },
     {
-      "id": "NP00000110",
+      "id": "NP000110",
       "name": "Grave Hollow Skeleton",
       "race": "Human",
       "sex": null,
@@ -173,7 +173,7 @@
       "personality": []
     },
     {
-      "id": "NP00000111",
+      "id": "NP000111",
       "name": "Frosttusk Raider",
       "race": "Mountain Orc",
       "sex": "Female",
@@ -194,7 +194,7 @@
       "personality": []
     },
     {
-      "id": "NP00000113",
+      "id": "NP000113",
       "name": "Nightveil Spy",
       "race": "Human",
       "sex": "Female",
@@ -215,7 +215,7 @@
       "personality": []
     },
     {
-      "id": "NP00000114",
+      "id": "NP000114",
       "name": "Ashmark Soldier",
       "race": "Human",
       "sex": "Male",
@@ -236,7 +236,7 @@
       "personality": []
     },
     {
-      "id": "NP00000115",
+      "id": "NP000115",
       "name": "Bleakfen Witch",
       "race": "Human",
       "sex": "Female",
@@ -257,7 +257,7 @@
       "personality": []
     },
     {
-      "id": "NP00000118",
+      "id": "NP000118",
       "name": "Hollow Mire Zombie",
       "race": "Human",
       "sex": null,
@@ -280,7 +280,7 @@
       "personality": []
     },
     {
-      "id": "NP00000119",
+      "id": "NP000119",
       "name": "Oathbreaker Knight",
       "race": "Human",
       "sex": "Male",
@@ -301,7 +301,7 @@
       "personality": []
     },
     {
-      "id": "NP00000121",
+      "id": "NP000121",
       "name": "Duskfen Thief",
       "race": "Human",
       "sex": "Female",
@@ -322,7 +322,7 @@
       "personality": []
     },
     {
-      "id": "NP00000122",
+      "id": "NP000122",
       "name": "Ashdrift Corsair",
       "race": "Human",
       "sex": "Male",
@@ -343,7 +343,7 @@
       "personality": []
     },
     {
-      "id": "NP00000123",
+      "id": "NP000123",
       "name": "Mournshade Acolyte",
       "race": "Human",
       "sex": "Female",
@@ -364,7 +364,7 @@
       "personality": []
     },
     {
-      "id": "NP00000124",
+      "id": "NP000124",
       "name": "Fellpine Tracker",
       "race": "Forest Elf",
       "sex": "Male",
@@ -395,7 +395,7 @@
       "personality": []
     },
     {
-      "id": "NP00000126",
+      "id": "NP000126",
       "name": "Wraithveil Stalker",
       "race": "Human",
       "sex": null,
@@ -418,7 +418,7 @@
       "personality": []
     },
     {
-      "id": "NP00000127",
+      "id": "NP000127",
       "name": "Ashfang Boar Rider",
       "race": "Mountain Orc",
       "sex": "Male",
@@ -439,7 +439,7 @@
       "personality": []
     },
     {
-      "id": "NP00000128",
+      "id": "NP000128",
       "name": "Duskmire Assassin",
       "race": "Human",
       "sex": "Female",
@@ -460,7 +460,7 @@
       "personality": []
     },
     {
-      "id": "NP00000129",
+      "id": "NP000129",
       "name": "Frostvein Raider",
       "race": "Human",
       "sex": "Male",
@@ -481,7 +481,7 @@
       "personality": []
     },
     {
-      "id": "NP00000130",
+      "id": "NP000130",
       "name": "Hollowspire Sorcerer",
       "race": "Human",
       "sex": "Male",
@@ -502,7 +502,7 @@
       "personality": []
     },
     {
-      "id": "NP00000132",
+      "id": "NP000132",
       "name": "Rotfen Cannibal",
       "race": "Human",
       "sex": "Male",
@@ -523,7 +523,7 @@
       "personality": []
     },
     {
-      "id": "NP00000133",
+      "id": "NP000133",
       "name": "Crowveil Archer",
       "race": "Human",
       "sex": "Female",
@@ -544,7 +544,7 @@
       "personality": []
     },
     {
-      "id": "NP00000135",
+      "id": "NP000135",
       "name": "Blackfen Warlock",
       "race": "Human",
       "sex": "Male",
@@ -565,7 +565,7 @@
       "personality": []
     },
     {
-      "id": "NP00000137",
+      "id": "NP000137",
       "name": "Dreadfen Lurker",
       "race": "Human",
       "sex": null,
@@ -588,7 +588,7 @@
       "personality": []
     },
     {
-      "id": "NP00000139",
+      "id": "NP000139",
       "name": "Blightmire Shaman",
       "race": "Human",
       "sex": "Female",
@@ -609,7 +609,7 @@
       "personality": []
     },
     {
-      "id": "NP00000140",
+      "id": "NP000140",
       "name": "Humans Saboteur",
       "race": "Human",
       "sex": "Unknown",
@@ -634,7 +634,7 @@
       "personality": []
     },
     {
-      "id": "NP00000149",
+      "id": "NP000149",
       "name": "Ashfoot Brute",
       "race": "Ashfoot Orc",
       "sex": "Unknown",
@@ -659,7 +659,7 @@
       "personality": []
     },
     {
-      "id": "NP00000150",
+      "id": "NP000150",
       "name": "Storm Raider",
       "race": "Storm Orc",
       "sex": "Unknown",
@@ -684,7 +684,7 @@
       "personality": []
     },
     {
-      "id": "NP00000151",
+      "id": "NP000151",
       "name": "Mountain Invoker",
       "race": "Mountain Orc",
       "sex": "Unknown",
@@ -709,7 +709,7 @@
       "personality": []
     },
     {
-      "id": "NP00000152",
+      "id": "NP000152",
       "name": "Darkblood Brute",
       "race": "Darkblood Tiefling",
       "sex": "Unknown",
@@ -734,7 +734,7 @@
       "personality": []
     },
     {
-      "id": "NP00000153",
+      "id": "NP000153",
       "name": "Hellbound Skirmisher",
       "race": "Hellbound Tiefling",
       "sex": "Unknown",
@@ -759,7 +759,7 @@
       "personality": []
     },
     {
-      "id": "NP00000154",
+      "id": "NP000154",
       "name": "Voided Skirmisher",
       "race": "Voided Tiefling",
       "sex": "Unknown",
@@ -784,7 +784,7 @@
       "personality": []
     },
     {
-      "id": "NP00000155",
+      "id": "NP000155",
       "name": "Sableheart Warlock",
       "race": "Sableheart Tiefling",
       "sex": "Unknown",
@@ -809,7 +809,7 @@
       "personality": []
     },
     {
-      "id": "NP00000156",
+      "id": "NP000156",
       "name": "Viridian Scout",
       "race": "Viridian Tiefling",
       "sex": "Unknown",
@@ -834,7 +834,7 @@
       "personality": []
     },
     {
-      "id": "NP00000163",
+      "id": "NP000163",
       "name": "Kitsune Raider",
       "race": "Kitsune",
       "sex": "Unknown",
@@ -859,7 +859,7 @@
       "personality": []
     },
     {
-      "id": "NP00000164",
+      "id": "NP000164",
       "name": "Neko Raider",
       "race": "Nekomata",
       "sex": "Unknown",
@@ -884,7 +884,7 @@
       "personality": []
     },
     {
-      "id": "NP00000166",
+      "id": "NP000166",
       "name": "Lamia Saboteur",
       "race": "Lamia",
       "sex": "Unknown",
@@ -909,7 +909,7 @@
       "personality": []
     },
     {
-      "id": "NP00000171",
+      "id": "NP000171",
       "name": "Nagaji Blade",
       "race": "Lamia",
       "sex": "Unknown",
@@ -934,7 +934,7 @@
       "personality": []
     },
     {
-      "id": "NP00000174",
+      "id": "NP000174",
       "name": "Avianfolk Blade",
       "race": "Harpy",
       "sex": "Unknown",
@@ -959,7 +959,7 @@
       "personality": []
     },
     {
-      "id": "NP00000180",
+      "id": "NP000180",
       "name": "Merfolk Blade",
       "race": "Merfolk",
       "sex": "Unknown",
@@ -984,7 +984,7 @@
       "personality": []
     },
     {
-      "id": "NP00000190",
+      "id": "NP000190",
       "name": "Kenku Marauder",
       "race": "Harpy",
       "sex": "Unknown",

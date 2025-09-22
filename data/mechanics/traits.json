@@ -1,9 +1,9 @@
-﻿{
-  "schema":  "rpgenesis/enchants.v1",
-  "version":  1,
+{
+  "schema": "rpgenesis/enchants.v1",
+  "version": 1,
   "traits": [
     {
-      "id": "TR00000001",
+      "id": "TR000001",
       "name": "Hefty",
       "effect": {
         "min_damage": 2
@@ -11,7 +11,7 @@
       "applies_to": "weapon"
     },
     {
-      "id": "TR00000002",
+      "id": "TR000002",
       "name": "Balanced",
       "effect": {
         "crit_chance": 1
@@ -19,7 +19,7 @@
       "applies_to": "weapon"
     },
     {
-      "id": "TR00000001",
+      "id": "TR000001",
       "name": "Quiet Steps",
       "effect": {
         "stealth": 5
@@ -27,7 +27,7 @@
       "applies_to": "armour"
     },
     {
-      "id": "TR00000002",
+      "id": "TR000002",
       "name": "Thermal Lining",
       "effect": {
         "resist_frost": 5
@@ -35,7 +35,7 @@
       "applies_to": "armour"
     },
     {
-      "id": "TR00000001",
+      "id": "TR000001",
       "name": "Charmed",
       "effect": {
         "hearts_bonus": 1
@@ -43,7 +43,7 @@
       "applies_to": "accessory"
     },
     {
-      "id": "TR00000002",
+      "id": "TR000002",
       "name": "Focused",
       "effect": {
         "mp_max": 10

@@ -178,15 +178,10 @@
     },
     {
       "id": "NP000010",
-      "name": "Kesti Syndreya",
-      "type": "ally",
-      "rarity": "",
-      "value": "",
-      "weight": "",
-      "description": "",
-      "components": [],
+      "name": "Kess Vaeloria",
       "race": "Harpy",
       "sex": "Female",
+      "type": "ally",
       "skin_tone": "light brown",
       "skin_texture": "matte",
       "hair_colour": "brown",
@@ -200,14 +195,7 @@
       "features": [],
       "appearance": "She has blue eyes. A fall of short straight brown hair. Light brown, matte skin. Medium, average. Physique and style reflect her avianfolk heritage: hollow-boned lightness, crest feathers braided with beads, eyes that catch motion a heartbeat early. medium, braided, white hair; silver eyes; pale, smooth skin; medium height, graceful build. She gifts maps in measures and measures in flight paths. Physique and style reflect her avianfolk heritage: hollow-boned lightness, crest feathers braided with beads, eyes that catch motion a heartbeat early. medium, braided, white hair; silver eyes; pale, smooth skin; medium height, graceful build. wings, talons. composed, purposeful, sharp when it counts.",
       "clothing": "She favors road leathers and a weathered cloak — cut from wool, leather — leaning toward tan, navy, oak. She wears flight leathers — a palette of sky, white, slate, worked in leather, wool, finished with a talon guards. Sky-chantress with a feathered mantle and a voice that finds the note in bone; missions travel faster when her song goes ahead of you. She wears feathered mantle, flight leathers, beadwork, talon guards. She wears steel plate over mail with a faded tabard, leather gloves and a sword belt worn smooth.",
-      "personality": "She gifts maps in measures and measures in flight paths. There’s a quickness in her gaze that finds solutions. Road dust sits easy on her.",
-      "fixed_bonus": [],
-      "possible_bonus": [],
-      "fixed_resist": [],
-      "possible_resist": [],
-      "fixed_trait": [],
-      "possible_trait": [],
-      "slot": "misc"
+      "personality": "She gifts maps in measures and measures in flight paths. There’s a quickness in her gaze that finds solutions. Road dust sits easy on her."
     },
     {
       "id": "NP000013",

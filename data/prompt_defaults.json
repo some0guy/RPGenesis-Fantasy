@@ -1,0 +1,1610 @@
+{
+  "universal": {
+    "always_add": [
+      "solo",
+      "full body",
+      "adult"
+    ],
+    "sex_tag": {
+      "Female": [
+        "1girl",
+        "mature female"
+      ],
+      "Male": [
+        "1boy",
+        "mature male"
+      ]
+    }
+  },
+  "races": {
+    "Forest Elf": {
+      "must_have": [
+        "pointed ears",
+        "slim",
+        "toned",
+        "smooth skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "brown hair",
+          "red hair",
+          "white hair"
+        ],
+        "eye_colour": [
+          "green eyes",
+          "orange eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "green skin"
+        ]
+      },
+      "positive": []
+    },
+    "Dark Elf": {
+      "must_have": [
+        "pointed ears",
+        "curvy",
+        "tall",
+        "smooth skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "brown hair",
+          "grey hair",
+          "white hair"
+        ],
+        "eye_colour": [
+          "grey eyes",
+          "orange eyes",
+          "red eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "brown skin",
+          "white skin"
+        ]
+      },
+      "positive": []
+    },
+    "Snow Elf": {
+      "must_have": [
+        "pointed ears",
+        "slim",
+        "small",
+        "smooth skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "blue hair",
+          "grey hair",
+          "purple hair",
+          "white hair"
+        ],
+        "eye_colour": [
+          "blue eyes",
+          "grey eyes",
+          "purple eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "white skin"
+        ]
+      },
+      "positive": []
+    },
+    "Great Elf": {
+      "must_have": [
+        "pointed ears",
+        "tall",
+        "smooth skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "brown hair",
+          "grey hair",
+          "red hair"
+        ],
+        "eye_colour": [
+          "green eyes",
+          "grey eyes",
+          "yellow eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "orange skin",
+          "yellow skin"
+        ]
+      },
+      "positive": []
+    },
+    "Iron Dwarf": {
+      "must_have": [
+        "powerful",
+        "short",
+        "rough skin",
+        "scarred skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "brown hair",
+          "grey hair",
+          "red hair"
+        ],
+        "eye_colour": [
+          "brown eyes",
+          "grey eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "brown skin",
+          "grey skin"
+        ]
+      },
+      "positive": []
+    },
+    "Hill Dwarf": {
+      "must_have": [
+        "strong",
+        "rough skin",
+        "smooth skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "brown hair",
+          "red hair"
+        ],
+        "eye_colour": [
+          "brown eyes",
+          "green eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "brown skin"
+        ]
+      },
+      "positive": []
+    },
+    "Ember Dwarf": {
+      "must_have": [
+        "rough skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "red hair"
+        ],
+        "eye_colour": [
+          "orange eyes",
+          "yellow eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "black skin",
+          "brown skin"
+        ]
+      },
+      "positive": [
+        "aggressive"
+      ]
+    },
+    "Coastal Dwarf": {
+      "must_have": [
+        "rough skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "brown hair",
+          "white hair"
+        ],
+        "eye_colour": [
+          "blue eyes",
+          "green eyes",
+          "grey eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "brown skin"
+        ]
+      },
+      "positive": []
+    },
+    "Ashfoot Orc": {
+      "must_have": [
+        "tusks",
+        "tall",
+        "rough skin",
+        "scarred skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "brown hair"
+        ],
+        "eye_colour": [
+          "orange eyes",
+          "red eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "black skin",
+          "grey skin"
+        ]
+      },
+      "positive": []
+    },
+    "Storm Orc": {
+      "must_have": [
+        "tusks",
+        "tall",
+        "rough skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "brown hair"
+        ],
+        "eye_colour": [
+          "blue eyes",
+          "green eyes",
+          "grey eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "green skin",
+          "grey skin"
+        ]
+      },
+      "positive": []
+    },
+    "Mountain Orcs": {
+      "must_have": [
+        "tusks",
+        "stocky",
+        "scarred skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "brown hair"
+        ],
+        "eye_colour": [
+          "brown eyes",
+          "grey eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "brown skin",
+          "grey skin"
+        ]
+      },
+      "positive": []
+    },
+    "Darkblood Tiefling": {
+      "must_have": [
+        "horns",
+        "pointed ears",
+        "tail",
+        "rough skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "grey hair"
+        ],
+        "eye_colour": [
+          "grey eyes",
+          "white eyes",
+          "yellow eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "grey skin"
+        ]
+      },
+      "positive": []
+    },
+    "Hellbound Tiefling": {
+      "must_have": [
+        "horns",
+        "pointed ears",
+        "tail",
+        "lean",
+        "rough skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "orange hair",
+          "pink hair",
+          "purple hair",
+          "red hair"
+        ],
+        "eye_colour": [
+          "blue eyes",
+          "brown eyes",
+          "green eyes",
+          "orange eyes",
+          "purple eyes",
+          "yellow eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "orange skin",
+          "red skin"
+        ]
+      },
+      "positive": [
+        "aggressive"
+      ]
+    },
+    "Voided Tiefling": {
+      "must_have": [
+        "horns",
+        "pointed ears",
+        "tail",
+        "toned",
+        "glossy skin",
+        "smooth skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "blue hair",
+          "green hair",
+          "grey hair",
+          "orange hair",
+          "pink hair",
+          "purple hair",
+          "red hair",
+          "white hair",
+          "yellow hair"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "black skin"
+        ]
+      },
+      "positive": []
+    },
+    "Sableheart Tiefling": {
+      "must_have": [
+        "horns",
+        "pointed ears",
+        "glossy skin",
+        "smooth skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "blue hair",
+          "pink hair",
+          "purple hair"
+        ],
+        "eye_colour": [
+          "blue eyes",
+          "green eyes",
+          "purple eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "blue skin",
+          "pink skin",
+          "purple skin",
+          "silky skin"
+        ]
+      },
+      "positive": []
+    },
+    "Viridian Tiefling": {
+      "must_have": [
+        "horns",
+        "pointed ears",
+        "tail",
+        "short",
+        "smooth skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "brown hair",
+          "red hair"
+        ],
+        "eye_colour": [
+          "green eyes",
+          "orange eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "green skin",
+          "yellow skin"
+        ]
+      },
+      "positive": []
+    },
+    "Human": {
+      "must_have": [
+        "pointed ears",
+        "smooth skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "brown hair",
+          "grey hair",
+          "red hair",
+          "white hair"
+        ],
+        "eye_colour": [
+          "blue eyes",
+          "brown eyes",
+          "green eyes",
+          "grey eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "brown skin",
+          "white skin"
+        ]
+      },
+      "positive": []
+    },
+    "Aberration": {
+      "must_have": [],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "white hair"
+        ],
+        "eye_colour": [
+          "orange eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "ashen skin",
+          "oil-slick skin",
+          "livid skin",
+          "slick skin",
+          "ridged skin",
+          "pitted skin"
+        ]
+      },
+      "positive": []
+    },
+    "Umbral Nekomata": {
+      "must_have": [],
+      "one_of": {
+        "hair_colour": [
+          "varied hair"
+        ],
+        "eye_colour": [
+          "varied eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "varied skin"
+        ]
+      },
+      "positive": []
+    },
+    "Blossom Nekomata": {
+      "must_have": [],
+      "one_of": {
+        "hair_colour": [
+          "varied hair"
+        ],
+        "eye_colour": [
+          "varied eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "varied skin"
+        ]
+      },
+      "positive": [
+        "calm"
+      ]
+    },
+    "Brimtail Nekomata": {
+      "must_have": [],
+      "one_of": {
+        "hair_colour": [
+          "varied hair"
+        ],
+        "eye_colour": [
+          "varied eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "varied skin"
+        ]
+      },
+      "positive": [
+        "aggressive"
+      ]
+    },
+    "Lunarveil Kitsune": {
+      "must_have": [
+        "strong"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "varied hair"
+        ],
+        "eye_colour": [
+          "varied eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "varied skin"
+        ]
+      },
+      "positive": []
+    },
+    "Infernal Kitsune": {
+      "must_have": [],
+      "one_of": {
+        "hair_colour": [
+          "varied hair"
+        ],
+        "eye_colour": [
+          "varied eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "varied skin"
+        ]
+      },
+      "positive": []
+    },
+    "Ethereal Kitsune": {
+      "must_have": [],
+      "one_of": {
+        "hair_colour": [
+          "varied hair"
+        ],
+        "eye_colour": [
+          "varied eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "varied skin"
+        ]
+      },
+      "positive": []
+    },
+    "Maple Kitsune": {
+      "must_have": [],
+      "one_of": {
+        "hair_colour": [
+          "varied hair"
+        ],
+        "eye_colour": [
+          "varied eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "varied skin"
+        ]
+      },
+      "positive": []
+    },
+    "Arctic Kitsune": {
+      "must_have": [],
+      "one_of": {
+        "hair_colour": [
+          "varied hair"
+        ],
+        "eye_colour": [
+          "varied eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "varied skin"
+        ]
+      },
+      "positive": []
+    },
+    "Coralheart Merfolk": {
+      "must_have": [],
+      "one_of": {
+        "hair_colour": [
+          "varied hair"
+        ],
+        "eye_colour": [
+          "varied eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "varied skin"
+        ]
+      },
+      "positive": []
+    },
+    "Tideling Merfolk": {
+      "must_have": [
+        "small"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "varied hair"
+        ],
+        "eye_colour": [
+          "varied eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "varied skin"
+        ]
+      },
+      "positive": []
+    },
+    "Moonsong Merfolk": {
+      "must_have": [],
+      "one_of": {
+        "hair_colour": [
+          "varied hair"
+        ],
+        "eye_colour": [
+          "varied eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "varied skin"
+        ]
+      },
+      "positive": []
+    },
+    "Glacialis Merfolk": {
+      "must_have": [
+        "tall"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "varied hair"
+        ],
+        "eye_colour": [
+          "varied eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "varied skin"
+        ]
+      },
+      "positive": []
+    },
+    "Nethryn Merfolk": {
+      "must_have": [
+        "strong"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "varied hair"
+        ],
+        "eye_colour": [
+          "varied eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "varied skin"
+        ]
+      },
+      "positive": []
+    },
+    "Ambercoil Lamia": {
+      "must_have": [
+        "scales",
+        "toned",
+        "fine desert-dry smoothness; scales like hammered metal skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "brown hair",
+          "yellow hair"
+        ],
+        "eye_colour": [
+          "brown eyes",
+          "yellow eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "sun-kissed bronze (human torso) skin"
+        ]
+      },
+      "positive": []
+    },
+    "Verdant Lamia": {
+      "must_have": [
+        "frill",
+        "dew-sheened; scales veined like leaves skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "brown hair",
+          "green hair"
+        ],
+        "eye_colour": [
+          "blue eyes",
+          "orange eyes",
+          "yellow eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "brown skin",
+          "green skin"
+        ]
+      },
+      "positive": []
+    },
+    "Lustmire Lamia": {
+      "must_have": [
+        "slick marsh-gloss; scales oil-sheened skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "brown hair",
+          "purple hair"
+        ],
+        "eye_colour": [
+          "green eyes",
+          "white eyes",
+          "yellow eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "brown skin"
+        ]
+      },
+      "positive": []
+    },
+    "Riverlit Lamia": {
+      "must_have": [],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "brown hair",
+          "grey hair"
+        ],
+        "eye_colour": [
+          "blue eyes",
+          "grey eyes",
+          "white eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "white skin",
+          "silky skin"
+        ]
+      },
+      "positive": []
+    },
+    "Cliffside Harpy": {
+      "must_have": [
+        "skinny",
+        "bird ears",
+        "harpine features",
+        "bird tail",
+        "bird legs",
+        "large wings",
+        "claws",
+        "clawed hands",
+        "clawed wings",
+        "winged arms",
+        "feathered legs",
+        "feathered thighs",
+        "monster girl",
+        "huge ahoge",
+        "((digitigrade))",
+        "bare shoulders",
+        "smooth skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "brown hair"
+        ],
+        "eye_colour": [
+          "amber eyes",
+          "grey eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "tan skin",
+          "grey skin"
+        ],
+        "feather_colour": [
+          "black feathers",
+          "brown feathers"
+        ],
+        "pairing": {
+          "feather_colour": {
+            "paired_with": "hair_colour",
+            "mode": "index"
+          }
+        }
+      },
+      "positive": []
+    },
+    "Nightfall Harpy": {
+      "must_have": [
+        "skinny",
+        "bird ears",
+        "harpine features",
+        "bird tail",
+        "bird legs",
+        "large wings",
+        "claws",
+        "clawed hands",
+        "clawed wings",
+        "winged arms",
+        "feathered legs",
+        "feathered thighs",
+        "monster girl",
+        "huge ahoge",
+        "((digitigrade))",
+        "bare shoulders",
+        "smooth skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "brown hair"
+        ],
+        "eye_colour": [
+          "yellow eyes",
+          "blue eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "pale skin",
+          "brown skin"
+        ],
+        "feather_colour": [
+          "black feathers",
+          "brown feathers"
+        ],
+        "pairing": {
+          "feather_colour": {
+            "paired_with": "hair_colour",
+            "mode": "index"
+          }
+        }
+      },
+      "positive": []
+    },
+    "Snowpeak Harpy": {
+      "must_have": [
+        "skinny",
+        "bird ears",
+        "harpine features",
+        "bird tail",
+        "bird legs",
+        "large wings",
+        "claws",
+        "clawed hands",
+        "clawed wings",
+        "winged arms",
+        "feathered legs",
+        "feathered thighs",
+        "monster girl",
+        "huge ahoge",
+        "((digitigrade))",
+        "bare shoulders",
+        "smooth skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "brown hair"
+        ],
+        "eye_colour": [
+          "blue eyes",
+          "grey eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "white skin",
+          "crisp skin"
+        ],
+        "feather_colour": [
+          "black feathers",
+          "brown feathers"
+        ],
+        "pairing": {
+          "feather_colour": {
+            "paired_with": "hair_colour",
+            "mode": "index"
+          }
+        }
+      },
+      "positive": []
+    },
+    "Bramblewing Harpy": {
+      "must_have": [
+        "skinny",
+        "bird ears",
+        "harpine features",
+        "bird tail",
+        "bird legs",
+        "large wings",
+        "claws",
+        "clawed hands",
+        "clawed wings",
+        "winged arms",
+        "feathered legs",
+        "feathered thighs",
+        "monster girl",
+        "huge ahoge",
+        "((digitigrade))",
+        "bare shoulders",
+        "smooth skin"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "black hair",
+          "brown hair"
+        ],
+        "eye_colour": [
+          "green eyes",
+          "amber eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "brown skin"
+        ],
+        "feather_colour": [
+          "black feathers",
+          "brown feathers"
+        ],
+        "pairing": {
+          "feather_colour": {
+            "paired_with": "hair_colour",
+            "mode": "index"
+          }
+        }
+      },
+      "positive": []
+    }
+  },
+  "curses": {
+    "Undead": {
+      "must_have": [
+        "ashen skin",
+        "eerie aura",
+        "grey skin",
+        "sunken eyes"
+      ],
+      "positive": [
+        "tattered clothes",
+        "bone fragments",
+        "decay marks",
+        "necrotic sigils"
+      ],
+      "one_of": {},
+      "overrides": {
+        "skin_colour": [
+          "grey skin",
+          "ashen skin"
+        ]
+      },
+      "suppress_fields": [
+        "eye_colour"
+      ]
+    },
+    "Vampire": {
+      "must_have": [
+        "fangs",
+        "glowing eyes",
+        "pale skin"
+      ],
+      "positive": [
+        "red eyes",
+        "gold eyes",
+        "glowing eyes",
+        "bloodstained lips",
+        "gothic attire",
+        "velvet cloak",
+        "predatory pose"
+      ],
+      "one_of": {
+        "aura": [
+          "glowing eyes"
+        ]
+      },
+      "overrides": {
+        "skin_colour": [
+          "pale skin"
+        ]
+      },
+      "suppress_fields": [
+        "eye_colour"
+      ]
+    },
+    "Lycanthrope": {
+      "must_have": [
+        "claws",
+        "fangs",
+        "fur"
+      ],
+      "positive": [
+        "wolf features",
+        "shaggy fur",
+        "wild hair",
+        "torn clothing",
+        "feral aura",
+        "animalistic stance"
+      ],
+      "one_of": {
+        "fur_tone": [
+          "ash-grey fur",
+          "russet fur",
+          "black fur"
+        ]
+      },
+      "overrides": {},
+      "suppress_fields": [
+        "eye_colour"
+      ]
+    },
+    "Demonbound": {
+      "must_have": [
+        "burning eyes",
+        "demonic markings",
+        "glowing eyes"
+      ],
+      "positive": [
+        "charred skin patterns",
+        "glowing skin patterns",
+        "hellish aura",
+        "smoke",
+        "embers",
+        "infernal horns",
+        "ritual scars"
+      ],
+      "one_of": {
+        "mark_colour": [
+          "smouldering red sigils",
+          "violet ember sigils",
+          "ashen-black brands"
+        ]
+      },
+      "overrides": {},
+      "suppress_fields": [
+        "eye_colour"
+      ]
+    },
+    "Cursed Flame": {
+      "must_have": [
+        "cracked skin",
+        "glowing embers"
+      ],
+      "positive": [
+        "smouldering aura",
+        "fire tattoos",
+        "ashen clothing",
+        "ember trails",
+        "burn scars"
+      ],
+      "one_of": {
+        "ember_colour": [
+          "orange embers",
+          "blue embers",
+          "white-hot embers"
+        ]
+      },
+      "overrides": {},
+      "suppress_fields": [
+        "eye_colour"
+      ]
+    }
+  }
+}

@@ -8,7 +8,7 @@
     "weight": 40,
     "description": "A common ring crafted with care.",
     "components": [],
-    "id": "IT00005001",
+    "id": "IT005001",
     "desc": "A common ring to our current spec.",
     "bonus_template": {
       "attack": [
@@ -31,7 +31,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00005002",
+    "id": "IT005002",
     "name": "Runed Signet",
     "type": "",
     "rarity": "uncommon",
@@ -82,7 +82,7 @@
     "weight": 30,
     "description": "A rare ring crafted with care.",
     "components": [],
-    "id": "IT00005003",
+    "id": "IT005003",
     "desc": "A rare ring to our current spec.",
     "bonus_template": {
       "tec": [
@@ -111,7 +111,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00005004",
+    "id": "IT005004",
     "name": "Kingsfall Signet",
     "type": "",
     "rarity": "legendary",
@@ -160,7 +160,7 @@
     "weight": 24,
     "description": "A mythic ring crafted with care.",
     "components": [],
-    "id": "IT00005005",
+    "id": "IT005005",
     "desc": "A mythic ring to our current spec.",
     "bonus_template": {
       "ins": [
@@ -201,7 +201,7 @@
     "weight": 40,
     "description": "A common necklace crafted with care.",
     "components": [],
-    "id": "IT00005006",
+    "id": "IT005006",
     "desc": "A common necklace to our current spec.",
     "bonus_template": {
       "vit": [
@@ -234,7 +234,7 @@
     "weight": 35,
     "description": "A uncommon necklace crafted with care.",
     "components": [],
-    "id": "IT00005007",
+    "id": "IT005007",
     "desc": "A uncommon necklace to our current spec.",
     "bonus_template": {
       "ins": [
@@ -269,7 +269,7 @@
     "weight": 30,
     "description": "A rare necklace crafted with care.",
     "components": [],
-    "id": "IT00005008",
+    "id": "IT005008",
     "desc": "A rare necklace to our current spec.",
     "bonus_template": {
       "attack": [
@@ -304,7 +304,7 @@
     "weight": 26,
     "description": "A legendary necklace crafted with care.",
     "components": [],
-    "id": "IT00005009",
+    "id": "IT005009",
     "desc": "A legendary necklace to our current spec.",
     "bonus_template": {
       "vit": [
@@ -347,7 +347,7 @@
     "weight": 24,
     "description": "A mythic necklace crafted with care.",
     "components": [],
-    "id": "IT00005010",
+    "id": "IT005010",
     "desc": "A mythic necklace to our current spec.",
     "bonus_template": {
       "kno": [
@@ -384,7 +384,7 @@
     "weight": 40,
     "description": "A common bracelet crafted with care.",
     "components": [],
-    "id": "IT00005011",
+    "id": "IT005011",
     "desc": "A common bracelet to our current spec.",
     "bonus_template": {
       "tec": [
@@ -417,7 +417,7 @@
     "weight": 35,
     "description": "A uncommon bracelet crafted with care.",
     "components": [],
-    "id": "IT00005012",
+    "id": "IT005012",
     "desc": "A uncommon bracelet to our current spec.",
     "bonus_template": {
       "arc": [
@@ -452,7 +452,7 @@
     "weight": 30,
     "description": "A rare bracelet crafted with care.",
     "components": [],
-    "id": "IT00005013",
+    "id": "IT005013",
     "desc": "A rare bracelet to our current spec.",
     "bonus_template": {
       "attack": [
@@ -485,7 +485,7 @@
     "weight": 26,
     "description": "A legendary bracelet crafted with care.",
     "components": [],
-    "id": "IT00005014",
+    "id": "IT005014",
     "desc": "A legendary bracelet to our current spec.",
     "bonus_template": {
       "attack": [
@@ -522,7 +522,7 @@
     "weight": 24,
     "description": "A mythic bracelet crafted with care.",
     "components": [],
-    "id": "IT00005015",
+    "id": "IT005015",
     "desc": "A mythic bracelet to our current spec.",
     "bonus_template": {
       "vit": [
@@ -561,7 +561,7 @@
     "weight": 40,
     "description": "A common charm crafted with care.",
     "components": [],
-    "id": "IT00005016",
+    "id": "IT005016",
     "desc": "A common charm to our current spec.",
     "bonus_template": {
       "fth": [
@@ -592,7 +592,7 @@
     "weight": 35,
     "description": "A uncommon charm crafted with care.",
     "components": [],
-    "id": "IT00005017",
+    "id": "IT005017",
     "desc": "A uncommon charm to our current spec.",
     "bonus_template": {
       "soc": [
@@ -627,7 +627,7 @@
     "weight": 30,
     "description": "A rare charm crafted with care.",
     "components": [],
-    "id": "IT00005018",
+    "id": "IT005018",
     "desc": "A rare charm to our current spec.",
     "bonus_template": {
       "ins": [
@@ -658,7 +658,7 @@
     "weight": 26,
     "description": "A legendary charm crafted with care.",
     "components": [],
-    "id": "IT00005019",
+    "id": "IT005019",
     "desc": "A legendary charm to our current spec.",
     "bonus_template": {
       "arc": [
@@ -693,7 +693,7 @@
     "weight": 24,
     "description": "A mythic charm crafted with care.",
     "components": [],
-    "id": "IT00005020",
+    "id": "IT005020",
     "desc": "A mythic charm to our current spec.",
     "bonus_template": {
       "kno": [

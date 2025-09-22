@@ -1,7 +1,7 @@
 {
   "consumables": [
     {
-      "id": "IT00004001",
+      "id": "IT004001",
       "name": "Minor Healing Potion",
       "category": "consumable",
       "rarity": "common",
@@ -18,7 +18,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004002",
+      "id": "IT004002",
       "name": "Lesser Healing Potion",
       "category": "consumable",
       "rarity": "common",
@@ -37,7 +37,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004003",
+      "id": "IT004003",
       "name": "Greater Healing Potion",
       "category": "consumable",
       "rarity": "uncommon",
@@ -56,7 +56,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004004",
+      "id": "IT004004",
       "name": "Superior Healing Potion",
       "category": "consumable",
       "rarity": "rare",
@@ -77,7 +77,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004005",
+      "id": "IT004005",
       "name": "Minor Mana Draught",
       "category": "consumable",
       "rarity": "common",
@@ -94,7 +94,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004006",
+      "id": "IT004006",
       "name": "Greater Mana Draught",
       "category": "consumable",
       "rarity": "uncommon",
@@ -113,7 +113,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004007",
+      "id": "IT004007",
       "name": "Elixir of Focus",
       "category": "consumable",
       "rarity": "rare",
@@ -135,7 +135,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004008",
+      "id": "IT004008",
       "name": "Ironflesh Tonic",
       "category": "consumable",
       "rarity": "uncommon",
@@ -154,7 +154,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004009",
+      "id": "IT004009",
       "name": "Swiftstep Draft",
       "category": "consumable",
       "rarity": "uncommon",
@@ -173,7 +173,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004010",
+      "id": "IT004010",
       "name": "Battle Rations",
       "category": "consumable",
       "rarity": "common",
@@ -193,7 +193,7 @@
       "weight": 2
     },
     {
-      "id": "IT00004011",
+      "id": "IT004011",
       "name": "Antidote Phial",
       "category": "consumable",
       "rarity": "common",
@@ -210,7 +210,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004012",
+      "id": "IT004012",
       "name": "Fireward Salts",
       "category": "consumable",
       "rarity": "uncommon",
@@ -227,7 +227,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004013",
+      "id": "IT004013",
       "name": "Frostward Salts",
       "category": "consumable",
       "rarity": "uncommon",
@@ -244,7 +244,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004014",
+      "id": "IT004014",
       "name": "Stormward Tincture",
       "category": "consumable",
       "rarity": "uncommon",
@@ -261,7 +261,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004015",
+      "id": "IT004015",
       "name": "Clarity Tea",
       "category": "consumable",
       "rarity": "common",
@@ -281,7 +281,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004016",
+      "id": "IT004016",
       "name": "Adrenaline Ampoule",
       "category": "consumable",
       "rarity": "rare",
@@ -301,7 +301,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004017",
+      "id": "IT004017",
       "name": "Smoke Bomb",
       "category": "consumable",
       "rarity": "uncommon",
@@ -318,7 +318,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004018",
+      "id": "IT004018",
       "name": "Venom Vial",
       "category": "consumable",
       "rarity": "rare",
@@ -335,7 +335,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004019",
+      "id": "IT004019",
       "name": "Stoneskin Poultice",
       "category": "consumable",
       "rarity": "rare",
@@ -356,7 +356,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004020",
+      "id": "IT004020",
       "name": "Elixir of Charisma",
       "category": "consumable",
       "rarity": "rare",
@@ -377,7 +377,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004021",
+      "id": "IT004021",
       "name": "Magefire Oil",
       "category": "consumable",
       "rarity": "uncommon",
@@ -396,7 +396,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004022",
+      "id": "IT004022",
       "name": "Icy Edge Oil",
       "category": "consumable",
       "rarity": "uncommon",
@@ -415,7 +415,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004023",
+      "id": "IT004023",
       "name": "Aether Tonic",
       "category": "consumable",
       "rarity": "epic",
@@ -438,7 +438,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004024",
+      "id": "IT004024",
       "name": "Guardian’s Draught",
       "category": "consumable",
       "rarity": "rare",
@@ -457,7 +457,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004025",
+      "id": "IT004025",
       "name": "Scout’s Ration Pack",
       "category": "consumable",
       "rarity": "common",
@@ -475,7 +475,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004026",
+      "id": "IT004026",
       "name": "Resolute Brew",
       "category": "consumable",
       "rarity": "uncommon",
@@ -495,7 +495,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004027",
+      "id": "IT004027",
       "name": "Sharpsight Drops",
       "category": "consumable",
       "rarity": "rare",
@@ -514,7 +514,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004028",
+      "id": "IT004028",
       "name": "Tangler Bomb",
       "category": "consumable",
       "rarity": "uncommon",
@@ -531,7 +531,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004029",
+      "id": "IT004029",
       "name": "Blessed Water",
       "category": "consumable",
       "rarity": "uncommon",
@@ -550,7 +550,7 @@
       "weight": 1
     },
     {
-      "id": "IT00004030",
+      "id": "IT004030",
       "name": "Elixir of Fortune",
       "category": "consumable",
       "rarity": "epic",

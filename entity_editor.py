@@ -7,7 +7,7 @@
 # - Derived slot (readonly)
 # - Weighted roll preview (loot_rolls.json)
 # - JSON containers: bare list or {"items":[]}/{"npcs":[]}
-# - Auto IDs (IT######## / NP########)
+# - Auto IDs (IT###### / NP######)
 # - Clean Tk UI, raw JSON toggle
 
 import json, os, re, time, random, sys
@@ -36,8 +36,8 @@ BASE_DIR   = os.path.abspath(os.path.dirname(__file__))
 ITEMS_DIR  = os.path.join(BASE_DIR, "data", "items")
 NPCS_DIR   = os.path.join(BASE_DIR, "data", "npcs")
 
-RE_ID_ITEM = re.compile(r"^IT\d{8}$")
-RE_ID_NPC  = re.compile(r"^(?:NP|NPC)\d{8}$")
+RE_ID_ITEM = re.compile(r"^IT\d{6}$")
+RE_ID_NPC  = re.compile(r"^(?:NP|NPC)\d{6}$")
 
 BONUS_KEYS = [
     "PHY","TEC","ARC","VIT","KNO","INS","SOC","FTH",
@@ -60,7 +60,7 @@ TRAIT_OPTIONS = [
 ]
 
 DEFAULT_ITEM = {
-    "id": "IT00000000",
+    "id": "IT000000",
     "name": "New Item",
     "category": "misc",
     "type": "",
@@ -76,7 +76,7 @@ DEFAULT_ITEM = {
 }
 
 DEFAULT_NPC = {
-    "id": "NP00000000",
+    "id": "NP000000",
     "name": "New NPC",
     "race": "",
     "sex": "",
@@ -141,7 +141,7 @@ def load_dataset(path: str, preferred_keys: Sequence[str] = (), *, allow_first_l
         empty: List[Any] = []
         return empty, empty, None
     try:
-        with open(path, "r", encoding="utf-8") as f:
+        with open(path, "r", encoding="utf-8-sig") as f:
             data = json.load(f)
     except json.JSONDecodeError as exc:
         messagebox.showerror("Invalid JSON", f"{os.path.basename(path)} could not be parsed:\n{exc}")
@@ -182,35 +182,58 @@ def save_json_file(path: str, root_obj: Any, list_ref: List[Any], list_key: Opti
 # ---------- IDs & categories ----------
 
 def ensure_item_id(item, existing_ids):
+
     _id = (item.get("id","") or "").strip()
+    # normalize legacy 8-digit to 6-digit if present
+    m8 = re.match(r"^IT(\d{8})$", _id)
+    if m8:
+        _id = "IT" + m8.group(1)[-6:]
     if RE_ID_ITEM.match(_id) and _id not in existing_ids:
         return _id
     base = 1
     if existing_ids:
         nums = []
         for s in existing_ids:
-            m = re.match(r"IT(\d{8})", (s or ""))
-            if m: nums.append(int(m.group(1)))
+            if not s: continue
+            m6 = re.match(r"IT(\d{6})$", (s or "").strip())
+            if m6: nums.append(int(m6.group(1)))
+            else:
+                m8 = re.match(r"IT(\d{8})$", (s or "").strip())
+                if m8: nums.append(int(m8.group(1)[-6:]))
         base = (max(nums) + 1) if nums else 1
-    return f"IT{base:08d}"
+    return f"IT{base:06d}"
 
 def ensure_npc_id(npc, existing_ids):
+
     _id = (npc.get("id","") or "").strip().upper()
+    # normalize legacy 8-digit to 6-digit if present
+    m8 = re.match(r"^(NP|NPC)(\d{8})$", _id)
+    if m8:
+        _id = m8.group(1) + m8.group(2)[-6:]
     if RE_ID_NPC.match(_id) and _id not in existing_ids:
         return _id
     prefix = "NP"
     nums = []
     for s in existing_ids:
         if not s: continue
-        m = re.match(r"^(NP|NPC)(\d{8})$", s.strip().upper())
-        if m:
-            nums.append(int(m.group(2)))
-            if m.group(1) == "NPC":
+        s = s.strip().upper()
+        m6 = re.match(r"^(NP|NPC)(\d{6})$", s)
+        if m6:
+            nums.append(int(m6.group(2)))
+            if m6.group(1) == "NPC":
                 prefix = "NPC"
+        else:
+            m8 = re.match(r"^(NP|NPC)(\d{8})$", s)
+            if m8:
+                nums.append(int(m8.group(2)[-6:]))
+                if m8.group(1) == "NPC":
+                    prefix = "NPC"
     next_num = (max(nums) + 1) if nums else 1
-    if RE_ID_NPC.match(_id):
-        prefix = re.match(r"^(NP|NPC)", _id).group(1)
-    return f"{prefix}{next_num:08d}"
+    # keep original prefix if user typed one
+    pm = re.match(r"^(NP|NPC)", _id)
+    if pm:
+        prefix = pm.group(1)
+    return f"{prefix}{next_num:06d}"
 
 def infer_category(item):
     for k in ("category","slot","type"):
@@ -608,64 +631,74 @@ class KeyValueForm(ttk.Frame):
             self.canvas.pack(side="left", fill="both", expand=True); self.scroll.pack(side="right", fill="y")
             self.toggle_btn.config(text="Raw JSON")
 
+    
+    def _refresh_raw_if_visible(self):
+        # If raw mode is showing, update its content to the current object
+        try:
+            if getattr(self, "raw_mode", False) and hasattr(self, "raw_text"):
+                self.raw_text.delete("1.0","end")
+                self.raw_text.insert("1.0", json.dumps(self.current_obj, ensure_ascii=False, indent=2))
+        except Exception:
+            pass
+
+
     def _make_widget_for(self, key: str, val: Any):
-        # Hide category (comes from file context on items)
-        if key == "category":
-            return ("hidden", None)
+            # Hide category (comes from file context on items)
+            if key == "category":
+                return ("hidden", None)
 
-        # Rarity dropdown
-        if key == "rarity":
-            w = ComboField(self.inner, RARITY_OPTIONS, str(val or ""))
-            return ("rarity_combo", w)
+            # Rarity dropdown
+            if key == "rarity":
+                w = ComboField(self.inner, RARITY_OPTIONS, str(val or ""))
+                return ("rarity_combo", w)
 
-        # Type dropdown scoped by current file category
-        if key == "type":
-            cat = (self.context_category or "").lower()
-            if cat and cat in TYPE_OPTIONS:
-                options = TYPE_OPTIONS[cat]
-            else:
-                # Fallback to union of all types
-                options = sorted({t for arr in TYPE_OPTIONS.values() for t in arr})
-            w = ComboField(self.inner, options, str(val or ""))
-            return ("type_combo", w)
+            # Type dropdown scoped by current file category
+            if key == "type":
+                cat = (self.context_category or "").lower()
+                if cat and cat in TYPE_OPTIONS:
+                    options = TYPE_OPTIONS[cat]
+                else:
+                    # Fallback to union of all types
+                    options = sorted({t for arr in TYPE_OPTIONS.values() for t in arr})
+                w = ComboField(self.inner, options, str(val or ""))
+                return ("type_combo", w)
 
-        # Bonus/resist/trait pickers
-        if key in ("fixed_bonus", "possible_bonus"):
-            w = KeyPickerField(self.inner, BONUS_KEYS, [v for v in (val or []) if isinstance(v, str)], "Available Bonus", "Selected Bonus")
-            return (f"{key}_keys", w)
-        if key in ("fixed_resist", "possible_resist"):
-            w = KeyPickerField(self.inner, RESIST_KEYS, [v for v in (val or []) if isinstance(v, str)], "Available Resist", "Selected Resist")
-            return (f"{key}_keys", w)
-        if key in ("fixed_trait", "possible_trait"):
-            w = KeyPickerField(self.inner, TRAIT_OPTIONS, [v for v in (val or []) if isinstance(v, str)], "Available Trait", "Selected Trait")
-            return (f"{key}_keys", w)
+            # Bonus/resist/trait pickers
+            if key in ("fixed_bonus", "possible_bonus"):
+                w = KeyPickerField(self.inner, BONUS_KEYS, [v for v in (val or []) if isinstance(v, str)], "Available Bonus", "Selected Bonus")
+                return (f"{key}_keys", w)
+            if key in ("fixed_resist", "possible_resist"):
+                w = KeyPickerField(self.inner, RESIST_KEYS, [v for v in (val or []) if isinstance(v, str)], "Available Resist", "Selected Resist")
+                return (f"{key}_keys", w)
+            if key in ("fixed_trait", "possible_trait"):
+                w = KeyPickerField(self.inner, TRAIT_OPTIONS, [v for v in (val or []) if isinstance(v, str)], "Available Trait", "Selected Trait")
+                return (f"{key}_keys", w)
 
-        # Slot is readonly (derived)
-        if key == "slot":
-            var = tk.StringVar(value=str(val or ""))
-            entry = ttk.Entry(self.inner, textvariable=var, state="readonly")
-            return ("slot_readonly", (entry, var))
+            # Slot is readonly (derived)
+            if key == "slot":
+                var = tk.StringVar(value=str(val or ""))
+                entry = ttk.Entry(self.inner, textvariable=var, state="readonly")
+                return ("slot_readonly", (entry, var))
 
-        # Legacy arrays shown as readonly JSON (if present)
-        if key in ("bonus", "resist", "trait"):
-            text = tk.Text(self.inner, height=3, width=40)
-            try:
+            # Legacy arrays shown as readonly JSON (if present)
+            if key in ("bonus", "resist", "trait"):
+                text = tk.Text(self.inner, height=3, width=40)
+                try:
+                    text.insert("1.0", json.dumps(val, ensure_ascii=False, indent=2))
+                except Exception:
+                    text.insert("1.0", str(val))
+                text.configure(state="disabled")
+                return ("legacy_json", text)
+
+            # Dict/list -> JSON editor
+            if isinstance(val, (dict, list)):
+                text = tk.Text(self.inner, height=4, width=40)
                 text.insert("1.0", json.dumps(val, ensure_ascii=False, indent=2))
-            except Exception:
-                text.insert("1.0", str(val))
-            text.configure(state="disabled")
-            return ("legacy_json", text)
+                return ("json", text)
 
-        # Dict/list -> JSON editor
-        if isinstance(val, (dict, list)):
-            text = tk.Text(self.inner, height=4, width=40)
-            text.insert("1.0", json.dumps(val, ensure_ascii=False, indent=2))
-            return ("json", text)
-
-        # Default scalar
-        entry = ttk.Entry(self.inner); entry.insert(0, "" if val is None else str(val))
-        return ("scalar", entry)
-
+            # Default scalar
+            entry = ttk.Entry(self.inner); entry.insert(0, "" if val is None else str(val))
+            return ("scalar", entry)
     def set_object(self, obj: dict):
         self.current_obj = dict(obj) if obj else {}
 
@@ -687,7 +720,13 @@ class KeyValueForm(ttk.Frame):
         self.current_obj.setdefault("fixed_trait", [])
         self.current_obj.setdefault("possible_trait", keys_from_legacy(self.current_obj.get("trait")))
 
-        for w in self.inner.winfo_children(): w.destroy()
+        # If Raw JSON pane is visible, update it right away
+        if hasattr(self, "_refresh_raw_if_visible"):
+            self._refresh_raw_if_visible()
+
+        # Rebuild UI
+        for w in self.inner.winfo_children():
+            w.destroy()
         self.inputs.clear()
 
         preferred = ["id","name","type","rarity","value","weight","description",
@@ -709,12 +748,18 @@ class KeyValueForm(ttk.Frame):
                 else:
                     cid = str(c)
                 if cid:
+                    m8 = re.match(r"^([A-Z]{2,3})(\d{8})$", cid)
+                    if m8:
+                        cid = m8.group(1) + m8.group(2)[-6:]
                     comp_ids.append(cid)
             labels = [ALL_ITEMS_ID_TO_LABEL.get(cid, cid) for cid in comp_ids]
 
         row = 0
         for k in keys_sorted:
             if k == 'category':
+                continue
+            if k in ("fixed_bonus","possible_bonus","fixed_resist","possible_resist","fixed_trait","possible_trait"):
+                # handled by the Affixes section below
                 continue
             val = self.current_obj.get(k)
             ttk.Label(self.inner, text=k).grid(row=row, column=0, sticky="w", padx=6, pady=4)
@@ -739,6 +784,38 @@ class KeyValueForm(ttk.Frame):
                 widget.grid(row=row, column=1, sticky="we", padx=6, pady=4)
             row += 1
 
+        # --- Vertical layout for (Bonus, Resist, Trait) ---
+        trio = ttk.LabelFrame(self.inner, text="Affixes")
+        trio.grid(row=row, column=0, columnspan=2, sticky="nsew", padx=6, pady=8)
+        trio.columnconfigure(0, weight=1)
+
+        def _mk_section(r, title, fixed_key, possible_key, all_keys):
+            section = ttk.Frame(trio)
+            section.grid(row=r, column=0, sticky="nsew", padx=4, pady=8)
+            ttk.Label(section, text=title, font=("Segoe UI", 10, "bold")).pack(anchor="w", pady=(0,4))
+
+            # Fixed row
+            ttk.Label(section, text="Fixed").pack(anchor="w")
+            fixed_widget = KeyPickerField(section, all_keys,
+                                          [v for v in (self.current_obj.get(fixed_key) or []) if isinstance(v, str)],
+                                          "Available", "Selected")
+            fixed_widget.pack(fill="both", expand=True, pady=(2,6))
+            self.inputs[fixed_key] = (f"{fixed_key}_keys", fixed_widget)
+
+            # Possible row
+            ttk.Label(section, text="Possible").pack(anchor="w")
+            poss_widget = KeyPickerField(section, all_keys,
+                                         [v for v in (self.current_obj.get(possible_key) or []) if isinstance(v, str)],
+                                         "Available", "Selected")
+            poss_widget.pack(fill="both", expand=True, pady=(2,0))
+            self.inputs[possible_key] = (f"{possible_key}_keys", poss_widget)
+
+        _mk_section(0, "Bonus", "fixed_bonus", "possible_bonus", BONUS_KEYS)
+        _mk_section(1, "Resist", "fixed_resist", "possible_resist", RESIST_KEYS)
+        _mk_section(2, "Trait", "fixed_trait", "possible_trait", TRAIT_OPTIONS)
+
+        row += 1
+
         # derive slot once after layout if possible
         try:
             snap = {
@@ -757,6 +834,10 @@ class KeyValueForm(ttk.Frame):
         except Exception:
             pass
         self.inner.columnconfigure(1, weight=1)
+
+        # Final sync of raw view after layout
+        if hasattr(self, "_refresh_raw_if_visible"):
+            self._refresh_raw_if_visible()
 
     def get_object(self):
         if self.raw_mode:
@@ -789,11 +870,10 @@ class KeyValueForm(ttk.Frame):
                 pass
             else:
                 # scalar or combo
-                val = ""
                 try:
                     val = widget.get()
                 except Exception:
-                    pass
+                    val = ""
                 if isinstance(val, str) and re.match(r"^-?\d+(\.\d+)?$", val.strip()):
                     out[k] = float(val) if "." in val else int(val)
                 else:
@@ -809,6 +889,28 @@ class KeyValueForm(ttk.Frame):
         # purge deprecated
         if 'scale_with_level' in out:
             out.pop('scale_with_level', None)
+
+        # normalize IDs to 6-digit for id + components
+        iid = str(out.get("id","")).strip()
+        m8 = re.match(r"^([A-Z]{2,3})(\d{8})$", iid)
+        if m8:
+            out["id"] = m8.group(1) + m8.group(2)[-6:]
+        comps = out.get("components", [])
+        if isinstance(comps, list):
+            cleaned = []
+            for cid in comps:
+                s = ""
+                if isinstance(cid, dict):
+                    s = cid.get("id") or cid.get("component_id") or ""
+                else:
+                    s = str(cid)
+                if s:
+                    m8 = re.match(r"^([A-Z]{2,3})(\d{8})$", s)
+                    if m8:
+                        s = m8.group(1) + m8.group(2)[-6:]
+                    cleaned.append(s)
+            out["components"] = cleaned
+
         return out
 
 # ---------- Rolling / Weights ----------
@@ -1002,6 +1104,10 @@ class ItemsTab(ttk.Frame):
         ttk.Label(left, text="Items File").pack(anchor="w")
         self.file_combo = ttk.Combobox(left, state="readonly", width=28)
         self.file_combo.pack(fill="x", pady=(0,6)); self.file_combo.bind("<<ComboboxSelected>>", self.on_file_change)
+        self.count_var = tk.StringVar(value="Entries: 0")
+        ttk.Label(left, textvariable=self.count_var).pack(anchor="w")
+        self.count_var = tk.StringVar(value="Entries: 0")
+        ttk.Label(left, textvariable=self.count_var).pack(anchor="w")
 
         ttk.Label(left, text="Search").pack(anchor="w")
         self.search_var = tk.StringVar()
@@ -1057,7 +1163,15 @@ class ItemsTab(ttk.Frame):
         if not dataset:
             self.active_dataset = None; self.active_file = None; self.active_list = []
             self.listbox.delete(0,"end"); self.form.set_object({}); return
+        try:
+            self.count_var.set("Entries: 0")
+        except Exception:
+            pass
         self.active_dataset = dataset; self.active_file = fname; self.active_list = dataset.data
+        try:
+            self.count_var.set(f"Entries: {len(self.active_list)}")
+        except Exception:
+            pass
         cats = get_all_categories(self.active_list) if self.active_list else ["(all)"]
         self.cat_combo["values"] = cats; self.cat_combo.set("(all)")
         self.search_var.set("")
@@ -1088,6 +1202,24 @@ class ItemsTab(ttk.Frame):
                 self.filtered_indices.append(i)
                 self.listbox.insert("end", f"{it.get('id','?')}  {name}")
         self.selected_index = None; self.form.set_object({})
+        try:
+            total = len(self.npcs) if self.npcs else 0
+            shown = len(self.filtered_indices)
+            if q or (fac and fac != "(all)"):
+                self.count_var.set(f"Entries: {total} • showing {shown}")
+            else:
+                self.count_var.set(f"Entries: {total}")
+        except Exception:
+            pass
+        try:
+            total = len(self.active_list) if self.active_list else 0
+            shown = len(self.filtered_indices)
+            if q or (cat and cat != "(all)"):
+                self.count_var.set(f"Entries: {total} • showing {shown}")
+            else:
+                self.count_var.set(f"Entries: {total}")
+        except Exception:
+            pass
 
     def on_select(self, *_):
         if not self.active_list: return
@@ -1133,6 +1265,11 @@ class ItemsTab(ttk.Frame):
         if self.selected_index is not None and self.selected_index < len(self.active_list):
             obj = self.form.get_object()
             if obj is None: return
+            # normalize any legacy 8-digit IDs to 6-digit
+            if isinstance(obj.get("id"), str):
+                m8 = re.match(r"^([A-Z]{2,3})(\d{8})$", obj["id"])
+                if m8:
+                    obj["id"] = m8.group(1) + m8.group(2)[-6:]
             ids = {it.get("id","") for idx, it in enumerate(self.active_list) if idx != self.selected_index}
             obj["id"] = ensure_item_id(obj, ids)
             try: obj["slot"] = derive_slot(obj)
@@ -1154,6 +1291,7 @@ class ItemsTab(ttk.Frame):
         RollPreviewDialog(self, item)
 
 class NPCsTab(ttk.Frame):
+
     def __init__(self, master):
         super().__init__(master)
         self.datasets: Dict[str, Dataset] = {}
@@ -1169,6 +1307,9 @@ class NPCsTab(ttk.Frame):
         ttk.Label(left, text="NPC File").pack(anchor="w")
         self.file_combo = ttk.Combobox(left, state="readonly", width=28)
         self.file_combo.pack(fill="x", pady=(0,6)); self.file_combo.bind("<<ComboboxSelected>>", self.on_file_change)
+
+        self.count_var = tk.StringVar(value="Entries: 0")
+        ttk.Label(left, textvariable=self.count_var).pack(anchor="w", pady=(0,6))
 
         ttk.Label(left, text="Search").pack(anchor="w")
         self.search_var = tk.StringVar()
@@ -1218,8 +1359,21 @@ class NPCsTab(ttk.Frame):
         dataset = self.datasets.get(fname)
         if not dataset:
             self.active_dataset = None; self.active_file = None; self.npcs = []
-            self.listbox.delete(0,"end"); self.form.set_object({}); self.faction_combo["values"] = []; return
+            self.listbox.delete(0,"end"); self.form.set_object({})
+            try:
+                self.faction_combo["values"] = []
+            except Exception:
+                pass
+            try:
+                self.count_var.set("Entries: 0")
+            except Exception:
+                pass
+            return
         self.active_dataset = dataset; self.active_file = fname; self.npcs = dataset.data
+        try:
+            self.count_var.set(f"Entries: {len(self.npcs)}")
+        except Exception:
+            pass
         self.refresh_filters(); self.refresh_list()
 
     def refresh_filters(self):
@@ -1231,18 +1385,36 @@ class NPCsTab(ttk.Frame):
         self.faction_combo["values"] = values; self.faction_combo.set("(all)")
 
     def refresh_list(self):
-        self.listbox.delete(0,"end"); self.filtered_indices.clear()
-        if not self.npcs: self.form.set_object({}); return
-        q = self.search_var.get().lower().strip(); fac = self.faction_combo.get()
-        for i, npc in enumerate(self.npcs):
-            name = npc.get("name","?"); fid = npc.get("id","?"); faction = npc.get("faction","Neutral")
+        self.listbox.delete(0,"end"); self.filtered_indices = []
+        if not self.npcs:
+            self.form.set_object({})
+            try:
+                self.count_var.set("Entries: 0")
+            except Exception:
+                pass
+            return
+        q = (self.search_var.get() or "").lower().strip()
+        fac = (self.faction_combo.get() or "").strip()
+        for i, n in enumerate(self.npcs):
+            name = str(n.get("name",""))
             show = True
             if q and q not in name.lower(): show = False
-            if show and fac and fac != "(all)" and faction != fac: show = False
+            if show and fac and fac != "(all)":
+                faction = (n.get("faction","") or "Neutral").strip() or "Neutral"
+                if faction != fac: show = False
             if show:
                 self.filtered_indices.append(i)
-                self.listbox.insert("end", f"{fid}  {name}  [{faction}]")
+                self.listbox.insert("end", f"{n.get('id','?')}  {name}")
         self.selected_index = None; self.form.set_object({})
+        try:
+            total = len(self.npcs)
+            shown = len(self.filtered_indices)
+            if q or (fac and fac != "(all)"):
+                self.count_var.set(f"Entries: {total} • showing {shown}")
+            else:
+                self.count_var.set(f"Entries: {total}")
+        except Exception:
+            pass
 
     def on_select(self, *_):
         if not self.npcs: return
@@ -1276,6 +1448,11 @@ class NPCsTab(ttk.Frame):
         if self.selected_index is not None and self.selected_index < len(self.npcs):
             obj = self.form.get_object()
             if obj is None: return
+            # normalize any legacy 8-digit IDs to 6-digit
+            if isinstance(obj.get("id"), str):
+                m8 = re.match(r"^([A-Z]{2,3})(\d{8})$", obj["id"])
+                if m8:
+                    obj["id"] = m8.group(1) + m8.group(2)[-6:]
             ids = {n.get("id","") for idx, n in enumerate(self.npcs) if idx != self.selected_index}
             obj["id"] = ensure_npc_id(obj, ids)
             self.npcs[self.selected_index] = obj
@@ -1288,7 +1465,7 @@ class NPCsTab(ttk.Frame):
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("RPGenesis Entity Editor — PRO(7) PATCHED (Fixed)")
+        self.title("RPGenesis Entity Editor — PRO(7) — ID=6 — Affixes Vertical")
         self.geometry("1160x760"); self.minsize(980, 640)
         apply_ui_styling(self)
 

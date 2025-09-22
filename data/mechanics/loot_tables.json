@@ -4,15 +4,15 @@
   "tables": {
     "forest_common": [
       {
-        "pick": "IT00000003",
+        "pick": "IT000003",
         "weight": 2
       },
       {
-        "pick": "IT00000002",
+        "pick": "IT000002",
         "weight": 2
       },
       {
-        "pick": "IT00000007",
+        "pick": "IT000007",
         "weight": 1
       }
     ],

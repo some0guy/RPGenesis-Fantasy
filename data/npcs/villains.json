@@ -1,7 +1,7 @@
 {
   "npcs": [
     {
-      "id": "NP00001001",
+      "id": "NP001001",
       "name": "Seraphine Nightveil",
       "race": "Dark Elf",
       "sex": "Female",
@@ -22,7 +22,7 @@
       "personality": "calm, observant, quietly determined. Moonlit steel edges her voice. On quiet days, she reads the room, then rearranges it."
     },
     {
-      "id": "NP00001002",
+      "id": "NP001002",
       "name": "Nyssara Thornkiss",
       "race": "Hellbound Tiefling",
       "sex": "Female",
@@ -37,13 +37,17 @@
       "build": "powerful",
       "curse": [],
       "clothing_alignment": "Deviates",
-      "features": ["grey horns", "light brown horns", "thick horns"],
+      "features": [
+        "grey horns",
+        "light brown horns",
+        "thick horns"
+      ],
       "appearance": "She has gold eyes. A fall of long swept back black hair. Red, scarred skin. Medium, powerful. Crimson-red skin warm as banked coals, gold eyes bright with wicked mirth; grey light brown thick long blunt pointed horns frame a mane of wild hair. her heritage is obvious: red or orange rough skin, thick long blunt grey or light-grey light brown thick long blunt pointed horns, red medium thick tail the same color as the skin. Nyssara burns like an open flame: too close and you blister, too far and you ache for heat. medium, wavy, black hair; gold eyes; crimson, smooth skin; medium height, curvy build. grey light brown thick long blunt pointed horns, red medium thick tail, pointed ears.",
       "clothing": "She wears spiked plate with scorched cloak — worked in mail, scorched leather — leaning toward ember, coal, brass. She wears heavy plate with spiked pauldrons and thick gauntlets, a chain belt over armored skirt panels, greaves and sabatons, a scorched cloak.. She wears heavy plate with spiked pauldrons, thick gauntlets, chain belt, armored skirt panels, greaves and sabatons, scorched cloak. Leather corsetry clings to a voluptuous figure, polished and scarred by both battle and pleasure. She taunts in velvet and brands in kisses—Hellbound and wholly delighted by your surrender. She wears plated laminar with soot-black surcoat, gorget and braced vambraces, a scorched cloak at the shoulders.",
       "personality": "calm, observant, quietly determined. Ash-sweet and fearless, she rarely looks back. When pressed, she keeps promises and receipts. Warmth radiates like banked coals from her skin."
     },
     {
-      "id": "NP00001003",
+      "id": "NP001003",
       "name": "Kaelira Voidpetal",
       "race": "Great Elf",
       "sex": "Female",
@@ -64,7 +68,7 @@
       "personality": "She wears high court robes with metallic trim, jeweled clasps, silk gloves, polished boots. Kaelira is elegance weaponized—promises sung like lullabies over graves, poison poured from crystal with priestly care—Great Elf hauteur turned predatory. She stands a breath taller than most shadows."
     },
     {
-      "id": "NP00001004",
+      "id": "NP001004",
       "name": "Varenia Blackgilt",
       "race": "Human",
       "sex": "Female",
@@ -85,7 +89,7 @@
       "personality": "Varenia carries herself like a verdict—beautiful, proud, and delighted to be cruel when it’s efficient. There’s a quickness in her gaze that finds solutions."
     },
     {
-      "id": "NP00001005",
+      "id": "NP001005",
       "name": "Thalara Vex",
       "race": "Half–Forest Elf",
       "sex": "Female",
@@ -106,7 +110,7 @@
       "personality": "Thalara plays with prey: a laugh, a wink, then the arrow lands—a hunter raised between quiet groves and louder sins. witty, charming, quick on the turn. Quiet as leaf-fall when she wishes. Quiet as leaf‑fall when she wishes."
     },
     {
-      "id": "NP00001006",
+      "id": "NP001006",
       "name": "Elaris Crowbloom",
       "race": "Great Elf",
       "sex": "Female",
@@ -127,7 +131,7 @@
       "personality": "Elaris speaks vows like snares and touches like a spider testing silk—tender, curious, lethal. She stands a breath taller than most shadows. Courts were made for her, or so she acts."
     },
     {
-      "id": "NP00001007",
+      "id": "NP001007",
       "name": "Nytheris, Queen of a Thousand Eyes",
       "race": "Aberration",
       "sex": "Female",
@@ -148,7 +152,7 @@
       "personality": "witty, charming, quick on the turn. Every smile invites ruin; every whisper unspools the truths you hid from yourself. witty, charming, quick on the turn. There’s a quickness in her gaze that finds solutions. Road dust sits easy on her."
     },
     {
-      "id": "NP00001008",
+      "id": "NP001008",
       "name": "The Veilmother",
       "race": "Aberration",
       "sex": "Female",
@@ -169,7 +173,7 @@
       "personality": "She does not demand followers—she edits memory until obedience feels like nostalgia. On quiet days, she reads the room, then rearranges it. There’s a quickness in her gaze that finds solutions."
     },
     {
-      "id": "NP00001009",
+      "id": "NP001009",
       "name": "The Crimson Bride",
       "race": "Human",
       "sex": "Female",
@@ -182,7 +186,9 @@
       "eye_color": "green",
       "height": "medium",
       "build": "average",
-      "curse": ["undead"],
+      "curse": [
+        "undead"
+      ],
       "clothing_alignment": "Varies",
       "features": [],
       "appearance": "A glance finds green eyes. Medium straight brown hair. Medium and average. White, smooth skin. Pale skin, lips the color of fresh blood, and steps like a practiced dance. medium, straight, black with crimson sheen hair; crimson eyes; pale, smooth skin; tall height, tall build. Pale skin, lips the color of fresh blood, and steps like a practiced dance. She does not love—she claims. Her embrace is a marriage to death, vows paid in throats. medium, straight, black with crimson sheen hair; crimson eyes; pale, smooth skin; tall height, tall build. . composed, purposeful, sharp when it counts.",
@@ -190,7 +196,7 @@
       "personality": "She does not love—she claims. There’s a quickness in her gaze that finds solutions. When pressed, she keeps promises and receipts. She is the proof that vows can outlive breath."
     },
     {
-      "id": "NP00001010",
+      "id": "NP001010",
       "name": "Lord Ashmire",
       "race": "Human",
       "sex": "Male",
@@ -211,7 +217,7 @@
       "personality": "He smiles like a sealed contract and speaks like a blade’s flat—cold, convincing, inevitable. calm, observant, quietly determined. Road dust sits easy on him. There’s a quickness in his gaze that finds solutions."
     },
     {
-      "id": "NP00001011",
+      "id": "NP001011",
       "name": "Lyrelle Sunvine",
       "race": "Forest Elf",
       "sex": "Female",
@@ -232,7 +238,7 @@
       "personality": "witty, charming, quick on the turn. She wears quiet leathers, leaf-dyed cloak, soft boots, beadwork and feather charms. Her presence smells faintly of resin and rain. Quiet as leaf‑fall when she wishes."
     },
     {
-      "id": "NP00001012",
+      "id": "NP001012",
       "name": "Brunna Emberbraid",
       "race": "Ember Dwarf",
       "sex": "Female",
@@ -253,7 +259,7 @@
       "personality": "witty, charming, quick on the turn. She laughs like a bellows and collects grudges like heirlooms. witty, charming, quick on the turn. She carries the memory of tools in her hands."
     },
     {
-      "id": "NP00001013",
+      "id": "NP001013",
       "name": "Maelis Fairwynd",
       "race": "Human",
       "sex": "Female",
@@ -274,7 +280,7 @@
       "personality": "calm, observant, quietly determined. Road dust sits easy on her. Most days, She trusts her instincts. There’s a quickness in her gaze that finds solutions."
     },
     {
-      "id": "NP00001014",
+      "id": "NP001014",
       "name": "Calvera Marrowveil",
       "race": "Human",
       "sex": "Female",
@@ -287,7 +293,9 @@
       "eye_color": "brown",
       "height": "medium",
       "build": "slim",
-      "curse": ["undead"],
+      "curse": [
+        "undead"
+      ],
       "clothing_alignment": "Varies",
       "features": [],
       "appearance": "Light brown, matte skin. She carries a medium and slim frame. Short curly blonde hair frames her face. Brown eyes catch the light. Ice-blue eyes glow with hunger and pity—she offers both, then takes more. medium, straight, black hair; ice-blue eyes; bone-white (half skull visage), smooth skin; tall height, slim build. Tall and slender in black funerary lace; one half face flawless and tempting, the other a polished skull grinning without mercy. Ice-blue eyes glow with hunger and pity—she offers both, then takes more. medium, straight, black hair; ice-blue eyes; bone-white (half skull visage), smooth skin; tall height, slim build. .",
@@ -295,7 +303,7 @@
       "personality": "Tall and slender in black funerary lace; one half face flawless and tempting, the other a polished skull grinning without mercy. calm, observant, quietly determined. Road dust sits easy on her. She is the proof that vows can outlive breath."
     },
     {
-      "id": "NP00001015",
+      "id": "NP001015",
       "name": "Zareya Emberhorn",
       "race": "Sableheart Tiefling",
       "sex": "Female",
@@ -310,13 +318,17 @@
       "build": "curvy",
       "curse": [],
       "clothing_alignment": "Deviates",
-      "features": ["polished gold horns", "polished silver horns", "polished bronze horns"],
+      "features": [
+        "polished gold horns",
+        "polished silver horns",
+        "polished bronze horns"
+      ],
       "appearance": "She has silver eyes. A fall of medium wavy black hair. Black, glossy skin. Tall, curvy. Crimson skin with a soft ember glow; polished gold silver bronze long curved pointed horns banded in brass; gold eyes that flash with mischief. long, wavy, black hair; gold eyes; crimson-red, smooth skin; medium height, curvy build. polished gold silver bronze long curved pointed horns, long tail matching skin color, pointed ears. her heritage is obvious: light purple or light blue glossy skin, polished gold silver bronze long curved pointed horns, long tail matching skin color matching the skin tone.",
       "clothing": "She wears gold chainwork — cut from velvet, silk — in tones of black, gold, crimson. An ash-gray corseted leather suit hugs a voluptuous figure; long tail matching skin color curls when she lies. She wears a laced corset bodice and a layered skirt with a high slit, long silk gloves, a bolero jacket with long sleeves, strapped heeled boots and jewelry chains.. She wears corset bodice with laced front, layered skirt with high slit, long silk gloves, bolero jacket, strapped heeled boots, jewelry chains and earrings. She wears a laced corset bodice and layered skirt with a high slit, long silk gloves, a bolero jacket and strapped heeled boots with jewelry chains.",
       "personality": "Zareya sells heat and keeps the fire—playful, ruthless, irresistible. calm, observant, quietly determined. Charm drips like honey from her words."
     },
     {
-      "id": "NP00001016",
+      "id": "NP001016",
       "name": "Morrigan Ashvein",
       "race": "Mountain Orc",
       "sex": "Female",
@@ -337,7 +349,7 @@
       "personality": "She wears thick boiled-leather with bone rivets, heavy bracers and greaves scarred from raids. Heat and iron hang about her. She measures friendship in deeds."
     },
     {
-      "id": "NP00001017",
+      "id": "NP001017",
       "name": "Dame Auriel Highwind",
       "race": "Great Elf",
       "sex": "Female",
@@ -358,7 +370,7 @@
       "personality": "Auriel calls her cruelty discipline and her zeal mercy—she sleeps well. calm, observant, quietly determined. She stands a breath taller than most shadows."
     },
     {
-      "id": "NP00001018",
+      "id": "NP001018",
       "name": "Vrex the Gilt Broker",
       "race": "Coastal Dwarf",
       "sex": "Male",
@@ -379,7 +391,7 @@
       "personality": "She wears tarred twine vest, sea-cloak, shell-braided beard, deck boots. He carries the memory of tools in his hands."
     },
     {
-      "id": "NP00001019",
+      "id": "NP001019",
       "name": "Valis Nightroot",
       "race": "Viridian Tiefling",
       "sex": "Male",
@@ -394,13 +406,17 @@
       "build": "curvy",
       "curse": [],
       "clothing_alignment": "Deviates",
-      "features": ["antler-like horns", "antlers", "white horns"],
+      "features": [
+        "antler-like horns",
+        "antlers",
+        "white horns"
+      ],
       "appearance": "A glance finds green eyes. Medium braided green hair. Medium, lean. Olive, smooth skin. Olive skin with a green undertone; white light brown antler-like pointed horns; jade eyes that smile wrong. medium, straight, black hair; jade eyes; olive with green undertone, smooth skin; medium height, slim build. white light brown antler-like pointed horns, short fur-tipped tail matching skin color, pointed ears. his heritage is obvious: light green or turquoise smooth skin, antler-like white or light-white light brown antler-like pointed horns, and a short fur-short fur-tipped tail matching skin color matching the skin tone. Olive skin with a green undertone; white light brown antler-like pointed horns; jade eyes that smile wrong. A perfumer-priest of poisons who anoints daggers and devotions alike. Valis sells absolution that tastes like mint and ends like sleep. medium, straight, black hair; jade eyes; olive with green undertone, smooth skin; medium height, slim build. white light brown antler-like pointed horns, short fur-tipped tail matching skin color, pointed ears.",
       "clothing": "He wears leaf-leather overskirts — leaning toward sage, emerald, bark — stitched from leaf‑leather, bark bracers. He wears a flowing embroidered robe and sleeveless overcloak, a vine belt with pouches, leaf-stitched bracers, a long skirt with slits and strapped sandals.. She wears flowing embroidered robe, sleeveless overcloak, vine belt with pouches, leaf-stitched bracers, long skirt with slits, strapped sandals. He wears a flowing embroidered robe and sleeveless overcloak, vine belt with pouches, leaf-stitched bracers and strapped sandals.",
       "personality": "witty, charming, quick on the turn. In a crisis, He spends calm like currency. He hums old growth songs under his breath."
     },
     {
-      "id": "NP00001020",
+      "id": "NP001020",
       "name": "Korrath Bloodtide",
       "race": "Ashfoot Orc",
       "sex": "Male",

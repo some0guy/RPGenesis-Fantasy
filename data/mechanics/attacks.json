@@ -2,7 +2,7 @@
   "version": "3.0.0",
   "attacks": [
     {
-      "id": "AT00000001",
+      "id": "AT000001",
       "name": "Bite",
       "summary": "Sink your teeth; heals on hit if the target bleeds.",
       "type": "melee",
@@ -42,7 +42,7 @@
       }
     },
     {
-      "id": "AT00000002",
+      "id": "AT000002",
       "name": "Claw",
       "summary": "Rake enemies with sharpened claws.",
       "type": "melee",
@@ -88,7 +88,7 @@
       }
     },
     {
-      "id": "AT00000003",
+      "id": "AT000003",
       "name": "Chill Touch",
       "summary": "Necrotic touch that saps vitality.",
       "type": "touch",
@@ -130,7 +130,7 @@
       }
     },
     {
-      "id": "AT00000004",
+      "id": "AT000004",
       "name": "Soulfire Bolt",
       "summary": "Necrotic flame that ignores disease resistance.",
       "type": "spell",
@@ -165,7 +165,7 @@
       }
     },
     {
-      "id": "AT00000005",
+      "id": "AT000005",
       "name": "Siren Song",
       "summary": "A hypnotic aria that dazes foes.",
       "type": "shout",
@@ -200,7 +200,7 @@
       }
     },
     {
-      "id": "AT00000006",
+      "id": "AT000006",
       "name": "Shriek",
       "summary": "A bone-splitting scream that damages creatures and objects.",
       "type": "shout",
@@ -235,7 +235,7 @@
       }
     },
     {
-      "id": "AT00000007",
+      "id": "AT000007",
       "name": "Petrifying Gaze",
       "summary": "Lock eyes and turn them to stone if their will fails.",
       "type": "technique",
@@ -269,7 +269,7 @@
       }
     },
     {
-      "id": "AT00000008",
+      "id": "AT000008",
       "name": "Venom Breath",
       "summary": "A spray of venomous mist that poisons foes.",
       "type": "breath",
@@ -311,7 +311,7 @@
       }
     },
     {
-      "id": "AT00000009",
+      "id": "AT000009",
       "name": "Constrict",
       "summary": "Wrap around and crush with immense strength.",
       "type": "melee",
@@ -352,7 +352,7 @@
       }
     },
     {
-      "id": "AT00000010",
+      "id": "AT000010",
       "name": "Dive Talons",
       "summary": "A swooping strike that hits hardest with momentum.",
       "type": "technique",
@@ -390,7 +390,7 @@
       }
     },
     {
-      "id": "AT00000011",
+      "id": "AT000011",
       "name": "Twin-Tail Swipe",
       "summary": "A double strike with the tails; second hit weaker.",
       "type": "melee",
@@ -443,7 +443,7 @@
       }
     },
     {
-      "id": "AT00000012",
+      "id": "AT000012",
       "name": "Foxfire",
       "summary": "A flickering ghost-flame that clings to the target.",
       "type": "spell",
@@ -485,7 +485,7 @@
       }
     },
     {
-      "id": "AT00000013",
+      "id": "AT000013",
       "name": "Trident Thrust",
       "summary": "A powerful underwater thrust with a trident.",
       "type": "weapon",
@@ -524,7 +524,7 @@
       }
     },
     {
-      "id": "AT00000014",
+      "id": "AT000014",
       "name": "Shield Bash",
       "summary": "Strike with shield, knocking the target back.",
       "type": "melee",
@@ -567,7 +567,7 @@
       }
     },
     {
-      "id": "AT00000015",
+      "id": "AT000015",
       "name": "Wispfade Strike",
       "summary": "A chilling strike advantaged in dim light.",
       "type": "melee",
@@ -601,7 +601,7 @@
       }
     },
     {
-      "id": "AT00000016",
+      "id": "AT000016",
       "name": "Grave Dust",
       "summary": "A cloud of necrotic dust that weakens vitality.",
       "type": "spell",
@@ -644,7 +644,7 @@
       }
     },
     {
-      "id": "AT00000017",
+      "id": "AT000017",
       "name": "Grave Chill",
       "summary": "Exclusive Undead power: grave chill.",
       "type": "technique",
@@ -687,7 +687,7 @@
       }
     },
     {
-      "id": "AT00000018",
+      "id": "AT000018",
       "name": "Tomb Dust",
       "summary": "Exclusive Undead power: tomb dust.",
       "type": "technique",
@@ -730,7 +730,7 @@
       }
     },
     {
-      "id": "AT00000019",
+      "id": "AT000019",
       "name": "Rend & Gnash",
       "summary": "Exclusive Ghoul power: rend & gnash.",
       "type": "technique",
@@ -772,7 +772,7 @@
       }
     },
     {
-      "id": "AT00000020",
+      "id": "AT000020",
       "name": "Carrion Stench",
       "summary": "Exclusive Ghoul power: carrion stench.",
       "type": "technique",
@@ -815,7 +815,7 @@
       }
     },
     {
-      "id": "AT00000021",
+      "id": "AT000021",
       "name": "Crimson Frenzy",
       "summary": "Exclusive Vampire power: crimson frenzy.",
       "type": "technique",
@@ -857,7 +857,7 @@
       }
     },
     {
-      "id": "AT00000022",
+      "id": "AT000022",
       "name": "Charm Gaze",
       "summary": "Exclusive Vampire power: charm gaze.",
       "type": "technique",
@@ -891,7 +891,7 @@
       }
     },
     {
-      "id": "AT00000023",
+      "id": "AT000023",
       "name": "Ravage",
       "summary": "Exclusive Lycanthrope power: ravage.",
       "type": "technique",
@@ -933,7 +933,7 @@
       }
     },
     {
-      "id": "AT00000024",
+      "id": "AT000024",
       "name": "Howl of the Hunt",
       "summary": "Exclusive Lycanthrope power: howl of the hunt.",
       "type": "technique",
@@ -967,7 +967,7 @@
       }
     },
     {
-      "id": "AT00000025",
+      "id": "AT000025",
       "name": "Drowning Hymn",
       "summary": "Exclusive Siren power: drowning hymn.",
       "type": "technique",
@@ -1010,7 +1010,7 @@
       }
     },
     {
-      "id": "AT00000026",
+      "id": "AT000026",
       "name": "Luring Verse",
       "summary": "Exclusive Siren power: luring verse.",
       "type": "technique",
@@ -1044,7 +1044,7 @@
       }
     },
     {
-      "id": "AT00000027",
+      "id": "AT000027",
       "name": "Spore Burst",
       "summary": "Exclusive Blight power: spore burst.",
       "type": "technique",
@@ -1087,7 +1087,7 @@
       }
     },
     {
-      "id": "AT00000028",
+      "id": "AT000028",
       "name": "Creeping Rot",
       "summary": "Exclusive Blight power: creeping rot.",
       "type": "technique",
@@ -1129,7 +1129,7 @@
       }
     },
     {
-      "id": "AT00000029",
+      "id": "AT000029",
       "name": "Soul Detonation",
       "summary": "Exclusive Lich power: soul detonation.",
       "type": "technique",
@@ -1172,7 +1172,7 @@
       }
     },
     {
-      "id": "AT00000030",
+      "id": "AT000030",
       "name": "Bone Shards",
       "summary": "Exclusive Lich power: bone shards.",
       "type": "technique",
@@ -1207,7 +1207,7 @@
       }
     },
     {
-      "id": "AT00000031",
+      "id": "AT000031",
       "name": "Calcify",
       "summary": "Exclusive Gorgon power: calcify.",
       "type": "technique",
@@ -1250,7 +1250,7 @@
       }
     },
     {
-      "id": "AT00000032",
+      "id": "AT000032",
       "name": "Stone Flurry",
       "summary": "Exclusive Gorgon power: stone flurry.",
       "type": "technique",
@@ -1285,7 +1285,7 @@
       }
     },
     {
-      "id": "AT00000033",
+      "id": "AT000033",
       "name": "Toxic Miasma",
       "summary": "Exclusive Basilisk power: toxic miasma.",
       "type": "technique",
@@ -1328,7 +1328,7 @@
       }
     },
     {
-      "id": "AT00000034",
+      "id": "AT000034",
       "name": "Paralytic Glare",
       "summary": "Exclusive Basilisk power: paralytic glare.",
       "type": "technique",
@@ -1362,7 +1362,7 @@
       }
     },
     {
-      "id": "AT00000035",
+      "id": "AT000035",
       "name": "Soul Drain",
       "summary": "Exclusive Wraith power: soul drain.",
       "type": "technique",
@@ -1405,7 +1405,7 @@
       }
     },
     {
-      "id": "AT00000036",
+      "id": "AT000036",
       "name": "Phase Lunge",
       "summary": "Exclusive Wraith power: phase lunge.",
       "type": "technique",
@@ -1440,7 +1440,7 @@
       }
     },
     {
-      "id": "AT00000037",
+      "id": "AT000037",
       "name": "Nightknife",
       "summary": "Exclusive Shade power: nightknife.",
       "type": "technique",
@@ -1476,7 +1476,7 @@
       }
     },
     {
-      "id": "AT00000038",
+      "id": "AT000038",
       "name": "Shadow Stitch",
       "summary": "Exclusive Shade power: shadow stitch.",
       "type": "technique",
@@ -1518,7 +1518,7 @@
       }
     },
     {
-      "id": "AT00000039",
+      "id": "AT000039",
       "name": "Bone-Shatter Scream",
       "summary": "Exclusive Shrieker power: bone-shatter scream.",
       "type": "technique",
@@ -1561,7 +1561,7 @@
       }
     },
     {
-      "id": "AT00000040",
+      "id": "AT000040",
       "name": "Sonic Lance",
       "summary": "Exclusive Shrieker power: sonic lance.",
       "type": "technique",
@@ -1596,7 +1596,7 @@
       }
     },
     {
-      "id": "AT00000041",
+      "id": "AT000041",
       "name": "Rain of Arrows",
       "summary": "Exclusive Forest Elves technique: rain of arrows.",
       "type": "technique",
@@ -1642,7 +1642,7 @@
       }
     },
     {
-      "id": "AT00000042",
+      "id": "AT000042",
       "name": "Sylvan Step",
       "summary": "Exclusive Forest Elves technique: sylvan step.",
       "type": "technique",
@@ -1673,7 +1673,7 @@
       }
     },
     {
-      "id": "AT00000043",
+      "id": "AT000043",
       "name": "Rain of Arrows",
       "summary": "Exclusive Dark Elves technique: rain of arrows.",
       "type": "technique",
@@ -1719,7 +1719,7 @@
       }
     },
     {
-      "id": "AT00000044",
+      "id": "AT000044",
       "name": "Sylvan Step",
       "summary": "Exclusive Dark Elves technique: sylvan step.",
       "type": "technique",
@@ -1750,7 +1750,7 @@
       }
     },
     {
-      "id": "AT00000045",
+      "id": "AT000045",
       "name": "Rain of Arrows",
       "summary": "Exclusive Snow Elves technique: rain of arrows.",
       "type": "technique",
@@ -1796,7 +1796,7 @@
       }
     },
     {
-      "id": "AT00000046",
+      "id": "AT000046",
       "name": "Sylvan Step",
       "summary": "Exclusive Snow Elves technique: sylvan step.",
       "type": "technique",
@@ -1827,7 +1827,7 @@
       }
     },
     {
-      "id": "AT00000047",
+      "id": "AT000047",
       "name": "Rain of Arrows",
       "summary": "Exclusive Great Elves technique: rain of arrows.",
       "type": "technique",
@@ -1873,7 +1873,7 @@
       }
     },
     {
-      "id": "AT00000048",
+      "id": "AT000048",
       "name": "Sylvan Step",
       "summary": "Exclusive Great Elves technique: sylvan step.",
       "type": "technique",
@@ -1904,7 +1904,7 @@
       }
     },
     {
-      "id": "AT00000049",
+      "id": "AT000049",
       "name": "Hammer Blow",
       "summary": "Exclusive Iron Dwarves technique: hammer blow.",
       "type": "technique",
@@ -1950,7 +1950,7 @@
       }
     },
     {
-      "id": "AT00000050",
+      "id": "AT000050",
       "name": "Stonewall Stance",
       "summary": "Exclusive Iron Dwarves technique: stonewall stance.",
       "type": "technique",
@@ -1981,7 +1981,7 @@
       }
     },
     {
-      "id": "AT00000051",
+      "id": "AT000051",
       "name": "Hammer Blow",
       "summary": "Exclusive Hill Dwarves technique: hammer blow.",
       "type": "technique",
@@ -2027,7 +2027,7 @@
       }
     },
     {
-      "id": "AT00000052",
+      "id": "AT000052",
       "name": "Stonewall Stance",
       "summary": "Exclusive Hill Dwarves technique: stonewall stance.",
       "type": "technique",
@@ -2058,7 +2058,7 @@
       }
     },
     {
-      "id": "AT00000053",
+      "id": "AT000053",
       "name": "Hammer Blow",
       "summary": "Exclusive Ember Dwarves technique: hammer blow.",
       "type": "technique",
@@ -2104,7 +2104,7 @@
       }
     },
     {
-      "id": "AT00000054",
+      "id": "AT000054",
       "name": "Stonewall Stance",
       "summary": "Exclusive Ember Dwarves technique: stonewall stance.",
       "type": "technique",
@@ -2135,7 +2135,7 @@
       }
     },
     {
-      "id": "AT00000055",
+      "id": "AT000055",
       "name": "Hammer Blow",
       "summary": "Exclusive Coastal Dwarves technique: hammer blow.",
       "type": "technique",
@@ -2181,7 +2181,7 @@
       }
     },
     {
-      "id": "AT00000056",
+      "id": "AT000056",
       "name": "Stonewall Stance",
       "summary": "Exclusive Coastal Dwarves technique: stonewall stance.",
       "type": "technique",
@@ -2212,7 +2212,7 @@
       }
     },
     {
-      "id": "AT00000057",
+      "id": "AT000057",
       "name": "Rending Charge",
       "summary": "Exclusive Ashfoot Orcs technique: rending charge.",
       "type": "technique",
@@ -2254,7 +2254,7 @@
       }
     },
     {
-      "id": "AT00000058",
+      "id": "AT000058",
       "name": "Warcry",
       "summary": "Exclusive Ashfoot Orcs technique: warcry.",
       "type": "technique",
@@ -2288,7 +2288,7 @@
       }
     },
     {
-      "id": "AT00000059",
+      "id": "AT000059",
       "name": "Rending Charge",
       "summary": "Exclusive Storm Orcs technique: rending charge.",
       "type": "technique",
@@ -2330,7 +2330,7 @@
       }
     },
     {
-      "id": "AT00000060",
+      "id": "AT000060",
       "name": "Warcry",
       "summary": "Exclusive Storm Orcs technique: warcry.",
       "type": "technique",
@@ -2364,7 +2364,7 @@
       }
     },
     {
-      "id": "AT00000061",
+      "id": "AT000061",
       "name": "Rending Charge",
       "summary": "Exclusive Mountain Orcs technique: rending charge.",
       "type": "technique",
@@ -2406,7 +2406,7 @@
       }
     },
     {
-      "id": "AT00000062",
+      "id": "AT000062",
       "name": "Warcry",
       "summary": "Exclusive Mountain Orcs technique: warcry.",
       "type": "technique",
@@ -2440,7 +2440,7 @@
       }
     },
     {
-      "id": "AT00000063",
+      "id": "AT000063",
       "name": "Infernal Bolt",
       "summary": "Exclusive Darkblood Tiefling technique: infernal bolt.",
       "type": "technique",
@@ -2476,7 +2476,7 @@
       }
     },
     {
-      "id": "AT00000064",
+      "id": "AT000064",
       "name": "Temptation's Veil",
       "summary": "Exclusive Darkblood Tiefling technique: temptation's veil.",
       "type": "technique",
@@ -2510,7 +2510,7 @@
       }
     },
     {
-      "id": "AT00000065",
+      "id": "AT000065",
       "name": "Infernal Bolt",
       "summary": "Exclusive Hellbound Tiefling technique: infernal bolt.",
       "type": "technique",
@@ -2546,7 +2546,7 @@
       }
     },
     {
-      "id": "AT00000066",
+      "id": "AT000066",
       "name": "Temptation's Veil",
       "summary": "Exclusive Hellbound Tiefling technique: temptation's veil.",
       "type": "technique",
@@ -2580,7 +2580,7 @@
       }
     },
     {
-      "id": "AT00000067",
+      "id": "AT000067",
       "name": "Infernal Bolt",
       "summary": "Exclusive Voided Tiefling technique: infernal bolt.",
       "type": "technique",
@@ -2616,7 +2616,7 @@
       }
     },
     {
-      "id": "AT00000068",
+      "id": "AT000068",
       "name": "Temptation's Veil",
       "summary": "Exclusive Voided Tiefling technique: temptation's veil.",
       "type": "technique",
@@ -2650,7 +2650,7 @@
       }
     },
     {
-      "id": "AT00000069",
+      "id": "AT000069",
       "name": "Infernal Bolt",
       "summary": "Exclusive Sableheart Tiefling technique: infernal bolt.",
       "type": "technique",
@@ -2686,7 +2686,7 @@
       }
     },
     {
-      "id": "AT00000070",
+      "id": "AT000070",
       "name": "Temptation's Veil",
       "summary": "Exclusive Sableheart Tiefling technique: temptation's veil.",
       "type": "technique",
@@ -2720,7 +2720,7 @@
       }
     },
     {
-      "id": "AT00000071",
+      "id": "AT000071",
       "name": "Infernal Bolt",
       "summary": "Exclusive Viridian Tiefling technique: infernal bolt.",
       "type": "technique",
@@ -2756,7 +2756,7 @@
       }
     },
     {
-      "id": "AT00000072",
+      "id": "AT000072",
       "name": "Temptation's Veil",
       "summary": "Exclusive Viridian Tiefling technique: temptation's veil.",
       "type": "technique",
@@ -2790,7 +2790,7 @@
       }
     },
     {
-      "id": "AT00000073",
+      "id": "AT000073",
       "name": "Cultural Strike",
       "summary": "Exclusive Human technique: cultural strike.",
       "type": "technique",
@@ -2825,7 +2825,7 @@
       }
     },
     {
-      "id": "AT00000074",
+      "id": "AT000074",
       "name": "Ancestral Guard",
       "summary": "Exclusive Human technique: ancestral guard.",
       "type": "technique",
@@ -2856,7 +2856,7 @@
       }
     },
     {
-      "id": "AT00000075",
+      "id": "AT000075",
       "name": "Cultural Strike",
       "summary": "Exclusive Aberration technique: cultural strike.",
       "type": "technique",
@@ -2891,7 +2891,7 @@
       }
     },
     {
-      "id": "AT00000076",
+      "id": "AT000076",
       "name": "Ancestral Guard",
       "summary": "Exclusive Aberration technique: ancestral guard.",
       "type": "technique",
@@ -2922,7 +2922,7 @@
       }
     },
     {
-      "id": "AT00000077",
+      "id": "AT000077",
       "name": "Phantom Pounce",
       "summary": "Exclusive Umbral Nekomata technique: phantom pounce.",
       "type": "technique",
@@ -2957,7 +2957,7 @@
       }
     },
     {
-      "id": "AT00000078",
+      "id": "AT000078",
       "name": "Smoke Veil",
       "summary": "Exclusive Umbral Nekomata technique: smoke veil.",
       "type": "technique",
@@ -2988,7 +2988,7 @@
       }
     },
     {
-      "id": "AT00000079",
+      "id": "AT000079",
       "name": "Phantom Pounce",
       "summary": "Exclusive Blossom Nekomata technique: phantom pounce.",
       "type": "technique",
@@ -3023,7 +3023,7 @@
       }
     },
     {
-      "id": "AT00000080",
+      "id": "AT000080",
       "name": "Smoke Veil",
       "summary": "Exclusive Blossom Nekomata technique: smoke veil.",
       "type": "technique",
@@ -3054,7 +3054,7 @@
       }
     },
     {
-      "id": "AT00000081",
+      "id": "AT000081",
       "name": "Phantom Pounce",
       "summary": "Exclusive Brimtail Nekomata technique: phantom pounce.",
       "type": "technique",
@@ -3089,7 +3089,7 @@
       }
     },
     {
-      "id": "AT00000082",
+      "id": "AT000082",
       "name": "Smoke Veil",
       "summary": "Exclusive Brimtail Nekomata technique: smoke veil.",
       "type": "technique",
@@ -3120,7 +3120,7 @@
       }
     },
     {
-      "id": "AT00000083",
+      "id": "AT000083",
       "name": "Foxfire Spiral",
       "summary": "Exclusive Lunarveil Kitsune technique: foxfire spiral.",
       "type": "technique",
@@ -3162,7 +3162,7 @@
       }
     },
     {
-      "id": "AT00000084",
+      "id": "AT000084",
       "name": "Illusory Double",
       "summary": "Exclusive Lunarveil Kitsune technique: illusory double.",
       "type": "technique",
@@ -3193,7 +3193,7 @@
       }
     },
     {
-      "id": "AT00000085",
+      "id": "AT000085",
       "name": "Foxfire Spiral",
       "summary": "Exclusive Infernal Kitsune technique: foxfire spiral.",
       "type": "technique",
@@ -3235,7 +3235,7 @@
       }
     },
     {
-      "id": "AT00000086",
+      "id": "AT000086",
       "name": "Illusory Double",
       "summary": "Exclusive Infernal Kitsune technique: illusory double.",
       "type": "technique",
@@ -3266,7 +3266,7 @@
       }
     },
     {
-      "id": "AT00000087",
+      "id": "AT000087",
       "name": "Foxfire Spiral",
       "summary": "Exclusive Ethereal Kitsune technique: foxfire spiral.",
       "type": "technique",
@@ -3308,7 +3308,7 @@
       }
     },
     {
-      "id": "AT00000088",
+      "id": "AT000088",
       "name": "Illusory Double",
       "summary": "Exclusive Ethereal Kitsune technique: illusory double.",
       "type": "technique",
@@ -3339,7 +3339,7 @@
       }
     },
     {
-      "id": "AT00000089",
+      "id": "AT000089",
       "name": "Foxfire Spiral",
       "summary": "Exclusive Maple Kitsune technique: foxfire spiral.",
       "type": "technique",
@@ -3381,7 +3381,7 @@
       }
     },
     {
-      "id": "AT00000090",
+      "id": "AT000090",
       "name": "Illusory Double",
       "summary": "Exclusive Maple Kitsune technique: illusory double.",
       "type": "technique",
@@ -3412,7 +3412,7 @@
       }
     },
     {
-      "id": "AT00000091",
+      "id": "AT000091",
       "name": "Foxfire Spiral",
       "summary": "Exclusive Arctic Kitsune technique: foxfire spiral.",
       "type": "technique",
@@ -3454,7 +3454,7 @@
       }
     },
     {
-      "id": "AT00000092",
+      "id": "AT000092",
       "name": "Illusory Double",
       "summary": "Exclusive Arctic Kitsune technique: illusory double.",
       "type": "technique",
@@ -3485,7 +3485,7 @@
       }
     },
     {
-      "id": "AT00000093",
+      "id": "AT000093",
       "name": "Tidal Pull",
       "summary": "Exclusive Coralheart Merfolk technique: tidal pull.",
       "type": "technique",
@@ -3528,7 +3528,7 @@
       }
     },
     {
-      "id": "AT00000094",
+      "id": "AT000094",
       "name": "Brine Surge",
       "summary": "Exclusive Coralheart Merfolk technique: brine surge.",
       "type": "technique",
@@ -3571,7 +3571,7 @@
       }
     },
     {
-      "id": "AT00000095",
+      "id": "AT000095",
       "name": "Tidal Pull",
       "summary": "Exclusive Tideling Merfolk technique: tidal pull.",
       "type": "technique",
@@ -3614,7 +3614,7 @@
       }
     },
     {
-      "id": "AT00000096",
+      "id": "AT000096",
       "name": "Brine Surge",
       "summary": "Exclusive Tideling Merfolk technique: brine surge.",
       "type": "technique",
@@ -3657,7 +3657,7 @@
       }
     },
     {
-      "id": "AT00000097",
+      "id": "AT000097",
       "name": "Tidal Pull",
       "summary": "Exclusive Moonsong Merfolk technique: tidal pull.",
       "type": "technique",
@@ -3700,7 +3700,7 @@
       }
     },
     {
-      "id": "AT00000098",
+      "id": "AT000098",
       "name": "Brine Surge",
       "summary": "Exclusive Moonsong Merfolk technique: brine surge.",
       "type": "technique",
@@ -3743,7 +3743,7 @@
       }
     },
     {
-      "id": "AT00000099",
+      "id": "AT000099",
       "name": "Tidal Pull",
       "summary": "Exclusive Glacialis Merfolk technique: tidal pull.",
       "type": "technique",
@@ -3786,7 +3786,7 @@
       }
     },
     {
-      "id": "AT00000100",
+      "id": "AT000100",
       "name": "Brine Surge",
       "summary": "Exclusive Glacialis Merfolk technique: brine surge.",
       "type": "technique",
@@ -3829,7 +3829,7 @@
       }
     },
     {
-      "id": "AT00000101",
+      "id": "AT000101",
       "name": "Tidal Pull",
       "summary": "Exclusive Nethryn Merfolk technique: tidal pull.",
       "type": "technique",
@@ -3872,7 +3872,7 @@
       }
     },
     {
-      "id": "AT00000102",
+      "id": "AT000102",
       "name": "Brine Surge",
       "summary": "Exclusive Nethryn Merfolk technique: brine surge.",
       "type": "technique",
@@ -3915,7 +3915,7 @@
       }
     },
     {
-      "id": "AT00000103",
+      "id": "AT000103",
       "name": "Tail Sweep",
       "summary": "Exclusive Ambercoil Lamia technique: tail sweep.",
       "type": "technique",
@@ -3957,7 +3957,7 @@
       }
     },
     {
-      "id": "AT00000104",
+      "id": "AT000104",
       "name": "Serpentine Hypnosis",
       "summary": "Exclusive Ambercoil Lamia technique: serpentine hypnosis.",
       "type": "technique",
@@ -3991,7 +3991,7 @@
       }
     },
     {
-      "id": "AT00000105",
+      "id": "AT000105",
       "name": "Tail Sweep",
       "summary": "Exclusive Verdant Lamia technique: tail sweep.",
       "type": "technique",
@@ -4033,7 +4033,7 @@
       }
     },
     {
-      "id": "AT00000106",
+      "id": "AT000106",
       "name": "Serpentine Hypnosis",
       "summary": "Exclusive Verdant Lamia technique: serpentine hypnosis.",
       "type": "technique",
@@ -4067,7 +4067,7 @@
       }
     },
     {
-      "id": "AT00000107",
+      "id": "AT000107",
       "name": "Tail Sweep",
       "summary": "Exclusive Lustmire Lamia technique: tail sweep.",
       "type": "technique",
@@ -4109,7 +4109,7 @@
       }
     },
     {
-      "id": "AT00000108",
+      "id": "AT000108",
       "name": "Serpentine Hypnosis",
       "summary": "Exclusive Lustmire Lamia technique: serpentine hypnosis.",
       "type": "technique",
@@ -4143,7 +4143,7 @@
       }
     },
     {
-      "id": "AT00000109",
+      "id": "AT000109",
       "name": "Tail Sweep",
       "summary": "Exclusive Riverlit Lamia technique: tail sweep.",
       "type": "technique",
@@ -4185,7 +4185,7 @@
       }
     },
     {
-      "id": "AT00000110",
+      "id": "AT000110",
       "name": "Serpentine Hypnosis",
       "summary": "Exclusive Riverlit Lamia technique: serpentine hypnosis.",
       "type": "technique",
@@ -4219,7 +4219,7 @@
       }
     },
     {
-      "id": "AT00000111",
+      "id": "AT000111",
       "name": "Wing Buffet",
       "summary": "Exclusive Cliffside Harpy technique: wing buffet.",
       "type": "technique",
@@ -4261,7 +4261,7 @@
       }
     },
     {
-      "id": "AT00000112",
+      "id": "AT000112",
       "name": "Sky Screech",
       "summary": "Exclusive Cliffside Harpy technique: sky screech.",
       "type": "technique",
@@ -4304,7 +4304,7 @@
       }
     },
     {
-      "id": "AT00000113",
+      "id": "AT000113",
       "name": "Wing Buffet",
       "summary": "Exclusive Nightfall Harpy technique: wing buffet.",
       "type": "technique",
@@ -4346,7 +4346,7 @@
       }
     },
     {
-      "id": "AT00000114",
+      "id": "AT000114",
       "name": "Sky Screech",
       "summary": "Exclusive Nightfall Harpy technique: sky screech.",
       "type": "technique",
@@ -4389,7 +4389,7 @@
       }
     },
     {
-      "id": "AT00000115",
+      "id": "AT000115",
       "name": "Wing Buffet",
       "summary": "Exclusive Snowpeak Harpy technique: wing buffet.",
       "type": "technique",
@@ -4431,7 +4431,7 @@
       }
     },
     {
-      "id": "AT00000116",
+      "id": "AT000116",
       "name": "Sky Screech",
       "summary": "Exclusive Snowpeak Harpy technique: sky screech.",
       "type": "technique",
@@ -4474,7 +4474,7 @@
       }
     },
     {
-      "id": "AT00000117",
+      "id": "AT000117",
       "name": "Wing Buffet",
       "summary": "Exclusive Bramblewing Harpy technique: wing buffet.",
       "type": "technique",
@@ -4516,7 +4516,7 @@
       }
     },
     {
-      "id": "AT00000118",
+      "id": "AT000118",
       "name": "Sky Screech",
       "summary": "Exclusive Bramblewing Harpy technique: sky screech.",
       "type": "technique",

@@ -37,7 +37,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000001",
+    "id": "IT000001",
     "defense_template": {
       "physical": [
         3,
@@ -99,7 +99,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000002",
+    "id": "IT000002",
     "defense_template": {
       "physical": [
         5,
@@ -160,7 +160,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000003",
+    "id": "IT000003",
     "defense_template": {
       "physical": [
         7,
@@ -223,7 +223,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000004",
+    "id": "IT000004",
     "defense_template": {
       "stagger": [
         6,
@@ -293,7 +293,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000005",
+    "id": "IT000005",
     "defense_template": {
       "mana": [
         1,
@@ -365,7 +365,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000006",
+    "id": "IT000006",
     "defense_template": {
       "physical": [
         1,
@@ -433,7 +433,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000007",
+    "id": "IT000007",
     "defense_template": {
       "bleed": [
         6,
@@ -513,7 +513,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000008",
+    "id": "IT000008",
     "defense_template": {
       "bleed": [
         1,
@@ -589,7 +589,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000009",
+    "id": "IT000009",
     "defense_template": {
       "bleed": [
         1,
@@ -669,7 +669,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000010",
+    "id": "IT000010",
     "defense_template": {
       "arcane": [
         4,
@@ -748,7 +748,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000011",
+    "id": "IT000011",
     "defense_template": {
       "physical": [
         13,
@@ -833,7 +833,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000012",
+    "id": "IT000012",
     "defense_template": {
       "physical": [
         4,
@@ -913,7 +913,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000013",
+    "id": "IT000013",
     "defense_template": {
       "physical": [
         12,
@@ -994,7 +994,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000014",
+    "id": "IT000014",
     "defense_template": {
       "ice": [
         1,
@@ -1078,7 +1078,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000015",
+    "id": "IT000015",
     "defense_template": {
       "physical": [
         1,
@@ -1165,7 +1165,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000016",
+    "id": "IT000016",
     "defense_template": {
       "physical": [
         9,
@@ -1249,7 +1249,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000017",
+    "id": "IT000017",
     "defense_template": {
       "ice": [
         5,
@@ -1332,7 +1332,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000018",
+    "id": "IT000018",
     "defense_template": {
       "physical": [
         8,
@@ -1420,7 +1420,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000019",
+    "id": "IT000019",
     "defense_template": {
       "stagger": [
         5,
@@ -1513,7 +1513,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000020",
+    "id": "IT000020",
     "defense_template": {
       "physical": [
         2,
@@ -1595,7 +1595,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000021",
+    "id": "IT000021",
     "defense_template": {
       "mana": [
         11,
@@ -1675,7 +1675,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000022",
+    "id": "IT000022",
     "defense_template": {
       "mana": [
         13,
@@ -1758,7 +1758,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000023",
+    "id": "IT000023",
     "defense_template": {
       "physical": [
         10,
@@ -1842,7 +1842,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000024",
+    "id": "IT000024",
     "defense_template": {
       "arcane": [
         8,
@@ -1931,7 +1931,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000025",
+    "id": "IT000025",
     "defense_template": {
       "physical": [
         13,
@@ -2010,7 +2010,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000026",
+    "id": "IT000026",
     "defense_template": {
       "stagger": [
         10,
@@ -2103,7 +2103,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000027",
+    "id": "IT000027",
     "defense_template": {
       "physical": [
         21,
@@ -2182,7 +2182,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000028",
+    "id": "IT000028",
     "defense_template": {
       "ice": [
         12,
@@ -2270,7 +2270,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000029",
+    "id": "IT000029",
     "defense_template": {
       "stagger": [
         5,
@@ -2354,7 +2354,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000030",
+    "id": "IT000030",
     "defense_template": {
       "physical": [
         15,
@@ -2441,7 +2441,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000031",
+    "id": "IT000031",
     "defense_template": {
       "arcane": [
         8,
@@ -2510,7 +2510,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000032",
+    "id": "IT000032",
     "defense_template": {
       "physical": [
         10,
@@ -2575,7 +2575,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000033",
+    "id": "IT000033",
     "defense_template": {
       "necrotic": [
         3,
@@ -2647,7 +2647,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000034",
+    "id": "IT000034",
     "defense_template": {
       "ice": [
         6,
@@ -2719,7 +2719,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000035",
+    "id": "IT000035",
     "defense_template": {
       "arcane": [
         10,
@@ -2792,7 +2792,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000036",
+    "id": "IT000036",
     "defense_template": {
       "arcane": [
         2,
@@ -2877,7 +2877,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000037",
+    "id": "IT000037",
     "defense_template": {
       "arcane": [
         11,
@@ -2950,7 +2950,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000038",
+    "id": "IT000038",
     "defense_template": {
       "arcane": [
         9,
@@ -3023,7 +3023,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000039",
+    "id": "IT000039",
     "defense_template": {
       "ice": [
         2,
@@ -3100,7 +3100,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000040",
+    "id": "IT000040",
     "defense_template": {
       "arcane": [
         14,
@@ -3185,7 +3185,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000041",
+    "id": "IT000041",
     "defense_template": {
       "lightning": [
         9,
@@ -3278,7 +3278,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000042",
+    "id": "IT000042",
     "defense_template": {
       "arcane": [
         16,
@@ -3374,7 +3374,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000043",
+    "id": "IT000043",
     "defense_template": {
       "arcane": [
         13,
@@ -3462,7 +3462,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000044",
+    "id": "IT000044",
     "defense_template": {
       "ice": [
         3,
@@ -3555,7 +3555,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000045",
+    "id": "IT000045",
     "defense_template": {
       "physical": [
         1,
@@ -3642,7 +3642,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000046",
+    "id": "IT000046",
     "defense_template": {
       "fire": [
         9,
@@ -3738,7 +3738,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000047",
+    "id": "IT000047",
     "defense_template": {
       "lightning": [
         14,
@@ -3821,7 +3821,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000048",
+    "id": "IT000048",
     "defense_template": {
       "physical": [
         5,
@@ -3909,7 +3909,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000049",
+    "id": "IT000049",
     "defense_template": {
       "lightning": [
         17,
@@ -4001,7 +4001,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000050",
+    "id": "IT000050",
     "defense_template": {
       "mana": [
         4,
@@ -4082,7 +4082,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000051",
+    "id": "IT000051",
     "defense_template": {
       "ice": [
         18,
@@ -4170,7 +4170,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000052",
+    "id": "IT000052",
     "defense_template": {
       "physical": [
         18,
@@ -4254,7 +4254,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000053",
+    "id": "IT000053",
     "defense_template": {
       "lightning": [
         14,
@@ -4346,7 +4346,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000054",
+    "id": "IT000054",
     "defense_template": {
       "physical": [
         13,
@@ -4433,7 +4433,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000055",
+    "id": "IT000055",
     "defense_template": {
       "necrotic": [
         6,
@@ -4521,7 +4521,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000056",
+    "id": "IT000056",
     "defense_template": {
       "physical": [
         12,
@@ -4613,7 +4613,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000057",
+    "id": "IT000057",
     "defense_template": {
       "ice": [
         21,
@@ -4700,7 +4700,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000058",
+    "id": "IT000058",
     "defense_template": {
       "lightning": [
         18,
@@ -4796,7 +4796,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000059",
+    "id": "IT000059",
     "defense_template": {
       "fire": [
         12,
@@ -4892,7 +4892,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000060",
+    "id": "IT000060",
     "defense_template": {
       "fire": [
         6,
@@ -4990,7 +4990,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000061",
+    "id": "IT000061",
     "defense_template": {
       "bleed": [
         13,
@@ -5057,7 +5057,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000062",
+    "id": "IT000062",
     "defense_template": {
       "physical": [
         12,
@@ -5121,7 +5121,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000063",
+    "id": "IT000063",
     "defense_template": {
       "bleed": [
         13,
@@ -5189,7 +5189,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000064",
+    "id": "IT000064",
     "defense_template": {
       "fire": [
         4,
@@ -5255,7 +5255,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000065",
+    "id": "IT000065",
     "defense_template": {
       "arcane": [
         5,
@@ -5323,7 +5323,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000066",
+    "id": "IT000066",
     "defense_template": {
       "physical": [
         12,
@@ -5399,7 +5399,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000067",
+    "id": "IT000067",
     "defense_template": {
       "mana": [
         5,
@@ -5478,7 +5478,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000068",
+    "id": "IT000068",
     "defense_template": {
       "lightning": [
         13,
@@ -5546,7 +5546,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000069",
+    "id": "IT000069",
     "defense_template": {
       "stagger": [
         7,
@@ -5625,7 +5625,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000070",
+    "id": "IT000070",
     "defense_template": {
       "fire": [
         11,
@@ -5704,7 +5704,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000071",
+    "id": "IT000071",
     "defense_template": {
       "bleed": [
         13,
@@ -5792,7 +5792,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000072",
+    "id": "IT000072",
     "defense_template": {
       "bleed": [
         16,
@@ -5879,7 +5879,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000073",
+    "id": "IT000073",
     "defense_template": {
       "arcane": [
         15,
@@ -5965,7 +5965,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000074",
+    "id": "IT000074",
     "defense_template": {
       "physical": [
         5,
@@ -6053,7 +6053,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000075",
+    "id": "IT000075",
     "defense_template": {
       "mana": [
         4,
@@ -6137,7 +6137,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000076",
+    "id": "IT000076",
     "defense_template": {
       "lightning": [
         8,
@@ -6226,7 +6226,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000077",
+    "id": "IT000077",
     "defense_template": {
       "fire": [
         13,
@@ -6314,7 +6314,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000078",
+    "id": "IT000078",
     "defense_template": {
       "lightning": [
         7,
@@ -6406,7 +6406,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000079",
+    "id": "IT000079",
     "defense_template": {
       "bleed": [
         13,
@@ -6494,7 +6494,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000080",
+    "id": "IT000080",
     "defense_template": {
       "necrotic": [
         10,
@@ -6568,7 +6568,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000081",
+    "id": "IT000081",
     "defense_template": {
       "physical": [
         17,
@@ -6659,7 +6659,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000082",
+    "id": "IT000082",
     "defense_template": {
       "mana": [
         17,
@@ -6747,7 +6747,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000083",
+    "id": "IT000083",
     "defense_template": {
       "ice": [
         12,
@@ -6838,7 +6838,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000084",
+    "id": "IT000084",
     "defense_template": {
       "arcane": [
         16,
@@ -6929,7 +6929,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000085",
+    "id": "IT000085",
     "defense_template": {
       "mana": [
         5,
@@ -7024,7 +7024,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000086",
+    "id": "IT000086",
     "defense_template": {
       "physical": [
         20,
@@ -7117,7 +7117,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000087",
+    "id": "IT000087",
     "defense_template": {
       "mana": [
         15,
@@ -7210,7 +7210,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000088",
+    "id": "IT000088",
     "defense_template": {
       "mana": [
         12,
@@ -7301,7 +7301,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000089",
+    "id": "IT000089",
     "defense_template": {
       "arcane": [
         13,
@@ -7387,7 +7387,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000090",
+    "id": "IT000090",
     "defense_template": {
       "ice": [
         8,
@@ -7479,7 +7479,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000091",
+    "id": "IT000091",
     "defense_template": {
       "stagger": [
         3,
@@ -7537,7 +7537,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000092",
+    "id": "IT000092",
     "defense_template": {
       "stagger": [
         5,
@@ -7601,7 +7601,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000093",
+    "id": "IT000093",
     "defense_template": {
       "fire": [
         13,
@@ -7665,7 +7665,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000094",
+    "id": "IT000094",
     "defense_template": {
       "stagger": [
         9,
@@ -7730,7 +7730,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000095",
+    "id": "IT000095",
     "defense_template": {
       "mana": [
         12,
@@ -7798,7 +7798,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000096",
+    "id": "IT000096",
     "defense_template": {
       "bleed": [
         7,
@@ -7875,7 +7875,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000097",
+    "id": "IT000097",
     "defense_template": {
       "physical": [
         11,
@@ -7945,7 +7945,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000098",
+    "id": "IT000098",
     "defense_template": {
       "bleed": [
         11,
@@ -8015,7 +8015,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000099",
+    "id": "IT000099",
     "defense_template": {
       "bleed": [
         13,
@@ -8088,7 +8088,7 @@
         "defense": 8
       }
     },
-    "id": "IT00000100",
+    "id": "IT000100",
     "defense_template": {
       "physical": [
         11,
@@ -8154,7 +8154,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000101",
+    "id": "IT000101",
     "defense_template": {
       "arcane": [
         8,
@@ -8236,7 +8236,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000102",
+    "id": "IT000102",
     "defense_template": {
       "stagger": [
         6,
@@ -8317,7 +8317,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000103",
+    "id": "IT000103",
     "defense_template": {
       "stagger": [
         6,
@@ -8399,7 +8399,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000104",
+    "id": "IT000104",
     "defense_template": {
       "lightning": [
         16,
@@ -8475,7 +8475,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000105",
+    "id": "IT000105",
     "defense_template": {
       "mana": [
         17,
@@ -8556,7 +8556,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000106",
+    "id": "IT000106",
     "defense_template": {
       "bleed": [
         5,
@@ -8637,7 +8637,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000107",
+    "id": "IT000107",
     "defense_template": {
       "physical": [
         11,
@@ -8719,7 +8719,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000108",
+    "id": "IT000108",
     "defense_template": {
       "ice": [
         17,
@@ -8800,7 +8800,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000109",
+    "id": "IT000109",
     "defense_template": {
       "ice": [
         16,
@@ -8885,7 +8885,7 @@
         "defense": 12
       }
     },
-    "id": "IT00000110",
+    "id": "IT000110",
     "defense_template": {
       "stagger": [
         6,
@@ -8968,7 +8968,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000111",
+    "id": "IT000111",
     "defense_template": {
       "fire": [
         6,
@@ -9061,7 +9061,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000112",
+    "id": "IT000112",
     "defense_template": {
       "stagger": [
         4,
@@ -9141,7 +9141,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000113",
+    "id": "IT000113",
     "defense_template": {
       "stagger": [
         19,
@@ -9234,7 +9234,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000114",
+    "id": "IT000114",
     "defense_template": {
       "stagger": [
         20,
@@ -9322,7 +9322,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000115",
+    "id": "IT000115",
     "defense_template": {
       "ice": [
         8,
@@ -9402,7 +9402,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000116",
+    "id": "IT000116",
     "defense_template": {
       "bleed": [
         20,
@@ -9490,7 +9490,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000117",
+    "id": "IT000117",
     "defense_template": {
       "bleed": [
         16,
@@ -9571,7 +9571,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000118",
+    "id": "IT000118",
     "defense_template": {
       "bleed": [
         11,
@@ -9654,7 +9654,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000119",
+    "id": "IT000119",
     "defense_template": {
       "arcane": [
         12,
@@ -9738,7 +9738,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000120",
+    "id": "IT000120",
     "defense_template": {
       "physical": [
         6,
@@ -9832,7 +9832,7 @@
         "defense": 14
       }
     },
-    "id": "IT00000121",
+    "id": "IT000121",
     "defense_template": {
       "physical": [
         15,
@@ -9897,7 +9897,7 @@
         "defense": 14
       }
     },
-    "id": "IT00000122",
+    "id": "IT000122",
     "defense_template": {
       "stagger": [
         11,
@@ -9960,7 +9960,7 @@
         "defense": 14
       }
     },
-    "id": "IT00000123",
+    "id": "IT000123",
     "defense_template": {
       "ice": [
         6,
@@ -10028,7 +10028,7 @@
         "defense": 14
       }
     },
-    "id": "IT00000124",
+    "id": "IT000124",
     "defense_template": {
       "fire": [
         8,
@@ -10095,7 +10095,7 @@
         "defense": 14
       }
     },
-    "id": "IT00000125",
+    "id": "IT000125",
     "defense_template": {
       "lightning": [
         9,
@@ -10156,7 +10156,7 @@
         "defense": 14
       }
     },
-    "id": "IT00000126",
+    "id": "IT000126",
     "defense_template": {
       "lightning": [
         9,
@@ -10229,7 +10229,7 @@
         "defense": 14
       }
     },
-    "id": "IT00000127",
+    "id": "IT000127",
     "defense_template": {
       "physical": [
         9,
@@ -10296,7 +10296,7 @@
         "defense": 14
       }
     },
-    "id": "IT00000128",
+    "id": "IT000128",
     "defense_template": {
       "arcane": [
         8,
@@ -10367,7 +10367,7 @@
         "defense": 14
       }
     },
-    "id": "IT00000129",
+    "id": "IT000129",
     "defense_template": {
       "arcane": [
         15,
@@ -10443,7 +10443,7 @@
         "defense": 14
       }
     },
-    "id": "IT00000130",
+    "id": "IT000130",
     "defense_template": {
       "physical": [
         15,
@@ -10515,7 +10515,7 @@
         "defense": 18
       }
     },
-    "id": "IT00000131",
+    "id": "IT000131",
     "defense_template": {
       "bleed": [
         19,
@@ -10595,7 +10595,7 @@
         "defense": 18
       }
     },
-    "id": "IT00000132",
+    "id": "IT000132",
     "defense_template": {
       "mana": [
         19,
@@ -10675,7 +10675,7 @@
         "defense": 18
       }
     },
-    "id": "IT00000133",
+    "id": "IT000133",
     "defense_template": {
       "arcane": [
         5,
@@ -10755,7 +10755,7 @@
         "defense": 18
       }
     },
-    "id": "IT00000134",
+    "id": "IT000134",
     "defense_template": {
       "stagger": [
         15,
@@ -10828,7 +10828,7 @@
         "defense": 18
       }
     },
-    "id": "IT00000135",
+    "id": "IT000135",
     "defense_template": {
       "fire": [
         17,
@@ -10903,7 +10903,7 @@
         "defense": 18
       }
     },
-    "id": "IT00000136",
+    "id": "IT000136",
     "defense_template": {
       "bleed": [
         12,
@@ -10982,7 +10982,7 @@
         "defense": 18
       }
     },
-    "id": "IT00000137",
+    "id": "IT000137",
     "defense_template": {
       "necrotic": [
         9,
@@ -11061,7 +11061,7 @@
         "defense": 18
       }
     },
-    "id": "IT00000138",
+    "id": "IT000138",
     "defense_template": {
       "bleed": [
         17,
@@ -11145,7 +11145,7 @@
         "defense": 18
       }
     },
-    "id": "IT00000139",
+    "id": "IT000139",
     "defense_template": {
       "necrotic": [
         14,
@@ -11224,7 +11224,7 @@
         "defense": 18
       }
     },
-    "id": "IT00000140",
+    "id": "IT000140",
     "defense_template": {
       "ice": [
         17,
@@ -11301,7 +11301,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000141",
+    "id": "IT000141",
     "defense_template": {
       "physical": [
         8,
@@ -11392,7 +11392,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000142",
+    "id": "IT000142",
     "defense_template": {
       "lightning": [
         19,
@@ -11475,7 +11475,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000143",
+    "id": "IT000143",
     "defense_template": {
       "stagger": [
         6,
@@ -11571,7 +11571,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000144",
+    "id": "IT000144",
     "defense_template": {
       "bleed": [
         10,
@@ -11663,7 +11663,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000145",
+    "id": "IT000145",
     "defense_template": {
       "stagger": [
         5,
@@ -11754,7 +11754,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000146",
+    "id": "IT000146",
     "defense_template": {
       "stagger": [
         11,
@@ -11850,7 +11850,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000147",
+    "id": "IT000147",
     "defense_template": {
       "lightning": [
         25,
@@ -11946,7 +11946,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000148",
+    "id": "IT000148",
     "defense_template": {
       "physical": [
         15,
@@ -12042,7 +12042,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000149",
+    "id": "IT000149",
     "defense_template": {
       "bleed": [
         6,
@@ -12129,7 +12129,7 @@
         "dexterity": 8
       }
     },
-    "id": "IT00000150",
+    "id": "IT000150",
     "defense_template": {
       "fire": [
         12,

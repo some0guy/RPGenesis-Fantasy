@@ -1,6 +1,6 @@
 [
   {
-    "id": "IT00010000",
+    "id": "IT010000",
     "name": "Hearthborn Mask",
     "slot": "head",
     "rarity": "common",
@@ -14,7 +14,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010001",
+    "id": "IT010001",
     "name": "Robe of Hearthborn",
     "slot": "chest",
     "rarity": "common",
@@ -28,7 +28,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010002",
+    "id": "IT010002",
     "name": "Boots of Hearthborn",
     "slot": "boots",
     "rarity": "common",
@@ -42,7 +42,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010003",
+    "id": "IT010003",
     "name": "Fieldhand's Headwrap",
     "slot": "head",
     "rarity": "common",
@@ -56,7 +56,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010004",
+    "id": "IT010004",
     "name": "Robe of Fieldhand's",
     "slot": "chest",
     "rarity": "common",
@@ -70,7 +70,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010005",
+    "id": "IT010005",
     "name": "Boots of Fieldhand's",
     "slot": "boots",
     "rarity": "common",
@@ -84,7 +84,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010006",
+    "id": "IT010006",
     "name": "Plainskeep Bandana",
     "slot": "head",
     "rarity": "common",
@@ -98,7 +98,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010007",
+    "id": "IT010007",
     "name": "Robe of Plainskeep",
     "slot": "chest",
     "rarity": "common",
@@ -112,7 +112,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010008",
+    "id": "IT010008",
     "name": "Boots of Plainskeep",
     "slot": "boots",
     "rarity": "common",
@@ -126,7 +126,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010009",
+    "id": "IT010009",
     "name": "Rivervale Mask",
     "slot": "head",
     "rarity": "common",
@@ -140,7 +140,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010010",
+    "id": "IT010010",
     "name": "Robe of Rivervale",
     "slot": "chest",
     "rarity": "common",
@@ -154,7 +154,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010011",
+    "id": "IT010011",
     "name": "Boots of Rivervale",
     "slot": "boots",
     "rarity": "common",
@@ -168,7 +168,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010012",
+    "id": "IT010012",
     "name": "Wanderer's Headwrap",
     "slot": "head",
     "rarity": "common",
@@ -182,7 +182,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010013",
+    "id": "IT010013",
     "name": "Robe of Wanderer's",
     "slot": "chest",
     "rarity": "common",
@@ -196,7 +196,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010014",
+    "id": "IT010014",
     "name": "Boots of Wanderer's",
     "slot": "boots",
     "rarity": "common",
@@ -210,7 +210,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010015",
+    "id": "IT010015",
     "name": "Dustway Cap",
     "slot": "head",
     "rarity": "common",
@@ -224,7 +224,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010016",
+    "id": "IT010016",
     "name": "Robe of Dustway",
     "slot": "chest",
     "rarity": "common",
@@ -238,7 +238,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010017",
+    "id": "IT010017",
     "name": "Boots of Dustway",
     "slot": "boots",
     "rarity": "common",
@@ -252,7 +252,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010018",
+    "id": "IT010018",
     "name": "Wayside Hood",
     "slot": "head",
     "rarity": "common",
@@ -266,7 +266,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010019",
+    "id": "IT010019",
     "name": "Robe of Wayside",
     "slot": "chest",
     "rarity": "common",
@@ -280,7 +280,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010020",
+    "id": "IT010020",
     "name": "Boots of Wayside",
     "slot": "boots",
     "rarity": "common",
@@ -294,7 +294,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010021",
+    "id": "IT010021",
     "name": "Marketday Headwrap",
     "slot": "head",
     "rarity": "common",
@@ -308,7 +308,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010022",
+    "id": "IT010022",
     "name": "Robe of Marketday",
     "slot": "chest",
     "rarity": "common",
@@ -322,7 +322,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010023",
+    "id": "IT010023",
     "name": "Boots of Marketday",
     "slot": "boots",
     "rarity": "common",
@@ -336,7 +336,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010024",
+    "id": "IT010024",
     "name": "Bellmarket Headwrap",
     "slot": "head",
     "rarity": "uncommon",
@@ -350,7 +350,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010025",
+    "id": "IT010025",
     "name": "Robe of Bellmarket",
     "slot": "chest",
     "rarity": "uncommon",
@@ -364,7 +364,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010026",
+    "id": "IT010026",
     "name": "Boots of Bellmarket",
     "slot": "boots",
     "rarity": "uncommon",
@@ -378,7 +378,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010027",
+    "id": "IT010027",
     "name": "Trailblazer's Cowl",
     "slot": "head",
     "rarity": "uncommon",
@@ -392,7 +392,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010028",
+    "id": "IT010028",
     "name": "Robe of Trailblazer's",
     "slot": "chest",
     "rarity": "uncommon",
@@ -406,7 +406,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010029",
+    "id": "IT010029",
     "name": "Boots of Trailblazer's",
     "slot": "boots",
     "rarity": "uncommon",
@@ -420,7 +420,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010030",
+    "id": "IT010030",
     "name": "Oakthread Mask",
     "slot": "head",
     "rarity": "uncommon",
@@ -434,7 +434,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010031",
+    "id": "IT010031",
     "name": "Robe of Oakthread",
     "slot": "chest",
     "rarity": "uncommon",
@@ -448,7 +448,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010032",
+    "id": "IT010032",
     "name": "Boots of Oakthread",
     "slot": "boots",
     "rarity": "uncommon",
@@ -462,7 +462,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010033",
+    "id": "IT010033",
     "name": "Greencloak Veil",
     "slot": "head",
     "rarity": "uncommon",
@@ -476,7 +476,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010034",
+    "id": "IT010034",
     "name": "Robe of Greencloak",
     "slot": "chest",
     "rarity": "uncommon",
@@ -490,7 +490,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010035",
+    "id": "IT010035",
     "name": "Boots of Greencloak",
     "slot": "boots",
     "rarity": "uncommon",
@@ -504,7 +504,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010036",
+    "id": "IT010036",
     "name": "Saltwind Circlet",
     "slot": "head",
     "rarity": "uncommon",
@@ -518,7 +518,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010037",
+    "id": "IT010037",
     "name": "Robe of Saltwind",
     "slot": "chest",
     "rarity": "uncommon",
@@ -532,7 +532,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010038",
+    "id": "IT010038",
     "name": "Boots of Saltwind",
     "slot": "boots",
     "rarity": "uncommon",
@@ -546,7 +546,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010039",
+    "id": "IT010039",
     "name": "Redhill Hood",
     "slot": "head",
     "rarity": "uncommon",
@@ -560,7 +560,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010040",
+    "id": "IT010040",
     "name": "Robe of Redhill",
     "slot": "chest",
     "rarity": "uncommon",
@@ -574,7 +574,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010041",
+    "id": "IT010041",
     "name": "Boots of Redhill",
     "slot": "boots",
     "rarity": "uncommon",
@@ -588,7 +588,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010042",
+    "id": "IT010042",
     "name": "Sable Crest Hood",
     "slot": "head",
     "rarity": "rare",
@@ -602,7 +602,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010043",
+    "id": "IT010043",
     "name": "Robe of Sable Crest",
     "slot": "chest",
     "rarity": "rare",
@@ -616,7 +616,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010044",
+    "id": "IT010044",
     "name": "Boots of Sable Crest",
     "slot": "boots",
     "rarity": "rare",
@@ -630,7 +630,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010045",
+    "id": "IT010045",
     "name": "Ashen Court Hood",
     "slot": "head",
     "rarity": "rare",
@@ -644,7 +644,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010046",
+    "id": "IT010046",
     "name": "Robe of Ashen Court",
     "slot": "chest",
     "rarity": "rare",
@@ -658,7 +658,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010047",
+    "id": "IT010047",
     "name": "Boots of Ashen Court",
     "slot": "boots",
     "rarity": "rare",
@@ -672,7 +672,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010048",
+    "id": "IT010048",
     "name": "Twilight Weave Veil",
     "slot": "head",
     "rarity": "rare",
@@ -686,7 +686,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010049",
+    "id": "IT010049",
     "name": "Robe of Twilight Weave",
     "slot": "chest",
     "rarity": "rare",
@@ -700,7 +700,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010050",
+    "id": "IT010050",
     "name": "Boots of Twilight Weave",
     "slot": "boots",
     "rarity": "rare",
@@ -714,7 +714,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010051",
+    "id": "IT010051",
     "name": "Sandsong Coif",
     "slot": "head",
     "rarity": "exotic",
@@ -728,7 +728,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010052",
+    "id": "IT010052",
     "name": "Robe of Sandsong",
     "slot": "chest",
     "rarity": "exotic",
@@ -742,7 +742,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010053",
+    "id": "IT010053",
     "name": "Boots of Sandsong",
     "slot": "boots",
     "rarity": "exotic",
@@ -756,7 +756,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010054",
+    "id": "IT010054",
     "name": "Cinder Silk Veil",
     "slot": "head",
     "rarity": "exotic",
@@ -770,7 +770,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010055",
+    "id": "IT010055",
     "name": "Robe of Cinder Silk",
     "slot": "chest",
     "rarity": "exotic",
@@ -784,7 +784,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010056",
+    "id": "IT010056",
     "name": "Boots of Cinder Silk",
     "slot": "boots",
     "rarity": "exotic",
@@ -798,7 +798,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010057",
+    "id": "IT010057",
     "name": "Ivory Moth Headwrap",
     "slot": "head",
     "rarity": "exotic",
@@ -812,7 +812,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010058",
+    "id": "IT010058",
     "name": "Robe of Ivory Moth",
     "slot": "chest",
     "rarity": "exotic",
@@ -826,7 +826,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010059",
+    "id": "IT010059",
     "name": "Boots of Ivory Moth",
     "slot": "boots",
     "rarity": "exotic",
@@ -840,7 +840,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010060",
+    "id": "IT010060",
     "name": "Kingsroad Veil",
     "slot": "head",
     "rarity": "legendary",
@@ -854,7 +854,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010061",
+    "id": "IT010061",
     "name": "Robe of Kingsroad",
     "slot": "chest",
     "rarity": "legendary",
@@ -868,7 +868,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010062",
+    "id": "IT010062",
     "name": "Boots of Kingsroad",
     "slot": "boots",
     "rarity": "legendary",
@@ -882,7 +882,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010063",
+    "id": "IT010063",
     "name": "Lion's Gate Bandana",
     "slot": "head",
     "rarity": "legendary",
@@ -896,7 +896,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010064",
+    "id": "IT010064",
     "name": "Robe of Lion's Gate",
     "slot": "chest",
     "rarity": "legendary",
@@ -910,7 +910,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010065",
+    "id": "IT010065",
     "name": "Boots of Lion's Gate",
     "slot": "boots",
     "rarity": "legendary",
@@ -924,7 +924,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010066",
+    "id": "IT010066",
     "name": "Moonshadow Coif",
     "slot": "head",
     "rarity": "legendary",
@@ -938,7 +938,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010067",
+    "id": "IT010067",
     "name": "Robe of Moonshadow",
     "slot": "chest",
     "rarity": "legendary",
@@ -952,7 +952,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010068",
+    "id": "IT010068",
     "name": "Boots of Moonshadow",
     "slot": "boots",
     "rarity": "legendary",
@@ -966,7 +966,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010069",
+    "id": "IT010069",
     "name": "Sun-Sunder Cap",
     "slot": "head",
     "rarity": "mythic",
@@ -980,7 +980,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010070",
+    "id": "IT010070",
     "name": "Robe of Sun-Sunder",
     "slot": "chest",
     "rarity": "mythic",
@@ -994,7 +994,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010071",
+    "id": "IT010071",
     "name": "Boots of Sun-Sunder",
     "slot": "boots",
     "rarity": "mythic",
@@ -1008,7 +1008,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010072",
+    "id": "IT010072",
     "name": "Veilwalker Veil",
     "slot": "head",
     "rarity": "mythic",
@@ -1022,7 +1022,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010073",
+    "id": "IT010073",
     "name": "Robe of Veilwalker",
     "slot": "chest",
     "rarity": "mythic",
@@ -1036,7 +1036,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010074",
+    "id": "IT010074",
     "name": "Boots of Veilwalker",
     "slot": "boots",
     "rarity": "mythic",
@@ -1050,7 +1050,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010075",
+    "id": "IT010075",
     "name": "Star-eaten Hood",
     "slot": "head",
     "rarity": "mythic",
@@ -1064,7 +1064,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010076",
+    "id": "IT010076",
     "name": "Robe of Star-eaten",
     "slot": "chest",
     "rarity": "mythic",
@@ -1078,7 +1078,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010077",
+    "id": "IT010077",
     "name": "Boots of Star-eaten",
     "slot": "boots",
     "rarity": "mythic",
@@ -1092,7 +1092,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010078",
+    "id": "IT010078",
     "name": "Pilgrim Queen's Bandana",
     "slot": "head",
     "rarity": "relic",
@@ -1106,7 +1106,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010079",
+    "id": "IT010079",
     "name": "Robe of Pilgrim Queen's",
     "slot": "chest",
     "rarity": "relic",
@@ -1120,7 +1120,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010080",
+    "id": "IT010080",
     "name": "Boots of Pilgrim Queen's",
     "slot": "boots",
     "rarity": "relic",
@@ -1134,7 +1134,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010081",
+    "id": "IT010081",
     "name": "Oracle's Silence Veil",
     "slot": "head",
     "rarity": "relic",
@@ -1148,7 +1148,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010082",
+    "id": "IT010082",
     "name": "Robe of Oracle's Silence",
     "slot": "chest",
     "rarity": "relic",
@@ -1162,7 +1162,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010083",
+    "id": "IT010083",
     "name": "Boots of Oracle's Silence",
     "slot": "boots",
     "rarity": "relic",
@@ -1176,7 +1176,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010084",
+    "id": "IT010084",
     "name": "The Unmoored Headwrap",
     "slot": "head",
     "rarity": "relic",
@@ -1190,7 +1190,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010085",
+    "id": "IT010085",
     "name": "Robe of The Unmoored",
     "slot": "chest",
     "rarity": "relic",
@@ -1204,7 +1204,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010086",
+    "id": "IT010086",
     "name": "Boots of The Unmoored",
     "slot": "boots",
     "rarity": "relic",
@@ -1218,7 +1218,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010087",
+    "id": "IT010087",
     "name": "Patchwork Mantle",
     "slot": "back",
     "rarity": "uncommon",
@@ -1231,7 +1231,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010088",
+    "id": "IT010088",
     "name": "Traveler’s Wide-Brim Hat",
     "slot": "head",
     "rarity": "relic",
@@ -1244,7 +1244,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010089",
+    "id": "IT010089",
     "name": "Silk Scarf with Silver Bells",
     "slot": "back",
     "rarity": "common",
@@ -1257,7 +1257,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010090",
+    "id": "IT010090",
     "name": "Rogue’s Shadowhood",
     "slot": "head",
     "rarity": "legendary",
@@ -1270,7 +1270,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010091",
+    "id": "IT010091",
     "name": "Pilgrim’s Vest",
     "slot": "chest",
     "rarity": "common",
@@ -1283,7 +1283,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010092",
+    "id": "IT010092",
     "name": "Seafarer’s Sash",
     "slot": "back",
     "rarity": "common",
@@ -1296,7 +1296,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010093",
+    "id": "IT010093",
     "name": "Scholar’s Gown",
     "slot": "chest",
     "rarity": "common",
@@ -1309,7 +1309,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010094",
+    "id": "IT010094",
     "name": "Dancer’s Anklets",
     "slot": "boots",
     "rarity": "uncommon",
@@ -1322,7 +1322,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010095",
+    "id": "IT010095",
     "name": "Merchant’s Doublet",
     "slot": "chest",
     "rarity": "exotic",
@@ -1335,7 +1335,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010096",
+    "id": "IT010096",
     "name": "Hunter’s Tabard",
     "slot": "chest",
     "rarity": "common",
@@ -1348,7 +1348,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010097",
+    "id": "IT010097",
     "name": "Nomad’s Bandana",
     "slot": "head",
     "rarity": "rare",
@@ -1361,7 +1361,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010098",
+    "id": "IT010098",
     "name": "Alchemist’s Apron",
     "slot": "chest",
     "rarity": "rare",
@@ -1374,7 +1374,7 @@
     "possible_trait": []
   },
   {
-    "id": "IT00010099",
+    "id": "IT010099",
     "name": "Minstrel’s Shroud",
     "slot": "back",
     "rarity": "uncommon",

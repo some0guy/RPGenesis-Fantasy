@@ -406,7 +406,11 @@
         "npcs": [],
         "items": [],
         "links": [],
-        "chests": [],
+        "chests": [
+          {
+            "rarity": "mythic"
+          }
+        ],
         "note": "",
         "encounter": "danger",
         "texture": ""
@@ -762,19 +766,12 @@
       },
       {
         "walkable": true,
-        "npcs": [
-          {
-            "subcategory": "animals",
-            "id": "NP00000034",
-            "name": "Dorian Vaeloria",
-            "description": ""
-          }
-        ],
+        "npcs": [],
         "items": [],
         "links": [],
         "chests": [],
         "note": "",
-        "encounter": "safe",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -820,16 +817,13 @@
       {
         "walkable": true,
         "npcs": [],
-        "items": [
+        "items": [],
+        "links": [],
+        "chests": [
           {
-            "subcategory": "materials",
-            "id": "IT00000005",
-            "name": "Moon-ore Shard",
-            "description": ""
+            "rarity": "exotic"
           }
         ],
-        "links": [],
-        "chests": [],
         "note": "",
         "encounter": "safe",
         "texture": ""
@@ -1096,6 +1090,66 @@
         "chests": [],
         "note": "",
         "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "chests": [],
+        "note": "",
+        "encounter": "danger",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "chests": [],
+        "note": "",
+        "encounter": "danger",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "chests": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": false,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "chests": [],
+        "note": "",
+        "encounter": "",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "chests": [],
+        "note": "",
+        "encounter": "danger",
+        "texture": ""
+      },
+      {
+        "walkable": true,
+        "npcs": [],
+        "items": [],
+        "links": [],
+        "chests": [],
+        "note": "",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1113,77 +1167,17 @@
         "npcs": [
           {
             "subcategory": "villains",
-            "id": "NP00001004",
-            "name": "Varenia Blackgilt",
+            "id": "NP001001",
+            "name": "Seraphine Nightveil",
             "description": ""
           },
           {
             "subcategory": "villains",
-            "id": "NP00001003",
-            "name": "Kaelira Voidpetal",
+            "id": "NP001010",
+            "name": "Lord Ashmire",
             "description": ""
           }
         ],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "safe",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": false,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
-        "items": [],
-        "links": [],
-        "chests": [],
-        "note": "",
-        "encounter": "danger",
-        "texture": ""
-      },
-      {
-        "walkable": true,
-        "npcs": [],
         "items": [],
         "links": [],
         "chests": [],
@@ -1435,19 +1429,12 @@
       },
       {
         "walkable": true,
-        "npcs": [
-          {
-            "subcategory": "enemies",
-            "id": "NP00000069",
-            "name": "Isolde Goldbranch",
-            "description": ""
-          }
-        ],
+        "npcs": [],
         "items": [],
         "links": [],
         "chests": [],
         "note": "",
-        "encounter": "safe",
+        "encounter": "danger",
         "texture": ""
       },
       {
@@ -1766,56 +1753,37 @@
       },
       {
         "walkable": true,
-        "npcs": [
-          {
-            "subcategory": "allies",
-            "id": "NP00000001",
-            "name": "Selune Vaeloria",
-            "description": ""
-          },
-          {
-            "subcategory": "allies",
-            "id": "NP00000022",
-            "name": "Vel Sablevine",
-            "description": ""
-          }
-        ],
+        "npcs": [],
         "items": [
           {
             "subcategory": "armour",
-            "id": "IT00000001",
-            "name": "Wanderer's Wraps Bandana",
+            "id": "IT000001",
+            "name": "Wanderer's Headwrap",
             "description": "Wanderer's Wraps: thin straps in salt-bleached white, dusty umber; ties at the nape. It breathes easy; smells of road and sunlight."
           },
           {
             "subcategory": "armour",
-            "id": "IT00000002",
-            "name": "Wanderer's Wraps Wrap",
+            "id": "IT000002",
+            "name": "Wanderer's Doublet",
             "description": "Wanderer's Wraps: travel-stained cloth in salt-bleached white, sun-browned linen; reinforced at the ribs. It breathes easy; smells of road and sunlight."
           },
           {
             "subcategory": "armour",
-            "id": "IT00000003",
-            "name": "Wanderer's Wraps Legwraps",
+            "id": "IT000003",
+            "name": "Wanderer's Slops",
             "description": "Wanderer's Wraps: thin straps in sage hem, sun-browned linen; panelled at the knees. It breathes easy; smells of road and sunlight."
           },
           {
             "subcategory": "armour",
-            "id": "IT00000004",
-            "name": "Wanderer's Wraps Barefoot Straps",
+            "id": "IT000004",
+            "name": "Wanderer's Straps",
             "description": "Wanderer's Wraps: loose weave in salt-bleached white, sun-browned linen; thin soles for ground feel. It breathes easy; smells of road and sunlight."
           },
           {
             "subcategory": "armour",
-            "id": "IT00000005",
-            "name": "Wanderer's Wraps Gloves",
+            "id": "IT000005",
+            "name": "Wanderer's Grips",
             "description": "Wanderer's Wraps: frayed hems in dusty umber, sun-browned linen; binds tight without biting. It breathes easy; smells of road and sunlight."
-          },
-          {
-            "subcategory": "quest_items",
-            "id": "IT00000006",
-            "name": "Moon-signet",
-            "description": "A silver ring etched with a crescent."
           }
         ],
         "links": [],
@@ -1911,7 +1879,7 @@
         "links": [],
         "chests": [
           {
-            "rarity": "exotic"
+            "rarity": "legendary"
           }
         ],
         "note": "",
@@ -2136,5 +2104,6 @@
         "texture": ""
       }
     ]
-  ]
+  ],
+  "enemy_pool": []
 }
