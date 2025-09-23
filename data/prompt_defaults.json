@@ -14,6 +14,24 @@
         "1boy",
         "mature male"
       ]
+    },
+    "sex_specific": {
+      "Female": {
+        "one_of": {
+          "breast_size": [
+            "flat chest",
+            "small breasts",
+            "medium breasts",
+            "large breasts",
+            "huge breasts"
+          ]
+        }
+      },
+      "Male": {
+        "one_of": {
+          "body_type": []
+        }
+      }
     }
   },
   "races": {
@@ -50,6 +68,13 @@
         ],
         "skin_colour": [
           "green skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -89,7 +114,13 @@
         ],
         "skin_colour": [
           "brown skin",
-          "white skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -130,6 +161,13 @@
         ],
         "skin_colour": [
           "white skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -168,6 +206,13 @@
         "skin_colour": [
           "orange skin",
           "yellow skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -207,6 +252,13 @@
         "skin_colour": [
           "brown skin",
           "grey skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -242,6 +294,13 @@
         ],
         "skin_colour": [
           "brown skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -276,6 +335,13 @@
         "skin_colour": [
           "black skin",
           "brown skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": [
@@ -312,6 +378,13 @@
         ],
         "skin_colour": [
           "brown skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -349,6 +422,13 @@
         "skin_colour": [
           "black skin",
           "grey skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -386,6 +466,13 @@
         "skin_colour": [
           "green skin",
           "grey skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -422,6 +509,13 @@
         "skin_colour": [
           "brown skin",
           "grey skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -459,6 +553,13 @@
         ],
         "skin_colour": [
           "grey skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -503,6 +604,13 @@
         "skin_colour": [
           "orange skin",
           "red skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": [
@@ -515,7 +623,6 @@
         "pointed ears",
         "tail",
         "toned",
-        "glossy skin",
         "smooth skin"
       ],
       "one_of": {
@@ -545,7 +652,14 @@
           "loose hair"
         ],
         "skin_colour": [
-          "black skin"
+          "pitch black skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -554,8 +668,7 @@
       "must_have": [
         "horns",
         "pointed ears",
-        "glossy skin",
-        "smooth skin"
+        "glossy skin"
       ],
       "one_of": {
         "hair_colour": [
@@ -585,8 +698,14 @@
         "skin_colour": [
           "blue skin",
           "pink skin",
-          "purple skin",
-          "silky skin"
+          "purple skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -625,6 +744,13 @@
         "skin_colour": [
           "green skin",
           "yellow skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -665,6 +791,13 @@
         "skin_colour": [
           "brown skin",
           "white skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -700,6 +833,13 @@
           "slick skin",
           "ridged skin",
           "pitted skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -729,6 +869,13 @@
         ],
         "skin_colour": [
           "varied skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -758,6 +905,13 @@
         ],
         "skin_colour": [
           "varied skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": [
@@ -789,6 +943,13 @@
         ],
         "skin_colour": [
           "varied skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": [
@@ -822,6 +983,13 @@
         ],
         "skin_colour": [
           "varied skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -851,6 +1019,13 @@
         ],
         "skin_colour": [
           "varied skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -880,6 +1055,13 @@
         ],
         "skin_colour": [
           "varied skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -909,6 +1091,13 @@
         ],
         "skin_colour": [
           "varied skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -938,6 +1127,13 @@
         ],
         "skin_colour": [
           "varied skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -967,6 +1163,20 @@
         ],
         "skin_colour": [
           "varied skin"
+        ],
+        "scale_colour": [
+          "blue scales",
+          "green scales",
+          "silver scales",
+          "turquoise scales",
+          "pearl scales"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -998,6 +1208,20 @@
         ],
         "skin_colour": [
           "varied skin"
+        ],
+        "scale_colour": [
+          "blue scales",
+          "green scales",
+          "silver scales",
+          "turquoise scales",
+          "pearl scales"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -1027,6 +1251,20 @@
         ],
         "skin_colour": [
           "varied skin"
+        ],
+        "scale_colour": [
+          "blue scales",
+          "green scales",
+          "silver scales",
+          "turquoise scales",
+          "pearl scales"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -1058,6 +1296,20 @@
         ],
         "skin_colour": [
           "varied skin"
+        ],
+        "scale_colour": [
+          "blue scales",
+          "green scales",
+          "silver scales",
+          "turquoise scales",
+          "pearl scales"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -1089,6 +1341,20 @@
         ],
         "skin_colour": [
           "varied skin"
+        ],
+        "scale_colour": [
+          "blue scales",
+          "green scales",
+          "silver scales",
+          "turquoise scales",
+          "pearl scales"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -1097,7 +1363,8 @@
       "must_have": [
         "scales",
         "toned",
-        "fine desert-dry smoothness; scales like hammered metal skin"
+        "long tail"
+		"lamia"
       ],
       "one_of": {
         "hair_colour": [
@@ -1124,15 +1391,29 @@
           "loose hair"
         ],
         "skin_colour": [
-          "sun-kissed bronze (human torso) skin"
+          "dark skin"
+        ],
+        "scale_colour": [
+          "gold scales",
+          "bronze scales",
+          "copper scales",
+          "red scales"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
     },
     "Verdant Lamia": {
       "must_have": [
-        "frill",
-        "dew-sheened; scales veined like leaves skin"
+        "scales",
+		"long tail",
+		"lamia"
       ],
       "one_of": {
         "hair_colour": [
@@ -1162,13 +1443,27 @@
         "skin_colour": [
           "brown skin",
           "green skin"
+        ],
+        "scale_colour": [
+          "light green scales",
+          "green scales",
+          "yellow scales"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
     },
     "Lustmire Lamia": {
       "must_have": [
-        "slick marsh-gloss; scales oil-sheened skin"
+        "scales",
+		"long tail",
+		"lamia"
       ],
       "one_of": {
         "hair_colour": [
@@ -1197,6 +1492,18 @@
         ],
         "skin_colour": [
           "brown skin"
+        ],
+        "scale_colour": [
+          "black scales",
+          "dark purple scales",
+          "dark green scales"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -1231,6 +1538,19 @@
         "skin_colour": [
           "white skin",
           "silky skin"
+        ],
+        "scale_colour": [
+          "grey scales",
+          "silver scales",
+          "light blue scales",
+          "blue scales"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
         ]
       },
       "positive": []
@@ -1267,7 +1587,8 @@
         "hair_length": [
           "long hair",
           "short hair",
-          "medium hair"
+          "medium hair",
+          "long hair"
         ],
         "hair_style": [
           "braided hair",
@@ -1288,10 +1609,17 @@
         ],
         "pairing": {
           "feather_colour": {
-            "paired_with": "hair_colour",
+            "paired_with": "hair colour",
             "mode": "index"
           }
-        }
+        },
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
+        ]
       },
       "positive": []
     },
@@ -1348,10 +1676,17 @@
         ],
         "pairing": {
           "feather_colour": {
-            "paired_with": "hair_colour",
+            "paired_with": "hair colour",
             "mode": "index"
           }
-        }
+        },
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
+        ]
       },
       "positive": []
     },
@@ -1408,10 +1743,17 @@
         ],
         "pairing": {
           "feather_colour": {
-            "paired_with": "hair_colour",
+            "paired_with": "hair colour",
             "mode": "index"
           }
-        }
+        },
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
+        ]
       },
       "positive": []
     },
@@ -1467,10 +1809,17 @@
         ],
         "pairing": {
           "feather_colour": {
-            "paired_with": "hair_colour",
+            "paired_with": "hair colour",
             "mode": "index"
           }
-        }
+        },
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts",
+          "huge breasts"
+        ]
       },
       "positive": []
     }
@@ -1497,7 +1846,7 @@
         ]
       },
       "suppress_fields": [
-        "eye_colour"
+        "eye colour"
       ]
     },
     "Vampire": {
@@ -1526,7 +1875,7 @@
         ]
       },
       "suppress_fields": [
-        "eye_colour"
+        "eye colour"
       ]
     },
     "Lycanthrope": {
@@ -1552,7 +1901,7 @@
       },
       "overrides": {},
       "suppress_fields": [
-        "eye_colour"
+        "eye colour"
       ]
     },
     "Demonbound": {
@@ -1579,7 +1928,7 @@
       },
       "overrides": {},
       "suppress_fields": [
-        "eye_colour"
+        "eye colour"
       ]
     },
     "Cursed Flame": {
@@ -1603,7 +1952,7 @@
       },
       "overrides": {},
       "suppress_fields": [
-        "eye_colour"
+        "eye colour"
       ]
     }
   }

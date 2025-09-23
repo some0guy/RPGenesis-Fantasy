@@ -316,7 +316,7 @@ class ComboField(ttk.Frame):
         self.combo = ttk.Combobox(self, values=self.values, textvariable=self.var, state="readonly")
         self.combo.pack(side="left", fill="x", expand=True)
         if allow_custom:
-            ttk.Button(self, text="Custom…", command=self.add_custom).pack(side="left", padx=4)
+            ttk.Button(self, text="Custom...", command=self.add_custom).pack(side="left", padx=4)
     def add_custom(self):
         s = simpledialog.askstring("Custom value", "Enter custom value:")
         if not s: return
@@ -1119,14 +1119,20 @@ class ItemsTab(ttk.Frame):
         self.cat_combo.pack(fill="x", pady=(0,6))
         self.cat_combo.bind("<<ComboboxSelected>>", lambda e: self.refresh_list())
 
+        # --- NEW: Type Filter ---
+        ttk.Label(left, text="Type Filter").pack(anchor="w")
+        self.type_combo = ttk.Combobox(left, state="readonly")
+        self.type_combo.pack(fill="x", pady=(0,6))
+        self.type_combo.bind("<<ComboboxSelected>>", lambda e: self.refresh_list())
+
         self.listbox = tk.Listbox(left, height=24); self.listbox.pack(fill="both", expand=True)
         self.listbox.bind("<<ListboxSelect>>", self.on_select)
 
         btns = ttk.Frame(left); btns.pack(fill="x", pady=6)
-        ttk.Button(btns, text="New", command=self.on_new).pack(side="left", expand=True, fill="x", padx=2)
-        ttk.Button(btns, text="Duplicate", command=self.on_dup).pack(side="left", expand=True, fill="x", padx=2)
-        ttk.Button(btns, text="Delete", command=self.on_del).pack(side="left", expand=True, fill="x", padx=2)
-        ttk.Button(btns, text="Save File", command=self.on_save).pack(side="left", expand=True, fill="x", padx=2)
+        self.btn_new = ttk.Button(btns, text="New", command=self.on_new); self.btn_new.pack(side="left", expand=True, fill="x", padx=2)
+        self.btn_dup = ttk.Button(btns, text="Duplicate", command=self.on_dup); self.btn_dup.pack(side="left", expand=True, fill="x", padx=2)
+        self.btn_del = ttk.Button(btns, text="Delete", command=self.on_del); self.btn_del.pack(side="left", expand=True, fill="x", padx=2)
+        self.btn_save = ttk.Button(btns, text="Save File", command=self.on_save); self.btn_save.pack(side="left", expand=True, fill="x", padx=2)
         ttk.Button(btns, text="Roll Preview", command=self.on_roll_preview).pack(side="left", expand=True, fill="x", padx=2)
 
         self.form = KeyValueForm(right); self.form.pack(fill="both", expand=True)
@@ -1154,72 +1160,150 @@ class ItemsTab(ttk.Frame):
             self.file_combo.set(""); self.cat_combo["values"] = []
             self.listbox.delete(0,"end"); self.form.set_object({}); return
         self.rebuild_global_items_index()
-        self.file_combo["values"] = files_found; self.file_combo.current(0)
+        self.file_combo["values"] = ["(All Item files)"] + files_found; self.file_combo.current(0)
+        self.file_combo.set("(All Item files)")
         self.on_file_change()
 
     def on_file_change(self, *_):
         fname = self.file_combo.get()
         dataset = self.datasets.get(fname)
+
+        # Handle aggregate mode first
+        if fname == "(All Item files)":
+            self.active_dataset = None
+            self.active_file = None
+            all_items = []
+            for ds in self.datasets.values():
+                try:
+                    lst = ds.data if hasattr(ds, "data") else None
+                except Exception:
+                    lst = None
+                if isinstance(lst, list):
+                    all_items.extend(lst)
+            self.active_list = all_items
+            # Disable mutating actions
+            for btn_name in ("btn_new","btn_dup","btn_del","btn_save"):
+                if hasattr(self, btn_name):
+                    getattr(self, btn_name).state(["disabled"])
+            # Filters
+            cats = get_all_categories(self.active_list) if self.active_list else ["(all)"]
+            try:
+                self.cat_combo["values"] = cats; self.cat_combo.set("(all)")
+            except Exception:
+                pass
+            try:
+                types = sorted({(it.get("type") or "").strip() for it in self.active_list if (it.get("type") or "").strip()})
+                if hasattr(self, "type_combo"):
+                    self.type_combo["values"] = ["(all)"] + types; self.type_combo.set("(all)")
+            except Exception:
+                pass
+            self.search_var.set("")
+            # No category context in All mode
+            try:
+                self.form.set_category_context("")
+            except Exception:
+                pass
+            self.refresh_list()
+            return
+
+        # Single-file mode
         if not dataset:
+            # Unknown file selection; clear view
             self.active_dataset = None; self.active_file = None; self.active_list = []
-            self.listbox.delete(0,"end"); self.form.set_object({}); return
+            self.listbox.delete(0,"end")
+            try:
+                self.count_var.set("Entries: 0")
+            except Exception:
+                pass
+            return
+
+        self.active_dataset = dataset
+        self.active_file = fname
         try:
-            self.count_var.set("Entries: 0")
+            self.active_list = list(dataset.data or [])
         except Exception:
-            pass
-        self.active_dataset = dataset; self.active_file = fname; self.active_list = dataset.data
-        try:
-            self.count_var.set(f"Entries: {len(self.active_list)}")
-        except Exception:
-            pass
+            self.active_list = []
+
+        # Enable actions
+        for btn_name in ("btn_new","btn_dup","btn_del","btn_save"):
+            if hasattr(self, btn_name):
+                getattr(self, btn_name).state(["!disabled"])
+
+        # Filters
         cats = get_all_categories(self.active_list) if self.active_list else ["(all)"]
-        self.cat_combo["values"] = cats; self.cat_combo.set("(all)")
+        try:
+            self.cat_combo["values"] = cats; self.cat_combo.set("(all)")
+        except Exception:
+            pass
+        try:
+            types = sorted({(it.get("type") or "").strip() for it in self.active_list if (it.get("type") or "").strip()})
+            if hasattr(self, "type_combo"):
+                self.type_combo["values"] = ["(all)"] + types; self.type_combo.set("(all)")
+        except Exception:
+            pass
+
         self.search_var.set("")
-        self.rebuild_global_items_index()
-        # Set context category for form (for type dropdown scoping)
+        # Attempt to set category context based on filter if present
         context_cat = ""
-        if self.cat_combo.get() and self.cat_combo.get() != "(all)":
-            # "category:value" shape -> take value
-            val = self.cat_combo.get()
-            if ":" in val:
-                context_cat = val.split(":",1)[0].strip()
-                if context_cat == "category":
-                    context_cat = val.split(":",1)[1].strip().lower()
-        self.form.set_category_context(context_cat)
+        val = getattr(self, "cat_combo", None).get() if hasattr(self, "cat_combo") else ""
+        if val and val != "(all)" and ":" in val:
+            k, v = val.split(":", 1)
+            if k == "category":
+                context_cat = v.strip().lower()
+        try:
+            self.form.set_category_context(context_cat)
+        except Exception:
+            pass
         self.refresh_list()
 
+
+
     def refresh_list(self):
-        self.listbox.delete(0,"end"); self.filtered_indices = []
-        if not self.active_list: self.form.set_object({}); return
-        q = self.search_var.get().lower().strip(); cat = self.cat_combo.get()
-        for i, it in enumerate(self.active_list):
-            name = str(it.get("name",""))
+        # Robust refresh that works in single-file and "(All Item files)" mode
+        q = (self.search_var.get() or "").lower().strip()
+        cat = (self.cat_combo.get() or "(all)")
+        try:
+            itype = (self.type_combo.get() or "(all)")
+        except Exception:
+            itype = "(all)"
+
+        items = list(self.active_list or [])
+        self.listbox.delete(0, "end")
+        self.filtered_indices = []
+
+        for i, it in enumerate(items):
             show = True
-            if q and q not in name.lower(): show = False
+            name = str(it.get("name","") or "")
+            iid  = str(it.get("id","") or "")
+            if q and (q not in name.lower()) and (q not in iid.lower()):
+                show = False
             if show and cat and cat != "(all)":
-                if infer_category(it) != cat: show = False
+                try:
+                    from_category = infer_category(it)
+                except Exception:
+                    from_category = ""
+                if from_category != cat:
+                    show = False
+            if show and itype and itype != "(all)":
+                if (it.get("type","") or "") != itype:
+                    show = False
             if show:
                 self.filtered_indices.append(i)
-                self.listbox.insert("end", f"{it.get('id','?')}  {name}")
-        self.selected_index = None; self.form.set_object({})
+                label = f"{iid} — {name} [{infer_category(it)}]"
+                self.listbox.insert("end", label)
+
+        # Count label
         try:
-            total = len(self.npcs) if self.npcs else 0
+            total = len(items)
             shown = len(self.filtered_indices)
-            if q or (fac and fac != "(all)"):
+            if q or (cat and cat != "(all)") or (itype and itype != "(all)"):
                 self.count_var.set(f"Entries: {total} • showing {shown}")
             else:
                 self.count_var.set(f"Entries: {total}")
         except Exception:
             pass
-        try:
-            total = len(self.active_list) if self.active_list else 0
-            shown = len(self.filtered_indices)
-            if q or (cat and cat != "(all)"):
-                self.count_var.set(f"Entries: {total} • showing {shown}")
-            else:
-                self.count_var.set(f"Entries: {total}")
-        except Exception:
-            pass
+
+
 
     def on_select(self, *_):
         if not self.active_list: return
@@ -1233,7 +1317,9 @@ class ItemsTab(ttk.Frame):
         self.form.set_object(self.active_list[idx])
 
     def on_new(self):
-        if not self.active_dataset: return
+        if not self.active_dataset:
+            messagebox.showinfo("All NPC files", "Select a single NPC file to add a new NPC.")
+            return
         existing_ids = {it.get("id","") for it in self.active_list}
         item = dict(DEFAULT_ITEM); item["id"] = ensure_item_id(item, existing_ids)
         # If current filter is on a category: seed it
@@ -1247,21 +1333,27 @@ class ItemsTab(ttk.Frame):
         self.active_list.append(item); self.refresh_list(); self.listbox.select_set("end"); self.on_select()
 
     def on_dup(self):
-        if self.selected_index is None or not self.active_dataset: return
+        if self.selected_index is None or not self.active_dataset:
+            messagebox.showinfo("All NPC files", "Select a single NPC file to duplicate into.")
+            return
         src = dict(self.active_list[self.selected_index])
         existing_ids = {it.get("id","") for it in self.active_list}
         src["id"] = ensure_item_id(src, existing_ids)
         self.active_list.append(src); self.refresh_list(); self.listbox.select_set("end"); self.on_select()
 
     def on_del(self):
-        if self.selected_index is None or not self.active_dataset: return
+        if self.selected_index is None or not self.active_dataset:
+            messagebox.showinfo("All NPC files", "Select a single NPC file to delete from.")
+            return
         if not messagebox.askyesno("Delete item", "Delete the selected item?"): return
         del self.active_list[self.selected_index]
         self.rebuild_global_items_index(); self.refresh_list()
 
     def on_save(self):
         dataset = self.active_dataset
-        if not dataset: return
+        if not dataset:
+            messagebox.showinfo("All NPC files", "Aggregate view cannot be saved. Select a single file.")
+            return
         if self.selected_index is not None and self.selected_index < len(self.active_list):
             obj = self.form.get_object()
             if obj is None: return
@@ -1321,6 +1413,27 @@ class NPCsTab(ttk.Frame):
         self.faction_combo.pack(fill="x", pady=(0,6))
         self.faction_combo.bind("<<ComboboxSelected>>", lambda e: self.refresh_list())
 
+        # --- NEW: Sex, Race, Class, Type filters ---
+        ttk.Label(left, text="Sex").pack(anchor="w")
+        self.sex_combo = ttk.Combobox(left, state="readonly")
+        self.sex_combo.pack(fill="x", pady=(0,6))
+        self.sex_combo.bind("<<ComboboxSelected>>", lambda e: self.refresh_list())
+
+        ttk.Label(left, text="Race").pack(anchor="w")
+        self.race_combo = ttk.Combobox(left, state="readonly")
+        self.race_combo.pack(fill="x", pady=(0,6))
+        self.race_combo.bind("<<ComboboxSelected>>", lambda e: self.refresh_list())
+
+        ttk.Label(left, text="Class").pack(anchor="w")
+        self.class_combo = ttk.Combobox(left, state="readonly")
+        self.class_combo.pack(fill="x", pady=(0,6))
+        self.class_combo.bind("<<ComboboxSelected>>", lambda e: self.refresh_list())
+
+        ttk.Label(left, text="Type").pack(anchor="w")
+        self.type_combo = ttk.Combobox(left, state="readonly")
+        self.type_combo.pack(fill="x", pady=(0,6))
+        self.type_combo.bind("<<ComboboxSelected>>", lambda e: self.refresh_list())
+
         self.listbox = tk.Listbox(left, height=24); self.listbox.pack(fill="both", expand=True)
         self.listbox.bind("<<ListboxSelect>>", self.on_select)
 
@@ -1351,38 +1464,83 @@ class NPCsTab(ttk.Frame):
         if not files_found:
             self.file_combo.set(""); self.faction_combo["values"] = []
             self.listbox.delete(0,"end"); self.form.set_object({}); return
-        self.file_combo["values"] = files_found; self.file_combo.current(0)
+        self.file_combo["values"] = ["(All NPC files)"] + files_found
+        self.file_combo.set("(All Item files)")
+        self.file_combo.set("(All NPC files)")
         self.on_file_change()
 
     def on_file_change(self, *_):
         fname = self.file_combo.get()
         dataset = self.datasets.get(fname)
+
+        # Handle aggregate mode BEFORE any early returns
+        if fname == "(All NPC files)":
+            self.active_dataset = None
+            self.active_file = None
+            alln = []
+            for ds in self.datasets.values():
+                if isinstance(ds.data, list):
+                    alln.extend(ds.data)
+            self.npcs = alln
+            try:
+                self.count_var.set(f"Entries: {len(self.npcs)}")
+            except Exception:
+                pass
+            # Disable mutating actions in aggregate mode
+            for btn_name in ("btn_new","btn_dup","btn_del","btn_save"):
+                if hasattr(self, btn_name):
+                    getattr(self, btn_name).state(["disabled"])
+            self.refresh_filters()
+            self.refresh_list()
+            return
+
+        # If no dataset for a specific file, clear and bail
         if not dataset:
             self.active_dataset = None; self.active_file = None; self.npcs = []
             self.listbox.delete(0,"end"); self.form.set_object({})
             try:
                 self.faction_combo["values"] = []
-            except Exception:
-                pass
-            try:
                 self.count_var.set("Entries: 0")
             except Exception:
                 pass
             return
-        self.active_dataset = dataset; self.active_file = fname; self.npcs = dataset.data
+
+        # Single-file mode
+        self.active_dataset = dataset
+        self.active_file = fname
+        self.npcs = dataset.data
         try:
             self.count_var.set(f"Entries: {len(self.npcs)}")
         except Exception:
             pass
+        # Enable actions in single-file mode
+        for btn_name in ("btn_new","btn_dup","btn_del","btn_save"):
+            if hasattr(self, btn_name):
+                getattr(self, btn_name).state(["!disabled"])
         self.refresh_filters(); self.refresh_list()
 
+
     def refresh_filters(self):
-        factions = set()
+        factions, sexes, races, classes, types = set(), set(), set(), set(), set()
         for n in self.npcs:
-            faction = (n.get("faction","") or "Neutral").strip() or "Neutral"
-            factions.add(faction)
-        values = ["(all)"] + sorted(factions)
-        self.faction_combo["values"] = values; self.faction_combo.set("(all)")
+            factions.add((n.get("faction","") or "Neutral").strip() or "Neutral")
+            s = (n.get("sex","") or "").strip()
+            r = (n.get("race","") or "").strip()
+            c = (n.get("class","") or "").strip()
+            t = (n.get("type","") or "").strip()
+            if s: sexes.add(s)
+            if r: races.add(r)
+            if c: classes.add(c)
+            if t: types.add(t)
+        self.faction_combo["values"] = ["(all)"] + sorted(factions); self.faction_combo.set(self.faction_combo.get() or "(all)")
+        if hasattr(self, 'sex_combo'):
+            self.sex_combo["values"]   = ["(all)"] + sorted(sexes);   self.sex_combo.set(self.sex_combo.get() or "(all)")
+        if hasattr(self, 'race_combo'):
+            self.race_combo["values"]  = ["(all)"] + sorted(races);   self.race_combo.set(self.race_combo.get() or "(all)")
+        if hasattr(self, 'class_combo'):
+            self.class_combo["values"] = ["(all)"] + sorted(classes); self.class_combo.set(self.class_combo.get() or "(all)")
+        if hasattr(self, 'type_combo'):
+            self.type_combo["values"]  = ["(all)"] + sorted(types);   self.type_combo.set(self.type_combo.get() or "(all)")
 
     def refresh_list(self):
         self.listbox.delete(0,"end"); self.filtered_indices = []
@@ -1394,7 +1552,11 @@ class NPCsTab(ttk.Frame):
                 pass
             return
         q = (self.search_var.get() or "").lower().strip()
-        fac = (self.faction_combo.get() or "").strip()
+        fac = (self.faction_combo.get() or "(all)").strip()
+        sex = (self.sex_combo.get() or "").strip() if hasattr(self, 'sex_combo') else ""
+        race = (self.race_combo.get() or "").strip() if hasattr(self, 'race_combo') else ""
+        clazz = (self.class_combo.get() or "").strip() if hasattr(self, 'class_combo') else ""
+        ntype = (self.type_combo.get() or "").strip() if hasattr(self, 'type_combo') else ""
         for i, n in enumerate(self.npcs):
             name = str(n.get("name",""))
             show = True
@@ -1402,6 +1564,14 @@ class NPCsTab(ttk.Frame):
             if show and fac and fac != "(all)":
                 faction = (n.get("faction","") or "Neutral").strip() or "Neutral"
                 if faction != fac: show = False
+            if show and sex and sex != "(all)":
+                if (n.get("sex","") or "").strip() != sex: show = False
+            if show and race and race != "(all)":
+                if (n.get("race","") or "").strip() != race: show = False
+            if show and clazz and clazz != "(all)":
+                if (n.get("class","") or "").strip() != clazz: show = False
+            if show and ntype and ntype != "(all)":
+                if (n.get("type","") or "").strip() != ntype: show = False
             if show:
                 self.filtered_indices.append(i)
                 self.listbox.insert("end", f"{n.get('id','?')}  {name}")
@@ -1409,7 +1579,7 @@ class NPCsTab(ttk.Frame):
         try:
             total = len(self.npcs)
             shown = len(self.filtered_indices)
-            if q or (fac and fac != "(all)"):
+            if q or (fac and fac != "(all)") or (sex and sex != "(all)") or (race and race != "(all)") or (clazz and clazz != "(all)") or (ntype and ntype != "(all)"):
                 self.count_var.set(f"Entries: {total} • showing {shown}")
             else:
                 self.count_var.set(f"Entries: {total}")
