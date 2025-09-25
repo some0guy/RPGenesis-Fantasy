@@ -6,20 +6,78 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000101",
@@ -27,20 +85,78 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000103",
@@ -48,20 +164,47 @@
       "race": "Mountain Orc",
       "sex": "Male",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     },
     {
       "id": "NP000104",
@@ -69,20 +212,78 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000106",
@@ -90,20 +291,78 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000107",
@@ -111,20 +370,47 @@
       "race": "Hill Dwarf",
       "sex": "Male",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     },
     {
       "id": "NP000108",
@@ -132,12 +418,28 @@
       "race": "Human",
       "sex": null,
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [
@@ -145,9 +447,51 @@
       ],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000110",
@@ -155,12 +499,28 @@
       "race": "Human",
       "sex": null,
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [
@@ -168,9 +528,51 @@
       ],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000111",
@@ -178,20 +580,47 @@
       "race": "Mountain Orc",
       "sex": "Female",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     },
     {
       "id": "NP000113",
@@ -199,20 +628,78 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000114",
@@ -220,20 +707,78 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000115",
@@ -241,20 +786,78 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000118",
@@ -262,12 +865,28 @@
       "race": "Human",
       "sex": null,
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [
@@ -275,9 +894,51 @@
       ],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000119",
@@ -285,20 +946,78 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000121",
@@ -306,20 +1025,78 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000122",
@@ -327,20 +1104,78 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000123",
@@ -348,20 +1183,78 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000124",
@@ -369,12 +1262,22 @@
       "race": "Forest Elf",
       "sex": "Male",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
@@ -383,16 +1286,38 @@
       "appearance": {
         "height": "Medium",
         "build": "Slim",
-        "skin_tone": "Olive",
         "skin_texture": "Smooth",
-        "hair_color": "Blonde",
-        "eye_color": "Green",
         "features": [
           "pointed ears"
+        ],
+        "skin_colour": [
+          "olive"
+        ],
+        "hair_colour": [
+          "blonde"
+        ],
+        "eye_colour": [
+          "green"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
         ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     },
     {
       "id": "NP000126",
@@ -400,12 +1325,28 @@
       "race": "Human",
       "sex": null,
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [
@@ -413,9 +1354,51 @@
       ],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000127",
@@ -423,20 +1406,47 @@
       "race": "Mountain Orc",
       "sex": "Male",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     },
     {
       "id": "NP000128",
@@ -444,20 +1454,78 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000129",
@@ -465,20 +1533,78 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000130",
@@ -486,20 +1612,78 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000132",
@@ -507,20 +1691,78 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000133",
@@ -528,20 +1770,78 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000135",
@@ -549,20 +1849,78 @@
       "race": "Human",
       "sex": "Male",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000137",
@@ -570,12 +1928,28 @@
       "race": "Human",
       "sex": null,
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [
@@ -583,9 +1957,51 @@
       ],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000139",
@@ -593,20 +2009,78 @@
       "race": "Human",
       "sex": "Female",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
-      "appearance": {},
+      "appearance": {
+        "hair_colour": [
+          "black",
+          "brown",
+          "grey",
+          "red",
+          "white"
+        ],
+        "eye_colour": [
+          "blue",
+          "brown",
+          "green",
+          "grey"
+        ],
+        "skin_colour": [
+          "brown",
+          "white"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
+      },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000140",
@@ -614,24 +2088,70 @@
       "race": "Human",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "brown",
+        "grey",
+        "red",
+        "white"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "With"
+        "skin_colour": [
+          "with"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "brown",
+        "white"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "grey"
+      ]
     },
     {
       "id": "NP000149",
@@ -639,24 +2159,56 @@
       "race": "Ashfoot Orc",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Gray-Black"
+        "skin_colour": [
+          "gray-black"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     },
     {
       "id": "NP000150",
@@ -664,24 +2216,56 @@
       "race": "Storm Orc",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Storm-Gray"
+        "skin_colour": [
+          "storm-gray"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     },
     {
       "id": "NP000151",
@@ -689,24 +2273,56 @@
       "race": "Mountain Orc",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
+        "skin_colour": [
+          "light"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     },
     {
       "id": "NP000152",
@@ -714,24 +2330,65 @@
       "race": "Darkblood Tiefling",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "black",
+        "grey"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Craggily"
+        "skin_colour": [
+          "craggily"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "grey"
+      ],
+      "eye_colour": [
+        "grey",
+        "white",
+        "yellow"
+      ]
     },
     {
       "id": "NP000153",
@@ -739,24 +2396,71 @@
       "race": "Hellbound Tiefling",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "orange",
+        "pink",
+        "purple",
+        "red"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Orange"
+        "skin_colour": [
+          "orange"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "orange",
+        "red"
+      ],
+      "eye_colour": [
+        "blue",
+        "brown",
+        "green",
+        "orange",
+        "purple",
+        "yellow"
+      ]
     },
     {
       "id": "NP000154",
@@ -764,24 +2468,76 @@
       "race": "Voided Tiefling",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "blue",
+        "green",
+        "grey",
+        "orange",
+        "pink",
+        "purple",
+        "red",
+        "white",
+        "yellow"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Pitch Black"
+        "skin_colour": [
+          "pitch black"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "black"
+      ],
+      "eye_colour": [
+        "brown",
+        "blue",
+        "green",
+        "grey",
+        "hazel",
+        "amber",
+        "violet"
+      ]
     },
     {
       "id": "NP000155",
@@ -789,24 +2545,68 @@
       "race": "Sableheart Tiefling",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "blue",
+        "pink",
+        "purple"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light Blue"
+        "skin_colour": [
+          "light blue"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "blue",
+        "pink",
+        "purple"
+      ],
+      "eye_colour": [
+        "blue",
+        "green",
+        "purple"
+      ]
     },
     {
       "id": "NP000156",
@@ -814,24 +2614,65 @@
       "race": "Viridian Tiefling",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
-      "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_colour": [
+        "brown",
+        "red"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Turquoise"
+        "skin_colour": [
+          "turquoise"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": [
+        "green",
+        "yellow"
+      ],
+      "eye_colour": [
+        "green",
+        "orange"
+      ]
     },
     {
       "id": "NP000163",
@@ -839,24 +2680,56 @@
       "race": "Kitsune",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
+        "skin_colour": [
+          "light"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     },
     {
       "id": "NP000164",
@@ -864,24 +2737,56 @@
       "race": "Nekomata",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
+        "skin_colour": [
+          "light"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     },
     {
       "id": "NP000166",
@@ -889,24 +2794,56 @@
       "race": "Lamia",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
+        "skin_colour": [
+          "light"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     },
     {
       "id": "NP000171",
@@ -914,24 +2851,56 @@
       "race": "Lamia",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Humanoids With Scaled"
+        "skin_colour": [
+          "humanoids with scaled"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     },
     {
       "id": "NP000174",
@@ -939,24 +2908,56 @@
       "race": "Harpy",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
+        "skin_colour": [
+          "light"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     },
     {
       "id": "NP000180",
@@ -964,24 +2965,56 @@
       "race": "Merfolk",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
+        "skin_colour": [
+          "light"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     },
     {
       "id": "NP000190",
@@ -989,24 +3022,56 @@
       "race": "Harpy",
       "sex": "Unknown",
       "type": "enemy",
-      "skin_tone": "",
       "skin_texture": "",
       "hair_colour": "",
-      "hair_length": "",
-      "hair_style": "",
-      "eye_color": "",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ],
       "height": "",
       "build": "",
       "curse": [],
       "clothing_alignment": [],
       "features": [],
       "appearance": {
-        "hair_color": "Black",
-        "eye_color": "Brown",
-        "skin_tone": "Light"
+        "skin_colour": [
+          "light"
+        ],
+        "hair_colour": [
+          "black"
+        ],
+        "eye_colour": [
+          "brown"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
       "clothing": [],
-      "personality": []
+      "personality": [],
+      "skin_colour": "",
+      "eye_colour": ""
     }
   ]
 }

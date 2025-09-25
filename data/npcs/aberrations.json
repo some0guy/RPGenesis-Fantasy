@@ -9,12 +9,44 @@
       "sex": null,
       "type": "monster",
       "appearance": {
-        "eye_color": "Abyssal",
-        "hair_color": null,
         "build": "Mountainous",
-        "skin_tone": "Stone and Shadow"
+        "skin_colour": [
+          "stone and shadow"
+        ],
+        "hair_colour": null,
+        "eye_colour": [
+          "abyssal"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "A towering behemoth whose body eclipses the sky itself. Its hide is stone fused with shadow, its eyes blazing like dying suns. Each step cracks the land like brittle glass, every roar a storm that shatters mountains. Worshippers describe the terror of standing beneath its eclipsing bulk as both awe and annihilation."
+      "description": "A towering behemoth whose body eclipses the sky itself. Its hide is stone fused with shadow, its eyes blazing like dying suns. Each step cracks the land like brittle glass, every roar a storm that shatters mountains. Worshippers describe the terror of standing beneath its eclipsing bulk as both awe and annihilation.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002001",
@@ -23,12 +55,58 @@
       "sex": "Female",
       "type": "monster",
       "appearance": {
-        "eye_color": "Multitude",
-        "hair_color": "Silver-Black",
         "build": "Statuesque",
-        "skin_tone": "Shimmering"
+        "skin_colour": [
+          "shimmering"
+        ],
+        "hair_colour": [
+          "silver-black"
+        ],
+        "eye_colour": [
+          "multitude"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "Her statuesque body is flawless and dreadful, a living tapestry of unblinking eyes that open and close across her skin. Silver-black hair cascades like starfire, veiling and revealing the shifting orbs. She is beautiful in ways that terrify, sensual in ways that unsettle. Her voice is silk laid over barbed wire, luring mortals with promises they dare not accept. Every glance strips secrets, every whisper binds minds in feverish devotion."
+      "description": "Her statuesque body is flawless and dreadful, a living tapestry of unblinking eyes that open and close across her skin. Silver-black hair cascades like starfire, veiling and revealing the shifting orbs. She is beautiful in ways that terrify, sensual in ways that unsettle. Her voice is silk laid over barbed wire, luring mortals with promises they dare not accept. Every glance strips secrets, every whisper binds minds in feverish devotion.",
+      "hair_colour": [
+        "black",
+        "white"
+      ],
+      "eye_colour": [
+        "orange"
+      ],
+      "skin_colour": [
+        "ashen",
+        "oil-slick",
+        "livid"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002002",
@@ -37,12 +115,58 @@
       "sex": "Female",
       "type": "monster",
       "appearance": {
-        "eye_color": "Hidden",
-        "hair_color": "Veiled",
         "build": "Tall and shifting",
-        "skin_tone": "Shrouded"
+        "skin_colour": [
+          "shrouded"
+        ],
+        "hair_colour": [
+          "veiled"
+        ],
+        "eye_colour": [
+          "hidden"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "She drifts as a column of endless veils, each layer translucent and flowing, hinting at the shape of a woman beneath. Faces appear and vanish in the cloth as though spirits were trapped in her folds. Her presence is worshipful and dreadful, her whispers cling like perfume, drawing mortals close until devotion turns to despair. Her caress leaves the cold of graves, her embrace the suffocation of silken shrouds."
+      "description": "She drifts as a column of endless veils, each layer translucent and flowing, hinting at the shape of a woman beneath. Faces appear and vanish in the cloth as though spirits were trapped in her folds. Her presence is worshipful and dreadful, her whispers cling like perfume, drawing mortals close until devotion turns to despair. Her caress leaves the cold of graves, her embrace the suffocation of silken shrouds.",
+      "hair_colour": [
+        "black",
+        "white"
+      ],
+      "eye_colour": [
+        "orange"
+      ],
+      "skin_colour": [
+        "ashen",
+        "oil-slick",
+        "livid"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002003",
@@ -51,12 +175,46 @@
       "sex": "Female",
       "type": "monster",
       "appearance": {
-        "eye_color": "Crimson",
-        "hair_color": "Black with crimson sheen",
         "build": "Tall",
-        "skin_tone": "Pale"
+        "skin_colour": [
+          "pale"
+        ],
+        "hair_colour": [
+          "black with crimson sheen"
+        ],
+        "eye_colour": [
+          "crimson"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "Draped in gowns woven of scarlet mist, she drifts like a dancer through ruined halls. Her veil flutters though no wind stirs, her crimson eyes smouldering beneath. Once kissed, never freed; her embrace is death disguised as passion, a union that consumes utterly. The Crimson Bride collects souls as dowries, and no vow is broken without blood."
+      "description": "Draped in gowns woven of scarlet mist, she drifts like a dancer through ruined halls. Her veil flutters though no wind stirs, her crimson eyes smouldering beneath. Once kissed, never freed; her embrace is death disguised as passion, a union that consumes utterly. The Crimson Bride collects souls as dowries, and no vow is broken without blood.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002004",
@@ -65,12 +223,44 @@
       "sex": "Female",
       "type": "monster",
       "appearance": {
-        "eye_color": "Amber",
-        "hair_color": null,
         "build": "Massive serpentine",
-        "skin_tone": "Scaled Emerald"
+        "skin_colour": [
+          "scaled emerald"
+        ],
+        "hair_colour": null,
+        "eye_colour": [
+          "amber"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "A colossal serpent with a woman’s torso rising from its coils, crowned with jeweled scales. Her amber eyes gleam with hypnotic malice, her voice a hiss of promises. Entire caravans vanish into her coils, crushed or caressed depending on her mood. She tastes devotion as keenly as she tastes fear."
+      "description": "A colossal serpent with a woman’s torso rising from its coils, crowned with jeweled scales. Her amber eyes gleam with hypnotic malice, her voice a hiss of promises. Entire caravans vanish into her coils, crushed or caressed depending on her mood. She tastes devotion as keenly as she tastes fear.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002005",
@@ -79,12 +269,44 @@
       "sex": null,
       "type": "monster",
       "appearance": {
-        "eye_color": "Molten",
-        "hair_color": null,
         "build": "Colossal",
-        "skin_tone": "Ash and Fire"
+        "skin_colour": [
+          "ash and fire"
+        ],
+        "hair_colour": null,
+        "eye_colour": [
+          "molten"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "Scales the color of burned stone, wings trailing embers with each beat. Its breath is a storm of cinders that suffocates armies, its shadow long enough to darken valleys. Legends say it slumbers beneath volcanoes, and when it stirs, kingdoms fall in fire."
+      "description": "Scales the color of burned stone, wings trailing embers with each beat. Its breath is a storm of cinders that suffocates armies, its shadow long enough to darken valleys. Legends say it slumbers beneath volcanoes, and when it stirs, kingdoms fall in fire.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002006",
@@ -93,12 +315,46 @@
       "sex": "Female",
       "type": "monster",
       "appearance": {
-        "eye_color": "Red",
-        "hair_color": "White",
         "build": "Slender",
-        "skin_tone": "Dusky"
+        "skin_colour": [
+          "dusky"
+        ],
+        "hair_colour": [
+          "white"
+        ],
+        "eye_colour": [
+          "red"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "Half woman, half spider, with a dusky beauty marred by the grotesque elegance of her arachnid body. Her white hair cascades over bare shoulders, her red eyes gleaming with hunger. Silken threads spin from her fingertips and her lower body, ensnaring prey in webs both literal and emotional. She whispers lullabies to captives, stroking their hair before the fangs pierce."
+      "description": "Half woman, half spider, with a dusky beauty marred by the grotesque elegance of her arachnid body. Her white hair cascades over bare shoulders, her red eyes gleaming with hunger. Silken threads spin from her fingertips and her lower body, ensnaring prey in webs both literal and emotional. She whispers lullabies to captives, stroking their hair before the fangs pierce.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002007",
@@ -107,12 +363,46 @@
       "sex": "Male",
       "type": "monster",
       "appearance": {
-        "eye_color": "Glowing Blue",
-        "hair_color": "Ash",
         "build": "Tall and gaunt",
-        "skin_tone": "Withered"
+        "skin_colour": [
+          "withered"
+        ],
+        "hair_colour": [
+          "ash"
+        ],
+        "eye_colour": [
+          "glowing blue"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "A towering corpse wrapped in rotting regalia, crown fused into decayed bone. His eyes glow with cold fury, his voice echoing in empty chambers. He commands legions of the dead, his presence alone enough to still living hearts. His touch drains warmth, his embrace is despair eternal."
+      "description": "A towering corpse wrapped in rotting regalia, crown fused into decayed bone. His eyes glow with cold fury, his voice echoing in empty chambers. He commands legions of the dead, his presence alone enough to still living hearts. His touch drains warmth, his embrace is despair eternal.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002008",
@@ -121,12 +411,44 @@
       "sex": null,
       "type": "monster",
       "appearance": {
-        "eye_color": "Abyssal",
-        "hair_color": null,
         "build": "Massive aquatic",
-        "skin_tone": "Midnight Blue"
+        "skin_colour": [
+          "midnight blue"
+        ],
+        "hair_colour": null,
+        "eye_colour": [
+          "abyssal"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "From beneath fathoms, a maw lined with endless teeth rises, wider than castles. Tentacles writhe from its sides, dragging ships into the abyss. Sailors speak of siren hums that draw them willingly into its jaws, where water becomes grave and song becomes silence."
+      "description": "From beneath fathoms, a maw lined with endless teeth rises, wider than castles. Tentacles writhe from its sides, dragging ships into the abyss. Sailors speak of siren hums that draw them willingly into its jaws, where water becomes grave and song becomes silence.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002009",
@@ -135,12 +457,59 @@
       "sex": null,
       "type": "monster",
       "appearance": {
-        "eye_color": "Bloodshot",
-        "hair_color": null,
         "build": "Monstrous",
-        "skin_tone": "Patchwork"
+        "skin_colour": [
+          "patchwork"
+        ],
+        "hair_colour": [
+          "black",
+          "white"
+        ],
+        "eye_colour": [
+          "bloodshot"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "A towering amalgamation of limbs and torsos, sewn together with sinew and malice. Its skin is stitched patchwork, its movements jerky yet devastating. Each face embedded in its flesh screams or weeps, and its hunger is insatiable. Villages are erased when the Colossus walks."
+      "description": "A towering amalgamation of limbs and torsos, sewn together with sinew and malice. Its skin is stitched patchwork, its movements jerky yet devastating. Each face embedded in its flesh screams or weeps, and its hunger is insatiable. Villages are erased when the Colossus walks.",
+      "hair_colour": [
+        "black",
+        "white"
+      ],
+      "eye_colour": [
+        "orange"
+      ],
+      "skin_colour": [
+        "ashen",
+        "oil-slick",
+        "livid"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002010",
@@ -149,12 +518,46 @@
       "sex": "Female",
       "type": "monster",
       "appearance": {
-        "eye_color": "Starlit",
-        "hair_color": "Nebula",
         "build": "Colossal, curvaceous",
-        "skin_tone": "Celestial glow"
+        "skin_colour": [
+          "celestial glow"
+        ],
+        "hair_colour": [
+          "nebula"
+        ],
+        "eye_colour": [
+          "starlit"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "Her form is vast and curvaceous, skin glowing with constellations that ripple like living sky. Nebula hair streams in endless waves, her starlit eyes both inviting and annihilating. Sensual in form, horrific in intent, she beckons mortals as lovers and devours them as sacrifices. The Cosmic Titaness embodies the seduction of infinity and the cruelty of the void."
+      "description": "Her form is vast and curvaceous, skin glowing with constellations that ripple like living sky. Nebula hair streams in endless waves, her starlit eyes both inviting and annihilating. Sensual in form, horrific in intent, she beckons mortals as lovers and devours them as sacrifices. The Cosmic Titaness embodies the seduction of infinity and the cruelty of the void.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002011",
@@ -163,12 +566,44 @@
       "sex": null,
       "type": "monster",
       "appearance": {
-        "eye_color": "Fiery",
-        "hair_color": null,
         "build": "Massive mechanical",
-        "skin_tone": "Iron and Rust"
+        "skin_colour": [
+          "iron and rust"
+        ],
+        "hair_colour": null,
+        "eye_colour": [
+          "fiery"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "A giant construct of gears and chains, its maw a spinning grinder of iron teeth. Smoke pours from vents in its shoulders, each movement squealing with metal strain. Created to end wars, it now hunts endlessly, devouring flesh and steel alike."
+      "description": "A giant construct of gears and chains, its maw a spinning grinder of iron teeth. Smoke pours from vents in its shoulders, each movement squealing with metal strain. Created to end wars, it now hunts endlessly, devouring flesh and steel alike.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002012",
@@ -177,12 +612,46 @@
       "sex": "Female",
       "type": "monster",
       "appearance": {
-        "eye_color": "Sea-green",
-        "hair_color": "Blue-black",
         "build": "Slender",
-        "skin_tone": "Pearlescent"
+        "skin_colour": [
+          "pearlescent"
+        ],
+        "hair_colour": [
+          "blue-black"
+        ],
+        "eye_colour": [
+          "sea-green"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "Her voice carries on waves, sweet as honey and deadly as poison. Long hair flows like tides, her pearlescent skin shimmering under moonlight. Sailors leap willingly into the sea for her, vanishing beneath her embrace. She is both muse and murderer, beauty sharpened into a hook."
+      "description": "Her voice carries on waves, sweet as honey and deadly as poison. Long hair flows like tides, her pearlescent skin shimmering under moonlight. Sailors leap willingly into the sea for her, vanishing beneath her embrace. She is both muse and murderer, beauty sharpened into a hook.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002013",
@@ -191,12 +660,46 @@
       "sex": null,
       "type": "monster",
       "appearance": {
-        "eye_color": "Glowing Green",
-        "hair_color": "Vines",
         "build": "Towering",
-        "skin_tone": "Bark and Moss"
+        "skin_colour": [
+          "bark and moss"
+        ],
+        "hair_colour": [
+          "vines"
+        ],
+        "eye_colour": [
+          "glowing green"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "A walking forest, limbs of bark and roots trailing like serpents. Eyes glow green with primal fury, each step birthing vines that entangle the ground. Entire villages vanish under its slow march, swallowed by living wilderness. To face it is to be buried alive by the hunger of nature itself."
+      "description": "A walking forest, limbs of bark and roots trailing like serpents. Eyes glow green with primal fury, each step birthing vines that entangle the ground. Entire villages vanish under its slow march, swallowed by living wilderness. To face it is to be buried alive by the hunger of nature itself.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002014",
@@ -205,12 +708,46 @@
       "sex": "Female",
       "type": "monster",
       "appearance": {
-        "eye_color": "Empty sockets",
-        "hair_color": "Wisps of white",
         "build": "Tall, skeletal",
-        "skin_tone": "Bone-white"
+        "skin_colour": [
+          "bone-white"
+        ],
+        "hair_colour": [
+          "wisps of white"
+        ],
+        "eye_colour": [
+          "empty sockets"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "Her skeletal frame draped in funeral lace, she cradles bones like children. Each step rattles, each lullaby keens with loss. Yet her embrace is suffocating, her skeletal arms pulling prey into a mother’s cradle from which there is no release."
+      "description": "Her skeletal frame draped in funeral lace, she cradles bones like children. Each step rattles, each lullaby keens with loss. Yet her embrace is suffocating, her skeletal arms pulling prey into a mother’s cradle from which there is no release.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002015",
@@ -219,12 +756,46 @@
       "sex": "Female",
       "type": "monster",
       "appearance": {
-        "eye_color": "Sickly Gold",
-        "hair_color": "Tarnished Silver",
         "build": "Tall",
-        "skin_tone": "Ashen"
+        "skin_colour": [
+          "ashen"
+        ],
+        "hair_colour": [
+          "tarnished silver"
+        ],
+        "eye_colour": [
+          "sickly gold"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "Wings once white now rot with mold, feathers falling like diseased snow. Her golden eyes weep pus and light, her lips whisper prayers of corruption. She beckons mortals with a lover’s touch, only to bless them with decay and despair."
+      "description": "Wings once white now rot with mold, feathers falling like diseased snow. Her golden eyes weep pus and light, her lips whisper prayers of corruption. She beckons mortals with a lover’s touch, only to bless them with decay and despair.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002016",
@@ -233,12 +804,59 @@
       "sex": null,
       "type": "monster",
       "appearance": {
-        "eye_color": "Fractured Light",
-        "hair_color": null,
         "build": "Chaotic",
-        "skin_tone": "Crystal and Flesh"
+        "skin_colour": [
+          "crystal and flesh"
+        ],
+        "hair_colour": [
+          "black",
+          "white"
+        ],
+        "eye_colour": [
+          "fractured light"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "Its body is broken geometry, shards of crystal fused with bleeding flesh. Its gaze refracts reality into madness, its steps splinter the ground. Wherever it walks, whispers follow, promising nothing but ruin and revelation."
+      "description": "Its body is broken geometry, shards of crystal fused with bleeding flesh. Its gaze refracts reality into madness, its steps splinter the ground. Wherever it walks, whispers follow, promising nothing but ruin and revelation.",
+      "hair_colour": [
+        "black",
+        "white"
+      ],
+      "eye_colour": [
+        "orange"
+      ],
+      "skin_colour": [
+        "ashen",
+        "oil-slick",
+        "livid"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002017",
@@ -247,12 +865,46 @@
       "sex": "Female",
       "type": "monster",
       "appearance": {
-        "eye_color": "Lightning",
-        "hair_color": "Cloud-white",
         "build": "Slender",
-        "skin_tone": "Stormlight"
+        "skin_colour": [
+          "stormlight"
+        ],
+        "hair_colour": [
+          "cloud-white"
+        ],
+        "eye_colour": [
+          "lightning"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "A woman-shaped tempest, her body streaked with lightning and rain. Her laugh is thunder, her kiss is ozone, her embrace the drowning pull of tides. Sailors call her name as both prayer and curse, for she loves as storms love: with ruinous passion."
+      "description": "A woman-shaped tempest, her body streaked with lightning and rain. Her laugh is thunder, her kiss is ozone, her embrace the drowning pull of tides. Sailors call her name as both prayer and curse, for she loves as storms love: with ruinous passion.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002018",
@@ -261,12 +913,59 @@
       "sex": null,
       "type": "monster",
       "appearance": {
-        "eye_color": "None",
-        "hair_color": null,
         "build": "Amorphous",
-        "skin_tone": "Shifting"
+        "skin_colour": [
+          "shifting"
+        ],
+        "hair_colour": [
+          "black",
+          "white"
+        ],
+        "eye_colour": [
+          "none"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "A writhing mass of mouths singing in endless harmony, each voice another life consumed. The sound is beautiful, irresistible, and those who listen too long are drawn into its chorus forever, their bodies and voices added to the song."
+      "description": "A writhing mass of mouths singing in endless harmony, each voice another life consumed. The sound is beautiful, irresistible, and those who listen too long are drawn into its chorus forever, their bodies and voices added to the song.",
+      "hair_colour": [
+        "black",
+        "white"
+      ],
+      "eye_colour": [
+        "orange"
+      ],
+      "skin_colour": [
+        "ashen",
+        "oil-slick",
+        "livid"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002019",
@@ -275,12 +974,44 @@
       "sex": null,
       "type": "monster",
       "appearance": {
-        "eye_color": "Ruby",
-        "hair_color": null,
         "build": "Ornate and hulking",
-        "skin_tone": "Gold and Bronze"
+        "skin_colour": [
+          "gold and bronze"
+        ],
+        "hair_colour": null,
+        "eye_colour": [
+          "ruby"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "A towering statue of gold and bronze come to life, jeweled eyes glimmering with malice. It moves with ponderous grace, each strike devastating. Once worshipped as divine, it now hungers for sacrifice, its gilded hands dripping with blood."
+      "description": "A towering statue of gold and bronze come to life, jeweled eyes glimmering with malice. It moves with ponderous grace, each strike devastating. Once worshipped as divine, it now hungers for sacrifice, its gilded hands dripping with blood.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP002020",
@@ -289,12 +1020,59 @@
       "sex": null,
       "type": "monster",
       "appearance": {
-        "eye_color": "Black void",
-        "hair_color": null,
         "build": "Lithe but endless",
-        "skin_tone": "Shadow"
+        "skin_colour": [
+          "shadow"
+        ],
+        "hair_colour": [
+          "black",
+          "white"
+        ],
+        "eye_colour": [
+          "black void"
+        ],
+        "hair_length": [
+          "short",
+          "medium",
+          "long"
+        ],
+        "hair_style": [
+          "braided",
+          "wavy",
+          "curly",
+          "straight",
+          "sleek",
+          "loose",
+          "mohawk"
+        ]
       },
-      "description": "A figure draped in shadows, mouthless yet whispering with infinite voices. It stalks dreams, feeding on desire and dread alike. Those who wake with its caress on their cheek never live long after—the hunger follows, patient and eternal."
+      "description": "A figure draped in shadows, mouthless yet whispering with infinite voices. It stalks dreams, feeding on desire and dread alike. Those who wake with its caress on their cheek never live long after—the hunger follows, patient and eternal.",
+      "hair_colour": [
+        "black",
+        "white"
+      ],
+      "eye_colour": [
+        "orange"
+      ],
+      "skin_colour": [
+        "ashen",
+        "oil-slick",
+        "livid"
+      ],
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     }
   ]
 }

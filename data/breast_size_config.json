@@ -1,0 +1,205 @@
+{
+  "version": "1.0",
+  "notes": "Breast size assignment config for NPC JSONs. Use to insert 'breast_size' after 'build' with target ratios, race tendencies, and personality nudges. Keep ~30% contradiction overall.",
+  "field": {
+    "name": "breast_size",
+    "insert_after": "build",
+    "allowed_values": [
+      "flat chest",
+      "small breasts",
+      "medium breasts",
+      "large breasts"
+    ]
+  },
+  "distribution": {
+    "target_global": {
+      "flat chest": 10,
+      "small breasts": 25,
+      "medium breasts": 45,
+      "large breasts": 20
+    },
+    "follow_race_probability": 0.7,
+    "contradiction_probability": 0.3,
+    "post_balance": {
+      "enabled": true,
+      "tolerance_percent_per_file": 5.0,
+      "prefer_adjusting_medium_first": true
+    }
+  },
+  "personality": {
+    "upsize_keywords": [
+      "seductive",
+      "provocative",
+      "proud",
+      "vain",
+      "decadent",
+      "sensual",
+      "confident",
+      "cruel",
+      "domineering",
+      "flirtatious",
+      "glamorous",
+      "extravagant",
+      "ambitious",
+      "decisive",
+      "ruthless",
+      "brawny",
+      "curvy",
+      "powerful",
+      "fearless"
+    ],
+    "downsize_keywords": [
+      "shy",
+      "reserved",
+      "modest",
+      "ascetic",
+      "humble",
+      "bookish",
+      "aloof",
+      "stoic",
+      "practical",
+      "cautious",
+      "gentle",
+      "soft-spoken",
+      "quiet",
+      "meek"
+    ],
+    "nudge_probability": 0.6,
+    "nudge_step": 1
+  },
+  "race_tendencies": {
+    "human": {
+      "flat chest": 0.1,
+      "small breasts": 0.2,
+      "medium breasts": 0.45,
+      "large breasts": 0.2
+    },
+    "forest elf": {
+      "flat chest": 0.2,
+      "small breasts": 0.4,
+      "medium breasts": 0.35,
+      "large breasts": 0.04
+    },
+    "great elf": {
+      "flat chest": 0.1,
+      "small breasts": 0.3,
+      "medium breasts": 0.45,
+      "large breasts": 0.12
+    },
+    "dark elf": {
+      "flat chest": 0.1,
+      "small breasts": 0.25,
+      "medium breasts": 0.45,
+      "large breasts": 0.15
+    },
+    "snow elf": {
+      "flat chest": 0.15,
+      "small breasts": 0.35,
+      "medium breasts": 0.4,
+      "large breasts": 0.08
+    },
+    "hill dwarf": {
+      "flat chest": 0.05,
+      "small breasts": 0.2,
+      "medium breasts": 0.5,
+      "large breasts": 0.2
+    },
+    "iron dwarf": {
+      "flat chest": 0.05,
+      "small breasts": 0.15,
+      "medium breasts": 0.5,
+      "large breasts": 0.25
+    },
+    "coastal dwarf": {
+      "flat chest": 0.05,
+      "small breasts": 0.2,
+      "medium breasts": 0.5,
+      "large breasts": 0.2
+    },
+    "storm orc": {
+      "flat chest": 0.02,
+      "small breasts": 0.12,
+      "medium breasts": 0.46,
+      "large breasts": 0.3
+    },
+    "ashfoot orc": {
+      "flat chest": 0.02,
+      "small breasts": 0.12,
+      "medium breasts": 0.46,
+      "large breasts": 0.3
+    },
+    "mountain orc": {
+      "flat chest": 0.02,
+      "small breasts": 0.12,
+      "medium breasts": 0.46,
+      "large breasts": 0.3
+    },
+    "hellbound tiefling": {
+      "flat chest": 0.05,
+      "small breasts": 0.2,
+      "medium breasts": 0.5,
+      "large breasts": 0.2
+    },
+    "sableheart tiefling": {
+      "flat chest": 0.05,
+      "small breasts": 0.2,
+      "medium breasts": 0.5,
+      "large breasts": 0.2
+    },
+    "viridian tiefling": {
+      "flat chest": 0.05,
+      "small breasts": 0.2,
+      "medium breasts": 0.5,
+      "large breasts": 0.2
+    },
+    "darkblood tiefling": {
+      "flat chest": 0.05,
+      "small breasts": 0.2,
+      "medium breasts": 0.5,
+      "large breasts": 0.2
+    },
+    "voided tiefling": {
+      "flat chest": 0.05,
+      "small breasts": 0.2,
+      "medium breasts": 0.45,
+      "large breasts": 0.23
+    },
+    "harpy": {
+      "flat chest": 0.12,
+      "small breasts": 0.35,
+      "medium breasts": 0.4,
+      "large breasts": 0.1
+    },
+    "merfolk": {
+      "flat chest": 0.1,
+      "small breasts": 0.3,
+      "medium breasts": 0.45,
+      "large breasts": 0.12
+    },
+    "kitsune": {
+      "flat chest": 0.08,
+      "small breasts": 0.27,
+      "medium breasts": 0.45,
+      "large breasts": 0.17
+    },
+    "nekomata": {
+      "flat chest": 0.1,
+      "small breasts": 0.3,
+      "medium breasts": 0.45,
+      "large breasts": 0.12
+    },
+    "lamia": {
+      "flat chest": 0.06,
+      "small breasts": 0.24,
+      "medium breasts": 0.5,
+      "large breasts": 0.17
+    },
+    "other": {
+      "flat chest": 0.05,
+      "small breasts": 0.2,
+      "medium breasts": 0.5,
+      "large breasts": 0.2
+    }
+  },
+  "implementation_hint": "Process NPCs (female) across allies/citizens/villains. For each: sample by race_tendencies 70% of time with personality nudges; otherwise pick a contradictory bucket. After one pass, run a balancing correction so per-file percentages are within ~±5% of target_global. Insert 'breast_size' after 'build'."
+}

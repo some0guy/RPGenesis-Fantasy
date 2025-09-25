@@ -22,8 +22,7 @@
             "flat chest",
             "small breasts",
             "medium breasts",
-            "large breasts",
-            "huge breasts"
+            "large breasts"
           ]
         }
       },
@@ -73,8 +72,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -113,14 +111,13 @@
           "loose hair"
         ],
         "skin_colour": [
-          "brown skin",
+          "brown skin"
         ],
         "breast_size": [
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -166,8 +163,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -211,8 +207,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -257,8 +252,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -299,8 +293,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -340,8 +333,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": [
@@ -383,8 +375,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -427,8 +418,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -471,8 +461,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -514,8 +503,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -558,8 +546,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -609,8 +596,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": [
@@ -658,8 +644,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -704,8 +689,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -713,6 +697,7 @@
     "Viridian Tiefling": {
       "must_have": [
         "horns",
+        "antlers",
         "pointed ears",
         "tail",
         "short",
@@ -749,16 +734,14 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
     },
     "Human": {
       "must_have": [
-        "pointed ears",
-        "smooth skin"
+        ""
       ],
       "one_of": {
         "hair_colour": [
@@ -772,6 +755,7 @@
           "blue eyes",
           "brown eyes",
           "green eyes",
+          "hazel",
           "grey eyes"
         ],
         "hair_length": [
@@ -790,14 +774,14 @@
         ],
         "skin_colour": [
           "brown skin",
-          "white skin"
+          "fair skin",
+          "dark brown skin"
         ],
         "breast_size": [
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -838,20 +822,34 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
     },
     "Umbral Nekomata": {
-      "must_have": [],
+      "must_have": [
+        "cat ears",
+        "twin tails",
+        "animal ears",
+        "graceful",
+        "agile",
+        "cat_ears",
+        "animal_ears",
+        "cat_tail",
+        "whiskers"
+      ],
       "one_of": {
         "hair_colour": [
-          "varied hair"
+          "black hair",
+          "charcoal hair",
+          "violet-black hair",
+          "midnight blue hair"
         ],
         "eye_colour": [
-          "varied eyes"
+          "gold eyes",
+          "green eyes",
+          "amber eyes"
         ],
         "hair_length": [
           "long hair",
@@ -868,64 +866,108 @@
           "loose hair"
         ],
         "skin_colour": [
-          "varied skin"
+          "pale skin",
+          "tan skin",
+          "brown skin"
         ],
         "breast_size": [
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
-        ]
-      },
-      "positive": []
-    },
-    "Blossom Nekomata": {
-      "must_have": [],
-      "one_of": {
-        "hair_colour": [
-          "varied hair"
+          "large breasts"
         ],
-        "eye_colour": [
-          "varied eyes"
-        ],
-        "hair_length": [
-          "long hair",
-          "short hair",
-          "medium hair"
-        ],
-        "hair_style": [
-          "braided hair",
-          "wavy hair",
-          "curly hair",
-          "straight hair",
-          "mohawk",
-          "sleek hair",
-          "loose hair"
-        ],
-        "skin_colour": [
-          "varied skin"
-        ],
-        "breast_size": [
-          "flat chest",
-          "small breasts",
-          "medium breasts",
-          "large breasts",
-          "huge breasts"
+        "fur_colour": [
+          "black fur",
+          "charcoal fur",
+          "violet fur",
+          "midnight blue fur"
         ]
       },
       "positive": [
-        "calm"
+        "shadowy aura"
+      ]
+    },
+    "Blossom Nekomata": {
+      "must_have": [
+        "cat ears",
+        "twin tails",
+        "animal ears",
+        "graceful",
+        "playful",
+        "cat_ears",
+        "animal_ears",
+        "cat_tail",
+        "whiskers"
+      ],
+      "one_of": {
+        "hair_colour": [
+          "blonde hair",
+          "cream hair",
+          "soft pink hair",
+          "white hair"
+        ],
+        "eye_colour": [
+          "blue eyes",
+          "green eyes",
+          "gold eyes"
+        ],
+        "hair_length": [
+          "long hair",
+          "short hair",
+          "medium hair"
+        ],
+        "hair_style": [
+          "braided hair",
+          "wavy hair",
+          "curly hair",
+          "straight hair",
+          "mohawk",
+          "sleek hair",
+          "loose hair"
+        ],
+        "skin_colour": [
+          "fair skin",
+          "light brown skin"
+        ],
+        "breast_size": [
+          "flat chest",
+          "small breasts",
+          "medium breasts",
+          "large breasts"
+        ],
+        "fur_colour": [
+          "cream fur",
+          "white fur",
+          "soft pink fur"
+        ]
+      },
+      "positive": [
+        "calm",
+        "floral accents"
       ]
     },
     "Brimtail Nekomata": {
-      "must_have": [],
+      "must_have": [
+        "cat ears",
+        "twin tails",
+        "animal ears",
+        "graceful",
+        "agile",
+        "cat_ears",
+        "animal_ears",
+        "cat_tail",
+        "whiskers"
+      ],
       "one_of": {
         "hair_colour": [
-          "varied hair"
+          "red hair",
+          "black hair",
+          "ash-grey hair"
         ],
         "eye_colour": [
-          "varied eyes"
+          "amber eyes",
+          "gold eyes",
+          "red eyes"
         ],
         "hair_length": [
           "long hair",
@@ -942,30 +984,51 @@
           "loose hair"
         ],
         "skin_colour": [
-          "varied skin"
+          "tan skin",
+          "brown skin"
         ],
         "breast_size": [
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
+        ],
+        "fur_colour": [
+          "red fur",
+          "ember-black fur",
+          "smoky grey fur"
         ]
       },
       "positive": [
-        "aggressive"
+        "aggressive",
+        "ember flecks"
       ]
     },
     "Lunarveil Kitsune": {
       "must_have": [
-        "strong"
+        "strong",
+        "fox ears",
+        "fluffy tails",
+        "animal ears",
+        "slim",
+        "graceful",
+        "mystical aura",
+        "animal_ears",
+        "fluffy tail",
+        "fox tail",
+        "whiskers"
       ],
       "one_of": {
         "hair_colour": [
-          "varied hair"
+          "white hair",
+          "silver hair",
+          "pale blue hair",
+          "lavender hair"
         ],
         "eye_colour": [
-          "varied eyes"
+          "silver eyes",
+          "blue eyes",
+          "violet eyes"
         ],
         "hair_length": [
           "long hair",
@@ -982,26 +1045,51 @@
           "loose hair"
         ],
         "skin_colour": [
-          "varied skin"
+          "fair skin",
+          "pale skin"
         ],
         "breast_size": [
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
+        ],
+        "fur_colour": [
+          "white fur",
+          "silver fur",
+          "pale blue fur",
+          "lavender fur"
         ]
       },
-      "positive": []
+      "positive": [
+        "soft glow",
+        "moonlit aura"
+      ]
     },
     "Infernal Kitsune": {
-      "must_have": [],
+      "must_have": [
+        "fox ears",
+        "fluffy tails",
+        "animal ears",
+        "slim",
+        "graceful",
+        "mystical aura",
+        "animal_ears",
+        "fluffy tail",
+        "fox tail",
+        "whiskers"
+      ],
       "one_of": {
         "hair_colour": [
-          "varied hair"
+          "black hair",
+          "red hair",
+          "ash-grey hair",
+          "ember-orange hair"
         ],
         "eye_colour": [
-          "varied eyes"
+          "gold eyes",
+          "red eyes",
+          "amber eyes"
         ],
         "hair_length": [
           "long hair",
@@ -1018,26 +1106,52 @@
           "loose hair"
         ],
         "skin_colour": [
-          "varied skin"
+          "tan skin",
+          "brown skin",
+          "ash-blue skin"
         ],
         "breast_size": [
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
+        ],
+        "fur_colour": [
+          "black fur",
+          "red fur",
+          "ash-grey fur",
+          "ember-orange fur"
         ]
       },
-      "positive": []
+      "positive": [
+        "ember flecks",
+        "smouldering aura"
+      ]
     },
     "Ethereal Kitsune": {
-      "must_have": [],
+      "must_have": [
+        "fox ears",
+        "fluffy tails",
+        "animal ears",
+        "slim",
+        "graceful",
+        "mystical aura",
+        "animal_ears",
+        "fluffy tail",
+        "fox tail",
+        "whiskers"
+      ],
       "one_of": {
         "hair_colour": [
-          "varied hair"
+          "white hair",
+          "opal hair",
+          "pale gold hair",
+          "silver-blue hair"
         ],
         "eye_colour": [
-          "varied eyes"
+          "silver eyes",
+          "pale gold eyes",
+          "blue eyes"
         ],
         "hair_length": [
           "long hair",
@@ -1054,26 +1168,51 @@
           "loose hair"
         ],
         "skin_colour": [
-          "varied skin"
+          "pale skin",
+          "fair skin"
         ],
         "breast_size": [
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
+        ],
+        "fur_colour": [
+          "white fur",
+          "opal fur",
+          "silver fur"
         ]
       },
-      "positive": []
+      "positive": [
+        "opalescent sheen",
+        "otherworldly calm"
+      ]
     },
     "Maple Kitsune": {
-      "must_have": [],
+      "must_have": [
+        "fox ears",
+        "fluffy tails",
+        "animal ears",
+        "slim",
+        "graceful",
+        "mystical aura",
+        "animal_ears",
+        "fluffy tail",
+        "fox tail",
+        "whiskers"
+      ],
       "one_of": {
         "hair_colour": [
-          "varied hair"
+          "auburn hair",
+          "red hair",
+          "brown hair",
+          "maple-red hair"
         ],
         "eye_colour": [
-          "varied eyes"
+          "amber eyes",
+          "green eyes",
+          "gold eyes",
+          "brown eyes"
         ],
         "hair_length": [
           "long hair",
@@ -1090,26 +1229,52 @@
           "loose hair"
         ],
         "skin_colour": [
-          "varied skin"
+          "fair skin",
+          "tan skin",
+          "light brown skin"
         ],
         "breast_size": [
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
+        ],
+        "fur_colour": [
+          "red fur",
+          "auburn fur",
+          "maple fur",
+          "white fur"
         ]
       },
-      "positive": []
+      "positive": [
+        "playful smile",
+        "trickster charm",
+        "autumnal aura"
+      ]
     },
     "Arctic Kitsune": {
-      "must_have": [],
+      "must_have": [
+        "fox ears",
+        "fluffy tails",
+        "animal ears",
+        "slim",
+        "graceful",
+        "mystical aura",
+        "animal_ears",
+        "fluffy tail",
+        "fox tail",
+        "whiskers"
+      ],
       "one_of": {
         "hair_colour": [
-          "varied hair"
+          "white hair",
+          "platinum hair",
+          "pale blonde hair"
         ],
         "eye_colour": [
-          "varied eyes"
+          "ice-blue eyes",
+          "blue eyes",
+          "grey eyes"
         ],
         "hair_length": [
           "long hair",
@@ -1126,26 +1291,48 @@
           "loose hair"
         ],
         "skin_colour": [
-          "varied skin"
+          "ivory skin",
+          "pale skin"
         ],
         "breast_size": [
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
+        ],
+        "fur_colour": [
+          "white fur",
+          "icy blue fur",
+          "platinum fur",
+          "pale grey fur"
         ]
       },
-      "positive": []
+      "positive": [
+        "frost-kissed tips",
+        "crisp aura"
+      ]
     },
     "Coralheart Merfolk": {
-      "must_have": [],
+      "must_have": [
+        "mermaid",
+        "scales",
+        "fins",
+        "long tail",
+        "coral antlers"
+      ],
       "one_of": {
         "hair_colour": [
-          "varied hair"
+          "brown hair",
+          "black hair",
+          "silver hair",
+          "turquoise hair",
+          "sea-green hair"
         ],
         "eye_colour": [
-          "varied eyes"
+          "blue eyes",
+          "green eyes",
+          "silver eyes",
+          "turquoise eyes"
         ],
         "hair_length": [
           "long hair",
@@ -1162,35 +1349,44 @@
           "loose hair"
         ],
         "skin_colour": [
-          "varied skin"
+          "olive skin",
+          "tan skin",
+          "fair skin"
         ],
         "scale_colour": [
           "blue scales",
           "green scales",
           "silver scales",
           "turquoise scales",
-          "pearl scales"
+          "pearl scales",
+          "coral-pink scales"
         ],
         "breast_size": [
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
     },
     "Tideling Merfolk": {
       "must_have": [
-        "small"
+        "mermaid",
+        "scales",
+        "fins",
+        "long tail"
       ],
       "one_of": {
         "hair_colour": [
-          "varied hair"
+          "black hair",
+          "silver hair",
+          "teal hair"
         ],
         "eye_colour": [
-          "varied eyes"
+          "blue eyes",
+          "green eyes",
+          "silver eyes"
         ],
         "hair_length": [
           "long hair",
@@ -1207,7 +1403,8 @@
           "loose hair"
         ],
         "skin_colour": [
-          "varied skin"
+          "fair skin",
+          "light olive skin"
         ],
         "scale_colour": [
           "blue scales",
@@ -1220,20 +1417,27 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
     },
     "Moonsong Merfolk": {
-      "must_have": [],
+      "must_have": [
+        "mermaid",
+        "scales",
+        "fins",
+        "long tail"
+      ],
       "one_of": {
         "hair_colour": [
-          "varied hair"
+          "white hair",
+          "silver hair",
+          "pale blue hair"
         ],
         "eye_colour": [
-          "varied eyes"
+          "silver eyes",
+          "blue eyes"
         ],
         "hair_length": [
           "long hair",
@@ -1250,35 +1454,42 @@
           "loose hair"
         ],
         "skin_colour": [
-          "varied skin"
+          "pale skin",
+          "fair skin"
         ],
         "scale_colour": [
           "blue scales",
           "green scales",
           "silver scales",
           "turquoise scales",
-          "pearl scales"
+          "pearl scales",
+          "pale blue scales"
         ],
         "breast_size": [
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
     },
     "Glacialis Merfolk": {
       "must_have": [
-        "tall"
+        "mermaid",
+        "scales",
+        "fins",
+        "long tail"
       ],
       "one_of": {
         "hair_colour": [
-          "varied hair"
+          "white hair",
+          "platinum hair",
+          "pale blue hair"
         ],
         "eye_colour": [
-          "varied eyes"
+          "ice-blue eyes",
+          "grey eyes"
         ],
         "hair_length": [
           "long hair",
@@ -1295,35 +1506,44 @@
           "loose hair"
         ],
         "skin_colour": [
-          "varied skin"
+          "pale skin"
         ],
         "scale_colour": [
           "blue scales",
           "green scales",
           "silver scales",
           "turquoise scales",
-          "pearl scales"
+          "pearl scales",
+          "icy blue scales",
+          "frosted white scales"
         ],
         "breast_size": [
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
     },
     "Nethryn Merfolk": {
       "must_have": [
-        "strong"
+        "mermaid",
+        "scales",
+        "fins",
+        "long tail",
+        "single horn"
       ],
       "one_of": {
         "hair_colour": [
-          "varied hair"
+          "black hair",
+          "midnight blue hair",
+          "violet hair"
         ],
         "eye_colour": [
-          "varied eyes"
+          "silver eyes",
+          "gold eyes",
+          "blue eyes"
         ],
         "hair_length": [
           "long hair",
@@ -1340,21 +1560,26 @@
           "loose hair"
         ],
         "skin_colour": [
-          "varied skin"
+          "pale skin",
+          "ashen skin",
+          "olive skin"
         ],
         "scale_colour": [
           "blue scales",
           "green scales",
           "silver scales",
           "turquoise scales",
-          "pearl scales"
+          "pearl scales",
+          "black scales",
+          "oil-slick scales",
+          "deep violet scales",
+          "glowing trim scales"
         ],
         "breast_size": [
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -1363,8 +1588,8 @@
       "must_have": [
         "scales",
         "toned",
-        "long tail"
-		"lamia"
+        "long tail",
+        "lamia"
       ],
       "one_of": {
         "hair_colour": [
@@ -1403,8 +1628,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -1412,8 +1636,8 @@
     "Verdant Lamia": {
       "must_have": [
         "scales",
-		"long tail",
-		"lamia"
+        "long tail",
+        "lamia"
       ],
       "one_of": {
         "hair_colour": [
@@ -1453,8 +1677,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -1462,8 +1685,8 @@
     "Lustmire Lamia": {
       "must_have": [
         "scales",
-		"long tail",
-		"lamia"
+        "long tail",
+        "lamia"
       ],
       "one_of": {
         "hair_colour": [
@@ -1502,8 +1725,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -1549,8 +1771,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -1617,8 +1838,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -1684,8 +1904,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -1751,8 +1970,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []
@@ -1817,8 +2035,7 @@
           "flat chest",
           "small breasts",
           "medium breasts",
-          "large breasts",
-          "huge breasts"
+          "large breasts"
         ]
       },
       "positive": []

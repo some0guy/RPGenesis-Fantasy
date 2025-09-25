@@ -8,7 +8,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "A woolly sheep with a coat of deep black. Docile and steady, it tends to linger at the edges of the flock."
+      "description": "A woolly sheep with a coat of deep black. Docile and steady, it tends to linger at the edges of the flock.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004001",
@@ -16,7 +30,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Plump and bright-feathered, this hen struts proudly around farmyards. Its golden plumage shines in sunlight like ripe wheat."
+      "description": "Plump and bright-feathered, this hen struts proudly around farmyards. Its golden plumage shines in sunlight like ripe wheat.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004002",
@@ -24,7 +52,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "A gentle woodland deer, antlers shaped like the curve of willow branches. Moves with grace, pausing often as though listening to whispers in the trees."
+      "description": "A gentle woodland deer, antlers shaped like the curve of willow branches. Moves with grace, pausing often as though listening to whispers in the trees.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004003",
@@ -32,7 +74,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Soft-feathered dove with pale ash coloring. Carries a mournful coo, often seen near quiet ruins or graveyards."
+      "description": "Soft-feathered dove with pale ash coloring. Carries a mournful coo, often seen near quiet ruins or graveyards.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004004",
@@ -40,7 +96,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "A tortoise with a shell ridged like slabs of stone. Slow but enduring, often found basking in sunlit clearings."
+      "description": "A tortoise with a shell ridged like slabs of stone. Slow but enduring, often found basking in sunlit clearings.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004005",
@@ -48,7 +118,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Tiny bird with dark red plumage. Its chirps are sharp and fast, flitting between hedges like sparks in the wind."
+      "description": "Tiny bird with dark red plumage. Its chirps are sharp and fast, flitting between hedges like sparks in the wind.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004006",
@@ -56,7 +140,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Shaggy goat with curled horns, often found grazing on tough weeds. Known for bleating stubbornly at the worst moments."
+      "description": "Shaggy goat with curled horns, often found grazing on tough weeds. Known for bleating stubbornly at the worst moments.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004007",
@@ -64,7 +162,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Feathers streaked with pale silver, eyes reflecting like coins under moonlight. Hunts silently, a watchful guardian of the night."
+      "description": "Feathers streaked with pale silver, eyes reflecting like coins under moonlight. Hunts silently, a watchful guardian of the night.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004008",
@@ -72,7 +184,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Quick-footed hare with a snowy tufted tail. Skittish but hardy, darting through frost and grass alike."
+      "description": "Quick-footed hare with a snowy tufted tail. Skittish but hardy, darting through frost and grass alike.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004009",
@@ -80,7 +206,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Broad-bodied and calm, this cow’s coat has an amber sheen. Provides milk with a sweet, nutty flavor prized in villages."
+      "description": "Broad-bodied and calm, this cow’s coat has an amber sheen. Provides milk with a sweet, nutty flavor prized in villages.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004010",
@@ -88,7 +228,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "A loud and territorial goose with a serrated bill. Honks furiously at anything that wanders too close."
+      "description": "A loud and territorial goose with a serrated bill. Honks furiously at anything that wanders too close.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004011",
@@ -96,7 +250,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Tall and elegant horse with a flowing pale mane. Known for stamina and a proud, spirited nature."
+      "description": "Tall and elegant horse with a flowing pale mane. Known for stamina and a proud, spirited nature.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004012",
@@ -104,7 +272,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Round-bellied duck with mud-brown plumage. Waddles near riverbanks, quacking noisily as it forages."
+      "description": "Round-bellied duck with mud-brown plumage. Waddles near riverbanks, quacking noisily as it forages.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004013",
@@ -112,7 +294,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Bright little bird with a breast flushed rose-red. Its song is cheerful, often heard at dawn in spring meadows."
+      "description": "Bright little bird with a breast flushed rose-red. Its song is cheerful, often heard at dawn in spring meadows.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004014",
@@ -120,7 +316,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Large land snail with a shell streaked in greenish muck. Leaves glistening trails along stones after rain."
+      "description": "Large land snail with a shell streaked in greenish muck. Leaves glistening trails along stones after rain.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004015",
@@ -128,7 +338,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Round and good-natured, this pig often snoozes near fireplaces. Farmers raise them as much for companionship as for meat."
+      "description": "Round and good-natured, this pig often snoozes near fireplaces. Farmers raise them as much for companionship as for meat.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004016",
@@ -136,7 +360,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Tall bird with gleaming silver plumage. Wades gracefully through shallow rivers, spearing fish with uncanny precision."
+      "description": "Tall bird with gleaming silver plumage. Wades gracefully through shallow rivers, spearing fish with uncanny precision.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004017",
@@ -144,7 +382,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Young deer with a dappled coat like sunlight through leaves. Shy and delicate, a fleeting presence in the forest."
+      "description": "Young deer with a dappled coat like sunlight through leaves. Shy and delicate, a fleeting presence in the forest.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004018",
@@ -152,7 +404,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "A proud rooster with copper-colored plumage. Struts and crows loudly at the first hint of dawn."
+      "description": "A proud rooster with copper-colored plumage. Struts and crows loudly at the first hint of dawn.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004019",
@@ -160,7 +426,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Elegant swan with feathers that shimmer orange and red in fading light. Symbol of grace and fleeting beauty."
+      "description": "Elegant swan with feathers that shimmer orange and red in fading light. Symbol of grace and fleeting beauty.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004020",
@@ -168,7 +448,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Soft-coated hare whose fur feels like velvet to the touch. Considered a gentle omen of luck."
+      "description": "Soft-coated hare whose fur feels like velvet to the touch. Considered a gentle omen of luck.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004021",
@@ -176,7 +470,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Tiny hedgehog with spines tipped darker like thorn brambles. Shuffles through hedges sniffing for insects."
+      "description": "Tiny hedgehog with spines tipped darker like thorn brambles. Shuffles through hedges sniffing for insects.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004022",
@@ -184,7 +492,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Young calf with wide innocent eyes, its nose always damp. Follows people curiously like a lost child."
+      "description": "Young calf with wide innocent eyes, its nose always damp. Follows people curiously like a lost child.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004023",
@@ -192,7 +514,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Small turtle with moss growing across its shell. Slow but persistent, it often looks like a moving stone in streams."
+      "description": "Small turtle with moss growing across its shell. Slow but persistent, it often looks like a moving stone in streams.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004024",
@@ -200,7 +536,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Dove with plumage that shifts from gray to violet as evening falls. Its coo carries a calm, soothing note."
+      "description": "Dove with plumage that shifts from gray to violet as evening falls. Its coo carries a calm, soothing note.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004025",
@@ -208,7 +558,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "A buzzing cluster of bees, wings shining like amber in sunlight. Though harmless if left alone, their hive is fiercely guarded."
+      "description": "A buzzing cluster of bees, wings shining like amber in sunlight. Though harmless if left alone, their hive is fiercely guarded.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004026",
@@ -216,7 +580,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Tiny insect whose abdomen glows bright gold. In fields at night, they light the air like drifting lanterns."
+      "description": "Tiny insect whose abdomen glows bright gold. In fields at night, they light the air like drifting lanterns.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004027",
@@ -224,7 +602,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "A regal stag with branching antlers. Moves with steady authority, often leading smaller herds across glades."
+      "description": "A regal stag with branching antlers. Moves with steady authority, often leading smaller herds across glades.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004028",
@@ -232,7 +624,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Slender white bird stalking marshes for frogs. Its cry is sharp and piercing, echoing across wetlands."
+      "description": "Slender white bird stalking marshes for frogs. Its cry is sharp and piercing, echoing across wetlands.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004029",
@@ -240,7 +646,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Quick and curious, this brown-furred weasel-like animal bounds through forests with playful energy."
+      "description": "Quick and curious, this brown-furred weasel-like animal bounds through forests with playful energy.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004030",
@@ -248,7 +668,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "A bright blue forest bird with a shrill call. Known to steal shiny trinkets left unattended."
+      "description": "A bright blue forest bird with a shrill call. Known to steal shiny trinkets left unattended.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004031",
@@ -256,7 +690,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "A long-legged hare that bounds across dunes and grassland with great speed. Its sandy coat helps it vanish quickly."
+      "description": "A long-legged hare that bounds across dunes and grassland with great speed. Its sandy coat helps it vanish quickly.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004032",
@@ -264,7 +712,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "An antelope with horn tips shaped like a regal crown. Agile and wary, always on the move through tall grass."
+      "description": "An antelope with horn tips shaped like a regal crown. Agile and wary, always on the move through tall grass.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004033",
@@ -272,7 +734,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Plump city-dwelling pigeon with gray feathers speckled white. Familiar sight around markets and temple steps."
+      "description": "Plump city-dwelling pigeon with gray feathers speckled white. Familiar sight around markets and temple steps.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004034",
@@ -280,7 +756,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "A river carp whose scales shimmer iridescently under light. Popular in ponds and lucky charms."
+      "description": "A river carp whose scales shimmer iridescently under light. Popular in ponds and lucky charms.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004035",
@@ -288,7 +778,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Soft gray dove with a low, haunting coo. A symbol of remembrance in many villages."
+      "description": "Soft gray dove with a low, haunting coo. A symbol of remembrance in many villages.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004036",
@@ -296,7 +800,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Majestic swan with feathers of deep blue. A rare sight, admired as a symbol of purity and serenity."
+      "description": "Majestic swan with feathers of deep blue. A rare sight, admired as a symbol of purity and serenity.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004037",
@@ -304,7 +822,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Farmyard hen with speckled brown plumage. Known for laying eggs with a richer taste, prized in kitchens."
+      "description": "Farmyard hen with speckled brown plumage. Known for laying eggs with a richer taste, prized in kitchens.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004038",
@@ -312,7 +844,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "Massive ox bred for hauling lumber. Its horns are blunt but thick, its gait steady and patient."
+      "description": "Massive ox bred for hauling lumber. Its horns are blunt but thick, its gait steady and patient.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     },
     {
       "id": "NP004039",
@@ -320,7 +866,21 @@
       "race": "Animal",
       "sex": null,
       "type": "animal",
-      "description": "A small dove with feathers shimmering white like pearls. Associated with peace and new beginnings."
+      "description": "A small dove with feathers shimmering white like pearls. Associated with peace and new beginnings.",
+      "hair_length": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "hair_style": [
+        "braided",
+        "wavy",
+        "curly",
+        "straight",
+        "sleek",
+        "loose",
+        "mohawk"
+      ]
     }
   ]
 }
