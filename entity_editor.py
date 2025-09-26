@@ -87,6 +87,10 @@ DEFAULT_NPC = {
     "inventory": [],
     "clothing": [],
     "personality": [],
+    "clothing_short": "",
+    "clothing_long": "",
+    "personality_short": "",
+    "personality_long": "",
     "notes": ""
 }
 
@@ -690,6 +694,15 @@ class KeyValueForm(ttk.Frame):
                 text.configure(state="disabled")
                 return ("legacy_json", text)
 
+            # Multiline text fields
+            if key in ("description", "notes", "clothing_long", "personality_long"):
+                text = tk.Text(self.inner, height=6, width=40)
+                try:
+                    text.insert("1.0", "" if val is None else str(val))
+                except Exception:
+                    text.insert("1.0", str(val))
+                return ("multiline", text)
+
             # Dict/list -> JSON editor
             if isinstance(val, (dict, list)):
                 text = tk.Text(self.inner, height=4, width=40)
@@ -856,6 +869,11 @@ class KeyValueForm(ttk.Frame):
                 except Exception:
                     # keep as string/raw
                     out[k] = widget.get("1.0","end")
+            elif kind == "multiline":
+                try:
+                    out[k] = widget.get("1.0","end").strip()
+                except Exception:
+                    out[k] = ""
             elif kind == "components_labels":
                 labels = widget.get()
                 ids = []
@@ -1592,6 +1610,16 @@ class NPCsTab(ttk.Frame):
         if not sel: return
         idx = self.filtered_indices[sel[0]]
         self.selected_index = idx
+        # Ensure new text fields are present for editing
+        try:
+            npc = self.npcs[idx]
+            if isinstance(npc, dict):
+                npc.setdefault("clothing_short", "")
+                npc.setdefault("clothing_long", "")
+                npc.setdefault("personality_short", "")
+                npc.setdefault("personality_long", "")
+        except Exception:
+            pass
         self.form.set_object(self.npcs[idx])
 
     def on_new(self):
